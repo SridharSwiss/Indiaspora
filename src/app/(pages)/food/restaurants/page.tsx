@@ -1,84 +1,94 @@
 import PageHeader from "@/components/ui/PageHeader";
 
-const cities = [
+const restaurantsByCity = [
   {
-    name: "Zurich",
+    city: "Zurich",
     restaurants: [
-      { name: "Bairavi Restaurant", cuisine: "South Indian", address: "Langstrasse 149, 8004 Zurich", specialty: "Dosas, idli, sambar, filter coffee", price: "CHF 15–30" },
-      { name: "Rajasthan Restaurant", cuisine: "North Indian", address: "Stauffacherstr. 50, 8004 Zurich", specialty: "Thali, tandoor, butter chicken", price: "CHF 20–40" },
-      { name: "Bombay Dreams", cuisine: "Mumbai Street Food", address: "Seefeldstrasse 60, 8008 Zurich", specialty: "Pav bhaji, vada pav, chaat", price: "CHF 12–25" },
-      { name: "Chennai Diner", cuisine: "South Indian", address: "Langstrasse 200, 8004 Zurich", specialty: "Filter coffee, idli, vada, biryani", price: "CHF 15–28" },
-      { name: "Maharani", cuisine: "Pan-Indian", address: "Niederdorfstrasse 14, 8001 Zurich", specialty: "Curry selection, great vegetarian options", price: "CHF 22–45" },
+      { name: "Bairavi", cuisine: "South Indian", address: "Langstrasse 149, 8004 Zürich", specialty: "Dosa & Idli", price: "CHF 15–25" },
+      { name: "Rajasthan", cuisine: "North Indian", address: "Stauffacherstr 50, 8004 Zürich", specialty: "Dal Baati Churma", price: "CHF 20–35" },
+      { name: "Bombay Dreams", cuisine: "Indian Fusion", address: "Seefeldstrasse 60, 8008 Zürich", specialty: "Pav Bhaji & Vada Pav", price: "CHF 18–30" },
+      { name: "Chennai Diner", cuisine: "Tamil", address: "Langstrasse 200, 8005 Zürich", specialty: "Chettinad Chicken", price: "CHF 16–28" },
     ],
   },
   {
-    name: "Geneva",
+    city: "Geneva",
     restaurants: [
-      { name: "Indigo Restaurant", cuisine: "Fine Dining Indian", address: "Rue de Rive 23, 1204 Geneva", specialty: "Upscale Indian cuisine, wine pairing", price: "CHF 40–80" },
-      { name: "Namaste India Geneva", cuisine: "North Indian", address: "Rue de Zurich 40, 1201 Geneva", specialty: "Tandoor, curry, popular with UN staff", price: "CHF 22–42" },
-      { name: "Taj Mahal Geneva", cuisine: "North Indian", address: "Rue Chantepoulet 15, 1201 Geneva", specialty: "Classic curries, near Old Town", price: "CHF 25–45" },
+      { name: "Indigo", cuisine: "Indian Contemporary", address: "Rue de Rive 23, 1204 Genève", specialty: "Butter Chicken", price: "CHF 22–40" },
+      { name: "Namaste India Geneva", cuisine: "North Indian", address: "Geneva Centre", specialty: "Biryani & Kebabs", price: "CHF 20–35" },
+      { name: "Taj Mahal", cuisine: "Pan Indian", address: "Rue de Chantepoulet, 1201 Genève", specialty: "Tandoori Platter", price: "CHF 18–32" },
     ],
   },
   {
-    name: "Basel",
+    city: "Basel",
     restaurants: [
-      { name: "Namaste India Basel", cuisine: "North Indian", address: "Gueterstrasse 99, 4053 Basel", specialty: "Buffet lunch and dinner, halal options", price: "CHF 18–35" },
-      { name: "Malabar Basel", cuisine: "South Indian / Kerala", address: "Basel city centre", specialty: "Kerala fish curry, appam, puttu", price: "CHF 18–32" },
+      { name: "Namaste India Basel", cuisine: "North Indian", address: "Güterstrasse 99, 4053 Basel", specialty: "Rogan Josh", price: "CHF 18–30" },
+      { name: "Malabar Basel", cuisine: "Kerala / South Indian", address: "Basel", specialty: "Fish Curry & Appam", price: "CHF 16–28" },
     ],
   },
   {
-    name: "Bern",
+    city: "Bern",
     restaurants: [
-      { name: "Maharaja Palace", cuisine: "North Indian", address: "Marktgasse 32, 3011 Bern", specialty: "Family-friendly, halal options, tandoor", price: "CHF 20–38" },
-      { name: "India Gate Bern", cuisine: "North Indian", address: "Bern city centre", specialty: "Biryani, curries, naan", price: "CHF 18–32" },
+      { name: "Maharaja Palace", cuisine: "North Indian", address: "Marktgasse 32, 3011 Bern", specialty: "Paneer Tikka Masala", price: "CHF 20–35" },
+      { name: "India Gate", cuisine: "Pan Indian", address: "Bern Centre", specialty: "Mixed Grill Platter", price: "CHF 18–30" },
     ],
   },
   {
-    name: "Lausanne",
+    city: "Lausanne",
     restaurants: [
-      { name: "Spice Route", cuisine: "Pan-Indian", address: "Rue du Midi 22, 1003 Lausanne", specialty: "Popular with EPFL community", price: "CHF 18–35" },
-      { name: "Indian Palace Lausanne", cuisine: "North Indian", address: "Near Lausanne train station", specialty: "Classic curries, biryani", price: "CHF 20–38" },
+      { name: "Spice Route", cuisine: "Pan Indian", address: "Rue du Midi 22, 1003 Lausanne", specialty: "Lamb Biryani", price: "CHF 20–35" },
+      { name: "Indian Palace", cuisine: "North Indian", address: "Lausanne", specialty: "Chicken Tikka", price: "CHF 18–28" },
     ],
   },
 ];
 
 export default function RestaurantsPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
         title="Indian Restaurants in Switzerland"
         subtitle="From South Indian dosas to Punjabi dhabas — discover the best Indian restaurants across all Swiss cities."
         badge="100+ Restaurants"
         gradient="from-amber-500 to-orange-500"
-        breadcrumbs={[{ label: "Food & Dining", href: "/food" }, { label: "Restaurants" }]}
+        breadcrumbs={[
+          { label: "Food & Dining", href: "/food" },
+          { label: "Restaurants" },
+        ]}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {cities.map((city) => (
-          <section key={city.name} className="mb-14">
-            <h2 className="text-2xl font-bold text-white mb-6">{city.name}</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {city.restaurants.map((r) => (
-                <div key={r.name} className="glass rounded-2xl p-5 card-hover">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-semibold text-white">{r.name}</h3>
-                    <span className="text-xs bg-amber-500/20 text-amber-400 px-2 py-1 rounded-full ml-2 shrink-0">{r.price}</span>
-                  </div>
-                  <p className="text-xs text-orange-400 mb-2">{r.cuisine}</p>
-                  <p className="text-sm text-slate-400 mb-1">{r.address}</p>
-                  <p className="text-xs text-slate-500">{r.specialty}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
 
-        <div className="glass rounded-2xl p-6">
-          <h3 className="font-semibold text-white mb-3">Find More Restaurants</h3>
-          <ul className="space-y-2 text-sm text-slate-400">
-            <li>Search Google Maps for <span className="text-orange-400">"Indian restaurant [city name]"</span></li>
-            <li>Check TripAdvisor Switzerland Indian restaurant listings</li>
-            <li>Ask in Facebook group <span className="text-orange-400">"Indians in Zurich"</span> or <span className="text-orange-400">"Indian Community Geneva"</span></li>
-            <li>Many restaurants offer lunch deals (CHF 15–22) not listed on menus — always ask</li>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="space-y-12">
+          {restaurantsByCity.map((group) => (
+            <section key={group.city}>
+              <h2 className="text-2xl font-bold text-white mb-6">{group.city}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {group.restaurants.map((restaurant) => (
+                  <div
+                    key={restaurant.name}
+                    className="glass card-hover rounded-2xl p-6 flex flex-col gap-2"
+                  >
+                    <h3 className="text-lg font-semibold text-white">{restaurant.name}</h3>
+                    <span className="text-sm text-amber-400 font-medium">{restaurant.cuisine}</span>
+                    <p className="text-sm text-white/70">{restaurant.address}</p>
+                    <p className="text-sm text-white/60">
+                      <span className="font-medium text-white/80">Specialty:</span> {restaurant.specialty}
+                    </p>
+                    <p className="text-sm text-white/60">
+                      <span className="font-medium text-white/80">Price:</span> {restaurant.price}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+
+        {/* Tips Section */}
+        <div className="mt-16 glass rounded-2xl p-8">
+          <h2 className="text-xl font-bold text-white mb-4">How to Find More Restaurants</h2>
+          <ul className="space-y-2 text-white/70">
+            <li>🔍 Search Google Maps for <span className="text-white font-medium">'Indian restaurant [city]'</span> to discover newest openings.</li>
+            <li>📱 Browse <span className="text-white font-medium">Zomato</span> and <span className="text-white font-medium">TripAdvisor</span> for ratings and reviews.</li>
+            <li>💬 Ask in Facebook groups like <span className="text-white font-medium">'Indians in Zurich'</span> or <span className="text-white font-medium">'Indian Community Switzerland'</span> for trusted recommendations.</li>
           </ul>
         </div>
       </div>

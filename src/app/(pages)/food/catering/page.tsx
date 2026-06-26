@@ -1,70 +1,87 @@
 import PageHeader from "@/components/ui/PageHeader";
 
 const tiffinServices = [
-  { name: "Desi Tiffin Zurich", city: "Zurich", desc: "Monthly subscriptions available, veg and non-veg options, weekly menu posted on WhatsApp" },
-  { name: "Maa ki Rasoi", city: "Zurich", desc: "Home-style Punjabi meals — dal, sabzi, roti, rice. WhatsApp orders, weekly meal plans" },
-  { name: "South Indian Kitchen Zurich", city: "Zurich", desc: "Thali delivery with sambar, rasam, kootu, rice. Vegan-friendly options available" },
-  { name: "Gujarat Dabba", city: "Zurich", desc: "Authentic Gujarati thali every week — dal, kadhi, shaak, rotli, rice, chhas" },
-  { name: "Indian Home Kitchen Geneva", city: "Geneva", desc: "Daily tiffin and event catering for the Geneva Indian community" },
-  { name: "Spice Affairs Basel", city: "Basel", desc: "Corporate catering and individual tiffin for Novartis, Roche area professionals" },
-  { name: "Bern Tiffin Network", city: "Bern", desc: "Community-run meal sharing group — post requests and connect with home cooks" },
-  { name: "Lausanne Indian Meals", city: "Lausanne", desc: "Student-focused affordable tiffin near EPFL campus" },
+  { name: "Desi Tiffin Zurich", description: "Monthly subscriptions for veg and non-veg home-cooked meals, delivered across Zurich.", contact: "WhatsApp / DM" },
+  { name: "Maa ki Rasoi", description: "Punjabi home-style cooking. Weekly thali orders placed via WhatsApp.", contact: "WhatsApp" },
+  { name: "South Indian Kitchen Zurich", description: "Thali delivery service featuring sambar, rasam, rice, and curries. Vegan-friendly.", contact: "Facebook / WhatsApp" },
+  { name: "Gujarat Dabba", description: "Gujarati thali delivered weekly — dal, sabzi, rotli, rice, and sweets.", contact: "WhatsApp" },
+  { name: "Indian Home Kitchen Geneva", description: "Home-cooked North and South Indian meals for working professionals in Geneva.", contact: "Facebook DM" },
+  { name: "Spice Affairs Basel", description: "Regular meal subscriptions and weekend specials serving the Basel community.", contact: "WhatsApp / Facebook" },
 ];
 
-const eventCatering = [
-  { event: "Weddings & Receptions", desc: "Full Indian wedding catering — mehendi, sangeet, reception buffets with 50+ items" },
-  { event: "Diwali & Navratri Parties", desc: "Festive menus with chaat, sweets, snacks, and full dinner service" },
-  { event: "Corporate Events", desc: "Professional Indian lunch/dinner catering for 10–500 guests" },
-  { event: "Puja & Religious Events", desc: "Sattvic (no onion/garlic) catering, prasad preparation" },
-  { event: "Birthday & Housewarmings", desc: "Home party catering with finger foods, curries, desserts" },
+const cateringItems = [
+  "Weddings: full multi-course Indian buffet, live chaat counter, desserts",
+  "Diwali parties: chaat, starters, mains, mithai, and drinks",
+  "Corporate events: vegetarian and non-vegetarian Indian lunch boxes",
+  "Naming ceremonies, birthdays, pooja bhojan",
 ];
 
 export default function CateringPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
         title="Indian Catering & Home Chefs"
         subtitle="Home-cooked Indian meals delivered to your door — tiffin services, event catering, and home chefs across Switzerland."
         badge="Tiffin & Catering"
         gradient="from-amber-500 to-orange-500"
-        breadcrumbs={[{ label: "Food & Dining", href: "/food" }, { label: "Catering & Home Chefs" }]}
+        breadcrumbs={[
+          { label: "Food & Dining", href: "/food" },
+          { label: "Catering & Home Chefs" },
+        ]}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <section className="mb-14">
-          <h2 className="text-2xl font-bold text-white mb-2">Tiffin Services</h2>
-          <p className="text-slate-400 mb-8">Daily and weekly home-cooked Indian meal delivery across Swiss cities</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {tiffinServices.map((t) => (
-              <div key={t.name} className="glass rounded-2xl p-5 card-hover">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-semibold text-white">{t.name}</h3>
-                  <span className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full ml-2 shrink-0">{t.city}</span>
-                </div>
-                <p className="text-sm text-slate-400">{t.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 p-5 rounded-2xl bg-orange-500/10 border border-orange-500/20">
-            <p className="text-sm text-orange-300">Find tiffin services via Facebook groups: <strong>"Indians in Zurich"</strong>, <strong>"Desi Moms Switzerland"</strong>, <strong>"Indian Community Geneva"</strong>, <strong>"Indians in Basel"</strong></p>
-          </div>
-        </section>
 
-        <section className="mb-14">
-          <h2 className="text-2xl font-bold text-white mb-2">Event Catering</h2>
-          <p className="text-slate-400 mb-8">Professional Indian catering for weddings, pujas, and corporate events</p>
-          <div className="grid md:grid-cols-2 gap-5">
-            {eventCatering.map((e) => (
-              <div key={e.event} className="glass rounded-2xl p-5">
-                <h3 className="font-semibold text-orange-400 mb-2">{e.event}</h3>
-                <p className="text-sm text-slate-400">{e.desc}</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        {/* Tiffin Services */}
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">Tiffin Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {tiffinServices.map((service) => (
+              <div key={service.name} className="glass card-hover rounded-2xl p-6">
+                <h3 className="text-lg font-semibold text-white mb-2">{service.name}</h3>
+                <p className="text-sm text-white/70 mb-3">{service.description}</p>
+                <span className="text-xs text-amber-400 font-medium">Order via: {service.contact}</span>
               </div>
             ))}
           </div>
         </section>
 
-        <div className="glass rounded-2xl p-6">
-          <h3 className="font-semibold text-white mb-3">Swiss Food Safety Note</h3>
-          <p className="text-sm text-slate-400">Home chefs operating commercially in Switzerland must register with the cantonal food safety authority (Lebensmittelkontrolle). Check <a href="https://www.blv.admin.ch/blv/en/home/lebensmittel-und-ernaehrung/rechts-und-vollzugsgrundlagen/hilfsmittel-vollzug.html" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300">blv.admin.ch</a> for food business regulations in Switzerland.</p>
+        {/* Event Catering */}
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">Event Catering</h2>
+          <div className="glass rounded-2xl p-8">
+            <p className="text-white/70 mb-4">Many home chefs and catering operations take on larger event bookings. Typical offerings include:</p>
+            <ul className="space-y-2">
+              {cateringItems.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-white/70 text-sm">
+                  <span className="text-amber-400 mt-0.5">•</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* How to Find */}
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">How to Find Tiffin & Catering Services</h2>
+          <div className="glass rounded-2xl p-8">
+            <p className="text-white/70 mb-4">Most home chefs operate through community Facebook groups. Search for and join these groups:</p>
+            <ul className="space-y-2">
+              {["Indians in Zurich", "Desi Moms Switzerland", "Indian Community Geneva", "Indians in Basel"].map((group) => (
+                <li key={group} className="flex items-start gap-2 text-white/70 text-sm">
+                  <span className="text-amber-400 mt-0.5">→</span>
+                  Facebook group: <span className="text-white font-medium ml-1">"{group}"</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* Note */}
+        <div className="glass rounded-2xl p-6 border border-amber-500/20">
+          <p className="text-white/80 text-sm">
+            <span className="font-semibold text-amber-400">Note on Swiss Food Safety Rules:</span> Home chefs operating commercially in Switzerland must comply with cantonal food hygiene regulations. Cantons may require registration with the local food safety authority (<em>Lebensmittelkontrolle</em>) before selling home-cooked food. Ask your home chef if they are registered.
+          </p>
         </div>
       </div>
     </div>
