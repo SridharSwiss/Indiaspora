@@ -14,7 +14,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -24,50 +24,51 @@ export default function Navbar() {
     setActiveMenu(null);
   }, [pathname]);
 
+  const isActive = (href: string) => pathname.startsWith(href) && href !== "/";
+
   return (
     <nav
+      role="navigation"
+      aria-label="Main navigation"
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        scrolled ? "glass-strong shadow-2xl shadow-black/30" : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-400",
+        scrolled ? "glass-strong shadow-2xl shadow-black/40" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16 lg:h-[72px]">
+
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10">
-              <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
-                <circle cx="20" cy="20" r="18" stroke="url(#logoGrad)" strokeWidth="2" />
-                <circle cx="20" cy="20" r="8" fill="url(#logoGrad)" opacity="0.9" />
-                {[0,30,60,90,120,150,180,210,240,270,300,330].map((deg, i) => (
-                  <line key={i} x1="20" y1="12" x2="20" y2="4" stroke="url(#logoGrad)" strokeWidth="1.5" strokeLinecap="round" transform={`rotate(${deg} 20 20)`} />
-                ))}
-                <defs>
-                  <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#fbbf24" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div>
-              <div className="font-bold text-base sm:text-lg leading-tight tracking-wide">
+          <Link href="/" className="flex items-center gap-3 group shrink-0" aria-label="IndiaSwiss Home">
+            <svg viewBox="0 0 40 40" fill="none" className="w-9 h-9" aria-hidden="true">
+              <circle cx="20" cy="20" r="18" stroke="url(#ng)" strokeWidth="1.5" />
+              <circle cx="20" cy="20" r="8" fill="url(#ng)" opacity="0.9" />
+              {[0,30,60,90,120,150,180,210,240,270,300,330].map((deg, i) => (
+                <line key={i} x1="20" y1="12" x2="20" y2="5" stroke="url(#ng)" strokeWidth="1.5" strokeLinecap="round" transform={`rotate(${deg} 20 20)`} />
+              ))}
+              <defs>
+                <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#F0950C" />
+                  <stop offset="100%" stopColor="#FBBA1E" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div className="leading-none">
+              <div className="font-black text-[17px] tracking-tight">
                 <span className="gradient-text">India</span>
                 <span className="text-white">Swiss</span>
               </div>
-              <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest leading-tight">
-                Community Hub
-              </div>
+              <div className="text-[9px] text-[var(--text-dim)] uppercase tracking-[0.25em] mt-0.5">Community Hub</div>
             </div>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop nav */}
           <div className="hidden lg:flex items-center gap-0.5">
             {NAV_ITEMS.map((item) => (
               <div
                 key={item.label}
                 className="relative"
-                onMouseEnter={() => item.children && setActiveMenu(item.label)}
+                onMouseEnter={() => setActiveMenu(item.label)}
                 onMouseLeave={() => setActiveMenu(null)}
               >
                 {item.children ? (
@@ -75,27 +76,22 @@ export default function Navbar() {
                     href={item.href}
                     className={cn(
                       "flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
-                      pathname.startsWith(item.href) && item.href !== "/"
-                        ? "text-orange-400 bg-orange-500/10"
-                        : "text-slate-300 hover:text-white hover:bg-white/10"
+                      isActive(item.href)
+                        ? "text-[var(--saffron)] bg-[rgba(240,149,12,0.08)]"
+                        : "text-[var(--text-muted)] hover:text-white hover:bg-white/8"
                     )}
                   >
                     {item.label}
-                    <ChevronDown
-                      className={cn(
-                        "w-3.5 h-3.5 transition-transform duration-200",
-                        activeMenu === item.label && "rotate-180"
-                      )}
-                    />
+                    <ChevronDown className={cn("w-3 h-3 transition-transform duration-200", activeMenu === item.label && "rotate-180")} />
                   </Link>
                 ) : (
                   <Link
                     href={item.href}
                     className={cn(
-                      "flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
-                      pathname === item.href
-                        ? "text-orange-400 bg-orange-500/10"
-                        : "text-slate-300 hover:text-white hover:bg-white/10"
+                      "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 block",
+                      isActive(item.href)
+                        ? "text-[var(--saffron)] bg-[rgba(240,149,12,0.08)]"
+                        : "text-[var(--text-muted)] hover:text-white hover:bg-white/8"
                     )}
                   >
                     {item.label}
@@ -104,16 +100,16 @@ export default function Navbar() {
 
                 {item.children && activeMenu === item.label && (
                   <div className="absolute top-full left-0 pt-2 min-w-[220px] z-50">
-                    <div className="glass-strong rounded-xl p-2 shadow-2xl shadow-black/50">
+                    <div className="glass-strong rounded-2xl p-2 shadow-2xl shadow-black/60 border border-[var(--border-mid)]">
                       {item.children.map((child) => (
                         <Link
                           key={child.label}
                           href={child.href}
                           className={cn(
-                            "block px-3 py-2 rounded-lg text-sm transition-colors",
+                            "block px-3 py-2.5 rounded-xl text-sm transition-colors",
                             pathname === child.href
-                              ? "text-orange-400 bg-orange-500/10"
-                              : "text-slate-300 hover:text-white hover:bg-white/10"
+                              ? "text-[var(--saffron)] bg-[rgba(240,149,12,0.1)]"
+                              : "text-[var(--text-muted)] hover:text-white hover:bg-white/8"
                           )}
                         >
                           {child.label}
@@ -127,89 +123,118 @@ export default function Navbar() {
           </div>
 
           {/* Right actions */}
-          <div className="hidden lg:flex items-center gap-2">
-            <button className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Search">
-              <Search className="w-4 h-4" />
+          <div className="hidden lg:flex items-center gap-1.5">
+            <button
+              aria-label="Search"
+              className="p-2.5 rounded-xl text-[var(--text-muted)] hover:text-white hover:bg-white/8 transition-colors"
+            >
+              <Search className="w-4 h-4" aria-hidden />
             </button>
-            <button className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Notifications">
-              <Bell className="w-4 h-4" />
+            <button
+              aria-label="Notifications"
+              className="p-2.5 rounded-xl text-[var(--text-muted)] hover:text-white hover:bg-white/8 transition-colors"
+            >
+              <Bell className="w-4 h-4" aria-hidden />
             </button>
-            <Link href="/community" className="ml-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-orange-500 to-amber-500 text-white hover:from-orange-600 hover:to-amber-600 transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40">
+            <Link
+              href="/community"
+              className="ml-1 px-4 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-[var(--saffron)] to-[var(--saffron-hi)] text-white hover:opacity-90 transition-all shadow-lg shadow-[rgba(240,149,12,0.25)] hover:shadow-[rgba(240,149,12,0.4)] hover:scale-[1.02]"
+            >
               Join Community
             </Link>
           </div>
 
           {/* Mobile toggle */}
           <button
-            className="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="lg:hidden p-2.5 rounded-xl text-[var(--text-muted)] hover:text-white hover:bg-white/8 min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isOpen ? <X className="w-5 h-5" aria-hidden /> : <Menu className="w-5 h-5" aria-hidden />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="lg:hidden glass-strong border-t border-white/10 safe-bottom">
-          <div className="max-w-7xl mx-auto px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
-            {NAV_ITEMS.map((item) => (
-              <div key={item.label}>
-                {item.children ? (
-                  <>
-                    <button
-                      className="w-full flex items-center justify-between px-3 py-3 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors min-h-[44px]"
-                      onClick={() => setActiveMenu(activeMenu === item.label ? null : item.label)}
-                    >
-                      {item.label}
-                      <ChevronDown className={cn("w-4 h-4 transition-transform", activeMenu === item.label && "rotate-180")} />
-                    </button>
-                    {activeMenu === item.label && (
-                      <div className="ml-4 mt-1 space-y-1 pb-1">
-                        <Link
-                          href={item.href}
-                          className="block px-3 py-2.5 rounded-lg text-sm text-orange-400 hover:text-orange-300 hover:bg-orange-500/10 transition-colors font-medium"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          View all {item.label} →
-                        </Link>
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.label}
-                            href={child.href}
-                            className="block px-3 py-2.5 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/10 transition-colors min-h-[44px] flex items-center"
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
+      {/* Mobile menu */}
+      <div
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+        className={cn(
+          "lg:hidden border-t border-[var(--border)] glass-strong transition-all duration-300 overflow-hidden",
+          isOpen ? "max-h-[80dvh] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+        )}
+      >
+        <div className="max-w-7xl mx-auto px-4 py-4 space-y-0.5 overflow-y-auto max-h-[75dvh] safe-bottom">
+          {NAV_ITEMS.map((item) => (
+            <div key={item.label}>
+              {item.children ? (
+                <>
+                  <button
+                    className={cn(
+                      "w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-colors min-h-[48px]",
+                      isActive(item.href)
+                        ? "text-[var(--saffron)] bg-[rgba(240,149,12,0.08)]"
+                        : "text-[var(--text-muted)] hover:text-white hover:bg-white/8"
                     )}
-                  </>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="block px-3 py-3 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors min-h-[44px] flex items-center"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setActiveMenu(activeMenu === item.label ? null : item.label)}
+                    aria-expanded={activeMenu === item.label}
                   >
                     {item.label}
-                  </Link>
-                )}
-              </div>
-            ))}
-            <div className="pt-4 border-t border-white/10">
-              <Link
-                href="/community"
-                className="block w-full px-4 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-orange-500 to-amber-500 text-white text-center"
-                onClick={() => setIsOpen(false)}
-              >
-                Join Community
-              </Link>
+                    <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", activeMenu === item.label && "rotate-180")} aria-hidden />
+                  </button>
+                  {activeMenu === item.label && (
+                    <div className="ml-4 mt-0.5 mb-1 space-y-0.5">
+                      <Link
+                        href={item.href}
+                        className="block px-4 py-3 rounded-xl text-sm text-[var(--saffron)] font-medium min-h-[44px] flex items-center"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        View all {item.label} →
+                      </Link>
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          className="block px-4 py-3 rounded-xl text-sm text-[var(--text-muted)] hover:text-white hover:bg-white/8 transition-colors min-h-[44px] flex items-center"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "block px-4 py-3.5 rounded-xl text-sm font-medium transition-colors min-h-[48px] flex items-center",
+                    isActive(item.href)
+                      ? "text-[var(--saffron)] bg-[rgba(240,149,12,0.08)]"
+                      : "text-[var(--text-muted)] hover:text-white hover:bg-white/8"
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )}
             </div>
+          ))}
+          <div className="pt-3 pb-2 border-t border-[var(--border)] mt-2">
+            <Link
+              href="/community"
+              className="block w-full px-4 py-3.5 rounded-xl text-sm font-semibold text-center bg-gradient-to-r from-[var(--saffron)] to-[var(--saffron-hi)] text-white min-h-[48px] flex items-center justify-center"
+              onClick={() => setIsOpen(false)}
+            >
+              Join Community
+            </Link>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
