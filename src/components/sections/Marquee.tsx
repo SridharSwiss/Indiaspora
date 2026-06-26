@@ -1,29 +1,44 @@
 "use client";
 
-const MARQUEE_ITEMS = [
-  "🪔 Diwali Mela Zurich · Oct 2026",
-  "🎨 Holi Festival Basel · Mar 2026",
-  "💃 Navratri Garba Nights",
-  "🍛 Indian Food Festival Basel",
-  "🎵 Carnatic Music Concert Geneva",
-  "🏏 Cricket League Switzerland",
-  "👗 Indian Fashion Show Zurich",
-  "🎭 Bollywood Night Lausanne",
-  "📚 Vedic Knowledge Series Bern",
-  "🤝 Swiss India Business Forum",
-  "🧘 Yoga & Wellness Retreat",
-  "🎬 Indian Film Festival Switzerland",
-];
-
 export default function Marquee() {
-  const doubled = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
+  const items = [
+    "IAGZ – Indian Association Zurich",
+    "Diwali Mela • Zurich",
+    "Navratri Garba Night",
+    "Swiss Indian Chamber of Commerce",
+    "ISKCON Krishna Temple",
+    "Holi Festival Basel",
+    "TiE Switzerland",
+    "Bharatanatyam Classes",
+    "Indian Food Festival Basel",
+    "Hindi School Zurich",
+    "Tamil Sangam Switzerland",
+    "Bollywood Dance Studio",
+    "India Independence Day • Bern",
+    "Gujarati Samaj Switzerland",
+  ];
+
+  const doubled = [...items, ...items];
+
   return (
-    <div className="py-4 bg-gradient-to-r from-orange-600/10 via-orange-500/5 to-orange-600/10 border-y border-orange-500/10 overflow-hidden">
-      <div className="flex" style={{ animation: "marquee 40s linear infinite" }}>
+    <div
+      className="relative py-4 overflow-hidden border-y border-[var(--border)]"
+      style={{ background: "rgba(240,149,12,0.03)" }}
+      aria-hidden="true"
+    >
+      {/* Fade edges */}
+      <div className="absolute left-0 top-0 h-full w-16 sm:w-32 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to right, var(--base), transparent)" }} />
+      <div className="absolute right-0 top-0 h-full w-16 sm:w-32 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to left, var(--base), transparent)" }} />
+
+      <div className="flex gap-0 animate-marquee whitespace-nowrap">
         {doubled.map((item, i) => (
-          <span key={i} className="flex items-center gap-2 whitespace-nowrap px-8 text-sm text-slate-400">
-            {item}
-            <span className="w-1 h-1 rounded-full bg-orange-500/40 ml-4" />
+          <span key={i} className="inline-flex items-center gap-3 px-5">
+            <span className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--saffron)] transition-colors">
+              {item}
+            </span>
+            <span className="text-[var(--saffron)] opacity-40 text-lg" aria-hidden>•</span>
           </span>
         ))}
       </div>
