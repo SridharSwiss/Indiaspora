@@ -1,39 +1,56 @@
 @import "tailwindcss";
 
+/*
+  Color palette inspired by:
+  🇨🇳 Indian flag — saffron (#FF9933), white, green (#138808), Ashoka Chakra navy (#000080)
+  🇨🇭 Swiss flag  — red (#D52B1E), white
+  Combined into a deep, refined, distinctive identity.
+*/
+
 /* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
-  --font-inter: "Inter", system-ui, -apple-system, sans-serif;
+  --font-inter:    "Inter", system-ui, -apple-system, sans-serif;
   --font-playfair: "Playfair Display", Georgia, serif;
 
-  /* Core palette */
-  --base:        #06091A;
-  --surface:     #0C1122;
-  --surface-2:   #111827;
-  --surface-3:   #1A2235;
+  /* Backgrounds — deep Ashoka-Chakra-navy inspired */
+  --base:      #04080F;
+  --surface:   #080D18;
+  --surface-2: #0D1526;
+  --surface-3: #162035;
 
   /* Borders */
-  --border:      rgba(255, 210, 140, 0.07);
-  --border-mid:  rgba(255, 210, 140, 0.12);
-  --border-hi:   rgba(255, 210, 140, 0.22);
+  --border:    rgba(255, 220, 160, 0.07);
+  --border-mid: rgba(255, 220, 160, 0.13);
+  --border-hi:  rgba(255, 220, 160, 0.24);
 
-  /* Accent — saffron */
-  --saffron:     #F0950C;
-  --saffron-hi:  #FBBA1E;
-  --saffron-lo:  #C8760A;
+  /* Indian saffron — primary accent */
+  --saffron:    #FF9933;
+  --saffron-hi: #FFB347;
+  --saffron-lo: #CC7A22;
 
-  /* Accent — jade (India flag green) */
-  --jade:        #18A870;
-  --jade-hi:     #22C98A;
-  --jade-lo:     #106648;
+  /* Indian green — secondary accent */
+  --india-green:    #138808;
+  --india-green-hi: #1AAB09;
+  --india-green-lo: #0E6006;
+
+  /* Swiss red — tertiary accent */
+  --swiss-red:    #D52B1E;
+  --swiss-red-hi: #E83527;
+  --swiss-red-lo: #A82016;
+
+  /* Ashoka Chakra — deep navy for subtle accents */
+  --chakra-blue: #003580;
+  --chakra-blue-hi: #0047AD;
 
   /* Text */
-  --text:        #F2EDE5;
-  --text-muted:  #9A938A;
-  --text-dim:    #5A5550;
+  --text:       #F3EDE3;
+  --text-muted: #9A9288;
+  --text-dim:   #58534E;
 
-  /* Glow */
-  --glow-saffron: 0 0 40px rgba(240, 149, 12, 0.25);
-  --glow-jade:    0 0 40px rgba(24, 168, 112, 0.20);
+  /* Glows */
+  --glow-saffron: 0 0 48px rgba(255, 153, 51, 0.22);
+  --glow-green:   0 0 48px rgba(19, 136,  8, 0.18);
+  --glow-swiss:   0 0 48px rgba(213,  43, 30, 0.18);
 }
 
 /* ─── Reset ──────────────────────────────────────────────────── */
@@ -41,14 +58,12 @@
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
-
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   font-size: 16px;
 }
-
 body {
   background: var(--base);
   color: var(--text);
@@ -58,15 +73,14 @@ body {
   overflow-x: hidden;
   min-height: 100dvh;
 }
+input, select, textarea { font-size: 16px; }
+button, a, [role="button"] { touch-action: manipulation; }
 
-/* Prevent iOS zoom on inputs */
-input, select, textarea {
-  font-size: 16px;
-}
-
-/* Touch targets */
-button, a, [role="button"] {
-  touch-action: manipulation;
+/* ─── Focus ring ──────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────── */
@@ -77,118 +91,143 @@ button, a, [role="button"] {
 
 /* ─── Glass surfaces ─────────────────────────────────────────── */
 .glass {
-  background: rgba(255, 240, 210, 0.04);
+  background: rgba(255, 230, 180, 0.04);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
 }
-
 .glass-strong {
-  background: rgba(255, 240, 210, 0.07);
+  background: rgba(255, 230, 180, 0.07);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-mid);
 }
-
 .glass-card {
-  background: rgba(255, 240, 210, 0.03);
+  background: rgba(255, 230, 180, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   transition: background 0.25s ease, border-color 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ─── Gradient text ──────────────────────────────────────────── */
+/* ─── Gradients ────────────────────────────────────────────── */
+/* Saffron gradient — primary */
 .gradient-text {
-  background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-hi) 60%, #F07530 100%);
+  background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-hi) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-.gradient-text-jade {
-  background: linear-gradient(135deg, var(--jade) 0%, var(--jade-hi) 100%);
+/* Green gradient */
+.gradient-text-green {
+  background: linear-gradient(135deg, var(--india-green) 0%, var(--india-green-hi) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-.gradient-text-blue {
-  background: linear-gradient(135deg, #60a5fa, #818cf8);
+/* Swiss red gradient */
+.gradient-text-swiss {
+  background: linear-gradient(135deg, var(--swiss-red) 0%, var(--swiss-red-hi) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+/* Tricolor gradient — Indian flag stripe */
+.gradient-text-tricolor {
+  background: linear-gradient(90deg, var(--saffron) 0%, #ffffff 50%, var(--india-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/* Legacy alias */
+.gradient-text-jade  { background: linear-gradient(135deg, var(--india-green), var(--india-green-hi)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.gradient-text-blue  { background: linear-gradient(135deg, #60a5fa, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+/* Tricolor bar — decorative stripe */
+.tricolor-bar {
+  background: linear-gradient(90deg, var(--saffron) 0% 33.3%, #ffffff 33.3% 66.6%, var(--india-green) 66.6% 100%);
+}
+
+/* Swiss cross in CSS */
+.swiss-cross::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(#fff 0 0) center / 20% 60% no-repeat,
+    linear-gradient(#fff 0 0) center / 60% 20% no-repeat;
 }
 
 /* ─── Glows ──────────────────────────────────────────────────── */
 .glow-saffron { box-shadow: var(--glow-saffron); }
-.glow-jade    { box-shadow: var(--glow-jade); }
+.glow-green   { box-shadow: var(--glow-green); }
+.glow-swiss   { box-shadow: var(--glow-swiss); }
 
-/* ─── Card hover (pointer-only) ──────────────────────────────── */
+/* ─── Card hover (pointer devices only) ────────────────────────────── */
 @media (hover: hover) and (pointer: fine) {
   .card-hover:hover {
     transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.35), 0 0 0 1px var(--border-mid);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-mid);
   }
   .glass-card:hover {
-    background: rgba(255, 240, 210, 0.07);
+    background: rgba(255, 230, 180, 0.07);
     border-color: var(--border-mid);
   }
 }
 
-/* ─── Reveal animation ───────────────────────────────────────── */
+/* ─── Reveal ──────────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ─── Decorative pattern ─────────────────────────────────────── */
+/* ─── Decorative patterns ──────────────────────────────────────── */
 .mandala-bg {
-  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F0950C' fill-opacity='0.03'%3E%3Cpath d='M50 50v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-40V6h-2v4h-4v2h4v4h2V12h4v-2h-4zM10 50v-4H8v4H4v2h4v4h2v-4h4v-2h-4zM10 10V6H8v4H4v2h4v4h2V12h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF9933' fill-opacity='0.035'%3E%3Cpath d='M50 50v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-40V6h-2v4h-4v2h4v4h2V12h4v-2h-4zM10 50v-4H8v4H4v2h4v4h2v-4h4v-2h-4zM10 10V6H8v4H4v2h4v4h2V12h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,153,51,0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
-.pattern-subtle {
-  background-image: radial-gradient(circle, rgba(240,149,12,0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-/* ─── Safe areas (notched phones) ────────────────────────────── */
+/* ─── Safe areas ──────────────────────────────────────────────── */
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
 .safe-top    { padding-top:    env(safe-area-inset-top,    0px); }
 
 /* ─── Keyframes ──────────────────────────────────────────────── */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
+  0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-10px); }
 }
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes marquee {
-  0%   { transform: translateX(0%); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 @keyframes shimmer {
   0%   { background-position: -200% 0; }
   100% { background-position:  200% 0; }
 }
-@keyframes pulse-ring {
-  0%   { transform: scale(0.95); opacity: 0.7; }
-  70%  { transform: scale(1.15); opacity: 0; }
-  100% { transform: scale(1.15); opacity: 0; }
+@keyframes chakra-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes tricolor-pulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
 }
 
-.animate-float   { animation: float 6s ease-in-out infinite; }
-.animate-fade-up { animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.animate-marquee { animation: marquee 45s linear infinite; }
+.animate-float    { animation: float 7s ease-in-out infinite; }
+.animate-fade-up  { animation: fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) forwards; }
+.animate-marquee  { animation: marquee 50s linear infinite; }
+.animate-chakra   { animation: chakra-spin 20s linear infinite; }
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,220,150,0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,200,100,0.08), transparent);
   background-size: 200% 100%;
   animation: shimmer 2.5s linear infinite;
 }
@@ -200,11 +239,4 @@ button, a, [role="button"] {
     transition-duration: 0.01ms !important;
   }
   .reveal { opacity: 1 !important; transform: none !important; }
-}
-
-/* ─── Focus rings (keyboard nav) ─────────────────────────────── */
-:focus-visible {
-  outline: 2px solid var(--saffron);
-  outline-offset: 3px;
-  border-radius: 4px;
 }

@@ -6,58 +6,94 @@ import { Mail, MapPin } from "lucide-react";
 const footerLinks = {
   Community: [
     { label: "Associations & Clubs", href: "/community/associations" },
-    { label: "Temples & Spiritual", href: "/community/spiritual" },
-    { label: "Women's Network", href: "/community/women" },
-    { label: "Student Groups", href: "/community/students" },
+    { label: "Temples & Spiritual",  href: "/community/spiritual" },
+    { label: "Women's Network",      href: "/community/women" },
+    { label: "Student Groups",       href: "/community/students" },
   ],
   "Living Guide": [
     { label: "Welcome to Switzerland", href: "/living/welcome" },
-    { label: "Housing & Rentals", href: "/living/housing" },
-    { label: "Healthcare", href: "/living/healthcare" },
-    { label: "Banking & Finance", href: "/living/banking" },
+    { label: "Housing & Rentals",     href: "/living/housing" },
+    { label: "Healthcare",            href: "/living/healthcare" },
+    { label: "Banking & Finance",     href: "/living/banking" },
   ],
   "Food & Culture": [
-    { label: "Indian Restaurants", href: "/food/restaurants" },
-    { label: "Grocery Stores", href: "/food/grocery" },
-    { label: "Festivals & Events", href: "/culture/festivals" },
-    { label: "Arts & Dance", href: "/culture/arts" },
+    { label: "Indian Restaurants",   href: "/food/restaurants" },
+    { label: "Grocery Stores",       href: "/food/grocery" },
+    { label: "Festivals & Events",   href: "/culture/festivals" },
+    { label: "Arts & Dance",         href: "/culture/arts" },
   ],
   Business: [
-    { label: "Networking", href: "/business/networking" },
-    { label: "Jobs & Careers", href: "/business/jobs" },
-    { label: "Startups", href: "/business/startups" },
+    { label: "Networking",           href: "/business/networking" },
+    { label: "Jobs & Careers",       href: "/business/jobs" },
+    { label: "Startups",             href: "/business/startups" },
     { label: "Professional Services", href: "/business/services" },
   ],
 };
 
-const socials = [
-  { id: "facebook",  label: "Facebook",  char: "f" },
-  { id: "instagram", label: "Instagram", char: "in" },
-  { id: "linkedin",  label: "LinkedIn",  char: "li" },
-  { id: "whatsapp",  label: "WhatsApp",  char: "w" },
-];
+function IndianFlag({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 90 60" className={className} aria-label="Indian flag" role="img">
+      <rect width="90" height="20" fill="#FF9933" />
+      <rect y="20" width="90" height="20" fill="#ffffff" />
+      <rect y="40" width="90" height="20" fill="#138808" />
+      {/* Ashoka Chakra */}
+      <circle cx="45" cy="30" r="8" stroke="#000080" strokeWidth="1.2" fill="none" />
+      <circle cx="45" cy="30" r="1.5" fill="#000080" />
+      {Array.from({ length: 24 }).map((_, i) => (
+        <line
+          key={i}
+          x1="45" y1="30" x2="45" y2="22.5"
+          stroke="#000080" strokeWidth="0.6"
+          transform={`rotate(${i * 15} 45 30)`}
+        />
+      ))}
+    </svg>
+  );
+}
+
+function SwissFlag({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 60 60" className={className} aria-label="Swiss flag" role="img">
+      <rect width="60" height="60" rx="4" fill="#D52B1E" />
+      <rect x="24" y="10" width="12" height="40" fill="white" />
+      <rect x="10" y="24" width="40" height="12" fill="white" />
+    </svg>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-[var(--border)] mandala-bg" style={{ background: "var(--base)" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-8">
+    <footer
+      className="relative border-t border-[var(--border)] mandala-bg"
+      style={{ background: "var(--base)" }}
+    >
+      {/* Tricolor top stripe */}
+      <div className="tricolor-bar h-[2px] w-full" aria-hidden />
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-8">
         {/* Main grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12 mb-12">
 
           {/* Brand */}
           <div className="col-span-2 sm:col-span-3 lg:col-span-2">
+            {/* Flags */}
             <div className="flex items-center gap-3 mb-5">
-              <svg viewBox="0 0 40 40" fill="none" className="w-9 h-9" aria-hidden="true">
-                <circle cx="20" cy="20" r="18" stroke="url(#fLg)" strokeWidth="1.5" />
-                <circle cx="20" cy="20" r="8" fill="url(#fLg)" opacity="0.9" />
+              <IndianFlag className="h-5 w-auto rounded-sm shadow-sm" />
+              <span className="text-[var(--text-dim)] text-xs">&times;</span>
+              <SwissFlag className="h-5 w-5 rounded-sm shadow-sm" />
+            </div>
+
+            <div className="flex items-center gap-3 mb-4">
+              <svg viewBox="0 0 40 40" fill="none" className="w-9 h-9 shrink-0" aria-hidden>
+                <circle cx="20" cy="20" r="18" stroke="url(#fG2)" strokeWidth="1.5" />
+                <circle cx="20" cy="20" r="8"  fill="url(#fG2)" opacity="0.9" />
                 {[0,30,60,90,120,150,180,210,240,270,300,330].map((deg, i) => (
-                  <line key={i} x1="20" y1="12" x2="20" y2="5" stroke="url(#fLg)" strokeWidth="1.5" strokeLinecap="round" transform={`rotate(${deg} 20 20)`} />
+                  <line key={i} x1="20" y1="12" x2="20" y2="5" stroke="url(#fG2)" strokeWidth="1.5" strokeLinecap="round" transform={`rotate(${deg} 20 20)`} />
                 ))}
                 <defs>
-                  <linearGradient id="fLg" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#F0950C" />
-                    <stop offset="100%" stopColor="#FBBA1E" />
+                  <linearGradient id="fG2" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%"   stopColor="#FF9933" />
+                    <stop offset="100%" stopColor="#FFB347" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -86,22 +122,22 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-2">
-              {socials.map((s) => (
+              {[{id:"fb",l:"Facebook",c:"f"},{id:"ig",l:"Instagram",c:"in"},{id:"li",l:"LinkedIn",c:"li"},{id:"wa",l:"WhatsApp",c:"w"}].map((s) => (
                 <button
                   key={s.id}
-                  aria-label={s.label}
-                  className="w-10 h-10 rounded-xl glass flex items-center justify-center text-[var(--text-muted)] hover:text-white hover:bg-white/12 hover:border-[var(--border-mid)] transition-all text-[10px] font-bold uppercase"
+                  aria-label={s.l}
+                  className="w-10 h-10 rounded-xl glass flex items-center justify-center text-[var(--text-muted)] hover:text-white hover:border-[var(--border-mid)] transition-all text-[10px] font-bold uppercase min-h-[44px]"
                 >
-                  {s.char}
+                  {s.c}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Links */}
+          {/* Link columns */}
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
-              <h3 className="text-xs font-semibold text-white mb-4 uppercase tracking-[0.15em]">{heading}</h3>
+              <h3 className="text-[10px] font-semibold text-white mb-4 uppercase tracking-[0.18em]">{heading}</h3>
               <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
@@ -119,11 +155,11 @@ export default function Footer() {
         </div>
 
         {/* Newsletter */}
-        <div className="glass rounded-2xl p-6 lg:p-8 mb-10 border border-[var(--border-mid)]">
+        <div className="rounded-2xl p-6 lg:p-8 mb-10 border border-[var(--border-mid)]" style={{ background: "var(--surface-2)" }}>
           <div className="flex flex-col lg:flex-row items-start lg:items-center gap-5 lg:gap-8">
             <div className="flex-1">
               <h3 className="text-base font-semibold text-white mb-1">Stay Connected</h3>
-              <p className="text-[var(--text-muted)] text-sm">Weekly newsletter with events, news, and community updates</p>
+              <p className="text-[var(--text-muted)] text-sm">Weekly newsletter — events, news, and community updates</p>
             </div>
             <div className="flex gap-3 w-full lg:w-auto">
               <label htmlFor="footer-email" className="sr-only">Email address</label>
@@ -131,9 +167,13 @@ export default function Footer() {
                 id="footer-email"
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 lg:w-64 px-4 py-3 rounded-xl bg-white/6 border border-[var(--border)] text-white placeholder:text-[var(--text-dim)] text-sm focus:outline-none focus:border-[var(--saffron)] transition-colors"
+                className="flex-1 lg:w-64 px-4 py-3 rounded-xl border border-[var(--border)] text-white placeholder:text-[var(--text-dim)] text-sm focus:outline-none focus:border-[var(--saffron)] transition-colors"
+                style={{ background: "rgba(255,230,180,0.04)", fontSize: "16px" }}
               />
-              <button className="px-5 py-3 rounded-xl bg-gradient-to-r from-[var(--saffron)] to-[var(--saffron-hi)] text-white text-sm font-semibold hover:opacity-90 transition-all whitespace-nowrap shadow-lg shadow-[rgba(240,149,12,0.2)]">
+              <button
+                className="px-5 py-3 rounded-xl text-white text-sm font-semibold hover:opacity-90 transition-all whitespace-nowrap shadow-lg min-h-[48px]"
+                style={{ background: "linear-gradient(135deg, var(--saffron), var(--saffron-hi))", boxShadow: "var(--glow-saffron)" }}
+              >
                 Subscribe
               </button>
             </div>
@@ -142,11 +182,14 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[var(--border)]">
-          <p className="text-xs text-[var(--text-dim)] text-center sm:text-left">
-            &copy; 2026 IndiaSwiss Community Hub. All rights reserved.
-          </p>
+          <div className="flex items-center gap-3">
+            <IndianFlag className="h-3.5 w-auto rounded-[1px] opacity-60" />
+            <span className="text-[var(--text-dim)] text-[10px]">+</span>
+            <SwissFlag className="h-3.5 w-3.5 rounded-[1px] opacity-60" />
+            <p className="text-xs text-[var(--text-dim)]">&copy; 2026 IndiaSwiss Community Hub.</p>
+          </div>
           <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-5 gap-y-1">
-            {["Privacy Policy", "Terms of Use", "Cookie Policy", "Advertise"].map((item) => (
+            {["Privacy Policy","Terms of Use","Cookie Policy","Advertise"].map((item) => (
               <Link key={item} href="#" className="text-xs text-[var(--text-dim)] hover:text-[var(--text-muted)] transition-colors">
                 {item}
               </Link>

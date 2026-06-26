@@ -6,12 +6,12 @@ import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import { UPCOMING_EVENTS } from "@/lib/data";
 
 const colorMap: Record<string, string> = {
-  "bg-orange-500":  "var(--saffron)",
-  "bg-blue-500":    "#4A90D9",
-  "bg-purple-500":  "#8B5CF6",
-  "bg-amber-500":   "var(--saffron-hi)",
-  "bg-rose-500":    "#F43F5E",
-  "bg-teal-500":    "var(--jade)",
+  "bg-orange-500": "var(--saffron)",
+  "bg-blue-500":   "#4A90D9",
+  "bg-purple-500": "#8B5CF6",
+  "bg-amber-500":  "var(--saffron-hi)",
+  "bg-rose-500":   "#F43F5E",
+  "bg-teal-500":   "var(--india-green)",
 };
 
 export default function Events() {
@@ -43,8 +43,7 @@ export default function Events() {
               Community Calendar
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-              Upcoming{" "}
-              <span className="gradient-text">Events</span>
+              Upcoming <span className="gradient-text">Events</span>
             </h2>
           </div>
           <Link
@@ -66,8 +65,8 @@ export default function Events() {
               >
                 <div className="flex items-start gap-3 mb-4">
                   <div
-                    className="w-3 h-3 rounded-full mt-1 shrink-0 ring-4"
-                    style={{ background: accentColor, ringColor: `${accentColor}25` }}
+                    className="w-3 h-3 rounded-full mt-1 shrink-0"
+                    style={{ background: accentColor, boxShadow: `0 0 0 4px ${accentColor}20` }}
                     aria-hidden
                   />
                   <div className="flex-1 min-w-0">
@@ -85,16 +84,12 @@ export default function Events() {
 
                 <p className="text-sm text-[var(--text-muted)] mb-4 leading-relaxed">{event.description}</p>
 
-                <div className="flex items-center justify-between pt-3 border-t border-[var(--border)]">
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-dim)]">
-                      <Calendar className="w-3 h-3" aria-hidden />
-                      {event.date}
-                    </div>
-                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-dim)]">
-                      <MapPin className="w-3 h-3" aria-hidden />
-                      {event.location}
-                    </div>
+                <div className="pt-3 border-t border-[var(--border)] space-y-1">
+                  <div className="flex items-center gap-1.5 text-xs text-[var(--text-dim)]">
+                    <Calendar className="w-3 h-3" aria-hidden /> {event.date}
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs text-[var(--text-dim)]">
+                    <MapPin className="w-3 h-3" aria-hidden /> {event.location}
                   </div>
                 </div>
               </article>
