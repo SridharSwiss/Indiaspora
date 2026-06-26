@@ -1,82 +1,88 @@
 import PageHeader from "@/components/ui/PageHeader";
 
 const boutiques = [
-  { name: "Rang De Zurich", city: "Zurich", description: "Sarees, salwar kameez, and designer wear. Custom orders available.", specialty: "Sarees & Salwars" },
-  { name: "Desi Closet Geneva", city: "Geneva", description: "Bridal and party wear, lehengas, and designer Indian outfits for weddings and festivities.", specialty: "Bridal & Party Wear" },
-  { name: "Lehenga House Zurich", city: "Zurich", description: "Wedding lehenga collection with in-house alteration services for a perfect fit.", specialty: "Wedding Lehengas" },
-  { name: "Silk India Basel", city: "Basel", description: "Curated collection of pure silk sarees — Kanjivaram, Banarasi, and Mysore silk.", specialty: "Pure Silk Sarees" },
+  { name: "Rang De", city: "Zurich", desc: "Sarees, salwar kameez, designer wear, and Indian accessories. Bridal consultations available.", type: "Physical" },
+  { name: "Desi Closet", city: "Geneva", desc: "Bridal and party wear, lehengas, sherwanis for men. Popular for Diwali and Navratri season.", type: "Physical" },
+  { name: "Lehenga House Zurich", city: "Zurich", desc: "Specialises in bridal lehengas and wedding wear. In-house alterations and blouse stitching.", type: "Physical" },
+  { name: "Silk India Basel", city: "Basel", desc: "Pure silk sarees imported directly from Kanchipuram, Varanasi, and Mysore.", type: "Physical" },
+];
+
+const onlineOptions = [
+  { name: "WhatsApp Boutiques", desc: "Many Indian women run curated ethnic wear boutiques via WhatsApp. Find via Facebook group \"Desi Moms Switzerland\"" },
+  { name: "Pre-loved Indian Wear", desc: "Buy and sell gently used Indian wear via \"Indian Wardrobe Switzerland\" Facebook group. Great for one-time event wear." },
+  { name: "Custom Tailoring", desc: "Several community members offer custom stitching and blouse work. Post requests in community Facebook groups." },
+  { name: "Order from India via DHL", desc: "DHL Express delivers from India in 3–5 working days. Customs duties apply above CHF 300 declared value." },
+];
+
+const occasions = [
+  { occasion: "Diwali & Navratri", wear: "Lehenga choli, chaniya choli, silk sarees, anarkali suits" },
+  { occasion: "Weddings", wear: "Bridal lehenga, sarees, sherwanis, Indo-western fusion" },
+  { occasion: "Office Parties & Events", wear: "Salwar kameez, kurta sets, lighter silk blouses" },
+  { occasion: "Puja at Home", wear: "Cotton sarees, silk dupattas, simple kurtas" },
+  { occasion: "Garba Night", wear: "Chaniya choli, mirror-work blouses, ghagra skirts" },
+  { occasion: "Summer Outings", wear: "Cotton kurtis, palazzo sets, printed dupattas" },
 ];
 
 export default function FashionPage() {
   return (
-    <div>
+    <div className="min-h-screen">
       <PageHeader
         title="Indian Fashion & Boutiques in Switzerland"
-        subtitle="Find sarees, lehengas, kurtas, and jewellery — whether for Diwali, weddings, or everyday Indian ethnic wear in Switzerland."
+        subtitle="Find sarees, lehengas, kurtas, and jewellery — for Diwali, weddings, or everyday Indian ethnic wear. Physical boutiques and online options across Switzerland."
         badge="Ethnic Wear"
         gradient="from-rose-500 to-pink-600"
-        breadcrumbs={[
-          { label: "Culture & Arts", href: "/culture" },
-          { label: "Fashion & Boutiques" },
-        ]}
+        breadcrumbs={[{ label: "Culture & Arts", href: "/culture" }, { label: "Fashion & Boutiques" }]}
       />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        {/* Physical Boutiques */}
-        <section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section className="mb-14">
           <h2 className="text-2xl font-bold text-white mb-6">Physical Boutiques</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {boutiques.map((boutique) => (
-              <div key={boutique.name} className="glass card-hover rounded-2xl p-6">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-semibold text-white">{boutique.name}</h3>
-                  <span className="text-xs text-white/40 ml-2 shrink-0">{boutique.city}</span>
+          <div className="grid md:grid-cols-2 gap-5">
+            {boutiques.map((b) => (
+              <div key={b.name} className="glass rounded-2xl p-5 card-hover">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="font-semibold text-white">{b.name}</h3>
+                  <span className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full ml-2">{b.city}</span>
                 </div>
-                <span className="text-sm text-rose-400 font-medium">{boutique.specialty}</span>
-                <p className="text-sm text-white/60 mt-2">{boutique.description}</p>
+                <p className="text-sm text-slate-400">{b.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Online Options */}
-        <section>
+        <section className="mb-14">
           <h2 className="text-2xl font-bold text-white mb-6">Online & Community Options</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="glass card-hover rounded-2xl p-6">
-              <h3 className="text-base font-semibold text-white mb-2">WhatsApp Boutiques</h3>
-              <p className="text-sm text-white/60">Many Indian women run boutique businesses through WhatsApp, offering sarees, suits, and accessories. Join <strong className="text-white">"Desi Moms Switzerland"</strong> on Facebook to connect with these sellers.</p>
-            </div>
-            <div className="glass card-hover rounded-2xl p-6">
-              <h3 className="text-base font-semibold text-white mb-2">Custom Tailoring</h3>
-              <p className="text-sm text-white/60">Order fabric from India and have it tailored locally, or use community tailors who specialise in blouse stitching, salwar alterations, and lehenga fitting.</p>
-            </div>
-            <div className="glass card-hover rounded-2xl p-6">
-              <h3 className="text-base font-semibold text-white mb-2">Pre-Loved Indian Wear</h3>
-              <p className="text-sm text-white/60">Join the <strong className="text-white">"Indian Wardrobe Switzerland"</strong> Facebook group to buy and sell pre-loved sarees, lehengas, and ethnic wear within the community.</p>
-            </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {onlineOptions.map((o) => (
+              <div key={o.name} className="glass rounded-2xl p-5">
+                <h3 className="font-semibold text-rose-400 mb-2">{o.name}</h3>
+                <p className="text-sm text-slate-400">{o.desc}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* Importing from India */}
-        <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Importing from India</h2>
-          <div className="glass rounded-2xl p-8 text-sm text-white/70 space-y-3">
-            <p><strong className="text-white">DHL Express</strong> delivers from India to Switzerland in 3–5 business days. Ideal for sarees, suits, and jewellery.</p>
-            <p><strong className="text-white">Customs duties</strong> apply on imports above CHF 300. For personal-use clothing, duty is typically 8.5% + Swiss VAT (8.1%). Check current rules at <a href="https://www.bazg.admin.ch/en" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">bazg.admin.ch</a> (Swiss Federal Office for Customs and Border Security).</p>
-            <p>Keep the commercial invoice and airway bill — customs may request documentation for higher-value packages.</p>
+        <section className="mb-14">
+          <h2 className="text-2xl font-bold text-white mb-6">What to Wear</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {occasions.map((o) => (
+              <div key={o.occasion} className="glass rounded-2xl p-4">
+                <h3 className="font-semibold text-pink-400 mb-2 text-sm">{o.occasion}</h3>
+                <p className="text-xs text-slate-400">{o.wear}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* Care Tips */}
-        <div className="glass rounded-2xl p-6 border border-rose-500/20">
-          <h3 className="text-base font-semibold text-rose-400 mb-3">Care Tips for Indian Ethnic Wear in Switzerland</h3>
-          <ul className="space-y-2 text-white/70 text-sm">
-            <li className="flex items-start gap-2"><span className="text-rose-400">•</span>Swiss dry cleaners handle silk sarees and embroidered lehengas — ask for <em>Seide</em> (silk) or <em>Stickerei</em> (embroidery) care.</li>
-            <li className="flex items-start gap-2"><span className="text-rose-400">•</span>Use <strong className="text-white">Persil Color</strong> for washing cotton Indian wear — gentle on colours and widely available in Coop and Migros.</li>
-            <li className="flex items-start gap-2"><span className="text-rose-400">•</span>Store silk sarees folded in muslin cloth or tissue paper in a cool, dry wardrobe to prevent damage from Swiss humidity.</li>
+        <section className="glass rounded-2xl p-6">
+          <h3 className="font-semibold text-white mb-4">Importing Indian Wear from India</h3>
+          <ul className="space-y-2 text-sm text-slate-400">
+            <li>&#8226; <strong className="text-white">Courier:</strong> DHL Express delivers from India in 3–5 working days</li>
+            <li>&#8226; <strong className="text-white">Customs duty:</strong> Goods above CHF 300 declared value attract Swiss customs duties. Check <a href="https://www.bazg.admin.ch/bazg/en/home/information-individuals/private-travel/importation-into-switzerland.html" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300">bazg.admin.ch</a></li>
+            <li>&#8226; <strong className="text-white">VAT:</strong> Swiss VAT (8.1%) is charged on imports above CHF 65</li>
+            <li>&#8226; <strong className="text-white">Care:</strong> Swiss dry cleaners handle silk and embroidery well. Use Persil Color for cotton Indian wear</li>
+            <li>&#8226; <strong className="text-white">Packing tip:</strong> When travelling back from India, distribute across checked bags to stay within duty-free allowance</li>
           </ul>
-        </div>
+        </section>
       </div>
     </div>
   );
