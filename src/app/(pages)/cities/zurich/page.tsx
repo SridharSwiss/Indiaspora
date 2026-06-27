@@ -1,121 +1,85 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Indians in Zurich — Community Guide",
+  description: "Zurich's 18,000+ Indian community — associations, neighbourhoods, restaurants, grocery stores, and official resources.",
+  openGraph: {
+    title: "Indians in Zurich — Community Guide | IndiaSwiss",
+    description: "Zurich's 18,000+ Indian community — associations, neighbourhoods, restaurants, grocery stores, and official resources.",
+  },
+};
+
+const highlights = [
+  { label: "Indian Population", value: "~18,000", icon: "👥" },
+  { label: "Language", value: "Swiss German", icon: "🗣️" },
+  { label: "Canton", value: "Zürich", icon: "🏛️" },
+  { label: "Key Employers", value: "UBS, Credit Suisse, Google, IBM", icon: "🏢" },
+];
+
+const associations = [
+  { name: "IAGZ", full: "Indian Association of the Canton of Zurich", desc: "The largest Indian association in Switzerland. Organises cultural events, Diwali, Holi, and community meetups." },
+  { name: "Gujarati Samaj Zurich", full: "", desc: "Cultural events and networking for the Gujarati community." },
+  { name: "Tamil Cultural Association", full: "", desc: "Events and cultural programmes for the Tamil-speaking community." },
+  { name: "ISKCON Zurich", full: "", desc: "Hare Krishna temple; weekly programmes and prasad open to all." },
+];
+
+const neighbourhoods = [
+  { name: "Schlieren & Dietikon", note: "Western suburbs with affordable rents and good Indian grocery access." },
+  { name: "Oerlikon", note: "Popular with tech professionals; well-connected by tram and S-Bahn." },
+  { name: "Winterthur", note: "30 min by S-Bahn; growing Indian community; more affordable than Zurich city." },
+  { name: "City districts 3, 4, 5", note: "Central, vibrant; higher rents but walkable and well-connected." },
+];
 
 export default function ZurichPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
         title="Indians in Zurich"
-        subtitle="Switzerland's largest city and financial capital is home to 18,000+ Indians — the heart of Swiss-Indian life with the strongest community infrastructure."
-        badge="~18,000 Indians"
-        gradient="from-blue-600 to-indigo-700"
-        breadcrumbs={[{ label: "City Guides", href: "/cities" }, { label: "Zurich" }]}
+        subtitle="Zurich is home to Switzerland's largest Indian community — a thriving diaspora of IT professionals, bankers, students, and families."
+        badge="City Guide"
+        gradient="from-blue-600 to-indigo-600"
+        breadcrumbs={[
+          { label: "Cities", href: "/cities" },
+          { label: "Zurich" },
+        ]}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-            {/* Community */}
-            <section className="glass rounded-2xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">Community & Associations</h2>
-              <ul className="space-y-3">
-                {[
-                  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", desc: "Main umbrella body. Events, Hindi school, Diwali Mela, networking" },
-                  { name: "Gujarati Samaj Switzerland", url: "#", desc: "Cultural events, Navratri, Diwali, Garba — strong community" },
-                  { name: "Maharashtra Mandal Switzerland", url: "#", desc: "Ganesh Chaturthi, Gudi Padwa, cultural programmes" },
-                  { name: "Punjabi Cultural Association", url: "#", desc: "Baisakhi, Lohri, Bhangra performances" },
-                  { name: "InSAZ – Indian Student Association ETH Zurich", url: "https://insaz.ethz.ch", desc: "Largest student association for Indians at ETH" },
-                  { name: "ISKCON Krishna Temple", url: "#", desc: "Sunday feasts, Janmashtami, spiritual programmes" },
-                ].map((item) => (
-                  <li key={item.name} className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-blue-400 mt-2 shrink-0" />
-                    <div>
-                      <p className="text-sm font-medium text-white">{item.name}</p>
-                      <p className="text-xs text-slate-400">{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </section>
 
-            {/* Neighbourhoods */}
-            <section className="glass rounded-2xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">Best Neighbourhoods for Indians</h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                {[
-                  { name: "Kreis 4 (Langstrasse)", desc: "Indian restaurants, grocery stores, vibrant multicultural area. Most affordable central neighbourhood.", tag: "Budget-friendly" },
-                  { name: "Oerlikon (Kreis 11)", desc: "Family-friendly, good schools, Indian grocery nearby, easy SBB connections.", tag: "Families" },
-                  { name: "Aussersihl (Kreis 4/5)", desc: "Close to city, Indian community concentration, Bollywood events nearby", tag: "Young Professionals" },
-                  { name: "Adliswil / Kilchberg", desc: "Suburb with good schools, quieter living, Indian community events nearby", tag: "Suburbs" },
-                ].map((n) => (
-                  <div key={n.name} className="bg-white/5 rounded-xl p-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-semibold text-white text-sm">{n.name}</h3>
-                      <span className="text-xs text-blue-400">{n.tag}</span>
-                    </div>
-                    <p className="text-xs text-slate-400">{n.desc}</p>
-                  </div>
-                ))}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {highlights.map((h) => (
+            <div key={h.label} className="glass rounded-2xl p-4 text-center">
+              <div className="text-2xl mb-1">{h.icon}</div>
+              <p className="text-base font-bold text-white">{h.value}</p>
+              <p className="text-xs text-white/50">{h.label}</p>
+            </div>
+          ))}
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">Indian Associations</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {associations.map((a) => (
+              <div key={a.name} className="glass card-hover rounded-2xl p-5">
+                <h3 className="text-base font-semibold text-white mb-0.5">{a.name}</h3>
+                {a.full && <p className="text-xs text-white/40 mb-2">{a.full}</p>}
+                <p className="text-sm text-white/60">{a.desc}</p>
               </div>
-            </section>
-
-            {/* Food */}
-            <section className="glass rounded-2xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">Indian Food in Zurich</h2>
-              <ul className="space-y-2 text-sm text-slate-300">
-                <li>🍽️ <strong>Bairavi Restaurant</strong> (Langstrasse 149) — Best South Indian dosas in Switzerland</li>
-                <li>🍽️ <strong>Rajasthan Restaurant</strong> (Stauffacherstr 50) — Popular North Indian thalis</li>
-                <li>🍽️ <strong>Chennai Diner</strong> — Filter coffee, idli, vada</li>
-                <li>🍽️ <strong>Bombay Dreams</strong> (Seefeldstrasse 60) — Mumbai street food</li>
-                <li>🛒 <strong>Aggarwals Indian Grocery</strong> (Langstrasse) — Spices, dals, frozen foods</li>
-                <li>🛒 <strong>Art of Food</strong> — Fresh Indian vegetables and spices</li>
-                <li>🍱 <strong>Tiffin Services</strong> — Search "Indians in Zurich" Facebook group</li>
-              </ul>
-            </section>
+            ))}
           </div>
+        </section>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            <div className="glass rounded-2xl p-6">
-              <h3 className="font-semibold text-white mb-4">Key Stats</h3>
-              <div className="space-y-3">
-                {[
-                  { label: "Indian Population", value: "~18,000" },
-                  { label: "Indian Associations", value: "50+" },
-                  { label: "Indian Restaurants", value: "30+" },
-                  { label: "Indian Grocery Stores", value: "5+" },
-                ].map((s) => (
-                  <div key={s.label} className="flex justify-between">
-                    <span className="text-xs text-slate-400">{s.label}</span>
-                    <span className="text-sm font-semibold text-blue-400">{s.value}</span>
-                  </div>
-                ))}
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">Neighbourhoods Popular with Indians</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {neighbourhoods.map((n) => (
+              <div key={n.name} className="glass card-hover rounded-2xl p-5">
+                <h3 className="text-base font-semibold text-blue-400 mb-1">{n.name}</h3>
+                <p className="text-sm text-white/60">{n.note}</p>
               </div>
-            </div>
-
-            <div className="glass rounded-2xl p-6">
-              <h3 className="font-semibold text-white mb-4">Official Links</h3>
-              <ul className="space-y-2">
-                {[
-                  { label: "Stadt Zürich (City Website)", url: "https://www.stadt-zuerich.ch/en" },
-                  { label: "ZVV (Public Transport)", url: "https://www.zvv.ch/zvv/en" },
-                  { label: "Registration (Kreisbüro)", url: "https://www.stadt-zuerich.ch/en" },
-                  { label: "Migrationsamt Zurich", url: "https://www.zh.ch/de/migration-integration.html" },
-                  { label: "Indian Consulate Zurich", url: "https://www.cgizurich.gov.in" },
-                ].map((l) => (
-                  <li key={l.label}>
-                    <a href={l.url} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-400 hover:text-blue-300">{l.label} →</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="glass rounded-2xl p-6">
-              <h3 className="font-semibold text-white mb-3">Indian Consulate Zurich</h3>
-              <p className="text-xs text-slate-400 mb-2">Passport, OCI, visa, attestation services</p>
-              <a href="https://www.cgizurich.gov.in" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-400 hover:text-blue-300 block mb-1">cgizurich.gov.in →</a>
-              <p className="text-xs text-slate-500">Mon–Fri, appointment required</p>
-            </div>
+            ))}
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );
