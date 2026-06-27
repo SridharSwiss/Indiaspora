@@ -39,21 +39,12 @@ export default function Resources() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 reveal">
           <span className="text-xs uppercase tracking-[0.3em] text-orange-400 mb-4 block font-medium">Essential Links</span>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white">
-            Key <span className="gradient-text">Resources</span>
-          </h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-white">Key <span className="gradient-text">Resources</span></h2>
           <p className="text-slate-400 mt-3 max-w-xl mx-auto">Curated links to official, community, and lifestyle resources every Indian in Switzerland needs</p>
         </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {RESOURCES.map((r) => (
-            <a
-              key={r.title}
-              href={r.url}
-              target={r.url.startsWith("http") ? "_blank" : "_self"}
-              rel="noopener noreferrer"
-              className="reveal glass rounded-xl p-5 card-hover border border-white/5 hover:border-white/20 group block"
-            >
+            <a key={r.title} href={r.url} target={r.url.startsWith("http") ? "_blank" : "_self"} rel="noopener noreferrer" className="reveal glass rounded-xl p-5 card-hover border border-white/5 hover:border-white/20 group block">
               <div className="flex items-start justify-between mb-3">
                 <span className={`text-xs font-medium px-2 py-0.5 rounded-md border ${CATEGORY_COLORS[r.category] || "bg-slate-500/20 text-slate-300"}`}>{r.category}</span>
                 <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-orange-400 transition-colors" />
@@ -63,7 +54,6 @@ export default function Resources() {
             </a>
           ))}
         </div>
-
         <div className="reveal glass rounded-2xl p-8 lg:p-12 text-center relative overflow-hidden border border-orange-500/10">
           <div className="absolute inset-0 bg-gradient-to-br from-orange-600/5 to-blue-600/5" />
           <div className="relative">
@@ -73,9 +63,7 @@ export default function Resources() {
               <button className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold hover:from-orange-600 hover:to-amber-600 transition-all shadow-xl shadow-orange-500/25">
                 Submit a Listing <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl glass text-white font-medium hover:bg-white/10 transition-all border border-white/10">
-                Join as Partner
-              </button>
+              <button className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl glass text-white font-medium hover:bg-white/10 transition-all border border-white/10">Join as Partner</button>
             </div>
           </div>
         </div>
