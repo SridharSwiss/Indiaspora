@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Indian Associations & Clubs in Switzerland",
+  description: "150+ Indian associations — umbrella bodies, regional language groups, professional networks, and cultural organisations.",
+  openGraph: {
+    title: "Indian Associations & Clubs in Switzerland | IndiaSwiss",
+    description: "150+ Indian associations — umbrella bodies, regional language groups, professional networks, and cultural organisations.",
+  },
+};
 
 type Org = { name: string; url: string | null; city: string; desc: string };
 

@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Indian Food & Dining in Switzerland",
+  description: "Find the best Indian restaurants, grocery stores, catering services, and cooking classes across Switzerland.",
+  openGraph: {
+    title: "Indian Food & Dining in Switzerland | IndiaSwiss",
+    description: "Find the best Indian restaurants, grocery stores, catering services, and cooking classes across Switzerland.",
+  },
+};
 
 const restaurants = [
   { name: "Bairavi Restaurant", city: "Zurich", cuisine: "South Indian", address: "Langstrasse 149, 8004 Zürich", note: "Authentic dosas and curries" },

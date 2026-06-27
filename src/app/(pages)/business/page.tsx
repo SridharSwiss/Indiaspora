@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Business & Career in Switzerland for Indians",
+  description: "Advance your career in Switzerland. Indian professional networks, job portals, top employers, and work permit guide.",
+  openGraph: {
+    title: "Business & Career in Switzerland for Indians | IndiaSwiss",
+    description: "Advance your career in Switzerland. Indian professional networks, job portals, top employers, and work permit guide.",
+  },
+};
 
 const networks = [
   { name: "Swiss Indian Chamber of Commerce (SICC)", url: "https://sicc.ch", desc: "Premier business network connecting Indian and Swiss businesses. Events, trade missions, member directory.", tag: "Chamber" },

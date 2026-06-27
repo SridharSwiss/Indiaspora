@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Indian Women's Network in Switzerland",
+  description: "Community networks, official support, and practical resources for Indian women in Switzerland.",
+  openGraph: {
+    title: "Indian Women's Network in Switzerland | IndiaSwiss",
+    description: "Community networks, official support, and practical resources for Indian women in Switzerland.",
+  },
+};
 
 const support: { name: string; url: string | null; city: string; desc: string }[] = [
   { name: "IAGZ Women's Wing", url: "https://www.iagz.ch", city: "Zurich", desc: "Women's events, networking lunches and community activities organised by IAGZ." },

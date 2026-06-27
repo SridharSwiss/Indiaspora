@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Resources for Indians in Switzerland",
+  description: "Curated links to Swiss government services, Indian embassy, healthcare, transport, and community organisations.",
+  openGraph: {
+    title: "Resources for Indians in Switzerland | IndiaSwiss",
+    description: "Curated links to Swiss government services, Indian embassy, healthcare, transport, and community organisations.",
+  },
+};
 
 const resources = [
   {

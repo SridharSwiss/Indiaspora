@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import { UPCOMING_EVENTS } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "Indian Events in Switzerland 2026",
+  description: "Never miss a Swiss-Indian event. Diwali Melas, Garba nights, business summits, food festivals, and more across Switzerland in 2026.",
+  openGraph: {
+    title: "Indian Events in Switzerland 2026 | IndiaSwiss",
+    description: "Never miss a Swiss-Indian event. Diwali Melas, Garba nights, business summits, food festivals, and more across Switzerland in 2026.",
+  },
+};
 
 const monthlyCalendar = [
   { month: "January", events: ["Pongal Celebration (Geneva)", "Lohri Night (Zurich)", "Makar Sankranti celebrations"] },

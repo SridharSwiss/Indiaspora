@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { Users, Building2, Heart, GraduationCap } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Indian Community in Switzerland",
+  description: "Connect with 30,000+ Indians across 26 Swiss cantons. Find associations, temples, women's networks, and student groups near you.",
+  openGraph: {
+    title: "Indian Community in Switzerland | IndiaSwiss",
+    description: "Connect with 30,000+ Indians across 26 Swiss cantons. Find associations, temples, women's networks, and student groups near you.",
+  },
+};
 
 const sections = [
   { icon: Building2, label: "Associations & Clubs", href: "/community/associations", desc: "150+ regional, cultural & professional associations", color: "from-orange-500 to-red-500" },

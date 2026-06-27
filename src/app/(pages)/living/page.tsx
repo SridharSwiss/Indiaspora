@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { Plane, Home, Heart, GraduationCap, Building2, Train, Scale, Languages } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Living in Switzerland Guide for Indians",
+  description: "Complete guide for Indians in Switzerland — housing, banking, healthcare, education, transport, legal permits, and language learning.",
+  openGraph: {
+    title: "Living in Switzerland Guide for Indians | IndiaSwiss",
+    description: "Complete guide for Indians in Switzerland — housing, banking, healthcare, education, transport, legal permits, and language learning.",
+  },
+};
 
 const guides = [
   { icon: Plane, label: "Welcome Guide", href: "/living/welcome", desc: "First steps — registration, permits, SIM card, bank account in your first 2 weeks", color: "from-orange-500 to-amber-500" },

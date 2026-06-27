@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Hindu Temples, Yoga & Spiritual Centres in Switzerland",
+  description: "Find Hindu temples, yoga ashrams, meditation centres, and satsang groups for the Indian community across Switzerland.",
+  openGraph: {
+    title: "Hindu Temples, Yoga & Spiritual Centres in Switzerland | IndiaSwiss",
+    description: "Find Hindu temples, yoga ashrams, meditation centres, and satsang groups for the Indian community across Switzerland.",
+  },
+};
 
 type Place = { name: string; url: string | null; city: string; desc: string };
 

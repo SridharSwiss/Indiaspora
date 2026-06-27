@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Indian Culture & Arts in Switzerland",
+  description: "Discover Indian festivals, dance schools, music groups, Bollywood events, and cultural celebrations across Switzerland.",
+  openGraph: {
+    title: "Indian Culture & Arts in Switzerland | IndiaSwiss",
+    description: "Discover Indian festivals, dance schools, music groups, Bollywood events, and cultural celebrations across Switzerland.",
+  },
+};
 
 const festivals = [
   { name: "Diwali Mela Zurich", date: "October 2026", location: "Stadthaus Zurich", desc: "Largest Diwali celebration in Switzerland with cultural shows, food stalls, and fireworks", organiser: "IAGZ" },

@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Indian Community by City in Switzerland",
+  description: "City guides for Indians in Zurich, Geneva, Basel, Bern, and Lausanne — community, restaurants, associations, and resources.",
+  openGraph: {
+    title: "Indian Community by City in Switzerland | IndiaSwiss",
+    description: "City guides for Indians in Zurich, Geneva, Basel, Bern, and Lausanne — community, restaurants, associations, and resources.",
+  },
+};
 
 const cities = [
   {

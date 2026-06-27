@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Indian Students in Switzerland",
+  description: "Guide for Indian students — top universities, scholarships, student associations, and visa information.",
+  openGraph: {
+    title: "Indian Students in Switzerland | IndiaSwiss",
+    description: "Guide for Indian students — top universities, scholarships, student associations, and visa information.",
+  },
+};
 
 const universities = [
   { name: "ETH Zurich", url: "https://www.ethz.ch", city: "Zurich", rank: "#7 QS World", desc: "Switzerland's premier technical university. Strong Indian student community and InSAZ association." },
