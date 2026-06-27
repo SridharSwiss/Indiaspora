@@ -112,7 +112,7 @@ export default function CulturePage() {
                   <li>• WhatsApp boutiques via "Desi Moms Switzerland" group</li>
                   <li>• Custom tailoring orders via community recommendations</li>
                   <li>• Pre-loved Indian wear via Facebook: "Indian Wardrobe Switzerland"</li>
-                  <li>• Import via DHL from India — check customs duties at <a href="https://www.ezv.admin.ch" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300">ezv.admin.ch</a></li>
+                  <li>• Import via DHL from India — check customs duties at <a href="https://www.bazg.admin.ch/bazg/en/home.html" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300">bazg.admin.ch</a></li>
                 </ul>
               </div>
             </div>
