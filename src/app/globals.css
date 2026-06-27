@@ -1,91 +1,235 @@
 @import "tailwindcss";
 
+/*
+  Color palette inspired by:
+  Indian flag — saffron (#FF9933), white, green (#138808), Ashoka Chakra navy (#000080)
+  Swiss flag  — red (#D52B1E), white
+  Combined into a deep, refined, distinctive identity.
+*/
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
-  --font-inter: "Inter", system-ui, sans-serif;
+  --font-inter:    "Inter", system-ui, -apple-system, sans-serif;
+  --font-playfair: "Playfair Display", Georgia, serif;
+
+  /* Backgrounds — deep Ashoka-Chakra-navy inspired */
+  --base:      #04080F;
+  --surface:   #080D18;
+  --surface-2: #0D1526;
+  --surface-3: #162035;
+
+  /* Borders */
+  --border:    rgba(255, 220, 160, 0.07);
+  --border-mid: rgba(255, 220, 160, 0.13);
+  --border-hi:  rgba(255, 220, 160, 0.24);
+
+  /* Indian saffron — primary accent */
+  --saffron:    #FF9933;
+  --saffron-hi: #FFB347;
+  --saffron-lo: #CC7A22;
+
+  /* Indian green — secondary accent */
+  --india-green:    #138808;
+  --india-green-hi: #1AAB09;
+  --india-green-lo: #0E6006;
+
+  /* Swiss red — tertiary accent */
+  --swiss-red:    #D52B1E;
+  --swiss-red-hi: #E83527;
+  --swiss-red-lo: #A82016;
+
+  /* Ashoka Chakra — deep navy for subtle accents */
+  --chakra-blue: #003580;
+  --chakra-blue-hi: #0047AD;
+
+  /* Text */
+  --text:       #F3EDE3;
+  --text-muted: #9A9288;
+  --text-dim:   #58534E;
+
+  /* Glows */
+  --glow-saffron: 0 0 48px rgba(255, 153, 51, 0.22);
+  --glow-green:   0 0 48px rgba(19, 136,  8, 0.18);
+  --glow-swiss:   0 0 48px rgba(213,  43, 30, 0.18);
 }
 
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
+/* ─── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-size: 16px;
+}
 body {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--base);
+  color: var(--text);
   font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+input, select, textarea { font-size: 16px; }
+button, a, [role="button"] { touch-action: manipulation; }
+
+/* ─── Focus ring ──────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #1e293b; }
-::-webkit-scrollbar-thumb { background: #f97316; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #ea580c; }
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--saffron-lo); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--saffron); }
 
+/* ─── Glass surfaces ─────────────────────────────────────────── */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 230, 180, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+}
+.glass-strong {
+  background: rgba(255, 230, 180, 0.07);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-mid);
+}
+.glass-card {
+  background: rgba(255, 230, 180, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.glass-strong {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
+/* ─── Gradients ────────────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #f97316, #fbbf24);
+  background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-hi) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-.gradient-text-blue {
-  background: linear-gradient(135deg, #60a5fa, #818cf8);
+.gradient-text-green {
+  background: linear-gradient(135deg, var(--india-green) 0%, var(--india-green-hi) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-.glow-orange { box-shadow: 0 0 30px rgba(249, 115, 22, 0.3); }
-.glow-blue { box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); }
-
-.card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.gradient-text-swiss {
+  background: linear-gradient(135deg, var(--swiss-red) 0%, var(--swiss-red-hi) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+.gradient-text-tricolor {
+  background: linear-gradient(90deg, var(--saffron) 0%, #ffffff 50%, var(--india-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-jade  { background: linear-gradient(135deg, var(--india-green), var(--india-green-hi)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.gradient-text-blue  { background: linear-gradient(135deg, #60a5fa, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+.tricolor-bar {
+  background: linear-gradient(90deg, var(--saffron) 0% 33.3%, #ffffff 33.3% 66.6%, var(--india-green) 66.6% 100%);
 }
 
+.swiss-cross::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(#fff 0 0) center / 20% 60% no-repeat,
+    linear-gradient(#fff 0 0) center / 60% 20% no-repeat;
+}
+
+/* ─── Glows ──────────────────────────────────────────────────── */
+.glow-saffron { box-shadow: var(--glow-saffron); }
+.glow-green   { box-shadow: var(--glow-green); }
+.glow-swiss   { box-shadow: var(--glow-swiss); }
+
+/* ─── Card hover (pointer devices only) ────────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-mid);
+  }
+  .glass-card:hover {
+    background: rgba(255, 230, 180, 0.07);
+    border-color: var(--border-mid);
+  }
+}
+
+/* ─── Reveal ──────────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ─── Decorative patterns ──────────────────────────────────────── */
 .mandala-bg {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f97316' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF9933' fill-opacity='0.035'%3E%3Cpath d='M50 50v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-40V6h-2v4h-4v2h4v4h2V12h4v-2h-4zM10 50v-4H8v4H4v2h4v4h2v-4h4v-2h-4zM10 10V6H8v4H4v2h4v4h2V12h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,153,51,0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
+/* ─── Safe areas ──────────────────────────────────────────────── */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.safe-top    { padding-top:    env(safe-area-inset-top,    0px); }
+
+/* ─── Keyframes ──────────────────────────────────────────────── */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
 }
 @keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes marquee {
-  0% { transform: translateX(0%); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+@keyframes chakra-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes tricolor-pulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
 
-.animate-float { animation: float 6s ease-in-out infinite; }
-.animate-fade-up { animation: fadeUp 0.6s ease-out forwards; }
-.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-float    { animation: float 7s ease-in-out infinite; }
+.animate-fade-up  { animation: fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) forwards; }
+.animate-marquee  { animation: marquee 50s linear infinite; }
+.animate-chakra   { animation: chakra-spin 20s linear infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,200,100,0.08), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
