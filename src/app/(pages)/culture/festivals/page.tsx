@@ -1,83 +1,157 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
-const calendar = [
-  { month: "January", events: [
-    { name: "Pongal Celebration", org: "Tamil Sangam Switzerland", location: "Geneva", desc: "Tamil harvest festival with kolam, traditional cooking, cultural programmes" },
-    { name: "Lohri Night", org: "Punjabi Cultural Association", location: "Zurich", desc: "Bonfire, bhangra, gidda, rewri and popcorn" },
-    { name: "Makar Sankranti / Uttarayan", org: "Gujarati Samaj Switzerland", location: "Zurich", desc: "Kite flying, chikki, til ladoo" },
-  ]},
-  { month: "March", events: [
-    { name: "Holi Festival Basel", org: "ICAS", location: "Muensterplatz, Basel", desc: "Largest Holi in Switzerland — organic colour powder, music, food stalls" },
-    { name: "Holi Zurich", org: "IAGZ / Community", location: "Landiwiese, Zurich", desc: "Colour festival with DJ, food, and family activities" },
-    { name: "Ugadi / Gudi Padwa", org: "Telugu & Maharashtrian Associations", location: "Zurich", desc: "New Year celebrations for Telugu and Marathi communities" },
-  ]},
-  { month: "April", events: [
-    { name: "Baisakhi Bhangra Night", org: "Punjabi Cultural Association", location: "Zurich", desc: "Harvest festival with live bhangra, dhol, and Punjabi food" },
-    { name: "Ram Navami Puja", org: "ISKCON Zurich", location: "Zurich", desc: "Religious ceremony and community prasad" },
-  ]},
-  { month: "August", events: [
-    { name: "India Independence Day", org: "Embassy of India", location: "Alpenstrasse 40, Bern", desc: "Flag hoisting ceremony at the Embassy. Open to Indian nationals and OCI holders." },
-    { name: "Onam Celebrations", org: "Malayali Association Switzerland", location: "Zurich / Geneva", desc: "Onasadya (feast), Pookalam (flower carpet), cultural programmes" },
-    { name: "Indian Food Festival Basel", org: "ICAS", location: "Muensterplatz, Basel", desc: "Multi-day celebration of Indian regional cuisines" },
-  ]},
-  { month: "September", events: [
-    { name: "Ganesh Chaturthi", org: "Maharashtra Mandal Switzerland", location: "Zurich", desc: "Ganesh puja, aarti, visarjan — 10-day celebrations" },
-    { name: "Swiss India Business Summit", org: "SICC", location: "Kursaal Bern", desc: "Annual India-Switzerland business and networking summit" },
-  ]},
-  { month: "October", events: [
-    { name: "Navratri Garba Night", org: "Gujarati Samaj Switzerland", location: "Hallenstadion, Zurich", desc: "Largest Garba celebration in Switzerland — live orchestra, 2,000+ attendees" },
-    { name: "Dussehra", org: "IAGZ / Community", location: "Zurich", desc: "Ramlila, Ravan dahan, cultural programmes" },
-    { name: "Diwali Mela Zurich", org: "IAGZ", location: "Stadthaus Zurich", desc: "Annual Diwali celebration — food stalls, cultural performances, fireworks. Largest Indian event in Switzerland." },
-  ]},
-  { month: "November", events: [
-    { name: "Diwali Parties (all cities)", org: "Various associations", location: "Zurich, Geneva, Basel, Bern", desc: "Community Diwali celebrations across all major Swiss cities" },
-    { name: "Indian Film Festival", org: "IndieSwiss Cinema", location: "Zurich & Geneva", desc: "Curated Indian cinema — Bollywood, regional, and art-house films" },
-  ]},
-  { month: "December", events: [
-    { name: "Year-End Community Gala", org: "IAGZ", location: "Zurich", desc: "Annual year-end dinner and cultural programme for the community" },
-  ]},
+export const metadata: Metadata = {
+  title: "Indian Festivals in Switzerland 2026",
+  description: "Diwali, Holi, Navratri, Durga Puja, Pongal — celebrate India's festivals with the Swiss-Indian community.",
+  openGraph: {
+    title: "Indian Festivals in Switzerland 2026 | IndiaSwiss",
+    description: "Diwali, Holi, Navratri, Durga Puja, Pongal — celebrate India's festivals with the Swiss-Indian community.",
+  },
+};
+
+const festivals = [
+  {
+    name: "Diwali Mela Zurich",
+    date: "October 2026",
+    location: "Stadthaus Zurich",
+    organiser: "IAGZ",
+    organiserUrl: "https://iagz.ch",
+    desc: "Switzerland's largest Diwali celebration — cultural performances, food stalls, fireworks display, and rangoli competitions. 3,000+ attendees.",
+    type: "Festival",
+  },
+  {
+    name: "Holi Festival Basel",
+    date: "March 2026",
+    location: "Münsterplatz, Basel",
+    organiser: "ICAS",
+    organiserUrl: null,
+    desc: "Festival of colours on Basel's iconic cathedral square. Organic colour powder, live music, dance, and Indian food stalls.",
+    type: "Festival",
+  },
+  {
+    name: "Navratri Garba Night",
+    date: "October 2026",
+    location: "Hallenstadion, Zurich",
+    organiser: "Gujarati Samaj",
+    organiserUrl: "https://www.gujaratisamaj.ch",
+    desc: "Switzerland's largest Garba celebration — live orchestra, traditional chaniya choli dress code, 2,000+ dancers on the floor.",
+    type: "Cultural",
+  },
+  {
+    name: "Durga Puja Celebrations",
+    date: "October 2026",
+    location: "Zurich & Geneva",
+    organiser: "Bengali Cultural Society",
+    organiserUrl: null,
+    desc: "Elaborate Durga Puja pandal with daily pujas, cultural programmes, dhunuchi dance, and traditional prasad for the community.",
+    type: "Puja",
+  },
+  {
+    name: "Pongal Celebration",
+    date: "January 2026",
+    location: "Geneva",
+    organiser: "Tamil Sangam Switzerland",
+    organiserUrl: null,
+    desc: "Tamil harvest festival with traditional pongal cooking, kolam competition, folk music, and cultural performances.",
+    type: "Festival",
+  },
+  {
+    name: "India Day Bern",
+    date: "August 15, 2026",
+    location: "Embassy of India, Bern",
+    organiser: "Embassy of India",
+    organiserUrl: "https://www.indembassybern.gov.in",
+    desc: "India Independence Day hosted by the Embassy. Flag hoisting ceremony, cultural programme, and reception for the Indian community.",
+    type: "National",
+  },
+  {
+    name: "Indian Film Festival",
+    date: "November 2026",
+    location: "Zurich & Geneva",
+    organiser: "IndieSwiss Cinema",
+    organiserUrl: null,
+    desc: "Curated selection of Indian cinema — Bollywood, regional art-house films, and documentaries. Q&As with visiting directors.",
+    type: "Arts",
+  },
+  {
+    name: "Eid & Iftar Gathering",
+    date: "March 2026",
+    location: "Zurich",
+    organiser: "Muslim Indian Community",
+    organiserUrl: null,
+    desc: "Community Iftar dinner open to all — celebrating Ramadan and India's shared cultural heritage with traditional food.",
+    type: "Community",
+  },
+  {
+    name: "Lohri Night",
+    date: "January 13, 2026",
+    location: "Zurich",
+    organiser: "Punjabi Cultural Association",
+    organiserUrl: null,
+    desc: "Traditional bonfire, bhangra, and gidda with rewri, popcorn, and makki roti. Marks the end of winter and harvest season.",
+    type: "Festival",
+  },
+  {
+    name: "Ganesh Chaturthi",
+    date: "August 2026",
+    location: "Nationwide",
+    organiser: "Maharashtra Mandal Switzerland",
+    organiserUrl: null,
+    desc: "10-day celebration culminating in a symbolic Ganesh visarjan (immersion). Aarti, modak prasad, and cultural events.",
+    type: "Festival",
+  },
 ];
+
+const typeColors: Record<string, string> = {
+  Festival: "bg-orange-500/20 text-orange-400",
+  Cultural: "bg-purple-500/20 text-purple-400",
+  Puja: "bg-rose-500/20 text-rose-400",
+  National: "bg-blue-500/20 text-blue-400",
+  Arts: "bg-teal-500/20 text-teal-400",
+  Community: "bg-green-500/20 text-green-400",
+};
 
 export default function FestivalsPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
-        title="Indian Festivals in Switzerland 2026"
-        subtitle="Celebrate every major Indian festival with the Swiss-Indian community — from Diwali melas and Garba nights to Pongal and Holi across all Swiss cities."
-        badge="100+ Events/Year"
+        title="Indian Festivals in Switzerland"
+        subtitle="India's vibrant festival calendar comes alive in Switzerland — from Diwali Mela in Zurich to Pongal in Geneva."
+        badge="100+ Events / Year"
         gradient="from-rose-500 to-pink-600"
-        breadcrumbs={[{ label: "Culture & Arts", href: "/culture" }, { label: "Festivals & Events" }]}
+        breadcrumbs={[
+          { label: "Culture & Arts", href: "/culture" },
+          { label: "Festivals & Events" },
+        ]}
       />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="space-y-12">
-          {calendar.map((month) => (
-            <section key={month.month}>
-              <h2 className="text-xl font-bold text-white mb-5 flex items-center gap-3">
-                <span className="w-2 h-6 rounded-full bg-gradient-to-b from-rose-500 to-pink-600" />
-                {month.month}
-              </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {month.events.map((e) => (
-                  <div key={e.name} className="glass rounded-2xl p-5 card-hover">
-                    <h3 className="font-semibold text-white mb-1">{e.name}</h3>
-                    <p className="text-xs text-rose-400 mb-1">{e.org}</p>
-                    <p className="text-xs text-slate-500 mb-3">{e.location}</p>
-                    <p className="text-sm text-slate-400">{e.desc}</p>
-                  </div>
-                ))}
+        <div className="grid md:grid-cols-2 gap-5">
+          {festivals.map((f) => (
+            <div key={f.name} className="glass rounded-2xl p-6 card-hover">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex-1 mr-3">
+                  <h3 className="font-semibold text-white">{f.name}</h3>
+                  <p className="text-xs text-rose-400 mt-0.5">{f.date} &middot; {f.location}</p>
+                </div>
+                <span className={`text-xs px-2 py-1 rounded-full shrink-0 ${typeColors[f.type] ?? "bg-white/10 text-white/60"}`}>{f.type}</span>
               </div>
-            </section>
+              <p className="text-sm text-slate-400 mb-3">{f.desc}</p>
+              <div className="flex items-center justify-between">
+                <p className="text-xs text-white/40">Organised by {f.organiser}</p>
+                {f.organiserUrl && (
+                  <a href={f.organiserUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-rose-400 hover:text-rose-300">
+                    Website →
+                  </a>
+                )}
+              </div>
+            </div>
           ))}
         </div>
 
-        <div className="mt-12 glass rounded-2xl p-6">
-          <h3 className="font-semibold text-white mb-3">Stay Updated on Events</h3>
-          <ul className="space-y-2 text-sm text-slate-400">
-            <li>&#8226; Subscribe to <a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300">IAGZ newsletter</a> for Zurich events</li>
-            <li>&#8226; Join Facebook group <strong className="text-slate-300">"Indians in Zurich"</strong> and <strong className="text-slate-300">"Indian Events Switzerland"</strong></li>
-            <li>&#8226; Follow <strong className="text-slate-300">Embassy of India Berne</strong> on social media for official events</li>
-            <li>&#8226; Check community WhatsApp groups — most associations post events there first</li>
-          </ul>
+        <div className="mt-10 glass rounded-2xl p-6 border border-rose-500/20">
+          <p className="text-sm text-slate-300"><span className="text-rose-400 font-semibold">Stay updated:</span> Most festival announcements come through IAGZ (<a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">iagz.ch</a>) and the Indian Association Geneva (<a href="https://indianassociationgeneva.com" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">indianassociationgeneva.com</a>). Join their mailing lists to get event notifications early.</p>
         </div>
       </div>
     </div>
