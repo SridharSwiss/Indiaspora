@@ -33,7 +33,6 @@ body {
   border: 1px solid var(--border);
   border-radius: 18px;
   transition: border-color 0.22s, transform 0.22s, box-shadow 0.22s;
-  will-change: transform;
 }
 .card:hover {
   border-color: rgba(249,115,22,0.32);
@@ -108,4 +107,20 @@ body {
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
   background-size: 200% 100%;
   animation: shimmer 2.5s linear infinite;
+}
+
+/* Mobile performance */
+@media (max-width: 768px) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .hero-particles { display: none; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .card { will-change: auto; }
 }
