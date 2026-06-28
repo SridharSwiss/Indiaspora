@@ -1,38 +1,38 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
   Community: [
-    { label: "Indian Associations", href: "#associations" },
-    { label: "Temples & Spiritual", href: "#spiritual" },
-    { label: "Women's Network", href: "#women" },
-    { label: "Student Groups", href: "#students" },
+    { label: "Indian Associations", href: "/community#associations" },
+    { label: "Temples & Spiritual", href: "/community#spiritual" },
+    { label: "Women's Network", href: "/community#women" },
+    { label: "Student Groups", href: "/community#students" },
   ],
   "Living Guide": [
-    { label: "Welcome to Switzerland", href: "#welcome" },
-    { label: "Housing & Rentals", href: "#housing" },
-    { label: "Healthcare", href: "#healthcare" },
-    { label: "Schools & Education", href: "#education" },
+    { label: "Welcome to Switzerland", href: "/living#welcome" },
+    { label: "Housing & Rentals", href: "/living#housing" },
+    { label: "Healthcare", href: "/living#healthcare" },
+    { label: "Schools & Education", href: "/living#education" },
   ],
   "Food & Culture": [
-    { label: "Indian Restaurants", href: "#restaurants" },
-    { label: "Grocery Stores", href: "#grocery" },
-    { label: "Festivals & Events", href: "#festivals" },
-    { label: "Arts & Music", href: "#arts" },
+    { label: "Indian Restaurants", href: "/food#restaurants" },
+    { label: "Grocery Stores", href: "/food#grocery" },
+    { label: "Festivals & Events", href: "/culture#festivals" },
+    { label: "Arts & Music", href: "/culture#arts" },
   ],
   Business: [
-    { label: "Networking", href: "#networking" },
-    { label: "Jobs & Careers", href: "#jobs" },
-    { label: "Startups", href: "#startups" },
-    { label: "Professional Services", href: "#services" },
+    { label: "Networking", href: "/business#networking" },
+    { label: "Jobs & Careers", href: "/business#jobs" },
+    { label: "Startups", href: "/business#startups" },
+    { label: "Professional Services", href: "/business#services" },
   ],
 };
 
 export default function Footer() {
   return (
-    <footer className="relative bg-slate-950 border-t border-white/5 mandala-bg">
+    <footer className="relative border-t" style={{ background: "var(--bg)", borderColor: "var(--border)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         {/* Top section */}
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-12 mb-12">
@@ -70,11 +70,9 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2 text-sm text-slate-400">
                 <Mail className="w-4 h-4 text-orange-500 shrink-0" />
-                <span>hello@indiaswiss.ch</span>
+                <a href="mailto:hello@indiaswiss.ch" className="hover:text-orange-400 transition-colors">hello@indiaswiss.ch</a>
               </div>
             </div>
-
-            {/* Social */}
             <div className="flex gap-3 mt-6">
               {[
                 { label: "F", title: "Facebook", href: "https://www.facebook.com/groups/indian.association.of.greater.zurich/" },
@@ -103,10 +101,7 @@ export default function Footer() {
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-slate-400 hover:text-orange-400 transition-colors"
-                    >
+                    <Link href={link.href} className="text-sm text-slate-400 hover:text-orange-400 transition-colors">
                       {link.label}
                     </Link>
                   </li>
@@ -127,9 +122,13 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 lg:w-64 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10 text-white placeholder:text-slate-500 text-sm focus:outline-none focus:border-orange-500/50"
+                className="flex-1 lg:w-64 px-4 py-2.5 rounded-xl text-white placeholder:text-slate-500 text-sm focus:outline-none border"
+                style={{ background: "rgba(255,255,255,0.05)", borderColor: "var(--border)" }}
               />
-              <button className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-semibold hover:from-orange-600 hover:to-amber-600 transition-all whitespace-nowrap">
+              <button
+                className="px-5 py-2.5 rounded-xl text-white text-sm font-semibold transition-all whitespace-nowrap"
+                style={{ background: "linear-gradient(135deg, #f97316, #f59e0b)" }}
+              >
                 Subscribe
               </button>
             </div>
@@ -137,10 +136,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/5">
-          <p className="text-xs text-slate-500">
-            &copy; 2026 IndiaSwiss Community Hub. All rights reserved.
-          </p>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6" style={{ borderTop: "1px solid var(--border)" }}>
+          <p className="text-xs text-slate-500">© 2026 IndiaSwiss Community Hub. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Terms of Use</Link>

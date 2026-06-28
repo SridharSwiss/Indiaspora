@@ -1,71 +1,70 @@
 export const NAV_ITEMS = [
   {
     label: "Community",
-    href: "#community",
+    href: "/community",
     children: [
-      { label: "Associations & Clubs", href: "#associations" },
-      { label: "Temples & Spiritual", href: "#spiritual" },
-      { label: "Women's Network", href: "#women" },
-      { label: "Students", href: "#students" },
+      { label: "Associations & Clubs", href: "/community#associations" },
+      { label: "Temples & Spiritual", href: "/community#spiritual" },
+      { label: "Women's Network", href: "/community#women" },
+      { label: "Students", href: "/community#students" },
     ],
   },
   {
-    label: "Living in Switzerland",
-    href: "#living",
+    label: "Living Guide",
+    href: "/living",
     children: [
-      { label: "Welcome Guide", href: "#welcome" },
-      { label: "Housing & Real Estate", href: "#housing" },
-      { label: "Healthcare", href: "#healthcare" },
-      { label: "Education & Schools", href: "#education" },
-      { label: "Banking & Finance", href: "#finance" },
-      { label: "Transport", href: "#transport" },
-      { label: "Legal & Immigration", href: "#legal" },
-      { label: "Language Learning", href: "#language" },
+      { label: "Welcome to Switzerland", href: "/living#welcome" },
+      { label: "Housing & Real Estate", href: "/living#housing" },
+      { label: "Healthcare", href: "/living#healthcare" },
+      { label: "Education & Schools", href: "/living#education" },
+      { label: "Banking & Finance", href: "/living#finance" },
+      { label: "Transport", href: "/living#transport" },
+      { label: "Legal & Immigration", href: "/living#legal" },
     ],
   },
   {
     label: "Food & Dining",
-    href: "#food",
+    href: "/food",
     children: [
-      { label: "Indian Restaurants", href: "#restaurants" },
-      { label: "Grocery & Spices", href: "#grocery" },
-      { label: "Catering & Home Chefs", href: "#catering" },
-      { label: "Cooking Classes", href: "#cooking" },
+      { label: "Indian Restaurants", href: "/food#restaurants" },
+      { label: "Grocery & Spices", href: "/food#grocery" },
+      { label: "Catering & Home Chefs", href: "/food#catering" },
+      { label: "Cooking Classes", href: "/food#cooking" },
     ],
   },
   {
-    label: "Business & Career",
-    href: "#business",
+    label: "Business",
+    href: "/business",
     children: [
-      { label: "Networking & Chambers", href: "#networking" },
-      { label: "Jobs & Recruitment", href: "#jobs" },
-      { label: "Startups", href: "#startups" },
-      { label: "Professional Services", href: "#services" },
+      { label: "Networking & Chambers", href: "/business#networking" },
+      { label: "Jobs & Recruitment", href: "/business#jobs" },
+      { label: "Startups", href: "/business#startups" },
+      { label: "Professional Services", href: "/business#services" },
     ],
   },
   {
-    label: "Culture & Arts",
-    href: "#culture",
+    label: "Culture",
+    href: "/culture",
     children: [
-      { label: "Festivals & Events", href: "#festivals" },
-      { label: "Music & Dance", href: "#arts" },
-      { label: "Fashion & Boutiques", href: "#fashion" },
-      { label: "Cinema & Entertainment", href: "#cinema" },
+      { label: "Festivals & Events", href: "/culture#festivals" },
+      { label: "Music & Dance", href: "/culture#arts" },
+      { label: "Fashion & Boutiques", href: "/culture#fashion" },
+      { label: "Cinema & Entertainment", href: "/culture#cinema" },
     ],
   },
   {
     label: "City Guides",
-    href: "#cities",
+    href: "/cities",
     children: [
-      { label: "Zurich", href: "#zurich" },
-      { label: "Geneva", href: "#geneva" },
-      { label: "Basel", href: "#basel" },
-      { label: "Bern", href: "#bern" },
-      { label: "Lausanne", href: "#lausanne" },
+      { label: "Zurich", href: "/cities#zurich" },
+      { label: "Geneva", href: "/cities#geneva" },
+      { label: "Basel", href: "/cities#basel" },
+      { label: "Bern", href: "/cities#bern" },
+      { label: "Lausanne", href: "/cities#lausanne" },
     ],
   },
-  { label: "Events", href: "#events" },
-  { label: "Resources", href: "#resources" },
+  { label: "Events", href: "/events" },
+  { label: "Resources", href: "/resources" },
 ];
 
 export const STATS = [
@@ -78,6 +77,7 @@ export const STATS = [
 export const FEATURED_CATEGORIES = [
   {
     id: "community",
+    href: "/community",
     title: "Community",
     description: "Connect with 30,000+ Indians across Switzerland through associations, cultural groups, and social networks",
     icon: "Users",
@@ -87,6 +87,7 @@ export const FEATURED_CATEGORIES = [
   },
   {
     id: "living",
+    href: "/living",
     title: "Living in Switzerland",
     description: "Everything you need to settle in — permits, housing, schools, healthcare, banking, and daily life essentials",
     icon: "Home",
@@ -96,6 +97,7 @@ export const FEATURED_CATEGORIES = [
   },
   {
     id: "food",
+    href: "/food",
     title: "Food & Dining",
     description: "Discover the best Indian restaurants, grocery stores, caterers, and home chefs across Switzerland",
     icon: "UtensilsCrossed",
@@ -105,6 +107,7 @@ export const FEATURED_CATEGORIES = [
   },
   {
     id: "spiritual",
+    href: "/community#spiritual",
     title: "Spiritual & Wellness",
     description: "Find temples, yoga studios, meditation centres, and Satsang groups for your spiritual journey",
     icon: "Sparkles",
@@ -114,6 +117,7 @@ export const FEATURED_CATEGORIES = [
   },
   {
     id: "business",
+    href: "/business",
     title: "Business & Career",
     description: "Advance your career and grow your business with our professional network, job listings, and entrepreneurship resources",
     icon: "TrendingUp",
@@ -123,6 +127,7 @@ export const FEATURED_CATEGORIES = [
   },
   {
     id: "culture",
+    href: "/culture",
     title: "Culture & Arts",
     description: "Celebrate India's rich culture through festivals, classical arts, Bollywood, fashion, and entertainment",
     icon: "Music",
@@ -135,6 +140,7 @@ export const FEATURED_CATEGORIES = [
 export const CITIES = [
   {
     name: "Zurich",
+    slug: "zurich",
     description: "Financial capital and home to the largest Indian community in Switzerland",
     population: "~18,000 Indians",
     highlights: ["IAGZ Community", "ETH & UZH Indian Students", "Indian Restaurants in City Centre", "Gujarati & Punjabi Associations"],
@@ -142,6 +148,7 @@ export const CITIES = [
   },
   {
     name: "Geneva",
+    slug: "geneva",
     description: "International city with a diverse, cosmopolitan Indian expat community",
     population: "~5,000 Indians",
     highlights: ["UN & Diplomatic Indian Community", "Indian Association Geneva", "Indian Restaurants in Carouge", "International School Options"],
@@ -149,6 +156,7 @@ export const CITIES = [
   },
   {
     name: "Basel",
+    slug: "basel",
     description: "Pharma hub with a growing Indian professional community",
     population: "~3,000 Indians",
     highlights: ["Pharma & Biotech Professionals", "Indian Association Basel (ICAS)", "Sri Durga Temple", "Holi Festival Basel"],
@@ -156,6 +164,7 @@ export const CITIES = [
   },
   {
     name: "Bern",
+    slug: "bern",
     description: "Swiss capital with a vibrant Indian diplomatic and academic community",
     population: "~2,000 Indians",
     highlights: ["Embassy of India", "Indian Association Berne", "Bharatiya Association Berne", "University of Bern Indian Students"],
@@ -163,6 +172,7 @@ export const CITIES = [
   },
   {
     name: "Lausanne",
+    slug: "lausanne",
     description: "Olympic city with EPFL and a thriving Indian student community",
     population: "~1,500 Indians",
     highlights: ["EPFL Indian Student Association", "Indian Restaurants in City Centre", "IOC Indian Professionals", "Bollywood Nights Lausanne"],
