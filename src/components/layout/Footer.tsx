@@ -30,6 +30,13 @@ const footerLinks = {
   ],
 };
 
+const socialLinks = [
+  { id: "fb", label: "Facebook", c: "f", href: "https://www.facebook.com/groups/indian.association.of.greater.zurich/" },
+  { id: "ig", label: "Instagram", c: "in", href: "https://www.instagram.com/indian_association_of_geneva/" },
+  { id: "li", label: "LinkedIn", c: "li", href: "https://www.linkedin.com/search/results/groups/?keywords=Indian%20professionals%20Switzerland" },
+  { id: "wa", label: "WhatsApp", c: "w", href: "https://wa.me/?text=IndiaSwiss%20Community%20Hub%20-%20https%3A%2F%2Findiaswiss.ch" },
+];
+
 function IndianFlag({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 90 60" className={className} aria-label="Indian flag" role="img">
@@ -122,14 +129,17 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-2">
-              {[{id:"fb",l:"Facebook",c:"f"},{id:"ig",l:"Instagram",c:"in"},{id:"li",l:"LinkedIn",c:"li"},{id:"wa",l:"WhatsApp",c:"w"}].map((s) => (
-                <button
+              {socialLinks.map((s) => (
+                <a
                   key={s.id}
-                  aria-label={s.l}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
                   className="w-10 h-10 rounded-xl glass flex items-center justify-center text-[var(--text-muted)] hover:text-white hover:border-[var(--border-mid)] transition-all text-[10px] font-bold uppercase min-h-[44px]"
                 >
                   {s.c}
-                </button>
+                </a>
               ))}
             </div>
           </div>
@@ -189,11 +199,10 @@ export default function Footer() {
             <p className="text-xs text-[var(--text-dim)]">&copy; 2026 IndiaSwiss Community Hub.</p>
           </div>
           <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-5 gap-y-1">
-            {["Privacy Policy","Terms of Use","Cookie Policy","Advertise"].map((item) => (
-              <Link key={item} href="#" className="text-xs text-[var(--text-dim)] hover:text-[var(--text-muted)] transition-colors">
-                {item}
-              </Link>
-            ))}
+            <Link href="/privacy" className="text-xs text-[var(--text-dim)] hover:text-[var(--text-muted)] transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-xs text-[var(--text-dim)] hover:text-[var(--text-muted)] transition-colors">Terms of Use</Link>
+            <Link href="/privacy#cookies" className="text-xs text-[var(--text-dim)] hover:text-[var(--text-muted)] transition-colors">Cookie Policy</Link>
+            <a href="mailto:hello@indiaswiss.ch?subject=Advertising%20Enquiry" className="text-xs text-[var(--text-dim)] hover:text-[var(--text-muted)] transition-colors">Advertise</a>
           </nav>
         </div>
       </div>

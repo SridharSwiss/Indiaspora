@@ -238,13 +238,13 @@ export const LIVING_GUIDE = [
 ];
 
 export const RESOURCES = [
-  { title: "Embassy of India, Berne", url: "https://www.eoibern.gov.in", category: "Official", description: "Consular services, OCI cards, passport renewal, visa letters, diaspora events" },
+  { title: "Embassy of India, Berne", url: "https://www.indembassybern.gov.in", category: "Official", description: "Consular services, OCI cards, passport renewal, visa letters, diaspora events" },
   { title: "Comparis.ch", url: "https://www.comparis.ch", category: "Living", description: "Compare health insurance, mortgages, phone plans, and rental properties" },
-  { title: "SBB Swiss Railways", url: "https://www.sbb.ch", category: "Transport", description: "Public transport timetables, Half-Fare card, GA Travelcard, and tickets" },
-  { title: "IAGZ – Indian Association Zurich", url: "https://www.iagz.ch", category: "Community", description: "Events, networking, and community support for Indians in Zurich" },
-  { title: "SICC – Swiss Indian Chamber", url: "https://www.sicc.ch", category: "Business", description: "Business networking, events, and trade facilitation between India and Switzerland" },
+  { title: "SBB Swiss Railways", url: "https://www.sbb.ch/en", category: "Transport", description: "Public transport timetables, Half-Fare card, GA Travelcard, and tickets" },
+  { title: "IAGZ – Indian Association Zurich", url: "https://iagz.ch", category: "Community", description: "Events, networking, and community support for Indians in Zurich" },
+  { title: "SICC – Swiss Indian Chamber", url: "https://sicc.ch", category: "Business", description: "Business networking, events, and trade facilitation between India and Switzerland" },
   { title: "ch.ch – Swiss Official Portal", url: "https://www.ch.ch/en/", category: "Official", description: "Official Swiss government information portal — living, working, permits, rights" },
-  { title: "India Supermarkt (Online)", url: "https://www.indiasupermarkt.ch", category: "Shopping", description: "Indian groceries, spices, dal, rice, and products delivered across Switzerland" },
+  { title: "India Supermarkt (Online)", url: "https://indiasupermarkt.ch/en/", category: "Shopping", description: "Indian groceries, spices, dal, rice, and products delivered across Switzerland" },
   { title: "SEM – Swiss Migration Office", url: "https://www.sem.admin.ch/en/", category: "Official", description: "State Secretariat for Migration — residence permits, visas, and immigration" },
 ];
 

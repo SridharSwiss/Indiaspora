@@ -12,24 +12,24 @@ export const metadata: Metadata = {
 
 const networks = [
   { name: "Swiss Indian Chamber of Commerce (SICC)", url: "https://sicc.ch", desc: "Premier business network connecting Indian and Swiss businesses. Events, trade missions, member directory.", tag: "Chamber" },
-  { name: "India Business Switzerland (IBS)", url: "#", desc: "Advocacy and support for Indian businesses operating in Switzerland", tag: "Advocacy" },
-  { name: "TiE Switzerland", url: "https://switzerland.tie.org", desc: "The Indus Entrepreneurs — mentorship, funding connections, startup events", tag: "Startups" },
-  { name: "NASSCOM Switzerland", url: "https://nasscom.in", desc: "IT industry body with Switzerland chapter for tech professionals", tag: "Tech" },
-  { name: "Swiss Indo Business Forum", url: "#", desc: "Regular networking dinners and business exchange events", tag: "Networking" },
-  { name: "LinkedIn: Indian Professionals Zurich", url: "https://linkedin.com", desc: "10,000+ member LinkedIn group for Indians in Switzerland", tag: "Online" },
+  { name: "India Business Switzerland (IBS)", url: "https://sicc.ch/swiss-business-hub/", desc: "Advocacy and support for Indian businesses operating in Switzerland — facilitated through the SICC Swiss Business Hub.", tag: "Advocacy" },
+  { name: "TiE Zurich", url: "https://zurich.tie.org", desc: "The Indus Entrepreneurs — mentorship, funding connections, and startup events for Indian entrepreneurs.", tag: "Startups" },
+  { name: "NASSCOM", url: "https://nasscom.in", desc: "India's IT industry body — connect with the Switzerland network of Indian tech professionals.", tag: "Tech" },
+  { name: "Swiss Indo Business Forum", url: "https://www.linkedin.com/groups/Swiss-Indo-Business/", desc: "LinkedIn-based networking group for Swiss-Indian business professionals. Regular events and discussions.", tag: "Networking" },
+  { name: "LinkedIn: Indian Professionals Zurich", url: "https://www.linkedin.com/search/results/groups/?keywords=Indian%20professionals%20Switzerland", desc: "Search LinkedIn for 10,000+ Indian professionals in Switzerland — join relevant groups.", tag: "Online" },
 ];
 
 const jobPortals = [
   { name: "jobs.ch", url: "https://www.jobs.ch/en/", desc: "Switzerland's leading job portal — search by city, sector, language" },
-  { name: "LinkedIn Jobs Switzerland", url: "https://linkedin.com/jobs", desc: "Best for tech, finance, pharma — activate Open to Work" },
+  { name: "LinkedIn Jobs Switzerland", url: "https://www.linkedin.com/jobs/search/?location=Switzerland", desc: "Best for tech, finance, pharma — activate Open to Work" },
   { name: "Indeed Switzerland", url: "https://ch.indeed.com", desc: "Wide range from entry-level to senior roles" },
   { name: "EURES – European Job Mobility", url: "https://eures.ec.europa.eu", desc: "EU-wide job portal, includes Switzerland" },
   { name: "RAV – Regional Employment Centres", url: "https://www.arbeit.swiss", desc: "Official Swiss unemployment and job search service" },
-  { name: "Glassdoor Switzerland", url: "https://glassdoor.ch", desc: "Salary insights and company reviews" },
+  { name: "Glassdoor Switzerland", url: "https://www.glassdoor.ch", desc: "Salary insights and company reviews" },
 ];
 
 const sectors = [
-  { name: "Financial Services", companies: ["UBS", "Credit Suisse", "Zurich Insurance", "Swiss Re", "Julius Baer"], hub: "Zurich" },
+  { name: "Financial Services", companies: ["UBS", "Zurich Insurance", "Swiss Re", "Julius Baer", "Pictet"], hub: "Zurich" },
   { name: "Pharma & Life Sciences", companies: ["Novartis", "Roche", "Lonza", "Alcon", "Vifor Pharma"], hub: "Basel" },
   { name: "Technology & IT", companies: ["Google Zurich", "Microsoft", "IBM", "Siemens", "ABB"], hub: "Zurich" },
   { name: "International Organisations", companies: ["UN Geneva", "WHO", "WEF", "Red Cross", "WTO"], hub: "Geneva" },
@@ -61,16 +61,13 @@ export default function BusinessPage() {
           <p className="text-slate-400 mb-8">Connect with established Indian business associations in Switzerland</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {networks.map((n) => (
-              <div key={n.name} className="glass rounded-2xl p-5 card-hover">
+              <a key={n.name} href={n.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold text-white text-sm leading-tight flex-1 mr-2">{n.name}</h3>
+                  <h3 className="font-semibold text-white text-sm leading-tight flex-1 mr-2 group-hover:text-teal-400 transition-colors">{n.name}</h3>
                   <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full shrink-0">{n.tag}</span>
                 </div>
-                <p className="text-sm text-slate-400 mb-3">{n.desc}</p>
-                {n.url !== "#" && (
-                  <a href={n.url} target="_blank" rel="noopener noreferrer" className="text-xs text-teal-400 hover:text-teal-300">Visit →</a>
-                )}
-              </div>
+                <p className="text-sm text-slate-400">{n.desc}</p>
+              </a>
             ))}
           </div>
         </section>

@@ -13,15 +13,16 @@ export const metadata: Metadata = {
 type Org = { name: string; url: string | null; city: string; desc: string };
 
 const umbrella: Org[] = [
-  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://www.iagz.ch", city: "Zurich", desc: "Premier Indian community organisation in Zurich. Hindi school, Diwali Mela, networking events." },
-  { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://www.sicc.ch", city: "Zurich/Bern", desc: "Bilateral trade promotion and business networking between India and Switzerland." },
-  { name: "Indian Association Berne", url: null, city: "Bern", desc: "Community events and cultural programmes for Indians in the federal capital." },
+  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", city: "Zurich", desc: "Premier Indian community organisation in Zurich. Hindi school, Diwali Mela, networking events." },
+  { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://sicc.ch", city: "Zurich/Bern", desc: "Bilateral trade promotion and business networking between India and Switzerland." },
+  { name: "Indian Association Berne (IAB)", url: "https://www.india-bern.ch", city: "Bern", desc: "Founded 1972. Community events and cultural programmes for Indians in the federal capital. 120+ members." },
+  { name: "Bharatiya Association Berne", url: "https://www.india-bab.ch", city: "Bern", desc: "Founded 1996. Promotes companionship and goodwill among Indian members and fosters Swiss-Indian contacts." },
+  { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", city: "Geneva", desc: "Founded 1947 — world's oldest continuously running Indian association. 500+ members in the Lake Geneva region." },
   { name: "Indian Cultural Association Basel (ICAS)", url: null, city: "Basel", desc: "Diwali, Holi and cultural welfare activities for Basel's Indian community." },
-  { name: "Indian Association Geneva (IAG)", url: null, city: "Geneva", desc: "Community platform for Indians in the Lake Geneva region and UN/diplomatic circles." },
 ];
 
 const regional: Org[] = [
-  { name: "Gujarati Samaj Switzerland", url: null, city: "Nationwide", desc: "Navratri Garba, language classes, and Gujarati cultural events across Switzerland." },
+  { name: "Gujarati Samaj Switzerland", url: "https://www.gujaratisamaj.ch", city: "Nationwide", desc: "Navratri Garba, language classes, and Gujarati cultural events across Switzerland." },
   { name: "Maharashtra Mandal Switzerland", url: null, city: "Nationwide", desc: "Ganesh Chaturthi, Marathi culture and community welfare." },
   { name: "Tamil Sangam Switzerland", url: null, city: "Zurich/Basel", desc: "Pongal, Tamil language education and cultural programmes." },
   { name: "Telugu Association Switzerland (TAS)", url: null, city: "Nationwide", desc: "Ugadi, Telugu cultural events and community network." },
@@ -34,11 +35,11 @@ const regional: Org[] = [
 const professional: Org[] = [
   { name: "TiE Zurich (The Indus Entrepreneurs)", url: "https://zurich.tie.org", city: "Zurich", desc: "Global entrepreneurship network fostering innovation and mentoring in the Indian diaspora." },
   { name: "NASSCOM Switzerland Chapter", url: "https://nasscom.in", city: "Zurich", desc: "IT industry association connecting Indian tech professionals and companies in Switzerland." },
-  { name: "Swiss India Business Network", url: null, city: "Zurich/Geneva", desc: "Networking for Indian professionals and entrepreneurs in Switzerland." },
+  { name: "Swiss India Business Network", url: "https://sicc.ch", city: "Zurich/Geneva", desc: "Networking for Indian professionals and entrepreneurs in Switzerland — affiliated with SICC." },
 ];
 
 const cultural: Org[] = [
-  { name: "Hindu Swayamsevak Sangh (HSS) Switzerland", url: "https://hssuk.org", city: "Nationwide", desc: "Hindu cultural values, yoga shakhas and youth development programmes." },
+  { name: "Hindu Swayamsevak Sangh (HSS) Switzerland", url: "https://www.hssworld.org", city: "Nationwide", desc: "Hindu cultural values, yoga shakhas and youth development programmes." },
   { name: "Art of Living Switzerland", url: "https://www.artofliving.org/ch-en", city: "Zurich/Geneva", desc: "Sudarshan Kriya, meditation, and wellness programmes by Sri Sri Ravi Shankar." },
   { name: "Chinmaya Mission Switzerland", url: "https://chinmayamission.com", city: "Zurich", desc: "Vedanta classes, Bala Vihar for children, and spiritual programmes." },
 ];

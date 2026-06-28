@@ -19,18 +19,18 @@ const resources = [
       { name: "SEM – State Secretariat for Migration", url: "https://www.sem.admin.ch/en", desc: "Residence permits, work authorisations, naturalization, asylum" },
       { name: "Swiss Confederation Portal", url: "https://www.admin.ch/gov/en/start.html", desc: "Federal departments, laws, official announcements" },
       { name: "SECO – State Secretariat for Economic Affairs", url: "https://www.seco.admin.ch/en", desc: "Employment, labour law, job market statistics" },
-      { name: "SBF – Scholarships Switzerland", url: "https://www.sbfi.admin.ch/en", desc: "Swiss Government Excellence Scholarships for Indian students" },
+      { name: "SBFI – Scholarships Switzerland", url: "https://www.sbfi.admin.ch/en", desc: "Swiss Government Excellence Scholarships for Indian students" },
     ],
   },
   {
     category: "Indian Government & Embassy",
     color: "from-orange-500 to-amber-500",
     items: [
-      { name: "Embassy of India, Berne", url: "https://www.indembassybern.gov.in", desc: "Passport, OCI, visa, attestation, diaspora services. Tel: +41 31 351 1110" },
-      { name: "Consulate General of India, Zurich", url: "https://www.cgizurich.gov.in", desc: "Consular services for Indians in German-speaking Switzerland" },
-      { name: "Consulate General of India, Geneva", url: "https://www.cgigeneva.gov.in", desc: "Consular services for Indians in French-speaking Switzerland" },
+      { name: "Embassy of India, Berne", url: "https://www.indembassybern.gov.in", desc: "Passport, OCI, visa, attestation, diaspora services. Tel: +41 31 350 11 30" },
+      { name: "Consulate General of India, Geneva", url: "https://pmindiaun.org/cgi.html", desc: "Consular services for Indians in French-speaking Switzerland" },
       { name: "OCI Card Services", url: "https://ociservices.gov.in", desc: "Apply and track Overseas Citizen of India card online" },
-      { name: "Passport Seva (Renewal)", url: "https://www.passportindia.gov.in", desc: "Renew Indian passport from Switzerland" },
+      { name: "Passport Seva (Renewal)", url: "https://www.passportindia.gov.in", desc: "Renew Indian passport from Switzerland — book appointment online" },
+      { name: "Indian Associations Directory", url: "https://www.indembassybern.gov.in/page/indian-associations-in-switzerland-the-holy-see-and-liechtenstein/", desc: "Official Embassy list of all recognised Indian associations in Switzerland" },
     ],
   },
   {
@@ -58,9 +58,9 @@ const resources = [
     color: "from-purple-500 to-rose-500",
     items: [
       { name: "IAGZ – Indian Association Zurich", url: "https://iagz.ch", desc: "Events, Hindi school, Diwali Mela, networking — largest Indian body in Switzerland" },
+      { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", desc: "Founded 1947 — one of the world's oldest continuously running Indian associations" },
       { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://sicc.ch", desc: "Business networking, trade facilitation, events" },
-      { name: "India Supermarkt (Online)", url: "https://indiasupermarkt.ch", desc: "Indian groceries delivered across Switzerland" },
-      { name: "Schweizer Radio SRF", url: "https://www.srf.ch", desc: "Swiss national broadcaster — news in German, French, Italian, Romansh" },
+      { name: "India Supermarkt (Online)", url: "https://indiasupermarkt.ch/en/", desc: "Indian groceries delivered across Switzerland — based in Zurich" },
     ],
   },
   {
