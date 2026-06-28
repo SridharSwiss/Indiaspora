@@ -1,47 +1,25 @@
-# IndiaSwiss
+# IndiaSwiss – The Swiss Indian Community Hub
 
-> The definitive guide for 30,000+ Indians living in Switzerland — community, food, business, culture, and practical living resources.
+> The definitive platform for 30,000+ Indians living in Switzerland.
 
-IndiaSwiss is a community information hub connecting Indian expats across all 26 Swiss cantons. Content covers associations, temples, restaurants, business networks, and practical guides for Indian nationals settling in Switzerland.
+IndiaSwiss (indiaswiss.ch) is a community hub connecting Indians across all 26 Swiss cantons. We provide:
 
-## Site Structure
+- **Community**: Indian associations, temples, women's networks, student groups
+- **Living Guide**: Permits, housing, healthcare, education, banking, transport
+- **Food & Dining**: Indian restaurants, grocery stores, caterers across Switzerland
+- **Business & Career**: Chambers of commerce, jobs, startups, professional services
+- **Culture & Arts**: Festivals, music, dance, fashion, cinema
+- **City Guides**: Zurich, Geneva, Basel, Bern, Lausanne
+- **Resources**: Embassy contacts, official Swiss government links
 
-- [Home](https://indiaswiss.ch): Overview and navigation hub for the Swiss Indian community
-- [Community](https://indiaswiss.ch/community): 150+ Indian associations, spiritual centres, women's networks, and student groups
-  - [Associations & Clubs](https://indiaswiss.ch/community/associations): Umbrella bodies (IAGZ, SICC), regional language, professional and cultural associations
-  - [Temples & Spiritual](https://indiaswiss.ch/community/spiritual): Hindu temples, yoga centres (Art of Living, Isha, Brahma Kumaris), satsang groups
-  - [Women's Network](https://indiaswiss.ch/community/women): Community networks, official support (FIZ, EBG), and practical tips for Indian women
-  - [Students](https://indiaswiss.ch/community/students): ETH, EPFL, UZH, UNIGE guides, scholarships, InSAZ, student visa information
-- [Food & Dining](https://indiaswiss.ch/food): Indian restaurants, groceries, catering, and cooking in Switzerland
-  - [Restaurants](https://indiaswiss.ch/food/restaurants): Indian restaurants by city — Zurich, Geneva, Basel, Bern, Lausanne
-  - [Grocery](https://indiaswiss.ch/food/grocery): Indian grocery stores and spice shops; indiasupermarkt.ch online
-  - [Catering](https://indiaswiss.ch/food/catering): Tiffin services and event catering across Switzerland
-  - [Cooking Classes](https://indiaswiss.ch/food/cooking): Community workshops, private chefs, and online resources
-- [Culture & Arts](https://indiaswiss.ch/culture): Festivals (Diwali, Holi, Navratri), dance schools, music groups, Indian fashion
-- [Events](https://indiaswiss.ch/events): Swiss-Indian community event calendar 2026
-- [Business & Career](https://indiaswiss.ch/business): Professional networks (SICC, TiE), job portals, top employers, work permit guide
-- [Living in Switzerland](https://indiaswiss.ch/living): Practical guides for Indian residents
-  - [Welcome Guide](https://indiaswiss.ch/living/welcome): First steps — Gemeinde registration, SIM, health insurance, bank account
-  - [Housing](https://indiaswiss.ch/living/housing): Rental market, required documents, portals (Homegate, ImmoScout24)
-  - [Banking](https://indiaswiss.ch/living/banking): Swiss banks, digital banks (Neon), money transfers to India (Wise)
-  - [Healthcare](https://indiaswiss.ch/living/healthcare): KVG/LAMal insurance, insurers (CSS, Helsana), models, emergency numbers
-  - [Education](https://indiaswiss.ch/living/education): Swiss school system, international schools (ZIS, Ecolint, ISB), Indian language schools
-  - [Transport](https://indiaswiss.ch/living/transport): SBB trains, Half-Fare Travelcard, GA pass, city networks (ZVV, TPG)
-  - [Legal & Permits](https://indiaswiss.ch/living/legal): L/B/C/G permits, OCI cards, passport renewal, naturalization
-  - [Language Learning](https://indiaswiss.ch/living/language): German/French courses, Migros Klubschule, VHS, language apps
-- [City Guides](https://indiaswiss.ch/cities): Indian community guides by Swiss city
-  - [Zurich](https://indiaswiss.ch/cities/zurich): 18,000+ Indians — IAGZ, ETH students, restaurants, neighbourhoods
-  - [Geneva](https://indiaswiss.ch/cities/geneva): 5,000+ Indians — UN professionals, CERN scientists, IAG community
-  - [Basel](https://indiaswiss.ch/cities/basel): 3,000+ Indians — Novartis/Roche pharma professionals, ICAS
-  - [Bern](https://indiaswiss.ch/cities/bern): 2,000+ Indians — Embassy of India, federal capital community
-  - [Lausanne](https://indiaswiss.ch/cities/lausanne): 1,500+ Indians — EPFL students and researchers
-- [Resources](https://indiaswiss.ch/resources): Curated official links — Embassy of India, SEM permits, health insurance, SBB, banking
+## Key facts
 
-## Key Facts
+- Indian diaspora in Switzerland: ~30,000 people
+- Embassy of India, Berne: https://www.indembassybern.gov.in
+- Consulate General of India, Geneva: https://www.indembassybern.gov.in/page/consulategeneva.php
+- Major community organisation: IAGZ (https://iagz.ch), SICC (https://sicc.ch)
 
-- Indian population in Switzerland: ~30,000
-- Largest city community: Zurich (~18,000)
-- Primary associations: IAGZ (Zurich), SICC (business), IAG (Geneva)
-- Embassy of India, Berne: +41 31 351 1110 | indembassybern.gov.in
-- Consulate General of India, Zurich: +41 44 253 2800 | cgizurich.gov.in
-- Consulate General of India, Geneva: +41 22 906 8686 | cgigeneva.gov.in
+## Contact
+
+Email: hello@indiaswiss.ch
+Website: https://indiaswiss.ch
