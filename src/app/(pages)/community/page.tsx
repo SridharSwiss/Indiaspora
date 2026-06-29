@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
-import { Users, Building2, Heart, GraduationCap, Briefcase, Globe } from "lucide-react";
+import { Users, Building2, Heart, GraduationCap, Globe } from "lucide-react";
 
 const sections = [
   { icon: Building2, label: "Associations & Clubs", href: "/community/associations", desc: "150+ regional, cultural & professional associations", color: "from-orange-500 to-red-500" },
@@ -10,18 +10,18 @@ const sections = [
 ];
 
 const orgs = [
-  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://www.iagz.ch", city: "Zurich", desc: "Premier community organisation for Indians in Zurich. Events, networking, Hindi school, Diwali Mela." },
+  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://www.iagz.ch", city: "Zurich", desc: "Premier community organisation for Indians in Zurich. Events, networking, Hindi school, Diwali Gala." },
   { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://www.sicc.ch", city: "Zurich/Bern", desc: "Bilateral trade and business networking between India and Switzerland." },
-  { name: "Indian Association Berne", url: "https://www.indiaassociationberne.ch", city: "Bern", desc: "Community events, cultural programmes and support for Indians in the capital." },
-  { name: "Indian Cultural Association Basel (ICAS)", url: "#", city: "Basel", desc: "Cultural events, Diwali celebrations and community welfare for Basel's Indian community." },
-  { name: "Indian Association Geneva (IAG)", url: "#", city: "Geneva", desc: "Community platform for Indians in the Lake Geneva region and UN/diplomatic circles." },
+  { name: "Indian Association Berne (IAB)", url: "https://www.indiaassociationberne.ch", city: "Bern", desc: "Community events, cultural programmes and support for Indians in the Swiss capital." },
+  { name: "Indian Cultural Association Basel (ICAS)", url: "https://icas-online.com", city: "Basel", desc: "Cultural events, Diwali, Holi, and community welfare for Basel's Indian community." },
+  { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", city: "Geneva", desc: "Community platform for Indians in the Lake Geneva region and UN/diplomatic circles." },
+  { name: "TeluguSwiss Association", url: "https://teluguswiss.org", city: "Nationwide", desc: "Telugu-speaking Indian community — Ugadi, Diwali, cultural events and networking across Switzerland." },
+  { name: "PrangaN@Swiss", url: "https://pranganswiss.org", city: "Lausanne", desc: "Bengali community organises authentic Durga Puja in Lausanne with pandal, prasad and cultural programs." },
   { name: "Gujarati Samaj Switzerland", url: "#", city: "Nationwide", desc: "Cultural events, language classes and support for Gujarati-speaking Indians across Switzerland." },
   { name: "Maharashtra Mandal Switzerland", url: "#", city: "Nationwide", desc: "Marathi culture, Ganesh Chaturthi, and community welfare for Maharashtrians." },
   { name: "Tamil Sangam Switzerland", url: "#", city: "Zurich/Basel", desc: "Tamil cultural events, Pongal celebrations, and Tamil language education." },
-  { name: "Telugu Association Switzerland (TAS)", url: "#", city: "Nationwide", desc: "Telugu cultural events, Ugadi, and community network for Telugu speakers." },
   { name: "Punjabi Cultural Association", url: "#", city: "Zurich", desc: "Punjabi culture, Lohri, Baisakhi celebrations and community events." },
-  { name: "Kannada Koota Switzerland", url: "#", city: "Zurich", desc: "Kannada Rajyotsava, Ugadi and community events for Kannadigas." },
-  { name: "Hindu Swayamsevak Sangh Switzerland", url: "#", city: "Nationwide", desc: "Hindu cultural values, yoga, and youth development programmes." },
+  { name: "Hindu Swayamsevak Sangh Switzerland", url: "https://hssworld.org", city: "Nationwide", desc: "Hindu cultural values, shakha, yoga, and youth development programmes." },
 ];
 
 export default function CommunityPage() {
@@ -29,7 +29,7 @@ export default function CommunityPage() {
     <div className="bg-slate-950 text-white">
       <PageHeader
         title="Indian Community in Switzerland"
-        subtitle="Connect with 30,000+ Indians across 26 cantons. Find your tribe — by region, language, profession, or interest."
+        subtitle="Connect with 25,000+ Indians across 26 cantons. Find your tribe — by region, language, profession, or interest."
         badge="🤝 150+ Active Groups"
         breadcrumbs={[{ label: "Community" }]}
       />
@@ -53,7 +53,7 @@ export default function CommunityPage() {
         <p className="text-slate-400 mb-8">Major Indian associations and organisations active in Switzerland</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {orgs.map((org) => (
-            <a key={org.name} href={org.url} target="_blank" rel="noopener noreferrer"
+            <a key={org.name} href={org.url === "#" ? undefined : org.url} target={org.url !== "#" ? "_blank" : undefined} rel="noopener noreferrer"
               className="glass rounded-xl p-5 card-hover block group">
               <div className="flex items-start justify-between gap-2 mb-2">
                 <h3 className="font-semibold text-white text-sm group-hover:text-orange-400 transition-colors leading-tight">{org.name}</h3>
@@ -66,7 +66,7 @@ export default function CommunityPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16">
-          {[{v:"30,000+",l:"Indians in Switzerland"},{v:"150+",l:"Active Associations"},{v:"26",l:"Cantons Covered"},{v:"20+",l:"Languages Spoken"}].map((s)=>(
+          {[{v:"25,000+",l:"Indians in Switzerland"},{v:"150+",l:"Active Associations"},{v:"26",l:"Cantons Covered"},{v:"20+",l:"Languages Spoken"}].map((s)=>(
             <div key={s.l} className="glass rounded-xl p-4 sm:p-6 text-center">
               <div className="text-2xl sm:text-3xl font-black gradient-text mb-1">{s.v}</div>
               <div className="text-xs sm:text-sm text-slate-400">{s.l}</div>

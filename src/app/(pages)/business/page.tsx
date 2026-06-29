@@ -2,11 +2,11 @@ import PageHeader from "@/components/ui/PageHeader";
 
 const networks = [
   { name: "Swiss Indian Chamber of Commerce (SICC)", url: "https://sicc.ch", desc: "Premier business network connecting Indian and Swiss businesses. Events, trade missions, member directory.", tag: "Chamber" },
-  { name: "India Business Switzerland (IBS)", url: "#", desc: "Advocacy and support for Indian businesses operating in Switzerland", tag: "Advocacy" },
-  { name: "TiE Switzerland", url: "https://switzerland.tie.org", desc: "The Indus Entrepreneurs — mentorship, funding connections, startup events", tag: "Startups" },
+  { name: "TiE Zurich – The Indus Entrepreneurs", url: "https://tie.org/chapter/tie-zurich/", desc: "The Indus Entrepreneurs — mentorship, funding connections, startup events. Strong chapter in Zurich.", tag: "Startups" },
+  { name: "Swissnex India", url: "https://swissnex.org/india/", desc: "Swiss government innovation hub bridging Switzerland and India — startup programs, research, and talent exchange.", tag: "Innovation" },
   { name: "NASSCOM Switzerland", url: "https://nasscom.in", desc: "IT industry body with Switzerland chapter for tech professionals", tag: "Tech" },
-  { name: "Swiss Indo Business Forum", url: "#", desc: "Regular networking dinners and business exchange events", tag: "Networking" },
-  { name: "LinkedIn: Indian Professionals Zurich", url: "https://linkedin.com", desc: "10,000+ member LinkedIn group for Indians in Switzerland", tag: "Online" },
+  { name: "SICC Events & Forums", url: "https://sicc.ch/events", desc: "Annual Swiss-India Business Forums connecting Swiss and Indian business leaders across sectors", tag: "Networking" },
+  { name: "LinkedIn: Indian Professionals Switzerland", url: "https://linkedin.com", desc: "10,000+ member LinkedIn group for Indians in Switzerland — jobs, networking, advice", tag: "Online" },
 ];
 
 const jobPortals = [
@@ -19,19 +19,19 @@ const jobPortals = [
 ];
 
 const sectors = [
-  { name: "Financial Services", companies: ["UBS", "Credit Suisse", "Zurich Insurance", "Swiss Re", "Julius Baer"], hub: "Zurich" },
+  { name: "Financial Services", companies: ["UBS", "Zurich Insurance", "Swiss Re", "Julius Baer", "Pictet"], hub: "Zurich" },
   { name: "Pharma & Life Sciences", companies: ["Novartis", "Roche", "Lonza", "Alcon", "Vifor Pharma"], hub: "Basel" },
-  { name: "Technology & IT", companies: ["Google Zurich", "Microsoft", "IBM", "Siemens", "ABB"], hub: "Zurich" },
+  { name: "Technology & IT", companies: ["Google Zurich", "Microsoft", "Infosys", "IBM", "ABB"], hub: "Zurich" },
   { name: "International Organisations", companies: ["UN Geneva", "WHO", "WEF", "Red Cross", "WTO"], hub: "Geneva" },
   { name: "Trading & Commodities", companies: ["Glencore", "Vitol", "Trafigura", "Gunvor", "Mercuria"], hub: "Zug / Geneva" },
   { name: "Engineering & MedTech", companies: ["ABB", "Sulzer", "Georg Fischer", "Straumann", "Sonova"], hub: "Nationwide" },
 ];
 
 const workPermitTypes = [
-  { permit: "B Permit (Residence)", eligibility: "Job offer from Swiss employer, usually 1-5 year contracts", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit.html" },
-  { permit: "L Permit (Short-term)", eligibility: "Short-term contracts up to 12 months", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit.html" },
-  { permit: "C Permit (Settlement)", eligibility: "After 5-10 years of residence, permanent work rights", link: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht_eu_efta/ausweis_c__niederlassungsbewilligung.html" },
-  { permit: "G Permit (Cross-border)", eligibility: "Live in EU country, work in Switzerland", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit/nicht-eu_efta-angehoerige/grenzgaengerbewilligung.html" },
+  { permit: "B Permit (Residence)", eligibility: "Job offer from Swiss employer, usually 1–5 year contracts. Annual quota for non-EU nationals: ~4,500 B permits (2025–26).", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit.html" },
+  { permit: "L Permit (Short-term)", eligibility: "Short-term contracts up to 12 months. Quota: ~4,000 L permits per year (2025–26).", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit.html" },
+  { permit: "C Permit (Settlement)", eligibility: "After 10 years of legal residence for Indian nationals. Requires language proficiency and integration. Unrestricted work rights.", link: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht_eu_efta/ausweis_c__niederlassungsbewilligung.html" },
+  { permit: "G Permit (Cross-border)", eligibility: "Live in EU border country (France, Germany, Italy, Austria) and work in Switzerland", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit/nicht-eu_efta-angehoerige/grenzgaengerbewilligung.html" },
 ];
 
 export default function BusinessPage() {
@@ -46,6 +46,25 @@ export default function BusinessPage() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+        {/* Trade Context Banner */}
+        <div className="glass rounded-2xl p-5 mb-16 border border-teal-500/20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+            <div>
+              <div className="text-teal-400 font-semibold text-xs uppercase tracking-wider mb-1">India-EFTA TEPA</div>
+              <p className="text-slate-400 text-xs">The India-EFTA Trade and Economic Partnership Agreement entered into force in <strong className="text-white">October 2025</strong> — opening major new opportunities for Swiss-Indian business.</p>
+            </div>
+            <div>
+              <div className="text-teal-400 font-semibold text-xs uppercase tracking-wider mb-1">Bilateral Trade (2024)</div>
+              <p className="text-slate-400 text-xs">India-Switzerland total trade reached <strong className="text-white">CHF 22.4 billion</strong> in 2024, spanning pharma, machinery, watches, chemicals, and IT services.</p>
+            </div>
+            <div>
+              <div className="text-teal-400 font-semibold text-xs uppercase tracking-wider mb-1">Startup Ecosystem</div>
+              <p className="text-slate-400 text-xs">Switzerland ranks <strong className="text-white">#8 globally</strong> in startup ecosystems. CHF 1.47bn raised in H1 2025. Infosys expanding at The Circle, Zurich Airport.</p>
+            </div>
+          </div>
+        </div>
+
         {/* Networks */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-white mb-2">Professional Networks & Chambers</h2>
@@ -58,9 +77,7 @@ export default function BusinessPage() {
                   <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full shrink-0">{n.tag}</span>
                 </div>
                 <p className="text-sm text-slate-400 mb-3">{n.desc}</p>
-                {n.url !== "#" && (
-                  <a href={n.url} target="_blank" rel="noopener noreferrer" className="text-xs text-teal-400 hover:text-teal-300">Visit →</a>
-                )}
+                <a href={n.url} target="_blank" rel="noopener noreferrer" className="text-xs text-teal-400 hover:text-teal-300">Visit →</a>
               </div>
             ))}
           </div>
@@ -104,7 +121,7 @@ export default function BusinessPage() {
         {/* Work Permits */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-white mb-2">Work Permits for Non-EU Nationals</h2>
-          <p className="text-slate-400 mb-6">As an Indian national, you need a work permit to work in Switzerland. Quotas apply for non-EU/EFTA nationals.</p>
+          <p className="text-slate-400 mb-6">As an Indian national, you need a work permit to work in Switzerland. Annual quotas apply for non-EU/EFTA nationals.</p>
           <div className="grid md:grid-cols-2 gap-5">
             {workPermitTypes.map((w) => (
               <div key={w.permit} className="glass rounded-2xl p-5">
@@ -115,7 +132,7 @@ export default function BusinessPage() {
             ))}
           </div>
           <div className="mt-4 p-4 rounded-xl bg-teal-500/10 border border-teal-500/20">
-            <p className="text-sm text-teal-300">💡 <strong>Quota system:</strong> Switzerland has annual quotas for non-EU work permits. Your employer sponsors the permit. Check current quota status at <a href="https://www.sem.admin.ch" target="_blank" rel="noopener noreferrer" className="underline">sem.admin.ch</a></p>
+            <p className="text-sm text-teal-300">💡 <strong>India-EFTA TEPA (Oct 2025):</strong> The new trade agreement creates favourable conditions for Indian professionals. Your employer sponsors the permit. Check current quota status at <a href="https://www.sem.admin.ch" target="_blank" rel="noopener noreferrer" className="underline">sem.admin.ch</a></p>
           </div>
         </section>
 
@@ -123,26 +140,26 @@ export default function BusinessPage() {
         <section className="mb-16">
           <div className="glass rounded-2xl p-8">
             <h2 className="text-2xl font-bold text-white mb-4">🚀 Indian-Founded Startups & Ecosystem</h2>
-            <p className="text-slate-400 mb-6">Switzerland has a thriving startup scene with many Indian entrepreneurs making their mark</p>
+            <p className="text-slate-400 mb-6">Switzerland ranks #8 globally in startup ecosystems with CHF 1.47bn raised in H1 2025 — Indians are building here</p>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="font-semibold text-teal-400 mb-3">Startup Hubs</h3>
                 <ul className="space-y-2 text-sm text-slate-300">
-                  <li>• <a href="https://www.startupagentur.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">Startup Agentur Switzerland</a> — national startup support</li>
                   <li>• <a href="https://www.innosuisse.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">Innosuisse</a> — Swiss Innovation Agency, funding for R&D</li>
                   <li>• ETH Zurich's <a href="https://entrepreneurclub.ethz.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">Entrepreneur Club</a></li>
-                  <li>• EPFL Innovation Park — deep-tech startup campus</li>
+                  <li>• EPFL Innovation Park — deep-tech startup campus, Lausanne</li>
                   <li>• Zug Crypto Valley — blockchain & Web3 startups</li>
+                  <li>• <a href="https://venturelab.swiss" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">Venturelab</a> — startup education and acceleration</li>
                 </ul>
               </div>
               <div>
                 <h3 className="font-semibold text-teal-400 mb-3">Resources for Indian Entrepreneurs</h3>
                 <ul className="space-y-2 text-sm text-slate-300">
-                  <li>• TiE Switzerland — angel network, mentorship</li>
+                  <li>• TiE Zurich — angel network, mentorship (<a href="https://tie.org/chapter/tie-zurich/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">tie.org</a>)</li>
                   <li>• SICC — India-Switzerland trade connections</li>
-                  <li>• <a href="https://www.zebi.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">Zebi.ch</a> — register your Swiss company online</li>
+                  <li>• <a href="https://swissnex.org/india/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">Swissnex India</a> — Swiss-India innovation bridge</li>
+                  <li>• <a href="https://startupindia.gov.in/content/sih/en/international/india-swiss_startup_bridge.html" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">India-Swiss Startup Bridge</a> — bilateral programme</li>
                   <li>• <a href="https://www.uid.admin.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">uid.admin.ch</a> — Swiss company UID register</li>
-                  <li>• Handelsregister — commercial register for GmbH/AG</li>
                 </ul>
               </div>
             </div>

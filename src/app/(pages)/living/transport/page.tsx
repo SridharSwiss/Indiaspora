@@ -11,7 +11,7 @@ const networks = [
 ];
 
 const passes = [
-  { name: "Half-Fare Travelcard (Halbtax)", price: "CHF 185/year", desc: "50% discount on ALL SBB trains, trams, buses, lake boats, cable cars, and most private railways. Pays for itself in 4–5 trips. Essential for Swiss life.", url: "https://www.sbb.ch/en/tickets-offers/tickets/all-offers/half-fare-travelcard.html" },
+  { name: "Half-Fare Travelcard (Halbtax)", price: "CHF 190/year", desc: "50% discount on ALL SBB trains, trams, buses, lake boats, cable cars, and most private railways. Pays for itself in 4–5 trips. Essential for Swiss life.", url: "https://www.sbb.ch/en/tickets-offers/tickets/all-offers/half-fare-travelcard.html" },
   { name: "GA Travelcard (Generalabonnement)", price: "CHF 3,995/year (2nd class)", desc: "Unlimited travel on all Swiss public transport. Best if you commute daily between cities. Tax-deductible portion depends on canton.", url: "https://www.sbb.ch/en/tickets-offers/tickets/all-offers/ga.html" },
   { name: "Day Pass (Tageskarte)", price: "CHF 52 (with Halbtax)", desc: "Unlimited travel for one day across Switzerland. Sell day passes to friends or family — community Tageskarte sharing is common.", url: "https://www.sbb.ch/en/" },
   { name: "Youth Annual Pass", price: "CHF 730/year", desc: "Full travel pass for under-25s. Includes urban transport networks. Excellent value for students.", url: "https://www.sbb.ch/en/" },
@@ -68,7 +68,7 @@ export default function TransportPage() {
         <div className="glass rounded-2xl p-5 sm:p-6 border border-green-500/20">
           <h3 className="font-bold text-green-400 text-sm mb-3">🚗 Driving in Switzerland</h3>
           <div className="text-slate-400 text-xs leading-relaxed space-y-2">
-            <p>• <strong className="text-white">Indian driving licence</strong>: Valid for 12 months after arrival. Then convert to Swiss licence at your cantonal Strassenverkehrsamt.</p>
+            <p>• <strong className="text-white">Indian driving licence</strong>: Valid for 12 months after arrival. After that, you must take a <strong className="text-white">full Swiss driving test</strong> — there is no licence conversion or reciprocity agreement between India and Switzerland. Contact your cantonal Strassenverkehrsamt to register for the theory and practical tests.</p>
             <p>• <strong className="text-white">Motorway vignette</strong>: CHF 40/year. Required sticker for all motorways. Buy at petrol stations, post offices or online.</p>
             <p>• <strong className="text-white">Mobility</strong>: Car-sharing platform. <a href="https://www.mobility.ch" target="_blank" rel="noopener noreferrer" className="text-green-400 hover:underline">mobility.ch</a>. Many Indians use this rather than owning a car.</p>
             <p>• <strong className="text-white">Road rules</strong>: Speed cameras are everywhere. 50 km/h in towns, 80 km/h on country roads, 120 km/h on motorways.</p>

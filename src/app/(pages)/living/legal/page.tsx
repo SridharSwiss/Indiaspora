@@ -4,7 +4,7 @@ import { ExternalLink } from "lucide-react";
 const permits = [
   { type: "L Permit", full: "Short-Term Residence", duration: "Up to 1 year (renewable)", who: "Employment contracts under 1 year. Student placements. Restricted activities.", url: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/eu_efta/ausweis_l_eu_efta.html" },
   { type: "B Permit", full: "Residence Permit", duration: "1 year (annual renewal)", who: "Standard permit for employees with 1+ year contracts. Tied to specific employer initially.", url: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht-eu_efta/ausweis_b.html" },
-  { type: "C Permit", full: "Settlement Permit", duration: "Unlimited (5-year renewal)", who: "After 5 or 10 years of legal residence (varies by nationality and canton). Unrestricted work.", url: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht-eu_efta/ausweis_c.html" },
+  { type: "C Permit", full: "Settlement Permit", duration: "Unlimited (5-year renewal)", who: "For Indian nationals: after 10 years of legal residence. Requires language proficiency and integration. Unrestricted work rights.", url: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht_eu_efta/ausweis_c__niederlassungsbewilligung.html" },
   { type: "G Permit", full: "Cross-Border Commuter", duration: "5 years (for long-term work)", who: "For those working in Switzerland but residing in EU border region (France, Germany, Italy, Austria).", url: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/eu_efta/ausweis_g_eu_efta.html" },
   { type: "Ci Permit", full: "Spouse of Official", duration: "Tied to spouse's stay", who: "Spouses of international officials (UN, diplomatic staff) who wish to work in Switzerland.", url: "https://www.sem.admin.ch/en/" },
 ];
@@ -12,13 +12,13 @@ const permits = [
 const indianDocs = [
   {
     title: "OCI Card (Overseas Citizen of India)",
-    desc: "Lifelong visa to visit India. Multiple entry, no time limit. Apply online at ociservices.gov.in, submit biometrics at Indian Consulate. No work rights in India (except IT special provisions).",
+    desc: "Lifelong visa to visit India. Multiple entry, no time limit. Apply online at ociservices.gov.in, submit biometrics at Indian Consulate Zurich or CGI Geneva. No work rights in India (except IT special provisions).",
     url: "https://ociservices.gov.in",
     time: "6–10 weeks processing",
   },
   {
     title: "Indian Passport Renewal",
-    desc: "Apply online at passportindia.gov.in (Passport Seva). Book appointment at Consulate General Zurich or Geneva. Bring current passport, proof of Swiss residence, and photos. ePassport issued in India.",
+    desc: "Apply online at passportindia.gov.in (Passport Seva). Book appointment at Embassy Berne or Consulate General Geneva. Bring current passport, proof of Swiss residence, and photos. ePassport issued in India.",
     url: "https://www.passportindia.gov.in",
     time: "4–8 weeks",
   },
@@ -37,13 +37,13 @@ const indianDocs = [
   {
     title: "Power of Attorney (PoA) for India",
     desc: "For property transactions, legal matters or banking in India. Get PoA notarised at the Indian Consulate or by a Swiss notary with Apostille (from Swiss cantonal chancery).",
-    url: "https://www.eoibern.gov.in",
+    url: "https://www.indembassybern.gov.in",
     time: "Same day at Consulate",
   },
   {
     title: "Affidavits & Document Attestation",
     desc: "Birth certificates, marriage certificates, educational degrees for use in India. Can be attested/apostilled at the Indian Consulate or Swiss cantonal Staatskanzlei.",
-    url: "https://www.eoibern.gov.in",
+    url: "https://www.indembassybern.gov.in",
     time: "1–3 days",
   },
 ];
@@ -83,6 +83,25 @@ export default function LegalPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Indian Consular Services */}
+        <div className="glass rounded-2xl p-5 sm:p-6 border border-amber-500/20">
+          <h3 className="font-bold text-amber-400 text-sm mb-3">🇮🇳 Indian Consular Services in Switzerland</h3>
+          <div className="grid sm:grid-cols-2 gap-4 text-xs text-slate-400">
+            <div>
+              <div className="text-white font-semibold mb-1">Embassy of India, Berne</div>
+              <p>Thunstrasse 5, 3005 Bern</p>
+              <p>+41-31-350 11 10</p>
+              <a href="https://www.indembassybern.gov.in" target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300">indembassybern.gov.in →</a>
+            </div>
+            <div>
+              <div className="text-white font-semibold mb-1">Consulate General of India, Geneva</div>
+              <p>9 Rue du Valais, 1202 Geneva</p>
+              <p>+41-22-906 86 86</p>
+              <a href="https://www.cgigeneva.gov.in" target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300">cgigeneva.gov.in →</a>
+            </div>
           </div>
         </div>
 
