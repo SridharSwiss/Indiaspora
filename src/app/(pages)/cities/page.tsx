@@ -5,7 +5,7 @@ const cities = [
   {
     name: "Zurich",
     slug: "zurich",
-    population: "~18,000 Indians",
+    population: "~10,000 Indians",
     desc: "Switzerland's financial capital and home to the largest Indian community. ETH Zurich, Google, UBS, and 150+ Indian associations.",
     highlights: ["IAGZ Community", "ETH & UZH Indian Students", "Bollywood nights", "Gujarati & Punjabi Associations"],
     color: "from-blue-600 to-indigo-700",
@@ -15,13 +15,13 @@ const cities = [
     slug: "geneva",
     population: "~5,000 Indians",
     desc: "International city with the UN, WHO, and WTO. Cosmopolitan Indian expat community in the heart of Europe.",
-    highlights: ["UN & Diplomatic Community", "Indian Association Geneva", "CERN Scientists", "International Schools"],
+    highlights: ["Indian Consulate General (9 Rue du Valais)", "UN & Diplomatic Community", "CERN Scientists", "International Schools"],
     color: "from-purple-600 to-violet-700",
   },
   {
     name: "Basel",
     slug: "basel",
-    population: "~3,000 Indians",
+    population: "~3,500 Indians",
     desc: "Pharma and biotech hub — home to Novartis, Roche, and a growing Indian professional community.",
     highlights: ["Pharma & Biotech Pros", "ICAS Indian Association", "Sri Durga Temple", "Holi Festival Basel"],
     color: "from-orange-500 to-red-600",
@@ -31,7 +31,7 @@ const cities = [
     slug: "bern",
     population: "~2,000 Indians",
     desc: "Swiss federal capital with the Indian Embassy, academic institutions, and a tight-knit Indian community.",
-    highlights: ["Embassy of India", "Indian Association Berne", "University of Bern", "Bharatiya Association"],
+    highlights: ["Embassy of India (Thunstrasse 5)", "Indian Association Berne", "University of Bern", "Bharatiya Association"],
     color: "from-teal-600 to-cyan-700",
   },
   {
@@ -39,7 +39,7 @@ const cities = [
     slug: "lausanne",
     population: "~1,500 Indians",
     desc: "Olympic city on Lake Geneva — EPFL's global campus attracts hundreds of Indian students and researchers.",
-    highlights: ["EPFL Indian Students", "IOC Indian Professionals", "Bollywood Nights", "Indian Restaurants"],
+    highlights: ["EPFL Indian Students", "IOC Indian Professionals", "PrangaN@Swiss (Durga Puja)", "Indian Restaurants"],
     color: "from-rose-600 to-pink-700",
   },
 ];
