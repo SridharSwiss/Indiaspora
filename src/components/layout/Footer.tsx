@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 
@@ -39,19 +37,14 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <circle cx="20" cy="20" r="18" stroke="url(#footerLogoGrad)" strokeWidth="2" />
-                <circle cx="20" cy="20" r="8" fill="url(#footerLogoGrad)" opacity="0.9" />
-                {[0,30,60,90,120,150,180,210,240,270,300,330].map((deg, i) => (
-                  <line key={i} x1="20" y1="12" x2="20" y2="4" stroke="url(#footerLogoGrad)" strokeWidth="1.5" strokeLinecap="round" transform={`rotate(${deg} 20 20)`} />
-                ))}
-                <defs>
-                  <linearGradient id="footerLogoGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#fbbf24" />
-                  </linearGradient>
-                </defs>
-              </svg>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "linear-gradient(135deg, #f97316, #d97706)" }}>
+                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
+                  <circle cx="12" cy="12" r="4" fill="white" opacity="0.95" />
+                  {[0,30,60,90,120,150,180,210,240,270,300,330].map((deg, i) => (
+                    <line key={i} x1="12" y1="7" x2="12" y2="3" stroke="white" strokeWidth="1.5" strokeLinecap="round" transform={`rotate(${deg} 12 12)`} />
+                  ))}
+                </svg>
+              </div>
               <div>
                 <div className="font-bold text-xl">
                   <span className="gradient-text">India</span>
@@ -65,14 +58,16 @@ export default function Footer() {
             </p>
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-slate-400">
-                <MapPin className="w-4 h-4 text-orange-500 shrink-0" />
+                <MapPin className="w-4 h-4 shrink-0" style={{ color: "var(--primary)" }} />
                 <span>Zurich, Switzerland</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-slate-400">
-                <Mail className="w-4 h-4 text-orange-500 shrink-0" />
-                <a href="mailto:hello@indiaswiss.ch" className="hover:text-orange-400 transition-colors">hello@indiaswiss.ch</a>
+                <Mail className="w-4 h-4 shrink-0" style={{ color: "var(--primary)" }} />
+                <a href="mailto:hello@indiaswiss.ch" className="hover:text-white transition-colors">hello@indiaswiss.ch</a>
               </div>
             </div>
+
+            {/* Social */}
             <div className="flex gap-3 mt-6">
               {[
                 { label: "F", title: "Facebook", href: "https://www.facebook.com/groups/indian.association.of.greater.zurich/" },
@@ -101,7 +96,10 @@ export default function Footer() {
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="text-sm text-slate-400 hover:text-orange-400 transition-colors">
+                    <Link
+                      href={link.href}
+                      className="text-sm text-slate-400 hover:text-white transition-colors"
+                    >
                       {link.label}
                     </Link>
                   </li>
@@ -126,8 +124,7 @@ export default function Footer() {
                 style={{ background: "rgba(255,255,255,0.05)", borderColor: "var(--border)" }}
               />
               <button
-                className="px-5 py-2.5 rounded-xl text-white text-sm font-semibold transition-all whitespace-nowrap"
-                style={{ background: "linear-gradient(135deg, #f97316, #f59e0b)" }}
+                className="btn btn-primary btn-sm whitespace-nowrap"
               >
                 Subscribe
               </button>
@@ -137,7 +134,9 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6" style={{ borderTop: "1px solid var(--border)" }}>
-          <p className="text-xs text-slate-500">© 2026 IndiaSwiss Community Hub. All rights reserved.</p>
+          <p className="text-xs text-slate-500">
+            © 2026 IndiaSwiss Community Hub. All rights reserved.
+          </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Terms of Use</Link>

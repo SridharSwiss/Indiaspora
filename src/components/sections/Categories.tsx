@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, Users, Home, UtensilsCrossed, Sparkles, TrendingUp, Music } from "lucide-react";
 import { FEATURED_CATEGORIES } from "@/lib/data";
@@ -15,48 +12,32 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 };
 
 export default function Categories() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 80);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="categories" ref={sectionRef} className="py-24 pattern-dots">
+    <section id="categories" className="py-24" style={{ background: "var(--bg)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 reveal">
+        {/* Header */}
+        <div className="text-center mb-16">
           <span className="tag mb-4">What We Cover</span>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4 mt-3">
-            Everything for <span className="gradient-text">Swiss Indians</span>
+            Everything for{" "}
+            <span className="gradient-text">Swiss Indians</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
             From landing in Switzerland to building a life here — we cover every aspect of the Indian experience in the Swiss Confederation
           </p>
         </div>
 
+        {/* Category Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FEATURED_CATEGORIES.map((cat, index) => (
+          {FEATURED_CATEGORIES.map((cat) => (
             <Link
               key={cat.id}
               href={cat.href}
-              className="reveal card group block"
-              style={{ transitionDelay: `${index * 60}ms` }}
+              className="card group block overflow-hidden"
             >
-              <div className={`relative p-6 bg-gradient-to-br ${cat.color} rounded-t-[18px]`} style={{ opacity: 0.9 }}>
-                <div className="absolute inset-0 opacity-20 bg-gradient-to-br from-white/30 to-transparent rounded-t-[18px]" />
+              {/* Card top with gradient */}
+              <div className={`relative p-6 bg-gradient-to-br ${cat.color} rounded-t-[15px]`}>
+                <div className="absolute inset-0 opacity-20 bg-gradient-to-br from-white/30 to-transparent rounded-t-[15px]" />
                 <div className="relative flex items-start justify-between">
                   <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-white shadow-lg">
                     {ICON_MAP[cat.icon]}
@@ -68,19 +49,23 @@ export default function Categories() {
                 <h3 className="mt-4 text-xl font-bold text-white">{cat.title}</h3>
                 <p className="mt-2 text-sm text-white/80 leading-relaxed">{cat.description}</p>
               </div>
+
+              {/* Items list */}
               <div className="p-6">
                 <ul className="space-y-2">
                   {cat.items.slice(0, 4).map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
-                      <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0 opacity-60" />
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0 opacity-70" style={{ background: "var(--primary)" }} />
                       {item}
                     </li>
                   ))}
                   {cat.items.length > 4 && (
-                    <li className="text-sm text-slate-500 pl-3.5">+{cat.items.length - 4} more...</li>
+                    <li className="text-sm text-slate-500 pl-3.5">
+                      +{cat.items.length - 4} more...
+                    </li>
                   )}
                 </ul>
-                <div className="mt-5 flex items-center gap-1.5 text-sm font-medium text-orange-400 group-hover:text-orange-300 transition-colors">
+                <div className="mt-5 flex items-center gap-1.5 text-sm font-medium transition-colors" style={{ color: "#818cf8" }}>
                   View All
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -89,7 +74,8 @@ export default function Categories() {
           ))}
         </div>
 
-        <div className="text-center mt-12 reveal">
+        {/* Bottom CTA */}
+        <div className="text-center mt-12">
           <Link href="/events" className="btn btn-outline">
             Browse All Events & Categories
             <ArrowRight className="w-4 h-4" />
