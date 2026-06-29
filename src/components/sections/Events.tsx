@@ -13,7 +13,7 @@ export default function Events() {
               Upcoming <span className="gradient-text">Events</span>
             </h2>
             <p className="text-slate-400 mt-3 max-w-lg">
-              Festivals, networking nights, cultural shows, food fairs &mdash; never miss what&apos;s happening in the Swiss Indian community
+              Festivals, networking nights, cultural shows, food fairs — never miss what&apos;s happening in the Swiss Indian community
             </p>
           </div>
           <Link href="/events" className="btn btn-outline shrink-0">
@@ -33,12 +33,14 @@ export default function Events() {
                   </span>
                   <span className="text-xs text-slate-500">{event.date}</span>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-orange-300 transition-colors leading-tight">
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors leading-tight">
                   {event.title}
                 </h3>
-                <p className="text-sm text-slate-400 mb-4 leading-relaxed line-clamp-2">{event.description}</p>
+                <p className="text-sm text-slate-400 mb-4 leading-relaxed line-clamp-2">
+                  {event.description}
+                </p>
                 <div className="flex items-center gap-2 text-sm text-slate-500">
-                  <MapPin className="w-3.5 h-3.5 text-orange-500 shrink-0" />
+                  <MapPin className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
                   <span className="truncate">{event.location}</span>
                 </div>
                 <div className="mt-5 pt-4 flex items-center justify-between" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
@@ -46,7 +48,7 @@ export default function Events() {
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{event.date}</span>
                   </div>
-                  <Link href="/events" className="text-sm font-medium text-orange-400 hover:text-orange-300 transition-colors flex items-center gap-1">
+                  <Link href="/events" className="text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1">
                     Details <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -61,7 +63,9 @@ export default function Events() {
             <p className="text-slate-400 mb-6 max-w-md mx-auto text-sm">
               Submit your community events, workshops, cultural shows, and meetups to reach 30,000+ Indians across Switzerland
             </p>
-            <a href="mailto:hello@indiaswiss.ch?subject=Submit%20Event" className="btn btn-primary">Submit an Event</a>
+            <a href="mailto:hello@indiaswiss.ch?subject=Submit%20Event" className="btn btn-primary">
+              Submit an Event
+            </a>
           </div>
         </div>
       </div>

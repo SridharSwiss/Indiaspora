@@ -48,7 +48,7 @@ export default function LivingGuide() {
     <section id="living" ref={sectionRef} className="py-24 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 reveal">
-          <span className="text-xs uppercase tracking-[0.3em] text-orange-400 mb-4 block font-medium">
+          <span className="text-xs uppercase tracking-[0.3em] text-indigo-400 mb-4 block font-medium">
             Settle In
           </span>
           <h2 className="text-4xl lg:text-5xl font-bold text-white">
@@ -89,7 +89,7 @@ export default function LivingGuide() {
                   className={cn(
                     "w-full flex items-center gap-4 p-4 rounded-xl transition-all text-left",
                     activeTab === i
-                      ? "bg-gradient-to-r from-orange-500/20 to-amber-500/10 border border-orange-500/30 shadow-lg"
+                      ? "bg-gradient-to-r from-indigo-500/15 to-violet-500/10 border border-indigo-500/25 shadow-lg"
                       : "glass border border-white/5 hover:border-white/15"
                   )}
                 >
@@ -97,7 +97,7 @@ export default function LivingGuide() {
                     className={cn(
                       "w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-all",
                       activeTab === i
-                        ? "bg-gradient-to-br from-orange-500 to-amber-500 text-white"
+                        ? "bg-gradient-to-br from-indigo-500 to-violet-500 text-white"
                         : "bg-white/10 text-slate-400"
                     )}
                   >
@@ -132,7 +132,7 @@ export default function LivingGuide() {
           <div className="reveal">
             <div className="glass rounded-2xl p-8 border border-white/5 h-full">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white">
                   {ICON_MAP[LIVING_GUIDE[activeTab].icon]}
                 </div>
                 <div>
@@ -144,7 +144,7 @@ export default function LivingGuide() {
               <ol className="space-y-4">
                 {LIVING_GUIDE[activeTab].steps.map((step, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold text-orange-400">
+                    <div className="w-6 h-6 rounded-full bg-indigo-500/15 border border-indigo-500/25 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold text-indigo-400">
                       {i + 1}
                     </div>
                     <p className="text-sm text-slate-300 leading-relaxed">{step}</p>
@@ -152,7 +152,7 @@ export default function LivingGuide() {
                 ))}
               </ol>
 
-              <button className="mt-8 flex items-center gap-2 text-sm font-medium text-orange-400 hover:text-orange-300 transition-colors">
+              <button className="mt-8 flex items-center gap-2 text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors">
                 Read Full Guide
                 <ArrowRight className="w-4 h-4" />
               </button>
