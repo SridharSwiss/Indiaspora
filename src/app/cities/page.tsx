@@ -10,34 +10,34 @@ export const metadata: Metadata = {
 
 const CITY_DETAILS: Record<string, { restaurants: string[]; associations: string[]; temples: string[]; tips: string[] }> = {
   Zurich: {
-    restaurants: ["Bairavi (South Indian)", "Rajasthan Restaurant", "Mumbai Street", "India Gate"],
-    associations: ["IAGZ – Indian Association of Greater Zurich", "Hindu Swayamsevak Sangh", "Gujarati Samaj Switzerland"],
-    temples: ["ISKCON Krishna Temple", "Glatbrugg Siva Temple", "Arya Samaj Switzerland"],
-    tips: ["ZVV day passes are great value for exploring the city", "Langstrasse area has Indian grocery stores", "ETH area is popular with Indian students"],
+    restaurants: ["Restaurant Vulkan (South Indian, Bharat Niwas)", "Taj Mahal Restaurant Zurich (tajmahal-zurich.ch)", "Tamarind Garden (tamarindgarden.ch)", "Mumbai Street (street food & chaat)"],
+    associations: ["IAGZ – Indian Association of Greater Zurich (iagz.ch)", "TeluguSwiss Association (teluguswiss.org)", "Gujarati Samaj Switzerland", "Maharashtra Mandal Switzerland"],
+    temples: ["Arulmihu Sivan Temple – Glatbrugg (sivankovil.ch)", "ISKCON Krishna Temple (krishna.ch)", "BAPS Swaminarayan Mandir", "Arya Samaj Switzerland"],
+    tips: ["Indian grocery stores in Kreis 4 (Langstrasse) and Kreis 3 (Wiedikon)", "Kreis 6 (Oberstrasse area) is popular with Indian families", "ETH area and Oerlikon are popular with Indian students and young professionals", "ZVV 9-Uhr-Pass gives unlimited travel after 9am — great value for families"],
   },
   Geneva: {
-    restaurants: ["Indigo Restaurant", "Maharaja Geneva", "New India Restaurant"],
-    associations: ["Indian Association Geneva (IAG)", "Indian Women Connect Geneva"],
-    temples: ["Chinmaya Mission Switzerland (Geneva branch)"],
-    tips: ["Strong UN/diplomat community — very cosmopolitan", "Carouge has a great Indian restaurant scene", "Geneva is bilingual — French is essential here"],
+    restaurants: ["Café Gandhi Geneva (South Indian)", "Tamarind Restaurant Geneva", "Maharaja Geneva", "New India Restaurant Geneva"],
+    associations: ["IAG – Indian Association Geneva (indianassociationgeneva.com)", "PrangaN@Swiss (Durga Puja community, pranganswiss.org)", "Indian Women Connect Geneva", "EPFL Indian community (EPFL Lausanne nearby)"],
+    temples: ["Chinmaya Mission Geneva", "Art of Living Geneva", "Brahma Kumaris Geneva"],
+    tips: ["Indian Consulate General: 9 Rue du Valais, Geneva (+41-22-906 86 86, cgigeneva.gov.in)", "Strong UN/diplomatic Indian community — very international atmosphere", "Carouge and Plainpalais neighbourhoods have Indian restaurants", "French is essential — learn basic French before arriving in Geneva"],
   },
   Basel: {
-    restaurants: ["Taj Mahal Basel", "Namaste Basel", "Passage Indian Restaurant"],
-    associations: ["ICAS – Indian Cultural Association Switzerland", "Indian Students Basel University"],
-    temples: ["Sri Durga Temple Basel"],
-    tips: ["Pharma companies (Novartis, Roche) are major employers of Indians", "Holi Festival Basel is a highlight every March", "Basel borders Germany and France — very convenient"],
+    restaurants: ["Indian Tandoori Palace Basel (indiantandooripalacerestaurant.ch)", "Royal Palace Basel (royal-palace.ch)", "Namaste Basel", "Taste of India Basel"],
+    associations: ["ICAS – Indian Cultural Association Switzerland (icas-online.com)", "Indian Students University of Basel", "Punjabi Cultural Association Basel"],
+    temples: ["Sri Rajeswari Ambal Temple Basel", "Brahma Kumaris Basel"],
+    tips: ["Pharma companies Novartis and Roche are major employers — large Indian professional community", "Kalasri Bharatanatyam school (kalasri.com) has been in Basel since 1976", "Basel borders France (Saint-Louis) and Germany (Freiburg) — great for weekend trips", "ICAS organises Holi, Diwali, and cultural events throughout the year"],
   },
   Bern: {
-    restaurants: ["Masala Kitchen", "New Delhi Restaurant", "Bollywood Spice"],
-    associations: ["Indian Association Berne (IAB)", "Bharatiya Association Berne"],
-    temples: ["Art of Living Berne", "ISKCON Berne"],
-    tips: ["Embassy of India is in Bern — convenient for consular services", "Compact city — everything is within walking distance", "University of Bern has a good Indian student community"],
+    restaurants: ["Masala Kitchen Bern", "New Delhi Restaurant Bern", "Bollywood Spice Bern"],
+    associations: ["IAB – Indian Association Berne", "Bharatiya Association Berne", "University of Bern Indian Students"],
+    temples: ["Art of Living Berne", "Brahma Kumaris Berne"],
+    tips: ["Embassy of India is at Thunstrasse 5, Bern (+41-31-350 11 10, indembassybern.gov.in)", "Bern is compact and very walkable — old town is a UNESCO World Heritage Site", "University of Bern has an active Indian student community", "Tram and bus network is excellent — no car needed in central Bern"],
   },
   Lausanne: {
-    restaurants: ["Kerala Kitchen", "Bollywood Lausanne", "Spice of India"],
-    associations: ["EPFL Indian Student Association", "Indian Association Lausanne"],
+    restaurants: ["Kerala Kitchen Lausanne", "Spice of India Lausanne", "Bollywood Lausanne"],
+    associations: ["EPFL Indian Student Association (epfl.ch)", "PrangaN@Swiss – Durga Puja Lausanne (pranganswiss.org)", "Indian Association Lausanne"],
     temples: ["Art of Living Lausanne", "Brahma Kumaris Lausanne"],
-    tips: ["EPFL has hundreds of Indian students and researchers", "Lake Geneva views are spectacular — weekend boat trips", "French is the primary language — learning it helps a lot"],
+    tips: ["EPFL has one of the largest Indian student and researcher communities in Switzerland", "Nateschwara Dance School (nateschwara.ch) is based nearby in Baden, Aargau", "Lake Geneva views from Ouchy are spectacular — take the metro (M2) down", "French is the primary language — learning it makes daily life much easier"],
   },
 };
 

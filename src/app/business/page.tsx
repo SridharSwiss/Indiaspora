@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowRight, ExternalLink, TrendingUp, Briefcase, Users, Lightbulb } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -7,28 +8,29 @@ export const metadata: Metadata = {
 };
 
 const NETWORKS = [
-  { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://sicc.ch", desc: "The premier Swiss-Indian business chamber — trade facilitation, bilateral investment forums, networking events, and advocacy for Indian businesses in Switzerland.", type: "Chamber" },
-  { name: "India Business Switzerland (IBS)", url: "https://india-business.ch", desc: "Business platform promoting Indian-Swiss economic ties — investment facilitation, market entry support, and partnership opportunities.", type: "Business Network" },
-  { name: "TiE Zurich", url: "https://www.tie-zurich.ch", desc: "The Indus Entrepreneurs Zurich chapter — global network supporting Indian entrepreneurs with mentorship, funding connections, and startup ecosystem access.", type: "Entrepreneur Network" },
-  { name: "Namaste Switzerland Business", url: "https://namasteswitzerland.ch", desc: "Business directory and networking platform for Indians in Switzerland — listings, events calendar, and community news.", type: "Directory" },
-  { name: "Swiss Indo Business Forum", url: "https://sicc.ch/events", desc: "Annual forum co-organised by SICC connecting Swiss and Indian business leaders — panel discussions, B2B meetings, and trade sessions.", type: "Forum" },
-  { name: "NASSCOM Switzerland Chapter", url: "https://nasscom.in", desc: "Indian IT industry association's Switzerland presence — technology networking, policy advocacy, and career opportunities in Swiss tech.", type: "Tech Network" },
+  { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://sicc.ch", desc: "The premier Swiss-Indian business chamber — trade facilitation, networking events, and bilateral trade support between India and Switzerland.", type: "Chamber" },
+  { name: "TiE Zurich – The Indus Entrepreneurs", url: "https://tie.org/chapter/tie-zurich/", desc: "Global network for Indian entrepreneurs with mentorship, startup support, and investor connections. Strong chapter in Zurich.", type: "Entrepreneur Network" },
+  { name: "Namaste Switzerland Business Network", url: "https://namasteswitzerland.ch", desc: "Business listings and networking opportunities for Indians in Switzerland — directory and community platform.", type: "Network" },
+  { name: "SICC Events & Forums", url: "https://sicc.ch/events", desc: "Annual Swiss-India Business Forums and bilateral events connecting Swiss and Indian business leaders across sectors.", type: "Forum" },
+  { name: "NASSCOM Switzerland Chapter", url: "https://nasscom.in", desc: "Indian IT industry association — technology networking, talent, and career opportunities in Switzerland's tech sector.", type: "Tech Network" },
+  { name: "Swissnex India", url: "https://swissnex.org/india/", desc: "Swiss government innovation hub bridging Switzerland and India — startup programs, research collaboration, and talent exchange.", type: "Innovation Hub" },
 ];
 
 const JOB_RESOURCES = [
-  { name: "Jobs.ch", url: "https://www.jobs.ch", desc: "Switzerland's largest job portal — search by field, salary band, location, and language requirement. Strong in finance, pharma, and tech." },
-  { name: "LinkedIn Switzerland", url: "https://www.linkedin.com", desc: "Professional networking — join 'Indian Professionals in Switzerland' and 'Indians in Zurich' groups for community job leads." },
-  { name: "Indeed Switzerland", url: "https://www.indeed.ch", desc: "Wide coverage across all industries and experience levels — good for international companies with English-language roles." },
-  { name: "ETH Zurich Career Center", url: "https://www.careercenter.ethz.ch", desc: "Careers portal for ETH graduates, alumni, and industry partners — top roles in deep tech, pharma, and finance." },
-  { name: "EPFL Career Center", url: "https://career.epfl.ch", desc: "Jobs, internships, and startup connections for EPFL students and alumni — strong in life sciences and engineering." },
-  { name: "Xing", url: "https://www.xing.com", desc: "German-speaking professional network popular in Switzerland, Germany, and Austria — useful for Swiss-German speaking market roles." },
+  { name: "Jobs.ch", url: "https://www.jobs.ch", desc: "Switzerland's largest job portal — search by field, location, and language requirement." },
+  { name: "LinkedIn Switzerland", url: "https://www.linkedin.com", desc: "Professional networking — join groups like 'Indian Professionals in Switzerland' for community connections." },
+  { name: "Indeed Switzerland", url: "https://www.indeed.ch", desc: "Job search across all industries and experience levels in Switzerland." },
+  { name: "ETH Zurich Career Center", url: "https://www.careercenter.ethz.ch", desc: "Careers portal for ETH students, graduates, and alumni across tech and research sectors." },
+  { name: "EPFL Career Center", url: "https://career.epfl.ch", desc: "Jobs and internships for EPFL students and alumni — strong in deep tech and engineering." },
+  { name: "Xing", url: "https://www.xing.com", desc: "German-speaking professional network popular in Switzerland, Germany, and Austria." },
 ];
 
 const STARTUPS = [
-  { name: "ETH Zurich Innovation & Entrepreneurship", url: "https://ethz.ch/en/industry-and-society/innovation.html", desc: "ETH's startup ecosystem — one of Europe's strongest deep-tech incubators producing 30+ startups per year, including several by Indian founders." },
-  { name: "Switzerland Innovation Park", url: "https://www.switzerland-innovation.com", desc: "National network of 5 innovation parks across Switzerland — co-working, funding, and R&D partnerships with Swiss universities and corporates." },
-  { name: "Venturelab", url: "https://www.venturelab.ch", desc: "Startup education and acceleration — flagship Venture program for ETH/EPFL spinoffs, coaching in business model and fundraising." },
-  { name: "Swiss Startup Association", url: "https://swissstartupassociation.ch", desc: "Community, advocacy, and networking for Swiss startups — annual Swiss Startup Day and access to investor networks." },
+  { name: "ETH Zurich Innovation & Entrepreneurship", url: "https://ethz.ch/en/industry-and-society/innovation.html", desc: "ETH's startup ecosystem — one of Europe's strongest deep-tech incubators with 500+ spinoffs." },
+  { name: "Switzerland Innovation Park", url: "https://www.switzerland-innovation.com", desc: "National network of 5 innovation parks at Zurich, Basel, Bern, Western Switzerland, and Ticino." },
+  { name: "Venturelab", url: "https://venturelab.swiss", desc: "Startup education and acceleration programs across Switzerland — programmes for founders at all stages." },
+  { name: "Swiss Startup Association", url: "https://swissstartupassociation.ch", desc: "Community and advocacy for Swiss startups — networking events and policy engagement." },
+  { name: "India-Swiss Startup Bridge", url: "https://startupindia.gov.in/content/sih/en/international/india-swiss_startup_bridge.html", desc: "Bilateral startup collaboration programme by Startup India and Switzerland — grants, mentoring, and market access." },
 ];
 
 export default function BusinessPage() {
@@ -44,7 +46,7 @@ export default function BusinessPage() {
             Grow Your Career <span className="gradient-text">in Switzerland</span>
           </h1>
           <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            Networking chambers, job resources, startup ecosystems, and professional services — everything you need to succeed in one of the world&apos;s most competitive business environments.
+            Networking chambers, job resources, startup ecosystems, and professional services — everything you need to succeed in Swiss business.
           </p>
           <div className="flex flex-wrap gap-4 justify-center mt-10">
             <a href="#networking" className="btn btn-primary">
@@ -62,10 +64,10 @@ export default function BusinessPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: <TrendingUp className="w-6 h-6" />, value: "CHF 33bn", label: "India-Swiss Trade (2023)" },
-              { icon: <Users className="w-6 h-6" />, value: "15+", label: "Indian Business Networks" },
+              { icon: <TrendingUp className="w-6 h-6" />, value: "CHF 22.4bn", label: "India-Swiss Trade (2024)" },
+              { icon: <Users className="w-6 h-6" />, value: "10+", label: "Indian Business Networks" },
               { icon: <Briefcase className="w-6 h-6" />, value: "500+", label: "Businesses Listed" },
-              { icon: <Lightbulb className="w-6 h-6" />, value: "50+", label: "Indian-Founded Startups" },
+              { icon: <Lightbulb className="w-6 h-6" />, value: "#8", label: "Global Startup Ecosystem" },
             ].map((stat) => (
               <div key={stat.label} className="card p-6 text-center">
                 <div className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center text-teal-400" style={{ background: "rgba(20,184,166,0.1)" }}>
@@ -75,6 +77,30 @@ export default function BusinessPage() {
                 <div className="text-sm text-slate-400">{stat.label}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="divider-warm" />
+
+      {/* Trade Context */}
+      <section className="py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="card p-6 md:p-8" style={{ borderColor: "rgba(20,184,166,0.2)" }}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <div className="text-xs font-semibold text-teal-400 uppercase tracking-wider mb-2">India-EFTA TEPA</div>
+                <p className="text-sm text-slate-400">The India-EFTA Trade and Economic Partnership Agreement entered into force in <strong className="text-white">October 2025</strong> — opening new opportunities for Swiss-Indian business.</p>
+              </div>
+              <div>
+                <div className="text-xs font-semibold text-teal-400 uppercase tracking-wider mb-2">Work Permits 2025–26</div>
+                <p className="text-sm text-slate-400">Switzerland quota for non-EU workers: <strong className="text-white">4,500 B permits + 4,000 L permits</strong> per year. Employer sponsorship required for Indians.</p>
+              </div>
+              <div>
+                <div className="text-xs font-semibold text-teal-400 uppercase tracking-wider mb-2">Tech Expansion</div>
+                <p className="text-sm text-slate-400">Infosys is expanding at The Circle, Zurich Airport. Switzerland ranks <strong className="text-white">#8 globally</strong> in startup ecosystems with CHF 1.47bn raised in H1 2025.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -122,7 +148,7 @@ export default function BusinessPage() {
           <div className="mb-12">
             <span className="tag">Jobs & Recruitment</span>
             <h2 className="text-3xl lg:text-4xl font-bold text-white mt-4 mb-3">Job Resources</h2>
-            <p className="text-slate-400 text-lg">Switzerland offers some of Europe&apos;s highest salaries. Here&apos;s where Indians find the best opportunities.</p>
+            <p className="text-slate-400 text-lg">Switzerland is one of Europe&apos;s highest-paying job markets. Here&apos;s where to find opportunities.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {JOB_RESOURCES.map((j) => (
@@ -152,7 +178,7 @@ export default function BusinessPage() {
           <div className="mb-12">
             <span className="tag">Startups</span>
             <h2 className="text-3xl lg:text-4xl font-bold text-white mt-4 mb-3">Startup Ecosystem</h2>
-            <p className="text-slate-400 text-lg">Switzerland ranks #2 globally for innovation (Global Innovation Index 2023). Indians are building here too.</p>
+            <p className="text-slate-400 text-lg">Switzerland ranks #8 globally in startup ecosystems. Indians are building here too — with CHF 1.47bn raised in H1 2025.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {STARTUPS.map((s) => (
@@ -179,7 +205,7 @@ export default function BusinessPage() {
             <div className="text-4xl mb-4">💼</div>
             <h2 className="text-3xl font-bold text-white mb-4">List Your Business</h2>
             <p className="text-slate-400 mb-8">
-              Running a business or professional service in Switzerland? Get discovered by 38,000+ Indians.
+              Running a business or professional service in Switzerland? Get discovered by 25,000+ Indians.
             </p>
             <a href="mailto:hello@indiaswiss.ch?subject=List%20My%20Business" className="btn btn-primary">
               Submit Your Business <ArrowRight className="w-4 h-4" />
