@@ -7,23 +7,23 @@ export const metadata: Metadata = {
 };
 
 const RESTAURANTS = [
-  { name: "Bairavi Restaurant", city: "Zurich", desc: "Authentic South Indian cuisine — crispy dosas, fluffy idlis, and fragrant curries in Zurich Langstrasse. One of the oldest and most beloved Indian restaurants in Switzerland.", url: "https://bairavi.ch", type: "South Indian" },
-  { name: "Rajasthan Restaurant", city: "Zurich", desc: "North Indian classics done to perfection — dal makhani, butter chicken, tandoori specialities, and fresh naan baked in a clay oven.", url: "https://www.rajasthanrestaurant.ch", type: "North Indian" },
-  { name: "Indigo Restaurant", city: "Geneva", desc: "Modern Indian cuisine with a European twist in the heart of Geneva — innovative tasting menus and an impressive wine list.", url: "https://www.indigogeneva.ch", type: "Modern Indian" },
-  { name: "India Gate", city: "Zurich", desc: "Family-friendly restaurant with a wide menu spanning North and South India — great for group dinners and special occasions.", url: "https://www.india-gate.ch", type: "Pan-Indian" },
-  { name: "Taj Mahal Restaurant", city: "Basel", desc: "Classic North Indian restaurant serving Basel's Indian community for over two decades — curries, biryanis, and tandoor specialities.", url: "https://www.tajmahal-basel.ch", type: "North Indian" },
-  { name: "Masala Kitchen", city: "Bern", desc: "Vegetarian-friendly Indian restaurant in the Swiss capital — fresh daily curries, thalis, and a rotating regional menu.", url: "https://www.masalakitchen.ch", type: "Vegetarian" },
-  { name: "Kerala Kitchen", city: "Lausanne", desc: "Authentic Kerala cuisine — fish molee, appam with stew, coconut-based dishes, and Malabar prawn curry.", url: "https://www.keralakitchen.ch", type: "South Indian" },
-  { name: "Mumbai Street", city: "Zurich", desc: "Mumbai street food inspired menu — pani puri, pav bhaji, vada pav, and chaat that actually tastes like the real thing.", url: "https://www.mumbaistreet.ch", type: "Street Food" },
+  { name: "Restaurant Vulkan", city: "Zurich", desc: "A Zurich landmark for Indian cuisine near the main station — authentic clay-oven tandoor, rich curries, and fresh naan. Often described as ‘Little India in the heart of Zurich’.", url: "https://restaurant-vulkan.ch", type: "North Indian" },
+  { name: "Taj Mahal Zurich", city: "Zurich", desc: "Halal North Indian cuisine with a popular CHF 19.90 lunch buffet (6 mains, salads, dessert) and 40+ à la carte dishes in the evening.", url: "https://tajmahal-zurich.ch", type: "North Indian" },
+  { name: "Tamarind Garden", city: "Zurich", desc: "Authentic Indian flavours with carefully described spice profiles — known for its warm atmosphere and attention to detail on regional recipes.", url: "https://tamarindgarden.ch", type: "Pan-Indian" },
+  { name: "Café Gandhi", city: "Geneva", desc: "Rated 9.3/10 on TheFork — Geneva’s most celebrated Indian restaurant, dedicated to the Thali tradition with exceptional quality and service.", url: "#", type: "Pan-Indian" },
+  { name: "Indian Tandoori Palace", city: "Basel", desc: "Family-owned restaurant with fresh local ingredients, authentic clay-oven cooking, and thoughtful options for vegetarians and gluten-free diners.", url: "https://indiantandooripalacerestaurant.ch", type: "North Indian" },
+  { name: "Royal Palace Basel", city: "Basel", desc: "Fresh Indian food in a relaxed atmosphere at Spalenring 160 — clay oven tandoori, butter chicken, and a wide vegetarian selection.", url: "https://royal-palace.ch", type: "North Indian" },
+  { name: "Kailash Parbat", city: "Zurich", desc: "Mumbai street food in Zurich — chaats, pani puri, gravies, and snacks with a strong following from the Indian community.", url: "#", type: "Street Food" },
+  { name: "Indian Bites", city: "Geneva", desc: "Popular Indian restaurant in Geneva serving a wide range of North and South Indian dishes for the city’s diverse international community.", url: "https://indianbites.ch", type: "Pan-Indian" },
 ];
 
 const GROCERY = [
-  { name: "Art of Food", city: "Zurich", desc: "Comprehensive Indian grocery store with fresh vegetables, spices, lentils, ready meals, and a deli counter with Indian snacks.", url: "https://artoffood.ch" },
-  { name: "Aggarwals Indian Grocery", city: "Zurich", desc: "Popular family-run Indian grocery store — fresh vegetables, Indian sweets, snacks, and an excellent spice selection.", url: "https://www.aggarwals.ch" },
-  { name: "India Supermarkt (Online)", city: "Nationwide", desc: "Buy Indian groceries, spices, lentils, chutneys, and specialty products online — delivered anywhere in Switzerland within 2 days.", url: "https://indiasupermarkt.ch" },
-  { name: "Salpers Asian Grocery", city: "Zurich", desc: "Large Asian supermarket with a well-stocked Indian section — good for hard-to-find ingredients like fresh curry leaves, methi, and regional specialities.", url: "https://www.salpers.ch" },
-  { name: "Südstern", city: "Zurich", desc: "Indian and South Asian grocery store in Zurich West — reliable for staples like basmati rice, atta, besan, and a range of Indian pickles.", url: "#" },
-  { name: "Spice Paradise", city: "Geneva", desc: "Indian spices and groceries in the Geneva region — serves the large Indian diplomatic and expat community in Geneva.", url: "#" },
+  { name: "Aggarwal AG", city: "Zurich / Basel / Bern / Baden", desc: "India’s most established grocery chain in Switzerland since 1986 — 4 stores across Switzerland with fresh vegetables, spices, Patanjali products, pickles, and fish.", url: "https://aggarwal.ch" },
+  { name: "India Supermarkt", city: "Zurich + Online", desc: "20+ years of service — physical store in Zurich plus online ordering with Switzerland-wide delivery for Indian groceries, spices, and specialty products.", url: "https://indiasupermarkt.ch" },
+  { name: "Seelan Market", city: "Geneva", desc: "Geneva’s leading South Asian supermarket — Indian, Sri Lankan, Pakistani, and Bengali groceries for the city’s diverse Asian community.", url: "https://seelanmarket.ch" },
+  { name: "Dalchinii", city: "Nationwide (Online)", desc: "Online Indian grocery shop with a wide range of spices, lentils, rice, flours, and hard-to-find Indian brands delivered across Switzerland.", url: "https://dalchinii.ch" },
+  { name: "Salpers", city: "Nationwide (Online)", desc: "Online Asian and Indian grocery shop — spices, lentils, dry fruits, rice, atta, and specialty items delivered across Switzerland.", url: "https://salpers.ch" },
+  { name: "Art of Food", city: "Zurich", desc: "Comprehensive Indian grocery store in Zurich with fresh vegetables, spices, lentils, ready meals, and a deli counter with Indian snacks.", url: "https://artoffood.ch" },
 ];
 
 export default function FoodPage() {
@@ -100,8 +100,8 @@ export default function FoodPage() {
             {GROCERY.map((g) => (
               <a
                 key={g.name}
-                href={g.url === "#" ? undefined : g.url}
-                target={g.url !== "#" ? "_blank" : undefined}
+                href={g.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="card p-6 group block"
               >
@@ -153,7 +153,7 @@ export default function FoodPage() {
             <div className="text-4xl mb-4">🍛</div>
             <h2 className="text-3xl font-bold text-white mb-4">List Your Restaurant or Store</h2>
             <p className="text-slate-400 mb-8">
-              Own an Indian restaurant, grocery store, or catering service in Switzerland? Get listed for free and reach 38,000+ Indians.
+              Own an Indian restaurant, grocery store, or catering service in Switzerland? Get listed for free and reach 25,000+ Indians.
             </p>
             <a href="mailto:hello@indiaswiss.ch?subject=List%20My%20Food%20Business" className="btn btn-primary">
               Submit Your Listing <ArrowRight className="w-4 h-4" />
