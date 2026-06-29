@@ -18,37 +18,37 @@ export default function PageHeader({
   title,
   subtitle,
   badge,
-  gradient = "from-[var(--saffron)] to-[var(--saffron-hi)]",
+  gradient = "from-indigo-500 to-violet-500",
   breadcrumbs,
 }: PageHeaderProps) {
   return (
     <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div
-          className={`absolute top-0 left-1/3 w-72 sm:w-[480px] h-72 sm:h-[480px] bg-gradient-to-br ${gradient} opacity-[0.08] rounded-full blur-[80px]`}
+          className={`absolute top-0 left-1/3 w-72 sm:w-[480px] h-72 sm:h-[480px] bg-gradient-to-br ${gradient} opacity-[0.07] rounded-full blur-[80px]`}
         />
-        <div className="absolute bottom-0 right-1/4 w-48 sm:w-80 h-48 sm:h-80 bg-[var(--jade)]/[0.06] rounded-full blur-3xl" />
-        <div className="absolute inset-0 mandala-bg opacity-40" />
+        <div className="absolute bottom-0 right-1/4 w-48 sm:w-80 h-48 sm:h-80 rounded-full blur-3xl" style={{ background: "rgba(99,102,241,0.05)" }} />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {breadcrumbs && (
-          <nav
-            aria-label="Breadcrumb"
-            className="flex items-center flex-wrap gap-1.5 mb-5 text-xs sm:text-sm"
-          >
-            <Link href="/" className="text-[var(--text-dim)] hover:text-[var(--saffron)] transition-colors">
+          <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 mb-5 text-xs sm:text-sm">
+            <Link href="/" className="transition-colors" style={{ color: "var(--text-3)" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#a5b4fc")}
+              onMouseLeave={e => (e.currentTarget.style.color = "var(--text-3)")}>
               Home
             </Link>
             {breadcrumbs.map((crumb, i) => (
               <span key={i} className="flex items-center gap-1.5">
-                <ChevronRight className="w-3 h-3 text-[var(--text-dim)] shrink-0" aria-hidden />
+                <ChevronRight className="w-3 h-3 shrink-0" style={{ color: "var(--text-3)" }} aria-hidden />
                 {crumb.href ? (
-                  <Link href={crumb.href} className="text-[var(--text-dim)] hover:text-[var(--saffron)] transition-colors">
+                  <Link href={crumb.href} className="transition-colors" style={{ color: "var(--text-3)" }}
+                    onMouseEnter={e => (e.currentTarget.style.color = "#a5b4fc")}
+                    onMouseLeave={e => (e.currentTarget.style.color = "var(--text-3)")}>
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span className="text-[var(--text-muted)]">{crumb.label}</span>
+                  <span style={{ color: "var(--text-2)" }}>{crumb.label}</span>
                 )}
               </span>
             ))}
@@ -56,8 +56,8 @@ export default function PageHeader({
         )}
 
         {badge && (
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--saffron)]/25 bg-[var(--saffron)]/8 text-[var(--saffron)] text-xs font-semibold mb-5 tracking-wide uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--saffron)] animate-pulse" aria-hidden />
+          <div className="tag tag-saffron mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" aria-hidden />
             {badge}
           </div>
         )}
@@ -66,7 +66,7 @@ export default function PageHeader({
           {title}
         </h1>
 
-        <p className="text-base sm:text-lg lg:text-xl text-[var(--text-muted)] max-w-2xl leading-relaxed">
+        <p className="text-base sm:text-lg lg:text-xl max-w-2xl leading-relaxed" style={{ color: "var(--text-2)" }}>
           {subtitle}
         </p>
       </div>
