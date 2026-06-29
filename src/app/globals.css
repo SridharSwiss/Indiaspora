@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@source "../&&/*.{ts,tsx}";
+@source "../";
 
 /* ─── Design tokens ─── */
 :root {
