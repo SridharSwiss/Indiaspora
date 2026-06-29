@@ -1,4 +1,4 @@
-const MARQUEE_ITEMS = [
+const ITEMS = [
   "🪔 Diwali Mela Zurich · Oct 2026",
   "🎨 Holi Festival Basel · Mar 2026",
   "💃 Navratri Garba Nights",
@@ -14,14 +14,14 @@ const MARQUEE_ITEMS = [
 ];
 
 export default function Marquee() {
-  const doubled = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
+  const doubled = [...ITEMS, ...ITEMS];
   return (
-    <div className="py-4 overflow-hidden border-y" style={{ background: "rgba(249,115,22,0.05)", borderColor: "rgba(249,115,22,0.1)" }}>
+    <div className="py-3.5 overflow-hidden" style={{ background: "var(--surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
       <div className="flex animate-marquee">
         {doubled.map((item, i) => (
-          <span key={i} className="flex items-center gap-2 whitespace-nowrap px-8 text-sm text-slate-400">
+          <span key={i} className="flex items-center whitespace-nowrap px-6 text-[13px]" style={{ color: "#475569" }}>
             {item}
-            <span className="w-1 h-1 rounded-full ml-4" style={{ background: "rgba(249,115,22,0.4)" }} />
+            <span className="inline-block w-1 h-1 rounded-full mx-6" style={{ background: "rgba(99,102,241,0.4)" }} />
           </span>
         ))}
       </div>

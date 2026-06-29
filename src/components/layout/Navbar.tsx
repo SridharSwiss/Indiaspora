@@ -3,12 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, Search } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/data";
-
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,64 +13,45 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setIsOpen(false);
-    setActiveMenu(null);
-  }, [pathname]);
+  useEffect(() => { setIsOpen(false); setActiveMenu(null); }, [pathname]);
 
   return (
     <nav
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={
         scrolled
-          ? "bg-[#05081a]/95 border-b border-white/[0.06] shadow-2xl shadow-black/40"
-          : "bg-transparent"
-      )}
+          ? { background: "rgba(7,8,15,0.92)", borderBottom: "1px solid rgba(255,255,255,0.06)" }
+          : { background: "transparent" }
+      }
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16 lg:h-18">
+
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="relative w-9 h-9">
-              <svg viewBox="0 0 40 40" fill="none" className="w-9 h-9">
-                <circle cx="20" cy="20" r="18" stroke="url(#navLogoGrad)" strokeWidth="2" />
-                <circle cx="20" cy="20" r="8" fill="url(#navLogoGrad)" opacity="0.9" />
-                {[0,30,60,90,120,150,180,210,240,270,300,330].map((deg, i) => (
-                  <line
-                    key={i}
-                    x1="20" y1="12" x2="20" y2="4"
-                    stroke="url(#navLogoGrad)" strokeWidth="1.5" strokeLinecap="round"
-                    transform={`rotate(${deg} 20 20)`}
-                  />
+          <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #f97316, #d97706)" }}>
+              <svg viewBox="0 0 24 24" fill="none" className="w-4.5 h-4.5">
+                <circle cx="12" cy="12" r="4" fill="white" opacity="0.95" />
+                {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((deg, i) => (
+                  <line key={i} x1="12" y1="7" x2="12" y2="3" stroke="white" strokeWidth="1.5" strokeLinecap="round" transform={`rotate(${deg} 12 12)`} />
                 ))}
-                <defs>
-                  <linearGradient id="navLogoGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#fbbf24" />
-                  </linearGradient>
-                </defs>
               </svg>
             </div>
-            <div>
-              <div className="font-bold text-lg leading-tight tracking-wide">
-                <span className="gradient-text">India</span>
-                <span className="text-white">Swiss</span>
-              </div>
-              <div className="text-[10px] text-slate-400 uppercase tracking-widest leading-tight hidden sm:block">
-                Community Hub
-              </div>
-            </div>
+            <span className="font-semibold text-[15px] tracking-tight">
+              <span className="gradient-text">India</span>
+              <span className="text-white">Swiss</span>
+            </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-0.5">
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center gap-1">
             {NAV_ITEMS.map((item) => {
-              const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+              const active = pathname === item.href || pathname.startsWith(item.href + "/");
               return (
                 <div
                   key={item.label}
@@ -84,35 +61,28 @@ export default function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    className={cn(
-                      "flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
-                      isActive
-                        ? "text-orange-400 bg-orange-500/10"
-                        : "text-slate-300 hover:text-white hover:bg-white/8"
-                    )}
+                    className="flex items-center gap-1 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors"
+                    style={{
+                      color: active ? "#a5b4fc" : "#94a3b8",
+                      background: active ? "rgba(99,102,241,0.1)" : "transparent",
+                    }}
+                    onMouseEnter={(e) => { if (!active) (e.currentTarget as HTMLElement).style.color = "#f1f5f9"; }}
+                    onMouseLeave={(e) => { if (!active) (e.currentTarget as HTMLElement).style.color = "#94a3b8"; }}
                   >
                     {item.label}
                     {item.children && (
-                      <ChevronDown
-                        className={cn(
-                          "w-3.5 h-3.5 transition-transform duration-200",
-                          activeMenu === item.label && "rotate-180"
-                        )}
-                      />
+                      <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${activeMenu === item.label ? "rotate-180" : ""}`} />
                     )}
                   </Link>
 
                   {item.children && activeMenu === item.label && (
-                    <div className="absolute top-full left-0 pt-2 min-w-[220px]">
-                      <div
-                        className="rounded-xl p-2 shadow-2xl shadow-black/60 border border-white/[0.08]"
-                        style={{ background: "#0b1225" }}
-                      >
+                    <div className="absolute top-full left-0 pt-2 w-52">
+                      <div className="rounded-xl py-1.5 shadow-2xl" style={{ background: "#0c0f1e", border: "1px solid rgba(255,255,255,0.08)" }}>
                         {item.children.map((child) => (
                           <Link
                             key={child.label}
                             href={child.href}
-                            className="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-white/8 transition-colors"
+                            className="block px-4 py-2 text-[13px] text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
                           >
                             {child.label}
                           </Link>
@@ -125,15 +95,12 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Right actions */}
+          {/* Right CTA */}
           <div className="hidden lg:flex items-center gap-2">
-            <button className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/8 transition-colors" aria-label="Search">
-              <Search className="w-4 h-4" />
-            </button>
+            <Link href="/events" className="btn btn-ghost text-[13px]">Events</Link>
             <Link
               href="/community"
-              className="ml-2 px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:-translate-y-px"
-              style={{ background: "linear-gradient(135deg, #f97316, #f59e0b)" }}
+              className="btn btn-primary btn-sm text-[13px]"
             >
               Join Community
             </Link>
@@ -141,59 +108,45 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <button
-            className="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/8 transition-colors"
+            className="lg:hidden p-2 rounded-lg text-slate-400 hover:text-white transition-colors"
+            style={{ background: "rgba(255,255,255,0.05)" }}
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            aria-label="Menu"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile drawer */}
       {isOpen && (
-        <div
-          className="lg:hidden border-t border-white/[0.06]"
-          style={{ background: "#05081a" }}
-        >
-          <div className="max-w-7xl mx-auto px-4 py-4 space-y-1 max-h-[70vh] overflow-y-auto">
+        <div style={{ background: "#07080f", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+          <div className="max-w-7xl mx-auto px-4 py-4 space-y-0.5 max-h-[75vh] overflow-y-auto">
             {NAV_ITEMS.map((item) => {
-              const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+              const active = pathname === item.href || pathname.startsWith(item.href + "/");
               return (
                 <div key={item.label}>
                   <div className="flex items-center">
                     <Link
                       href={item.href}
-                      className={cn(
-                        "flex-1 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
-                        isActive ? "text-orange-400" : "text-slate-300 hover:text-white hover:bg-white/8"
-                      )}
+                      className="flex-1 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors"
+                      style={{ color: active ? "#a5b4fc" : "#94a3b8" }}
                     >
                       {item.label}
                     </Link>
                     {item.children && (
                       <button
-                        className="p-2 text-slate-400 hover:text-white"
+                        className="p-2 text-slate-500 hover:text-white"
                         onClick={() => setActiveMenu(activeMenu === item.label ? null : item.label)}
-                        aria-label="Toggle submenu"
                       >
-                        <ChevronDown
-                          className={cn(
-                            "w-4 h-4 transition-transform",
-                            activeMenu === item.label && "rotate-180"
-                          )}
-                        />
+                        <ChevronDown className={`w-4 h-4 transition-transform ${activeMenu === item.label ? "rotate-180" : ""}`} />
                       </button>
                     )}
                   </div>
                   {item.children && activeMenu === item.label && (
-                    <div className="ml-4 mt-1 space-y-1">
+                    <div className="ml-3 mb-1 space-y-0.5 pl-3" style={{ borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
                       {item.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.href}
-                          className="block px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/8 transition-colors"
-                        >
+                        <Link key={child.label} href={child.href} className="block px-3 py-2 text-[13px] text-slate-500 hover:text-slate-300 transition-colors">
                           {child.label}
                         </Link>
                       ))}
@@ -202,12 +155,8 @@ export default function Navbar() {
                 </div>
               );
             })}
-            <div className="pt-4 border-t border-white/[0.06]">
-              <Link
-                href="/community"
-                className="block w-full text-center px-4 py-3 rounded-xl text-sm font-semibold text-white"
-                style={{ background: "linear-gradient(135deg, #f97316, #f59e0b)" }}
-              >
+            <div className="pt-4 pb-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              <Link href="/community" className="btn btn-primary w-full justify-center text-sm">
                 Join Community
               </Link>
             </div>
