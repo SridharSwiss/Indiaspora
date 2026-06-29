@@ -83,12 +83,12 @@ export default function CitiesPage() {
                   <ul className="space-y-1.5">
                     {city.highlights.map((h) => (
                       <li key={h} className="flex items-center gap-2 text-xs text-slate-500">
-                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0 opacity-60" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 opacity-60" />
                         {h}
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-4 flex items-center gap-1 text-sm text-orange-400 font-medium">
+                  <div className="mt-4 flex items-center gap-1 text-sm text-indigo-400 font-medium">
                     View Guide <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>

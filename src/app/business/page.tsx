@@ -104,10 +104,10 @@ export default function BusinessPage() {
                     <span className="text-xs font-semibold px-2.5 py-1 rounded-full text-teal-300 mb-3 inline-block" style={{ background: "rgba(20,184,166,0.12)" }}>
                       {n.type}
                     </span>
-                    <h3 className="font-bold text-white group-hover:text-orange-400 transition-colors mb-2">{n.name}</h3>
+                    <h3 className="font-bold text-white group-hover:text-indigo-400 transition-colors mb-2">{n.name}</h3>
                     <p className="text-sm text-slate-400">{n.desc}</p>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-slate-600 group-hover:text-orange-400 shrink-0 mt-1 transition-colors" />
+                  <ExternalLink className="w-4 h-4 text-slate-600 group-hover:text-indigo-400 shrink-0 mt-1 transition-colors" />
                 </div>
               </a>
             ))}
@@ -135,8 +135,8 @@ export default function BusinessPage() {
                 className="card p-6 group block"
               >
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <h3 className="font-bold text-white group-hover:text-orange-400 transition-colors">{j.name}</h3>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-orange-400 shrink-0 transition-colors" />
+                  <h3 className="font-bold text-white group-hover:text-indigo-400 transition-colors">{j.name}</h3>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-indigo-400 shrink-0 transition-colors" />
                 </div>
                 <p className="text-sm text-slate-400">{j.desc}</p>
               </a>
@@ -165,7 +165,7 @@ export default function BusinessPage() {
                 className="card p-6 group block"
               >
                 <div className="text-2xl mb-3">🚀</div>
-                <h3 className="font-bold text-white group-hover:text-orange-400 transition-colors mb-2">{s.name}</h3>
+                <h3 className="font-bold text-white group-hover:text-indigo-400 transition-colors mb-2">{s.name}</h3>
                 <p className="text-sm text-slate-400">{s.desc}</p>
               </a>
             ))}

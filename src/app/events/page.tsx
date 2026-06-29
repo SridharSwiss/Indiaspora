@@ -69,10 +69,10 @@ export default function EventsPage() {
                       {event.date}
                     </div>
                   </div>
-                  <h3 className="font-bold text-white text-lg mb-2 group-hover:text-orange-400 transition-colors">{event.title}</h3>
+                  <h3 className="font-bold text-white text-lg mb-2 group-hover:text-indigo-400 transition-colors">{event.title}</h3>
                   <p className="text-sm text-slate-400 mb-4">{event.description}</p>
                   <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                    <MapPin className="w-3 h-3 text-orange-500" />
+                    <MapPin className="w-3 h-3 text-indigo-400" />
                     {event.location}
                   </div>
                 </div>
@@ -102,7 +102,7 @@ export default function EventsPage() {
               <div key={e.name} className="card p-6 text-center">
                 <span className="text-4xl block mb-3">{e.emoji}</span>
                 <h3 className="font-bold text-white mb-1">{e.name}</h3>
-                <div className="text-xs text-orange-400 font-medium mb-2">{e.month} · {e.city}</div>
+                <div className="text-xs text-indigo-400 font-medium mb-2">{e.month} · {e.city}</div>
                 <p className="text-xs text-slate-400">{e.desc}</p>
               </div>
             ))}

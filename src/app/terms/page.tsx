@@ -44,7 +44,7 @@ export default function TermsPage() {
 
       <section>
         <h2 className="text-xl font-semibold text-white mb-3">7. Contact</h2>
-        <p>Questions about these terms: <a href="mailto:hello@indiaswiss.ch" className="text-orange-400 hover:underline">hello@indiaswiss.ch</a></p>
+        <p>Questions about these terms: <a href="mailto:hello@indiaswiss.ch" className="text-indigo-400 hover:underline">hello@indiaswiss.ch</a></p>
       </section>
     </main>
   );

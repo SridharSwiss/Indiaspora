@@ -15,7 +15,7 @@ export default function PrivacyPage() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-3">1. Who we are</h2>
         <p>IndiaSwiss Community Hub (&ldquo;IndiaSwiss&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) operates the website at <strong>indiaswiss.ch</strong>. We are based in Switzerland and comply with the Swiss Federal Act on Data Protection (nDSG) and, where applicable, the EU General Data Protection Regulation (GDPR).</p>
-        <p className="mt-2">Contact: <a href="mailto:hello@indiaswiss.ch" className="text-orange-400 hover:underline">hello@indiaswiss.ch</a></p>
+        <p className="mt-2">Contact: <a href="mailto:hello@indiaswiss.ch" className="text-indigo-400 hover:underline">hello@indiaswiss.ch</a></p>
       </section>
 
       <section className="mb-8">
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
 
       <section className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-3">5. Your rights</h2>
-        <p>Under the nDSG and GDPR you have the right to access, rectify, erase, or restrict processing of your personal data. To exercise these rights, email <a href="mailto:hello@indiaswiss.ch" className="text-orange-400 hover:underline">hello@indiaswiss.ch</a>. You also have the right to lodge a complaint with the Swiss Federal Data Protection and Information Commissioner (FDPIC).</p>
+        <p>Under the nDSG and GDPR you have the right to access, rectify, erase, or restrict processing of your personal data. To exercise these rights, email <a href="mailto:hello@indiaswiss.ch" className="text-indigo-400 hover:underline">hello@indiaswiss.ch</a>. You also have the right to lodge a complaint with the Swiss Federal Data Protection and Information Commissioner (FDPIC).</p>
       </section>
 
       <section className="mb-8">

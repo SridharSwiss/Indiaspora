@@ -36,7 +36,7 @@ export default function ResourcesPage() {
       {/* Hero */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-40" />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-orange-600/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-indigo-600/8 rounded-full blur-3xl" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="tag mb-6">Resources</div>
           <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 mt-3">
@@ -69,8 +69,8 @@ export default function ResourcesPage() {
                     className="card p-5 group block"
                   >
                     <div className="flex items-start justify-between gap-3 mb-2">
-                      <h3 className="font-semibold text-white text-sm group-hover:text-orange-400 transition-colors">{r.title}</h3>
-                      <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-orange-400 shrink-0 transition-colors mt-0.5" />
+                      <h3 className="font-semibold text-white text-sm group-hover:text-indigo-400 transition-colors">{r.title}</h3>
+                      <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-indigo-400 shrink-0 transition-colors mt-0.5" />
                     </div>
                     <p className="text-xs text-slate-500 leading-relaxed">{r.description}</p>
                   </a>

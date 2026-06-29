@@ -39,7 +39,7 @@ export default function CommunityPage() {
       {/* Hero */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-50" />
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-600/8 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/8 rounded-full blur-3xl" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="tag mb-6">Community Hub</div>
           <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 mt-3">
@@ -72,7 +72,7 @@ export default function CommunityPage() {
               { icon: <GraduationCap className="w-6 h-6" />, value: "15+", label: "Student Groups" },
             ].map((stat) => (
               <div key={stat.label} className="card p-6 text-center">
-                <div className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center text-orange-400" style={{ background: "rgba(249,115,22,0.1)" }}>
+                <div className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center text-indigo-400" style={{ background: "rgba(249,115,22,0.1)" }}>
                   {stat.icon}
                 </div>
                 <div className="text-3xl font-bold gradient-text mb-1">{stat.value}</div>
@@ -104,11 +104,11 @@ export default function CommunityPage() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h3 className="font-semibold text-white group-hover:text-orange-400 transition-colors mb-1">{a.name}</h3>
+                    <h3 className="font-semibold text-white group-hover:text-indigo-400 transition-colors mb-1">{a.name}</h3>
                     <p className="text-sm text-slate-400 mb-3">{a.desc}</p>
-                    <span className="text-xs text-orange-400 font-medium">{a.city}</span>
+                    <span className="text-xs text-indigo-400 font-medium">{a.city}</span>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-orange-400 shrink-0 mt-1 transition-colors" />
+                  <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-indigo-400 shrink-0 mt-1 transition-colors" />
                 </div>
               </a>
             ))}
@@ -140,7 +140,7 @@ export default function CommunityPage() {
                 <div className="w-10 h-10 rounded-xl mb-4 flex items-center justify-center text-lg" style={{ background: "rgba(139,92,246,0.15)" }}>
                   🛕
                 </div>
-                <h3 className="font-semibold text-white group-hover:text-orange-400 transition-colors mb-1">{t.name}</h3>
+                <h3 className="font-semibold text-white group-hover:text-indigo-400 transition-colors mb-1">{t.name}</h3>
                 <p className="text-sm text-slate-500 mb-2">{t.subtitle}</p>
                 <span className="text-xs text-purple-400 font-medium">{t.city}</span>
               </a>
@@ -171,7 +171,7 @@ export default function CommunityPage() {
                 className="card p-6 group block"
               >
                 <div className="text-2xl mb-3">👩‍💼</div>
-                <h3 className="font-semibold text-white group-hover:text-orange-400 transition-colors mb-2">{w.name}</h3>
+                <h3 className="font-semibold text-white group-hover:text-indigo-400 transition-colors mb-2">{w.name}</h3>
                 <p className="text-sm text-slate-400">{w.desc}</p>
               </a>
             ))}
@@ -208,7 +208,7 @@ export default function CommunityPage() {
                 className="card p-6 group block"
               >
                 <div className="text-2xl mb-3">🎓</div>
-                <h3 className="font-semibold text-white group-hover:text-orange-400 transition-colors mb-1">{s.name}</h3>
+                <h3 className="font-semibold text-white group-hover:text-indigo-400 transition-colors mb-1">{s.name}</h3>
                 <span className="text-xs text-teal-400 font-medium">{s.uni}</span>
               </a>
             ))}

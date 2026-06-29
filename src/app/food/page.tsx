@@ -75,10 +75,10 @@ export default function FoodPage() {
                     {r.type}
                   </span>
                 </div>
-                <h3 className="font-bold text-white text-lg group-hover:text-orange-400 transition-colors mb-2">{r.name}</h3>
+                <h3 className="font-bold text-white text-lg group-hover:text-indigo-400 transition-colors mb-2">{r.name}</h3>
                 <p className="text-sm text-slate-400 mb-3">{r.desc}</p>
                 <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                  <MapPin className="w-3 h-3 text-orange-500" />
+                  <MapPin className="w-3 h-3 text-indigo-400" />
                   {r.city}
                 </div>
               </a>
@@ -107,10 +107,10 @@ export default function FoodPage() {
                 className="card p-6 group block"
               >
                 <div className="text-2xl mb-3">🛒</div>
-                <h3 className="font-bold text-white group-hover:text-orange-400 transition-colors mb-2">{g.name}</h3>
+                <h3 className="font-bold text-white group-hover:text-indigo-400 transition-colors mb-2">{g.name}</h3>
                 <p className="text-sm text-slate-400 mb-3">{g.desc}</p>
                 <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                  <MapPin className="w-3 h-3 text-orange-500" />
+                  <MapPin className="w-3 h-3 text-indigo-400" />
                   {g.city}
                 </div>
               </a>
@@ -140,7 +140,7 @@ export default function FoodPage() {
                 <div className="text-2xl mb-3">👨‍🍳</div>
                 <h3 className="font-bold text-white mb-2">{c.name}</h3>
                 <p className="text-sm text-slate-400 mb-3">{c.desc}</p>
-                <span className="text-xs text-orange-400 font-medium">{c.contact}</span>
+                <span className="text-xs text-indigo-400 font-medium">{c.contact}</span>
               </div>
             ))}
           </div>

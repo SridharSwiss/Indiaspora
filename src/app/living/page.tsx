@@ -162,8 +162,8 @@ export default function LivingPage() {
                 className="card p-5 group block"
               >
                 <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="font-semibold text-white text-sm group-hover:text-orange-400 transition-colors">{link.title}</h3>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-orange-400 shrink-0 transition-colors" />
+                  <h3 className="font-semibold text-white text-sm group-hover:text-indigo-400 transition-colors">{link.title}</h3>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-indigo-400 shrink-0 transition-colors" />
                 </div>
                 <p className="text-xs text-slate-500">{link.desc}</p>
               </a>
@@ -187,7 +187,7 @@ export default function LivingPage() {
                 <ul className="space-y-3">
                   {section.steps.map((step, i) => (
                     <li key={i} className="flex items-start gap-3 text-slate-300">
-                      <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 text-orange-400" style={{ background: "rgba(249,115,22,0.1)" }}>
+                      <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 text-indigo-400" style={{ background: "rgba(249,115,22,0.1)" }}>
                         {i + 1}
                       </span>
                       <span className="text-sm leading-relaxed">{step}</span>
