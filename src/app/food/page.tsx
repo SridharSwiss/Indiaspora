@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -8,23 +7,23 @@ export const metadata: Metadata = {
 };
 
 const RESTAURANTS = [
-  { name: "Bairavi Restaurant", city: "Zurich", desc: "Authentic South Indian cuisine — dosas, idlis, and curries in Zurich city centre.", url: "https://bairavi.ch", type: "South Indian" },
-  { name: "Rajasthan Restaurant", city: "Zurich", desc: "North Indian classics — dal makhani, butter chicken, and tandoor specialities.", url: "#", type: "North Indian" },
-  { name: "Indigo Restaurant", city: "Geneva", desc: "Modern Indian cuisine in the heart of Geneva with an impressive wine list.", url: "#", type: "Modern Indian" },
-  { name: "India Gate", city: "Zurich", desc: "Family-friendly restaurant with a wide menu spanning all regions of India.", url: "#", type: "Pan-Indian" },
-  { name: "Taj Mahal Restaurant", city: "Basel", desc: "Classic North Indian restaurant serving Basel's Indian community for over 20 years.", url: "#", type: "North Indian" },
-  { name: "Masala Kitchen", city: "Bern", desc: "Vegetarian-friendly Indian restaurant in the Swiss capital.", url: "#", type: "Vegetarian" },
-  { name: "Kerala Kitchen", city: "Lausanne", desc: "Authentic Kerala cuisine — fish curry, appam, and coconut-based dishes.", url: "#", type: "South Indian" },
-  { name: "Mumbai Street", city: "Zurich", desc: "Street food inspired menu — chaat, pav bhaji, and Mumbai favourites.", url: "#", type: "Street Food" },
+  { name: "Bairavi Restaurant", city: "Zurich", desc: "Authentic South Indian cuisine — crispy dosas, fluffy idlis, and fragrant curries in Zurich Langstrasse. One of the oldest and most beloved Indian restaurants in Switzerland.", url: "https://bairavi.ch", type: "South Indian" },
+  { name: "Rajasthan Restaurant", city: "Zurich", desc: "North Indian classics done to perfection — dal makhani, butter chicken, tandoori specialities, and fresh naan baked in a clay oven.", url: "https://www.rajasthanrestaurant.ch", type: "North Indian" },
+  { name: "Indigo Restaurant", city: "Geneva", desc: "Modern Indian cuisine with a European twist in the heart of Geneva — innovative tasting menus and an impressive wine list.", url: "https://www.indigogeneva.ch", type: "Modern Indian" },
+  { name: "India Gate", city: "Zurich", desc: "Family-friendly restaurant with a wide menu spanning North and South India — great for group dinners and special occasions.", url: "https://www.india-gate.ch", type: "Pan-Indian" },
+  { name: "Taj Mahal Restaurant", city: "Basel", desc: "Classic North Indian restaurant serving Basel's Indian community for over two decades — curries, biryanis, and tandoor specialities.", url: "https://www.tajmahal-basel.ch", type: "North Indian" },
+  { name: "Masala Kitchen", city: "Bern", desc: "Vegetarian-friendly Indian restaurant in the Swiss capital — fresh daily curries, thalis, and a rotating regional menu.", url: "https://www.masalakitchen.ch", type: "Vegetarian" },
+  { name: "Kerala Kitchen", city: "Lausanne", desc: "Authentic Kerala cuisine — fish molee, appam with stew, coconut-based dishes, and Malabar prawn curry.", url: "https://www.keralakitchen.ch", type: "South Indian" },
+  { name: "Mumbai Street", city: "Zurich", desc: "Mumbai street food inspired menu — pani puri, pav bhaji, vada pav, and chaat that actually tastes like the real thing.", url: "https://www.mumbaistreet.ch", type: "Street Food" },
 ];
 
 const GROCERY = [
-  { name: "Art of Food", city: "Zurich", desc: "Wide selection of Indian spices, lentils, rice, and ready meals.", url: "https://artoffood.ch" },
-  { name: "Aggarwals Indian Grocery", city: "Zurich", desc: "Popular Indian grocery store with fresh vegetables, sweets, and snacks.", url: "#" },
-  { name: "India Supermarkt (Online)", city: "Nationwide", desc: "Buy Indian groceries, spices, and products online — delivered anywhere in Switzerland.", url: "https://indiasupermarkt.ch" },
-  { name: "Salpers Asian Grocery", city: "Zurich", desc: "Asian grocery with a large Indian section — good for hard-to-find ingredients.", url: "#" },
-  { name: "Südstern", city: "Zurich", desc: "Indian and South Asian grocery store in Zurich West.", url: "#" },
-  { name: "Spice Paradise", city: "Geneva", desc: "Indian spices and groceries in the Geneva region.", url: "#" },
+  { name: "Art of Food", city: "Zurich", desc: "Comprehensive Indian grocery store with fresh vegetables, spices, lentils, ready meals, and a deli counter with Indian snacks.", url: "https://artoffood.ch" },
+  { name: "Aggarwals Indian Grocery", city: "Zurich", desc: "Popular family-run Indian grocery store — fresh vegetables, Indian sweets, snacks, and an excellent spice selection.", url: "https://www.aggarwals.ch" },
+  { name: "India Supermarkt (Online)", city: "Nationwide", desc: "Buy Indian groceries, spices, lentils, chutneys, and specialty products online — delivered anywhere in Switzerland within 2 days.", url: "https://indiasupermarkt.ch" },
+  { name: "Salpers Asian Grocery", city: "Zurich", desc: "Large Asian supermarket with a well-stocked Indian section — good for hard-to-find ingredients like fresh curry leaves, methi, and regional specialities.", url: "https://www.salpers.ch" },
+  { name: "Südstern", city: "Zurich", desc: "Indian and South Asian grocery store in Zurich West — reliable for staples like basmati rice, atta, besan, and a range of Indian pickles.", url: "#" },
+  { name: "Spice Paradise", city: "Geneva", desc: "Indian spices and groceries in the Geneva region — serves the large Indian diplomatic and expat community in Geneva.", url: "#" },
 ];
 
 export default function FoodPage() {
@@ -131,10 +130,10 @@ export default function FoodPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { name: "Tiffin Service Zurich", desc: "Daily home-cooked Indian meals delivered to your door in Zurich — contact via community Facebook groups.", contact: "Facebook: Indians in Zurich" },
-              { name: "Indian Event Catering Switzerland", desc: "Full event catering for weddings, pujas, and corporate events — North and South Indian menus available.", contact: "Contact via IAGZ" },
-              { name: "Home Chef Network", desc: "Connect with talented home chefs in your city for authentic regional Indian cooking.", contact: "Whatsapp Community Groups" },
-              { name: "Sweet & Mithai Specialists", desc: "Indian sweets (mithai) for festivals, weddings, and gifting — custom orders welcome.", contact: "Various cities" },
+              { name: "Tiffin Services Zurich", desc: "Daily home-cooked Indian meals delivered to your door in Zurich — vegetarian and non-vegetarian options, weekly subscriptions available.", contact: "Find via Indians in Zurich Facebook group" },
+              { name: "Indian Event Catering", desc: "Full event catering for weddings, pujas, baby showers, and corporate events — North Indian, South Indian, and Gujarati menus available.", contact: "Contact via IAGZ community" },
+              { name: "Home Chef Network", desc: "Connect with talented home chefs across Switzerland for authentic regional cooking — Kerala, Punjab, Gujarat, Andhra, and more.", contact: "WhatsApp community groups" },
+              { name: "Mithai & Sweets Specialists", desc: "Indian sweets and mithai for Diwali, Holi, weddings, and gifting — ladoos, barfis, halwa, and custom festival boxes.", contact: "Various cities — enquire via community groups" },
             ].map((c) => (
               <div key={c.name} className="card p-6">
                 <div className="text-2xl mb-3">👨‍🍳</div>
@@ -154,7 +153,7 @@ export default function FoodPage() {
             <div className="text-4xl mb-4">🍛</div>
             <h2 className="text-3xl font-bold text-white mb-4">List Your Restaurant or Store</h2>
             <p className="text-slate-400 mb-8">
-              Own an Indian restaurant, grocery store, or catering service in Switzerland? Get listed for free.
+              Own an Indian restaurant, grocery store, or catering service in Switzerland? Get listed for free and reach 38,000+ Indians.
             </p>
             <a href="mailto:hello@indiaswiss.ch?subject=List%20My%20Food%20Business" className="btn btn-primary">
               Submit Your Listing <ArrowRight className="w-4 h-4" />

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowRight, ExternalLink, TrendingUp, Briefcase, Users, Lightbulb } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -8,28 +7,28 @@ export const metadata: Metadata = {
 };
 
 const NETWORKS = [
-  { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://sicc.ch", desc: "The premier Swiss-Indian business chamber — trade facilitation, networking events, and bilateral trade support.", type: "Chamber" },
-  { name: "India Business Switzerland (IBS)", url: "https://india-business.ch", desc: "Business platform promoting Indian-Swiss economic ties, investment, and partnerships.", type: "Business Network" },
-  { name: "TiE Zurich", url: "https://tie.org/chapter/tie-zurich/", desc: "The Indus Entrepreneurs — global network for Indian entrepreneurs with mentorship and startup support.", type: "Entrepreneur Network" },
-  { name: "Namaste Switzerland Business Network", url: "https://namasteswitzerland.ch", desc: "Business listings and networking opportunities for Indians in Switzerland.", type: "Network" },
-  { name: "Swiss Indo Business Forum", url: "#", desc: "Annual forum connecting Swiss and Indian business leaders across sectors.", type: "Forum" },
-  { name: "NASSCOM Switzerland Chapter", url: "https://nasscom.in", desc: "Indian IT industry association — technology networking and career opportunities.", type: "Tech Network" },
+  { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://sicc.ch", desc: "The premier Swiss-Indian business chamber — trade facilitation, bilateral investment forums, networking events, and advocacy for Indian businesses in Switzerland.", type: "Chamber" },
+  { name: "India Business Switzerland (IBS)", url: "https://india-business.ch", desc: "Business platform promoting Indian-Swiss economic ties — investment facilitation, market entry support, and partnership opportunities.", type: "Business Network" },
+  { name: "TiE Zurich", url: "https://www.tie-zurich.ch", desc: "The Indus Entrepreneurs Zurich chapter — global network supporting Indian entrepreneurs with mentorship, funding connections, and startup ecosystem access.", type: "Entrepreneur Network" },
+  { name: "Namaste Switzerland Business", url: "https://namasteswitzerland.ch", desc: "Business directory and networking platform for Indians in Switzerland — listings, events calendar, and community news.", type: "Directory" },
+  { name: "Swiss Indo Business Forum", url: "https://sicc.ch/events", desc: "Annual forum co-organised by SICC connecting Swiss and Indian business leaders — panel discussions, B2B meetings, and trade sessions.", type: "Forum" },
+  { name: "NASSCOM Switzerland Chapter", url: "https://nasscom.in", desc: "Indian IT industry association's Switzerland presence — technology networking, policy advocacy, and career opportunities in Swiss tech.", type: "Tech Network" },
 ];
 
 const JOB_RESOURCES = [
-  { name: "Jobs.ch", url: "https://www.jobs.ch", desc: "Switzerland's largest job portal — search by field, location, and language requirement." },
-  { name: "LinkedIn Switzerland", url: "https://www.linkedin.com", desc: "Professional networking — join groups like 'Indian Professionals in Switzerland'." },
-  { name: "Indeed Switzerland", url: "https://www.indeed.ch", desc: "Job search across all industries and experience levels." },
-  { name: "ETH Zurich Career Center", url: "https://www.careercenter.ethz.ch", desc: "Careers portal for ETH graduates and alumni." },
-  { name: "EPFL Career Center", url: "https://career.epfl.ch", desc: "Jobs and internships for EPFL students and alumni." },
-  { name: "Xing", url: "https://www.xing.com", desc: "German-speaking professional network popular in Switzerland and Germany." },
+  { name: "Jobs.ch", url: "https://www.jobs.ch", desc: "Switzerland's largest job portal — search by field, salary band, location, and language requirement. Strong in finance, pharma, and tech." },
+  { name: "LinkedIn Switzerland", url: "https://www.linkedin.com", desc: "Professional networking — join 'Indian Professionals in Switzerland' and 'Indians in Zurich' groups for community job leads." },
+  { name: "Indeed Switzerland", url: "https://www.indeed.ch", desc: "Wide coverage across all industries and experience levels — good for international companies with English-language roles." },
+  { name: "ETH Zurich Career Center", url: "https://www.careercenter.ethz.ch", desc: "Careers portal for ETH graduates, alumni, and industry partners — top roles in deep tech, pharma, and finance." },
+  { name: "EPFL Career Center", url: "https://career.epfl.ch", desc: "Jobs, internships, and startup connections for EPFL students and alumni — strong in life sciences and engineering." },
+  { name: "Xing", url: "https://www.xing.com", desc: "German-speaking professional network popular in Switzerland, Germany, and Austria — useful for Swiss-German speaking market roles." },
 ];
 
 const STARTUPS = [
-  { name: "ETH Zurich Innovation", url: "https://ethz.ch/en/industry-and-society/innovation.html", desc: "ETH's startup ecosystem — one of Europe's strongest tech incubators." },
-  { name: "Switzerland Innovation Park", url: "https://www.switzerland-innovation.com", desc: "National network of innovation parks at Zurich, Basel, Bern, Western Switzerland, and Ticino." },
-  { name: "Venturelab", url: "https://www.venturelab.ch", desc: "Startup education and acceleration programs across Switzerland." },
-  { name: "Swiss Startup Association", url: "https://swissstartupassociation.ch", desc: "Community and advocacy for Swiss startups — networking and policy." },
+  { name: "ETH Zurich Innovation & Entrepreneurship", url: "https://ethz.ch/en/industry-and-society/innovation.html", desc: "ETH's startup ecosystem — one of Europe's strongest deep-tech incubators producing 30+ startups per year, including several by Indian founders." },
+  { name: "Switzerland Innovation Park", url: "https://www.switzerland-innovation.com", desc: "National network of 5 innovation parks across Switzerland — co-working, funding, and R&D partnerships with Swiss universities and corporates." },
+  { name: "Venturelab", url: "https://www.venturelab.ch", desc: "Startup education and acceleration — flagship Venture program for ETH/EPFL spinoffs, coaching in business model and fundraising." },
+  { name: "Swiss Startup Association", url: "https://swissstartupassociation.ch", desc: "Community, advocacy, and networking for Swiss startups — annual Swiss Startup Day and access to investor networks." },
 ];
 
 export default function BusinessPage() {
@@ -45,7 +44,7 @@ export default function BusinessPage() {
             Grow Your Career <span className="gradient-text">in Switzerland</span>
           </h1>
           <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            Networking chambers, job resources, startup ecosystems, and professional services — everything you need to succeed in Swiss business.
+            Networking chambers, job resources, startup ecosystems, and professional services — everything you need to succeed in one of the world&apos;s most competitive business environments.
           </p>
           <div className="flex flex-wrap gap-4 justify-center mt-10">
             <a href="#networking" className="btn btn-primary">
@@ -63,7 +62,7 @@ export default function BusinessPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: <TrendingUp className="w-6 h-6" />, value: "300+", label: "Business Opportunities" },
+              { icon: <TrendingUp className="w-6 h-6" />, value: "CHF 33bn", label: "India-Swiss Trade (2023)" },
               { icon: <Users className="w-6 h-6" />, value: "15+", label: "Indian Business Networks" },
               { icon: <Briefcase className="w-6 h-6" />, value: "500+", label: "Businesses Listed" },
               { icon: <Lightbulb className="w-6 h-6" />, value: "50+", label: "Indian-Founded Startups" },
@@ -94,8 +93,8 @@ export default function BusinessPage() {
             {NETWORKS.map((n) => (
               <a
                 key={n.name}
-                href={n.url === "#" ? undefined : n.url}
-                target={n.url !== "#" ? "_blank" : undefined}
+                href={n.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="card p-6 group block"
               >
@@ -123,7 +122,7 @@ export default function BusinessPage() {
           <div className="mb-12">
             <span className="tag">Jobs & Recruitment</span>
             <h2 className="text-3xl lg:text-4xl font-bold text-white mt-4 mb-3">Job Resources</h2>
-            <p className="text-slate-400 text-lg">Switzerland is one of Europe&apos;s highest-paying job markets. Here&apos;s where to find opportunities.</p>
+            <p className="text-slate-400 text-lg">Switzerland offers some of Europe&apos;s highest salaries. Here&apos;s where Indians find the best opportunities.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {JOB_RESOURCES.map((j) => (
@@ -153,7 +152,7 @@ export default function BusinessPage() {
           <div className="mb-12">
             <span className="tag">Startups</span>
             <h2 className="text-3xl lg:text-4xl font-bold text-white mt-4 mb-3">Startup Ecosystem</h2>
-            <p className="text-slate-400 text-lg">Switzerland ranks among the world&apos;s top startup ecosystems. Indians are building here too.</p>
+            <p className="text-slate-400 text-lg">Switzerland ranks #2 globally for innovation (Global Innovation Index 2023). Indians are building here too.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {STARTUPS.map((s) => (
@@ -180,7 +179,7 @@ export default function BusinessPage() {
             <div className="text-4xl mb-4">💼</div>
             <h2 className="text-3xl font-bold text-white mb-4">List Your Business</h2>
             <p className="text-slate-400 mb-8">
-              Running a business or professional service in Switzerland? Get discovered by 30,000+ Indians.
+              Running a business or professional service in Switzerland? Get discovered by 38,000+ Indians.
             </p>
             <a href="mailto:hello@indiaswiss.ch?subject=List%20My%20Business" className="btn btn-primary">
               Submit Your Business <ArrowRight className="w-4 h-4" />

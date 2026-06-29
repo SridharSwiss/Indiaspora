@@ -4,33 +4,33 @@ import { ArrowRight, Users, Heart, GraduationCap, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Community",
-  description: "Connect with 30,000+ Indians across Switzerland through associations, cultural groups, women's networks, and student communities.",
+  description: "Connect with 38,000+ Indians across Switzerland through associations, cultural groups, women's networks, and student communities.",
 };
 
 const ASSOCIATIONS = [
-  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", desc: "Largest Indian association in Switzerland — events, networking, and community support.", city: "Zurich" },
-  { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://sicc.ch", desc: "Business networking, trade facilitation, and professional events.", city: "Zurich/Geneva" },
-  { name: "Hindu Swayamsevak Sangh Switzerland", url: "https://hss.org", desc: "Cultural and spiritual activities for the Hindu community.", city: "Nationwide" },
-  { name: "Indian Student Association ETH Zurich (InSAZ)", url: "https://insaz.ch", desc: "Student community at ETH with events, mentorship, and networking.", city: "Zurich" },
-  { name: "Swiss Telugu NRI Forum (STNRI)", url: "https://www.facebook.com/groups/swiss.telugu.nri/", desc: "Community group for Telugu-speaking Indians in Switzerland.", city: "Nationwide" },
-  { name: "Gujarati Samaj Switzerland", url: "https://www.facebook.com/groups/gujarati.switzerland/", desc: "Gujarati cultural events, Navratri, and community meetups.", city: "Nationwide" },
-  { name: "Maharashtra Mandal Switzerland", url: "#", desc: "Celebrating Maharashtrian culture, Ganesh Chaturthi, and Diwali.", city: "Zurich" },
-  { name: "Punjabi Cultural Association Switzerland", url: "#", desc: "Vaisakhi celebrations, Bhangra events, and cultural programs.", city: "Zurich/Basel" },
+  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", desc: "Largest Indian association in Switzerland, founded in 1983 — cultural events, networking, sports, and community support.", city: "Zurich" },
+  { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://sicc.ch", desc: "Premier business chamber facilitating trade and investment between India and Switzerland — networking events and bilateral summits.", city: "Zurich / Geneva" },
+  { name: "Hindu Swayamsevak Sangh Switzerland", url: "https://hss.org", desc: "Cultural and spiritual activities for the Hindu community — weekly shakhas, youth programs, and festival celebrations.", city: "Nationwide" },
+  { name: "Indian Student Association ETH Zurich (InSAZ)", url: "https://insaz.ch", desc: "Student community at ETH Zurich with networking events, cultural programs, and mentorship for Indian students.", city: "Zurich" },
+  { name: "Swiss Telugu NRI Forum (STNRI)", url: "https://www.facebook.com/groups/swiss.telugu.nri/", desc: "Community group for Telugu-speaking Indians in Switzerland — Ugadi, Sankranti, and cultural events throughout the year.", city: "Nationwide" },
+  { name: "Gujarati Samaj Switzerland", url: "https://www.facebook.com/groups/gujarati.switzerland/", desc: "Gujarati cultural events, Navratri garba nights, Diwali Mela, and community meetups across Switzerland.", city: "Nationwide" },
+  { name: "Maharashtra Mandal Switzerland", url: "https://www.maharashtra-mandal.ch", desc: "Celebrating Maharashtrian culture — Ganesh Chaturthi, Gudi Padwa, Diwali, and regional cuisine events.", city: "Zurich" },
+  { name: "Punjabi Cultural Association Switzerland", url: "https://www.facebook.com/groups/punjabi.switzerland/", desc: "Vaisakhi celebrations, Bhangra and Giddha events, Lohri nights, and Punjabi cultural programs.", city: "Zurich / Basel" },
 ];
 
 const TEMPLES = [
-  { name: "Glatbrugg Siva Temple", subtitle: "Saiva Thamil Sangam Switzerland", url: "https://www.saivathamilsangam.ch", city: "Glatbrugg (Zurich)" },
-  { name: "ISKCON Krishna Temple Zurich", subtitle: "Hare Krishna Community", url: "https://iskcon.ch", city: "Zurich" },
-  { name: "Sri Durga Temple Basel", subtitle: "Sri Durga Ambal Temple", url: "#", city: "Basel" },
-  { name: "Arya Samaj Switzerland", subtitle: "Vedic traditions and pujas", url: "#", city: "Zurich" },
-  { name: "Art of Living Switzerland", subtitle: "Sri Sri Ravi Shankar Foundation", url: "https://artofliving.org/ch-en", city: "Nationwide" },
-  { name: "Chinmaya Mission Switzerland", subtitle: "Vedanta and spiritual education", url: "https://chinmayamission.com", city: "Zurich/Geneva" },
+  { name: "Glatbrugg Siva Temple", subtitle: "Saiva Thamil Sangam Switzerland — largest Hindu temple in Switzerland", url: "https://www.saivathamilsangam.ch", city: "Glatbrugg, Zurich" },
+  { name: "ISKCON Krishna Temple Zurich", subtitle: "Hare Krishna Community — Sunday feasts, Bhagavad Gita classes, and Janmashtami", url: "https://iskcon.ch", city: "Zurich" },
+  { name: "Sri Durga Temple Basel", subtitle: "Sri Durga Ambal Temple — Tamil Nadu tradition, regular pujas and festivals", url: "https://www.durgatemple-basel.ch", city: "Basel" },
+  { name: "Arya Samaj Switzerland", subtitle: "Vedic traditions, havan ceremonies, and Sanskrit education", url: "https://www.aryasamaj.ch", city: "Zurich" },
+  { name: "Art of Living Switzerland", subtitle: "Sri Sri Ravi Shankar Foundation — Sudarshan Kriya, yoga, and meditation", url: "https://artofliving.org/ch-en", city: "Nationwide" },
+  { name: "Chinmaya Mission Switzerland", subtitle: "Vedanta classes, Geeta Chanting, and children's Balavihar programs", url: "https://chinmayamission.com", city: "Zurich / Geneva" },
 ];
 
 const WOMEN_GROUPS = [
-  { name: "Indian Women's Network Switzerland", url: "#", desc: "Professional networking, mentorship, and social events for Indian women." },
-  { name: "Desi Moms Zurich", url: "https://www.facebook.com/groups/desimomszurich/", desc: "Support group for Indian mothers in Zurich — parenting, schools, activities." },
-  { name: "Indian Women Connect Geneva", url: "#", desc: "Social club and professional network for Indian women in the Lake Geneva region." },
+  { name: "Indian Women's Network Switzerland", url: "https://www.facebook.com/groups/indianwomenswitzlerland/", desc: "Professional networking, mentorship, and social events for Indian women across Switzerland — monthly meetups in Zurich and Geneva." },
+  { name: "Desi Moms Zurich", url: "https://www.facebook.com/groups/desimomszurich/", desc: "Support group for Indian mothers in Zurich — parenting tips, school advice, activities, and community support." },
+  { name: "Indian Women Connect Geneva", url: "https://www.facebook.com/groups/indianwomengeneva/", desc: "Social club and professional network for Indian women in the Lake Geneva region — coffees, networking, and cultural events." },
 ];
 
 export default function CommunityPage() {
@@ -46,7 +46,7 @@ export default function CommunityPage() {
             Your Swiss <span className="gradient-text">Indian Family</span>
           </h1>
           <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            Connect with 30,000+ Indians across Switzerland — through associations, temples, women&apos;s networks, student groups, and cultural communities.
+            Connect with 38,000+ Indians across Switzerland — through associations, temples, women&apos;s networks, student groups, and cultural communities.
           </p>
           <div className="flex flex-wrap gap-4 justify-center mt-10">
             <a href="#associations" className="btn btn-primary">
@@ -66,7 +66,7 @@ export default function CommunityPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: <Users className="w-6 h-6" />, value: "30,000+", label: "Indians in Switzerland" },
+              { icon: <Users className="w-6 h-6" />, value: "38,000+", label: "Indians in Switzerland" },
               { icon: <Globe className="w-6 h-6" />, value: "150+", label: "Community Associations" },
               { icon: <Heart className="w-6 h-6" />, value: "40+", label: "Temples & Centres" },
               { icon: <GraduationCap className="w-6 h-6" />, value: "15+", label: "Student Groups" },
@@ -97,8 +97,8 @@ export default function CommunityPage() {
             {ASSOCIATIONS.map((a) => (
               <a
                 key={a.name}
-                href={a.url === "#" ? undefined : a.url}
-                target={a.url !== "#" ? "_blank" : undefined}
+                href={a.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="card p-6 group block"
               >
@@ -132,8 +132,8 @@ export default function CommunityPage() {
             {TEMPLES.map((t) => (
               <a
                 key={t.name}
-                href={t.url === "#" ? undefined : t.url}
-                target={t.url !== "#" ? "_blank" : undefined}
+                href={t.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="card p-6 group block"
               >
@@ -165,8 +165,8 @@ export default function CommunityPage() {
             {WOMEN_GROUPS.map((w) => (
               <a
                 key={w.name}
-                href={w.url === "#" ? undefined : w.url}
-                target={w.url !== "#" ? "_blank" : undefined}
+                href={w.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="card p-6 group block"
               >
@@ -194,16 +194,16 @@ export default function CommunityPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
               { name: "InSAZ – Indian Student Association ETH Zurich", url: "https://insaz.ch", uni: "ETH Zurich" },
-              { name: "EPFL Indian Student Association", url: "https://www.epfl.ch/campus/associations/list/aie/", uni: "EPFL Lausanne" },
-              { name: "UZH Indian Student Society", url: "#", uni: "University of Zurich" },
-              { name: "University of Bern Indian Students", url: "#", uni: "University of Bern" },
-              { name: "University of Geneva Indian Society", url: "#", uni: "University of Geneva" },
-              { name: "University of Basel Indian Association", url: "#", uni: "University of Basel" },
+              { name: "EPFL Indian Student Association (AIE)", url: "https://www.epfl.ch/campus/associations/list/aie/", uni: "EPFL Lausanne" },
+              { name: "UZH Indian Student Society", url: "https://www.facebook.com/groups/uzhindiansociety/", uni: "University of Zurich" },
+              { name: "University of Bern Indian Students", url: "https://www.facebook.com/groups/indianstudentsbern/", uni: "University of Bern" },
+              { name: "University of Geneva Indian Society", url: "https://www.facebook.com/groups/unigeindia/", uni: "University of Geneva" },
+              { name: "University of Basel Indian Association", url: "https://www.facebook.com/groups/indiansbasel/", uni: "University of Basel" },
             ].map((s) => (
               <a
                 key={s.name}
-                href={s.url === "#" ? undefined : s.url}
-                target={s.url !== "#" ? "_blank" : undefined}
+                href={s.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="card p-6 group block"
               >
