@@ -1,37 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { MapPin, ArrowRight, Users } from "lucide-react";
 import { CITIES } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 export default function Cities() {
   const [activeCity, setActiveCity] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 100);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const city = CITIES[activeCity];
 
   return (
-    <section id="cities" ref={sectionRef} className="py-24 bg-slate-900/50">
+    <section id="cities" className="py-24" style={{ background: "var(--surface)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 reveal">
+        <div className="text-center mb-16">
           <span className="text-xs uppercase tracking-[0.3em] text-indigo-400 mb-4 block font-medium">
             City Guides
           </span>
@@ -46,7 +28,7 @@ export default function Cities() {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* City selector */}
-          <div className="reveal space-y-3">
+          <div className="space-y-3">
             {CITIES.map((c, i) => (
               <button
                 key={c.name}
@@ -80,7 +62,7 @@ export default function Cities() {
           </div>
 
           {/* City detail */}
-          <div className="lg:col-span-2 reveal">
+          <div className="lg:col-span-2">
             <div className="glass rounded-2xl overflow-hidden h-full border border-white/5">
               {/* Header */}
               <div className={`relative p-8 bg-gradient-to-br ${city.color} bg-opacity-30`}>

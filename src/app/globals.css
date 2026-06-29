@@ -59,6 +59,14 @@ body {
   border-radius: 12px;
 }
 
+/* ─── Glass strong ─── */
+.glass-strong {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
 /* ─── Gradient text variants ─── */
 .gradient-text {
   background: linear-gradient(135deg, #f97316 0%, #eab308 100%);
@@ -134,9 +142,9 @@ body {
 }
 .btn-ghost:hover { color: var(--text); background: rgba(255, 255, 255, 0.06); }
 
-/* ─── Reveal ─── */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+/* ─── Reveal (no-op — content always visible) ─── */
+.reveal { opacity: 1; transform: none; }
+.reveal.visible { opacity: 1; transform: none; }
 
 /* ─── Subtle patterns ─── */
 .pattern-dots {
@@ -175,7 +183,6 @@ body {
 
 /* ─── Mobile ─── */
 @media (max-width: 768px) {
-  .reveal { opacity: 1 !important; transform: none !important; }
   .hero-particles { display: none; }
 }
 

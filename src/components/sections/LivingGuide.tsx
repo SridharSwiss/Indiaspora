@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Plane, Heart, Home, GraduationCap, CheckCircle2, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { Plane, Heart, Home, GraduationCap, ArrowRight } from "lucide-react";
 import { LIVING_GUIDE } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
@@ -25,29 +25,11 @@ const QUICK_LINKS = [
 
 export default function LivingGuide() {
   const [activeTab, setActiveTab] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 80);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section id="living" ref={sectionRef} className="py-24 bg-slate-950">
+    <section id="living" className="py-24" style={{ background: "var(--surface-2)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 reveal">
+        <div className="text-center mb-16">
           <span className="text-xs uppercase tracking-[0.3em] text-indigo-400 mb-4 block font-medium">
             Settle In
           </span>
@@ -61,7 +43,7 @@ export default function LivingGuide() {
         </div>
 
         {/* Quick links */}
-        <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 mb-16 reveal">
+        <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 mb-16">
           {QUICK_LINKS.map((link) => (
             <a
               key={link.label}
@@ -80,7 +62,7 @@ export default function LivingGuide() {
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Tab navigation */}
-          <div className="reveal">
+          <div>
             <div className="space-y-3 mb-6">
               {LIVING_GUIDE.map((guide, i) => (
                 <button
@@ -129,7 +111,7 @@ export default function LivingGuide() {
           </div>
 
           {/* Step detail */}
-          <div className="reveal">
+          <div>
             <div className="glass rounded-2xl p-8 border border-white/5 h-full">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white">
