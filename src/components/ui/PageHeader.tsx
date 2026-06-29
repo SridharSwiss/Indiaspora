@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
@@ -33,18 +35,14 @@ export default function PageHeader({
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {breadcrumbs && (
           <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 mb-5 text-xs sm:text-sm">
-            <Link href="/" className="transition-colors" style={{ color: "var(--text-3)" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#a5b4fc")}
-              onMouseLeave={e => (e.currentTarget.style.color = "var(--text-3)")}>
+            <Link href="/" className="transition-colors" style={{ color: "var(--text-3)" }}>
               Home
             </Link>
             {breadcrumbs.map((crumb, i) => (
               <span key={i} className="flex items-center gap-1.5">
                 <ChevronRight className="w-3 h-3 shrink-0" style={{ color: "var(--text-3)" }} aria-hidden />
                 {crumb.href ? (
-                  <Link href={crumb.href} className="transition-colors" style={{ color: "var(--text-3)" }}
-                    onMouseEnter={e => (e.currentTarget.style.color = "#a5b4fc")}
-                    onMouseLeave={e => (e.currentTarget.style.color = "var(--text-3)")}>
+                  <Link href={crumb.href} className="transition-colors" style={{ color: "var(--text-3)" }}>
                     {crumb.label}
                   </Link>
                 ) : (
