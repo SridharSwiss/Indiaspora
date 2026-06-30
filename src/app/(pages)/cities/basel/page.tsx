@@ -5,8 +5,8 @@ export default function BaselPage() {
     <div className="min-h-screen">
       <PageHeader
         title="Indians in Basel"
-        subtitle="Switzerland's pharma and biotech capital is home to 3,000+ Indians — most working at Novartis, Roche, and the biotech corridor along the Rhine."
-        badge="~3,000 Indians"
+        subtitle="Switzerland's pharma and biotech capital is home to ~3,500 Indians — most working at Novartis, Roche, and the biotech corridor along the Rhine."
+        badge="~3,500 Indians"
         gradient="from-orange-500 to-red-600"
         breadcrumbs={[{ label: "City Guides", href: "/cities" }, { label: "Basel" }]}
       />
@@ -17,10 +17,10 @@ export default function BaselPage() {
               <h2 className="text-xl font-bold text-white mb-4">Community & Associations</h2>
               <ul className="space-y-3">
                 {[
-                  { name: "ICAS – Indian Cultural Association Switzerland (Basel)", desc: "Events, Holi, Diwali, cultural programmes — main Basel community body" },
-                  { name: "Sri Durga Temple Basel", desc: "Hindu temple serving the Tamil and broader Indian community" },
-                  { name: "Indian Professionals Basel", desc: "LinkedIn and WhatsApp network for pharma professionals" },
-                  { name: "University of Basel Indian Students", desc: "Student association at University of Basel" },
+                  { name: "ICAS – Indian Cultural Association Switzerland (Basel)", url: "https://icas-online.com", desc: "Events, Holi, Diwali, cultural programmes — main Basel community body" },
+                  { name: "Sri Durga Temple Basel", url: "#", desc: "Hindu temple serving the Tamil and broader Indian community" },
+                  { name: "Indian Professionals Basel", url: "#", desc: "LinkedIn and WhatsApp network for pharma professionals" },
+                  { name: "University of Basel Indian Students", url: "#", desc: "Student association at University of Basel" },
                 ].map((item) => (
                   <li key={item.name} className="flex items-start gap-3">
                     <span className="w-2 h-2 rounded-full bg-orange-400 mt-2 shrink-0" />
@@ -63,9 +63,45 @@ export default function BaselPage() {
                 <li>🛒 <strong>Globus Delicatessa</strong> — International section with Indian products</li>
               </ul>
             </section>
+
+            <section className="glass rounded-2xl p-6">
+              <h2 className="text-xl font-bold text-white mb-4">Dance & Arts in Basel</h2>
+              <ul className="space-y-3">
+                {[
+                  { name: "Kalasri", url: "https://kalasri.com", desc: "Bharatanatyam school founded 1976 — one of the oldest Indian classical dance schools in Switzerland" },
+                  { name: "InBa – India Basel Festival", url: "#", desc: "Annual Indian cultural festival at Theater Basel (September)" },
+                ].map((item) => (
+                  <li key={item.name} className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-orange-400 mt-2 shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium text-white">{item.name}</p>
+                      <p className="text-xs text-slate-400">{item.desc}</p>
+                      {item.url !== "#" && <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-xs text-orange-400 hover:text-orange-300">{item.url.replace("https://", "")} →</a>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
           </div>
 
           <div className="space-y-6">
+            <div className="glass rounded-2xl p-6">
+              <h3 className="font-semibold text-white mb-4">Key Stats</h3>
+              <div className="space-y-3">
+                {[
+                  { label: "Indian Population", value: "~3,500" },
+                  { label: "Major Pharma Employers", value: "6+" },
+                  { label: "Indian Restaurants", value: "10+" },
+                  { label: "Official Languages", value: "German" },
+                ].map((s) => (
+                  <div key={s.label} className="flex justify-between">
+                    <span className="text-xs text-slate-400">{s.label}</span>
+                    <span className="text-sm font-semibold text-orange-400">{s.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="glass rounded-2xl p-6">
               <h3 className="font-semibold text-white mb-4">Official Links</h3>
               <ul className="space-y-2">
@@ -74,6 +110,7 @@ export default function BaselPage() {
                   { label: "BVB (Basel Public Transport)", url: "https://www.bvb.ch" },
                   { label: "Cantonal Migration Office", url: "https://www.bs.ch/aue/migration" },
                   { label: "University of Basel", url: "https://www.unibas.ch/en" },
+                  { label: "ICAS Basel", url: "https://icas-online.com" },
                 ].map((l) => (
                   <li key={l.label}>
                     <a href={l.url} target="_blank" rel="noopener noreferrer" className="text-xs text-orange-400 hover:text-orange-300">{l.label} →</a>

@@ -5,8 +5,8 @@ export default function ZurichPage() {
     <div className="min-h-screen">
       <PageHeader
         title="Indians in Zurich"
-        subtitle="Switzerland's largest city and financial capital is home to 18,000+ Indians — the heart of Swiss-Indian life with the strongest community infrastructure."
-        badge="~18,000 Indians"
+        subtitle="Switzerland's largest city and financial capital is home to ~10,000 Indians — the heart of Swiss-Indian life with the strongest community infrastructure."
+        badge="~10,000 Indians"
         gradient="from-blue-600 to-indigo-700"
         breadcrumbs={[{ label: "City Guides", href: "/cities" }, { label: "Zurich" }]}
       />
@@ -18,12 +18,12 @@ export default function ZurichPage() {
               <h2 className="text-xl font-bold text-white mb-4">Community & Associations</h2>
               <ul className="space-y-3">
                 {[
-                  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", desc: "Main umbrella body. Events, Hindi school, Diwali Mela, networking" },
+                  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", desc: "Main umbrella body. Events, Hindi school, Diwali Gala, networking" },
                   { name: "Gujarati Samaj Switzerland", url: "#", desc: "Cultural events, Navratri, Diwali, Garba — strong community" },
                   { name: "Maharashtra Mandal Switzerland", url: "#", desc: "Ganesh Chaturthi, Gudi Padwa, cultural programmes" },
                   { name: "Punjabi Cultural Association", url: "#", desc: "Baisakhi, Lohri, Bhangra performances" },
                   { name: "InSAZ – Indian Student Association ETH Zurich", url: "https://insaz.ethz.ch", desc: "Largest student association for Indians at ETH" },
-                  { name: "ISKCON Krishna Temple", url: "#", desc: "Sunday feasts, Janmashtami, spiritual programmes" },
+                  { name: "ISKCON Krishna Temple Zurich", url: "#", desc: "Sunday feasts, Ratha Yatra (June), Janmashtami, spiritual programmes" },
                 ].map((item) => (
                   <li key={item.name} className="flex items-start gap-3">
                     <span className="w-2 h-2 rounded-full bg-blue-400 mt-2 shrink-0" />
@@ -78,7 +78,7 @@ export default function ZurichPage() {
               <h3 className="font-semibold text-white mb-4">Key Stats</h3>
               <div className="space-y-3">
                 {[
-                  { label: "Indian Population", value: "~18,000" },
+                  { label: "Indian Population", value: "~10,000" },
                   { label: "Indian Associations", value: "50+" },
                   { label: "Indian Restaurants", value: "30+" },
                   { label: "Indian Grocery Stores", value: "5+" },
