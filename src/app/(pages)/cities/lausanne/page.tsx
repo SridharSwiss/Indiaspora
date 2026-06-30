@@ -35,6 +35,26 @@ export default function LausannePage() {
             </section>
 
             <section className="glass rounded-2xl p-6">
+              <h2 className="text-xl font-bold text-white mb-4">Community & Cultural</h2>
+              <ul className="space-y-3">
+                {[
+                  { name: "PrangaN@Swiss", url: "https://pranganswiss.org", desc: "Durga Puja celebration in Lausanne — vibrant Bengali cultural association" },
+                  { name: "Indian Association Lausanne", url: "#", desc: "Cultural events, India Day, Diwali celebrations" },
+                  { name: "Brahma Kumaris Lausanne", url: "#", desc: "Spiritual and meditation centre" },
+                ].map((item) => (
+                  <li key={item.name} className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-rose-400 mt-2 shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium text-white">{item.name}</p>
+                      <p className="text-xs text-slate-400 mb-1">{item.desc}</p>
+                      {item.url !== "#" && <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-xs text-rose-400 hover:text-rose-300">{item.url.replace("https://", "")} →</a>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="glass rounded-2xl p-6">
               <h2 className="text-xl font-bold text-white mb-4">Indian Food in Lausanne</h2>
               <ul className="space-y-2 text-sm text-slate-300">
                 <li>🍽️ <strong>Spice Route</strong> (Rue du Midi 22) — Indian favourites near EPFL community</li>
@@ -49,11 +69,11 @@ export default function LausannePage() {
               <h2 className="text-xl font-bold text-white mb-4">International Organisations</h2>
               <p className="text-slate-400 text-sm mb-4">Lausanne hosts several major international organisations employing Indian professionals:</p>
               <ul className="space-y-2 text-sm text-slate-300">
-                <li>🏛️ <strong>IOC – International Olympic Committee</strong> — HQ in Lausanne</li>
-                <li>🏛️ <strong>Court of Arbitration for Sport (CAS)</strong></li>
-                <li>🏛️ <strong>UNIL – University of Lausanne</strong> — Research positions</li>
-                <li>🏛️ <strong>Philip Morris International</strong> — HQ with Indian professionals</li>
-                <li>🏛️ <strong>Nestlé HQ</strong> (Vevey, nearby) — Large Indian workforce</li>
+                <li>🏙️ <strong>IOC – International Olympic Committee</strong> — HQ in Lausanne</li>
+                <li>🏙️ <strong>Court of Arbitration for Sport (CAS)</strong></li>
+                <li>🏙️ <strong>UNIL – University of Lausanne</strong> — Research positions</li>
+                <li>🏙️ <strong>Philip Morris International</strong> — HQ with Indian professionals</li>
+                <li>🏙️ <strong>Nestlé HQ</strong> (Vevey, nearby) — Large Indian workforce</li>
               </ul>
             </section>
           </div>

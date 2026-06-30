@@ -5,7 +5,7 @@ export default function BernPage() {
     <div className="min-h-screen">
       <PageHeader
         title="Indians in Bern"
-        subtitle="Switzerland's federal capital hosts the Embassy of India and a tight-knit community of 2,000+ Indians — diplomats, academics, and professionals."
+        subtitle="Switzerland's federal capital hosts the Embassy of India and a tight-knit community of ~2,000 Indians — diplomats, academics, and professionals."
         badge="~2,000 Indians"
         gradient="from-teal-600 to-cyan-700"
         breadcrumbs={[{ label: "City Guides", href: "/cities" }, { label: "Bern" }]}
@@ -49,8 +49,8 @@ export default function BernPage() {
                 <div>
                   <h3 className="font-semibold text-teal-400 mb-2">Contact</h3>
                   <ul className="space-y-1 text-xs text-slate-300">
-                    <li>📍 Alpenstrasse 40, 3006 Bern</li>
-                    <li>📞 +41 31 351 1110</li>
+                    <li>📍 Thunstrasse 5, 3005 Bern</li>
+                    <li>📞 +41 31 350 11 10</li>
                     <li>🌐 <a href="https://www.indembassybern.gov.in" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">indembassybern.gov.in</a></li>
                     <li>⏰ Mon–Fri, 9:00–13:00 (consular hours)</li>
                     <li>⚠️ Appointment required for most services</li>
