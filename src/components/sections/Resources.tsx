@@ -63,7 +63,7 @@ export default function Resources() {
                 Browse All Resources
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <a href="mailto:hello@indiaswiss.ch?subject=Resource%20Suggestion" className="btn btn-outline">
+              <a href="mailto:hello@indiaspora.ch?subject=Resource%20Suggestion" className="btn btn-outline">
                 Suggest a Link
               </a>
             </div>

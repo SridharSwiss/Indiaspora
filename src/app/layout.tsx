@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://indiaswiss.ch"),
+  metadataBase: new URL("https://indiaspora.ch"),
   title: {
     default: "IndiaSwiss – The Swiss Indian Community Hub",
     template: "%s | IndiaSwiss",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_CH",
     siteName: "IndiaSwiss",
-    url: "https://indiaswiss.ch",
+    url: "https://indiaspora.ch",
   },
   twitter: {
     card: "summary_large_image",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: "https://indiaswiss.ch",
+    canonical: "https://indiaspora.ch",
   },
 };
 

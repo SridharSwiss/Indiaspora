@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Use",
   description: "IndiaSwiss terms of use and disclaimer.",
-  alternates: { canonical: "https://indiaswiss.ch/terms" },
+  alternates: { canonical: "https://indiaspora.ch/terms" },
 };
 
 export default function TermsPage() {
@@ -14,7 +14,7 @@ export default function TermsPage() {
 
       <section className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-3">1. Acceptance</h2>
-        <p>By accessing indiaswiss.ch you agree to these terms. If you do not agree, please do not use the site.</p>
+        <p>By accessing indiaspora.ch you agree to these terms. If you do not agree, please do not use the site.</p>
       </section>
 
       <section className="mb-8">
@@ -44,7 +44,7 @@ export default function TermsPage() {
 
       <section>
         <h2 className="text-xl font-semibold text-white mb-3">7. Contact</h2>
-        <p>Questions about these terms: <a href="mailto:hello@indiaswiss.ch" className="text-indigo-400 hover:underline">hello@indiaswiss.ch</a></p>
+        <p>Questions about these terms: <a href="mailto:hello@indiaspora.ch" className="text-indigo-400 hover:underline">hello@indiaspora.ch</a></p>
       </section>
     </main>
   );

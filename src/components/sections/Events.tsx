@@ -63,7 +63,7 @@ export default function Events() {
             <p className=" mb-6 max-w-md mx-auto text-sm" style={{ color: "var(--text-2)" }}>
               Submit your community events, workshops, cultural shows, and meetups to reach 30,000+ Indians across Switzerland
             </p>
-            <a href="mailto:hello@indiaswiss.ch?subject=Submit%20Event" className="btn btn-primary">
+            <a href="mailto:hello@indiaspora.ch?subject=Submit%20Event" className="btn btn-primary">
               Submit an Event
             </a>
           </div>

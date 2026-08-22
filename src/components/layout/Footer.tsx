@@ -63,7 +63,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2 text-sm" style={{ color: "var(--text-2)" }}>
                 <Mail className="w-4 h-4 shrink-0" style={{ color: "var(--primary)" }} />
-                <a href="mailto:hello@indiaswiss.ch" className="hover:text-orange-400 transition-colors">hello@indiaswiss.ch</a>
+                <a href="mailto:hello@indiaspora.ch" className="hover:text-orange-400 transition-colors">hello@indiaspora.ch</a>
               </div>
             </div>
 
@@ -73,7 +73,7 @@ export default function Footer() {
                 { label: "F", title: "Facebook", href: "https://www.facebook.com/groups/indian.association.of.greater.zurich/" },
                 { label: "In", title: "Instagram", href: "https://www.instagram.com/namasteswitzerland.ch/" },
                 { label: "Li", title: "LinkedIn", href: "https://www.linkedin.com/search/results/groups/?keywords=Indian%20professionals%20Switzerland" },
-                { label: "W", title: "WhatsApp", href: "https://wa.me/?text=IndiaSwiss%20Community%20Hub%20-%20https%3A%2F%2Findiaswiss.ch" },
+                { label: "W", title: "WhatsApp", href: "https://wa.me/?text=IndiaSwiss%20Community%20Hub%20-%20https%3A%2F%2Findiaspora.ch" },
               ].map((s) => (
                 <a
                   key={s.title}
@@ -141,7 +141,7 @@ export default function Footer() {
             <Link href="/privacy" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Privacy Policy</Link>
             <Link href="/terms" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Terms of Use</Link>
             <Link href="/privacy#cookies" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Cookie Policy</Link>
-            <a href="mailto:hello@indiaswiss.ch?subject=Advertising%20Enquiry" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Advertise</a>
+            <a href="mailto:hello@indiaspora.ch?subject=Advertising%20Enquiry" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Advertise</a>
           </div>
         </div>
       </div>
