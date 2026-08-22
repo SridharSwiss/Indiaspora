@@ -170,12 +170,12 @@ export default function Navbar() {
           white-space: nowrap;
         }
         .nav-child-link:hover, .nav-child-link.active {
-          color: var(--sf);
+          color: var(--sf-hi);
           background: var(--sf-bg);
         }
         .nav-child-dot {
           width: 6px; height: 6px; border-radius: 50%;
-          background: var(--sf); opacity: 0.5; flex-shrink: 0;
+          background: var(--aurora-grad); opacity: 0.5; flex-shrink: 0;
           transition: opacity 0.12s;
         }
         .nav-child-link:hover .nav-child-dot,
@@ -226,8 +226,8 @@ export default function Navbar() {
             <div
               className="flex items-center justify-center text-base"
               style={{ width: 32, height: 32, borderRadius: 9,
-                       background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
-                       boxShadow: "0 2px 12px var(--sf-glow)", flexShrink: 0 }}
+                       background: "var(--aurora-grad)",
+                       boxShadow: "0 2px 16px var(--sf-glow)", flexShrink: 0 }}
               aria-hidden
             >
               🪔
@@ -375,7 +375,7 @@ export default function Navbar() {
                 >
                   <div style={{
                     width: 28, height: 28, borderRadius: "50%",
-                    background: "linear-gradient(135deg,var(--sf),var(--sf-hi))",
+                    background: "var(--aurora-grad)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     color: "#fff", fontSize: 12, fontWeight: 800, flexShrink: 0,
                   }}>
@@ -455,8 +455,8 @@ export default function Navbar() {
                   style={{
                     padding: "7px 16px", borderRadius: 999,
                     fontSize: 13, fontWeight: 700, color: "#fff",
-                    background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
-                    boxShadow: "0 3px 14px var(--sf-glow)",
+                    background: "var(--aurora-grad)",
+                    boxShadow: "0 3px 16px var(--sf-glow)",
                     transition: "opacity 0.15s, transform 0.2s",
                     border: "none", cursor: "pointer",
                   }}
@@ -584,7 +584,7 @@ export default function Navbar() {
                       <div style={{
                         marginTop: 2, marginBottom: 4,
                         marginLeft: 8, paddingLeft: 14,
-                        borderLeft: "2px solid rgba(249,115,22,0.2)",
+                        borderLeft: "2px solid rgba(139,92,246,0.25)",
                       }}>
                         {item.children.map((child) => {
                           const childActive = pathname === child.href || pathname.startsWith(child.href + "/");
@@ -624,7 +624,7 @@ export default function Navbar() {
               {userEmail ? (
                 <>
                   <div style={{ padding: "12px 14px", borderRadius: 14, background: "var(--surface-2)", display: "flex", alignItems: "center", gap: 12, border: "1px solid var(--border)" }}>
-                    <div style={{ width: 38, height: 38, borderRadius: "50%", background: "linear-gradient(135deg,var(--sf),var(--sf-hi))", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 15, flexShrink: 0 }}>
+                    <div style={{ width: 38, height: 38, borderRadius: "50%", background: "var(--aurora-grad)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 15, flexShrink: 0 }}>
                       {userEmail.charAt(0).toUpperCase()}
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -652,8 +652,8 @@ export default function Navbar() {
                       display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
                       padding: "13px 24px", borderRadius: 999,
                       fontSize: 14, fontWeight: 700, color: "#fff",
-                      background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
-                      boxShadow: "0 4px 20px var(--sf-glow)",
+                      background: "var(--aurora-grad)",
+                      boxShadow: "0 4px 24px var(--sf-glow)",
                       border: "none", cursor: "pointer",
                     }}
                   >

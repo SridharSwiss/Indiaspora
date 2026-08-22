@@ -37,7 +37,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "linear-gradient(135deg, #f97316, #d97706)" }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "var(--aurora-grad)" }}>
                 <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
                   <circle cx="12" cy="12" r="4" fill="white" opacity="0.95" />
                   {[0,30,60,90,120,150,180,210,240,270,300,330].map((deg, i) => (
