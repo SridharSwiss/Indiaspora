@@ -46,7 +46,13 @@ function LoginForm() {
         setSuccess("Account created! Check your email to confirm.");
       }
     } catch (e: unknown) {
-      setError((e as Error).message || "Something went wrong");
+      const msg = (e as { message?: string })?.message || String(e);
+      console.error("Auth error:", e);
+      if (msg.includes("fetch") || msg.includes("network") || msg.includes("Failed")) {
+        setError("Cannot connect to authentication service. Please check that Supabase env vars are set in Vercel and redeploy.");
+      } else {
+        setError(msg || "Something went wrong");
+      }
     } finally {
       setLoading(false);
     }
