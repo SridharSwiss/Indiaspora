@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, Settings } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/data";
+import { createClient } from "@/lib/supabase/client";
+import JoinModal from "@/components/JoinModal";
 
 type Theme = "light" | "dark" | "system";
 
@@ -34,8 +36,23 @@ export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState<string | null>(null);
   const [theme, setTheme] = useState<Theme>("system");
+  const [joinOpen, setJoinOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const supabase = createClient();
+
+  // Auth state
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => setUserEmail(user?.email ?? null));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setUserEmail(session?.user?.email ?? null);
+    });
+    return () => subscription.unsubscribe();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Scroll detection
   useEffect(() => {
@@ -286,27 +303,82 @@ export default function Navbar() {
               {dark ? <Sun style={{ width: 16, height: 16 }} /> : <Moon style={{ width: 16, height: 16 }} />}
             </button>
 
-            <Link
-              href="/community"
-              className="hidden lg:inline-flex items-center gap-1.5"
-              style={{
-                padding: "7px 16px", borderRadius: 999,
-                fontSize: 13, fontWeight: 700, color: "#fff",
-                background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
-                boxShadow: "0 3px 14px var(--sf-glow)",
-                transition: "opacity 0.15s, transform 0.15s, box-shadow 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.opacity = "0.9";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.opacity = "1";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-              }}
-            >
-              Join Community
-            </Link>
+            {userEmail ? (
+              <div style={{ position: "relative" }} className="hidden lg:block">
+                <button
+                  onClick={() => setUserMenuOpen(v => !v)}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 7,
+                    padding: "6px 14px 6px 8px", borderRadius: 999,
+                    background: "var(--surface-2)", border: "1px solid var(--border-2)",
+                    cursor: "pointer", fontSize: 13, fontWeight: 600, color: "var(--text)",
+                  }}
+                >
+                  <div style={{
+                    width: 26, height: 26, borderRadius: "50%",
+                    background: "linear-gradient(135deg,var(--sf),var(--sf-hi))",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "#fff", fontSize: 11, fontWeight: 800,
+                  }}>
+                    {userEmail.charAt(0).toUpperCase()}
+                  </div>
+                  <span style={{ maxWidth: 100, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    {userEmail.split("@")[0]}
+                  </span>
+                  <ChevronDown style={{ width: 12, height: 12, color: "var(--text-3)", transition: "transform 0.2s", transform: userMenuOpen ? "rotate(180deg)" : "none" }} />
+                </button>
+                {userMenuOpen && (
+                  <div
+                    style={{
+                      position: "absolute", top: "calc(100% + 8px)", right: 0,
+                      background: "var(--surface)", border: "1px solid var(--border-2)",
+                      borderRadius: 14, padding: 6, minWidth: 180,
+                      boxShadow: "0 8px 28px rgba(0,0,0,0.12)",
+                      zIndex: 70,
+                    }}
+                    onMouseLeave={() => setUserMenuOpen(false)}
+                  >
+                    <div style={{ padding: "8px 12px 10px", borderBottom: "1px solid var(--border)", marginBottom: 4 }}>
+                      <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em" }}>Signed in as</div>
+                      <div style={{ fontSize: 13, color: "var(--text)", fontWeight: 600, marginTop: 2, wordBreak: "break-all" }}>{userEmail}</div>
+                    </div>
+                    {userEmail === process.env.NEXT_PUBLIC_ADMIN_EMAIL && (
+                      <Link href="/admin" onClick={() => setUserMenuOpen(false)} style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 12px", borderRadius: 9, fontSize: 13, color: "var(--sf)", fontWeight: 600 }}>
+                        <Settings size={14} /> Admin Dashboard
+                      </Link>
+                    )}
+                    <button
+                      onClick={async () => { await supabase.auth.signOut(); setUserMenuOpen(false); router.refresh(); }}
+                      style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 12px", borderRadius: 9, fontSize: 13, color: "var(--text-2)", fontWeight: 600, width: "100%", border: "none", background: "none", cursor: "pointer" }}
+                    >
+                      <LogOut size={14} /> Sign out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <Link href="/login" className="hidden lg:inline-flex items-center" style={{ padding: "7px 14px", borderRadius: 999, fontSize: 13, fontWeight: 600, color: "var(--text-2)", transition: "color 0.15s" }}>
+                  <User size={14} style={{ marginRight: 5 }} /> Sign in
+                </Link>
+                <button
+                  onClick={() => setJoinOpen(true)}
+                  className="hidden lg:inline-flex items-center gap-1.5"
+                  style={{
+                    padding: "7px 16px", borderRadius: 999,
+                    fontSize: 13, fontWeight: 700, color: "#fff",
+                    background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
+                    boxShadow: "0 3px 14px var(--sf-glow)",
+                    transition: "opacity 0.15s, transform 0.15s",
+                    border: "none", cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.9"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+                >
+                  Join Community
+                </button>
+              </>
+            )}
 
             <button
               className="lg:hidden"
@@ -455,19 +527,33 @@ export default function Navbar() {
             {/* Bottom CTAs */}
             <div style={{ marginTop: "auto", paddingTop: 20,
                           borderTop: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: 8 }}>
-              <Link
-                href="/community"
-                onClick={() => setIsOpen(false)}
-                style={{
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  padding: "13px 24px", borderRadius: 999,
-                  fontSize: 14, fontWeight: 700, color: "#fff",
-                  background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
-                  boxShadow: "0 4px 20px var(--sf-glow)",
-                }}
-              >
-                Join Community →
-              </Link>
+              {userEmail ? (
+                <div style={{ padding: "12px 14px", borderRadius: 12, background: "var(--surface-2)", display: "flex", alignItems: "center", gap: 10 }}>
+                  <div style={{ width: 32, height: 32, borderRadius: "50%", background: "linear-gradient(135deg,var(--sf),var(--sf-hi))", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 13 }}>
+                    {userEmail.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text)" }}>{userEmail.split("@")[0]}</div>
+                    <button onClick={async () => { await supabase.auth.signOut(); setIsOpen(false); router.refresh(); }} style={{ fontSize: 11, color: "var(--text-3)", background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", gap: 4 }}>
+                      <LogOut size={10} /> Sign out
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={() => { setIsOpen(false); setJoinOpen(true); }}
+                  style={{
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    padding: "13px 24px", borderRadius: 999,
+                    fontSize: 14, fontWeight: 700, color: "#fff",
+                    background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
+                    boxShadow: "0 4px 20px var(--sf-glow)",
+                    border: "none", cursor: "pointer",
+                  }}
+                >
+                  Join Community →
+                </button>
+              )}
               <Link
                 href="/business"
                 onClick={() => setIsOpen(false)}
@@ -485,6 +571,8 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
+      <JoinModal open={joinOpen} onClose={() => setJoinOpen(false)} />
     </>
   );
 }

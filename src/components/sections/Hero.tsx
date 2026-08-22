@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, Users, Building2, MapPin, Briefcase } from "lucide-react";
 import { STATS } from "@/lib/data";
+import JoinModal from "@/components/JoinModal";
 
 const HERO_WORDS = ["Community", "Culture", "Cuisine", "Connections", "Commerce"];
 
 export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
+  const [joinOpen, setJoinOpen] = useState(false);
 
   useEffect(() => {
     const t = setInterval(() => setWordIndex((p) => (p + 1) % HERO_WORDS.length), 2800);
@@ -130,8 +132,8 @@ export default function Hero() {
             animation: "fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both",
           }}
         >
-          <Link
-            href="/community"
+          <button
+            onClick={() => setJoinOpen(true)}
             style={{
               display: "inline-flex", alignItems: "center", gap: 8,
               padding: "13px 26px", borderRadius: 999,
@@ -139,6 +141,7 @@ export default function Hero() {
               background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
               boxShadow: "0 4px 20px var(--sf-glow)",
               transition: "opacity 0.15s, transform 0.2s, box-shadow 0.2s",
+              border: "none", cursor: "pointer",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.opacity = "0.92";
@@ -151,9 +154,9 @@ export default function Hero() {
               (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px var(--sf-glow)";
             }}
           >
-            Explore Community
+            Join the Community
             <ArrowRight style={{ width: 16, height: 16 }} />
-          </Link>
+          </button>
           <Link
             href="/events"
             style={{
@@ -249,6 +252,8 @@ export default function Hero() {
         @keyframes word-in { from { opacity:0; filter:blur(4px); transform:translateY(10px); } to { opacity:1; filter:none; transform:none; } }
         @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.75)} }
       `}</style>
+
+      <JoinModal open={joinOpen} onClose={() => setJoinOpen(false)} />
     </section>
   );
 }
