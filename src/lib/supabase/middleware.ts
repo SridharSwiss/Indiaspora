@@ -22,16 +22,24 @@ export async function updateSession(request: NextRequest) {
   );
 
   const { data: { user } } = await supabase.auth.getUser();
+  const { pathname } = request.nextUrl;
 
   // Protect /admin routes
-  if (request.nextUrl.pathname.startsWith("/admin")) {
+  if (pathname.startsWith("/admin")) {
     if (!user) {
-      return NextResponse.redirect(new URL("/login?redirect=/admin", request.url));
+      return NextResponse.redirect(new URL(`/login?redirect=/admin`, request.url));
     }
     const adminEmail = process.env.ADMIN_EMAIL;
     if (adminEmail && user.email !== adminEmail) {
       return NextResponse.redirect(new URL("/", request.url));
     }
+  }
+
+  // Gate sub-pages — top-level section pages are public; deeper paths require login
+  const PUBLIC_ROOTS = ["/community", "/living", "/food", "/business", "/culture", "/events", "/cities", "/resources"];
+  const isSubPage = PUBLIC_ROOTS.some(root => pathname.startsWith(root + "/"));
+  if (isSubPage && !user) {
+    return NextResponse.redirect(new URL(`/login?redirect=${encodeURIComponent(pathname)}`, request.url));
   }
 
   return supabaseResponse;

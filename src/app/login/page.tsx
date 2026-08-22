@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Mail, Lock, Loader2, Eye, EyeOff } from "lucide-react";
+const LockIcon = Lock;
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/";
+  const isGated = !!searchParams.get("redirect") && searchParams.get("redirect") !== "/";
   const [mode, setMode] = useState<"login" | "magic">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,12 +69,23 @@ function LoginForm() {
         }}>
           <Link href="/" style={{ fontSize: 32, textDecoration: "none" }}>🪔</Link>
           <h1 style={{ margin: "12px 0 4px", color: "#fff", fontSize: 22, fontWeight: 800, fontFamily: "'Syne',system-ui,sans-serif" }}>
-            {mode === "login" ? "Welcome back" : "Magic link"}
+            {isGated ? "Members only" : mode === "login" ? "Welcome back" : "Magic link"}
           </h1>
           <p style={{ margin: 0, color: "rgba(255,255,255,0.8)", fontSize: 13 }}>
-            Indiaspora · Switzerland&apos;s Indian Community Hub
+            {isGated ? "Sign in to access the full Indiaspora platform" : "Indiaspora · Switzerland's Indian Community Hub"}
           </p>
         </div>
+
+        {/* Gated prompt */}
+        {isGated && (
+          <div style={{ margin: "20px 24px 0", padding: "12px 16px", borderRadius: 12, background: "rgba(249,115,22,0.07)", border: "1px solid rgba(249,115,22,0.2)", display: "flex", alignItems: "center", gap: 10 }}>
+            <LockIcon size={14} style={{ color: "#F97316", flexShrink: 0 }} />
+            <p style={{ margin: 0, fontSize: 13, color: "var(--text-2)", lineHeight: 1.5 }}>
+              This page is available to Indiaspora members. Sign in or use a magic link to continue.
+              Don&apos;t have an account? <Link href="/" style={{ color: "#F97316", fontWeight: 600, textDecoration: "none" }}>Join the community →</Link>
+            </p>
+          </div>
+        )}
 
         <div style={{ padding: "32px 32px 28px" }}>
           {/* Mode switcher */}
