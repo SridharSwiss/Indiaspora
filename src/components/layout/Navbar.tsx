@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, Settings } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, Settings, UserPlus } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/data";
 import { createClient } from "@/lib/supabase/client";
 import JoinModal from "@/components/JoinModal";
@@ -42,7 +42,11 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const supabase = createClient();
+  const userMenuTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  // Stable supabase client — never re-created
+  const supabase = useMemo(() => createClient(), []);
 
   // Auth state
   useEffect(() => {
@@ -51,8 +55,7 @@ export default function Navbar() {
       setUserEmail(session?.user?.email ?? null);
     });
     return () => subscription.unsubscribe();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [supabase]);
 
   // Scroll detection
   useEffect(() => {
@@ -70,16 +73,28 @@ export default function Navbar() {
   }, []);
 
   // Close on route change
-  useEffect(() => { setIsOpen(false); setActiveMenu(null); setMobileOpen(null); }, [pathname]);
+  useEffect(() => { setIsOpen(false); setActiveMenu(null); setMobileOpen(null); setUserMenuOpen(false); }, [pathname]);
 
   // Close on ESC
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { setIsOpen(false); setActiveMenu(null); }
+      if (e.key === "Escape") { setIsOpen(false); setActiveMenu(null); setUserMenuOpen(false); }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, []);
+
+  // Click outside — close user menu
+  useEffect(() => {
+    if (!userMenuOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [userMenuOpen]);
 
   // Lock body scroll when mobile drawer open
   useEffect(() => {
@@ -93,7 +108,7 @@ export default function Navbar() {
     applyTheme(next);
   }, [theme]);
 
-  // Smooth dropdown helpers — delay close so mouse can travel to dropdown panel
+  // Nav dropdown helpers — delay close so mouse can travel diagonally
   const openMenu = useCallback((label: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setActiveMenu(label);
@@ -107,6 +122,28 @@ export default function Navbar() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
   }, []);
 
+  // User menu — delayed close so hovering over it doesn't flicker
+  const openUserMenu = useCallback(() => {
+    if (userMenuTimer.current) clearTimeout(userMenuTimer.current);
+    setUserMenuOpen(true);
+  }, []);
+
+  const scheduleUserMenuClose = useCallback(() => {
+    userMenuTimer.current = setTimeout(() => setUserMenuOpen(false), 200);
+  }, []);
+
+  const cancelUserMenuClose = useCallback(() => {
+    if (userMenuTimer.current) clearTimeout(userMenuTimer.current);
+  }, []);
+
+  const signOut = useCallback(async () => {
+    await supabase.auth.signOut();
+    setUserMenuOpen(false);
+    setIsOpen(false);
+    router.refresh();
+  }, [supabase, router]);
+
+  const isAdmin = userEmail === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
   const dark = isDarkMode(theme);
 
   return (
@@ -128,6 +165,7 @@ export default function Navbar() {
           font-size: 13px;
           font-weight: 500;
           color: var(--text-2);
+          text-decoration: none;
           transition: color 0.12s, background 0.12s;
           white-space: nowrap;
         }
@@ -142,6 +180,27 @@ export default function Navbar() {
         }
         .nav-child-link:hover .nav-child-dot,
         .nav-child-link.active .nav-child-dot { opacity: 1; }
+
+        .nav-sign-in:hover {
+          color: var(--text) !important;
+          background: var(--surface-2) !important;
+        }
+        .nav-icon-btn:hover {
+          color: var(--text) !important;
+          background: var(--surface-2) !important;
+        }
+        .user-menu-item:hover {
+          background: var(--surface-2) !important;
+          color: var(--text) !important;
+        }
+        .mobile-link:hover {
+          background: var(--sf-bg) !important;
+          color: var(--sf) !important;
+        }
+        .join-btn:hover {
+          opacity: 0.88 !important;
+          transform: translateY(-1px) !important;
+        }
       `}</style>
 
       <nav
@@ -163,7 +222,7 @@ export default function Navbar() {
           }}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="IndiaSwiss home">
+          <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="Indiaspora home">
             <div
               className="flex items-center justify-center text-base"
               style={{ width: 32, height: 32, borderRadius: 9,
@@ -177,7 +236,7 @@ export default function Navbar() {
               <strong style={{ fontSize: 15, fontWeight: 800, letterSpacing: "-0.03em", display: "block",
                                fontFamily: "'Syne', system-ui, sans-serif" }}>
                 <span className="gradient-text">India</span>
-                <span style={{ color: "var(--text)" }}>Swiss</span>
+                <span style={{ color: "var(--text)" }}>spora</span>
               </strong>
               <span style={{ fontSize: 9, color: "var(--text-3)", letterSpacing: "0.18em",
                              textTransform: "uppercase", fontWeight: 500 }}>
@@ -187,7 +246,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <ul className="hidden lg:flex items-center gap-0" role="list" style={{ listStyle: "none" }}>
+          <ul className="hidden lg:flex items-center gap-0" role="list" style={{ listStyle: "none", margin: 0, padding: 0 }}>
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + "/");
               const open = activeMenu === item.label;
@@ -207,7 +266,7 @@ export default function Navbar() {
                       color: active ? "var(--sf)" : open ? "var(--text)" : "var(--text-2)",
                       background: open && !active ? "var(--surface-2)" : "transparent",
                       transition: "color 0.15s, background 0.15s",
-                      whiteSpace: "nowrap",
+                      whiteSpace: "nowrap", textDecoration: "none",
                     }}
                     onMouseEnter={(e) => {
                       if (!active) (e.currentTarget as HTMLElement).style.color = "var(--text)";
@@ -244,12 +303,11 @@ export default function Navbar() {
                       onMouseLeave={scheduleClose}
                       style={{
                         position: "absolute",
-                        top: "calc(100% + 4px)", /* tighter gap — 4px instead of 10px */
+                        top: "calc(100% + 4px)",
                         left: "50%",
                         transform: "translateX(-50%)",
                         minWidth: 220,
                         zIndex: 60,
-                        /* invisible top padding acts as bridge over the gap */
                         paddingTop: 8,
                       }}
                     >
@@ -281,110 +339,141 @@ export default function Navbar() {
           </ul>
 
           {/* Right actions */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
+            {/* Theme toggle */}
             <button
               onClick={toggleTheme}
               aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+              className="nav-icon-btn"
               style={{
                 width: 34, height: 34, borderRadius: 10,
                 display: "flex", alignItems: "center", justifyContent: "center",
                 color: "var(--text-2)", background: "transparent",
+                border: "none", cursor: "pointer",
                 transition: "color 0.15s, background 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "var(--text)";
-                (e.currentTarget as HTMLElement).style.background = "var(--surface-2)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "var(--text-2)";
-                (e.currentTarget as HTMLElement).style.background = "transparent";
               }}
             >
               {dark ? <Sun style={{ width: 16, height: 16 }} /> : <Moon style={{ width: 16, height: 16 }} />}
             </button>
 
+            {/* Auth: logged in → avatar menu | logged out → Sign in + Join */}
             {userEmail ? (
-              <div style={{ position: "relative" }} className="hidden lg:block">
+              <div ref={userMenuRef} style={{ position: "relative" }} className="hidden lg:block">
                 <button
                   onClick={() => setUserMenuOpen(v => !v)}
+                  onMouseEnter={openUserMenu}
+                  onMouseLeave={scheduleUserMenuClose}
+                  aria-expanded={userMenuOpen}
+                  aria-haspopup="menu"
                   style={{
                     display: "flex", alignItems: "center", gap: 7,
-                    padding: "6px 14px 6px 8px", borderRadius: 999,
+                    padding: "5px 12px 5px 6px", borderRadius: 999,
                     background: "var(--surface-2)", border: "1px solid var(--border-2)",
                     cursor: "pointer", fontSize: 13, fontWeight: 600, color: "var(--text)",
+                    transition: "border-color 0.15s, background 0.15s",
                   }}
                 >
                   <div style={{
-                    width: 26, height: 26, borderRadius: "50%",
+                    width: 28, height: 28, borderRadius: "50%",
                     background: "linear-gradient(135deg,var(--sf),var(--sf-hi))",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#fff", fontSize: 11, fontWeight: 800,
+                    color: "#fff", fontSize: 12, fontWeight: 800, flexShrink: 0,
                   }}>
                     {userEmail.charAt(0).toUpperCase()}
                   </div>
-                  <span style={{ maxWidth: 100, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  <span style={{ maxWidth: 90, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {userEmail.split("@")[0]}
                   </span>
-                  <ChevronDown style={{ width: 12, height: 12, color: "var(--text-3)", transition: "transform 0.2s", transform: userMenuOpen ? "rotate(180deg)" : "none" }} />
+                  <ChevronDown style={{
+                    width: 13, height: 13, color: "var(--text-3)", flexShrink: 0,
+                    transition: "transform 0.2s",
+                    transform: userMenuOpen ? "rotate(180deg)" : "none",
+                  }} />
                 </button>
+
                 {userMenuOpen && (
                   <div
+                    role="menu"
+                    onMouseEnter={cancelUserMenuClose}
+                    onMouseLeave={scheduleUserMenuClose}
                     style={{
                       position: "absolute", top: "calc(100% + 8px)", right: 0,
                       background: "var(--surface)", border: "1px solid var(--border-2)",
-                      borderRadius: 14, padding: 6, minWidth: 180,
-                      boxShadow: "0 8px 28px rgba(0,0,0,0.12)",
+                      borderRadius: 16, padding: 6, minWidth: 200,
+                      boxShadow: "0 12px 40px rgba(0,0,0,0.14)",
                       zIndex: 70,
+                      animation: "userMenuIn 0.15s cubic-bezier(0.16,1,0.3,1) both",
                     }}
-                    onMouseLeave={() => setUserMenuOpen(false)}
                   >
-                    <div style={{ padding: "8px 12px 10px", borderBottom: "1px solid var(--border)", marginBottom: 4 }}>
-                      <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em" }}>Signed in as</div>
-                      <div style={{ fontSize: 13, color: "var(--text)", fontWeight: 600, marginTop: 2, wordBreak: "break-all" }}>{userEmail}</div>
+                    <style>{`@keyframes userMenuIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }`}</style>
+                    <div style={{ padding: "10px 14px 12px", borderBottom: "1px solid var(--border)", marginBottom: 4 }}>
+                      <div style={{ fontSize: 10, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 3 }}>Signed in as</div>
+                      <div style={{ fontSize: 13, color: "var(--text)", fontWeight: 600, wordBreak: "break-all" }}>{userEmail}</div>
                     </div>
-                    {userEmail === process.env.NEXT_PUBLIC_ADMIN_EMAIL && (
-                      <Link href="/admin" onClick={() => setUserMenuOpen(false)} style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 12px", borderRadius: 9, fontSize: 13, color: "var(--sf)", fontWeight: 600 }}>
-                        <Settings size={14} /> Admin Dashboard
+                    {isAdmin && (
+                      <Link
+                        href="/admin"
+                        role="menuitem"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="user-menu-item"
+                        style={{ display: "flex", alignItems: "center", gap: 9, padding: "9px 14px", borderRadius: 10, fontSize: 13, color: "var(--sf)", fontWeight: 600, textDecoration: "none", transition: "background 0.12s" }}
+                      >
+                        <Settings size={14} style={{ flexShrink: 0 }} /> Admin Dashboard
                       </Link>
                     )}
                     <button
-                      onClick={async () => { await supabase.auth.signOut(); setUserMenuOpen(false); router.refresh(); }}
-                      style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 12px", borderRadius: 9, fontSize: 13, color: "var(--text-2)", fontWeight: 600, width: "100%", border: "none", background: "none", cursor: "pointer" }}
+                      role="menuitem"
+                      onClick={signOut}
+                      className="user-menu-item"
+                      style={{ display: "flex", alignItems: "center", gap: 9, padding: "9px 14px", borderRadius: 10, fontSize: 13, color: "var(--text-2)", fontWeight: 600, width: "100%", border: "none", background: "none", cursor: "pointer", textAlign: "left", transition: "background 0.12s" }}
                     >
-                      <LogOut size={14} /> Sign out
+                      <LogOut size={14} style={{ flexShrink: 0 }} /> Sign out
                     </button>
                   </div>
                 )}
               </div>
             ) : (
               <>
-                <Link href="/login" className="hidden lg:inline-flex items-center" style={{ padding: "7px 14px", borderRadius: 999, fontSize: 13, fontWeight: 600, color: "var(--text-2)", transition: "color 0.15s" }}>
-                  <User size={14} style={{ marginRight: 5 }} /> Sign in
+                <Link
+                  href="/login"
+                  className="nav-sign-in hidden lg:inline-flex items-center gap-1.5"
+                  style={{
+                    padding: "7px 14px", borderRadius: 999,
+                    fontSize: 13, fontWeight: 600,
+                    color: "var(--text-2)",
+                    background: "transparent",
+                    border: "1px solid var(--border-2)",
+                    textDecoration: "none",
+                    transition: "color 0.15s, background 0.15s, border-color 0.15s",
+                  }}
+                >
+                  <User size={13} /> Sign in
                 </Link>
                 <button
                   onClick={() => setJoinOpen(true)}
-                  className="hidden lg:inline-flex items-center gap-1.5"
+                  className="join-btn hidden lg:inline-flex items-center gap-1.5"
                   style={{
                     padding: "7px 16px", borderRadius: 999,
                     fontSize: 13, fontWeight: 700, color: "#fff",
                     background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
                     boxShadow: "0 3px 14px var(--sf-glow)",
-                    transition: "opacity 0.15s, transform 0.15s",
+                    transition: "opacity 0.15s, transform 0.2s",
                     border: "none", cursor: "pointer",
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.9"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
                 >
-                  Join Community
+                  <UserPlus size={13} /> Join Community
                 </button>
               </>
             )}
 
+            {/* Mobile hamburger */}
             <button
-              className="lg:hidden"
-              style={{ width: 34, height: 34, borderRadius: 10,
+              className="lg:hidden nav-icon-btn"
+              style={{ width: 36, height: 36, borderRadius: 10,
                        display: "flex", alignItems: "center", justifyContent: "center",
-                       color: "var(--text-2)", background: "var(--surface-2)" }}
+                       color: "var(--text-2)", background: "var(--surface-2)",
+                       border: "1px solid var(--border)", cursor: "pointer",
+                       transition: "color 0.15s, background 0.15s" }}
               onClick={() => setIsOpen(true)}
               aria-label="Open menu"
               aria-expanded={isOpen}
@@ -405,7 +494,7 @@ export default function Navbar() {
           <div
             onClick={() => setIsOpen(false)}
             style={{ position: "absolute", inset: 0,
-                     background: "rgba(0,0,0,0.45)",
+                     background: "rgba(0,0,0,0.5)",
                      backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }}
           />
 
@@ -413,160 +502,192 @@ export default function Navbar() {
           <div
             style={{
               position: "absolute", top: 0, right: 0, bottom: 0,
-              width: "min(360px, 90vw)",
+              width: "min(360px, 92vw)",
               background: "var(--surface)",
               borderLeft: "1px solid var(--border-2)",
               display: "flex", flexDirection: "column",
-              padding: "20px 16px", gap: 4, overflowY: "auto",
+              padding: "20px 16px", gap: 2, overflowY: "auto",
               animation: "slideIn 0.25s cubic-bezier(0.16,1,0.3,1) both",
             }}
           >
-            <style>{`
-              @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-            `}</style>
+            <style>{`@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }`}</style>
 
             {/* Top row */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
-              <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsOpen(false)}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, flexShrink: 0 }}>
+              <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsOpen(false)} style={{ textDecoration: "none" }}>
                 <div style={{ width: 30, height: 30, borderRadius: 8,
                               background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
                               display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14 }}>🪔</div>
                 <strong style={{ fontFamily: "'Syne', system-ui, sans-serif", fontSize: 15, fontWeight: 800, letterSpacing: "-0.03em" }}>
                   <span className="gradient-text">India</span>
-                  <span style={{ color: "var(--text)" }}>Swiss</span>
+                  <span style={{ color: "var(--text)" }}>spora</span>
                 </strong>
               </Link>
               <button
                 onClick={() => setIsOpen(false)}
                 aria-label="Close menu"
-                style={{ width: 34, height: 34, borderRadius: 10,
+                style={{ width: 34, height: 34, borderRadius: 10, flexShrink: 0,
                          display: "flex", alignItems: "center", justifyContent: "center",
-                         color: "var(--text-2)", background: "var(--surface-2)" }}
+                         color: "var(--text-2)", background: "var(--surface-2)",
+                         border: "none", cursor: "pointer" }}
               >
                 <X style={{ width: 18, height: 18 }} />
               </button>
             </div>
 
             {/* Mobile nav links */}
-            {NAV_ITEMS.map((item) => {
-              const active = pathname === item.href || pathname.startsWith(item.href + "/");
-              const expanded = mobileOpen === item.label;
-              return (
-                <div key={item.label}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                    <Link
-                      href={item.href}
-                      onClick={() => { if (!item.children) setIsOpen(false); }}
-                      style={{
-                        flex: 1, padding: "11px 14px", borderRadius: 12,
-                        fontSize: 15, fontWeight: 600,
-                        color: active ? "var(--sf)" : "var(--text)",
-                        background: active ? "var(--sf-bg)" : "transparent",
-                        transition: "color 0.15s, background 0.15s",
-                      }}
-                    >
-                      {item.label}
-                    </Link>
-                    {item.children && (
-                      <button
-                        onClick={() => setMobileOpen(expanded ? null : item.label)}
-                        aria-label={`${expanded ? "Collapse" : "Expand"} ${item.label}`}
+            <div style={{ flex: 1, overflowY: "auto" }}>
+              {NAV_ITEMS.map((item) => {
+                const active = pathname === item.href || pathname.startsWith(item.href + "/");
+                const expanded = mobileOpen === item.label;
+                return (
+                  <div key={item.label}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                      <Link
+                        href={item.href}
+                        onClick={() => { if (!item.children) setIsOpen(false); }}
+                        className="mobile-link"
                         style={{
-                          width: 38, height: 38, borderRadius: 10, flexShrink: 0,
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          color: expanded ? "var(--sf)" : "var(--text-3)",
-                          background: expanded ? "var(--sf-bg)" : "var(--surface-2)",
+                          flex: 1, padding: "11px 14px", borderRadius: 12,
+                          fontSize: 15, fontWeight: 600,
+                          color: active ? "var(--sf)" : "var(--text)",
+                          background: active ? "var(--sf-bg)" : "transparent",
+                          textDecoration: "none",
                           transition: "color 0.15s, background 0.15s",
+                          display: "block",
                         }}
                       >
-                        <ChevronDown style={{ width: 16, height: 16,
-                                             transition: "transform 0.25s cubic-bezier(0.16,1,0.3,1)",
-                                             transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }} />
-                      </button>
+                        {item.label}
+                      </Link>
+                      {item.children && (
+                        <button
+                          onClick={() => setMobileOpen(expanded ? null : item.label)}
+                          aria-label={`${expanded ? "Collapse" : "Expand"} ${item.label}`}
+                          style={{
+                            width: 38, height: 38, borderRadius: 10, flexShrink: 0,
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                            color: expanded ? "var(--sf)" : "var(--text-3)",
+                            background: expanded ? "var(--sf-bg)" : "var(--surface-2)",
+                            border: "none", cursor: "pointer",
+                            transition: "color 0.15s, background 0.15s",
+                          }}
+                        >
+                          <ChevronDown style={{ width: 16, height: 16,
+                                               transition: "transform 0.25s cubic-bezier(0.16,1,0.3,1)",
+                                               transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }} />
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Sub-items */}
+                    {item.children && expanded && (
+                      <div style={{
+                        marginTop: 2, marginBottom: 4,
+                        marginLeft: 8, paddingLeft: 14,
+                        borderLeft: "2px solid rgba(249,115,22,0.2)",
+                      }}>
+                        {item.children.map((child) => {
+                          const childActive = pathname === child.href || pathname.startsWith(child.href + "/");
+                          return (
+                            <Link
+                              key={child.label}
+                              href={child.href}
+                              onClick={() => setIsOpen(false)}
+                              className="mobile-link"
+                              style={{
+                                display: "flex", alignItems: "center", gap: 8,
+                                padding: "9px 10px", borderRadius: 10, marginBottom: 1,
+                                fontSize: 13.5, fontWeight: 500, textDecoration: "none",
+                                color: childActive ? "var(--sf)" : "var(--text-2)",
+                                background: childActive ? "var(--sf-bg)" : "transparent",
+                                transition: "color 0.12s, background 0.12s",
+                              }}
+                            >
+                              <span style={{
+                                width: 6, height: 6, borderRadius: "50%", flexShrink: 0,
+                                background: childActive ? "var(--sf)" : "var(--border-2)",
+                                transition: "background 0.12s",
+                              }} />
+                              {child.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
                     )}
                   </div>
-
-                  {/* Sub-items */}
-                  {item.children && expanded && (
-                    <div style={{
-                      marginTop: 2, marginBottom: 4,
-                      marginLeft: 8, paddingLeft: 14,
-                      borderLeft: "2px solid var(--sf-bg)",
-                    }}>
-                      {item.children.map((child) => {
-                        const childActive = pathname === child.href || pathname.startsWith(child.href + "/");
-                        return (
-                          <Link
-                            key={child.label}
-                            href={child.href}
-                            onClick={() => setIsOpen(false)}
-                            style={{
-                              display: "flex", alignItems: "center", gap: 8,
-                              padding: "9px 10px", borderRadius: 10, marginBottom: 2,
-                              fontSize: 13.5, fontWeight: 500,
-                              color: childActive ? "var(--sf)" : "var(--text-2)",
-                              background: childActive ? "var(--sf-bg)" : "transparent",
-                              transition: "color 0.12s, background 0.12s",
-                            }}
-                          >
-                            <span style={{
-                              width: 6, height: 6, borderRadius: "50%", flexShrink: 0,
-                              background: childActive ? "var(--sf)" : "var(--border-2)",
-                              transition: "background 0.12s",
-                            }} />
-                            {child.label}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
 
             {/* Bottom CTAs */}
-            <div style={{ marginTop: "auto", paddingTop: 20,
-                          borderTop: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: 8 }}>
+            <div style={{ paddingTop: 16, borderTop: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: 8, flexShrink: 0 }}>
               {userEmail ? (
-                <div style={{ padding: "12px 14px", borderRadius: 12, background: "var(--surface-2)", display: "flex", alignItems: "center", gap: 10 }}>
-                  <div style={{ width: 32, height: 32, borderRadius: "50%", background: "linear-gradient(135deg,var(--sf),var(--sf-hi))", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 13 }}>
-                    {userEmail.charAt(0).toUpperCase()}
+                <>
+                  <div style={{ padding: "12px 14px", borderRadius: 14, background: "var(--surface-2)", display: "flex", alignItems: "center", gap: 12, border: "1px solid var(--border)" }}>
+                    <div style={{ width: 38, height: 38, borderRadius: "50%", background: "linear-gradient(135deg,var(--sf),var(--sf-hi))", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 15, flexShrink: 0 }}>
+                      {userEmail.charAt(0).toUpperCase()}
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{userEmail.split("@")[0]}</div>
+                      <div style={{ fontSize: 11, color: "var(--text-3)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{userEmail}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text)" }}>{userEmail.split("@")[0]}</div>
-                    <button onClick={async () => { await supabase.auth.signOut(); setIsOpen(false); router.refresh(); }} style={{ fontSize: 11, color: "var(--text-3)", background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", gap: 4 }}>
-                      <LogOut size={10} /> Sign out
-                    </button>
-                  </div>
-                </div>
+                  {isAdmin && (
+                    <Link href="/admin" onClick={() => setIsOpen(false)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "11px 20px", borderRadius: 999, fontSize: 13, fontWeight: 700, color: "var(--sf)", background: "var(--sf-bg)", border: "1px solid rgba(249,115,22,0.2)", textDecoration: "none" }}>
+                      <Settings size={14} /> Admin Dashboard
+                    </Link>
+                  )}
+                  <button
+                    onClick={signOut}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "11px 20px", borderRadius: 999, fontSize: 13, fontWeight: 600, color: "var(--text-2)", background: "transparent", border: "1px solid var(--border-2)", cursor: "pointer" }}
+                  >
+                    <LogOut size={14} /> Sign out
+                  </button>
+                </>
               ) : (
-                <button
-                  onClick={() => { setIsOpen(false); setJoinOpen(true); }}
-                  style={{
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    padding: "13px 24px", borderRadius: 999,
-                    fontSize: 14, fontWeight: 700, color: "#fff",
-                    background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
-                    boxShadow: "0 4px 20px var(--sf-glow)",
-                    border: "none", cursor: "pointer",
-                  }}
-                >
-                  Join Community →
-                </button>
+                <>
+                  <button
+                    onClick={() => { setIsOpen(false); setJoinOpen(true); }}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                      padding: "13px 24px", borderRadius: 999,
+                      fontSize: 14, fontWeight: 700, color: "#fff",
+                      background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
+                      boxShadow: "0 4px 20px var(--sf-glow)",
+                      border: "none", cursor: "pointer",
+                    }}
+                  >
+                    <UserPlus size={15} /> Join Community
+                  </button>
+                  <Link
+                    href="/login"
+                    onClick={() => setIsOpen(false)}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                      padding: "12px 24px", borderRadius: 999,
+                      fontSize: 14, fontWeight: 600,
+                      color: "var(--text)", background: "var(--surface-2)",
+                      border: "1px solid var(--border-2)", textDecoration: "none",
+                    }}
+                  >
+                    <User size={14} /> Sign in
+                  </Link>
+                </>
               )}
-              <Link
-                href="/business"
-                onClick={() => setIsOpen(false)}
+
+              {/* Theme toggle in mobile drawer */}
+              <button
+                onClick={() => { toggleTheme(); }}
                 style={{
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  padding: "13px 24px", borderRadius: 999,
-                  fontSize: 14, fontWeight: 700,
-                  color: "var(--text)", background: "var(--surface-2)",
-                  border: "1px solid var(--border-2)",
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                  padding: "10px", borderRadius: 999,
+                  fontSize: 12, fontWeight: 600, color: "var(--text-3)",
+                  background: "transparent", border: "none", cursor: "pointer",
                 }}
               >
-                List Your Business
-              </Link>
+                {dark ? <Sun size={14} /> : <Moon size={14} />}
+                {dark ? "Switch to light mode" : "Switch to dark mode"}
+              </button>
             </div>
           </div>
         </div>
