@@ -11,18 +11,18 @@ export const metadata: Metadata = {
 };
 
 const passes = [
-  { name: "Half-Fare Travelcard (Halbtax)", price: "CHF 185/year", desc: "Halves the price of all single tickets nationwide. Best value for most residents.", recommended: true },
-  { name: "GA (General Abonnement)", price: "~CHF 3,860/year (2nd class)", desc: "Unlimited travel on all SBB trains, trams, buses, and most boats. Worth it for daily commuters.", recommended: false },
-  { name: "Day Pass", price: "CHF 52 (with Halbtax)", desc: "Unlimited travel on one day. Great for day trips.", recommended: false },
-  { name: "Zone Subscription", price: "Varies by city", desc: "Monthly/annual pass for a specific city zone (e.g., ZVV in Zurich). Cheaper than GA for city-only commuters.", recommended: false },
+  { name: "Half-Fare Travelcard (Halbtax)", price: "CHF 190/year (first year); CHF 170/year thereafter", desc: "Halves the price of virtually all public transport tickets nationwide — trains, buses, trams, boats, and most cable cars. Best value for most residents. Under-25 pay CHF 100/year. Buy at any SBB ticket window or sbb.ch.", recommended: true },
+  { name: "GA Travelcard (Generalabonnement)", price: "~CHF 3,995/year 2nd class; ~CHF 6,885 1st class", desc: "Unlimited travel on all SBB trains, most city trams and buses, regional railways, and boats. Worth it for heavy commuters travelling long distances daily. Monthly GA option also available at CHF 440 (2nd class).", recommended: false },
+  { name: "Day Pass", price: "~CHF 52 (with Halbtax)", desc: "Unlimited travel anywhere in Switzerland on one day. Great for weekend day-trips. Available via the SBB app.", recommended: false },
+  { name: "Zone Subscription", price: "Varies by city and zone", desc: "Monthly or annual pass for a specific fare zone in your city (e.g., ZVV in Zurich, TPG in Geneva). More economical than GA if you commute locally within one zone.", recommended: false },
 ];
 
 const cities = [
-  { city: "Zurich", network: "ZVV", note: "Trams, S-Bahn, buses. Excellent coverage. ZVV app for tickets." },
-  { city: "Geneva", network: "TPG", note: "Trams and buses. Free 90-min ticket with hotel check-in." },
-  { city: "Basel", network: "BVB/BLT", note: "Trams across city and into France/Germany." },
-  { city: "Bern", network: "BERNMOBIL", note: "Trams and buses; compact city — very walkable too." },
-  { city: "Lausanne", network: "TL / Metro", note: "Metro M2 (automated) + buses; hilly city." },
+  { city: "Zurich", network: "ZVV", note: "Trams, S-Bahn regional trains, buses, and lake boats — all integrated under ZVV (zvv.ch). ZVV app for tickets and real-time departures. Tram 10 & 14, and the S-Bahn, are the main routes for Indian communities in Zurich and surrounds." },
+  { city: "Geneva", network: "TPG", note: "Trams and buses operated by TPG (tpg.ch). Tip: hotel guests receive a free Tout Genève pass for unlimited free travel within the canton during their stay. Geneva also has cross-border lines into France." },
+  { city: "Basel", network: "BVB / BLT", note: "Trams across the city and into neighbouring France and Germany — a unique trilingual cross-border network. BVB runs city trams; BLT covers suburban routes." },
+  { city: "Bern", network: "BERNMOBIL", note: "Trams and buses run by BERNMOBIL. The capital is compact and very walkable. The S-Bahn network connects surrounding towns." },
+  { city: "Lausanne", network: "TL / Metro", note: "The automated Metro M2 (steepest metro in the world) + bus network TL. An M3 metro extension is under construction. Good connections to Geneva via direct trains every 20 minutes." },
 ];
 
 export default function TransportPage() {
@@ -41,7 +41,8 @@ export default function TransportPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Travel Passes</h2>
+          <h2 className="text-2xl font-bold text-white mb-2">Travel Passes</h2>
+          <p className="text-sm text-white/50 mb-6">All passes and tickets can be purchased via the SBB app or at any SBB ticket counter. The SBB app (sbb.ch/en) allows mobile tickets and real-time journey planning across all Swiss transport operators.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {passes.map((p) => (
               <div key={p.name} className={`glass card-hover rounded-2xl p-5 ${p.recommended ? 'border border-sky-500/40' : ''}`}>
@@ -61,7 +62,7 @@ export default function TransportPage() {
           <div className="space-y-3">
             {cities.map((c) => (
               <div key={c.city} className="glass rounded-2xl p-5 flex items-start gap-4">
-                <div className="w-16 text-center">
+                <div className="w-16 text-center flex-shrink-0">
                   <p className="text-sm font-bold text-white">{c.city}</p>
                   <p className="text-xs text-sky-400">{c.network}</p>
                 </div>
@@ -72,8 +73,9 @@ export default function TransportPage() {
         </section>
 
         <div className="glass rounded-2xl p-6 border border-sky-500/20">
-          <h3 className="text-base font-semibold text-sky-400 mb-2">Driving in Switzerland</h3>
-          <p className="text-sm text-white/70">Indian driving licences are valid for <strong className="text-white">12 months</strong> from residence permit issue date. After that, you must convert to a Swiss licence — this typically requires a theory test and practical driving lessons (unless your home canton exempts you).</p>
+          <h3 className="text-base font-semibold text-sky-400 mb-2">Driving in Switzerland with an Indian Licence</h3>
+          <p className="text-sm text-white/70 mb-3">An Indian driving licence is valid in Switzerland for <strong className="text-white">12 months from the date on your Swiss residence permit</strong>. If your licence is not in English, carry a certified translation. You must carry the original licence at all times while driving.</p>
+          <p className="text-sm text-white/70">After 12 months, you must convert to a Swiss licence. As an Indian national (non-EU country), this typically requires passing both the <strong className="text-white">Swiss theory test</strong> and a <strong className="text-white">practical control ride</strong> with an approved examiner. Start the process early — missing the deadline means re-taking the full Swiss driving school course. Contact your cantonal road traffic office (Strassenverkehrsamt / Office des automobiles) for the process in your canton. See also: <span className="text-sky-400">eda.admin.ch/countries/india</span> (Swiss Embassy guidance for Indian residents).</p>
         </div>
       </div>
     </div>
