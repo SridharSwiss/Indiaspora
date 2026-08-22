@@ -193,6 +193,7 @@ export const UPCOMING_EVENTS = [
     category: "Festival",
     description: "Annual Diwali gala with cultural performances, dinner, and celebration by IAGZ",
     color: "bg-orange-500",
+    url: "https://iagz.ch",
   },
   {
     title: "Swiss India Business Summit",
@@ -201,6 +202,7 @@ export const UPCOMING_EVENTS = [
     category: "Networking",
     description: "Annual summit connecting Indian entrepreneurs and Swiss businesses",
     color: "bg-blue-500",
+    url: "https://sicc.ch",
   },
   {
     title: "IAGZ Navratri Garba 2026",
@@ -209,6 +211,7 @@ export const UPCOMING_EVENTS = [
     category: "Cultural",
     description: "Largest Garba celebration in Switzerland with live music and traditional dance — organised by IAGZ",
     color: "bg-purple-500",
+    url: "https://iagz.ch",
   },
   {
     title: "SwissPuja Durga Puja 2026",
@@ -217,14 +220,16 @@ export const UPCOMING_EVENTS = [
     category: "Cultural",
     description: "Authentic Durga Puja over five days with pandal, prasad, and cultural programs",
     color: "bg-rose-500",
+    url: "https://swissapuja.ch",
   },
   {
     title: "Holi Zuri Openair 2026",
     date: "Mar 2026",
     location: "Zurich",
     category: "Festival",
-    description: "Celebrate the festival of colours with music, dance, and organic colour powder — holizuri.ch",
+    description: "Celebrate the festival of colours with music, dance, and organic colour powder",
     color: "bg-pink-500",
+    url: "https://holizuri.ch",
   },
   {
     title: "InBa India Basel Festival 2026",
@@ -233,6 +238,7 @@ export const UPCOMING_EVENTS = [
     category: "Arts",
     description: "Multi-week cultural festival showcasing Indian performing arts, music, and theatre at Theater Basel",
     color: "bg-teal-500",
+    url: "https://www.theater-basel.ch",
   },
 ];
 

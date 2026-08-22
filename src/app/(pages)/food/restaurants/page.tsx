@@ -162,23 +162,24 @@ export default function RestaurantsPage() {
           <section key={c.city}>
             <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>{c.city}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {c.restaurants.map((r) => (
-                <div key={r.name} className="glass card-hover rounded-2xl p-5">
-                  <h3 className="text-base font-semibold mb-0.5" style={{ color: "var(--text)" }}>
-                    {r.url ? (
-                      <a href={r.url} target="_blank" rel="noopener noreferrer" className="hover:text-orange-400 transition-colors">
-                        {r.name}
-                      </a>
-                    ) : r.name}
-                  </h3>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs" style={{ color: "var(--text-3)" }}>{r.area}</span>
-                    <span style={{ color: "var(--text-3)" }}>·</span>
-                    <span className="text-xs text-orange-400">{r.type}</span>
-                  </div>
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{r.note}</p>
-                </div>
-              ))}
+              {c.restaurants.map((r) => {
+                const Wrapper = r.url ? "a" : "div";
+                const props = r.url ? { href: r.url, target: "_blank", rel: "noopener noreferrer" } : {};
+                return (
+                  <Wrapper key={r.name} {...props} className="glass card-hover rounded-2xl p-5 block group" style={{ textDecoration: "none" }}>
+                    <div className="flex items-start justify-between gap-2 mb-0.5">
+                      <h3 className="text-base font-semibold group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
+                      {r.url && <span className="text-xs text-orange-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">Visit →</span>}
+                    </div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-xs" style={{ color: "var(--text-3)" }}>{r.area}</span>
+                      <span style={{ color: "var(--text-3)" }}>·</span>
+                      <span className="text-xs text-orange-400">{r.type}</span>
+                    </div>
+                    <p className="text-sm" style={{ color: "var(--text-2)" }}>{r.note}</p>
+                  </Wrapper>
+                );
+              })}
             </div>
           </section>
         ))}

@@ -46,12 +46,12 @@ const chambers = [
 ];
 
 const events = [
-  { name: "SICC Annual India Day", timing: "August", desc: "Flagship bilateral event attended by Swiss and Indian government officials, CEOs, and diplomats. Celebrating 40 years in 2025." },
-  { name: "Swiss-Indian Entrepreneurship Day", timing: "February", desc: "Annual event by SICC, Venturelab, ZHAW, and Swissnex India featuring startup pitches, power talks, and the Swiss-Indian Ambassador of Innovation award." },
-  { name: "TiEcon Switzerland", timing: "Autumn", desc: "Annual conference for Indian-origin entrepreneurs. Startup pitches, investor panels, and networking across Zurich." },
-  { name: "SICC Business Breakfast", timing: "Monthly", desc: "Informal breakfast networking with Swiss-Indian executives in Zurich — open to SICC members and invited guests." },
-  { name: "SIPN Networking Evening", timing: "Quarterly", desc: "Swiss India Professional Network events in Zurich, Basel, and Geneva, bringing together Indian diaspora across sectors." },
-  { name: "Pharma India Forum Basel", timing: "Bi-annual", desc: "Connecting Basel-based Indian pharma professionals at Novartis, Roche, and Lonza with visiting Indian delegations." },
+  { name: "SICC Annual India Day", timing: "August", desc: "Flagship bilateral event attended by Swiss and Indian government officials, CEOs, and diplomats. Celebrating 40 years in 2025.", url: "https://sicc.ch/events/" },
+  { name: "Swiss-Indian Entrepreneurship Day", timing: "February", desc: "Annual event by SICC, Venturelab, ZHAW, and Swissnex India featuring startup pitches, power talks, and the Swiss-Indian Ambassador of Innovation award.", url: "https://sicc.ch/young-professionals-network/" },
+  { name: "TiEcon Switzerland", timing: "Autumn", desc: "Annual conference for Indian-origin entrepreneurs. Startup pitches, investor panels, and networking across Zurich.", url: "https://zurich.tie.org" },
+  { name: "SICC Business Breakfast", timing: "Monthly", desc: "Informal breakfast networking with Swiss-Indian executives in Zurich — open to SICC members and invited guests.", url: "https://sicc.ch/events/" },
+  { name: "SIPN Networking Evening", timing: "Quarterly", desc: "Swiss India Professional Network events in Zurich, Basel, and Geneva, bringing together Indian diaspora across sectors.", url: "https://sipn.ch" },
+  { name: "Pharma India Forum Basel", timing: "Bi-annual", desc: "Connecting Basel-based Indian pharma professionals at Novartis, Roche, and Lonza with visiting Indian delegations.", url: "https://sicc.ch/events/" },
 ];
 
 const linkedin = [
@@ -99,15 +99,20 @@ export default function NetworkingPage() {
           <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Key Annual Events</h2>
           <p className=" mb-8" style={{ color: "var(--text-2)" }}>Put these on your calendar</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {events.map((e) => (
-              <div key={e.name} className="glass rounded-2xl p-5">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold text-sm" style={{ color: "var(--text)" }}>{e.name}</h3>
-                  <span className="text-xs text-teal-400 ml-2 shrink-0">{e.timing}</span>
-                </div>
-                <p className="text-sm " style={{ color: "var(--text-2)" }}>{e.desc}</p>
-              </div>
-            ))}
+            {events.map((e) => {
+              const Wrapper = e.url ? "a" : "div";
+              const props = e.url ? { href: e.url, target: "_blank", rel: "noopener noreferrer" } : {};
+              return (
+                <Wrapper key={e.name} {...props} className="glass rounded-2xl p-5 card-hover block group" style={{ textDecoration: "none" }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-semibold text-sm group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{e.name}</h3>
+                    <span className="text-xs text-teal-400 ml-2 shrink-0">{e.timing}</span>
+                  </div>
+                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{e.desc}</p>
+                  {e.url && <span className="text-xs text-teal-400 mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity">Learn more →</span>}
+                </Wrapper>
+              );
+            })}
           </div>
         </section>
 

@@ -96,40 +96,42 @@ export default function GroceryPage() {
         <section>
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Physical Stores</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {stores.map((s) => (
-              <div key={s.name + s.city} className="glass card-hover rounded-2xl p-5">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>
-                    {s.url ? (
-                      <a href={s.url} target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition-colors">
-                        {s.name}
-                      </a>
-                    ) : s.name}
-                  </h3>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400">{s.city}</span>
-                </div>
-                <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{s.area}</p>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{s.note}</p>
-              </div>
-            ))}
+            {stores.map((s) => {
+              const Wrapper = s.url ? "a" : "div";
+              const props = s.url ? { href: s.url, target: "_blank", rel: "noopener noreferrer" } : {};
+              return (
+                <Wrapper key={s.name + s.city} {...props} className="glass card-hover rounded-2xl p-5 block group" style={{ textDecoration: "none" }}>
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="text-base font-semibold group-hover:text-green-400 transition-colors" style={{ color: "var(--text)" }}>{s.name}</h3>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400">{s.city}</span>
+                      {s.url && <span className="text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">Visit →</span>}
+                    </div>
+                  </div>
+                  <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{s.area}</p>
+                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{s.note}</p>
+                </Wrapper>
+              );
+            })}
           </div>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Online Delivery</h2>
           <div className="space-y-3">
-            {online.map((o) => (
-              <div key={o.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-green-400 mb-1">
-                  {o.url ? (
-                    <a href={o.url} target="_blank" rel="noopener noreferrer" className="hover:text-green-300 transition-colors">
-                      {o.name}
-                    </a>
-                  ) : o.name}
-                </h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{o.desc}</p>
-              </div>
-            ))}
+            {online.map((o) => {
+              const Wrapper = o.url ? "a" : "div";
+              const props = o.url ? { href: o.url, target: "_blank", rel: "noopener noreferrer" } : {};
+              return (
+                <Wrapper key={o.name} {...props} className="glass card-hover rounded-2xl p-5 block group" style={{ textDecoration: "none" }}>
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="text-base font-semibold text-green-400 group-hover:text-green-300 transition-colors">{o.name}</h3>
+                    {o.url && <span className="text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">Shop →</span>}
+                  </div>
+                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{o.desc}</p>
+                </Wrapper>
+              );
+            })}
           </div>
         </section>
       </div>

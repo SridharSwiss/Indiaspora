@@ -35,20 +35,27 @@ export default function EventsPage() {
           <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Upcoming Events</h2>
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Next events in the Swiss-Indian community calendar</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {UPCOMING_EVENTS.map((event) => (
-              <div key={event.title} className="glass rounded-2xl p-5 card-hover">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className={`w-3 h-3 rounded-full ${event.color} mt-1 shrink-0`} />
-                  <div>
-                    <h3 className="font-semibold text-sm" style={{ color: "var(--text)" }}>{event.title}</h3>
-                    <p className="text-xs" style={{ color: "var(--text-2)" }}>{event.date}</p>
+            {UPCOMING_EVENTS.map((event) => {
+              const Wrapper = event.url ? "a" : "div";
+              const wrapperProps = event.url ? { href: event.url, target: "_blank", rel: "noopener noreferrer" } : {};
+              return (
+                <Wrapper key={event.title} {...wrapperProps} className="glass rounded-2xl p-5 card-hover block group" style={{ textDecoration: "none" }}>
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className={`w-3 h-3 rounded-full ${event.color} mt-1 shrink-0`} />
+                    <div>
+                      <h3 className="font-semibold text-sm group-hover:text-violet-400 transition-colors" style={{ color: "var(--text)" }}>{event.title}</h3>
+                      <p className="text-xs" style={{ color: "var(--text-2)" }}>{event.date}</p>
+                    </div>
                   </div>
-                </div>
-                <p className="text-xs mb-2" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{event.description}</p>
-                <span className="inline-block mt-3 text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{event.category}</span>
-              </div>
-            ))}
+                  <p className="text-xs mb-2" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
+                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{event.description}</p>
+                  <div className="flex items-center justify-between mt-3">
+                    <span className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{event.category}</span>
+                    {event.url && <span className="text-xs text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity">Visit →</span>}
+                  </div>
+                </Wrapper>
+              );
+            })}
           </div>
         </section>
 
