@@ -76,10 +76,11 @@ export default function GenevaPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <div style={{ marginBottom: -32 }}>
           <Image
-            src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=1200&q=80&auto=format&fit=crop"
-            alt="Geneva lake and Jet d'Eau"
+            src="https://images.unsplash.com/photo-1530822847156-5df684ec5933?w=1200&q=80&auto=format&fit=crop"
+            alt="Geneva lake and Jet d'Eau fountain"
             width={1200}
             height={400}
+            unoptimized
             className="w-full rounded-2xl object-cover"
             style={{ height: 280, objectFit: "cover" }}
           />

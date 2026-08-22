@@ -148,6 +148,8 @@ export default function Navbar() {
 
   const isAdmin = userEmail === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
   const dark = isDarkMode(theme);
+  // On the home page with transparent nav, text must be LIGHT (dark hero behind)
+  const lightNav = pathname === "/" && !scrolled;
 
   return (
     <>
@@ -212,9 +214,10 @@ export default function Navbar() {
               fontSize: 18, fontWeight: 700,
               fontFamily: "'Playfair Display', Georgia, serif",
               letterSpacing: "-0.01em",
-              color: "var(--text)",
+              color: lightNav ? "rgba(245,237,224,0.95)" : "var(--text)",
+              transition: "color 0.3s",
             }}>
-              India<span style={{ color: "var(--in)" }}>spora</span>
+              India<span style={{ color: lightNav ? "#C9A96E" : "var(--in)" }}>spora</span>
             </span>
           </Link>
 
@@ -246,15 +249,17 @@ export default function Navbar() {
                       fontSize: 11, fontWeight: active ? 700 : 600,
                       letterSpacing: "0.12em", textTransform: "uppercase",
                       fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                      color: active ? "var(--text)" : "var(--text-3)",
-                      transition: "color 0.15s",
+                      color: active
+                        ? (lightNav ? "rgba(245,237,224,0.95)" : "var(--text)")
+                        : (lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)"),
+                      transition: "color 0.3s",
                       whiteSpace: "nowrap", textDecoration: "none",
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = "var(--text)";
+                      (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.95)" : "var(--text)";
                     }}
                     onMouseLeave={(e) => {
-                      if (!active) (e.currentTarget as HTMLElement).style.color = "var(--text-3)";
+                      if (!active) (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)";
                     }}
                   >
                     {item.label}
@@ -326,9 +331,10 @@ export default function Navbar() {
               style={{
                 display: "flex", alignItems: "center", justifyContent: "center",
                 width: 32, height: 32,
-                color: "var(--text-3)", background: "transparent",
+                color: lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)",
+                background: "transparent",
                 border: "none", cursor: "pointer",
-                transition: "color 0.15s",
+                transition: "color 0.3s",
               }}
             >
               <Search style={{ width: 17, height: 17 }} />
@@ -342,9 +348,10 @@ export default function Navbar() {
               style={{
                 display: "flex", alignItems: "center", justifyContent: "center",
                 width: 32, height: 32,
-                color: "var(--text-3)", background: "transparent",
+                color: lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)",
+                background: "transparent",
                 border: "none", cursor: "pointer",
-                transition: "color 0.15s",
+                transition: "color 0.3s",
               }}
             >
               {dark ? <Sun style={{ width: 16, height: 16 }} /> : <Moon style={{ width: 16, height: 16 }} />}
@@ -421,15 +428,15 @@ export default function Navbar() {
                   padding: "0 14px", height: 32,
                   fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
                   fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                  color: "var(--text-2)",
+                  color: lightNav ? "rgba(245,237,224,0.7)" : "var(--text-2)",
                   background: "transparent",
-                  border: "1px solid var(--border-hi)",
+                  border: lightNav ? "1px solid rgba(245,237,224,0.3)" : "1px solid var(--border-hi)",
                   textDecoration: "none",
-                  transition: "color 0.15s, border-color 0.15s",
+                  transition: "color 0.3s, border-color 0.3s",
                   display: "inline-flex", alignItems: "center",
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--text)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text-2)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--border-hi)"; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,1)" : "var(--text)"; (e.currentTarget as HTMLElement).style.borderColor = lightNav ? "rgba(245,237,224,0.7)" : "var(--text)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.7)" : "var(--text-2)"; (e.currentTarget as HTMLElement).style.borderColor = lightNav ? "rgba(245,237,224,0.3)" : "var(--border-hi)"; }}
               >
                 Sign in
               </Link>
@@ -441,10 +448,12 @@ export default function Navbar() {
               style={{
                 display: "flex", alignItems: "center", gap: 5,
                 padding: "0 10px", height: 36, borderRadius: 10,
-                color: "var(--text-2)", background: "var(--surface-2)",
-                border: "1px solid var(--border)", cursor: "pointer",
+                color: lightNav ? "rgba(245,237,224,0.8)" : "var(--text-2)",
+                background: lightNav ? "rgba(255,255,255,0.08)" : "var(--surface-2)",
+                border: lightNav ? "1px solid rgba(245,237,224,0.2)" : "1px solid var(--border)",
+                cursor: "pointer",
                 fontSize: 12, fontWeight: 600,
-                transition: "color 0.15s, background 0.15s",
+                transition: "color 0.3s, background 0.3s, border-color 0.3s",
               }}
               onClick={() => setIsOpen(true)}
               aria-label="Open navigation menu"

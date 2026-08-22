@@ -91,10 +91,11 @@ export default function ZurichPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <div style={{ marginBottom: -32 }}>
           <Image
-            src="https://images.unsplash.com/photo-1559054663-2008e42d7c48?w=1200&q=80&auto=format&fit=crop"
-            alt="Zurich old town and river"
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80&auto=format&fit=crop"
+            alt="Zurich lakeside view with the city skyline"
             width={1200}
             height={400}
+            unoptimized
             className="w-full rounded-2xl object-cover"
             style={{ height: 280, objectFit: "cover" }}
           />

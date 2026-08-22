@@ -40,7 +40,8 @@ export default function PageHeader({
   };
 
   return (
-    <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 overflow-hidden">
+    <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 overflow-hidden"
+      style={{ background: "var(--base)" }}>
       {breadcrumbSchema && (
         <Script
           id={`breadcrumb-${title.replace(/\s+/g, "-").toLowerCase()}`}
@@ -48,53 +49,48 @@ export default function PageHeader({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       )}
-      {/* Aurora background orbs */}
+      {/* Warm ambient glows */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div
-          className={`absolute top-0 left-1/3 w-72 sm:w-[480px] h-72 sm:h-[480px] rounded-full`}
           style={{
-            background: "radial-gradient(circle, rgba(6,182,212,0.12) 0%, rgba(139,92,246,0.08) 50%, transparent 75%)",
+            position: "absolute", top: 0, right: "15%",
+            width: "40%", height: "80%",
+            background: "radial-gradient(circle, rgba(176,141,87,0.07) 0%, transparent 70%)",
             filter: "blur(60px)",
           }}
         />
         <div
-          className="absolute bottom-0 right-1/4 w-48 sm:w-80 h-48 sm:h-80 rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(236,72,153,0.08) 0%, transparent 70%)",
+            position: "absolute", bottom: 0, left: "10%",
+            width: "30%", height: "50%",
+            background: "radial-gradient(circle, rgba(160,97,74,0.05) 0%, transparent 70%)",
             filter: "blur(50px)",
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-0 w-48 h-48 rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%)",
-            filter: "blur(40px)",
           }}
         />
       </div>
 
-      {/* Subtle grid */}
+      {/* Subtle warm grid */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none pattern-grid"
         style={{
           maskImage: "radial-gradient(ellipse 80% 100% at 50% 0%, black 30%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 100% at 50% 0%, black 30%, transparent 100%)",
-          opacity: 0.3,
+          opacity: 0.4,
         }}
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {breadcrumbs && (
           <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 mb-5 text-xs sm:text-sm">
-            <Link href="/" className="transition-colors hover:text-violet-400" style={{ color: "var(--text-3)" }}>
+            <Link href="/" className="transition-colors hover:text-amber-600" style={{ color: "var(--text-3)" }}>
               Home
             </Link>
             {breadcrumbs.map((crumb, i) => (
               <span key={i} className="flex items-center gap-1.5">
                 <ChevronRight className="w-3 h-3 shrink-0" style={{ color: "var(--text-3)" }} aria-hidden />
                 {crumb.href ? (
-                  <Link href={crumb.href} className="transition-colors hover:text-violet-400" style={{ color: "var(--text-3)" }}>
+                  <Link href={crumb.href} className="transition-colors hover:text-amber-600" style={{ color: "var(--text-3)" }}>
                     {crumb.label}
                   </Link>
                 ) : (
