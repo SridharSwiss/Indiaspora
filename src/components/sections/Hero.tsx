@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { STATS } from "@/lib/data";
 import JoinModal from "@/components/JoinModal";
+import StatNumber from "@/components/ui/StatNumber";
 
 const FEATURED_WORDS = ["Community", "Culture", "Cuisine", "Connections", "Commerce"];
 
@@ -260,8 +261,10 @@ export default function Hero() {
           >
             {STATS.map((s, i) => (
               <div key={s.label} style={{ paddingRight: 36, paddingLeft: i === 0 ? 0 : 0 }}>
-                <div
+                <StatNumber
+                  value={s.value}
                   style={{
+                    display: "block",
                     fontFamily: "'Playfair Display', Georgia, serif",
                     fontSize: "clamp(1.5rem, 2.8vw, 2rem)",
                     fontWeight: 700,
@@ -269,9 +272,7 @@ export default function Hero() {
                     lineHeight: 1,
                     marginBottom: 5,
                   }}
-                >
-                  {s.value}
-                </div>
+                />
                 <div
                   style={{
                     fontSize: 9, fontWeight: 700, letterSpacing: "0.14em",
