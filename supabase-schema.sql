@@ -13,9 +13,17 @@ create table if not exists public.members (
   interests    text[] default '{}',
   newsletter   boolean default true,
   tier         text default 'Community' check (tier in ('Community', 'Member', 'Supporter')),
+  status       text default 'pending' check (status in ('pending', 'approved', 'rejected')),
+  admin_note   text,
+  reviewed_at  timestamptz,
   user_id      uuid references auth.users(id) on delete set null,
   created_at   timestamptz default now()
 );
+
+-- Migration: add approval columns to existing members table (run if table already exists)
+-- alter table public.members add column if not exists status text default 'pending' check (status in ('pending', 'approved', 'rejected'));
+-- alter table public.members add column if not exists admin_note text;
+-- alter table public.members add column if not exists reviewed_at timestamptz;
 
 -- Enable RLS
 alter table public.members enable row level security;

@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { sendWelcomeEmail } from "@/lib/resend";
+import { sendPendingEmail } from "@/lib/resend";
+
+function isAdmin(email: string | undefined) {
+  return email && email === process.env.ADMIN_EMAIL;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,6 +25,7 @@ export async function POST(req: NextRequest) {
       interests: interests || [],
       newsletter: newsletter ?? true,
       tier: tier || "Community",
+      status: "pending",
     });
 
     if (error) {
@@ -30,7 +35,8 @@ export async function POST(req: NextRequest) {
       throw error;
     }
 
-    await sendWelcomeEmail(email, full_name).catch(console.error);
+    // Send "application received" email (not welcome — that comes on approval)
+    await sendPendingEmail(email, full_name).catch(console.error);
 
     return NextResponse.json({ success: true });
   } catch (err) {
@@ -43,21 +49,25 @@ export async function GET(req: NextRequest) {
   try {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user || user.email !== process.env.ADMIN_EMAIL) {
+    if (!isAdmin(user?.email)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const url = new URL(req.url);
     const page = parseInt(url.searchParams.get("page") ?? "1");
+    const status = url.searchParams.get("status") ?? "all";
     const limit = 50;
     const from = (page - 1) * limit;
 
-    const { data, count, error } = await supabase
+    let query = supabase
       .from("members")
       .select("*", { count: "exact" })
       .order("created_at", { ascending: false })
       .range(from, from + limit - 1);
 
+    if (status !== "all") query = query.eq("status", status);
+
+    const { data, count, error } = await query;
     if (error) throw error;
     return NextResponse.json({ data, count, page, limit });
   } catch (err) {

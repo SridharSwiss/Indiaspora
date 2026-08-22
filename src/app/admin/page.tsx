@@ -6,12 +6,15 @@ import { createClient } from "@/lib/supabase/client";
 import {
   Users, BarChart3, Globe, TrendingUp, Eye, LogOut,
   RefreshCw, Download, MapPin, Mail, Briefcase, Calendar,
+  CheckCircle, XCircle, Clock,
 } from "lucide-react";
 
 type Member = {
   id: string; full_name: string; email: string; city: string;
   profession: string; interests: string[]; tier: string;
   newsletter: boolean; created_at: string;
+  status: "pending" | "approved" | "rejected";
+  admin_note?: string; reviewed_at?: string;
 };
 type AnalyticsData = {
   totalViews: number; todayViews: number;
@@ -32,7 +35,10 @@ export default function AdminPage() {
   const [days, setDays] = useState(30);
   const [loading, setLoading] = useState(true);
   const [memberSearch, setMemberSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "approved" | "rejected">("all");
   const [user, setUser] = useState<{ email: string } | null>(null);
+  const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const [rejectNote, setRejectNote] = useState<{ id: string; note: string } | null>(null);
 
   const supabase = createClient();
 
@@ -70,10 +76,44 @@ export default function AdminPage() {
     router.push("/");
   };
 
+  const approveMember = async (id: string) => {
+    setActionLoading(id + ":approve");
+    try {
+      const res = await fetch(`/api/members/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "approve" }),
+      });
+      if (res.ok) await fetchData();
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const rejectMember = async (id: string, note: string) => {
+    setActionLoading(id + ":reject");
+    try {
+      const res = await fetch(`/api/members/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "reject", note }),
+      });
+      if (res.ok) { setRejectNote(null); await fetchData(); }
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const deleteMember = async (id: string) => {
+    if (!confirm("Delete this member permanently?")) return;
+    await fetch(`/api/members/${id}`, { method: "DELETE" });
+    await fetchData();
+  };
+
   const downloadCSV = () => {
-    const header = "Name,Email,City,Profession,Tier,Newsletter,Joined\n";
+    const header = "Name,Email,City,Profession,Tier,Status,Newsletter,Joined\n";
     const rows = members.map(m =>
-      `"${m.full_name}","${m.email}","${m.city || ""}","${m.profession || ""}","${m.tier}","${m.newsletter}","${new Date(m.created_at).toLocaleDateString()}"`
+      `"${m.full_name}","${m.email}","${m.city || ""}","${m.profession || ""}","${m.tier}","${m.status}","${m.newsletter}","${new Date(m.created_at).toLocaleDateString()}"`
     ).join("\n");
     const blob = new Blob([header + rows], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
@@ -81,11 +121,16 @@ export default function AdminPage() {
     a.download = `indiaspora-members-${new Date().toISOString().slice(0,10)}.csv`; a.click();
   };
 
-  const filtered = members.filter(m =>
-    m.full_name.toLowerCase().includes(memberSearch.toLowerCase()) ||
-    m.email.toLowerCase().includes(memberSearch.toLowerCase()) ||
-    (m.city || "").toLowerCase().includes(memberSearch.toLowerCase())
-  );
+  const pendingCount = members.filter(m => m.status === "pending").length;
+
+  const filtered = members.filter(m => {
+    const matchesSearch =
+      m.full_name.toLowerCase().includes(memberSearch.toLowerCase()) ||
+      m.email.toLowerCase().includes(memberSearch.toLowerCase()) ||
+      (m.city || "").toLowerCase().includes(memberSearch.toLowerCase());
+    const matchesStatus = statusFilter === "all" || m.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
 
   const tierCounts = members.reduce((acc, m) => {
     acc[m.tier] = (acc[m.tier] || 0) + 1; return acc;
@@ -157,8 +202,8 @@ export default function AdminPage() {
           <div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 16, marginBottom: 28 }}>
               <StatCard icon={Users} label="Total Members" value={memberCount} sub="All time registrations" />
+              <StatCard icon={Clock} label="Pending Approval" value={pendingCount} sub="Awaiting review" color="#F97316" />
               <StatCard icon={Eye} label="Page Views" value={analytics?.totalViews ?? "–"} sub={`Last ${days} days`} color="#4F46E5" />
-              <StatCard icon={TrendingUp} label="Today's Views" value={analytics?.todayViews ?? "–"} sub="Last 24 hours" color="#059669" />
               <StatCard icon={Globe} label="Countries" value={analytics?.byCountry?.length ?? "–"} sub="Visitor origins" color="#DC2626" />
             </div>
 
@@ -200,6 +245,46 @@ export default function AdminPage() {
         {/* Members */}
         {!loading && tab === "members" && (
           <div>
+            {/* Reject note modal */}
+            {rejectNote && (
+              <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
+                <div style={{ background: "var(--surface)", borderRadius: 20, padding: 32, maxWidth: 480, width: "100%", boxShadow: "0 20px 60px rgba(0,0,0,0.2)" }}>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: "var(--text)", marginBottom: 8 }}>Reject Application</div>
+                  <p style={{ fontSize: 13, color: "var(--text-3)", margin: "0 0 16px" }}>Optionally add a note explaining the decision (sent to the applicant).</p>
+                  <textarea
+                    value={rejectNote.note}
+                    onChange={e => setRejectNote({ ...rejectNote, note: e.target.value })}
+                    placeholder="Optional note to applicant…"
+                    rows={3}
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: 10, border: "1px solid var(--border-2)", background: "var(--surface-2)", color: "var(--text)", fontSize: 14, resize: "vertical", outline: "none", boxSizing: "border-box" }}
+                  />
+                  <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
+                    <button onClick={() => setRejectNote(null)} style={{ flex: 1, padding: "10px", borderRadius: 10, border: "1px solid var(--border-2)", background: "transparent", color: "var(--text-2)", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>Cancel</button>
+                    <button
+                      onClick={() => rejectMember(rejectNote.id, rejectNote.note)}
+                      disabled={actionLoading === rejectNote.id + ":reject"}
+                      style={{ flex: 1, padding: "10px", borderRadius: 10, border: "none", background: "#DC2626", color: "#fff", cursor: "pointer", fontSize: 13, fontWeight: 700 }}
+                    >
+                      {actionLoading === rejectNote.id + ":reject" ? "Rejecting…" : "Confirm Reject"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Status filter + search */}
+            <div style={{ display: "flex", gap: 8, marginBottom: 16, alignItems: "center", flexWrap: "wrap" }}>
+              {(["all", "pending", "approved", "rejected"] as const).map(s => (
+                <button key={s} onClick={() => setStatusFilter(s)} style={{
+                  padding: "6px 14px", borderRadius: 999, border: "none", cursor: "pointer",
+                  fontSize: 12, fontWeight: 700, transition: "all 0.15s", textTransform: "capitalize",
+                  background: statusFilter === s ? (s === "pending" ? "#F97316" : s === "approved" ? "#059669" : s === "rejected" ? "#DC2626" : "var(--sf)") : "var(--surface-2)",
+                  color: statusFilter === s ? "#fff" : "var(--text-2)",
+                }}>
+                  {s}{s === "pending" && pendingCount > 0 ? ` (${pendingCount})` : ""}
+                </button>
+              ))}
+            </div>
             <div style={{ display: "flex", gap: 12, marginBottom: 20, alignItems: "center", flexWrap: "wrap" }}>
               <input
                 type="search" placeholder="Search members…" value={memberSearch}
@@ -225,20 +310,23 @@ export default function AdminPage() {
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                   <thead>
                     <tr style={{ borderBottom: "1px solid var(--border)", background: "var(--surface-2)" }}>
-                      {["Name", "Email", "City", "Profession", "Tier", "Newsletter", "Joined"].map(h => (
+                      {["Name", "Email", "City", "Tier", "Status", "Joined", "Actions"].map(h => (
                         <th key={h} style={{ padding: "12px 16px", textAlign: "left", fontWeight: 700, color: "var(--text-2)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap" }}>{h}</th>
                       ))}
                     </tr>
                   </thead>
                   <tbody>
                     {filtered.map((m, i) => (
-                      <tr key={m.id} style={{ borderBottom: i < filtered.length - 1 ? "1px solid var(--border)" : "none", transition: "background 0.15s" }}>
+                      <tr key={m.id} style={{ borderBottom: i < filtered.length - 1 ? "1px solid var(--border)" : "none" }}>
                         <td style={{ padding: "12px 16px" }}>
                           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                             <div style={{ width: 32, height: 32, borderRadius: "50%", background: "linear-gradient(135deg,var(--sf),var(--sf-hi))", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 700, fontSize: 12, flexShrink: 0 }}>
                               {m.full_name.charAt(0).toUpperCase()}
                             </div>
-                            <span style={{ fontWeight: 600, color: "var(--text)", whiteSpace: "nowrap" }}>{m.full_name}</span>
+                            <div>
+                              <div style={{ fontWeight: 600, color: "var(--text)", whiteSpace: "nowrap" }}>{m.full_name}</div>
+                              {m.profession && <div style={{ fontSize: 11, color: "var(--text-3)", display: "flex", alignItems: "center", gap: 3 }}><Briefcase size={10} />{m.profession}</div>}
+                            </div>
                           </div>
                         </td>
                         <td style={{ padding: "12px 16px" }}>
@@ -249,19 +337,60 @@ export default function AdminPage() {
                         <td style={{ padding: "12px 16px", color: "var(--text-2)" }}>
                           {m.city ? <span style={{ display: "flex", alignItems: "center", gap: 4 }}><MapPin size={12} />{m.city}</span> : "–"}
                         </td>
-                        <td style={{ padding: "12px 16px", color: "var(--text-2)" }}>
-                          {m.profession ? <span style={{ display: "flex", alignItems: "center", gap: 4 }}><Briefcase size={12} />{m.profession}</span> : "–"}
-                        </td>
                         <td style={{ padding: "12px 16px" }}>
                           <span style={{ padding: "3px 10px", borderRadius: 999, fontSize: 11, fontWeight: 700, background: `${TIER_COLORS[m.tier] || "#059669"}18`, color: TIER_COLORS[m.tier] || "#059669" }}>
                             {m.tier}
                           </span>
                         </td>
-                        <td style={{ padding: "12px 16px", color: m.newsletter ? "#059669" : "var(--text-3)", fontWeight: 600, fontSize: 11 }}>
-                          {m.newsletter ? "Yes" : "No"}
+                        <td style={{ padding: "12px 16px" }}>
+                          {m.status === "pending" && (
+                            <span style={{ display: "flex", alignItems: "center", gap: 4, padding: "3px 10px", borderRadius: 999, fontSize: 11, fontWeight: 700, background: "rgba(249,115,22,0.1)", color: "#F97316", width: "fit-content" }}>
+                              <Clock size={11} /> Pending
+                            </span>
+                          )}
+                          {m.status === "approved" && (
+                            <span style={{ display: "flex", alignItems: "center", gap: 4, padding: "3px 10px", borderRadius: 999, fontSize: 11, fontWeight: 700, background: "rgba(5,150,105,0.1)", color: "#059669", width: "fit-content" }}>
+                              <CheckCircle size={11} /> Approved
+                            </span>
+                          )}
+                          {m.status === "rejected" && (
+                            <span style={{ display: "flex", alignItems: "center", gap: 4, padding: "3px 10px", borderRadius: 999, fontSize: 11, fontWeight: 700, background: "rgba(220,38,38,0.1)", color: "#DC2626", width: "fit-content" }}>
+                              <XCircle size={11} /> Rejected
+                            </span>
+                          )}
                         </td>
                         <td style={{ padding: "12px 16px", color: "var(--text-3)", whiteSpace: "nowrap" }}>
                           <span style={{ display: "flex", alignItems: "center", gap: 4 }}><Calendar size={12} />{new Date(m.created_at).toLocaleDateString()}</span>
+                        </td>
+                        <td style={{ padding: "12px 16px" }}>
+                          <div style={{ display: "flex", gap: 6 }}>
+                            {m.status !== "approved" && (
+                              <button
+                                onClick={() => approveMember(m.id)}
+                                disabled={actionLoading === m.id + ":approve"}
+                                title="Approve"
+                                style={{ display: "flex", alignItems: "center", gap: 4, padding: "5px 10px", borderRadius: 8, border: "none", background: "rgba(5,150,105,0.1)", color: "#059669", cursor: "pointer", fontSize: 11, fontWeight: 700 }}
+                              >
+                                <CheckCircle size={12} />{actionLoading === m.id + ":approve" ? "…" : "Approve"}
+                              </button>
+                            )}
+                            {m.status !== "rejected" && (
+                              <button
+                                onClick={() => setRejectNote({ id: m.id, note: "" })}
+                                title="Reject"
+                                style={{ display: "flex", alignItems: "center", gap: 4, padding: "5px 10px", borderRadius: 8, border: "none", background: "rgba(220,38,38,0.1)", color: "#DC2626", cursor: "pointer", fontSize: 11, fontWeight: 700 }}
+                              >
+                                <XCircle size={12} /> Reject
+                              </button>
+                            )}
+                            <button
+                              onClick={() => deleteMember(m.id)}
+                              title="Delete"
+                              style={{ padding: "5px 8px", borderRadius: 8, border: "1px solid var(--border-2)", background: "transparent", color: "var(--text-3)", cursor: "pointer", fontSize: 11 }}
+                            >
+                              ✕
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}

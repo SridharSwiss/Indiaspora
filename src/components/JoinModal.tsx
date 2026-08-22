@@ -432,11 +432,11 @@ export default function JoinModal({ open, onClose }: Props) {
               Welcome to Indiaspora!
             </h2>
             <p style={{ margin: "0 0 8px", fontSize: 15, color: "var(--text-2)", lineHeight: 1.7 }}>
-              You&apos;re now part of Switzerland&apos;s Indian community hub.
+              Your application is now pending review. We&apos;ll be in touch within 1–2 business days.
             </p>
             {successEmail && (
               <p style={{ margin: "0 0 32px", fontSize: 13, color: "var(--text-3)" }}>
-                A welcome email has been sent to <strong style={{ color: "var(--text-2)" }}>{successEmail}</strong>
+                A confirmation email has been sent to <strong style={{ color: "var(--text-2)" }}>{successEmail}</strong>
               </p>
             )}
             <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
