@@ -10,6 +10,37 @@ export const metadata: Metadata = {
   },
 };
 
+const classProviders = [
+  {
+    name: "Urban Rasoi Zurich",
+    location: "Meilen / Zurich",
+    format: "Group & private in-home classes",
+    note: "Run by Reena, a trained Indian chef. Offers group street food workshops, private one-on-one sessions, and bespoke cooking events for friends or corporate groups. Home visits within 5 km of Zurich city or 15 km of Meilen.",
+    url: "https://www.urbanrasoizurich.com",
+  },
+  {
+    name: "Smriti Chhabra — Creative Switzerland",
+    location: "Zurich",
+    format: "Workshop / pop-up class",
+    note: "Indian chef teaching authentic Indian cooking using locally sourced Swiss organic ingredients combined with Indian spices. Bookable through the Creative Switzerland platform.",
+    url: "https://creativeswitzerland.com/creative-shop/cooking-class-where-indian-food-meets-switzerland-by-smriti-chhabra/",
+  },
+  {
+    name: "Indian Moms Zurich / Swiss Desi",
+    location: "Zurich area",
+    format: "Community & home chef classes",
+    note: "Community of home cooks offering cooking lessons for Indian meals from start to finish. Good for learning regional recipes in a friendly informal setting.",
+    url: "https://swissdesi.ch",
+  },
+  {
+    name: "IAGZ Community Workshops",
+    location: "Zurich (various venues)",
+    format: "Community events",
+    note: "The Indian Association of the Canton of Zurich (IAGZ) and other diaspora groups organise cooking workshops tied to festivals and cultural events throughout the year.",
+    url: "https://www.iagz.ch",
+  },
+];
+
 const cuisines = [
   { name: "Punjabi", dishes: "Butter chicken, Dal makhani, Sarson da saag" },
   { name: "South Indian", dishes: "Sambar, Rasam, Chutneys, Avial" },
@@ -23,6 +54,7 @@ const learnTopics = [
   "Indian breads — roti, paratha, naan, puri, and bhatura",
   "Indian sweets and mithai — gulab jamun, barfi, halwa, kheer",
   "Pickles and preserves — mango achaar, lemon pickle, mixed vegetable",
+  "Indian street food — pani puri, bhel puri, vada pav, pav bhaji",
 ];
 
 const youtubeChannels = [
@@ -48,20 +80,25 @@ export default function CookingPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Where to Find Classes</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="glass card-hover rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-white mb-2">Community Classes</h3>
-              <p className="text-sm text-white/70">IAGZ (Indian Association of the Canton of Zurich) and other diaspora groups regularly organise community cooking workshops for all skill levels.</p>
-            </div>
-            <div className="glass card-hover rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-white mb-2">Private Home Chef Classes</h3>
-              <p className="text-sm text-white/70">Many experienced home chefs offer private one-on-one or small group cooking lessons in their kitchens. Find them through Facebook groups like "Desi Moms Switzerland".</p>
-            </div>
-            <div className="glass card-hover rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-white mb-2">Online Classes</h3>
-              <p className="text-sm text-white/70">Live Zoom cooking classes by Indian chefs cater to diaspora learners. Look for announcements on Indian community WhatsApp groups and Facebook events.</p>
-            </div>
+          <h2 className="text-2xl font-bold text-white mb-6">Classes & Instructors in Switzerland</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {classProviders.map((p) => (
+              <div key={p.name} className="glass card-hover rounded-2xl p-5">
+                <h3 className="text-base font-semibold text-white mb-0.5">
+                  {p.url ? (
+                    <a href={p.url} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">
+                      {p.name}
+                    </a>
+                  ) : p.name}
+                </h3>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs text-white/40">{p.location}</span>
+                  <span className="text-white/20">·</span>
+                  <span className="text-xs text-amber-400">{p.format}</span>
+                </div>
+                <p className="text-sm text-white/60">{p.note}</p>
+              </div>
+            ))}
           </div>
         </section>
 

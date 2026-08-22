@@ -11,28 +11,31 @@ export const metadata: Metadata = {
 };
 
 const portals = [
-  { name: "Homegate", url: "homegate.ch", desc: "Switzerland's largest rental portal with the widest listings." },
-  { name: "ImmoScout24", url: "immoscout24.ch", desc: "Major portal with good filters; many listings also on Homegate." },
-  { name: "Comparis", url: "comparis.ch", desc: "Aggregator that pulls from multiple portals; useful for comparison." },
-  { name: "Tutti", url: "tutti.ch", desc: "Classifieds site with occasional private-landlord deals." },
-  { name: "WGZimmer", url: "wgzimmer.ch", desc: "Best for shared flat (WG) rooms — popular with students and newcomers." },
+  { name: "Homegate", url: "homegate.ch", desc: "Switzerland's largest rental portal with the widest listing inventory. Set up alerts for new listings immediately." },
+  { name: "ImmoScout24", url: "immoscout24.ch", desc: "Major portal with powerful filters. Many listings are syndicated across both Homegate and ImmoScout24." },
+  { name: "Flatfox", url: "flatfox.ch", desc: "Growing portal, often with exclusive listings. Known for a smoother application process and tenant-friendly design." },
+  { name: "Newhome", url: "newhome.ch", desc: "Associated with cantonal banks; good for listings from institutional landlords. Often less competitive." },
+  { name: "Comparis", url: "comparis.ch", desc: "Aggregator that pulls listings from multiple portals — useful for a single search across sources." },
+  { name: "WGZimmer", url: "wgzimmer.ch", desc: "Best for shared flat (WG / colocation) rooms. Popular with students and newcomers looking for short-term arrangements." },
 ];
 
 const documents = [
-  "Passport and Swiss residence permit (B or L)",
-  "Three months' recent payslips or employment contract",
-  "Betreibungsregisterauszug (debt enforcement extract) — from your Gemeinde",
-  "Letter of motivation / application letter (Bewerbungsschreiben)",
-  "Reference letters from previous landlords (very helpful)",
-  "Recent bank statement showing your financial stability",
+  "Passport and Swiss residence permit (B or L permit; C permit holders have the easiest time)",
+  "Three months' recent payslips or a signed employment contract from a Swiss employer",
+  "Betreibungsregisterauszug (debt enforcement extract) — obtain from your Gemeinde; costs around CHF 20",
+  "Application / cover letter (Bewerbungsschreiben) — personalised letters genuinely help",
+  "Reference letters from previous landlords (Swiss references are particularly valued)",
+  "Recent bank statement demonstrating sufficient savings or salary",
+  "AHV number (if already assigned) and copy of Swiss tax return (for longer residents)",
 ];
 
 const tips = [
-  "Apply on the same day a listing goes live — apartments disappear in hours in Zurich and Geneva.",
-  "A professional application dossier with a cover letter makes a big difference.",
-  "Neue Wohnung Facebook groups in each city often have tips and sublets.",
-  "Consider temporary furnished flats (e.g., via Airbnb) for the first 1–3 months while you search.",
-  "The deposit (Kaution) is typically 2–3 months' rent, held in a joint blocked account.",
+  "The Swiss rental vacancy rate is very low (around 1.15% nationally; even lower in Zurich and Geneva). Apply on the same day a listing goes live — good apartments disappear in hours.",
+  "Prepare a polished, complete dossier before you start searching so you can submit instantly. Many landlords reject incomplete applications outright.",
+  "Facebook groups ('Wohnung Zürich', 'Appartement Genève', 'Basel WG') often have private sublets and early listings before they go on portals.",
+  "Consider furnished short-term lets (Airbnb, Wunderflats, MagicStay) for your first 1–3 months while you search without time pressure.",
+  "The rental deposit (Mietkaution) is typically 2–3 months' rent, held in a joint blocked bank account (Sperrkonto) — it is returned at the end of the tenancy after the final inspection.",
+  "Tenants have strong legal protections in Switzerland. The tenants' association (Mieterverband / ASLOCA) offers free or low-cost legal advice.",
 ];
 
 export default function HousingPage() {

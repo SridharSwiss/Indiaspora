@@ -11,30 +11,62 @@ export const metadata: Metadata = {
 };
 
 const boutiques = [
-  { name: "Rang De Zurich", city: "Zurich", speciality: "Sarees & Salwars", desc: "Curated collection of Indian ethnic wear — silk sarees, cotton salwars, and Indo-Western fusion. Custom alterations available." },
-  { name: "Desi Closet", city: "Geneva", speciality: "Bridal & Party Wear", desc: "Bridal lehengas, anarkalis, and occasion wear for the Geneva community. Appointments recommended." },
-  { name: "Lehenga House Zurich", city: "Zurich", speciality: "Wedding Collection", desc: "Specialises in bridal and wedding guest wear. Full collection of lehengas, sherwanis, and kurtas. In-house alterations." },
-  { name: "Silk India Basel", city: "Basel", speciality: "Pure Silk Sarees", desc: "Kanjivaram, Banarasi, and Mysore silk sarees imported directly from India. Also carries running fabric and blouse pieces." },
+  {
+    name: "Manjari Sarees",
+    city: "Zurich",
+    address: "Hohlstrasse 480, 8048 Zürich",
+    phone: "+41 44 558 63 63",
+    url: "http://www.manjarisarees.com/",
+    speciality: "Sarees, Salwar Kameez & Lehengas",
+    desc: "One of the most established Indian fashion stores in Zurich. Stocks north and south Indian women's and children's fashion — sarees, salwar kameez, lehengas, and blouse pieces. In-house alterations and custom stitching. Open Tue–Sun 2–8 pm. Source: manjarisarees.com"
+  },
+  {
+    name: "Rukkumani",
+    city: "Near Basel",
+    address: "Showroom near Basel (online + in-person)",
+    phone: null,
+    url: "https://rukkumani.ch/",
+    speciality: "Tamil Ethnic Wear — Sarees, Salwars, Lehengas & Vetti",
+    desc: "Switzerland's premier destination for traditional Tamil Indian attire. Specialises in sarees, lehengas, salwars, and vetti. Partners with artisans from Sri Lanka and India with 20+ years of expertise. Ships free across Switzerland. Custom saree stitching available. Source: rukkumani.ch"
+  },
+  {
+    name: "SKT Nathan",
+    city: "Zurich",
+    address: "Josefstrasse 137, 8005 Zürich",
+    phone: null,
+    url: null,
+    speciality: "Indian Clothing & Gold Jewellery",
+    desc: "Zurich store in the Langstrasse neighbourhood offering Indian clothing alongside gold jewellery. Popular with the Tamil and South Indian community in Zurich."
+  },
+  {
+    name: "Sareeka — Online Shop (Ships to Switzerland)",
+    city: "Online",
+    address: null,
+    phone: null,
+    url: "https://www.sareeka.com/indian-clothes-in-switzerland",
+    speciality: "Sarees, Salwars & Indian Outfits",
+    desc: "Dedicated online Indian fashion retailer with a Switzerland-specific page. Wide range of sarees, salwar kameez, and Indian outfits delivered to Switzerland. Source: sareeka.com"
+  },
 ];
 
 const online = [
-  { name: "Myntra (India)", url: "https://www.myntra.com", desc: "India's largest fashion platform. Ships internationally; check import duties for Switzerland." },
-  { name: "Utsav Fashion", url: "https://www.utsavfashion.com", desc: "Designer ethnic wear with international shipping — sarees, lehengas, and salwars." },
-  { name: "Craftsvilla", url: "https://www.craftsvilla.com", desc: "Authentic Indian handicrafts and ethnic wear. Handloom sarees, block print fabric." },
-  { name: "BAZG Swiss Customs", url: "https://www.bazg.admin.ch/bazg/en/home.html", desc: "Check Swiss customs duties before ordering — clothing imports above CHF 300 may attract duty." },
+  { name: "Utsav Fashion", url: "https://www.utsavfashion.com", desc: "Designer ethnic wear with international shipping — sarees, lehengas, and salwars. Popular with the Indian diaspora in Europe." },
+  { name: "Craftsvilla", url: "https://www.craftsvilla.com", desc: "Authentic Indian handicrafts and ethnic wear. Handloom sarees, block print fabric, and artisan products shipped internationally." },
+  { name: "Myntra (India)", url: "https://www.myntra.com", desc: "India's largest fashion platform. Ships internationally; check Swiss customs duties before ordering. Good for designer and fast-fashion ethnic wear." },
+  { name: "BAZG Swiss Customs", url: "https://www.bazg.admin.ch/bazg/en/home.html", desc: "Check Swiss customs duties before ordering from India — clothing imports above CHF 300 may attract duty and VAT. Always declare on arrival." },
 ];
 
 const community = [
-  { channel: "Facebook: Indian Wardrobe Switzerland", desc: "Buy, sell, and swap pre-loved Indian outfits. Active community with regular posts." },
-  { channel: "WhatsApp: Desi Moms Switzerland", desc: "Many home boutique owners take orders via WhatsApp. Ask for recommendations in this group." },
-  { channel: "Instagram: #IndianFashionZurich", desc: "Follow the hashtag for boutique announcements, outfit inspiration, and sale events." },
-  { channel: "DHL International Shipping from India", desc: "Most families use DHL or FedEx to bring ethnic wear from India. Budget for duties and VAT on arrival." },
+  { channel: "SwissDesi — Indian Clothing Guide", desc: "SwissDesi (swissdesi.ch) maintains a curated list of Indian clothing, home decor, and jewellery options in Switzerland. Updated regularly by the community." },
+  { channel: "Facebook: Indian Wardrobe Switzerland", desc: "Buy, sell, and swap pre-loved Indian outfits. Active community with regular posts from home boutique owners and personal sellers." },
+  { channel: "Instagram: #IndianFashionZurich", desc: "Follow the hashtag for boutique announcements, outfit inspiration, and sale events from the Zurich Indian fashion community." },
+  { channel: "WhatsApp Community Groups", desc: "Many home boutique owners take orders via WhatsApp. Ask for recommendations in IAGZ member groups or local Indian WhatsApp networks." },
 ];
 
 const jewellery = [
-  { name: "Gold in Switzerland", note: "22K gold jewellery is harder to find in Switzerland than in India. Some families bring it on trips or order via trusted jewellers in India." },
-  { name: "Indian Jewellery Shops", note: "A few shops in Zurich's city centre carry 22K gold and silver Indian jewellery. Ask the community for current recommendations." },
-  { name: "Tanishq (India Duty-Free)", note: "Many Indians purchase Tanishq jewellery at Indian airports and bring it to Switzerland duty-free within the personal allowance limits." },
+  { name: "Gold in Switzerland", note: "22K gold jewellery is harder to find in Switzerland than in India. SKT Nathan (Josefstrasse 137, Zurich) and some shops in the city centre carry Indian-style gold. Families often bring gold on trips to India." },
+  { name: "Rukkumani — Jewellery Section", note: "Rukkumani (rukkumani.ch) stocks Indian jewellery alongside ethnic wear, including temple jewellery and traditional pieces for weddings and festivals." },
+  { name: "Tanishq (India Duty-Free)", note: "Many Indians purchase Tanishq jewellery at Indian airports and bring it to Switzerland duty-free within the personal allowance limits (currently up to CHF 300 for goods from non-EU countries)." },
 ];
 
 export default function FashionPage() {
@@ -53,20 +85,33 @@ export default function FashionPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Physical Boutiques</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">Physical Boutiques & Stores</h2>
           <div className="grid md:grid-cols-2 gap-5">
             {boutiques.map((b) => (
-              <div key={b.name} className="glass card-hover rounded-2xl p-5">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="font-semibold text-white">{b.name}</h3>
-                  <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full ml-2">{b.city}</span>
+              b.url ? (
+                <a key={b.name} href={b.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="font-semibold text-white group-hover:text-rose-400 transition-colors">{b.name}</h3>
+                    <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full ml-2 shrink-0">{b.city}</span>
+                  </div>
+                  <p className="text-xs text-white/40 mb-1">{b.speciality}</p>
+                  {b.address && <p className="text-xs text-white/30 mb-2">{b.address}{b.phone ? ` · ${b.phone}` : ""}</p>}
+                  <p className="text-sm text-slate-400">{b.desc}</p>
+                </a>
+              ) : (
+                <div key={b.name} className="glass card-hover rounded-2xl p-5">
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="font-semibold text-white">{b.name}</h3>
+                    <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full ml-2 shrink-0">{b.city}</span>
+                  </div>
+                  <p className="text-xs text-white/40 mb-1">{b.speciality}</p>
+                  {b.address && <p className="text-xs text-white/30 mb-2">{b.address}</p>}
+                  <p className="text-sm text-slate-400">{b.desc}</p>
                 </div>
-                <p className="text-xs text-white/40 mb-2">{b.speciality}</p>
-                <p className="text-sm text-slate-400">{b.desc}</p>
-              </div>
+              )
             ))}
           </div>
-          <p className="text-xs text-white/30 mt-4">Note: boutique availability changes. Verify hours on Google Maps or ask in community groups before visiting.</p>
+          <p className="text-xs text-white/30 mt-4">Note: boutique availability and hours change. Verify on Google Maps or call ahead before visiting.</p>
         </section>
 
         <section>

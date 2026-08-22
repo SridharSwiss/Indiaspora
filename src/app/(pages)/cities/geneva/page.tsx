@@ -3,10 +3,10 @@ import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Indians in Geneva — Community Guide",
-  description: "Geneva's 5,000+ Indian community — UN professionals, associations, Indian restaurants, and official resources.",
+  description: "Geneva's Indian community — Indian Association Geneva (est. 1947), Permanent Mission of India, UN professionals, restaurants, and official resources.",
   openGraph: {
     title: "Indians in Geneva — Community Guide | IndiaSwiss",
-    description: "Geneva's 5,000+ Indian community — UN professionals, associations, Indian restaurants, and official resources.",
+    description: "Geneva's Indian community — Indian Association Geneva (est. 1947), Permanent Mission of India, UN professionals, restaurants, and official resources.",
   },
 };
 
@@ -18,16 +18,36 @@ const highlights = [
 ];
 
 const associations = [
-  { name: "Indian Association of Geneva", desc: "Cultural events, Diwali celebrations, and support for newcomers." },
-  { name: "ICCR Geneva", desc: "Indian Council for Cultural Relations — promotes Indian arts, music, and dance." },
-  { name: "Consulate General of India", desc: "Indian consular services for French-speaking Switzerland. Located in Geneva." },
+  {
+    name: "Indian Association of Geneva (IAG)",
+    url: "https://indianassociationgeneva.com",
+    desc: "Founded in 1947, IAG is reputedly one of the world's oldest continuously running Indian associations. With over 500 members, it serves as the social and cultural forum for Indians in Geneva, organising Diwali, Republic Day, Independence Day, and cultural programmes fostering friendship with the Swiss and international community.",
+  },
+  {
+    name: "Permanent Mission of India to the UN, Geneva",
+    url: "https://pmindiaun.gov.in",
+    desc: "India's diplomatic mission to the UN agencies in Geneva (UNHRC, WTO, WHO, ILO). Also provides consular and passport services for Indians in French-speaking Switzerland. Address: 21 Avenue Appia, 1292 Chambésy. Tel: +41 22 717 0600.",
+  },
+  {
+    name: "ICCR Geneva",
+    url: "",
+    desc: "Indian Council for Cultural Relations presence in Geneva promotes Indian classical arts, music, dance, and cultural exchange programmes.",
+  },
 ];
 
 const areas = [
-  { name: "Carouge", note: "Bohemian neighbourhood; cafés, restaurants, and a vibrant community feel." },
-  { name: "Meyrin", note: "Near CERN; popular with scientific professionals; affordable rents." },
-  { name: "Vernier", note: "Multicultural suburb with good access to international organisations." },
-  { name: "Onex & Lancy", note: "Family-friendly western suburbs with good transport links." },
+  { name: "Carouge", note: "Bohemian, walkable neighbourhood just south of Geneva centre. Lively café culture and vibrant community feel. Popular with Indian professionals and young families." },
+  { name: "Meyrin", note: "Near CERN; popular with Indian scientific professionals. More affordable rents with good tram links into the city." },
+  { name: "Vernier", note: "Multicultural western suburb with good access to international organisations including WHO and ILO." },
+  { name: "Onex & Lancy", note: "Family-friendly western suburbs with strong transport links, larger apartments, and more competitive rents than the city centre." },
+];
+
+const restaurants = [
+  { name: "Rasoi by Vineet", note: "Fine-dining Indian restaurant at the Mandarin Oriental Geneva, led by acclaimed chef Vineet Bhatia. Contemporary take on Indian cuisine. Geneva's most celebrated Indian dining experience." },
+  { name: "Café Gandhi", note: "Popular with the Indian expat community and locals alike. Consistently highly rated for authentic curry and tandoori dishes." },
+  { name: "Little India Street Kitchen", note: "Traditional Indian cuisine in a lively bazaar-inspired setting on Rue de Lausanne. Strong vegetarian and vegan selection." },
+  { name: "Indian Bites", note: "Highly praised for authentic flavours and varied regional Indian dishes. Website: indianbites.ch." },
+  { name: "Le Safran", note: "Highly rated Indian restaurant in Geneva with strong TheFork ratings and consistent community recommendations." },
 ];
 
 export default function GenevaPage() {
@@ -35,7 +55,7 @@ export default function GenevaPage() {
     <div>
       <PageHeader
         title="Indians in Geneva"
-        subtitle="Geneva's Indian community is shaped by the international organisations that call this city home — a sophisticated mix of diplomats, UN officials, and private bankers."
+        subtitle="Geneva's Indian community is shaped by the international organisations that call this city home — a sophisticated mix of UN officials, diplomats, scientists, and private bankers."
         badge="City Guide"
         gradient="from-red-600 to-rose-600"
         breadcrumbs={[
@@ -56,12 +76,18 @@ export default function GenevaPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Indian Associations & Consulate</h2>
+          <h2 className="text-2xl font-bold text-white mb-2">Indian Associations & Consulate</h2>
+          <p className="text-sm text-white/50 mb-6">Source: indianassociationgeneva.com; pmindiaun.gov.in; Embassy of India, Berne associations directory</p>
           <div className="space-y-4">
             {associations.map((a) => (
               <div key={a.name} className="glass card-hover rounded-2xl p-5">
                 <h3 className="text-base font-semibold text-white mb-1">{a.name}</h3>
-                <p className="text-sm text-white/60">{a.desc}</p>
+                <p className="text-sm text-white/60 mb-2">{a.desc}</p>
+                {a.url && (
+                  <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-xs text-red-400 hover:text-red-300">
+                    {a.url} ↗
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -74,6 +100,18 @@ export default function GenevaPage() {
               <div key={a.name} className="glass card-hover rounded-2xl p-5">
                 <h3 className="text-base font-semibold text-red-400 mb-1">{a.name}</h3>
                 <p className="text-sm text-white/60">{a.note}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">Indian Restaurants</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {restaurants.map((r) => (
+              <div key={r.name} className="glass card-hover rounded-2xl p-5">
+                <h3 className="text-base font-semibold text-white mb-1">{r.name}</h3>
+                <p className="text-sm text-white/60">{r.note}</p>
               </div>
             ))}
           </div>
