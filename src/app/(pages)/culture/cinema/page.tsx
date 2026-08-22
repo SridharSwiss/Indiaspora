@@ -72,49 +72,49 @@ export default function CinemaPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Film Screenings & Festivals</h2>
-          <p className="text-slate-400 mb-8">Watch Indian films with the community in Switzerland</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Film Screenings & Festivals</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>Watch Indian films with the community in Switzerland</p>
           <div className="grid md:grid-cols-2 gap-5">
             {screenings.map((s) => (
               <div key={s.name} className="glass rounded-2xl p-6 card-hover">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold text-white">{s.name}</h3>
+                    <h3 className="font-semibold" style={{ color: "var(--text)" }}>{s.name}</h3>
                     <p className="text-xs text-rose-400 mt-0.5">{s.timing} &middot; {s.location}</p>
                   </div>
-                  <span className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full ml-2 shrink-0">{s.org}</span>
+                  <span className="text-xs px-2 py-1 rounded-full ml-2 shrink-0" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{s.org}</span>
                 </div>
-                <p className="text-sm text-slate-400">{s.desc}</p>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{s.desc}</p>
               </div>
             ))}
           </div>
-          <p className="text-xs text-white/30 mt-4">
+          <p className="text-xs mt-4" style={{ color: "var(--text-3)" }}>
             Note: Switzerland has a long cinematic connection with India — an estimated 200+ Indian films have been partially shot on Swiss locations. See{" "}
             <a href="https://en.wikipedia.org/wiki/Indian_cinema_and_Switzerland" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300">Wikipedia: Indian cinema and Switzerland</a> for background.
           </p>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Streaming Platforms</h2>
-          <p className="text-slate-400 mb-8">Watch Indian content from Switzerland</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Streaming Platforms</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>Watch Indian content from Switzerland</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {streaming.map((s) => (
               <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
-                <h3 className="font-semibold text-white text-sm mb-2 group-hover:text-rose-400 transition-colors">{s.name}</h3>
-                <p className="text-sm text-slate-400">{s.note}</p>
+                <h3 className="font-semibold text-sm mb-2 group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{s.name}</h3>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{s.note}</p>
               </a>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Indian Radio & Music Streaming</h2>
-          <p className="text-slate-400 mb-8">Stay connected to Indian sounds</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Indian Radio & Music Streaming</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>Stay connected to Indian sounds</p>
           <div className="grid md:grid-cols-3 gap-4">
             {radio.map((r) => (
               <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
-                <h3 className="font-semibold text-white text-sm mb-2 group-hover:text-rose-400 transition-colors">{r.name}</h3>
-                <p className="text-sm text-slate-400">{r.desc}</p>
+                <h3 className="font-semibold text-sm mb-2 group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{r.desc}</p>
               </a>
             ))}
           </div>

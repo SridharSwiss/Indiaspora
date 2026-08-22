@@ -35,7 +35,7 @@ const scholarships = [
 
 export default function StudentsPage() {
   return (
-    <div className="bg-slate-950 text-white min-h-screen">
+    <div>
       <PageHeader
         title="Indian Students in Switzerland"
         subtitle="Universities, scholarships, student associations and visa information for Indian students in Switzerland."
@@ -44,42 +44,42 @@ export default function StudentsPage() {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-1">Top Universities</h2>
-          <p className="text-slate-400 text-sm mb-6">Switzerland's world-ranked universities popular with Indian students</p>
+          <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Top Universities</h2>
+          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Switzerland's world-ranked universities popular with Indian students</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {universities.map((u) => (
               <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
                 <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="font-semibold text-white text-sm leading-tight group-hover:text-blue-400 transition-colors">{u.name}</h3>
+                  <h3 className="font-semibold text-sm leading-tight group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{u.name}</h3>
                   <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">{u.city}</span>
                 </div>
                 <p className="text-xs text-blue-400 mb-1">{u.rank}</p>
-                <p className="text-slate-400 text-xs leading-relaxed">{u.desc}</p>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{u.desc}</p>
               </a>
             ))}
           </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-1">Indian Student Associations</h2>
-          <p className="text-slate-400 text-sm mb-6">Connect with fellow Indian students at Swiss universities</p>
+          <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Indian Student Associations</h2>
+          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Connect with fellow Indian students at Swiss universities</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {associations.map((a) =>
               a.url ? (
                 <a key={a.name} href={a.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
                   <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="font-semibold text-white text-sm leading-tight group-hover:text-blue-400 transition-colors">{a.name}</h3>
+                    <h3 className="font-semibold text-sm leading-tight group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{a.name}</h3>
                     <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">{a.city}</span>
                   </div>
-                  <p className="text-slate-400 text-xs leading-relaxed">{a.desc}</p>
+                  <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{a.desc}</p>
                 </a>
               ) : (
                 <div key={a.name} className="glass rounded-xl p-5">
                   <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="font-semibold text-white text-sm leading-tight">{a.name}</h3>
+                    <h3 className="font-semibold text-sm leading-tight" style={{ color: "var(--text)" }}>{a.name}</h3>
                     <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">{a.city}</span>
                   </div>
-                  <p className="text-slate-400 text-xs leading-relaxed">{a.desc}</p>
+                  <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{a.desc}</p>
                 </div>
               )
             )}
@@ -87,13 +87,13 @@ export default function StudentsPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-1">Scholarships & Funding</h2>
-          <p className="text-slate-400 text-sm mb-6">Scholarships open to Indian students studying in Switzerland</p>
+          <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Scholarships & Funding</h2>
+          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Scholarships open to Indian students studying in Switzerland</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {scholarships.map((s) => (
               <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
-                <h3 className="font-semibold text-white text-sm leading-tight group-hover:text-blue-400 transition-colors mb-2">{s.name}</h3>
-                <p className="text-slate-400 text-xs leading-relaxed">{s.desc}</p>
+                <h3 className="font-semibold text-sm leading-tight group-hover:text-blue-400 transition-colors mb-2" style={{ color: "var(--text)" }}>{s.name}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{s.desc}</p>
               </a>
             ))}
           </div>
@@ -101,9 +101,9 @@ export default function StudentsPage() {
 
         <section>
           <div className="glass rounded-2xl p-6">
-            <h2 className="text-xl font-bold text-white mb-4">Student Visa & Permit</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm text-slate-300">
-              <div>
+            <h2 className="text-xl font-bold mb-4" style={{ color: "var(--text)" }}>Student Visa & Permit</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+              <div style={{ color: "var(--text-2)" }}>
                 <h3 className="font-semibold text-blue-400 mb-3">Before Arrival</h3>
                 <ul className="space-y-2">
                   <li>• Apply for a student visa (Type D) at the Swiss Embassy in India</li>
@@ -112,7 +112,7 @@ export default function StudentsPage() {
                   <li>• Health insurance arranged before or immediately on arrival</li>
                 </ul>
               </div>
-              <div>
+              <div style={{ color: "var(--text-2)" }}>
                 <h3 className="font-semibold text-blue-400 mb-3">After Arrival</h3>
                 <ul className="space-y-2">
                   <li>• Register at local commune (Gemeinde/Commune) within 14 days</li>

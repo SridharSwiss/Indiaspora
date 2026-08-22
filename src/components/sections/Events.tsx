@@ -9,10 +9,10 @@ export default function Events() {
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between mb-16 gap-6">
           <div>
             <span className="tag mb-4">What&apos;s On</span>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mt-3">
+            <h2 className="text-4xl lg:text-5xl font-bold mt-3" style={{ color: "var(--text)" }}>
               Upcoming <span className="gradient-text">Events</span>
             </h2>
-            <p className="text-slate-400 mt-3 max-w-lg">
+            <p className=" mt-3 max-w-lg" style={{ color: "var(--text-2)" }}>
               Festivals, networking nights, cultural shows, food fairs — never miss what&apos;s happening in the Swiss Indian community
             </p>
           </div>
@@ -33,10 +33,10 @@ export default function Events() {
                   </span>
                   <span className="text-xs text-slate-500">{event.date}</span>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors leading-tight">
+                <h3 className="text-lg font-bold mb-2 group-hover:text-orange-400 transition-colors leading-tight" style={{ color: "var(--text)" }}>
                   {event.title}
                 </h3>
-                <p className="text-sm text-slate-400 mb-4 leading-relaxed line-clamp-2">
+                <p className="text-sm  mb-4 leading-relaxed line-clamp-2" style={{ color: "var(--text-2)" }}>
                   {event.description}
                 </p>
                 <div className="flex items-center gap-2 text-sm text-slate-500">
@@ -59,8 +59,8 @@ export default function Events() {
 
         <div className="mt-12">
           <div className="card p-8 text-center" style={{ borderColor: "rgba(249,115,22,0.2)" }}>
-            <h3 className="text-xl font-bold text-white mb-2">Have an Event to Share?</h3>
-            <p className="text-slate-400 mb-6 max-w-md mx-auto text-sm">
+            <h3 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Have an Event to Share?</h3>
+            <p className=" mb-6 max-w-md mx-auto text-sm" style={{ color: "var(--text-2)" }}>
               Submit your community events, workshops, cultural shows, and meetups to reach 30,000+ Indians across Switzerland
             </p>
             <a href="mailto:hello@indiaswiss.ch?subject=Submit%20Event" className="btn btn-primary">

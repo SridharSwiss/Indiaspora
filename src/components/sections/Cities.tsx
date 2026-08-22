@@ -17,11 +17,11 @@ export default function Cities() {
           <span className="text-xs uppercase tracking-[0.3em] text-indigo-400 mb-4 block font-medium">
             City Guides
           </span>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white">
+          <h2 className="text-4xl lg:text-5xl font-bold" style={{ color: "var(--text)" }}>
             Indians Across{" "}
             <span className="gradient-text">Switzerland</span>
           </h2>
-          <p className="text-slate-400 mt-3 max-w-xl mx-auto">
+          <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
             Tailored guides for each Swiss city where the Indian community thrives
           </p>
         </div>
@@ -52,7 +52,7 @@ export default function Cities() {
                   <div className={cn("font-semibold", activeCity === i ? "text-white" : "text-slate-300")}>
                     {c.name}
                   </div>
-                  <div className="text-xs text-slate-500">{c.population}</div>
+                  <div className="text-xs" style={{ color: "var(--text-3)" }}>{c.population}</div>
                 </div>
                 {activeCity === i && (
                   <div className="ml-auto w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
@@ -83,12 +83,12 @@ export default function Cities() {
 
               {/* Content */}
               <div className="p-8">
-                <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">
+                <h4 className="text-sm font-semibold uppercase tracking-wider mb-4" style={{ color: "var(--text-3)" }}>
                   Community Highlights
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                   {city.highlights.map((h) => (
-                    <div key={h} className="flex items-start gap-3 text-sm text-slate-300">
+                    <div key={h} className="flex items-start gap-3 text-sm" style={{ color: "var(--text-2)" }}>
                       <span className="w-5 h-5 rounded-full bg-indigo-500/15 flex items-center justify-center shrink-0 mt-0.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
                       </span>

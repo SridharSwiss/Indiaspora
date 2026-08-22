@@ -80,7 +80,7 @@ export default function WelcomePage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-8">Your First 6 Steps</h2>
+          <h2 className="text-2xl font-bold mb-8" style={{ color: "var(--text)" }}>Your First 6 Steps</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {steps.map((s) => (
               <div key={s.step} className="glass card-hover rounded-2xl p-6">
@@ -90,8 +90,8 @@ export default function WelcomePage() {
                   </div>
                   <div>
                     <p className="text-xs text-green-400 font-medium mb-1">Step {s.step}</p>
-                    <h3 className="text-base font-semibold text-white mb-2">{s.title}</h3>
-                    <p className="text-sm text-white/60">{s.description}</p>
+                    <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{s.title}</h3>
+                    <p className="text-sm/60" style={{ color: "var(--text)" }}>{s.description}</p>
                   </div>
                 </div>
               </div>
@@ -100,11 +100,11 @@ export default function WelcomePage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Practical Tips from the Community</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Practical Tips from the Community</h2>
           <div className="glass rounded-2xl p-6">
             <ul className="space-y-3">
               {tips.map((tip) => (
-                <li key={tip} className="flex items-start gap-3 text-white/70 text-sm">
+                <li key={tip} className="flex items-start gap-3/70 text-sm" style={{ color: "var(--text)" }}>
                   <span className="text-green-400 mt-0.5 flex-shrink-0">✓</span>
                   {tip}
                 </li>
@@ -115,15 +115,15 @@ export default function WelcomePage() {
 
         <div className="glass rounded-2xl p-6 border border-green-500/20">
           <h3 className="text-base font-semibold text-green-400 mb-2">Indian Embassy & Consulate Contacts</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-white/70">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm/70" style={{ color: "var(--text)" }}>
             <div>
-              <p className="font-semibold text-white mb-1">Embassy of India, Bern</p>
+              <p className="font-semibold mb-1" style={{ color: "var(--text)" }}>Embassy of India, Bern</p>
               <p>Thunstrasse 5, 3005 Bern</p>
               <p>Tel: +41 31 350 11 10</p>
               <p className="text-green-400">indembassybern.gov.in</p>
             </div>
             <div>
-              <p className="font-semibold text-white mb-1">Consulate General of India, Geneva</p>
+              <p className="font-semibold mb-1" style={{ color: "var(--text)" }}>Consulate General of India, Geneva</p>
               <p>9 rue du Valais, 1202 Geneva</p>
               <p>Tel: +41 22 906 86 86</p>
               <p className="text-green-400">cgigeneva.gov.in</p>

@@ -30,7 +30,7 @@ const subCategories = [
 
 export default function FoodPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
         title="Indian Food & Dining in Switzerland"
         subtitle="From authentic South Indian dosas to Punjabi dhabas — find the best Indian food, grocery stores, home chefs, and tiffin services across Switzerland."
@@ -45,28 +45,28 @@ export default function FoodPage() {
           {subCategories.map((cat) => (
             <Link key={cat.label} href={cat.href} className="glass rounded-2xl p-5 card-hover group">
               <div className="text-3xl mb-3">{cat.icon}</div>
-              <h3 className="font-semibold text-white mb-1 group-hover:text-orange-400 transition-colors">{cat.label}</h3>
-              <p className="text-xs text-slate-400">{cat.desc}</p>
+              <h3 className="font-semibold mb-1 group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{cat.label}</h3>
+              <p className="text-xs" style={{ color: "var(--text-2)" }}>{cat.desc}</p>
             </Link>
           ))}
         </div>
 
         {/* Restaurants */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-2">Featured Restaurants</h2>
-          <p className="text-slate-400 mb-8">Handpicked Indian restaurants across Switzerland — from casual dhabas to fine dining</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Featured Restaurants</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>Handpicked Indian restaurants across Switzerland — from casual dhabas to fine dining</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {restaurants.map((r) => (
               <div key={r.name} className="glass rounded-2xl p-5 card-hover">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold text-white">{r.name}</h3>
+                    <h3 className="font-semibold" style={{ color: "var(--text)" }}>{r.name}</h3>
                     <span className="text-xs text-orange-400">{r.cuisine}</span>
                   </div>
-                  <span className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full">{r.city}</span>
+                  <span className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{r.city}</span>
                 </div>
-                <p className="text-sm text-slate-400 mb-2">{r.address}</p>
-                <p className="text-xs text-slate-500">{r.note}</p>
+                <p className="text-sm mb-2" style={{ color: "var(--text-2)" }}>{r.address}</p>
+                <p className="text-xs" style={{ color: "var(--text-3)" }}>{r.note}</p>
               </div>
             ))}
           </div>
@@ -74,16 +74,16 @@ export default function FoodPage() {
 
         {/* Grocery */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-2">Indian Grocery Stores</h2>
-          <p className="text-slate-400 mb-8">Find Indian spices, dals, flours, frozen foods, and pooja items near you</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Indian Grocery Stores</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>Find Indian spices, dals, flours, frozen foods, and pooja items near you</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {groceries.map((g) => (
               <div key={g.name} className="glass rounded-2xl p-5 card-hover">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold text-white">{g.name}</h3>
-                  <span className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full">{g.cities}</span>
+                  <h3 className="font-semibold" style={{ color: "var(--text)" }}>{g.name}</h3>
+                  <span className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{g.cities}</span>
                 </div>
-                <p className="text-sm text-slate-400 mb-3">{g.desc}</p>
+                <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>{g.desc}</p>
                 {g.url !== "#" && (
                   <a href={g.url} target="_blank" rel="noopener noreferrer" className="text-xs text-orange-400 hover:text-orange-300">
                     Visit website →
@@ -97,12 +97,12 @@ export default function FoodPage() {
         {/* Tiffin */}
         <section className="mb-16">
           <div className="glass rounded-2xl p-8">
-            <h2 className="text-2xl font-bold text-white mb-4">🍱 Tiffin & Home Chef Services</h2>
-            <p className="text-slate-400 mb-6">Enjoy home-cooked Indian meals delivered to your door — perfect for working professionals and students</p>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>🍱 Tiffin & Home Chef Services</h2>
+            <p className="mb-6" style={{ color: "var(--text-2)" }}>Enjoy home-cooked Indian meals delivered to your door — perfect for working professionals and students</p>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="font-semibold text-orange-400 mb-3">Zurich Tiffin Services</h3>
-                <ul className="space-y-2 text-sm text-slate-300">
+                <ul className="space-y-2 text-sm" style={{ color: "var(--text-2)" }}>
                   <li>• Desi Tiffin Zurich — Monthly subscriptions, veg/non-veg</li>
                   <li>• Maa ki Rasoi — Home-style Punjabi meals, Whatsapp orders</li>
                   <li>• South Indian Kitchen Zurich — Thali delivery, vegan options</li>
@@ -111,7 +111,7 @@ export default function FoodPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-orange-400 mb-3">Geneva & Basel</h3>
-                <ul className="space-y-2 text-sm text-slate-300">
+                <ul className="space-y-2 text-sm" style={{ color: "var(--text-2)" }}>
                   <li>• Indian Home Kitchen Geneva — Event catering & daily tiffin</li>
                   <li>• Spice Affairs Basel — Corporate catering and tiffin</li>
                   <li>• Bern Tiffin Network — Community-run meal sharing group</li>
@@ -119,15 +119,15 @@ export default function FoodPage() {
                 </ul>
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-6">💡 Find tiffin services via Facebook groups: "Indians in Zurich", "Desi Moms Switzerland", "Indian Community Geneva"</p>
+            <p className="text-xs mt-6" style={{ color: "var(--text-3)" }}>💡 Find tiffin services via Facebook groups: "Indians in Zurich", "Desi Moms Switzerland", "Indian Community Geneva"</p>
           </div>
         </section>
 
         {/* CTA */}
         <div className="glass rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-white mb-2">List Your Restaurant or Food Business</h3>
-          <p className="text-slate-400 mb-6">Reach thousands of Indians in Switzerland — add your restaurant, grocery store, or tiffin service</p>
-          <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold hover:from-amber-600 hover:to-orange-600 transition-all">
+          <h3 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>List Your Restaurant or Food Business</h3>
+          <p className="mb-6" style={{ color: "var(--text-2)" }}>Reach thousands of Indians in Switzerland — add your restaurant, grocery store, or tiffin service</p>
+          <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 font-semibold hover:from-amber-600 hover:to-orange-600 transition-all" style={{ color: "var(--text)" }}>
             Submit Listing
           </button>
         </div>

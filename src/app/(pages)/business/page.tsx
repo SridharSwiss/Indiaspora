@@ -36,7 +36,7 @@ const workPermitTypes = [
 
 export default function BusinessPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
         title="Business & Career in Switzerland"
         subtitle="Advance your career in one of the world's most competitive economies. Connect with Indian professionals, explore top employers, and navigate work permits."
@@ -52,31 +52,31 @@ export default function BusinessPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
             <div>
               <div className="text-teal-400 font-semibold text-xs uppercase tracking-wider mb-1">India-EFTA TEPA</div>
-              <p className="text-slate-400 text-xs">The India-EFTA Trade and Economic Partnership Agreement entered into force in <strong className="text-white">October 2025</strong> — opening major new opportunities for Swiss-Indian business.</p>
+              <p className="text-xs" style={{ color: "var(--text-2)" }}>The India-EFTA Trade and Economic Partnership Agreement entered into force in <strong style={{ color: "var(--text)" }}>October 2025</strong> — opening major new opportunities for Swiss-Indian business.</p>
             </div>
             <div>
               <div className="text-teal-400 font-semibold text-xs uppercase tracking-wider mb-1">Bilateral Trade (2024)</div>
-              <p className="text-slate-400 text-xs">India-Switzerland total trade reached <strong className="text-white">CHF 22.4 billion</strong> in 2024, spanning pharma, machinery, watches, chemicals, and IT services.</p>
+              <p className="text-xs" style={{ color: "var(--text-2)" }}>India-Switzerland total trade reached <strong style={{ color: "var(--text)" }}>CHF 22.4 billion</strong> in 2024, spanning pharma, machinery, watches, chemicals, and IT services.</p>
             </div>
             <div>
               <div className="text-teal-400 font-semibold text-xs uppercase tracking-wider mb-1">Startup Ecosystem</div>
-              <p className="text-slate-400 text-xs">Switzerland ranks <strong className="text-white">#8 globally</strong> in startup ecosystems. CHF 1.47bn raised in H1 2025. Infosys expanding at The Circle, Zurich Airport.</p>
+              <p className="text-xs" style={{ color: "var(--text-2)" }}>Switzerland ranks <strong style={{ color: "var(--text)" }}>#8 globally</strong> in startup ecosystems. CHF 1.47bn raised in H1 2025. Infosys expanding at The Circle, Zurich Airport.</p>
             </div>
           </div>
         </div>
 
         {/* Networks */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-2">Professional Networks & Chambers</h2>
-          <p className="text-slate-400 mb-8">Connect with established Indian business associations in Switzerland</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Professional Networks & Chambers</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>Connect with established Indian business associations in Switzerland</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {networks.map((n) => (
               <div key={n.name} className="glass rounded-2xl p-5 card-hover">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold text-white text-sm leading-tight flex-1 mr-2">{n.name}</h3>
+                  <h3 className="font-semibold text-sm leading-tight flex-1 mr-2" style={{ color: "var(--text)" }}>{n.name}</h3>
                   <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full shrink-0">{n.tag}</span>
                 </div>
-                <p className="text-sm text-slate-400 mb-3">{n.desc}</p>
+                <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>{n.desc}</p>
                 <a href={n.url} target="_blank" rel="noopener noreferrer" className="text-xs text-teal-400 hover:text-teal-300">Visit →</a>
               </div>
             ))}
@@ -85,13 +85,13 @@ export default function BusinessPage() {
 
         {/* Job Portals */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-2">Job Search Portals</h2>
-          <p className="text-slate-400 mb-8">Top platforms for finding jobs in Switzerland</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Job Search Portals</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>Top platforms for finding jobs in Switzerland</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {jobPortals.map((j) => (
               <a key={j.name} href={j.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover group block">
-                <h3 className="font-semibold text-white mb-2 group-hover:text-teal-400 transition-colors">{j.name}</h3>
-                <p className="text-sm text-slate-400">{j.desc}</p>
+                <h3 className="font-semibold mb-2 group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{j.name}</h3>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{j.desc}</p>
               </a>
             ))}
           </div>
@@ -99,18 +99,18 @@ export default function BusinessPage() {
 
         {/* Key Sectors */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-2">Top Sectors for Indian Professionals</h2>
-          <p className="text-slate-400 mb-8">Switzerland's strongest industries and their key employers</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Top Sectors for Indian Professionals</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>Switzerland's strongest industries and their key employers</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {sectors.map((s) => (
               <div key={s.name} className="glass rounded-2xl p-5">
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-semibold text-white">{s.name}</h3>
-                  <span className="text-xs text-slate-400">{s.hub}</span>
+                  <h3 className="font-semibold" style={{ color: "var(--text)" }}>{s.name}</h3>
+                  <span className="text-xs" style={{ color: "var(--text-2)" }}>{s.hub}</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {s.companies.map((c) => (
-                    <span key={c} className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full">{c}</span>
+                    <span key={c} className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{c}</span>
                   ))}
                 </div>
               </div>
@@ -120,13 +120,13 @@ export default function BusinessPage() {
 
         {/* Work Permits */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-2">Work Permits for Non-EU Nationals</h2>
-          <p className="text-slate-400 mb-6">As an Indian national, you need a work permit to work in Switzerland. Annual quotas apply for non-EU/EFTA nationals.</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Work Permits for Non-EU Nationals</h2>
+          <p className="mb-6" style={{ color: "var(--text-2)" }}>As an Indian national, you need a work permit to work in Switzerland. Annual quotas apply for non-EU/EFTA nationals.</p>
           <div className="grid md:grid-cols-2 gap-5">
             {workPermitTypes.map((w) => (
               <div key={w.permit} className="glass rounded-2xl p-5">
                 <h3 className="font-semibold text-teal-400 mb-2">{w.permit}</h3>
-                <p className="text-sm text-slate-300 mb-3">{w.eligibility}</p>
+                <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>{w.eligibility}</p>
                 <a href={w.link} target="_blank" rel="noopener noreferrer" className="text-xs text-teal-400 hover:text-teal-300">Official SEM info →</a>
               </div>
             ))}
@@ -139,12 +139,12 @@ export default function BusinessPage() {
         {/* Startups */}
         <section className="mb-16">
           <div className="glass rounded-2xl p-8">
-            <h2 className="text-2xl font-bold text-white mb-4">🚀 Indian-Founded Startups & Ecosystem</h2>
-            <p className="text-slate-400 mb-6">Switzerland ranks #8 globally in startup ecosystems with CHF 1.47bn raised in H1 2025 — Indians are building here</p>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>🚀 Indian-Founded Startups & Ecosystem</h2>
+            <p className="mb-6" style={{ color: "var(--text-2)" }}>Switzerland ranks #8 globally in startup ecosystems with CHF 1.47bn raised in H1 2025 — Indians are building here</p>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="font-semibold text-teal-400 mb-3">Startup Hubs</h3>
-                <ul className="space-y-2 text-sm text-slate-300">
+                <ul className="space-y-2 text-sm" style={{ color: "var(--text-2)" }}>
                   <li>• <a href="https://www.innosuisse.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">Innosuisse</a> — Swiss Innovation Agency, funding for R&D</li>
                   <li>• ETH Zurich's <a href="https://entrepreneurclub.ethz.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">Entrepreneur Club</a></li>
                   <li>• EPFL Innovation Park — deep-tech startup campus, Lausanne</li>
@@ -154,7 +154,7 @@ export default function BusinessPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-teal-400 mb-3">Resources for Indian Entrepreneurs</h3>
-                <ul className="space-y-2 text-sm text-slate-300">
+                <ul className="space-y-2 text-sm" style={{ color: "var(--text-2)" }}>
                   <li>• TiE Zurich — angel network, mentorship (<a href="https://tie.org/chapter/tie-zurich/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">tie.org</a>)</li>
                   <li>• SICC — India-Switzerland trade connections</li>
                   <li>• <a href="https://swissnex.org/india/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">Swissnex India</a> — Swiss-India innovation bridge</li>

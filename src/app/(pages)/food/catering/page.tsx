@@ -72,12 +72,12 @@ export default function CateringPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Known Catering Providers</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Known Catering Providers</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {caterers.map((c) => (
               <div key={c.name} className="glass card-hover rounded-2xl p-5">
                 <div className="flex items-start justify-between mb-1">
-                  <h3 className="text-base font-semibold text-white">
+                  <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>
                     {c.url ? (
                       <a href={c.url} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition-colors">
                         {c.name}
@@ -86,31 +86,31 @@ export default function CateringPage() {
                   </h3>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-400 flex-shrink-0 ml-2">{c.city}</span>
                 </div>
-                <p className="text-xs text-white/40 mb-2">{c.type}</p>
-                <p className="text-sm text-white/60">{c.note}</p>
+                <p className="text-xs/40 mb-2" style={{ color: "var(--text)" }}>{c.type}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{c.note}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Types of Services</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Types of Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {tiffinTypes.map((t) => (
               <div key={t.name} className="glass card-hover rounded-2xl p-5">
                 <h3 className="text-base font-semibold text-pink-400 mb-2">{t.name}</h3>
-                <p className="text-sm text-white/60">{t.desc}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{t.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">How to Find Tiffin Services</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>How to Find Tiffin Services</h2>
           <div className="glass rounded-2xl p-6">
             <ul className="space-y-3">
               {findTiffin.map((f) => (
-                <li key={f} className="flex items-start gap-3 text-white/70 text-sm">
+                <li key={f} className="flex items-start gap-3/70 text-sm" style={{ color: "var(--text)" }}>
                   <span className="text-pink-400 mt-0.5 flex-shrink-0">•</span>
                   {f}
                 </li>
@@ -120,7 +120,7 @@ export default function CateringPage() {
         </section>
 
         <div className="glass rounded-2xl p-6 border border-pink-500/20">
-          <p className="text-sm text-white/70"><span className="text-pink-400 font-semibold">Note:</span> Most tiffin services are run by home chefs and are not commercial entities. Always confirm allergen information, delivery areas, and pricing directly. Payment is typically via TWINT or bank transfer.</p>
+          <p className="text-sm/70" style={{ color: "var(--text)" }}><span className="text-pink-400 font-semibold">Note:</span> Most tiffin services are run by home chefs and are not commercial entities. Always confirm allergen information, delivery areas, and pricing directly. Payment is typically via TWINT or bank transfer.</p>
         </div>
       </div>
     </div>

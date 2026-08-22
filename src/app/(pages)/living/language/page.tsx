@@ -39,28 +39,28 @@ export default function LanguagePage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Switzerland's Languages</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Switzerland's Languages</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {languages.map((l) => (
               <div key={l.lang} className="glass card-hover rounded-2xl p-5">
                 <h3 className="text-xl font-bold text-teal-400 mb-1">{l.lang}</h3>
-                <p className="text-xs text-white/40 mb-1">{l.regions}</p>
-                <p className="text-xs text-white/50 mb-3">{l.speakers}</p>
-                <p className="text-sm text-white/60">{l.note}</p>
+                <p className="text-xs/40 mb-1" style={{ color: "var(--text)" }}>{l.regions}</p>
+                <p className="text-xs/50 mb-3" style={{ color: "var(--text)" }}>{l.speakers}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{l.note}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Learning Resources</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Learning Resources</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {resources.map((r) => (
               <div key={r.category} className="glass rounded-2xl p-5">
                 <h3 className="text-base font-semibold text-teal-400 mb-3">{r.category}</h3>
                 <ul className="space-y-2">
                   {r.items.map((item) => (
-                    <li key={item} className="text-sm text-white/60 flex items-start gap-2">
+                    <li key={item} className="text-sm/60 flex items-start gap-2" style={{ color: "var(--text)" }}>
                       <span className="text-teal-400 mt-0.5">•</span>
                       {item}
                     </li>
@@ -73,7 +73,7 @@ export default function LanguagePage() {
 
         <div className="glass rounded-2xl p-6 border border-teal-500/20">
           <h3 className="text-base font-semibold text-teal-400 mb-2">Why Language Matters Legally</h3>
-          <p className="text-sm text-white/70">Proficiency in the local language is formally required for both the C permit (settlement) and Swiss naturalisation. You must demonstrate at least <strong className="text-white">A2 written and B1 oral</strong> ability in the official language of your canton of residence. The FIDE test (fide-ch.ch) is the recognised assessment — start preparing early.</p>
+          <p className="text-sm/70" style={{ color: "var(--text)" }}>Proficiency in the local language is formally required for both the C permit (settlement) and Swiss naturalisation. You must demonstrate at least <strong style={{ color: "var(--text)" }}>A2 written and B1 oral</strong> ability in the official language of your canton of residence. The FIDE test (fide-ch.ch) is the recognised assessment — start preparing early.</p>
         </div>
       </div>
     </div>

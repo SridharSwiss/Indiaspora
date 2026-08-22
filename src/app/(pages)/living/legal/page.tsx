@@ -40,40 +40,40 @@ export default function LegalPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Swiss Residence Permits</h2>
-          <p className="text-sm text-white/50 mb-6">Permits for Indian nationals (third-country / non-EU/EFTA nationals) are subject to an annual quota set by the federal government. Your employer typically initiates the permit application. The authoritative source is the State Secretariat for Migration: <span className="text-slate-300">sem.admin.ch</span></p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Swiss Residence Permits</h2>
+          <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>Permits for Indian nationals (third-country / non-EU/EFTA nationals) are subject to an annual quota set by the federal government. Your employer typically initiates the permit application. The authoritative source is the State Secretariat for Migration: <span className="" style={{ color: "var(--text-2)" }}>sem.admin.ch</span></p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {permits.map((p) => (
               <div key={p.code} className="glass card-hover rounded-2xl p-5">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="w-10 h-10 rounded-full bg-slate-500/30 flex items-center justify-center text-lg font-bold text-white">{p.code}</span>
+                  <span className="w-10 h-10 rounded-full bg-slate-500/30 flex items-center justify-center text-lg font-bold" style={{ color: "var(--text)" }}>{p.code}</span>
                   <div>
-                    <h3 className="text-base font-semibold text-white">{p.name}</h3>
-                    <p className="text-xs text-slate-400">{p.duration}</p>
+                    <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>{p.name}</h3>
+                    <p className="text-xs " style={{ color: "var(--text-2)" }}>{p.duration}</p>
                   </div>
                 </div>
-                <p className="text-sm text-white/60">{p.desc}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{p.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Indian Documents from Switzerland</h2>
-          <p className="text-sm text-white/50 mb-6">All consular services for Indian nationals are handled by the Embassy of India in Bern (Thunstrasse 5, 3005 Bern) and the Consulate General of India in Geneva. Register as an Indian national at <span className="text-slate-300">indembassybern.gov.in</span></p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Indian Documents from Switzerland</h2>
+          <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>All consular services for Indian nationals are handled by the Embassy of India in Bern (Thunstrasse 5, 3005 Bern) and the Consulate General of India in Geneva. Register as an Indian national at <span className="" style={{ color: "var(--text-2)" }}>indembassybern.gov.in</span></p>
           <div className="space-y-4">
             {indianDocs.map((d) => (
               <div key={d.title} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-white mb-2">{d.title}</h3>
-                <p className="text-sm text-white/60">{d.desc}</p>
+                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{d.title}</h3>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{d.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         <div className="glass rounded-2xl p-6 border border-slate-500/20">
-          <h3 className="text-base font-semibold text-slate-300 mb-2">Path to Swiss Citizenship</h3>
-          <p className="text-sm text-white/70">Indian nationals can apply for Swiss naturalisation after <strong className="text-white">10 years</strong> of total legal residence (years spent in Switzerland between ages 8–18 count double). You must hold a C permit, demonstrate language proficiency (A2 written + B1 oral in your canton's language), have a clean criminal and debt record, and show integration into Swiss civic life. Processing is handled at the cantonal and communal level and typically takes 1–3 years. Source: <span className="text-slate-300">sem.admin.ch</span></p>
+          <h3 className="text-base font-semibold  mb-2" style={{ color: "var(--text-2)" }}>Path to Swiss Citizenship</h3>
+          <p className="text-sm/70" style={{ color: "var(--text)" }}>Indian nationals can apply for Swiss naturalisation after <strong style={{ color: "var(--text)" }}>10 years</strong> of total legal residence (years spent in Switzerland between ages 8–18 count double). You must hold a C permit, demonstrate language proficiency (A2 written + B1 oral in your canton's language), have a clean criminal and debt record, and show integration into Swiss civic life. Processing is handled at the cantonal and communal level and typically takes 1–3 years. Source: <span className="" style={{ color: "var(--text-2)" }}>sem.admin.ch</span></p>
         </div>
       </div>
     </div>

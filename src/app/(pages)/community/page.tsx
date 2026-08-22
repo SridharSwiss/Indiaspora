@@ -26,7 +26,7 @@ const orgs = [
 
 export default function CommunityPage() {
   return (
-    <div className="bg-slate-950 text-white">
+    <div>
       <PageHeader
         title="Indian Community in Switzerland"
         subtitle="Connect with 25,000+ Indians across 26 cantons. Find your tribe — by region, language, profession, or interest."
@@ -40,26 +40,26 @@ export default function CommunityPage() {
           {sections.map((s) => (
             <Link key={s.label} href={s.href} className="glass rounded-2xl p-6 card-hover group block">
               <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${s.color} mb-4`}>
-                <s.icon className="w-5 h-5 text-white" />
+                <s.icon className="w-5 h-5" style={{ color: "var(--text)" }} />
               </div>
-              <h2 className="font-bold text-white text-lg mb-2 group-hover:text-orange-400 transition-colors">{s.label}</h2>
-              <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
+              <h2 className="font-bold text-lg mb-2 group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{s.label}</h2>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>{s.desc}</p>
             </Link>
           ))}
         </div>
 
         {/* Directory */}
-        <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">Community Directory</h2>
-        <p className="text-slate-400 mb-8">Major Indian associations and organisations active in Switzerland</p>
+        <h2 className="text-2xl sm:text-3xl font-black mb-2" style={{ color: "var(--text)" }}>Community Directory</h2>
+        <p className="mb-8" style={{ color: "var(--text-2)" }}>Major Indian associations and organisations active in Switzerland</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {orgs.map((org) => (
             <a key={org.name} href={org.url === "#" ? undefined : org.url} target={org.url !== "#" ? "_blank" : undefined} rel="noopener noreferrer"
               className="glass rounded-xl p-5 card-hover block group">
               <div className="flex items-start justify-between gap-2 mb-2">
-                <h3 className="font-semibold text-white text-sm group-hover:text-orange-400 transition-colors leading-tight">{org.name}</h3>
+                <h3 className="font-semibold text-sm group-hover:text-orange-400 transition-colors leading-tight" style={{ color: "var(--text)" }}>{org.name}</h3>
                 <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-orange-500/15 text-orange-400 border border-orange-500/20">{org.city}</span>
               </div>
-              <p className="text-slate-400 text-xs leading-relaxed">{org.desc}</p>
+              <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{org.desc}</p>
             </a>
           ))}
         </div>
@@ -69,7 +69,7 @@ export default function CommunityPage() {
           {[{v:"25,000+",l:"Indians in Switzerland"},{v:"150+",l:"Active Associations"},{v:"26",l:"Cantons Covered"},{v:"20+",l:"Languages Spoken"}].map((s)=>(
             <div key={s.l} className="glass rounded-xl p-4 sm:p-6 text-center">
               <div className="text-2xl sm:text-3xl font-black gradient-text mb-1">{s.v}</div>
-              <div className="text-xs sm:text-sm text-slate-400">{s.l}</div>
+              <div className="text-xs sm:text-sm" style={{ color: "var(--text-2)" }}>{s.l}</div>
             </div>
           ))}
         </div>

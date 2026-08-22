@@ -81,12 +81,12 @@ export default function ServicesPage() {
               <span className="text-2xl">{cat.icon}</span>
               <h2 className={`text-2xl font-bold ${cat.color}`}>{cat.title}</h2>
             </div>
-            <p className="text-slate-400 mb-6">{cat.desc}</p>
+            <p className=" mb-6" style={{ color: "var(--text-2)" }}>{cat.desc}</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {cat.items.map((item) => (
                 <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
-                  <h3 className="font-semibold text-white text-sm mb-2 group-hover:text-teal-400 transition-colors">{item.name}</h3>
-                  <p className="text-sm text-slate-400">{item.note}</p>
+                  <h3 className="font-semibold text-sm mb-2 group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{item.name}</h3>
+                  <p className="text-sm " style={{ color: "var(--text-2)" }}>{item.note}</p>
                 </a>
               ))}
             </div>
@@ -95,7 +95,7 @@ export default function ServicesPage() {
 
         <div className="glass rounded-2xl p-6 border border-teal-500/20">
           <h3 className="text-base font-semibold text-teal-400 mb-2">Community Referrals</h3>
-          <p className="text-sm text-slate-300">The best professional referrals often come from the community. Ask in the IAGZ member network (<a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">iagz.ch</a>), the SICC member directory (<a href="https://sicc.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">sicc.ch</a>), or the Swiss India Professional Network (<a href="https://sipn.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">sipn.ch</a>) for tried-and-tested advisors who understand the Indian context.</p>
+          <p className="text-sm " style={{ color: "var(--text-2)" }}>The best professional referrals often come from the community. Ask in the IAGZ member network (<a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">iagz.ch</a>), the SICC member directory (<a href="https://sicc.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">sicc.ch</a>), or the Swiss India Professional Network (<a href="https://sipn.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">sipn.ch</a>) for tried-and-tested advisors who understand the Indian context.</p>
         </div>
       </div>
     </div>

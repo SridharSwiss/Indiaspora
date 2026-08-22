@@ -13,11 +13,11 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="tag mb-4">Community Voices</span>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mt-3">
+          <h2 className="text-4xl lg:text-5xl font-bold mt-3" style={{ color: "var(--text)" }}>
             Indians Thriving in{" "}
             <span className="gradient-text">Switzerland</span>
           </h2>
-          <p className="text-slate-400 mt-3 max-w-xl mx-auto">
+          <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
             Real stories from community members who&apos;ve built their lives in Switzerland
           </p>
         </div>
@@ -34,7 +34,7 @@ export default function Testimonials() {
                   {t.avatar}
                 </div>
                 <div>
-                  <div className="font-semibold text-white text-sm">{t.name}</div>
+                  <div className="font-semibold text-sm" style={{ color: "var(--text)" }}>{t.name}</div>
                   <div className="text-xs text-slate-400">{t.role}</div>
                   <div className="text-xs text-slate-500 mt-0.5">{t.origin} · {t.years}</div>
                 </div>

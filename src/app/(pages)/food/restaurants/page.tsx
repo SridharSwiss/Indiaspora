@@ -160,11 +160,11 @@ export default function RestaurantsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         {cities.map((c) => (
           <section key={c.city}>
-            <h2 className="text-2xl font-bold text-white mb-6">{c.city}</h2>
+            <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>{c.city}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {c.restaurants.map((r) => (
                 <div key={r.name} className="glass card-hover rounded-2xl p-5">
-                  <h3 className="text-base font-semibold text-white mb-0.5">
+                  <h3 className="text-base font-semibold mb-0.5" style={{ color: "var(--text)" }}>
                     {r.url ? (
                       <a href={r.url} target="_blank" rel="noopener noreferrer" className="hover:text-orange-400 transition-colors">
                         {r.name}
@@ -172,11 +172,11 @@ export default function RestaurantsPage() {
                     ) : r.name}
                   </h3>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs text-white/40">{r.area}</span>
-                    <span className="text-white/20">·</span>
+                    <span className="text-xs" style={{ color: "var(--text-3)" }}>{r.area}</span>
+                    <span style={{ color: "var(--text-3)" }}>·</span>
                     <span className="text-xs text-orange-400">{r.type}</span>
                   </div>
-                  <p className="text-sm text-white/60">{r.note}</p>
+                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{r.note}</p>
                 </div>
               ))}
             </div>
@@ -184,7 +184,7 @@ export default function RestaurantsPage() {
         ))}
 
         <div className="glass rounded-2xl p-6 border border-orange-500/20">
-          <p className="text-sm text-white/70"><span className="text-orange-400 font-semibold">Note:</span> Restaurant listings change frequently. We recommend verifying opening hours on Google Maps before visiting. Know of a great Indian restaurant not listed here? Let us know via the community.</p>
+          <p className="text-sm" style={{ color: "var(--text-2)" }}><span className="text-orange-400 font-semibold">Note:</span> Restaurant listings change frequently. We recommend verifying opening hours on Google Maps before visiting. Know of a great Indian restaurant not listed here? Let us know via the community.</p>
         </div>
       </div>
     </div>

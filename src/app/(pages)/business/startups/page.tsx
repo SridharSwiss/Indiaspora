@@ -57,65 +57,65 @@ export default function StartupsPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Key Ecosystem Players</h2>
-          <p className="text-slate-400 mb-8">Incubators, accelerators, and India-Switzerland bridge organisations</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Key Ecosystem Players</h2>
+          <p className=" mb-8" style={{ color: "var(--text-2)" }}>Incubators, accelerators, and India-Switzerland bridge organisations</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {ecosystem.map((e) => (
               <a key={e.name} href={e.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="font-semibold text-white text-sm group-hover:text-teal-400 transition-colors flex-1 mr-2">{e.name}</h3>
+                  <h3 className="font-semibold text-sm group-hover:text-teal-400 transition-colors flex-1 mr-2" style={{ color: "var(--text)" }}>{e.name}</h3>
                   <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full shrink-0">{e.category}</span>
                 </div>
-                <p className="text-sm text-slate-400">{e.desc}</p>
+                <p className="text-sm " style={{ color: "var(--text-2)" }}>{e.desc}</p>
               </a>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Key Events for Indian Founders</h2>
-          <p className="text-slate-400 mb-8">Annual Switzerland–India startup events worth attending</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Key Events for Indian Founders</h2>
+          <p className=" mb-8" style={{ color: "var(--text-2)" }}>Annual Switzerland–India startup events worth attending</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {events.map((e) => (
               <a key={e.name} href={e.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold text-white text-sm group-hover:text-teal-400 transition-colors">{e.name}</h3>
+                  <h3 className="font-semibold text-sm group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{e.name}</h3>
                   <span className="text-xs text-teal-400 ml-2 shrink-0">{e.timing}</span>
                 </div>
-                <p className="text-sm text-slate-400">{e.desc}</p>
+                <p className="text-sm " style={{ color: "var(--text-2)" }}>{e.desc}</p>
               </a>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Startup Hubs by City</h2>
-          <p className="text-slate-400 mb-8">Where to build your startup in Switzerland</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Startup Hubs by City</h2>
+          <p className=" mb-8" style={{ color: "var(--text-2)" }}>Where to build your startup in Switzerland</p>
           <div className="grid md:grid-cols-2 gap-5">
             {hubs.map((h) => (
               <div key={h.city} className="glass rounded-2xl p-6">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold text-white text-lg">{h.city}</h3>
+                    <h3 className="font-semibold text-lg" style={{ color: "var(--text)" }}>{h.city}</h3>
                     <p className="text-xs text-teal-400">{h.nickname}</p>
                   </div>
                 </div>
-                <p className="text-sm text-white/60 mb-2"><span className="text-white/40">Strengths: </span>{h.strengths}</p>
-                <p className="text-sm text-white/60 mb-2"><span className="text-white/40">Spaces: </span>{h.space}</p>
-                <p className="text-sm text-white/70">{h.note}</p>
+                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}><span className="text-white/40">Strengths: </span>{h.strengths}</p>
+                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}><span className="text-white/40">Spaces: </span>{h.space}</p>
+                <p className="text-sm/70" style={{ color: "var(--text)" }}>{h.note}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Startup Visa for Indian Founders</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Startup Visa for Indian Founders</h2>
           <div className="space-y-4">
             {visa.map((v) => (
               <div key={v.type} className="glass rounded-2xl p-5">
                 <h3 className="font-semibold text-teal-400 mb-1">{v.type}</h3>
-                <p className="text-sm text-white/60 mb-1">{v.eligibility}</p>
-                <p className="text-xs text-white/40">{v.note}</p>
+                <p className="text-sm/60 mb-1" style={{ color: "var(--text)" }}>{v.eligibility}</p>
+                <p className="text-xs/40" style={{ color: "var(--text)" }}>{v.note}</p>
               </div>
             ))}
           </div>

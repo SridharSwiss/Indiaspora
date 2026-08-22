@@ -54,24 +54,24 @@ export default function HousingPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Where to Search</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Where to Search</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {portals.map((p) => (
               <div key={p.name} className="glass card-hover rounded-2xl p-5">
                 <h3 className="text-base font-semibold text-blue-400 mb-1">{p.name}</h3>
-                <p className="text-xs text-white/40 mb-2">{p.url}</p>
-                <p className="text-sm text-white/60">{p.desc}</p>
+                <p className="text-xs/40 mb-2" style={{ color: "var(--text)" }}>{p.url}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{p.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Documents You'll Need</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Documents You'll Need</h2>
           <div className="glass rounded-2xl p-6">
             <ul className="space-y-3">
               {documents.map((doc) => (
-                <li key={doc} className="flex items-start gap-3 text-white/70 text-sm">
+                <li key={doc} className="flex items-start gap-3/70 text-sm" style={{ color: "var(--text)" }}>
                   <span className="text-blue-400 mt-0.5 flex-shrink-0">•</span>
                   {doc}
                 </li>
@@ -81,11 +81,11 @@ export default function HousingPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Community Tips</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Community Tips</h2>
           <div className="glass rounded-2xl p-6">
             <ul className="space-y-3">
               {tips.map((tip) => (
-                <li key={tip} className="flex items-start gap-3 text-white/70 text-sm">
+                <li key={tip} className="flex items-start gap-3/70 text-sm" style={{ color: "var(--text)" }}>
                   <span className="text-green-400 mt-0.5 flex-shrink-0">✓</span>
                   {tip}
                 </li>

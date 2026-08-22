@@ -69,20 +69,20 @@ export default function GenevaPage() {
           {highlights.map((h) => (
             <div key={h.label} className="glass rounded-2xl p-4 text-center">
               <div className="text-2xl mb-1">{h.icon}</div>
-              <p className="text-base font-bold text-white">{h.value}</p>
-              <p className="text-xs text-white/50">{h.label}</p>
+              <p className="text-base font-bold" style={{ color: "var(--text)" }}>{h.value}</p>
+              <p className="text-xs/50" style={{ color: "var(--text)" }}>{h.label}</p>
             </div>
           ))}
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Indian Associations & Consulate</h2>
-          <p className="text-sm text-white/50 mb-6">Source: indianassociationgeneva.com; pmindiaun.gov.in; Embassy of India, Berne associations directory</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Indian Associations & Consulate</h2>
+          <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>Source: indianassociationgeneva.com; pmindiaun.gov.in; Embassy of India, Berne associations directory</p>
           <div className="space-y-4">
             {associations.map((a) => (
               <div key={a.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-white mb-1">{a.name}</h3>
-                <p className="text-sm text-white/60 mb-2">{a.desc}</p>
+                <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>{a.name}</h3>
+                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}>{a.desc}</p>
                 {a.url && (
                   <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-xs text-red-400 hover:text-red-300">
                     {a.url} ↗
@@ -94,24 +94,24 @@ export default function GenevaPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Areas Popular with Indians</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Areas Popular with Indians</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {areas.map((a) => (
               <div key={a.name} className="glass card-hover rounded-2xl p-5">
                 <h3 className="text-base font-semibold text-red-400 mb-1">{a.name}</h3>
-                <p className="text-sm text-white/60">{a.note}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{a.note}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Indian Restaurants</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {restaurants.map((r) => (
               <div key={r.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-white mb-1">{r.name}</h3>
-                <p className="text-sm text-white/60">{r.note}</p>
+                <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>{r.name}</h3>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{r.note}</p>
               </div>
             ))}
           </div>

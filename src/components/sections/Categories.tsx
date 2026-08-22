@@ -18,11 +18,11 @@ export default function Categories() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="tag mb-4">What We Cover</span>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4 mt-3">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 mt-3" style={{ color: "var(--text)" }}>
             Everything for{" "}
             <span className="gradient-text">Swiss Indians</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className=" text-lg max-w-2xl mx-auto" style={{ color: "var(--text-2)" }}>
             From landing in Switzerland to building a life here — we cover every aspect of the Indian experience in the Swiss Confederation
           </p>
         </div>
@@ -54,13 +54,13 @@ export default function Categories() {
               <div className="p-6">
                 <ul className="space-y-2">
                   {cat.items.slice(0, 4).map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                    <li key={item} className="flex items-center gap-2 text-sm transition-colors" style={{ color: "var(--text-2)" }}>
                       <span className="w-1.5 h-1.5 rounded-full shrink-0 opacity-70" style={{ background: "var(--primary)" }} />
                       {item}
                     </li>
                   ))}
                   {cat.items.length > 4 && (
-                    <li className="text-sm text-slate-500 pl-3.5">
+                    <li className="text-sm pl-3.5" style={{ color: "var(--text-3)" }}>
                       +{cat.items.length - 4} more...
                     </li>
                   )}

@@ -50,20 +50,20 @@ export default function Footer() {
                   <span className="gradient-text">India</span>
                   <span className="text-white">Swiss</span>
                 </div>
-                <div className="text-xs text-slate-500 uppercase tracking-widest">Community Hub</div>
+                <div className="text-xs uppercase tracking-widest" style={{ color: "var(--text-3)" }}>Community Hub</div>
               </div>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+            <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-2)" }}>
               The premier platform connecting 30,000+ Indians across Switzerland. Your one-stop resource for community, culture, business, and daily life.
             </p>
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm text-slate-400">
+              <div className="flex items-center gap-2 text-sm" style={{ color: "var(--text-2)" }}>
                 <MapPin className="w-4 h-4 shrink-0" style={{ color: "var(--primary)" }} />
                 <span>Zurich, Switzerland</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-slate-400">
+              <div className="flex items-center gap-2 text-sm" style={{ color: "var(--text-2)" }}>
                 <Mail className="w-4 h-4 shrink-0" style={{ color: "var(--primary)" }} />
-                <a href="mailto:hello@indiaswiss.ch" className="hover:text-white transition-colors">hello@indiaswiss.ch</a>
+                <a href="mailto:hello@indiaswiss.ch" className="hover:text-orange-400 transition-colors">hello@indiaswiss.ch</a>
               </div>
             </div>
 
@@ -92,13 +92,13 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
-              <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">{heading}</h3>
+              <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider" style={{ color: "var(--text)" }}>{heading}</h3>
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate-400 hover:text-white transition-colors"
+                      className="text-sm hover:text-orange-400 transition-colors" style={{ color: "var(--text-2)" }}
                     >
                       {link.label}
                     </Link>
@@ -113,14 +113,14 @@ export default function Footer() {
         <div className="glass rounded-2xl p-6 lg:p-8 mb-10">
           <div className="flex flex-col lg:flex-row items-center gap-6">
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-white mb-1">Stay Connected</h3>
-              <p className="text-slate-400 text-sm">Weekly newsletter with events, news, and community updates</p>
+              <h3 className="text-lg font-semibold mb-1" style={{ color: "var(--text)" }}>Stay Connected</h3>
+              <p className="text-sm" style={{ color: "var(--text-2)" }}>Weekly newsletter with events, news, and community updates</p>
             </div>
             <div className="flex gap-3 w-full lg:w-auto">
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 lg:w-64 px-4 py-2.5 rounded-xl text-white placeholder:text-slate-500 text-sm focus:outline-none border"
+                className="flex-1 lg:w-64 px-4 py-2.5 rounded-xl text-white text-sm focus:outline-none border"
                 style={{ background: "rgba(255,255,255,0.05)", borderColor: "var(--border)" }}
               />
               <button
@@ -134,14 +134,14 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6" style={{ borderTop: "1px solid var(--border)" }}>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs" style={{ color: "var(--text-3)" }}>
             © 2026 IndiaSwiss Community Hub. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Terms of Use</Link>
-            <Link href="/privacy#cookies" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Cookie Policy</Link>
-            <a href="mailto:hello@indiaswiss.ch?subject=Advertising%20Enquiry" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Advertise</a>
+            <Link href="/privacy" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Privacy Policy</Link>
+            <Link href="/terms" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Terms of Use</Link>
+            <Link href="/privacy#cookies" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Cookie Policy</Link>
+            <a href="mailto:hello@indiaswiss.ch?subject=Advertising%20Enquiry" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Advertise</a>
           </div>
         </div>
       </div>

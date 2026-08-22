@@ -76,52 +76,52 @@ export default function NetworkingPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Chambers & Business Bodies</h2>
-          <p className="text-slate-400 mb-8">Established institutions driving Switzerland–India economic relations</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Chambers & Business Bodies</h2>
+          <p className=" mb-8" style={{ color: "var(--text-2)" }}>Established institutions driving Switzerland–India economic relations</p>
           <div className="grid md:grid-cols-2 gap-5">
             {chambers.map((c) => (
               <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-6 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold text-white group-hover:text-teal-400 transition-colors flex-1 mr-3">{c.name}</h3>
+                  <h3 className="font-semibold group-hover:text-teal-400 transition-colors flex-1 mr-3" style={{ color: "var(--text)" }}>{c.name}</h3>
                   <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full shrink-0">{c.tag}</span>
                 </div>
                 <div className="flex gap-4 mb-3">
-                  <span className="text-xs text-slate-400">Est. {c.founded}</span>
-                  <span className="text-xs text-slate-400">{c.members}</span>
+                  <span className="text-xs " style={{ color: "var(--text-2)" }}>Est. {c.founded}</span>
+                  <span className="text-xs " style={{ color: "var(--text-2)" }}>{c.members}</span>
                 </div>
-                <p className="text-sm text-slate-400">{c.desc}</p>
+                <p className="text-sm " style={{ color: "var(--text-2)" }}>{c.desc}</p>
               </a>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Key Annual Events</h2>
-          <p className="text-slate-400 mb-8">Put these on your calendar</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Key Annual Events</h2>
+          <p className=" mb-8" style={{ color: "var(--text-2)" }}>Put these on your calendar</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {events.map((e) => (
               <div key={e.name} className="glass rounded-2xl p-5">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold text-white text-sm">{e.name}</h3>
+                  <h3 className="font-semibold text-sm" style={{ color: "var(--text)" }}>{e.name}</h3>
                   <span className="text-xs text-teal-400 ml-2 shrink-0">{e.timing}</span>
                 </div>
-                <p className="text-sm text-slate-400">{e.desc}</p>
+                <p className="text-sm " style={{ color: "var(--text-2)" }}>{e.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Community Organisations</h2>
-          <p className="text-slate-400 mb-8">Associations, LinkedIn pages, and digital networks</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Community Organisations</h2>
+          <p className=" mb-8" style={{ color: "var(--text-2)" }}>Associations, LinkedIn pages, and digital networks</p>
           <div className="space-y-4">
             {linkedin.map((l) => (
               <a key={l.name} href={l.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover flex items-start justify-between gap-4 block group">
                 <div>
-                  <h3 className="font-semibold text-white group-hover:text-teal-400 transition-colors mb-1">{l.name}</h3>
-                  <p className="text-sm text-slate-400">{l.desc}</p>
+                  <h3 className="font-semibold group-hover:text-teal-400 transition-colors mb-1" style={{ color: "var(--text)" }}>{l.name}</h3>
+                  <p className="text-sm " style={{ color: "var(--text-2)" }}>{l.desc}</p>
                 </div>
-                <span className="text-xs text-slate-400 shrink-0">{l.members}</span>
+                <span className="text-xs  shrink-0" style={{ color: "var(--text-2)" }}>{l.members}</span>
               </a>
             ))}
           </div>
@@ -129,7 +129,7 @@ export default function NetworkingPage() {
 
         <div className="glass rounded-2xl p-6 border border-teal-500/20">
           <h3 className="text-base font-semibold text-teal-400 mb-2">Tip: How to join SICC</h3>
-          <p className="text-sm text-slate-300">Annual SICC membership starts at CHF 200 for individuals. Members get access to 50+ events per year, the member directory, trade mission invitations, and the SICC newsletter. The 2024 EFTA–India Trade Agreement creates new opportunities for member companies. Apply at <a href="https://sicc.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">sicc.ch</a>.</p>
+          <p className="text-sm " style={{ color: "var(--text-2)" }}>Annual SICC membership starts at CHF 200 for individuals. Members get access to 50+ events per year, the member directory, trade mission invitations, and the SICC newsletter. The 2024 EFTA–India Trade Agreement creates new opportunities for member companies. Apply at <a href="https://sicc.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">sicc.ch</a>.</p>
         </div>
       </div>
     </div>

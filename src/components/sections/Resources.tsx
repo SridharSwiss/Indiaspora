@@ -18,10 +18,10 @@ export default function Resources() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="tag mb-4">Essential Links</span>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mt-3">
+          <h2 className="text-4xl lg:text-5xl font-bold mt-3" style={{ color: "var(--text)" }}>
             Key <span className="gradient-text">Resources</span>
           </h2>
-          <p className="text-slate-400 mt-3 max-w-xl mx-auto">
+          <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
             Curated links to official, community, and lifestyle resources every Indian in Switzerland needs
           </p>
         </div>
@@ -41,7 +41,7 @@ export default function Resources() {
                 </span>
                 <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-indigo-400 transition-colors" />
               </div>
-              <h3 className="text-sm font-semibold text-white mb-1.5 group-hover:text-indigo-300 transition-colors">
+              <h3 className="text-sm font-semibold mb-1.5 group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>
                 {r.title}
               </h3>
               <p className="text-xs text-slate-500 leading-relaxed">{r.description}</p>
@@ -52,10 +52,10 @@ export default function Resources() {
         <div className="card p-8 lg:p-12 text-center relative overflow-hidden" style={{ borderColor: "rgba(249,115,22,0.1)" }}>
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/5 to-blue-600/5 rounded-[18px]" />
           <div className="relative">
-            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
+            <h3 className="text-2xl lg:text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>
               Know a Resource We&apos;re Missing?
             </h3>
-            <p className="text-slate-400 mb-8 max-w-lg mx-auto">
+            <p className=" mb-8 max-w-lg mx-auto" style={{ color: "var(--text-2)" }}>
               Help grow the most comprehensive Indian community directory in Switzerland.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

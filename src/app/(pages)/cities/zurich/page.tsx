@@ -84,21 +84,21 @@ export default function ZurichPage() {
           {highlights.map((h) => (
             <div key={h.label} className="glass rounded-2xl p-4 text-center">
               <div className="text-2xl mb-1">{h.icon}</div>
-              <p className="text-base font-bold text-white">{h.value}</p>
-              <p className="text-xs text-white/50">{h.label}</p>
+              <p className="text-base font-bold" style={{ color: "var(--text)" }}>{h.value}</p>
+              <p className="text-xs/50" style={{ color: "var(--text)" }}>{h.label}</p>
             </div>
           ))}
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Indian Associations</h2>
-          <p className="text-sm text-white/50 mb-6">Source: Embassy of India, Berne — Indian Associations directory; iagz.ch</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Indian Associations</h2>
+          <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>Source: Embassy of India, Berne — Indian Associations directory; iagz.ch</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {associations.map((a) => (
               <div key={a.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-white mb-0.5">{a.name}</h3>
-                {a.full && <p className="text-xs text-white/40 mb-2">{a.full}</p>}
-                <p className="text-sm text-white/60 mb-2">{a.desc}</p>
+                <h3 className="text-base font-semibold mb-0.5" style={{ color: "var(--text)" }}>{a.name}</h3>
+                {a.full && <p className="text-xs/40 mb-2" style={{ color: "var(--text)" }}>{a.full}</p>}
+                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}>{a.desc}</p>
                 {a.url && (
                   <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-400 hover:text-blue-300">
                     {a.url} ↗
@@ -110,37 +110,37 @@ export default function ZurichPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Neighbourhoods Popular with Indians</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Neighbourhoods Popular with Indians</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {neighbourhoods.map((n) => (
               <div key={n.name} className="glass card-hover rounded-2xl p-5">
                 <h3 className="text-base font-semibold text-blue-400 mb-1">{n.name}</h3>
-                <p className="text-sm text-white/60">{n.note}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{n.note}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Indian Restaurants</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {restaurants.map((r) => (
               <div key={r.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-white mb-1">{r.name}</h3>
-                <p className="text-sm text-white/60">{r.note}</p>
+                <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>{r.name}</h3>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{r.note}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Indian Grocery Stores</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Grocery Stores</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {groceries.map((g) => (
               <div key={g.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-white mb-0.5">{g.name}</h3>
-                <p className="text-xs text-white/40 mb-2">{g.address}</p>
-                <p className="text-sm text-white/60">{g.note}</p>
+                <h3 className="text-base font-semibold mb-0.5" style={{ color: "var(--text)" }}>{g.name}</h3>
+                <p className="text-xs/40 mb-2" style={{ color: "var(--text)" }}>{g.address}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{g.note}</p>
               </div>
             ))}
           </div>

@@ -66,7 +66,7 @@ const resources = [
 
 export default function ResourcesPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
         title="Resources for Indians in Switzerland"
         subtitle="Curated links to Swiss government services, Indian embassy resources, community organisations, and everything else you need for life in Switzerland."
@@ -81,7 +81,7 @@ export default function ResourcesPage() {
             <section key={section.category}>
               <div className="flex items-center gap-3 mb-6">
                 <div className={`w-1 h-6 rounded-full bg-gradient-to-b ${section.color}`} />
-                <h2 className="text-xl font-bold text-white">{section.category}</h2>
+                <h2 className="text-xl font-bold" style={{ color: "var(--text)" }}>{section.category}</h2>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {section.items.map((item) => (
@@ -92,8 +92,8 @@ export default function ResourcesPage() {
                     rel="noopener noreferrer"
                     className="glass rounded-2xl p-5 card-hover group block"
                   >
-                    <h3 className="font-semibold text-white text-sm mb-2 group-hover:text-blue-400 transition-colors">{item.name}</h3>
-                    <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+                    <h3 className="font-semibold text-sm mb-2 group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{item.name}</h3>
+                    <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{item.desc}</p>
                     <p className="text-xs text-blue-400 mt-3 opacity-0 group-hover:opacity-100 transition-opacity">Open →</p>
                   </a>
                 ))}
@@ -104,7 +104,7 @@ export default function ResourcesPage() {
 
         {/* Tip */}
         <div className="mt-12 glass rounded-2xl p-6 border border-blue-500/20">
-          <p className="text-sm text-slate-300">
+          <p className="text-sm" style={{ color: "var(--text-2)" }}>
             <span className="text-blue-400 font-semibold">💡 Bookmark tip:</span> Save <a href="https://www.ch.ch/en/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">ch.ch</a> and <a href="https://www.sem.admin.ch/en" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">sem.admin.ch</a> — they answer 90% of government questions for Indians in Switzerland.
           </p>
         </div>

@@ -41,32 +41,32 @@ export default function TransportPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Travel Passes</h2>
-          <p className="text-sm text-white/50 mb-6">All passes and tickets can be purchased via the SBB app or at any SBB ticket counter. The SBB app (sbb.ch/en) allows mobile tickets and real-time journey planning across all Swiss transport operators.</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Travel Passes</h2>
+          <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>All passes and tickets can be purchased via the SBB app or at any SBB ticket counter. The SBB app (sbb.ch/en) allows mobile tickets and real-time journey planning across all Swiss transport operators.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {passes.map((p) => (
               <div key={p.name} className={`glass card-hover rounded-2xl p-5 ${p.recommended ? 'border border-sky-500/40' : ''}`}>
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-base font-semibold text-white">{p.name}</h3>
+                  <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>{p.name}</h3>
                   {p.recommended && <span className="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300">Recommended</span>}
                 </div>
                 <p className="text-sm text-sky-400 font-medium mb-2">{p.price}</p>
-                <p className="text-sm text-white/60">{p.desc}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{p.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">City Networks</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>City Networks</h2>
           <div className="space-y-3">
             {cities.map((c) => (
               <div key={c.city} className="glass rounded-2xl p-5 flex items-start gap-4">
                 <div className="w-16 text-center flex-shrink-0">
-                  <p className="text-sm font-bold text-white">{c.city}</p>
+                  <p className="text-sm font-bold" style={{ color: "var(--text)" }}>{c.city}</p>
                   <p className="text-xs text-sky-400">{c.network}</p>
                 </div>
-                <p className="text-sm text-white/60">{c.note}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{c.note}</p>
               </div>
             ))}
           </div>
@@ -74,8 +74,8 @@ export default function TransportPage() {
 
         <div className="glass rounded-2xl p-6 border border-sky-500/20">
           <h3 className="text-base font-semibold text-sky-400 mb-2">Driving in Switzerland with an Indian Licence</h3>
-          <p className="text-sm text-white/70 mb-3">An Indian driving licence is valid in Switzerland for <strong className="text-white">12 months from the date on your Swiss residence permit</strong>. If your licence is not in English, carry a certified translation. You must carry the original licence at all times while driving.</p>
-          <p className="text-sm text-white/70">After 12 months, you must convert to a Swiss licence. As an Indian national (non-EU country), this typically requires passing both the <strong className="text-white">Swiss theory test</strong> and a <strong className="text-white">practical control ride</strong> with an approved examiner. Start the process early — missing the deadline means re-taking the full Swiss driving school course. Contact your cantonal road traffic office (Strassenverkehrsamt / Office des automobiles) for the process in your canton. See also: <span className="text-sky-400">eda.admin.ch/countries/india</span> (Swiss Embassy guidance for Indian residents).</p>
+          <p className="text-sm/70 mb-3" style={{ color: "var(--text)" }}>An Indian driving licence is valid in Switzerland for <strong style={{ color: "var(--text)" }}>12 months from the date on your Swiss residence permit</strong>. If your licence is not in English, carry a certified translation. You must carry the original licence at all times while driving.</p>
+          <p className="text-sm/70" style={{ color: "var(--text)" }}>After 12 months, you must convert to a Swiss licence. As an Indian national (non-EU country), this typically requires passing both the <strong style={{ color: "var(--text)" }}>Swiss theory test</strong> and a <strong style={{ color: "var(--text)" }}>practical control ride</strong> with an approved examiner. Start the process early — missing the deadline means re-taking the full Swiss driving school course. Contact your cantonal road traffic office (Strassenverkehrsamt / Office des automobiles) for the process in your canton. See also: <span className="text-sky-400">eda.admin.ch/countries/india</span> (Swiss Embassy guidance for Indian residents).</p>
         </div>
       </div>
     </div>

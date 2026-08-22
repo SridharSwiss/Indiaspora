@@ -80,42 +80,42 @@ export default function JobsPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Job Portals</h2>
-          <p className="text-slate-400 mb-8">Start your search on these platforms</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Job Portals</h2>
+          <p className=" mb-8" style={{ color: "var(--text-2)" }}>Start your search on these platforms</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {portals.map((p) => (
               <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold text-white group-hover:text-teal-400 transition-colors">{p.name}</h3>
+                  <h3 className="font-semibold group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{p.name}</h3>
                   {p.badge && <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full">{p.badge}</span>}
                 </div>
-                <p className="text-sm text-slate-400">{p.desc}</p>
+                <p className="text-sm " style={{ color: "var(--text-2)" }}>{p.desc}</p>
               </a>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Top Sectors & Salary Ranges</h2>
-          <p className="text-slate-400 mb-8">Where Indian professionals excel in Switzerland</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Top Sectors & Salary Ranges</h2>
+          <p className=" mb-8" style={{ color: "var(--text-2)" }}>Where Indian professionals excel in Switzerland</p>
           <div className="space-y-4">
             {sectors.map((s) => (
               <div key={s.name} className="glass rounded-2xl p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                   <div>
-                    <h3 className="font-semibold text-white text-lg">{s.name}</h3>
+                    <h3 className="font-semibold text-lg" style={{ color: "var(--text)" }}>{s.name}</h3>
                     <p className="text-sm text-teal-400">{s.hub} &middot; {s.salaryRange}</p>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <p className="text-xs text-slate-400 uppercase tracking-wider mb-2">Common Roles</p>
+                    <p className="text-xs  uppercase tracking-wider mb-2" style={{ color: "var(--text-2)" }}>Common Roles</p>
                     <div className="flex flex-wrap gap-2">
-                      {s.roles.map((r) => <span key={r} className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full">{r}</span>)}
+                      {s.roles.map((r) => <span key={r} className="text-xs   px-2 py-1 rounded-full" style={{ color: "var(--text-2)" }}>{r}</span>)}
                     </div>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-400 uppercase tracking-wider mb-2">Key Employers</p>
+                    <p className="text-xs  uppercase tracking-wider mb-2" style={{ color: "var(--text-2)" }}>Key Employers</p>
                     <div className="flex flex-wrap gap-2">
                       {s.employers.map((e) => <span key={e} className="text-xs bg-teal-500/10 text-teal-400 px-2 py-1 rounded-full border border-teal-500/20">{e}</span>)}
                     </div>
@@ -127,17 +127,17 @@ export default function JobsPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Work Permits for Indian Nationals</h2>
-          <p className="text-slate-400 mb-8">Switzerland applies annual quotas for non-EU/EFTA nationals. Your employer must sponsor your permit and demonstrate they could not fill the role locally. The 2024 quota totals 8,500 permits across all non-EU/EFTA nationalities.</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Work Permits for Indian Nationals</h2>
+          <p className=" mb-8" style={{ color: "var(--text-2)" }}>Switzerland applies annual quotas for non-EU/EFTA nationals. Your employer must sponsor your permit and demonstrate they could not fill the role locally. The 2024 quota totals 8,500 permits across all non-EU/EFTA nationalities.</p>
           <div className="space-y-4">
             {permits.map((p) => (
               <div key={p.type} className="glass rounded-2xl p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3 mb-2">
                   <h3 className="font-semibold text-teal-400">{p.type}</h3>
-                  <span className="text-xs text-slate-400">{p.duration}</span>
+                  <span className="text-xs " style={{ color: "var(--text-2)" }}>{p.duration}</span>
                 </div>
-                <p className="text-xs text-slate-400 mb-2">{p.quota}</p>
-                <p className="text-sm text-slate-300">{p.note}</p>
+                <p className="text-xs  mb-2" style={{ color: "var(--text-2)" }}>{p.quota}</p>
+                <p className="text-sm " style={{ color: "var(--text-2)" }}>{p.note}</p>
               </div>
             ))}
           </div>
@@ -147,11 +147,11 @@ export default function JobsPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Swiss CV Tips</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Swiss CV Tips</h2>
           <div className="glass rounded-2xl p-6">
             <ul className="space-y-3">
               {cvTips.map((tip) => (
-                <li key={tip} className="flex items-start gap-3 text-sm text-slate-300">
+                <li key={tip} className="flex items-start gap-3 text-sm " style={{ color: "var(--text-2)" }}>
                   <span className="text-teal-400 mt-0.5 shrink-0">•</span>
                   {tip}
                 </li>

@@ -41,26 +41,26 @@ export default function EducationPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">School Options</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>School Options</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {schoolTypes.map((s) => (
               <div key={s.name} className="glass card-hover rounded-2xl p-6">
                 <div className="text-3xl mb-3">{s.icon}</div>
-                <h3 className="text-base font-semibold text-white mb-2">{s.name}</h3>
-                <p className="text-sm text-white/60">{s.desc}</p>
+                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{s.name}</h3>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{s.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Universities with Large Indian Communities</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Universities with Large Indian Communities</h2>
           <div className="space-y-3">
             {universities.map((u) => (
               <div key={u.name} className="glass card-hover rounded-2xl p-5 flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-base font-semibold text-white">{u.name}</h3>
-                  <p className="text-sm text-white/60 mt-1">{u.note}</p>
+                  <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>{u.name}</h3>
+                  <p className="text-sm/60 mt-1" style={{ color: "var(--text)" }}>{u.note}</p>
                 </div>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 whitespace-nowrap">{u.city}</span>
               </div>
@@ -70,7 +70,7 @@ export default function EducationPage() {
 
         <div className="glass rounded-2xl p-6 border border-purple-500/20">
           <h3 className="text-base font-semibold text-purple-400 mb-2">Tip for New Arrivals</h3>
-          <p className="text-sm text-white/70">Contact your Gemeinde (municipality) as soon as you register — they will tell you which public school your child is assigned to and what language support is available. The Swiss public school system is genuinely excellent and free of charge, including textbooks and most materials.</p>
+          <p className="text-sm/70" style={{ color: "var(--text)" }}>Contact your Gemeinde (municipality) as soon as you register — they will tell you which public school your child is assigned to and what language support is available. The Swiss public school system is genuinely excellent and free of charge, including textbooks and most materials.</p>
         </div>
       </div>
     </div>

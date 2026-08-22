@@ -33,11 +33,11 @@ export default function LivingGuide() {
           <span className="text-xs uppercase tracking-[0.3em] text-indigo-400 mb-4 block font-medium">
             Settle In
           </span>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white">
+          <h2 className="text-4xl lg:text-5xl font-bold" style={{ color: "var(--text)" }}>
             Living in{" "}
             <span className="gradient-text">Switzerland</span>
           </h2>
-          <p className="text-slate-400 mt-3 max-w-xl mx-auto">
+          <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
             Your comprehensive guide to settling into Swiss life — from day one to feeling at home
           </p>
         </div>
@@ -53,7 +53,7 @@ export default function LivingGuide() {
               className="flex flex-col items-center gap-2 p-3 rounded-xl glass hover:bg-white/10 transition-all group cursor-pointer border border-white/5 hover:border-white/15"
             >
               <span className="text-2xl">{link.icon}</span>
-              <span className="text-xs text-slate-400 group-hover:text-white text-center leading-tight">
+              <span className="text-xs text-center leading-tight transition-colors" style={{ color: "var(--text-3)" }}>
                 {link.label}
               </span>
             </a>
@@ -101,8 +101,8 @@ export default function LivingGuide() {
               <div className="flex items-start gap-3">
                 <span className="text-2xl mt-0.5">💡</span>
                 <div>
-                  <h4 className="text-sm font-semibold text-white mb-1">Pro Tip</h4>
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <h4 className="text-sm font-semibold mb-1" style={{ color: "var(--text)" }}>Pro Tip</h4>
+                  <p className="text-xs  leading-relaxed" style={{ color: "var(--text-2)" }}>
                     Join the Indian expat Facebook groups for Zurich, Geneva, and Basel immediately upon arrival. Community members are incredibly helpful and can guide you through Swiss bureaucracy.
                   </p>
                 </div>
@@ -118,8 +118,8 @@ export default function LivingGuide() {
                   {ICON_MAP[LIVING_GUIDE[activeTab].icon]}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">{LIVING_GUIDE[activeTab].title}</h3>
-                  <p className="text-sm text-slate-400">Step-by-step guide</p>
+                  <h3 style={{ color: "var(--text)" }}>{LIVING_GUIDE[activeTab].title}</h3>
+                  <p className="text-sm " style={{ color: "var(--text-2)" }}>Step-by-step guide</p>
                 </div>
               </div>
 

@@ -15,7 +15,7 @@ const guides = [
 
 export default function LivingPage() {
   return (
-    <div className="bg-slate-950 text-white">
+    <div>
       <PageHeader
         title="Living in Switzerland"
         subtitle="Your complete guide to every aspect of life in Switzerland — from arriving with a suitcase to raising a family and planning your future."
@@ -28,17 +28,17 @@ export default function LivingPage() {
           {guides.map((g) => (
             <Link key={g.label} href={g.href} className="glass rounded-2xl p-6 card-hover group block">
               <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${g.color} mb-4`}>
-                <g.icon className="w-5 h-5 text-white" />
+                <g.icon className="w-5 h-5" style={{ color: "var(--text)" }} />
               </div>
-              <h2 className="font-bold text-white text-base mb-2 group-hover:text-orange-400 transition-colors leading-snug">{g.label}</h2>
-              <p className="text-slate-400 text-sm leading-relaxed">{g.desc}</p>
+              <h2 className="font-bold text-base mb-2 group-hover:text-orange-400 transition-colors leading-snug" style={{ color: "var(--text)" }}>{g.label}</h2>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>{g.desc}</p>
             </Link>
           ))}
         </div>
 
         {/* Quick facts */}
         <div className="glass rounded-2xl p-6 sm:p-8">
-          <h2 className="text-xl font-bold text-white mb-5">Key Facts for Indian Residents</h2>
+          <h2 className="text-xl font-bold mb-5" style={{ color: "var(--text)" }}>Key Facts for Indian Residents</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             {[
               ["🗺 Register at Gemeinde", "Within 14 days of moving to a new address — mandatory for all residents"],
@@ -51,8 +51,8 @@ export default function LivingPage() {
               <div key={title as string} className="flex gap-3">
                 <div className="text-lg">{(title as string).split(' ')[0]}</div>
                 <div>
-                  <div className="font-medium text-white text-sm">{(title as string).substring(2)}</div>
-                  <div className="text-slate-400 text-xs mt-0.5">{desc as string}</div>
+                  <div className="font-medium text-sm" style={{ color: "var(--text)" }}>{(title as string).substring(2)}</div>
+                  <div className="text-xs mt-0.5" style={{ color: "var(--text-2)" }}>{desc as string}</div>
                 </div>
               </div>
             ))}

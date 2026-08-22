@@ -42,10 +42,10 @@ function PlaceCard({ p }: { p: Place }) {
   const inner = (
     <>
       <div className="flex items-start justify-between gap-2 mb-2">
-        <h3 className="font-semibold text-white text-sm leading-tight">{p.name}</h3>
+        <h3 className="font-semibold text-sm leading-tight" style={{ color: "var(--text)" }}>{p.name}</h3>
         <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-400 border border-purple-500/20">{p.city}</span>
       </div>
-      <p className="text-slate-400 text-xs leading-relaxed">{p.desc}</p>
+      <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{p.desc}</p>
     </>
   );
   return p.url ? (
@@ -57,7 +57,7 @@ function PlaceCard({ p }: { p: Place }) {
 
 export default function SpiritualPage() {
   return (
-    <div className="bg-slate-950 text-white min-h-screen">
+    <div>
       <PageHeader
         title="Temples, Yoga & Spiritual Centres"
         subtitle="Hindu temples, yoga ashrams, meditation groups and satsang communities across Switzerland."
@@ -66,22 +66,22 @@ export default function SpiritualPage() {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-1">Hindu Temples</h2>
-          <p className="text-slate-400 text-sm mb-6">Temples and Hindu prayer centres in Switzerland</p>
+          <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Hindu Temples</h2>
+          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Temples and Hindu prayer centres in Switzerland</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {temples.map((p) => <PlaceCard key={p.name} p={p} />)}
           </div>
         </section>
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-1">Yoga & Meditation Centres</h2>
-          <p className="text-slate-400 text-sm mb-6">Indian yoga traditions, pranayama and meditation in Switzerland</p>
+          <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Yoga & Meditation Centres</h2>
+          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Indian yoga traditions, pranayama and meditation in Switzerland</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {yoga.map((p) => <PlaceCard key={p.name} p={p} />)}
           </div>
         </section>
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-1">Satsang & Devotional Groups</h2>
-          <p className="text-slate-400 text-sm mb-6">Community bhajans, kathas and devotional gatherings</p>
+          <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Satsang & Devotional Groups</h2>
+          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Community bhajans, kathas and devotional gatherings</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {satsang.map((p) => <PlaceCard key={p.name} p={p} />)}
           </div>

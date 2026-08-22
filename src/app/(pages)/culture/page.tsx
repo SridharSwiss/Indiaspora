@@ -33,7 +33,7 @@ const musicGroups = [
 
 export default function CulturePage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
         title="Indian Culture & Arts in Switzerland"
         subtitle="Celebrate India's rich cultural tapestry — classical dance, Bollywood, music, festivals, fashion, and cinema across Switzerland."
@@ -45,19 +45,19 @@ export default function CulturePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Festivals */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-2">Festivals & Major Events 2026</h2>
-          <p className="text-slate-400 mb-8">India's biggest festivals celebrated with the Swiss-Indian community</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Festivals & Major Events 2026</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>India's biggest festivals celebrated with the Swiss-Indian community</p>
           <div className="grid md:grid-cols-2 gap-5">
             {festivals.map((f) => (
               <div key={f.name} className="glass rounded-2xl p-5 card-hover">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold text-white">{f.name}</h3>
+                    <h3 className="font-semibold" style={{ color: "var(--text)" }}>{f.name}</h3>
                     <p className="text-xs text-rose-400">{f.date} · {f.location}</p>
                   </div>
-                  <span className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full ml-2 shrink-0">{f.organiser}</span>
+                  <span className="text-xs px-2 py-1 rounded-full ml-2 shrink-0" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{f.organiser}</span>
                 </div>
-                <p className="text-sm text-slate-400">{f.desc}</p>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{f.desc}</p>
               </div>
             ))}
           </div>
@@ -65,19 +65,19 @@ export default function CulturePage() {
 
         {/* Dance */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-2">Dance Schools & Classes</h2>
-          <p className="text-slate-400 mb-8">Classical and contemporary Indian dance across Switzerland — with schools established as far back as 1976</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Dance Schools & Classes</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>Classical and contemporary Indian dance across Switzerland — with schools established as far back as 1976</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {danceSchools.map((d) => (
               <a key={d.name} href={d.url === "#" ? undefined : d.url} target={d.url !== "#" ? "_blank" : undefined} rel="noopener noreferrer"
                 className="glass rounded-2xl p-5 card-hover group block">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-semibold text-white text-sm group-hover:text-rose-400 transition-colors">{d.name}</h3>
+                  <h3 className="font-semibold text-sm group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{d.name}</h3>
                   <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full ml-2 shrink-0">{d.city}</span>
                 </div>
-                <p className="text-xs text-slate-400 mb-1">{d.style}</p>
+                <p className="text-xs mb-1" style={{ color: "var(--text-2)" }}>{d.style}</p>
                 {d.since !== "–" && <p className="text-xs text-rose-400/70 mb-2">Est. {d.since}</p>}
-                <p className="text-sm text-slate-400">{d.desc}</p>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{d.desc}</p>
               </a>
             ))}
           </div>
@@ -85,17 +85,17 @@ export default function CulturePage() {
 
         {/* Music */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-2">Music Groups & Academies</h2>
-          <p className="text-slate-400 mb-8">From Carnatic classical to Bollywood live bands</p>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Music Groups & Academies</h2>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>From Carnatic classical to Bollywood live bands</p>
           <div className="grid md:grid-cols-2 gap-5">
             {musicGroups.map((m) => (
               <div key={m.name} className="glass rounded-2xl p-5 card-hover">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-semibold text-white">{m.name}</h3>
-                  <span className="text-xs text-slate-400">{m.city}</span>
+                  <h3 className="font-semibold" style={{ color: "var(--text)" }}>{m.name}</h3>
+                  <span className="text-xs" style={{ color: "var(--text-2)" }}>{m.city}</span>
                 </div>
                 <p className="text-xs text-rose-400 mb-2">{m.genre}</p>
-                <p className="text-sm text-slate-400">{m.desc}</p>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{m.desc}</p>
               </div>
             ))}
           </div>
@@ -104,12 +104,12 @@ export default function CulturePage() {
         {/* Fashion */}
         <section className="mb-16">
           <div className="glass rounded-2xl p-8">
-            <h2 className="text-2xl font-bold text-white mb-4">👗 Indian Fashion & Boutiques</h2>
-            <p className="text-slate-400 mb-6">Find Indian ethnic wear, sarees, lehengas, and jewellery in Switzerland</p>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>👗 Indian Fashion & Boutiques</h2>
+            <p className="mb-6" style={{ color: "var(--text-2)" }}>Find Indian ethnic wear, sarees, lehengas, and jewellery in Switzerland</p>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="font-semibold text-rose-400 mb-3">Physical Boutiques</h3>
-                <ul className="space-y-2 text-sm text-slate-300">
+                <ul className="space-y-2 text-sm" style={{ color: "var(--text-2)" }}>
                   <li>• <a href="https://rukkumani.ch" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300">Rukkumani</a> (near Basel) — Sarees, salwar kameez, lehengas, sherwanis for festivals</li>
                   <li>• Rang De (Zurich) — Sarees, salwars, designer wear</li>
                   <li>• Desi Closet (Geneva) — Bridal and party wear</li>
@@ -118,10 +118,10 @@ export default function CulturePage() {
               </div>
               <div>
                 <h3 className="font-semibold text-rose-400 mb-3">Online & Custom Orders</h3>
-                <ul className="space-y-2 text-sm text-slate-300">
-                  <li>• WhatsApp boutiques via \"Desi Moms Switzerland\" group</li>
+                <ul className="space-y-2 text-sm" style={{ color: "var(--text-2)" }}>
+                  <li>• WhatsApp boutiques via "Desi Moms Switzerland" group</li>
                   <li>• Custom tailoring orders via community recommendations</li>
-                  <li>• Pre-loved Indian wear via Facebook: \"Indian Wardrobe Switzerland\"</li>
+                  <li>• Pre-loved Indian wear via Facebook: "Indian Wardrobe Switzerland"</li>
                   <li>• Import via DHL from India — check customs duties at <a href="https://www.ezv.admin.ch" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300">ezv.admin.ch</a></li>
                 </ul>
               </div>

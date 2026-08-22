@@ -150,14 +150,14 @@ export default function FestivalsPage() {
             <div key={f.name} className="glass rounded-2xl p-6 card-hover">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1 mr-3">
-                  <h3 className="font-semibold text-white">{f.name}</h3>
+                  <h3 className="font-semibold" style={{ color: "var(--text)" }}>{f.name}</h3>
                   <p className="text-xs text-rose-400 mt-0.5">{f.date} &middot; {f.location}</p>
                 </div>
-                <span className={`text-xs px-2 py-1 rounded-full shrink-0 ${typeColors[f.type] ?? "bg-white/10 text-white/60"}`}>{f.type}</span>
+                <span className={`text-xs px-2 py-1 rounded-full shrink-0 ${typeColors[f.type] ?? " text-white/60"}`}>{f.type}</span>
               </div>
-              <p className="text-sm text-slate-400 mb-3">{f.desc}</p>
+              <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>{f.desc}</p>
               <div className="flex items-center justify-between">
-                <p className="text-xs text-white/40">Organised by {f.organiser}</p>
+                <p className="text-xs" style={{ color: "var(--text-3)" }}>Organised by {f.organiser}</p>
                 {f.organiserUrl && (
                   <a href={f.organiserUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-rose-400 hover:text-rose-300">
                     Website →
@@ -169,7 +169,7 @@ export default function FestivalsPage() {
         </div>
 
         <div className="mt-10 glass rounded-2xl p-6 border border-rose-500/20">
-          <p className="text-sm text-slate-300">
+          <p className="text-sm" style={{ color: "var(--text-2)" }}>
             <span className="text-rose-400 font-semibold">Stay updated:</span> Most festival announcements come through{" "}
             <a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">IAGZ (iagz.ch)</a>,{" "}
             <a href="https://indianassociationgeneva.com" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Indian Association Geneva</a>{" "}

@@ -80,11 +80,11 @@ export default function CookingPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Classes & Instructors in Switzerland</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Classes & Instructors in Switzerland</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {classProviders.map((p) => (
               <div key={p.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-white mb-0.5">
+                <h3 className="text-base font-semibold mb-0.5" style={{ color: "var(--text)" }}>
                   {p.url ? (
                     <a href={p.url} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">
                       {p.name}
@@ -92,31 +92,31 @@ export default function CookingPage() {
                   ) : p.name}
                 </h3>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs text-white/40">{p.location}</span>
+                  <span className="text-xs/40" style={{ color: "var(--text)" }}>{p.location}</span>
                   <span className="text-white/20">·</span>
                   <span className="text-xs text-amber-400">{p.format}</span>
                 </div>
-                <p className="text-sm text-white/60">{p.note}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{p.note}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-4">Regional Cuisines You Can Learn</h2>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>Regional Cuisines You Can Learn</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             {cuisines.map((c) => (
               <div key={c.name} className="glass rounded-2xl p-5">
                 <h3 className="text-base font-semibold text-amber-400 mb-1">{c.name}</h3>
-                <p className="text-sm text-white/60">{c.dishes}</p>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{c.dishes}</p>
               </div>
             ))}
           </div>
-          <h2 className="text-2xl font-bold text-white mb-4">Popular Workshop Topics</h2>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>Popular Workshop Topics</h2>
           <div className="glass rounded-2xl p-6">
             <ul className="space-y-2">
               {learnTopics.map((topic) => (
-                <li key={topic} className="flex items-start gap-2 text-white/70 text-sm">
+                <li key={topic} className="flex items-start gap-2/70 text-sm" style={{ color: "var(--text)" }}>
                   <span className="text-amber-400 mt-0.5">•</span>
                   {topic}
                 </li>
@@ -126,12 +126,12 @@ export default function CookingPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Online Resources: YouTube Channels</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Online Resources: YouTube Channels</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {youtubeChannels.map((ch) => (
               <div key={ch.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-white mb-1">{ch.name}</h3>
-                <p className="text-sm text-white/60">{ch.focus}</p>
+                <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>{ch.name}</h3>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{ch.focus}</p>
               </div>
             ))}
           </div>

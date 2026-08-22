@@ -60,7 +60,7 @@ export default function PageHeader({
           </div>
         )}
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-4 leading-[1.1] tracking-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 leading-[1.1] tracking-tight" style={{ color: "var(--text)" }}>
           {title}
         </h1>
 

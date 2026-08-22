@@ -46,7 +46,7 @@ const cities = [
 
 export default function CitiesPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
         title="Indians Across Swiss Cities"
         subtitle="Explore the Indian community in each Swiss city — from Zurich's financial district to Geneva's international arena and Basel's pharma corridor."
@@ -62,13 +62,13 @@ export default function CitiesPage() {
               <div className={`h-2 bg-gradient-to-r ${city.color}`} />
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
-                  <h2 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{city.name}</h2>
-                  <span className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full">{city.population}</span>
+                  <h2 className="text-xl font-bold group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{city.name}</h2>
+                  <span className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{city.population}</span>
                 </div>
-                <p className="text-sm text-slate-400 mb-4">{city.desc}</p>
+                <p className="text-sm mb-4" style={{ color: "var(--text-2)" }}>{city.desc}</p>
                 <ul className="space-y-1">
                   {city.highlights.map((h) => (
-                    <li key={h} className="text-xs text-slate-400 flex items-center gap-2">
+                    <li key={h} className="text-xs flex items-center gap-2" style={{ color: "var(--text-2)" }}>
                       <span className="w-1 h-1 rounded-full bg-blue-400 shrink-0" />
                       {h}
                     </li>
@@ -82,8 +82,8 @@ export default function CitiesPage() {
 
         {/* Canton Map Note */}
         <div className="glass rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-white mb-3">Indians in All 26 Cantons</h3>
-          <p className="text-slate-400 mb-4 max-w-2xl mx-auto">Beyond the main cities, Indian communities exist in Zug (crypto/finance), Lugano (Italian-speaking), St. Gallen, Winterthur, and across all 26 Swiss cantons. Each canton has its own integration office to help new residents settle in.</p>
+          <h3 className="text-xl font-bold mb-3" style={{ color: "var(--text)" }}>Indians in All 26 Cantons</h3>
+          <p className="mb-4 max-w-2xl mx-auto" style={{ color: "var(--text-2)" }}>Beyond the main cities, Indian communities exist in Zug (crypto/finance), Lugano (Italian-speaking), St. Gallen, Winterthur, and across all 26 Swiss cantons. Each canton has its own integration office to help new residents settle in.</p>
           <a href="https://www.ch.ch/en/cantons/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300">
             Find your canton's integration office at ch.ch →
           </a>
