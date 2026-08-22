@@ -11,16 +11,16 @@ export const metadata: Metadata = {
 };
 
 const languages = [
-  { lang: "German", regions: "Zurich, Bern, Basel, Lucerne", speakers: "~63% of Switzerland", note: "Swiss German dialect is spoken in daily life; High German (Hochdeutsch) is used in writing and formal settings. Learn Hochdeutsch first." },
-  { lang: "French", regions: "Geneva, Lausanne, Neuchâtel", speakers: "~23% of Switzerland", note: "Standard French is used — much closer to Parisian French than Swiss German is to High German." },
-  { lang: "Italian", regions: "Lugano, Ticino", speakers: "~8% of Switzerland", note: "Standard Italian with some local vocabulary differences. English is more widely spoken here than in German-speaking regions." },
+  { lang: "German", regions: "Zurich, Bern, Basel, Lucerne, St. Gallen", speakers: "~63% of Switzerland", note: "Swiss German (Schweizerdeutsch) dialects are spoken in daily conversation; High German (Hochdeutsch / Standard German) is used in writing, formal settings, and media. Learn Hochdeutsch first — it is universally understood and you will pick up dialect nuances over time." },
+  { lang: "French", regions: "Geneva, Lausanne, Neuchâtel, Fribourg, Sion", speakers: "~23% of Switzerland", note: "Standard French is used — much closer to Parisian French than Swiss German is to High German. French speakers in Switzerland appreciate the effort even if your level is basic." },
+  { lang: "Italian", regions: "Lugano, Locarno, Bellinzona (Canton Ticino)", speakers: "~8% of Switzerland", note: "Standard Italian with some local vocabulary. English is more widely spoken in Ticino than in German-speaking regions. Romansh (4th national language) is spoken by ~0.5% in Graubünden." },
 ];
 
 const resources = [
-  { category: "Apps", items: ["Duolingo — free daily practice", "Babbel — structured lessons", "Pimsleur — audio-first German", "Anki — vocabulary flashcards"] },
-  { category: "Schools", items: ["Migros Clubschule — affordable, widespread", "Berlitz — flexible intensive courses", "GLS (German Language School) — community favourite", "Alliance Française — for French learners"] },
-  { category: "Integration Courses", items: ["Kanton-subsidised language courses (ask your Gemeinde)", "FIDE language courses (federally recognised)", "A1/A2 level often required for C permit or naturalisation"] },
-  { category: "Community Practice", items: ["Tandem language exchange partners", "Stammtisch (regular meetups for German practice)", "Library reading groups", "Indian community members who are fluent and willing to help"] },
+  { category: "Apps", items: ["Duolingo — free gamified daily practice for German, French, Italian", "Babbel — structured lesson paths, strong for Swiss German speakers", "Pimsleur — audio-first approach; excellent for commuters learning German", "Anki — customisable vocabulary flashcards; find shared Swiss German decks online"] },
+  { category: "Schools", items: ["Migros Klubschule — Switzerland's largest language school with 50+ locations; courses from A1 to C2; available in-person and online (klubschule.ch)", "Berlitz — flexible intensive courses and one-to-one lessons in major cities", "Alliance Française — for French learners; branches in Zurich, Geneva, Bern, Basel", "VHS (Volkshochschule) — affordable evening and weekend courses run by each city"] },
+  { category: "Integration Courses", items: ["Kanton-subsidised language courses — ask your Gemeinde or cantonal migration office for vouchers", "FIDE (fr-de-it.ch) — federally recognised language courses and passport; required for some permit renewals", "A2 written + B1 oral in your canton's language required for C permit and naturalisation", "Online FIDE test preparation materials are free at fide-ch.ch"] },
+  { category: "Community Practice", items: ["Tandem language exchange — pair with a Swiss German/French speaker learning English or an Indian language", "Stammtisch — informal German conversation meetups; many advertised on Meetup.com", "Library reading groups and conversation cafés (Bibliothek der Gemeinde)", "Fellow Indian community members who are fluent and willing to do language exchange"] },
 ];
 
 export default function LanguagePage() {
@@ -70,6 +70,11 @@ export default function LanguagePage() {
             ))}
           </div>
         </section>
+
+        <div className="glass rounded-2xl p-6 border border-teal-500/20">
+          <h3 className="text-base font-semibold text-teal-400 mb-2">Why Language Matters Legally</h3>
+          <p className="text-sm text-white/70">Proficiency in the local language is formally required for both the C permit (settlement) and Swiss naturalisation. You must demonstrate at least <strong className="text-white">A2 written and B1 oral</strong> ability in the official language of your canton of residence. The FIDE test (fide-ch.ch) is the recognised assessment — start preparing early.</p>
+        </div>
       </div>
     </div>
   );

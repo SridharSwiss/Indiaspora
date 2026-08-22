@@ -12,67 +12,103 @@ export const metadata: Metadata = {
 
 const festivals = [
   {
-    name: "Diwali Mela Zurich",
-    date: "October 2026",
-    location: "Stadthaus Zurich",
-    organiser: "IAGZ",
+    name: "Diwali Celebration — IAGZ",
+    date: "October / November 2026",
+    location: "Zurich",
+    organiser: "IAGZ (Indian Association of Greater Zurich)",
     organiserUrl: "https://iagz.ch",
-    desc: "Switzerland's largest Diwali celebration — cultural performances, food stalls, fireworks display, and rangoli competitions. 3,000+ attendees.",
+    desc: "Annual Diwali celebration by IAGZ — one of the flagship events of the Indian community in Zurich. Cultural performances, food, and festivities. More than a third of attendees are non-Indian Indophiles. Over 100 member families. Source: iagz.ch",
     type: "Festival",
   },
   {
-    name: "Holi Festival Basel",
-    date: "March 2026",
-    location: "Münsterplatz, Basel",
-    organiser: "ICAS",
+    name: "ICAS Diwali Night",
+    date: "November 2026",
+    location: "Basel",
+    organiser: "ICAS (Indian Community Association Switzerland)",
     organiserUrl: null,
-    desc: "Festival of colours on Basel's iconic cathedral square. Organic colour powder, live music, dance, and Indian food stalls.",
+    desc: "Diwali celebration organised by ICAS in Basel. Cultural performances, Indian food, and community gathering for the Indian diaspora in Basel and the broader region. Past editions held at venues in Basel city.",
     type: "Festival",
   },
   {
-    name: "Navratri Garba Night",
+    name: "IAGZ Holi Rang Barse",
+    date: "March 2026 (29 March 2026)",
+    location: "Zurich",
+    organiser: "IAGZ (Indian Association of Greater Zurich)",
+    organiserUrl: "https://iagz.ch",
+    desc: "Holi celebration by IAGZ — 'Rang Barse' Holi event with organic colours, music, and community fun. Also organised with the Embassy of India. Additional Holi events across Switzerland: Sifaa Holi Fest (Adliswil), IAL Holi (Lausanne), BAB Holi Fest (Bern), IAB (Baden). Source: iagz.ch",
+    type: "Festival",
+  },
+  {
+    name: "IAGZ Raas Garba / Navratri",
     date: "October 2026",
-    location: "Hallenstadion, Zurich",
-    organiser: "Gujarati Samaj",
-    organiserUrl: "https://www.gujaratisamaj.ch",
-    desc: "Switzerland's largest Garba celebration — live orchestra, traditional chaniya choli dress code, 2,000+ dancers on the floor.",
+    location: "Zurich",
+    organiser: "IAGZ (Indian Association of Greater Zurich)",
+    organiserUrl: "https://iagz.ch",
+    desc: "IAGZ's annual Dandiya and Garba night — one of Switzerland's largest Navratri celebrations. Traditional chaniya choli and kurta-pyjama dress encouraged. Live music and community dancing. Source: iagz.ch",
     type: "Cultural",
   },
   {
-    name: "Durga Puja Celebrations",
-    date: "October 2026",
-    location: "Zurich & Geneva",
-    organiser: "Bengali Cultural Society",
-    organiserUrl: null,
-    desc: "Elaborate Durga Puja pandal with daily pujas, cultural programmes, dhunuchi dance, and traditional prasad for the community.",
+    name: "Durga Puja — SwissPuja",
+    date: "September / October 2026",
+    location: "Zurich & Switzerland-wide",
+    organiser: "SwissPuja (non-profit, est. 2003)",
+    organiserUrl: "https://www.swisspuja.org/",
+    desc: "SwissPuja is a non-profit socio-cultural organisation committed to promoting Indian culture in Switzerland, celebrating Durga Puja with traditional pandal, daily pujas, and cultural programmes. Multiple Swiss cities participate. Source: swisspuja.org",
     type: "Puja",
+  },
+  {
+    name: "Durga Puja — Prangan@Swiss",
+    date: "September / October 2026",
+    location: "Le Mont-sur-Lausanne (Lausanne area)",
+    organiser: "PrangaN@Swiss",
+    organiserUrl: "https://www.pranganswiss.org",
+    desc: "Bengali community Durga Pujo celebration held at Petit-Mont, Grande Salle (Place du Petit-Mont 2, 1052 Le Mont-sur-Lausanne). Shashthi to Dashami programme with traditional rituals, dhunuchi dance, and cultural performances.",
+    type: "Puja",
+  },
+  {
+    name: "Ganesh Chaturthi / Ganesh Utsav",
+    date: "August 2026",
+    location: "Geneva & Switzerland-wide",
+    organiser: "Bruhan Maharashtra Mandal Switzerland",
+    organiserUrl: "https://bruhan-mms.org/",
+    desc: "10-day Ganesh Utsav celebration organised by Bruhan Maharashtra Mandal Switzerland. Aarti, modak prasad, and cultural events culminating in symbolic Ganesh visarjan (immersion). Events documented since 2021. Source: bruhan-mms.org",
+    type: "Festival",
+  },
+  {
+    name: "India Fest & Margazhi Utsav",
+    date: "December 2026 (3 days)",
+    location: "Zurich",
+    organiser: "Embassy of India & SIFAA",
+    organiserUrl: "https://www.indembassybern.gov.in",
+    desc: "Three-day festival combining Indian classical arts with film screenings and cultural programmes. The 2024 edition ran 6–8 December in Zurich in collaboration with the Swiss India Fine Arts Association (SIFAA). Source: indembassybern.gov.in",
+    type: "Arts",
+  },
+  {
+    name: "India Day — Independence Day",
+    date: "August 15, 2026",
+    location: "Embassy of India, Berne",
+    organiser: "Embassy of India",
+    organiserUrl: "https://www.indembassybern.gov.in",
+    desc: "India Independence Day hosted by the Embassy of India in Berne. Flag hoisting ceremony, cultural programme, and reception for the Indian community. Indian Associations across Switzerland also hold their own Independence Day events.",
+    type: "National",
   },
   {
     name: "Pongal Celebration",
     date: "January 2026",
-    location: "Geneva",
-    organiser: "Tamil Sangam Switzerland",
+    location: "Geneva & Zurich",
+    organiser: "Tamil Community Switzerland",
     organiserUrl: null,
-    desc: "Tamil harvest festival with traditional pongal cooking, kolam competition, folk music, and cultural performances.",
+    desc: "Tamil harvest festival (Pongal / Thai Pongal) celebrated by the large Swiss-Tamil community. Traditional pongal cooking, kolam competitions, folk music, and cultural performances. Switzerland has one of the largest Tamil diaspora communities in Europe.",
     type: "Festival",
   },
   {
-    name: "India Day Bern",
-    date: "August 15, 2026",
-    location: "Embassy of India, Bern",
-    organiser: "Embassy of India",
-    organiserUrl: "https://www.indembassybern.gov.in",
-    desc: "India Independence Day hosted by the Embassy. Flag hoisting ceremony, cultural programme, and reception for the Indian community.",
-    type: "National",
-  },
-  {
-    name: "Indian Film Festival",
-    date: "November 2026",
-    location: "Zurich & Geneva",
-    organiser: "IndieSwiss Cinema",
+    name: "Lohri Night",
+    date: "January 13, 2026",
+    location: "Zurich",
+    organiser: "Punjabi & North Indian Community",
     organiserUrl: null,
-    desc: "Curated selection of Indian cinema — Bollywood, regional art-house films, and documentaries. Q&As with visiting directors.",
-    type: "Arts",
+    desc: "Traditional bonfire, bhangra, and gidda marking the end of winter. Rewri, popcorn, and festive food. Organised informally by Punjabi community groups across Swiss cities.",
+    type: "Festival",
   },
   {
     name: "Eid & Iftar Gathering",
@@ -80,26 +116,8 @@ const festivals = [
     location: "Zurich",
     organiser: "Muslim Indian Community",
     organiserUrl: null,
-    desc: "Community Iftar dinner open to all — celebrating Ramadan and India's shared cultural heritage with traditional food.",
+    desc: "Community Iftar dinner open to all — celebrating Ramadan and India's shared cultural heritage with traditional food from India's Muslim culinary traditions.",
     type: "Community",
-  },
-  {
-    name: "Lohri Night",
-    date: "January 13, 2026",
-    location: "Zurich",
-    organiser: "Punjabi Cultural Association",
-    organiserUrl: null,
-    desc: "Traditional bonfire, bhangra, and gidda with rewri, popcorn, and makki roti. Marks the end of winter and harvest season.",
-    type: "Festival",
-  },
-  {
-    name: "Ganesh Chaturthi",
-    date: "August 2026",
-    location: "Nationwide",
-    organiser: "Maharashtra Mandal Switzerland",
-    organiserUrl: null,
-    desc: "10-day celebration culminating in a symbolic Ganesh visarjan (immersion). Aarti, modak prasad, and cultural events.",
-    type: "Festival",
   },
 ];
 
@@ -151,7 +169,14 @@ export default function FestivalsPage() {
         </div>
 
         <div className="mt-10 glass rounded-2xl p-6 border border-rose-500/20">
-          <p className="text-sm text-slate-300"><span className="text-rose-400 font-semibold">Stay updated:</span> Most festival announcements come through IAGZ (<a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">iagz.ch</a>) and the Indian Association Geneva (<a href="https://indianassociationgeneva.com" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">indianassociationgeneva.com</a>). Join their mailing lists to get event notifications early.</p>
+          <p className="text-sm text-slate-300">
+            <span className="text-rose-400 font-semibold">Stay updated:</span> Most festival announcements come through{" "}
+            <a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">IAGZ (iagz.ch)</a>,{" "}
+            <a href="https://indianassociationgeneva.com" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Indian Association Geneva</a>{" "}
+            (est. 1947, 500+ members), and the{" "}
+            <a href="https://www.indembassybern.gov.in/page/diaspora-events/" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Embassy of India diaspora events page</a>.
+            {" "}SwissDesi (formerly IndianMomsZurich) also maintains a comprehensive community events calendar at swissdesi.ch.
+          </p>
         </div>
       </div>
     </div>

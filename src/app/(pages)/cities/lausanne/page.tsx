@@ -3,10 +3,10 @@ import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Indians in Lausanne — Community Guide",
-  description: "Lausanne's Indian community — EPFL students and researchers, associations, restaurants, and official links.",
+  description: "Lausanne's Indian community — EPFL's YUVA association, Indian Association Lausanne, PrangaN@Swiss, restaurants, and official links.",
   openGraph: {
     title: "Indians in Lausanne — Community Guide | IndiaSwiss",
-    description: "Lausanne's Indian community — EPFL students and researchers, associations, restaurants, and official links.",
+    description: "Lausanne's Indian community — EPFL's YUVA association, Indian Association Lausanne, PrangaN@Swiss, restaurants, and official links.",
   },
 };
 
@@ -17,12 +17,38 @@ const highlights = [
   { label: "Key Employer", value: "EPFL, Nestlé, Philip Morris", icon: "🏢" },
 ];
 
+const associations = [
+  {
+    name: "Indian Association Lausanne (IAL)",
+    url: "https://www.ialausanne.com",
+    desc: "Founded in 1995, IAL is the principal Indian community association for Lausanne and the French-speaking regions of Switzerland. Provides a social, cultural, and local integration platform for Indians in Romandy. Organises Diwali, Holi, Independence Day, and regular community events.",
+  },
+  {
+    name: "YUVA – Indians Association at EPFL-UNIL",
+    url: "https://www.epfl.ch/campus/associations/yuva/",
+    desc: "Non-profit, non-political student association registered with EPFL for Indians and persons of Indian origin studying or working at EPFL and UNIL. Acts as the official face and voice of the Indian community on campus. Open to all nationalities with an interest in Indian culture.",
+  },
+  {
+    name: "PrangaN@Swiss",
+    url: "https://www.pranganswiss.org",
+    desc: "Switzerland's first women-led non-profit organisation serving the Indian diaspora. Based in the Lausanne region. Focuses on Bengali cultural traditions — organising Durga Puja, cultural celebrations, and community events promoting a 'Taste of Bengal' in Switzerland.",
+  },
+];
+
 const facts = [
-  "Lausanne is home to EPFL (École Polytechnique Fédérale de Lausanne), one of Europe's top technical universities — with one of the largest Indian student populations in Switzerland.",
-  "The Indian Student Association at EPFL organises cultural events, Diwali, and academic networking throughout the year.",
-  "Lausanne sits on the shores of Lake Geneva with stunning Alpine views. The city is hilly — locals are used to steep streets.",
-  "Metro M2 (automated metro) connects the lakeside to the hilltop university areas, making commutes easy.",
-  "Nearby Morges and Renens offer more affordable housing for EPFL students and researchers.",
+  "Lausanne is home to EPFL (École Polytechnique Fédérale de Lausanne), consistently ranked among Europe's top technical universities. EPFL has one of the largest Indian student and researcher populations in Switzerland, with IITs and other premier Indian institutions maintaining student exchange programmes with EPFL.",
+  "Lausanne sits on the northern shores of Lake Geneva (Lac Léman) with stunning Alpine views. The city is notably hilly — the automated Metro M2 connects the lakeside train station to the hilltop EPFL campus and the old city, making it easy to navigate.",
+  "The Lausanne–Renens–Morges corridor offers more affordable housing for EPFL students and researchers compared to Geneva city. Renens and Crissier are particularly popular Indian community clusters.",
+  "Nestlé, headquartered nearby in Vevey, and Philip Morris International in Lausanne employ a significant number of Indian nationals in management, science, and technology roles.",
+  "French is the primary language in Lausanne. Many Indian professionals and students find the French-speaking environment easier to navigate than Swiss German — and the city's large international university population means English is widely spoken on campus.",
+];
+
+const restaurants = [
+  { name: "Nandanam", note: "Rated the top Indian restaurant in Lausanne by recent reviews. South Indian specialities alongside North Indian classics." },
+  { name: "Bollywood", note: "Consistently highly praised on TheFork and TripAdvisor. Vegetarian and gluten-free options available. Popular with the EPFL student community." },
+  { name: "7 Kings Curry", note: "Reliable Indian restaurant with a broad menu spanning regional Indian cuisines." },
+  { name: "La Maison Tandoori", note: "Praised for its authentic tandoor-cooked dishes and good atmosphere." },
+  { name: "Indian Zayeka", note: "Known for its classic Indian dishes and popular lunch buffet. Traditionally decorated dining space." },
 ];
 
 export default function LausannePage() {
@@ -30,7 +56,7 @@ export default function LausannePage() {
     <div>
       <PageHeader
         title="Indians in Lausanne"
-        subtitle="Lausanne's Indian community is driven by EPFL — one of the world's top technical universities and a magnet for Indian researchers and students."
+        subtitle="Lausanne's Indian community is driven by EPFL — one of the world's top technical universities and a magnet for Indian researchers, students, and academic professionals."
         badge="City Guide"
         gradient="from-violet-600 to-purple-600"
         breadcrumbs={[
@@ -51,11 +77,39 @@ export default function LausannePage() {
         </section>
 
         <section>
+          <h2 className="text-2xl font-bold text-white mb-2">Indian Associations</h2>
+          <p className="text-sm text-white/50 mb-6">Source: ialausanne.com; epfl.ch/campus/associations/yuva; pranganswiss.org; Embassy of India, Berne associations directory</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {associations.map((a) => (
+              <div key={a.name} className="glass card-hover rounded-2xl p-5">
+                <h3 className="text-base font-semibold text-white mb-2">{a.name}</h3>
+                <p className="text-sm text-white/60 mb-2">{a.desc}</p>
+                <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-xs text-violet-400 hover:text-violet-300">
+                  {a.url} ↗
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
           <h2 className="text-2xl font-bold text-white mb-6">What to Know</h2>
           <div className="space-y-4">
             {facts.map((f, i) => (
               <div key={i} className="glass rounded-2xl p-5">
                 <p className="text-sm text-white/70">{f}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">Indian Restaurants</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {restaurants.map((r) => (
+              <div key={r.name} className="glass card-hover rounded-2xl p-5">
+                <h3 className="text-base font-semibold text-white mb-1">{r.name}</h3>
+                <p className="text-sm text-white/60">{r.note}</p>
               </div>
             ))}
           </div>
