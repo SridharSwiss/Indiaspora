@@ -71,14 +71,13 @@ export default function BusinessPage() {
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Connect with established Indian business associations in Switzerland</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {networks.map((n) => (
-              <div key={n.name} className="glass rounded-2xl p-5 card-hover">
+              <a key={n.name} href={n.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold text-sm leading-tight flex-1 mr-2" style={{ color: "var(--text)" }}>{n.name}</h3>
+                  <h3 className="font-semibold text-sm leading-tight flex-1 mr-2 group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{n.name}</h3>
                   <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full shrink-0">{n.tag}</span>
                 </div>
-                <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>{n.desc}</p>
-                <a href={n.url} target="_blank" rel="noopener noreferrer" className="text-xs text-teal-400 hover:text-teal-300">Visit →</a>
-              </div>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{n.desc}</p>
+              </a>
             ))}
           </div>
         </section>
@@ -124,11 +123,10 @@ export default function BusinessPage() {
           <p className="mb-6" style={{ color: "var(--text-2)" }}>As an Indian national, you need a work permit to work in Switzerland. Annual quotas apply for non-EU/EFTA nationals.</p>
           <div className="grid md:grid-cols-2 gap-5">
             {workPermitTypes.map((w) => (
-              <div key={w.permit} className="glass rounded-2xl p-5">
-                <h3 className="font-semibold text-teal-400 mb-2">{w.permit}</h3>
-                <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>{w.eligibility}</p>
-                <a href={w.link} target="_blank" rel="noopener noreferrer" className="text-xs text-teal-400 hover:text-teal-300">Official SEM info →</a>
-              </div>
+              <a key={w.permit} href={w.link} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 block group card-hover">
+                <h3 className="font-semibold text-teal-400 mb-2 group-hover:text-teal-300 transition-colors">{w.permit}</h3>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{w.eligibility}</p>
+              </a>
             ))}
           </div>
           <div className="mt-4 p-4 rounded-xl bg-teal-500/10 border border-teal-500/20">

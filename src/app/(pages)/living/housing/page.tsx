@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 };
 
 const portals = [
-  { name: "Homegate", url: "homegate.ch", desc: "Switzerland's largest rental portal with the widest listing inventory. Set up alerts for new listings immediately." },
-  { name: "ImmoScout24", url: "immoscout24.ch", desc: "Major portal with powerful filters. Many listings are syndicated across both Homegate and ImmoScout24." },
-  { name: "Flatfox", url: "flatfox.ch", desc: "Growing portal, often with exclusive listings. Known for a smoother application process and tenant-friendly design." },
-  { name: "Newhome", url: "newhome.ch", desc: "Associated with cantonal banks; good for listings from institutional landlords. Often less competitive." },
-  { name: "Comparis", url: "comparis.ch", desc: "Aggregator that pulls listings from multiple portals — useful for a single search across sources." },
-  { name: "WGZimmer", url: "wgzimmer.ch", desc: "Best for shared flat (WG / colocation) rooms. Popular with students and newcomers looking for short-term arrangements." },
+  { name: "Homegate", url: "https://www.homegate.ch/rent", desc: "Switzerland's largest rental portal with the widest listing inventory. Set up alerts for new listings immediately." },
+  { name: "ImmoScout24", url: "https://www.immoscout24.ch/en", desc: "Major portal with powerful filters. Many listings are syndicated across both Homegate and ImmoScout24." },
+  { name: "Flatfox", url: "https://flatfox.ch/en/", desc: "Growing portal, often with exclusive listings. Known for a smoother application process and tenant-friendly design." },
+  { name: "Newhome", url: "https://www.newhome.ch/en", desc: "Associated with cantonal banks; good for listings from institutional landlords. Often less competitive." },
+  { name: "Comparis", url: "https://en.comparis.ch/immobilien/mieten", desc: "Aggregator that pulls listings from multiple portals — useful for a single search across sources." },
+  { name: "WGZimmer", url: "https://www.wgzimmer.ch/en/", desc: "Best for shared flat (WG / colocation) rooms. Popular with students and newcomers looking for short-term arrangements." },
 ];
 
 const documents = [
@@ -57,11 +57,10 @@ export default function HousingPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Where to Search</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {portals.map((p) => (
-              <div key={p.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-blue-400 mb-1">{p.name}</h3>
-                <p className="text-xs/40 mb-2" style={{ color: "var(--text)" }}>{p.url}</p>
+              <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold text-blue-400 mb-1 group-hover:text-blue-300 transition-colors">{p.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{p.desc}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>

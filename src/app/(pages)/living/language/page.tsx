@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 };
 
 const languages = [
-  { lang: "German", regions: "Zurich, Bern, Basel, Lucerne, St. Gallen", speakers: "~63% of Switzerland", note: "Swiss German (Schweizerdeutsch) dialects are spoken in daily conversation; High German (Hochdeutsch / Standard German) is used in writing, formal settings, and media. Learn Hochdeutsch first — it is universally understood and you will pick up dialect nuances over time." },
-  { lang: "French", regions: "Geneva, Lausanne, Neuchâtel, Fribourg, Sion", speakers: "~23% of Switzerland", note: "Standard French is used — much closer to Parisian French than Swiss German is to High German. French speakers in Switzerland appreciate the effort even if your level is basic." },
-  { lang: "Italian", regions: "Lugano, Locarno, Bellinzona (Canton Ticino)", speakers: "~8% of Switzerland", note: "Standard Italian with some local vocabulary. English is more widely spoken in Ticino than in German-speaking regions. Romansh (4th national language) is spoken by ~0.5% in Graubünden." },
+  { lang: "German", regions: "Zurich, Bern, Basel, Lucerne, St. Gallen", speakers: "~63% of Switzerland", url: "https://www.klubschule.ch/Angebote/Sprachen/Deutsch", note: "Swiss German (Schweizerdeutsch) dialects are spoken in daily conversation; High German (Hochdeutsch / Standard German) is used in writing, formal settings, and media. Learn Hochdeutsch first — it is universally understood and you will pick up dialect nuances over time." },
+  { lang: "French", regions: "Geneva, Lausanne, Neuchâtel, Fribourg, Sion", speakers: "~23% of Switzerland", url: "https://www.alliancefr.ch/en/", note: "Standard French is used — much closer to Parisian French than Swiss German is to High German. French speakers in Switzerland appreciate the effort even if your level is basic." },
+  { lang: "Italian", regions: "Lugano, Locarno, Bellinzona (Canton Ticino)", speakers: "~8% of Switzerland", url: "https://www.klubschule.ch/Angebote/Sprachen/Italienisch", note: "Standard Italian with some local vocabulary. English is more widely spoken in Ticino than in German-speaking regions. Romansh (4th national language) is spoken by ~0.5% in Graubünden." },
 ];
 
 const resources = [
@@ -42,12 +42,12 @@ export default function LanguagePage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Switzerland's Languages</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {languages.map((l) => (
-              <div key={l.lang} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-xl font-bold text-teal-400 mb-1">{l.lang}</h3>
+              <a key={l.lang} href={l.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-xl font-bold text-teal-400 mb-1 group-hover:text-teal-300 transition-colors">{l.lang}</h3>
                 <p className="text-xs/40 mb-1" style={{ color: "var(--text)" }}>{l.regions}</p>
                 <p className="text-xs/50 mb-3" style={{ color: "var(--text)" }}>{l.speakers}</p>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{l.note}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>

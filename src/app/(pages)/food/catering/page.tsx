@@ -75,20 +75,14 @@ export default function CateringPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Known Catering Providers</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {caterers.map((c) => (
-              <div key={c.name} className="glass card-hover rounded-2xl p-5">
+              <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
                 <div className="flex items-start justify-between mb-1">
-                  <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>
-                    {c.url ? (
-                      <a href={c.url} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition-colors">
-                        {c.name}
-                      </a>
-                    ) : c.name}
-                  </h3>
+                  <h3 className="text-base font-semibold group-hover:text-pink-400 transition-colors" style={{ color: "var(--text)" }}>{c.name}</h3>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-400 flex-shrink-0 ml-2">{c.city}</span>
                 </div>
                 <p className="text-xs/40 mb-2" style={{ color: "var(--text)" }}>{c.type}</p>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{c.note}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>

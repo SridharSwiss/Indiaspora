@@ -112,7 +112,7 @@ export const FEATURED_CATEGORIES = [
   },
   {
     id: "spiritual",
-    href: "/community#spiritual",
+    href: "/community/spiritual",
     title: "Spiritual & Wellness",
     description: "Find temples, yoga studios, meditation centres, and Satsang groups for your spiritual journey",
     icon: "Sparkles",

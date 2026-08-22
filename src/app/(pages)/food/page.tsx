@@ -3,23 +3,23 @@ import Link from "next/link";
 import { UtensilsCrossed, ShoppingCart, ChefHat, Flame } from "lucide-react";
 
 const restaurants = [
-  { name: "Bairavi Restaurant", city: "Zurich", cuisine: "South Indian", address: "Langstrasse 149, 8004 Zürich", note: "Authentic dosas and curries" },
-  { name: "Rajasthan Restaurant", city: "Zurich", cuisine: "North Indian", address: "Stauffacherstr. 50, 8004 Zürich", note: "Popular for thalis and tandoor" },
-  { name: "Indigo Restaurant", city: "Geneva", cuisine: "Pan-Indian", address: "Rue de Rive 23, 1204 Genève", note: "Upscale Indian fine dining" },
-  { name: "Namaste India", city: "Basel", cuisine: "North Indian", address: "Güterstrasse 99, 4053 Basel", note: "Buffet lunch and dinner" },
-  { name: "Bombay Dreams", city: "Zurich", cuisine: "Street Food", address: "Seefeldstrasse 60, 8008 Zürich", note: "Mumbai street food inspired" },
-  { name: "Maharaja Palace", city: "Bern", cuisine: "North Indian", address: "Marktgasse 32, 3011 Bern", note: "Family-friendly, halal options" },
-  { name: "Chennai Diner", city: "Zurich", cuisine: "South Indian", address: "Langstrasse 200, 8004 Zürich", note: "Idli, vada, filter coffee" },
-  { name: "Spice Route", city: "Lausanne", cuisine: "Pan-Indian", address: "Rue du Midi 22, 1003 Lausanne", note: "Near EPFL community" },
+  { name: "Bairavi Restaurant", city: "Zurich", cuisine: "South Indian", address: "Langstrasse 149, 8004 Zürich", note: "Authentic dosas and curries", url: "https://www.google.com/search?q=Bairavi+Restaurant+Zurich" },
+  { name: "Rajasthan Restaurant", city: "Zurich", cuisine: "North Indian", address: "Stauffacherstr. 50, 8004 Zürich", note: "Popular for thalis and tandoor", url: "https://www.google.com/search?q=Rajasthan+Restaurant+Zurich" },
+  { name: "Indigo Restaurant", city: "Geneva", cuisine: "Pan-Indian", address: "Rue de Rive 23, 1204 Genève", note: "Upscale Indian fine dining", url: "https://www.google.com/search?q=Indigo+Restaurant+Geneva+Indian" },
+  { name: "Namaste India", city: "Basel", cuisine: "North Indian", address: "Güterstrasse 99, 4053 Basel", note: "Buffet lunch and dinner", url: "https://www.google.com/search?q=Namaste+India+Basel" },
+  { name: "Bombay Dreams", city: "Zurich", cuisine: "Street Food", address: "Seefeldstrasse 60, 8008 Zürich", note: "Mumbai street food inspired", url: "https://www.google.com/search?q=Bombay+Dreams+Zurich+Indian" },
+  { name: "Maharaja Palace", city: "Bern", cuisine: "North Indian", address: "Marktgasse 32, 3011 Bern", note: "Family-friendly, halal options", url: "https://www.google.com/search?q=Maharaja+Palace+Bern+Indian" },
+  { name: "Chennai Diner", city: "Zurich", cuisine: "South Indian", address: "Langstrasse 200, 8004 Zürich", note: "Idli, vada, filter coffee", url: "https://www.google.com/search?q=Chennai+Diner+Zurich" },
+  { name: "Spice Route", city: "Lausanne", cuisine: "Pan-Indian", address: "Rue du Midi 22, 1003 Lausanne", note: "Near EPFL community", url: "https://www.google.com/search?q=Spice+Route+Lausanne+Indian" },
 ];
 
 const groceries = [
   { name: "India Supermarkt (Online)", url: "https://indiasupermarkt.ch", desc: "Widest range of Indian groceries delivered across Switzerland", cities: "All Switzerland" },
-  { name: "Art of Food", url: "#", desc: "Fresh Indian vegetables, spices, and ready-to-eat items", cities: "Zurich" },
-  { name: "Aggarwals Indian Grocery", url: "#", desc: "Pulses, flours, pickles, frozen foods, pooja items", cities: "Zurich" },
-  { name: "Salpers Asian Grocery", url: "#", desc: "Pan-Asian with good Indian section", cities: "Zurich, Geneva" },
-  { name: "Asian Food Store", url: "#", desc: "Indian spices, lentils, basmati rice", cities: "Basel" },
-  { name: "Epicentre", url: "#", desc: "Indian and Asian groceries", cities: "Geneva" },
+  { name: "Art of Food", url: "https://www.google.com/search?q=Art+of+Food+Zurich+Indian+grocery", desc: "Fresh Indian vegetables, spices, and ready-to-eat items", cities: "Zurich" },
+  { name: "Aggarwals Indian Grocery", url: "https://www.google.com/maps/search/Aggarwals+Indian+Grocery+Zurich", desc: "Pulses, flours, pickles, frozen foods, pooja items", cities: "Zurich" },
+  { name: "Salpers Asian Grocery", url: "https://www.google.com/search?q=Salpers+Asian+Grocery+Zurich", desc: "Pan-Asian with good Indian section", cities: "Zurich, Geneva" },
+  { name: "Asian Food Store", url: "https://www.google.com/search?q=Asian+Food+Store+Basel+Indian+spices", desc: "Indian spices, lentils, basmati rice", cities: "Basel" },
+  { name: "Epicentre", url: "https://www.google.com/search?q=Epicentre+Asian+grocery+Geneva", desc: "Indian and Asian groceries", cities: "Geneva" },
 ];
 
 const subCategories = [
@@ -58,17 +58,17 @@ export default function FoodPage() {
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Handpicked Indian restaurants across Switzerland — from casual dhabas to fine dining</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {restaurants.map((r) => (
-              <div key={r.name} className="glass rounded-2xl p-5 card-hover">
+              <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold" style={{ color: "var(--text)" }}>{r.name}</h3>
+                    <h3 className="font-semibold group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
                     <span className="text-xs text-orange-400">{r.cuisine}</span>
                   </div>
                   <span className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{r.city}</span>
                 </div>
                 <p className="text-sm mb-2" style={{ color: "var(--text-2)" }}>{r.address}</p>
                 <p className="text-xs" style={{ color: "var(--text-3)" }}>{r.note}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>
@@ -79,18 +79,13 @@ export default function FoodPage() {
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Find Indian spices, dals, flours, frozen foods, and pooja items near you</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {groceries.map((g) => (
-              <div key={g.name} className="glass rounded-2xl p-5 card-hover">
+              <a key={g.name} href={g.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold" style={{ color: "var(--text)" }}>{g.name}</h3>
+                  <h3 className="font-semibold group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{g.name}</h3>
                   <span className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{g.cities}</span>
                 </div>
-                <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>{g.desc}</p>
-                {g.url !== "#" && (
-                  <a href={g.url} target="_blank" rel="noopener noreferrer" className="text-xs text-orange-400 hover:text-orange-300">
-                    Visit website →
-                  </a>
-                )}
-              </div>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{g.desc}</p>
+              </a>
             ))}
           </div>
         </section>

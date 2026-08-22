@@ -13,27 +13,31 @@ export const metadata: Metadata = {
 const screenings = [
   {
     name: "Indian Film Festival — Embassy of India",
+    url: "https://www.indembassybern.gov.in/page/diaspora-events/",
     timing: "February–March (Annual)",
     location: "Berne, Zurich, Basel & Lucerne",
-    desc: "Free annual film festival organised by the Embassy of India in Berne. Screens a curated selection of Indian films (Bollywood and regional) across 4 Swiss cities. Past editions featured Kantara, Dangal, 83, Rocketry, and Zindagi Na Milegi Dobara. Source: indembassybern.gov.in",
+    desc: "Free annual film festival organised by the Embassy of India in Berne. Screens a curated selection of Indian films (Bollywood and regional) across 4 Swiss cities. Past editions featured Kantara, Dangal, 83, Rocketry, and Zindagi Na Milegi Dobara.",
     org: "Embassy of India, Berne",
   },
   {
-    name: "Bollywood Screenings — SwissDesi / IndianMomsZurich",
+    name: "Bollywood Screenings — SwissDesi",
+    url: "https://swissdesi.ch",
     timing: "Regular (throughout year)",
     location: "Kino Claudia (Kloten), Riff-Raff (Zurich), Pathé Westside (Bern), Kino City (Uzwil)",
-    desc: "SwissDesi (formerly IndianMomsZurich) announces and coordinates Bollywood and Indian regional film screenings across Swiss cinemas. Covers Hindi, Tamil, Malayalam, and Telugu releases. Source: swissdesi.ch",
+    desc: "SwissDesi (formerly IndianMomsZurich) announces and coordinates Bollywood and Indian regional film screenings across Swiss cinemas. Covers Hindi, Tamil, Malayalam, and Telugu releases.",
     org: "SwissDesi",
   },
   {
     name: "India Fest & Margazhi Utsav",
+    url: "https://www.indembassybern.gov.in/page/diaspora-events/",
     timing: "December (Annual, 3 days)",
     location: "Zurich",
-    desc: "Three-day cultural festival combining Indian film screenings with classical music and dance performances, organised by the Embassy of India in collaboration with the Swiss India Fine Arts Association (SIFAA). Held in December 2024 (6–8 Dec). Source: indembassybern.gov.in",
+    desc: "Three-day cultural festival combining Indian film screenings with classical music and dance performances, organised by the Embassy of India in collaboration with the Swiss India Fine Arts Association (SIFAA). Held in December 2024 (6–8 Dec).",
     org: "Embassy of India & SIFAA",
   },
   {
     name: "Tamil Film Screenings",
+    url: "https://www.facebook.com/search/top?q=tamil+film+screening+switzerland",
     timing: "Periodic",
     location: "Zurich & Geneva",
     desc: "Tamil blockbusters and recent releases screened for the Swiss-Tamil community. Announced via Tamil community groups. The Tamil diaspora is one of the largest Indian subgroups in Switzerland.",
@@ -76,16 +80,16 @@ export default function CinemaPage() {
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Watch Indian films with the community in Switzerland</p>
           <div className="grid md:grid-cols-2 gap-5">
             {screenings.map((s) => (
-              <div key={s.name} className="glass rounded-2xl p-6 card-hover">
+              <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-6 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold" style={{ color: "var(--text)" }}>{s.name}</h3>
+                    <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{s.name}</h3>
                     <p className="text-xs text-rose-400 mt-0.5">{s.timing} &middot; {s.location}</p>
                   </div>
                   <span className="text-xs px-2 py-1 rounded-full ml-2 shrink-0" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{s.org}</span>
                 </div>
                 <p className="text-sm" style={{ color: "var(--text-2)" }}>{s.desc}</p>
-              </div>
+              </a>
             ))}
           </div>
           <p className="text-xs mt-4" style={{ color: "var(--text-3)" }}>

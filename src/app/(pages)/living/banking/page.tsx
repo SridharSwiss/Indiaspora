@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 };
 
 const banks = [
-  { name: "PostFinance", type: "Traditional", desc: "Historically the most accessible for new arrivals, with post office branches nationwide. Note: a foreign-address surcharge (~CHF 25/month) applies if you have no Swiss address yet. Once resident, basic accounts are fee-free for under-26 or with salary deposit.", bestFor: "First account", url: "postfinance.ch" },
-  { name: "UBS", type: "Traditional", desc: "Switzerland's largest bank after absorbing Credit Suisse (2023). Full-service with English-language support. Typically requires a branch visit and may ask for a larger initial deposit for non-EU nationals.", bestFor: "Full banking", url: "ubs.com" },
-  { name: "Neon", type: "Digital", desc: "100% mobile Swiss bank, no monthly fees, fully English app. Easy to open with a valid Swiss residence permit and passport scan — no branch visit. Swiss IBAN. Very popular among Indian expats.", bestFor: "Digital-first", url: "neon-free.ch" },
-  { name: "Yuh", type: "Digital", desc: "Joint venture of PostFinance and Swissquote. Unique in that it also accepts non-residents. Holds accounts in CHF, EUR, and USD with sub-accounts in 13 currencies. Includes investment features and no monthly fee.", bestFor: "Non-residents & investing", url: "yuh.com" },
-  { name: "Revolut", type: "Digital", desc: "European fintech; not a Swiss bank but widely used by Indian expats. Excellent for multi-currency spending and low-cost transfers to India. Regulated under a Lithuanian banking licence.", bestFor: "Travel & FX", url: "revolut.com" },
+  { name: "PostFinance", type: "Traditional", desc: "Historically the most accessible for new arrivals, with post office branches nationwide. Note: a foreign-address surcharge (~CHF 25/month) applies if you have no Swiss address yet. Once resident, basic accounts are fee-free for under-26 or with salary deposit.", bestFor: "First account", url: "https://www.postfinance.ch/en/private.html" },
+  { name: "UBS", type: "Traditional", desc: "Switzerland's largest bank after absorbing Credit Suisse (2023). Full-service with English-language support. Typically requires a branch visit and may ask for a larger initial deposit for non-EU nationals.", bestFor: "Full banking", url: "https://www.ubs.com/ch/en/private.html" },
+  { name: "Neon", type: "Digital", desc: "100% mobile Swiss bank, no monthly fees, fully English app. Easy to open with a valid Swiss residence permit and passport scan — no branch visit. Swiss IBAN. Very popular among Indian expats.", bestFor: "Digital-first", url: "https://www.neon-free.ch/en/" },
+  { name: "Yuh", type: "Digital", desc: "Joint venture of PostFinance and Swissquote. Unique in that it also accepts non-residents. Holds accounts in CHF, EUR, and USD with sub-accounts in 13 currencies. Includes investment features and no monthly fee.", bestFor: "Non-residents & investing", url: "https://www.yuh.com/en/" },
+  { name: "Revolut", type: "Digital", desc: "European fintech; not a Swiss bank but widely used by Indian expats. Excellent for multi-currency spending and low-cost transfers to India. Regulated under a Lithuanian banking licence.", bestFor: "Travel & FX", url: "https://www.revolut.com" },
 ];
 
 const transferOptions = [
@@ -45,14 +45,14 @@ export default function BankingPage() {
           <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>Indian nationals on a valid B or L permit can open a Swiss bank account. Digital banks (Neon, Yuh) are the easiest route — no appointment needed.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {banks.map((b) => (
-              <div key={b.name} className="glass card-hover rounded-2xl p-5">
+              <a key={b.name} href={b.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>{b.name}</h3>
+                  <h3 className="text-base font-semibold group-hover:text-yellow-400 transition-colors" style={{ color: "var(--text)" }}>{b.name}</h3>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400">{b.bestFor}</span>
                 </div>
-                <p className="text-xs/40 mb-1" style={{ color: "var(--text)" }}>{b.type} · {b.url}</p>
+                <p className="text-xs/40 mb-1" style={{ color: "var(--text)" }}>{b.type}</p>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{b.desc}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>

@@ -125,25 +125,14 @@ export default function ArtsPage() {
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Classical and contemporary Indian dance across Switzerland</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {danceSchools.map((d) => (
-              d.url ? (
-                <a key={d.name} href={d.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-semibold text-sm flex-1 mr-2 group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{d.name}</h3>
-                    <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full shrink-0">{d.city}</span>
-                  </div>
-                  <p className="text-xs mb-1" style={{ color: "var(--text-3)" }}>{d.style} &middot; {d.level}</p>
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{d.desc}</p>
-                </a>
-              ) : (
-                <div key={d.name} className="glass rounded-2xl p-5 card-hover">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-semibold text-sm flex-1 mr-2" style={{ color: "var(--text)" }}>{d.name}</h3>
-                    <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full shrink-0">{d.city}</span>
-                  </div>
-                  <p className="text-xs mb-1" style={{ color: "var(--text-3)" }}>{d.style} &middot; {d.level}</p>
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{d.desc}</p>
+              <a key={d.name} href={d.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="font-semibold text-sm flex-1 mr-2 group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{d.name}</h3>
+                  <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full shrink-0">{d.city}</span>
                 </div>
-              )
+                <p className="text-xs mb-1" style={{ color: "var(--text-3)" }}>{d.style} &middot; {d.level}</p>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{d.desc}</p>
+              </a>
             ))}
           </div>
         </section>

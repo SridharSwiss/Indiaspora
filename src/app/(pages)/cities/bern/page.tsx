@@ -48,11 +48,11 @@ const associations = [
 ];
 
 const restaurants = [
-  { name: "Yaadein Indian Restaurant", note: "Family-run restaurant offering authentic North and South Indian cuisine with a personal touch. Highly rated by the local Indian community for its home-style cooking." },
-  { name: "India4U", note: "Well-regarded Indian restaurant in Bern city centre. Website: india4u.ch." },
-  { name: "Indian Kitchen", note: "Renovated restaurant focusing on a clean atmosphere and traditional Indian dishes. Website: indiankitchen.ch." },
-  { name: "Taj Restaurant", note: "One of Bern's top-rated Indian restaurants with consistent reviews for quality and authenticity." },
-  { name: "Swaad Bern", note: "Popular for its variety and lighter preparation of curries. Particularly recommended for its accommodating approach to dietary requests." },
+  { name: "Yaadein Indian Restaurant", url: "https://www.google.com/search?q=Yaadein+Indian+Restaurant+Bern", note: "Family-run restaurant offering authentic North and South Indian cuisine with a personal touch. Highly rated by the local Indian community for its home-style cooking." },
+  { name: "India4U", url: "https://india4u.ch", note: "Well-regarded Indian restaurant in Bern city centre." },
+  { name: "Indian Kitchen", url: "https://www.indiankitchen.ch", note: "Renovated restaurant focusing on a clean atmosphere and traditional Indian dishes." },
+  { name: "Taj Restaurant", url: "https://www.google.com/search?q=Taj+Restaurant+Bern+Indian", note: "One of Bern's top-rated Indian restaurants with consistent reviews for quality and authenticity." },
+  { name: "Swaad Bern", url: "https://www.google.com/search?q=Swaad+Bern+Indian+restaurant", note: "Popular for its variety and lighter preparation of curries. Particularly recommended for its accommodating approach to dietary requests." },
 ];
 
 export default function BernPage() {
@@ -110,13 +110,10 @@ export default function BernPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Associations</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {associations.map((a) => (
-              <div key={a.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{a.name}</h3>
-                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}>{a.desc}</p>
-                <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-xs text-yellow-400 hover:text-yellow-300">
-                  {a.url} ↗
-                </a>
-              </div>
+              <a key={a.name} href={a.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold mb-2 group-hover:text-yellow-400 transition-colors" style={{ color: "var(--text)" }}>{a.name}</h3>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{a.desc}</p>
+              </a>
             ))}
           </div>
         </section>
@@ -136,10 +133,10 @@ export default function BernPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {restaurants.map((r) => (
-              <div key={r.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>{r.name}</h3>
+              <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold mb-1 group-hover:text-yellow-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{r.note}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>
