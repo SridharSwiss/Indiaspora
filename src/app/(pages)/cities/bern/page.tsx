@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHeader from "@/components/ui/PageHeader";
+import { Users, MessageSquare, Building2, Flag } from "lucide-react";
+
+const ICON_MAP: Record<string, React.ReactNode> = {
+  "👥": <Users style={{ width: 20, height: 20, color: "var(--sf)" }} />,
+  "🗣️": <MessageSquare style={{ width: 20, height: 20, color: "var(--sf)" }} />,
+  "🏛️": <Building2 style={{ width: 20, height: 20, color: "var(--sf)" }} />,
+  "🇮🇳": <Flag style={{ width: 20, height: 20, color: "var(--sf)" }} />,
+};
 
 export const metadata: Metadata = {
   title: "Indians in Bern — Community Guide",
@@ -61,10 +70,21 @@ export default function BernPage() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        <div style={{ marginBottom: -32 }}>
+          <Image
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&auto=format&fit=crop"
+            alt="Bern old city"
+            width={1200}
+            height={400}
+            className="w-full rounded-2xl object-cover"
+            style={{ height: 280, objectFit: "cover" }}
+          />
+        </div>
+
         <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {highlights.map((h) => (
             <div key={h.label} className="glass rounded-2xl p-4 text-center">
-              <div className="text-2xl mb-1">{h.icon}</div>
+              <div className="flex justify-center mb-1">{ICON_MAP[h.icon] ?? h.icon}</div>
               <p className="text-base font-bold" style={{ color: "var(--text)" }}>{h.value}</p>
               <p className="text-xs/50" style={{ color: "var(--text)" }}>{h.label}</p>
             </div>

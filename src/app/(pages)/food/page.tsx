@@ -1,5 +1,6 @@
 import PageHeader from "@/components/ui/PageHeader";
 import Link from "next/link";
+import { UtensilsCrossed, ShoppingCart, ChefHat, Flame } from "lucide-react";
 
 const restaurants = [
   { name: "Bairavi Restaurant", city: "Zurich", cuisine: "South Indian", address: "Langstrasse 149, 8004 Zürich", note: "Authentic dosas and curries" },
@@ -22,10 +23,10 @@ const groceries = [
 ];
 
 const subCategories = [
-  { label: "Restaurants", href: "/food/restaurants", icon: "🍽️", desc: "200+ Indian restaurants across Switzerland" },
-  { label: "Grocery & Spices", href: "/food/grocery", icon: "🛒", desc: "Indian grocery stores and online delivery" },
-  { label: "Catering & Home Chefs", href: "/food/catering", icon: "👨‍🍳", desc: "Home chefs, tiffin services, and event catering" },
-  { label: "Cooking Classes", href: "/food/cooking", icon: "🍳", desc: "Learn to cook regional Indian cuisines" },
+  { label: "Restaurants", href: "/food/restaurants", icon: <UtensilsCrossed style={{ width: 28, height: 28, color: "var(--sf)" }} />, desc: "200+ Indian restaurants across Switzerland" },
+  { label: "Grocery & Spices", href: "/food/grocery", icon: <ShoppingCart style={{ width: 28, height: 28, color: "var(--sf)" }} />, desc: "Indian grocery stores and online delivery" },
+  { label: "Catering & Home Chefs", href: "/food/catering", icon: <ChefHat style={{ width: 28, height: 28, color: "var(--sf)" }} />, desc: "Home chefs, tiffin services, and event catering" },
+  { label: "Cooking Classes", href: "/food/cooking", icon: <Flame style={{ width: 28, height: 28, color: "var(--sf)" }} />, desc: "Learn to cook regional Indian cuisines" },
 ];
 
 export default function FoodPage() {
@@ -44,7 +45,7 @@ export default function FoodPage() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {subCategories.map((cat) => (
             <Link key={cat.label} href={cat.href} className="glass rounded-2xl p-5 card-hover group">
-              <div className="text-3xl mb-3">{cat.icon}</div>
+              <div className="mb-3">{cat.icon}</div>
               <h3 className="font-semibold mb-1 group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{cat.label}</h3>
               <p className="text-xs" style={{ color: "var(--text-2)" }}>{cat.desc}</p>
             </Link>

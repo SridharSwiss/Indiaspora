@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Users, Building2, MapPin, Briefcase } from "lucide-react";
 import { STATS } from "@/lib/data";
 
 const HERO_WORDS = ["Community", "Culture", "Cuisine", "Connections", "Commerce"];
@@ -15,8 +15,11 @@ export default function Hero() {
     return () => clearInterval(t);
   }, []);
 
-  const icons: Record<string, string> = {
-    Users: "👥", Building2: "🏛️", MapPin: "📍", Briefcase: "💼",
+  const ICON_MAP: Record<string, React.ReactNode> = {
+    Users: <Users style={{ width: 22, height: 22, color: "var(--sf)" }} />,
+    Building2: <Building2 style={{ width: 22, height: 22, color: "var(--sf)" }} />,
+    MapPin: <MapPin style={{ width: 22, height: 22, color: "var(--sf)" }} />,
+    Briefcase: <Briefcase style={{ width: 22, height: 22, color: "var(--sf)" }} />,
   };
 
   return (
@@ -205,7 +208,7 @@ export default function Hero() {
                 el.style.transform = "translateY(0)";
               }}
             >
-              <div style={{ fontSize: "1.5rem", marginBottom: 2 }}>{icons[s.icon]}</div>
+              <div style={{ marginBottom: 4 }}>{ICON_MAP[s.icon]}</div>
               <div
                 className="gradient-text"
                 style={{
