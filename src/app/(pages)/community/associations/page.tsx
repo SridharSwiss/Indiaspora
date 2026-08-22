@@ -22,15 +22,15 @@ const umbrella: Org[] = [
   { name: "Bruhan Maharashtra Mandal Switzerland (BMMS)", url: "https://bruhan-mms.org", city: "Nationwide", desc: "Non-profit, secular forum for the Marathi-speaking community in Switzerland. Promotes Marathi language, literature and culture." },
 ];
 
-// Regional/language associations — verified via Embassy of India listing and web search (Aug 2026)
+// Regional/language associations — verified via Embassy of India listing, swissdesi.ch/indian-associations, and web search (Aug 2026)
 const regional: Org[] = [
   { name: "Gujarati Samaj Switzerland", url: "https://www.gujaratisamaj.ch", city: "Nationwide", desc: "Navratri Garba, language classes, and Gujarati cultural events across Switzerland." },
   { name: "Swiss Tamil Sangam", url: "http://swisstamilsangam.com", city: "Nationwide", desc: "Cultural association for Tamil-speaking community in Switzerland. Tamil is one of the largest diaspora language groups in the country." },
   { name: "Swiss Tamil Professionals Association (STPA)", url: "https://www.tamilprofessionals.ch", city: "Zurich", desc: "Network for Tamil professionals — collaboration, innovation and mentoring across industries." },
-  { name: "Telugu Association Switzerland (TAS)", url: null, city: "Nationwide", desc: "Ugadi, Telugu cultural events and community network. No verified public website found." },
+  { name: "Telugu Association of Switzerland (TeluguSwiss)", url: "https://teluguswiss.org", city: "Nationwide", desc: "Ugadi and other Telugu cultural events and community networking. The affiliated Swiss Telugu NRI Forum (STNRI) runs Mana Badi, a Telugu language programme for children." },
   { name: "Kannada Koota Switzerland", url: null, city: "Zurich", desc: "Kannada Rajyotsava and community events for Kannadigas. No verified public website found." },
   { name: "Bengali Cultural Society Switzerland", url: null, city: "Zurich/Geneva", desc: "Durga Puja, Rabindra Jayanti and Bengali cultural events. No verified public website found." },
-  { name: "Malayalee Association Switzerland", url: null, city: "Nationwide", desc: "Onam, Vishu and Malayalam cultural community events. No verified public website found." },
+  { name: "Kerala Associations Network", url: "https://www.keralam.ch", city: "Nationwide", desc: "Kerala's diaspora runs several regional groups rather than one body — including Keliswiss, Malayalees Swiss, Changathi Kootam and Bharatheeya Kalalayam Switzerland — organising Onam, Vishu and Malayalam-language cultural events." },
 ];
 
 // Professional networks — verified via organisation websites (Aug 2026)

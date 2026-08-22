@@ -14,8 +14,10 @@ export const metadata: Metadata = {
 const support: { name: string; url: string | null; city: string; desc: string }[] = [
   { name: "Swiss Desi (formerly IndianMomsZurich)", url: "https://swissdesi.ch", city: "Zurich / Nationwide", desc: "Community platform launched 2018 for Indian women and families in Switzerland. Covers events, schools, Indian restaurants, shopping, day-to-day Swiss life tips and community connections." },
   { name: "IAGZ Women's Wing", url: "https://www.iagz.ch", city: "Zurich", desc: "Women's events, networking lunches and community activities organised under the Indian Association of Greater Zurich." },
+  { name: "International Dual Career Network (IDCN)", url: "https://idcn.info", city: "Zurich / Basel", desc: "Active in the Zurich region since 2012 — networking and job-market re-entry support for accompanying spouses and partners, a common first stop for Indian women arriving on a dependant permit." },
+  { name: "Professional Women's Group Zürich (PWG)", url: "https://www.pwg-zh.com", city: "Zurich", desc: "International career network for women founded in 1983 — monthly evening events, mentorship and company visits for internationally minded professionals, including many Indian members." },
+  { name: "Miyara Women", url: "https://www.miyarahealth.com", city: "Zurich-founded, India + Switzerland", desc: "Femtech platform founded by a Zurich-based biochemist-entrepreneur focused on perimenopause and midlife women's health — symptom guidance, nutrition and mental-health support." },
   { name: "Desi Moms Switzerland", url: null, city: "Nationwide", desc: "WhatsApp and Facebook group for Indian mothers — parenting tips, school advice and local events. No verified standalone website." },
-  { name: "Swiss Indian Professional Women", url: null, city: "Zurich/Geneva", desc: "Informal career networking for Indian women professionals in finance, pharma, tech and consulting. No verified public website found." },
 ];
 
 const official: { name: string; url: string; city: string; desc: string }[] = [
