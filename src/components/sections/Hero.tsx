@@ -2,242 +2,288 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronDown, Users, Building2, MapPin, Briefcase } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { STATS } from "@/lib/data";
 import JoinModal from "@/components/JoinModal";
 
-const HERO_WORDS = ["Community", "Culture", "Cuisine", "Connections", "Commerce"];
+const FEATURED_WORDS = ["Community", "Culture", "Cuisine", "Connections", "Commerce"];
 
 export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
   const [joinOpen, setJoinOpen] = useState(false);
 
   useEffect(() => {
-    const t = setInterval(() => setWordIndex((p) => (p + 1) % HERO_WORDS.length), 2800);
+    const t = setInterval(() => setWordIndex((p) => (p + 1) % FEATURED_WORDS.length), 3200);
     return () => clearInterval(t);
   }, []);
 
-  const ICON_MAP: Record<string, React.ReactNode> = {
-    Users: <Users style={{ width: 22, height: 22 }} className="aurora-icon" />,
-    Building2: <Building2 style={{ width: 22, height: 22 }} className="aurora-icon" />,
-    MapPin: <MapPin style={{ width: 22, height: 22 }} className="aurora-icon" />,
-    Briefcase: <Briefcase style={{ width: 22, height: 22 }} className="aurora-icon" />,
-  };
-
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden text-center"
-      style={{ background: "var(--base)", padding: "130px 20px 80px" }}
+      className="relative overflow-hidden"
+      style={{ minHeight: "100svh", background: "#1A1410" }}
     >
-      {/* Aurora animated banner at top */}
+      {/* Full-bleed background — rich mosaic evoking Swiss-Indian life */}
       <div
         aria-hidden
-        className="aurora-banner"
-        style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3 }}
-      />
-
-      {/* Aurora glow orbs — vivid cyan, violet, magenta */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div className="aurora-orb aurora-1" />
-        <div className="aurora-orb aurora-2" />
-        <div className="aurora-orb aurora-3" />
-        <div className="aurora-orb aurora-4" />
-      </div>
-
-      {/* Subtle grid overlay */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none pattern-grid"
         style={{
-          maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 100%)",
-          opacity: 0.35,
+          position: "absolute", inset: 0,
+          background: `
+            linear-gradient(160deg,
+              #2C1F1A 0%,
+              #1A1210 30%,
+              #221810 55%,
+              #2A1F18 75%,
+              #181210 100%
+            )
+          `,
         }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-3xl mx-auto">
+      {/* Warm texture pattern */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute", inset: 0,
+          backgroundImage: `
+            repeating-linear-gradient(45deg, rgba(176,141,87,0.04) 0, rgba(176,141,87,0.04) 1px, transparent 0, transparent 50%),
+            repeating-linear-gradient(-45deg, rgba(176,141,87,0.04) 0, rgba(176,141,87,0.04) 1px, transparent 0, transparent 50%)
+          `,
+          backgroundSize: "24px 24px",
+        }}
+      />
 
-        {/* Badge */}
-        <div
-          role="note"
-          style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            padding: "5px 14px", borderRadius: 999,
-            fontSize: 12, fontWeight: 600,
-            color: "var(--sf-hi)",
-            background: "var(--sf-bg)",
-            border: "1px solid rgba(139,92,246,0.25)",
-            marginBottom: 28,
-            animation: "fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both",
-            backdropFilter: "blur(10px)",
-          }}
-        >
-          <span aria-hidden style={{
-            width: 6, height: 6, borderRadius: "50%",
-            background: "var(--aurora-grad)",
-            animation: "pulse-dot 2s ease-in-out infinite",
-            flexShrink: 0,
-          }} />
-          Switzerland&apos;s Indian Community Hub
-        </div>
+      {/* Subtle gold ambient glow — upper right */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute", top: "-10%", right: "-5%",
+          width: "50%", height: "70%",
+          background: "radial-gradient(ellipse, rgba(176,141,87,0.12) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }}
+      />
+      {/* Lower-left warm glow */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute", bottom: "0", left: "0",
+          width: "40%", height: "50%",
+          background: "radial-gradient(ellipse, rgba(160,97,74,0.10) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }}
+      />
 
-        {/* Headline */}
-        <h1
-          style={{
-            fontFamily: "'Syne', system-ui, sans-serif",
-            fontSize: "clamp(2.8rem, 9vw, 6.2rem)",
-            fontWeight: 800,
-            lineHeight: 1.02,
-            letterSpacing: "-0.04em",
-            textWrap: "balance" as React.CSSProperties["textWrap"],
-            marginBottom: 24,
-            color: "var(--text)",
-            animation: "fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s both",
-          }}
-        >
-          <span>Your Swiss Indian</span>
-          <br />
-          <span
-            key={wordIndex}
-            className="gradient-text"
-            style={{ display: "inline-block", animation: "word-in 0.4s cubic-bezier(0.16,1,0.3,1) both" }}
-          >
-            {HERO_WORDS[wordIndex]}
-          </span>
-          <br />
-          <span>Hub</span>
-        </h1>
-
-        {/* Sub */}
-        <p
-          style={{
-            fontSize: "clamp(1rem, 2vw, 1.15rem)",
-            color: "var(--text-2)",
-            maxWidth: 560, margin: "0 auto 40px",
-            lineHeight: 1.75, fontWeight: 400,
-            animation: "fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both",
-          }}
-        >
-          The definitive platform for Indians living in Switzerland — restaurants, associations,
-          events, business networks, temples, and everything you need to thrive.
-        </p>
-
-        {/* CTAs */}
-        <div
-          style={{
-            display: "flex", gap: 10, justifyContent: "center",
-            flexWrap: "wrap", marginBottom: 60,
-            animation: "fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both",
-          }}
-        >
-          <button
-            onClick={() => setJoinOpen(true)}
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              padding: "13px 26px", borderRadius: 999,
-              fontSize: 14, fontWeight: 700, color: "#fff",
-              background: "var(--aurora-grad)",
-              boxShadow: "0 4px 24px var(--sf-glow), 0 0 40px rgba(6,182,212,0.15)",
-              transition: "opacity 0.15s, transform 0.2s, box-shadow 0.2s",
-              border: "none", cursor: "pointer",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.opacity = "0.92";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-              (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 36px var(--sf-glow), 0 0 60px rgba(6,182,212,0.2)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.opacity = "1";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-              (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 24px var(--sf-glow), 0 0 40px rgba(6,182,212,0.15)";
-            }}
-          >
-            Join the Community
-            <ArrowRight style={{ width: 16, height: 16 }} />
-          </button>
-          <Link
-            href="/events"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              padding: "13px 24px", borderRadius: 999,
-              fontSize: 14, fontWeight: 700,
-              color: "var(--text)",
-              background: "var(--glass-bg)",
-              border: "1px solid var(--border-2)",
-              backdropFilter: "blur(16px)",
-              transition: "background 0.15s, transform 0.2s, border-color 0.15s, box-shadow 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "var(--surface-2)";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
-              (e.currentTarget as HTMLElement).style.borderColor = "var(--border-hi)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "var(--glass-bg)";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-              (e.currentTarget as HTMLElement).style.borderColor = "var(--border-2)";
-            }}
-          >
-            Upcoming Events
-          </Link>
-        </div>
-
-        {/* Stats */}
-        <div
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto"
-          style={{ animation: "fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.55s both" }}
-        >
-          {STATS.map((s, i) => {
-            const iconColors = ["#22D3EE", "#A78BFA", "#F472B6", "#34D399"];
-            return (
+      {/* Decorative chakra — center-right at large screens */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute", right: "8%", top: "50%",
+          transform: "translateY(-50%)",
+          width: "clamp(200px, 30vw, 420px)",
+          aspectRatio: "1",
+          opacity: 0.06,
+          pointerEvents: "none",
+        }}
+      >
+        <div style={{
+          width: "100%", height: "100%",
+          borderRadius: "50%",
+          border: "1px solid rgba(176,141,87,1)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <div className="animate-chakra" style={{
+            width: "68%", height: "68%",
+            borderRadius: "50%",
+            border: "1px solid rgba(176,141,87,1)",
+            position: "relative",
+          }}>
+            {Array.from({ length: 24 }).map((_, i) => (
               <div
-                key={s.label}
+                key={i}
                 style={{
-                  padding: "18px 14px",
-                  borderRadius: 16,
-                  background: "var(--glass-bg)",
-                  border: "1px solid var(--glass-border)",
-                  backdropFilter: "blur(16px)",
-                  textAlign: "center",
-                  transition: "background 0.25s, border-color 0.25s, transform 0.3s, box-shadow 0.3s",
-                  position: "relative", overflow: "hidden",
+                  position: "absolute", top: "50%", left: "50%",
+                  width: 1, height: "48%",
+                  background: "rgba(176,141,87,1)",
+                  transformOrigin: "top center",
+                  transform: `rotate(${i * 15}deg) translateX(-50%)`,
                 }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "var(--sf-bg)";
-                  el.style.borderColor = "var(--border-hi)";
-                  el.style.transform = "translateY(-3px)";
-                  el.style.boxShadow = "0 8px 32px var(--sf-glow)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "var(--glass-bg)";
-                  el.style.borderColor = "var(--glass-border)";
-                  el.style.transform = "translateY(0)";
-                  el.style.boxShadow = "none";
-                }}
-              >
-                <div style={{ marginBottom: 4, color: iconColors[i % 4] }}>
-                  {ICON_MAP[s.icon]}
-                </div>
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Content — left-aligned, vertically centered ── */}
+      <div
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{
+          minHeight: "100svh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          paddingTop: "clamp(100px, 14vw, 140px)",
+          paddingBottom: "clamp(80px, 10vw, 120px)",
+        }}
+      >
+        <div style={{ maxWidth: 680, animation: "fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s both" }}>
+
+          {/* Eyebrow */}
+          <div
+            style={{
+              display: "flex", alignItems: "center", gap: 12, marginBottom: 28,
+            }}
+          >
+            <span
+              style={{
+                width: 40, height: 1,
+                background: "var(--in)",
+                display: "inline-block", flexShrink: 0,
+              }}
+              aria-hidden
+            />
+            <span
+              style={{
+                fontSize: 10, fontWeight: 700, letterSpacing: "0.22em",
+                textTransform: "uppercase", color: "var(--in)",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              }}
+            >
+              Switzerland&apos;s Indian Community Hub
+            </span>
+          </div>
+
+          {/* Headline */}
+          <h1
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+              fontWeight: 700,
+              lineHeight: 1.06,
+              letterSpacing: "-0.01em",
+              color: "rgba(245,237,224,0.95)",
+              marginBottom: 0,
+            }}
+          >
+            Your Swiss Indian
+          </h1>
+          <h1
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+              fontWeight: 700,
+              lineHeight: 1.06,
+              letterSpacing: "-0.01em",
+              fontStyle: "italic",
+              marginBottom: 28,
+              color: "rgba(245,237,224,0.95)",
+            }}
+          >
+            <span
+              key={wordIndex}
+              style={{
+                display: "inline-block",
+                color: "var(--in-hi)",
+                animation: "word-in 0.45s cubic-bezier(0.16,1,0.3,1) both",
+              }}
+            >
+              {FEATURED_WORDS[wordIndex]}
+            </span>
+            {" "}Hub
+          </h1>
+
+          {/* Body */}
+          <p
+            style={{
+              fontSize: "clamp(0.95rem, 1.6vw, 1.1rem)",
+              color: "rgba(220,205,185,0.8)",
+              lineHeight: 1.8,
+              maxWidth: 500,
+              marginBottom: 40,
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontWeight: 400,
+            }}
+          >
+            The definitive platform for Indians living in Switzerland — restaurants,
+            associations, events, business networks, temples, and everything you need to thrive.
+          </p>
+
+          {/* CTAs */}
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 60 }}>
+            <button
+              onClick={() => setJoinOpen(true)}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                padding: "14px 28px",
+                background: "var(--in)",
+                color: "#1A1410",
+                fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                border: "none", cursor: "pointer",
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "var(--in-hi)")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "var(--in)")}
+            >
+              Join the Community
+              <ArrowRight style={{ width: 14, height: 14 }} />
+            </button>
+            <Link
+              href="/events"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                padding: "13px 28px",
+                background: "transparent",
+                color: "rgba(220,205,185,0.9)",
+                fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                border: "1px solid rgba(176,141,87,0.45)",
+                textDecoration: "none",
+                transition: "border-color 0.2s, color 0.2s",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(176,141,87,0.9)"; (e.currentTarget as HTMLElement).style.color = "rgba(245,237,224,1)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(176,141,87,0.45)"; (e.currentTarget as HTMLElement).style.color = "rgba(220,205,185,0.9)"; }}
+            >
+              Upcoming Events
+            </Link>
+          </div>
+
+          {/* Stats row */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, auto)",
+              gap: "0",
+              paddingTop: 28,
+              borderTop: "1px solid rgba(176,141,87,0.2)",
+              width: "fit-content",
+            }}
+          >
+            {STATS.map((s, i) => (
+              <div key={s.label} style={{ paddingRight: 36, paddingLeft: i === 0 ? 0 : 0 }}>
                 <div
-                  className="gradient-text"
                   style={{
-                    fontFamily: "'Syne', system-ui, sans-serif",
-                    fontSize: "1.65rem", fontWeight: 800,
-                    letterSpacing: "-0.04em", marginBottom: 3,
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontSize: "clamp(1.5rem, 2.8vw, 2rem)",
+                    fontWeight: 700,
+                    color: "rgba(245,237,224,0.9)",
+                    lineHeight: 1,
+                    marginBottom: 5,
                   }}
                 >
                   {s.value}
                 </div>
-                <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 600,
-                              textTransform: "uppercase", letterSpacing: "0.06em", lineHeight: 1.4 }}>
+                <div
+                  style={{
+                    fontSize: 9, fontWeight: 700, letterSpacing: "0.14em",
+                    textTransform: "uppercase", color: "rgba(176,141,87,0.7)",
+                    fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                  }}
+                >
                   {s.label}
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
 
@@ -246,22 +292,25 @@ export default function Hero() {
         href="#categories"
         aria-label="Scroll to explore"
         style={{
-          position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)",
-          display: "flex", flexDirection: "column", alignItems: "center", gap: 5,
-          color: "var(--text-3)",
-          fontSize: 9.5, fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase",
-          animation: "fadeUp 1.2s 1.4s both",
+          position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)",
+          display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+          color: "rgba(176,141,87,0.6)",
+          fontSize: 8, fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase",
+          fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+          animation: "fadeUp 1.2s 1.6s both",
+          textDecoration: "none",
         }}
       >
         <span>Explore</span>
-        <ChevronDown className="animate-bob" style={{ width: 20, height: 20 }} />
+        <ChevronDown className="animate-bob" style={{ width: 16, height: 16 }} />
       </a>
 
       <style>{`
-        @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
-        @keyframes word-in { from { opacity:0; filter:blur(4px); transform:translateY(10px); } to { opacity:1; filter:none; transform:none; } }
-        @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.75)} }
-        .aurora-icon { color: currentColor; }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+        @keyframes word-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+        @media (max-width: 640px) {
+          .hero-stats { grid-template-columns: repeat(2, auto) !important; gap: 24px !important; }
+        }
       `}</style>
 
       <JoinModal open={joinOpen} onClose={() => setJoinOpen(false)} />

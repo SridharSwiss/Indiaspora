@@ -67,15 +67,14 @@ const footerSections = [
 
 export default function Footer() {
   return (
-    <footer className="relative border-t" style={{ background: "var(--bg)", borderColor: "var(--border)" }}>
-      {/* Subtle aurora glow at top */}
+    <footer className="relative" style={{ background: "#1A1410", borderTop: "1px solid rgba(176,141,87,0.15)" }}>
+      {/* Thin gold accent line */}
       <div
         aria-hidden
         style={{
           position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
-          width: "60%", height: 1,
-          background: "var(--aurora-grad)",
-          opacity: 0.6,
+          width: "40%", height: 1,
+          background: "linear-gradient(90deg, transparent, rgba(176,141,87,0.6), transparent)",
         }}
       />
 
@@ -84,36 +83,28 @@ export default function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-8 gap-8 lg:gap-6 mb-12">
           {/* Brand — spans 2 cols on large screens */}
           <div className="col-span-2 sm:col-span-3 lg:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "var(--aurora-grad)" }}>
-                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
-                  <circle cx="12" cy="12" r="4" fill="white" opacity="0.95" />
-                  {[0,30,60,90,120,150,180,210,240,270,300,330].map((deg, i) => (
-                    <line key={i} x1="12" y1="7" x2="12" y2="3" stroke="white" strokeWidth="1.5" strokeLinecap="round" transform={`rotate(${deg} 12 12)`} />
-                  ))}
-                </svg>
-              </div>
-              <div>
-                <div className="font-bold text-xl">
-                  <span className="gradient-text">India</span>
-                  <span style={{ color: "var(--text)" }}>spora</span>
-                </div>
-                <div className="text-xs uppercase tracking-widest" style={{ color: "var(--text-3)" }}>Community Hub</div>
-              </div>
+            <div className="mb-5">
+              <span style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: 20, fontWeight: 700,
+                color: "rgba(245,237,224,0.95)",
+              }}>
+                India<span style={{ color: "#B08D57" }}>spora</span>
+              </span>
             </div>
-            <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--text-2)" }}>
+            <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(200,185,165,0.7)" }}>
               Connecting 24,500+ Indians across Switzerland. Your one-stop resource for community, culture, business, and daily life.
             </p>
             <div className="space-y-2 mb-5">
-              <div className="flex items-center gap-2 text-sm" style={{ color: "var(--text-2)" }}>
-                <MapPin className="w-4 h-4 shrink-0" style={{ color: "var(--sf-hi)" }} />
+              <div className="flex items-center gap-2 text-sm" style={{ color: "rgba(200,185,165,0.7)" }}>
+                <MapPin className="w-4 h-4 shrink-0" style={{ color: "#B08D57" }} />
                 <span>Zurich, Switzerland</span>
               </div>
-              <div className="flex items-center gap-2 text-sm" style={{ color: "var(--text-2)" }}>
-                <Mail className="w-4 h-4 shrink-0" style={{ color: "var(--sf-hi)" }} />
-                <a href="mailto:hello@indiaspora.ch" className="transition-colors" style={{ color: "var(--text-2)" }}
-                   onMouseEnter={(e) => (e.currentTarget.style.color = "var(--sf-hi)")}
-                   onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-2)")}>
+              <div className="flex items-center gap-2 text-sm" style={{ color: "rgba(200,185,165,0.7)" }}>
+                <Mail className="w-4 h-4 shrink-0" style={{ color: "#B08D57" }} />
+                <a href="mailto:hello@indiaspora.ch" style={{ color: "rgba(200,185,165,0.7)", transition: "color 0.15s" }}
+                   onMouseEnter={(e) => (e.currentTarget.style.color = "#B08D57")}
+                   onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.7)")}>
                   hello@indiaspora.ch
                 </a>
               </div>
@@ -134,16 +125,17 @@ export default function Footer() {
                   aria-label={s.title}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass"
                   style={{
-                    width: 36, height: 36, borderRadius: 10,
+                    width: 34, height: 34,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 10, fontWeight: 700, color: "var(--text-3)",
+                    fontSize: 9, fontWeight: 700, letterSpacing: "0.05em",
+                    color: "rgba(200,185,165,0.55)",
+                    border: "1px solid rgba(176,141,87,0.2)",
                     transition: "color 0.15s, border-color 0.15s",
-                    flexShrink: 0,
+                    flexShrink: 0, textDecoration: "none",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--sf-hi)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-3)")}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#B08D57"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(176,141,87,0.6)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(200,185,165,0.55)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(176,141,87,0.2)"; }}
                 >
                   {s.label}
                 </a>
@@ -155,20 +147,20 @@ export default function Footer() {
           {footerSections.map((section) => (
             <nav key={section.heading} aria-label={`${section.heading} links`} className="lg:col-span-1">
               <h3
-                className="text-xs font-bold mb-3 uppercase tracking-wider"
-                style={{ color: "var(--text)", letterSpacing: "0.1em" }}
+                className="text-xs font-bold mb-4 uppercase"
+                style={{ color: "rgba(245,237,224,0.6)", letterSpacing: "0.12em", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
               >
                 {section.heading}
               </h3>
-              <ul className="space-y-2" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              <ul className="space-y-2.5" style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {section.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
                       className="text-sm transition-colors"
-                      style={{ color: "var(--text-2)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--sf-hi)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-2)")}
+                      style={{ color: "rgba(200,185,165,0.6)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(245,237,224,0.9)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.6)")}
                     >
                       {link.label}
                     </Link>
@@ -180,27 +172,30 @@ export default function Footer() {
         </div>
 
         {/* Newsletter */}
-        <div className="glass rounded-2xl p-6 lg:p-8 mb-10" style={{ borderColor: "var(--border-2)" }}>
+        <div className="p-6 lg:p-8 mb-10" style={{ border: "1px solid rgba(176,141,87,0.15)", background: "rgba(255,255,255,0.03)" }}>
           <div className="flex flex-col lg:flex-row items-center gap-6">
             <div className="flex-1">
-              <h3 className="text-lg font-semibold mb-1" style={{ color: "var(--text)" }}>Stay Connected</h3>
-              <p className="text-sm" style={{ color: "var(--text-2)" }}>Weekly digest — events, news, and community updates across Switzerland</p>
+              <h3 className="text-lg font-semibold mb-1" style={{ color: "rgba(245,237,224,0.9)", fontFamily: "'Playfair Display', Georgia, serif" }}>Stay Connected</h3>
+              <p className="text-sm" style={{ color: "rgba(200,185,165,0.65)" }}>Weekly digest — events, news, and community updates across Switzerland</p>
             </div>
             <div className="flex gap-3 w-full lg:w-auto">
               <input
                 type="email"
                 placeholder="your@email.com"
                 aria-label="Email address for newsletter"
-                className="flex-1 lg:w-64 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2"
+                className="flex-1 lg:w-64 px-4 py-2.5 text-sm focus:outline-none"
                 style={{
-                  background: "var(--surface)",
-                  border: "1px solid var(--border-2)",
-                  color: "var(--text)",
-                  // @ts-expect-error CSS custom property
-                  "--tw-ring-color": "var(--sf)",
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(176,141,87,0.25)",
+                  color: "rgba(245,237,224,0.9)",
                 }}
               />
-              <button className="btn btn-primary btn-sm whitespace-nowrap">
+              <button style={{
+                padding: "10px 20px", background: "#B08D57", color: "#1A1410",
+                fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                border: "none", cursor: "pointer", whiteSpace: "nowrap",
+              }}>
                 Subscribe
               </button>
             </div>
@@ -208,11 +203,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6" style={{ borderTop: "1px solid var(--border)" }}>
-          <p className="text-xs" style={{ color: "var(--text-3)" }}>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6" style={{ borderTop: "1px solid rgba(176,141,87,0.1)" }}>
+          <p className="text-xs" style={{ color: "rgba(200,185,165,0.4)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
             © 2026 Indiaspora Community Hub. All rights reserved.
           </p>
-          <p className="text-xs" style={{ color: "var(--text-3)" }}>
+          <p className="text-xs" style={{ color: "rgba(200,185,165,0.4)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
             Built for the Swiss-Indian community 🇮🇳🇨🇭
           </p>
         </div>

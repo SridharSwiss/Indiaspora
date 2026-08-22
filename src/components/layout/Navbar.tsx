@@ -156,7 +156,7 @@ export default function Navbar() {
           animation: dropIn 0.18s cubic-bezier(0.16,1,0.3,1) both;
         }
         @keyframes dropIn {
-          from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+          from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
           to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         .nav-child-link {
@@ -164,92 +164,70 @@ export default function Navbar() {
           align-items: center;
           gap: 10px;
           padding: 9px 14px;
-          border-radius: 10px;
-          font-size: 13px;
-          font-weight: 500;
+          border-radius: 2px;
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
           color: var(--text-2);
           text-decoration: none;
-          transition: color 0.12s, background 0.12s;
+          transition: color 0.12s;
           white-space: nowrap;
         }
         .nav-child-link:hover, .nav-child-link.active {
-          color: var(--sf-hi);
-          background: var(--sf-bg);
+          color: var(--text);
         }
-        .nav-child-dot {
-          width: 6px; height: 6px; border-radius: 50%;
-          background: var(--aurora-grad); opacity: 0.5; flex-shrink: 0;
-          transition: opacity 0.12s;
-        }
-        .nav-child-link:hover .nav-child-dot,
-        .nav-child-link.active .nav-child-dot { opacity: 1; }
 
-        .nav-sign-in:hover {
-          color: var(--text) !important;
-          background: var(--surface-2) !important;
-        }
         .nav-icon-btn:hover {
           color: var(--text) !important;
-          background: var(--surface-2) !important;
         }
         .user-menu-item:hover {
           background: var(--surface-2) !important;
           color: var(--text) !important;
         }
         .mobile-link:hover {
-          background: var(--sf-bg) !important;
           color: var(--sf) !important;
-        }
-        .join-btn:hover {
-          opacity: 0.88 !important;
-          transform: translateY(-1px) !important;
         }
       `}</style>
 
       <nav
         className="fixed top-0 left-0 right-0 z-50"
-        style={{ padding: scrolled ? "10px 16px" : "16px 16px",
-                 transition: "padding 0.4s cubic-bezier(0.16,1,0.3,1)" }}
+        style={{
+          borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+          background: scrolled ? "var(--glass-bg)" : "transparent",
+          backdropFilter: scrolled ? "blur(20px) saturate(1.3)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(20px) saturate(1.3)" : "none",
+          transition: "background 0.4s ease, border-color 0.4s ease",
+        }}
         aria-label="Main navigation"
       >
         <div
-          className="max-w-6xl mx-auto flex items-center justify-between gap-3"
-          style={{
-            height: 52, padding: "0 18px", borderRadius: 999,
-            background: scrolled ? "var(--glass-bg)" : "transparent",
-            border: scrolled ? "1px solid var(--glass-border)" : "1px solid transparent",
-            boxShadow: scrolled ? "0 2px 16px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.05)" : "none",
-            backdropFilter: scrolled ? "blur(20px) saturate(1.5)" : "none",
-            WebkitBackdropFilter: scrolled ? "blur(20px) saturate(1.5)" : "none",
-            transition: "background 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.4s, box-shadow 0.4s",
-          }}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+          style={{ height: 64, position: "relative" }}
         >
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="Indiaspora home">
-            <div
-              className="flex items-center justify-center text-base"
-              style={{ width: 32, height: 32, borderRadius: 9,
-                       background: "var(--aurora-grad)",
-                       boxShadow: "0 2px 16px var(--sf-glow)", flexShrink: 0 }}
-              aria-hidden
-            >
-              🪔
-            </div>
-            <div style={{ lineHeight: 1 }}>
-              <strong style={{ fontSize: 15, fontWeight: 800, letterSpacing: "-0.03em", display: "block",
-                               fontFamily: "'Syne', system-ui, sans-serif" }}>
-                <span className="gradient-text">India</span>
-                <span style={{ color: "var(--text)" }}>spora</span>
-              </strong>
-              <span style={{ fontSize: 9, color: "var(--text-3)", letterSpacing: "0.18em",
-                             textTransform: "uppercase", fontWeight: 500 }}>
-                Community Hub
-              </span>
-            </div>
+          {/* Logo — editorial serif wordmark */}
+          <Link href="/" className="shrink-0 z-10" aria-label="Indiaspora home" style={{ textDecoration: "none" }}>
+            <span style={{
+              fontSize: 18, fontWeight: 700,
+              fontFamily: "'Playfair Display', Georgia, serif",
+              letterSpacing: "-0.01em",
+              color: "var(--text)",
+            }}>
+              India<span style={{ color: "var(--in)" }}>spora</span>
+            </span>
           </Link>
 
-          {/* Desktop nav */}
-          <ul className="hidden lg:flex items-center gap-0" role="list" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          {/* Desktop nav — truly centered via absolute position */}
+          <ul
+            className="hidden lg:flex items-center gap-0"
+            role="list"
+            style={{
+              listStyle: "none", margin: 0, padding: 0,
+              position: "absolute", left: "50%", top: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + "/");
               const open = activeMenu === item.label;
@@ -264,34 +242,31 @@ export default function Navbar() {
                     href={item.href}
                     className="flex items-center gap-1"
                     style={{
-                      position: "relative", padding: "8px 11px", borderRadius: 10,
-                      fontSize: 13.5, fontWeight: active ? 700 : 600,
-                      color: active ? "var(--sf-hi)" : open ? "var(--text)" : "var(--text-2)",
-                      background: open && !active ? "var(--surface-2)" : "transparent",
-                      transition: "color 0.15s, background 0.15s",
+                      position: "relative", padding: "8px 12px",
+                      fontSize: 11, fontWeight: active ? 700 : 600,
+                      letterSpacing: "0.12em", textTransform: "uppercase",
+                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                      color: active ? "var(--text)" : "var(--text-3)",
+                      transition: "color 0.15s",
                       whiteSpace: "nowrap", textDecoration: "none",
                     }}
                     onMouseEnter={(e) => {
-                      if (!active) (e.currentTarget as HTMLElement).style.color = "var(--text)";
-                      if (!active) (e.currentTarget as HTMLElement).style.background = "var(--surface-2)";
+                      (e.currentTarget as HTMLElement).style.color = "var(--text)";
                     }}
                     onMouseLeave={(e) => {
-                      if (!active && !open) {
-                        (e.currentTarget as HTMLElement).style.color = "var(--text-2)";
-                        (e.currentTarget as HTMLElement).style.background = "transparent";
-                      }
+                      if (!active) (e.currentTarget as HTMLElement).style.color = "var(--text-3)";
                     }}
                   >
                     {item.label}
                     {active && (
                       <span aria-hidden style={{
-                        position: "absolute", bottom: 3, left: 11, right: 11,
-                        height: 1.5, background: "var(--sf)", borderRadius: 99,
+                        position: "absolute", bottom: 2, left: 12, right: 12,
+                        height: 1, background: "var(--in)",
                       }} />
                     )}
                     {item.children && (
                       <ChevronDown style={{
-                        width: 12, height: 12, opacity: 0.5, flexShrink: 0,
+                        width: 10, height: 10, opacity: 0.4, flexShrink: 0,
                         transition: "transform 0.2s",
                         transform: open ? "rotate(180deg)" : "rotate(0deg)",
                       }} />
@@ -309,7 +284,7 @@ export default function Navbar() {
                         top: "calc(100% + 4px)",
                         left: "50%",
                         transform: "translateX(-50%)",
-                        minWidth: 220,
+                        minWidth: 200,
                         zIndex: 60,
                         paddingTop: 8,
                       }}
@@ -317,8 +292,8 @@ export default function Navbar() {
                       <div style={{
                         background: "var(--surface)",
                         border: "1px solid var(--border-2)",
-                        borderRadius: 16, padding: 6,
-                        boxShadow: "0 12px 40px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.06)",
+                        borderRadius: 2, padding: 8,
+                        boxShadow: "0 8px 32px rgba(0,0,0,0.10)",
                       }}>
                         {item.children.map((child) => {
                           const childActive = pathname === child.href || pathname.startsWith(child.href + "/");
@@ -328,7 +303,6 @@ export default function Navbar() {
                               href={child.href}
                               className={`nav-child-link${childActive ? " active" : ""}`}
                             >
-                              <span className="nav-child-dot" />
                               {child.label}
                             </Link>
                           );
@@ -341,26 +315,23 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* Right actions */}
-          <div className="flex items-center gap-1.5">
-            {/* Search */}
+          {/* Right actions — icon-only Maison style */}
+          <div className="flex items-center gap-3 z-10">
+            {/* Search icon */}
             <button
               onClick={() => setSearchOpen(true)}
-              aria-label="Search pages (Ctrl+K)"
-              title="Search (Ctrl+K)"
+              aria-label="Search (⌘K)"
+              title="Search (⌘K)"
               className="nav-icon-btn"
               style={{
-                display: "flex", alignItems: "center", gap: 6,
-                padding: "0 10px", height: 34, borderRadius: 10,
-                color: "var(--text-2)", background: "transparent",
-                border: "1px solid var(--border)", cursor: "pointer",
-                transition: "color 0.15s, background 0.15s, border-color 0.15s",
-                fontSize: 12, fontWeight: 500,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                width: 32, height: 32,
+                color: "var(--text-3)", background: "transparent",
+                border: "none", cursor: "pointer",
+                transition: "color 0.15s",
               }}
             >
-              <Search style={{ width: 14, height: 14, flexShrink: 0 }} />
-              <span className="hidden sm:inline" style={{ color: "var(--text-3)" }}>Search</span>
-              <kbd className="hidden md:inline" style={{ fontSize: 10, padding: "1px 5px", borderRadius: 5, background: "var(--surface-2)", border: "1px solid var(--border-2)", fontFamily: "monospace", color: "var(--text-3)" }}>⌘K</kbd>
+              <Search style={{ width: 17, height: 17 }} />
             </button>
 
             {/* Theme toggle */}
@@ -369,17 +340,17 @@ export default function Navbar() {
               aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
               className="nav-icon-btn"
               style={{
-                width: 34, height: 34, borderRadius: 10,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                color: "var(--text-2)", background: "transparent",
+                width: 32, height: 32,
+                color: "var(--text-3)", background: "transparent",
                 border: "none", cursor: "pointer",
-                transition: "color 0.15s, background 0.15s",
+                transition: "color 0.15s",
               }}
             >
               {dark ? <Sun style={{ width: 16, height: 16 }} /> : <Moon style={{ width: 16, height: 16 }} />}
             </button>
 
-            {/* Auth: logged in → avatar menu | logged out → Sign in + Join */}
+            {/* Auth */}
             {userEmail ? (
               <div ref={userMenuRef} style={{ position: "relative" }} className="hidden lg:block">
                 <button
@@ -388,30 +359,17 @@ export default function Navbar() {
                   onMouseLeave={scheduleUserMenuClose}
                   aria-expanded={userMenuOpen}
                   aria-haspopup="menu"
+                  className="nav-icon-btn"
                   style={{
-                    display: "flex", alignItems: "center", gap: 7,
-                    padding: "5px 12px 5px 6px", borderRadius: 999,
-                    background: "var(--surface-2)", border: "1px solid var(--border-2)",
-                    cursor: "pointer", fontSize: 13, fontWeight: 600, color: "var(--text)",
-                    transition: "border-color 0.15s, background 0.15s",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    width: 32, height: 32,
+                    borderRadius: "50%",
+                    background: "var(--sf)",
+                    color: "#fff", fontSize: 12, fontWeight: 800,
+                    border: "none", cursor: "pointer",
                   }}
                 >
-                  <div style={{
-                    width: 28, height: 28, borderRadius: "50%",
-                    background: "var(--aurora-grad)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#fff", fontSize: 12, fontWeight: 800, flexShrink: 0,
-                  }}>
-                    {userEmail.charAt(0).toUpperCase()}
-                  </div>
-                  <span style={{ maxWidth: 90, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    {userEmail.split("@")[0]}
-                  </span>
-                  <ChevronDown style={{
-                    width: 13, height: 13, color: "var(--text-3)", flexShrink: 0,
-                    transition: "transform 0.2s",
-                    transform: userMenuOpen ? "rotate(180deg)" : "none",
-                  }} />
+                  {userEmail.charAt(0).toUpperCase()}
                 </button>
 
                 {userMenuOpen && (
@@ -420,17 +378,17 @@ export default function Navbar() {
                     onMouseEnter={cancelUserMenuClose}
                     onMouseLeave={scheduleUserMenuClose}
                     style={{
-                      position: "absolute", top: "calc(100% + 8px)", right: 0,
+                      position: "absolute", top: "calc(100% + 10px)", right: 0,
                       background: "var(--surface)", border: "1px solid var(--border-2)",
-                      borderRadius: 16, padding: 6, minWidth: 200,
-                      boxShadow: "0 12px 40px rgba(0,0,0,0.14)",
+                      borderRadius: 2, padding: 6, minWidth: 200,
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
                       zIndex: 70,
                       animation: "userMenuIn 0.15s cubic-bezier(0.16,1,0.3,1) both",
                     }}
                   >
                     <style>{`@keyframes userMenuIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }`}</style>
                     <div style={{ padding: "10px 14px 12px", borderBottom: "1px solid var(--border)", marginBottom: 4 }}>
-                      <div style={{ fontSize: 10, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 3 }}>Signed in as</div>
+                      <div style={{ fontSize: 9, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 3 }}>Signed in as</div>
                       <div style={{ fontSize: 13, color: "var(--text)", fontWeight: 600, wordBreak: "break-all" }}>{userEmail}</div>
                     </div>
                     {isAdmin && (
@@ -439,16 +397,16 @@ export default function Navbar() {
                         role="menuitem"
                         onClick={() => setUserMenuOpen(false)}
                         className="user-menu-item"
-                        style={{ display: "flex", alignItems: "center", gap: 9, padding: "9px 14px", borderRadius: 10, fontSize: 13, color: "var(--sf)", fontWeight: 600, textDecoration: "none", transition: "background 0.12s" }}
+                        style={{ display: "flex", alignItems: "center", gap: 9, padding: "9px 14px", borderRadius: 2, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--sf)", fontWeight: 700, textDecoration: "none", transition: "background 0.12s" }}
                       >
-                        <Settings size={14} style={{ flexShrink: 0 }} /> Admin Dashboard
+                        <Settings size={14} style={{ flexShrink: 0 }} /> Admin
                       </Link>
                     )}
                     <button
                       role="menuitem"
                       onClick={signOut}
                       className="user-menu-item"
-                      style={{ display: "flex", alignItems: "center", gap: 9, padding: "9px 14px", borderRadius: 10, fontSize: 13, color: "var(--text-2)", fontWeight: 600, width: "100%", border: "none", background: "none", cursor: "pointer", textAlign: "left", transition: "background 0.12s" }}
+                      style={{ display: "flex", alignItems: "center", gap: 9, padding: "9px 14px", borderRadius: 2, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-2)", fontWeight: 600, width: "100%", border: "none", background: "none", cursor: "pointer", textAlign: "left", transition: "background 0.12s" }}
                     >
                       <LogOut size={14} style={{ flexShrink: 0 }} /> Sign out
                     </button>
@@ -456,37 +414,25 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <>
-                <Link
-                  href="/login"
-                  className="nav-sign-in hidden lg:inline-flex items-center gap-1.5"
-                  style={{
-                    padding: "7px 14px", borderRadius: 999,
-                    fontSize: 13, fontWeight: 600,
-                    color: "var(--text-2)",
-                    background: "transparent",
-                    border: "1px solid var(--border-2)",
-                    textDecoration: "none",
-                    transition: "color 0.15s, background 0.15s, border-color 0.15s",
-                  }}
-                >
-                  <User size={13} /> Sign in
-                </Link>
-                <button
-                  onClick={() => setJoinOpen(true)}
-                  className="join-btn hidden lg:inline-flex items-center gap-1.5"
-                  style={{
-                    padding: "7px 16px", borderRadius: 999,
-                    fontSize: 13, fontWeight: 700, color: "#fff",
-                    background: "var(--aurora-grad)",
-                    boxShadow: "0 3px 16px var(--sf-glow)",
-                    transition: "opacity 0.15s, transform 0.2s",
-                    border: "none", cursor: "pointer",
-                  }}
-                >
-                  <UserPlus size={13} /> Join Community
-                </button>
-              </>
+              <Link
+                href="/login"
+                className="hidden lg:inline-flex items-center gap-1.5 nav-icon-btn"
+                style={{
+                  padding: "0 14px", height: 32,
+                  fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                  color: "var(--text-2)",
+                  background: "transparent",
+                  border: "1px solid var(--border-hi)",
+                  textDecoration: "none",
+                  transition: "color 0.15s, border-color 0.15s",
+                  display: "inline-flex", alignItems: "center",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--text)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text-2)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--border-hi)"; }}
+              >
+                Sign in
+              </Link>
             )}
 
             {/* Mobile hamburger — labeled "Menu" per NNG guidance */}
