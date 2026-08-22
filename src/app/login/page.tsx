@@ -10,7 +10,7 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/";
-  const [mode, setMode] = useState<"login" | "signup" | "magic">("login");
+  const [mode, setMode] = useState<"login" | "magic">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
@@ -32,19 +32,10 @@ function LoginForm() {
         setSuccess("Check your email — we sent a magic link!");
         return;
       }
-      if (mode === "login") {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        router.push(redirect);
-        router.refresh();
-      } else {
-        const { error } = await supabase.auth.signUp({
-          email, password,
-          options: { emailRedirectTo: `${location.origin}/api/auth/callback?next=${redirect}` },
-        });
-        if (error) throw error;
-        setSuccess("Account created! Check your email to confirm.");
-      }
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      router.push(redirect);
+      router.refresh();
     } catch (e: unknown) {
       const msg = (e as { message?: string })?.message || String(e);
       console.error("Auth error:", e);
@@ -76,7 +67,7 @@ function LoginForm() {
         }}>
           <Link href="/" style={{ fontSize: 32, textDecoration: "none" }}>🪔</Link>
           <h1 style={{ margin: "12px 0 4px", color: "#fff", fontSize: 22, fontWeight: 800, fontFamily: "'Syne',system-ui,sans-serif" }}>
-            {mode === "login" ? "Welcome back" : mode === "signup" ? "Create account" : "Magic link"}
+            {mode === "login" ? "Welcome back" : "Magic link"}
           </h1>
           <p style={{ margin: 0, color: "rgba(255,255,255,0.8)", fontSize: 13 }}>
             Indiaspora · Switzerland&apos;s Indian Community Hub
@@ -86,7 +77,7 @@ function LoginForm() {
         <div style={{ padding: "32px 32px 28px" }}>
           {/* Mode switcher */}
           <div style={{ display: "flex", gap: 4, background: "var(--surface-2)", borderRadius: 12, padding: 4, marginBottom: 24 }}>
-            {(["login", "signup", "magic"] as const).map(m => (
+            {(["login", "magic"] as const).map(m => (
               <button
                 key={m}
                 onClick={() => { setMode(m); setError(""); setSuccess(""); }}
@@ -98,7 +89,7 @@ function LoginForm() {
                   boxShadow: mode === m ? "0 1px 4px rgba(0,0,0,0.08)" : "none",
                 }}
               >
-                {m === "login" ? "Sign In" : m === "signup" ? "Sign Up" : "Magic Link"}
+                {m === "login" ? "Sign In" : "Magic Link"}
               </button>
             ))}
           </div>
@@ -172,7 +163,7 @@ function LoginForm() {
               }}
             >
               {loading && <Loader2 size={16} style={{ animation: "spin 1s linear infinite" }} />}
-              {loading ? "Please wait…" : mode === "login" ? "Sign In" : mode === "signup" ? "Create Account" : "Send Magic Link"}
+              {loading ? "Please wait…" : mode === "login" ? "Sign In" : "Send Magic Link"}
             </button>
           </div>
         </div>
