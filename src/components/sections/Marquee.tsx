@@ -1,44 +1,27 @@
-"use client";
+const ITEMS = [
+  "🪔 Diwali Mela Zurich · Oct 2026",
+  "🎨 Holi Festival Basel · Mar 2026",
+  "💃 Navratri Garba Nights",
+  "🍛 Indian Food Festival Basel",
+  "🎵 Carnatic Music Concert Geneva",
+  "🏏 Cricket League Switzerland",
+  "👗 Indian Fashion Show Zurich",
+  "🎭 Bollywood Night Lausanne",
+  "📚 Vedic Knowledge Series Bern",
+  "🤝 Swiss India Business Forum",
+  "🧘 Yoga & Wellness Retreat",
+  "🎬 Indian Film Festival Switzerland",
+];
 
 export default function Marquee() {
-  const items = [
-    "IAGZ – Indian Association Zurich",
-    "Diwali Mela • Zurich",
-    "Navratri Garba Night",
-    "Swiss Indian Chamber of Commerce",
-    "ISKCON Krishna Temple",
-    "Holi Festival Basel",
-    "TiE Switzerland",
-    "Bharatanatyam Classes",
-    "Indian Food Festival Basel",
-    "Hindi School Zurich",
-    "Tamil Sangam Switzerland",
-    "Bollywood Dance Studio",
-    "India Independence Day • Bern",
-    "Gujarati Samaj Switzerland",
-  ];
-
-  const doubled = [...items, ...items];
-
+  const doubled = [...ITEMS, ...ITEMS];
   return (
-    <div
-      className="relative py-4 overflow-hidden border-y border-[var(--border)]"
-      style={{ background: "rgba(240,149,12,0.03)" }}
-      aria-hidden="true"
-    >
-      {/* Fade edges */}
-      <div className="absolute left-0 top-0 h-full w-16 sm:w-32 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(to right, var(--base), transparent)" }} />
-      <div className="absolute right-0 top-0 h-full w-16 sm:w-32 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(to left, var(--base), transparent)" }} />
-
-      <div className="flex gap-0 animate-marquee whitespace-nowrap">
+    <div className="py-3.5 overflow-hidden" style={{ background: "var(--surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
+      <div className="flex animate-marquee">
         {doubled.map((item, i) => (
-          <span key={i} className="inline-flex items-center gap-3 px-5">
-            <span className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--saffron)] transition-colors">
-              {item}
-            </span>
-            <span className="text-[var(--saffron)] opacity-40 text-lg" aria-hidden>•</span>
+          <span key={i} className="flex items-center whitespace-nowrap px-6 text-[13px]" style={{ color: "#475569" }}>
+            {item}
+            <span className="inline-block w-1 h-1 rounded-full mx-6" style={{ background: "rgba(99,102,241,0.4)" }} />
           </span>
         ))}
       </div>

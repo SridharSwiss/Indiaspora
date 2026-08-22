@@ -1,87 +1,89 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
-import { ExternalLink } from "lucide-react";
 
-const temples = [
-  { name: "Ganesha Temple Zurich (Saiva Thamil Sangam)", city: "Glattbrugg, Zurich", url: "#", desc: "The largest Hindu temple in Switzerland. Daily puja, major festival celebrations, Tamil Sangam events." },
-  { name: "ISKCON Krishna Temple", city: "Zurich", url: "#", desc: "Hare Krishna temple with Sunday Feast (free prasad), Janmashtami, Ratha Yatra and Bhagavad Gita classes." },
-  { name: "Sri Durga Temple Basel", city: "Basel", url: "#", desc: "Navratri puja, Durga ashtami and regular prayers for the Basel Indian community." },
-  { name: "Shiva Temple Bern", city: "Bern", url: "#", desc: "Regular abishekam, Maha Shivaratri and Pradosham prayers in the Swiss capital." },
-  { name: "Murugan Temple Geneva", city: "Geneva", url: "#", desc: "Thaipusam, Panguni Uthiram and regular pujas for the Tamil community in Geneva." },
+export const metadata: Metadata = {
+  title: "Hindu Temples, Yoga & Spiritual Centres in Switzerland",
+  description: "Find Hindu temples, yoga ashrams, meditation centres, and satsang groups for the Indian community across Switzerland.",
+  openGraph: {
+    title: "Hindu Temples, Yoga & Spiritual Centres in Switzerland | IndiaSwiss",
+    description: "Find Hindu temples, yoga ashrams, meditation centres, and satsang groups for the Indian community across Switzerland.",
+  },
+};
+
+type Place = { name: string; url: string | null; city: string; desc: string };
+
+const temples: Place[] = [
+  { name: "ISKCON Zurich", url: "https://www.iskcon.ch", city: "Zurich", desc: "Hare Krishna temple — Sunday feast, Janmashtami, kirtan and prasad." },
+  { name: "Shiva Temple Zurich", url: null, city: "Zurich", desc: "Shiva puja, Maha Shivaratri and regular aarti services." },
+  { name: "Shirdi Sai Baba Temple", url: null, city: "Zurich", desc: "Weekly Thursday puja and community prayers." },
+  { name: "Sri Venkateswara Temple Geneva", url: null, city: "Geneva", desc: "South Indian temple — Brahmotsavam and regular agamic puja." },
+  { name: "Ganesha Temple Basel", url: null, city: "Basel", desc: "Ganesh Chaturthi celebrations and weekly puja." },
 ];
 
-const wellness = [
-  { name: "Art of Living Switzerland", url: "https://www.artofliving.org/ch-en/", desc: "Sri Sri Ravi Shankar's foundation. Sudarshan Kriya, Sahaj Samadhi Meditation, yoga and happiness programmes across Switzerland." },
-  { name: "Brahma Kumaris Switzerland", url: "https://www.brahmakumaris.org/", desc: "Raja Yoga meditation centres in Geneva and Zurich. Free meditation courses and spiritual retreats." },
-  { name: "Chinmaya Mission Switzerland", url: "#", desc: "Vedanta classes, Bala Vihar (children's spiritual education), Gita Chanting and spiritual camps." },
-  { name: "Isha Foundation Switzerland", url: "https://isha.sadhguru.org/", desc: "Sadhguru's programmes — Isha Kriya, Inner Engineering and yoga programmes." },
-  { name: "Arya Samaj Switzerland", url: "#", desc: "Vedic havan ceremonies, Sanskrit classes, satsang and Maharishi Dayananda's teachings." },
-  { name: "Sathya Sai Organisation Switzerland", url: "#", desc: "Sathya Sai Baba devotees — bhajans, seva projects and study circles." },
-  { name: "Transcendental Meditation Switzerland", url: "https://www.tm.org/", desc: "Maharishi's TM technique — stress reduction, improved focus and inner peace." },
+const yoga: Place[] = [
+  { name: "Art of Living Switzerland", url: "https://www.artofliving.org/ch-en", city: "Zurich/Geneva", desc: "Sudarshan Kriya, SKY breathing, meditation retreats and happiness programmes." },
+  { name: "Brahma Kumaris Switzerland", url: "https://www.brahmakumaris.org", city: "Zurich/Geneva", desc: "Raja Yoga meditation, mindfulness and spiritual education classes." },
+  { name: "Chinmaya Mission Switzerland", url: "https://chinmayamission.com", city: "Zurich", desc: "Vedanta study, Gita jnana yajna and Bala Vihar children's programme." },
+  { name: "Isha Foundation Switzerland", url: "https://isha.sadhguru.org", city: "Zurich", desc: "Inner Engineering, Shambhavi Mahamudra and Sadhguru programmes." },
+  { name: "Sivananda Yoga Centre", url: "https://www.sivananda.org", city: "Geneva", desc: "Classical Hatha Yoga and Vedanta based on Swami Sivananda's teachings." },
 ];
 
-const yoga = [
-  { name: "Sivananda Yoga Vedanta Centre Zurich", url: "https://www.sivananda.org/", desc: "Classical Hatha Yoga, Vedanta, Sanskrit and teacher training courses." },
-  { name: "Iyengar Yoga Institute Zurich", url: "#", desc: "B.K.S. Iyengar method — precision alignment, therapeutic yoga and teacher training." },
-  { name: "Ashtanga Yoga Zurich", url: "#", desc: "Traditional Mysore-style Ashtanga practice and led classes." },
-  { name: "Bikram Yoga Switzerland", url: "#", desc: "Hot yoga studios in Zurich and Geneva. 26 postures in a heated room." },
+const satsang: Place[] = [
+  { name: "Hindu Swayamsevak Sangh (HSS) Switzerland", url: "https://hssuk.org", city: "Nationwide", desc: "Weekly shakha, Sanskrit classes, seva projects and Hindu cultural programmes." },
+  { name: "Gayatri Parivar / AWGP Switzerland", url: "https://www.awgp.org", city: "Zurich", desc: "Gayatri mantra sadhana, yagna and spiritual workshops." },
+  { name: "Vaishnav Parishad Switzerland", url: null, city: "Zurich", desc: "Bhagavat katha, Ekadashi fasting observance and devotional programmes." },
+  { name: "Sai Baba Satsang Zurich", url: null, city: "Zurich", desc: "Shirdi Sai Baba bhajans and weekly satsang gatherings." },
 ];
+
+function PlaceCard({ p }: { p: Place }) {
+  const inner = (
+    <>
+      <div className="flex items-start justify-between gap-2 mb-2">
+        <h3 className="font-semibold text-white text-sm leading-tight">{p.name}</h3>
+        <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-400 border border-purple-500/20">{p.city}</span>
+      </div>
+      <p className="text-slate-400 text-xs leading-relaxed">{p.desc}</p>
+    </>
+  );
+  return p.url ? (
+    <a href={p.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">{inner}</a>
+  ) : (
+    <div className="glass rounded-xl p-5">{inner}</div>
+  );
+}
 
 export default function SpiritualPage() {
   return (
-    <div className="bg-slate-950 text-white">
+    <div className="bg-slate-950 text-white min-h-screen">
       <PageHeader
-        title="Temples, Spiritual & Wellness"
-        subtitle="Find your spiritual home in Switzerland — Hindu temples, yoga centres, meditation groups, and satsang communities."
-        badge="🕉 40+ Centres"
-        gradient="from-purple-500 to-violet-600"
+        title="Temples, Yoga & Spiritual Centres"
+        subtitle="Hindu temples, yoga ashrams, meditation groups and satsang communities across Switzerland."
+        badge="🕉️ Spiritual Community"
         breadcrumbs={[{ label: "Community", href: "/community" }, { label: "Temples & Spiritual" }]}
       />
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-14">
-        <div>
-          <h2 className="text-2xl font-black text-white mb-2">Hindu Temples in Switzerland</h2>
-          <p className="text-slate-400 text-sm mb-6">Major temples serving India's diverse Hindu traditions across Swiss cities</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-white mb-1">Hindu Temples</h2>
+          <p className="text-slate-400 text-sm mb-6">Temples and Hindu prayer centres in Switzerland</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {temples.map((t) => (
-              <div key={t.name} className="glass rounded-xl p-5 card-hover">
-                <div className="flex items-start justify-between gap-2 mb-1">
-                  <h3 className="font-semibold text-white text-sm leading-snug">{t.name}</h3>
-                </div>
-                <span className="text-xs text-orange-400 mb-2 block">{t.city}</span>
-                <p className="text-slate-400 text-xs leading-relaxed">{t.desc}</p>
-              </div>
-            ))}
+            {temples.map((p) => <PlaceCard key={p.name} p={p} />)}
           </div>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-black text-white mb-2">Spiritual Organisations</h2>
-          <p className="text-slate-400 text-sm mb-6">Meditation, devotion and Vedic knowledge centres</p>
+        </section>
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-white mb-1">Yoga & Meditation Centres</h2>
+          <p className="text-slate-400 text-sm mb-6">Indian yoga traditions, pranayama and meditation in Switzerland</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {wellness.map((w) => (
-              <a key={w.name} href={w.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="font-semibold text-white text-sm group-hover:text-purple-400 transition-colors leading-snug">{w.name}</h3>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                </div>
-                <p className="text-slate-400 text-xs leading-relaxed">{w.desc}</p>
-              </a>
-            ))}
+            {yoga.map((p) => <PlaceCard key={p.name} p={p} />)}
           </div>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-black text-white mb-2">Yoga Centres</h2>
-          <p className="text-slate-400 text-sm mb-6">Traditional Indian yoga lineages practised in Switzerland</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {yoga.map((y) => (
-              <a key={y.name} href={y.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
-                <h3 className="font-semibold text-white text-sm group-hover:text-purple-400 transition-colors mb-2">{y.name}</h3>
-                <p className="text-slate-400 text-xs leading-relaxed">{y.desc}</p>
-              </a>
-            ))}
+        </section>
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-white mb-1">Satsang & Devotional Groups</h2>
+          <p className="text-slate-400 text-sm mb-6">Community bhajans, kathas and devotional gatherings</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {satsang.map((p) => <PlaceCard key={p.name} p={p} />)}
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

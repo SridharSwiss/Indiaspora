@@ -1,72 +1,130 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
-import { ExternalLink, GraduationCap } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Indian Students in Switzerland",
+  description: "Guide for Indian students — top universities, scholarships, student associations, and visa information.",
+  openGraph: {
+    title: "Indian Students in Switzerland | IndiaSwiss",
+    description: "Guide for Indian students — top universities, scholarships, student associations, and visa information.",
+  },
+};
 
 const universities = [
-  { name: "ETH Zurich", url: "https://www.ethz.ch", city: "Zurich", assoc: "Indian Students Association ETH (InSAZ)", assocUrl: "#", desc: "World top-10 university. Strong in STEM. ~800 Indian students. InSAZ organises Holi, Diwali, cultural nights." },
-  { name: "University of Zurich (UZH)", url: "https://www.uzh.ch/en", city: "Zurich", assoc: "Indian Students UZH", assocUrl: "#", desc: "Largest Swiss university. Medicine, law, humanities. Large Indian student community, especially in medicine." },
-  { name: "EPFL Lausanne", url: "https://www.epfl.ch", city: "Lausanne", assoc: "EPFL Indian Student Association", assocUrl: "#", desc: "Top engineering and tech university. Strong Indian PhD and Master's community." },
-  { name: "University of Geneva (UNIGE)", url: "https://www.unige.ch/en/", city: "Geneva", assoc: "Indian Students Geneva", assocUrl: "#", desc: "International relations, law, medicine. Many Indian students in WHO/UN-related programmes." },
-  { name: "University of Basel (UNIBAS)", url: "https://www.unibas.ch/en/", city: "Basel", assoc: "Indian Students Basel", assocUrl: "#", desc: "Pharma, life sciences, medicine. Roche/Novartis research ties attract Indian PhD students." },
-  { name: "University of Bern (UNIBE)", url: "https://www.unibe.ch/index_eng.html", city: "Bern", assoc: "Indian Students Bern", assocUrl: "#", desc: "Medical, law, economics. Small but active Indian student community near the Embassy." },
+  { name: "ETH Zurich", url: "https://www.ethz.ch", city: "Zurich", rank: "#7 QS World", desc: "Switzerland's premier technical university. Strong Indian student community and InSAZ association." },
+  { name: "EPFL Lausanne", url: "https://www.epfl.ch", city: "Lausanne", rank: "#16 QS World", desc: "École Polytechnique Fédérale de Lausanne — top engineering and life sciences university." },
+  { name: "University of Zurich (UZH)", url: "https://www.uzh.ch/en.html", city: "Zurich", rank: "Top 100 QS", desc: "Switzerland's largest university — law, medicine, social sciences, and humanities." },
+  { name: "University of Geneva (UNIGE)", url: "https://www.unige.ch/en", city: "Geneva", rank: "Top 100 QS", desc: "Strong in international relations, law, and sciences. Close to UN organisations." },
+  { name: "University of Basel", url: "https://www.unibas.ch/en.html", city: "Basel", rank: "Top 150 QS", desc: "Oldest Swiss university — strong in life sciences, pharma and humanities." },
+  { name: "University of Bern", url: "https://www.unibe.ch/index_eng.html", city: "Bern", rank: "Top 150 QS", desc: "Strong in medicine, law, and natural sciences. Located in the federal capital." },
 ];
 
-const practical = [
-  { title: "Student Visa (D Visa)", desc: "Apply at the Swiss Embassy/Consulate in India before arrival. Requires university admission letter, financial proof (CHF 21,000/year), health insurance, and accommodation proof.", url: "https://www.sem.admin.ch/sem/en/home/themen/einreise/visum.html" },
-  { title: "Residence Permit for Students", desc: "After arrival, register at your Gemeinde and apply for a student residence permit (B permit with study purpose) at the cantonal Migrationsamt.", url: "https://www.sem.admin.ch/en/" },
-  { title: "Part-Time Work Rules", desc: "Students may work up to 15 hours per week during term (max 100% in holidays) after the first 6 months. Your employer must confirm your permit type allows work.", url: "https://www.sem.admin.ch/en/" },
-  { title: "Health Insurance", desc: "Mandatory within 3 months of arrival. Compare at priminfo.admin.ch. ETH, EPFL and most universities do NOT include insurance — you must arrange it yourself.", url: "https://priminfo.admin.ch" },
-  { title: "Scholarships", desc: "Swiss Government Excellence Scholarships open to Indian students. Apply via MHRD India or the Swiss Embassy. Deadline usually November each year.", url: "https://www.sbfi.admin.ch/sbfi/en/home/education/scholarships-and-grants/swiss-government-excellence-scholarships.html" },
-  { title: "Job Search After Studies", desc: "Graduates can apply for a 6-month residence permit to seek employment after graduation (article 21 AIG). Requires a signed job contract to convert to B work permit.", url: "https://www.sem.admin.ch/en/" },
+const associations = [
+  { name: "InSAZ – Indian Students Association Zurich", url: "https://insaz.ch", city: "Zurich", desc: "Student association at ETH & UZH — cultural events, networking, Diwali, cricket tournaments." },
+  { name: "Indian Students Association EPFL", url: null, city: "Lausanne", desc: "Indian student community at EPFL — cultural events, mentorship and networking." },
+  { name: "Indian Students Geneva", url: null, city: "Geneva", desc: "Community for Indian students at UNIGE and the Graduate Institute." },
+];
+
+const scholarships = [
+  { name: "Swiss Government Excellence Scholarships", url: "https://www.sbfi.admin.ch/sbfi/en/home/education/scholarships-and-grants/swiss-government-excellence-scholarships.html", desc: "Federal scholarships for postgraduate study and research — open to Indian citizens." },
+  { name: "ETH Zurich Excellence Scholarship", url: "https://ethz.ch/en/studies/financial/scholarships/excellencescholarship.html", desc: "Full scholarship for outstanding Master's students at ETH Zurich." },
+  { name: "EPFL Excellence Fellowships", url: "https://www.epfl.ch/education/master/master-excellence-fellowships", desc: "Merit-based fellowships for top Master's applicants at EPFL." },
+  { name: "SNSF Doc.CH", url: "https://www.snf.ch/en/GBkQmrFv8tVWGvk8/funding/projects/doc-ch", desc: "Swiss National Science Foundation doctoral scholarships in humanities and social sciences." },
 ];
 
 export default function StudentsPage() {
   return (
-    <div className="bg-slate-950 text-white">
+    <div className="bg-slate-950 text-white min-h-screen">
       <PageHeader
         title="Indian Students in Switzerland"
-        subtitle="Study at world-class universities — ETH, EPFL, UZH and more. Everything Indian students need to thrive in Switzerland."
-        badge="🎓 8,000+ Indian Students"
-        gradient="from-blue-500 to-indigo-600"
+        subtitle="Universities, scholarships, student associations and visa information for Indian students in Switzerland."
+        badge="🎓 Student Guide"
         breadcrumbs={[{ label: "Community", href: "/community" }, { label: "Students" }]}
       />
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-14">
-        <div>
-          <h2 className="text-2xl font-black text-white mb-2">Universities with Indian Student Associations</h2>
-          <p className="text-slate-400 text-sm mb-6">Swiss universities with the largest Indian student communities</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-white mb-1">Top Universities</h2>
+          <p className="text-slate-400 text-sm mb-6">Switzerland's world-ranked universities popular with Indian students</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {universities.map((u) => (
-              <div key={u.name} className="glass rounded-xl p-5 card-hover">
-                <div className="flex items-start justify-between gap-2 mb-1">
-                  <a href={u.url} target="_blank" rel="noopener noreferrer" className="font-bold text-white text-base hover:text-orange-400 transition-colors">{u.name}</a>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-500 shrink-0 mt-0.5" />
+              <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <h3 className="font-semibold text-white text-sm leading-tight group-hover:text-blue-400 transition-colors">{u.name}</h3>
+                  <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">{u.city}</span>
                 </div>
-                <p className="text-xs text-orange-400 mb-2">{u.city}</p>
-                <p className="text-slate-400 text-xs leading-relaxed mb-3">{u.desc}</p>
-                <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                  <GraduationCap className="w-3.5 h-3.5" />
-                  <span>{u.assoc}</span>
-                </div>
-              </div>
+                <p className="text-xs text-blue-400 mb-1">{u.rank}</p>
+                <p className="text-slate-400 text-xs leading-relaxed">{u.desc}</p>
+              </a>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div>
-          <h2 className="text-2xl font-black text-white mb-2">Essential Guide for Indian Students</h2>
-          <p className="text-slate-400 text-sm mb-6">Key information with official Swiss government links</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {practical.map((p) => (
-              <div key={p.title} className="glass rounded-xl p-5 card-hover">
-                <h3 className="font-semibold text-white text-sm mb-2">{p.title}</h3>
-                <p className="text-slate-400 text-xs leading-relaxed mb-3">{p.desc}</p>
-                <a href={p.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-orange-400 hover:text-orange-300 transition-colors">
-                  Official source <ExternalLink className="w-3 h-3" />
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-white mb-1">Indian Student Associations</h2>
+          <p className="text-slate-400 text-sm mb-6">Connect with fellow Indian students at Swiss universities</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {associations.map((a) =>
+              a.url ? (
+                <a key={a.name} href={a.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <h3 className="font-semibold text-white text-sm leading-tight group-hover:text-blue-400 transition-colors">{a.name}</h3>
+                    <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">{a.city}</span>
+                  </div>
+                  <p className="text-slate-400 text-xs leading-relaxed">{a.desc}</p>
                 </a>
-              </div>
+              ) : (
+                <div key={a.name} className="glass rounded-xl p-5">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <h3 className="font-semibold text-white text-sm leading-tight">{a.name}</h3>
+                    <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">{a.city}</span>
+                  </div>
+                  <p className="text-slate-400 text-xs leading-relaxed">{a.desc}</p>
+                </div>
+              )
+            )}
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-white mb-1">Scholarships & Funding</h2>
+          <p className="text-slate-400 text-sm mb-6">Scholarships open to Indian students studying in Switzerland</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {scholarships.map((s) => (
+              <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
+                <h3 className="font-semibold text-white text-sm leading-tight group-hover:text-blue-400 transition-colors mb-2">{s.name}</h3>
+                <p className="text-slate-400 text-xs leading-relaxed">{s.desc}</p>
+              </a>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section>
+          <div className="glass rounded-2xl p-6">
+            <h2 className="text-xl font-bold text-white mb-4">Student Visa & Permit</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm text-slate-300">
+              <div>
+                <h3 className="font-semibold text-blue-400 mb-3">Before Arrival</h3>
+                <ul className="space-y-2">
+                  <li>• Apply for a student visa (Type D) at the Swiss Embassy in India</li>
+                  <li>• You need an admission letter from a Swiss university</li>
+                  <li>• Proof of financial means: CHF 21,000/year minimum</li>
+                  <li>• Health insurance arranged before or immediately on arrival</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold text-blue-400 mb-3">After Arrival</h3>
+                <ul className="space-y-2">
+                  <li>• Register at local commune (Gemeinde/Commune) within 14 days</li>
+                  <li>• Apply for Residence Permit B (student) at cantonal migration office</li>
+                  <li>• Work permitted up to 15 hours/week during semester</li>
+                  <li>• Full permit details at SEM:</li>
+                </ul>
+                <a href="https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht-eu_efta/ausweis-b--auslaender.html" target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-blue-400 hover:text-blue-300 text-xs">sem.admin.ch — Permit B details</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

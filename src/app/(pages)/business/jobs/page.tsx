@@ -1,95 +1,121 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
+export const metadata: Metadata = {
+  title: "Jobs & Careers in Switzerland for Indians",
+  description: "Find jobs in Switzerland — top portals, major sectors, CV tips, salary benchmarks, and work permit guide for Indian nationals.",
+  openGraph: {
+    title: "Jobs & Careers in Switzerland for Indians | IndiaSwiss",
+    description: "Find jobs in Switzerland — top portals, major sectors, CV tips, salary benchmarks, and work permit guide for Indian nationals.",
+  },
+};
+
 const portals = [
-  { name: "jobs.ch", url: "https://www.jobs.ch/en/", desc: "Switzerland's largest job portal. Filter by city, industry, language requirement, and salary." },
-  { name: "LinkedIn Jobs Switzerland", url: "https://www.linkedin.com/jobs/", desc: "Best for tech, finance, pharma. Activate Open to Work. Connect with Indian recruiters in Switzerland." },
-  { name: "Indeed Switzerland", url: "https://ch.indeed.com", desc: "Wide range from entry-level to senior. Good for first job searches and scanning market salaries." },
-  { name: "EURES – European Job Mobility Portal", url: "https://eures.ec.europa.eu", desc: "EU-wide portal including Switzerland. Useful for cross-border job searches." },
-  { name: "arbeit.swiss – RAV Job Portal", url: "https://www.arbeit.swiss", desc: "Official Swiss government job portal run by SECO. Also access to RAV employment centres." },
-  { name: "Glassdoor Switzerland", url: "https://www.glassdoor.com/Job/switzerland-jobs-SRCH_IL.0,11_IN226.htm", desc: "Job listings with salary insights and company reviews from employees." },
+  { name: "jobs.ch", url: "https://www.jobs.ch/en/", desc: "Switzerland’s largest job board. Filter by city, industry, salary, and language requirement.", badge: "Most listings" },
+  { name: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs/search/?location=Switzerland", desc: "Best for tech, banking, and pharma roles. Activate “Open to Work” for recruiter visibility.", badge: "Networking" },
+  { name: "Indeed Switzerland", url: "https://ch.indeed.com", desc: "Wide range from entry-level to senior management. Upload CV for direct applications.", badge: "" },
+  { name: "jobup.ch", url: "https://www.jobup.ch/en/", desc: "Strong in French-speaking Switzerland (Romandy) — Geneva, Lausanne, Neuchâtel.", badge: "French CH" },
+  { name: "EURES", url: "https://eures.ec.europa.eu", desc: "EU-wide mobility portal covering Switzerland. Good for cross-border professional moves.", badge: "" },
+  { name: "RAV / arbeit.swiss", url: "https://www.arbeit.swiss", desc: "Official Swiss government job and employment service. Register for job-seeking support.", badge: "Official" },
 ];
 
 const sectors = [
-  { name: "Financial Services", hub: "Zurich", employers: ["UBS", "Julius Baer", "Zurich Insurance", "Swiss Re", "Credit Suisse (now UBS)", "Partners Group"] },
-  { name: "Pharma & Life Sciences", hub: "Basel", employers: ["Novartis", "Roche", "Lonza", "Alcon", "Syngenta", "Vifor Pharma"] },
-  { name: "Technology & IT", hub: "Zurich", employers: ["Google Zurich", "Microsoft", "IBM", "ABB", "Siemens", "Temenos"] },
-  { name: "International Organisations", hub: "Geneva", employers: ["UN (UNOG)", "WHO", "WTO", "ILO", "ICRC", "WIPO"] },
-  { name: "Engineering & MedTech", hub: "Nationwide", employers: ["ABB", "Georg Fischer", "Sulzer", "Straumann", "Sonova", "Sensirion"] },
-  { name: "Trading & Commodities", hub: "Zug / Geneva", employers: ["Glencore", "Vitol", "Trafigura", "Gunvor", "Mercuria"] },
+  { name: "Financial Services", hub: "Zurich", salaryRange: "CHF 100K–200K", roles: ["Quantitative Analyst", "Investment Banker", "Risk Manager", "Private Banker", "Compliance Officer"], employers: ["UBS", "Zurich Insurance", "Swiss Re", "Julius Baer", "Pictet"] },
+  { name: "Pharma & Life Sciences", hub: "Basel", salaryRange: "CHF 90K–180K", roles: ["Clinical Researcher", "Regulatory Affairs", "Medicinal Chemist", "Data Scientist", "Project Manager"], employers: ["Novartis", "Roche", "Lonza", "Alcon", "Straumann"] },
+  { name: "Technology & Engineering", hub: "Zurich", salaryRange: "CHF 110K–200K+", roles: ["Software Engineer", "Machine Learning Engineer", "Product Manager", "Data Engineer", "Cloud Architect"], employers: ["Google", "Microsoft", "IBM", "ABB", "Siemens"] },
+  { name: "International Organisations", hub: "Geneva", salaryRange: "Tax-exempt + benefits", roles: ["Programme Officer", "Policy Analyst", "Communications Specialist", "Legal Advisor"], employers: ["UN", "WHO", "WTO", "WEF", "ICRC"] },
+  { name: "Trading & Commodities", hub: "Zug / Geneva", salaryRange: "CHF 120K–300K+", roles: ["Commodity Trader", "Quantitative Researcher", "Structured Finance", "Operations"], employers: ["Glencore", "Vitol", "Trafigura", "Gunvor"] },
+];
+
+const cvTips = [
+  "Swiss CVs are typically 1–2 pages max. Be concise and result-focused.",
+  "Include a professional photo — this is standard in Switzerland (unlike UK/US norms).",
+  "List your current permit type — employers want to know your right-to-work status upfront.",
+  "German/French language level is critical — state it clearly (A1–C2) on your CV.",
+  "Include a brief Anschreiben (cover letter) even when not required — it signals engagement.",
+  "Reference letters from previous Swiss employers are highly valued — request them proactively.",
 ];
 
 export default function JobsPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
-        title="Jobs & Careers in Switzerland"
-        subtitle="Find your next role in one of Europe's most competitive job markets — tech, pharma, finance, and international organisations."
-        badge="Jobs & Recruitment"
+        title="Jobs & Careers"
+        subtitle="Switzerland is one of the world's highest-paying job markets. Here's everything you need to find and land your ideal role."
+        badge="Careers Guide"
         gradient="from-teal-500 to-cyan-600"
-        breadcrumbs={[{ label: "Business & Career", href: "/business" }, { label: "Jobs & Careers" }]}
+        breadcrumbs={[
+          { label: "Business & Career", href: "/business" },
+          { label: "Jobs & Recruitment" },
+        ]}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <section className="mb-14">
-          <h2 className="text-2xl font-bold text-white mb-6">Job Search Portals</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-2">Job Portals</h2>
+          <p className="text-slate-400 mb-8">Start your search on these platforms</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {portals.map((p) => (
-              <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover group block">
-                <h3 className="font-semibold text-white mb-2 group-hover:text-teal-400 transition-colors">{p.name}</h3>
+              <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold text-white group-hover:text-teal-400 transition-colors">{p.name}</h3>
+                  {p.badge && <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full">{p.badge}</span>}
+                </div>
                 <p className="text-sm text-slate-400">{p.desc}</p>
               </a>
             ))}
           </div>
         </section>
 
-        <section className="mb-14">
-          <h2 className="text-2xl font-bold text-white mb-6">Top Sectors for Indian Professionals</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-2">Top Sectors & Salary Ranges</h2>
+          <p className="text-slate-400 mb-8">Where Indian professionals excel in Switzerland</p>
+          <div className="space-y-4">
             {sectors.map((s) => (
-              <div key={s.name} className="glass rounded-2xl p-5">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-semibold text-white">{s.name}</h3>
-                  <span className="text-xs text-teal-400">{s.hub}</span>
+              <div key={s.name} className="glass rounded-2xl p-6">
+                <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
+                  <div>
+                    <h3 className="font-semibold text-white text-lg">{s.name}</h3>
+                    <p className="text-sm text-teal-400">{s.hub} &middot; {s.salaryRange}</p>
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {s.employers.map((e) => (
-                    <span key={e} className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full">{e}</span>
-                  ))}
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-xs text-slate-400 uppercase tracking-wider mb-2">Common Roles</p>
+                    <div className="flex flex-wrap gap-2">
+                      {s.roles.map((r) => <span key={r} className="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded-full">{r}</span>)}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-xs text-slate-400 uppercase tracking-wider mb-2">Key Employers</p>
+                    <div className="flex flex-wrap gap-2">
+                      {s.employers.map((e) => <span key={e} className="text-xs bg-teal-500/10 text-teal-400 px-2 py-1 rounded-full border border-teal-500/20">{e}</span>)}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="mb-14 glass rounded-2xl p-6">
-          <h2 className="text-xl font-bold text-white mb-4">Work Permit for Indian Nationals</h2>
-          <p className="text-slate-400 text-sm mb-4">Switzerland uses a quota system for non-EU/EFTA nationals. Your employer must sponsor your work permit.</p>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            {[
-              { permit: "L Permit", desc: "Short-term, up to 12 months. Tied to a specific employer." },
-              { permit: "B Permit", desc: "1–5 year residence and work permit. Most common for employed Indians." },
-              { permit: "C Permit", desc: "Settlement permit after 5–10 years. Unrestricted work rights." },
-              { permit: "G Permit", desc: "Cross-border commuter permit. Live in EU, work in Switzerland." },
-            ].map((w) => (
-              <div key={w.permit} className="bg-white/5 rounded-xl p-4">
-                <p className="font-semibold text-teal-400 text-sm mb-1">{w.permit}</p>
-                <p className="text-xs text-slate-400">{w.desc}</p>
-              </div>
-            ))}
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">Swiss CV Tips</h2>
+          <div className="glass rounded-2xl p-6">
+            <ul className="space-y-3">
+              {cvTips.map((tip) => (
+                <li key={tip} className="flex items-start gap-3 text-sm text-slate-300">
+                  <span className="text-teal-400 mt-0.5 shrink-0">•</span>
+                  {tip}
+                </li>
+              ))}
+            </ul>
           </div>
-          <a href="https://www.sem.admin.ch/sem/en/home/themen/arbeit.html" target="_blank" rel="noopener noreferrer" className="text-sm text-teal-400 hover:text-teal-300">Official SEM work permit information &rarr;</a>
         </section>
 
-        <section className="glass rounded-2xl p-6">
-          <h2 className="text-xl font-bold text-white mb-4">Swiss CV Tips</h2>
-          <ul className="space-y-2 text-sm text-slate-300">
-            <li className="flex items-start gap-2"><span className="text-teal-400 shrink-0">&#8226;</span> Keep CV to 2 pages maximum</li>
-            <li className="flex items-start gap-2"><span className="text-teal-400 shrink-0">&#8226;</span> Photo is optional (common in German-speaking Switzerland)</li>
-            <li className="flex items-start gap-2"><span className="text-teal-400 shrink-0">&#8226;</span> Include nationality and work permit status clearly</li>
-            <li className="flex items-start gap-2"><span className="text-teal-400 shrink-0">&#8226;</span> Write a tailored cover letter — Swiss employers read them carefully</li>
-            <li className="flex items-start gap-2"><span className="text-teal-400 shrink-0">&#8226;</span> Include language proficiency (English + any German/French is a big plus)</li>
-            <li className="flex items-start gap-2"><span className="text-teal-400 shrink-0">&#8226;</span> References: write "Available upon request" or list 2 professional references</li>
-          </ul>
-        </section>
+        <div className="glass rounded-2xl p-6 border border-teal-500/20">
+          <h3 className="text-base font-semibold text-teal-400 mb-2">Work Permit for Indian Nationals</h3>
+          <p className="text-sm text-slate-300">Switzerland applies annual quotas for non-EU/EFTA nationals. Your employer must sponsor your permit and demonstrate they could not fill the role locally. Most Indians work on a B permit (1–5 year renewable). Full guide: <a href="https://www.sem.admin.ch/sem/en/home/themen/arbeit.html" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">sem.admin.ch/arbeit</a></p>
+        </div>
       </div>
     </div>
   );

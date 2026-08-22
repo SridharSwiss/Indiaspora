@@ -1,128 +1,99 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
-const serviceCategories = [
+export const metadata: Metadata = {
+  title: "Professional Services for Indians in Switzerland",
+  description: "Find Indian-background lawyers, accountants, relocation consultants, and financial advisors in Switzerland.",
+  openGraph: {
+    title: "Professional Services for Indians in Switzerland | IndiaSwiss",
+    description: "Find Indian-background lawyers, accountants, relocation consultants, and financial advisors in Switzerland.",
+  },
+};
+
+const categories = [
   {
-    name: "Legal Services",
-    icon: "&#9878;",
-    services: [
-      "Immigration lawyers (B/C permit appeals, family reunification)",
-      "Swiss employment law specialists",
-      "Business setup lawyers (GmbH, AG formation)",
-      "Tax treaty (DTAA) specialists for India-Switzerland",
-      "Real estate and contract lawyers",
+    title: "Immigration Lawyers",
+    icon: "⚖️",
+    color: "text-blue-400",
+    desc: "Swiss immigration law is complex — a qualified lawyer helps with permit renewals, family reunification, naturalization, and appeals.",
+    items: [
+      { name: "KPMG Legal Switzerland", url: "https://home.kpmg/ch/en/home/services/legal.html", note: "Big4-backed immigration law practice. Experienced with Indian corporate transfers and senior executive permits." },
+      { name: "Kellerhals Carrard", url: "https://www.kellerhals-carrard.ch/en", note: "Leading Swiss law firm with immigration and employment law expertise across all major cities." },
+      { name: "SEM – Immigration Self-Service", url: "https://www.sem.admin.ch/en", note: "For straightforward cases, the official State Secretariat for Migration website guides you through permit applications." },
     ],
-    findVia: "Swiss Bar Association: sav-fsa.ch",
-    findUrl: "https://www.sav-fsa.ch/en/lawyers/find-a-lawyer.html",
   },
   {
-    name: "Accounting & Tax",
-    icon: "&#128200;",
-    services: [
-      "Swiss tax return preparation (Steuererklarung)",
-      "India-Switzerland DTAA (Double Tax Avoidance) advisory",
-      "VAT registration and filing",
-      "NRI taxation and repatriation of funds",
-      "Payroll and social insurance (AHV/IV/EO)",
+    title: "Tax & Accounting",
+    icon: "📊",
+    color: "text-green-400",
+    desc: "Swiss taxation differs significantly from Indian and international norms — source tax, wealth tax, and India-Switzerland DTAA all need specialist advice.",
+    items: [
+      { name: "PwC Switzerland", url: "https://www.pwc.ch/en", note: "Full tax advisory for Indian expats — personal tax, corporate structuring, and India–Switzerland DTAA optimisation." },
+      { name: "Deloitte Switzerland", url: "https://www2.deloitte.com/ch/en.html", note: "Strong in expatriate tax, global mobility, and NRI tax planning for Indians." },
+      { name: "EY Switzerland", url: "https://www.ey.com/en_ch", note: "Mobility tax, family office, and cross-border India–Switzerland tax structuring." },
+      { name: "KPMG Switzerland", url: "https://home.kpmg/ch/en/home.html", note: "Tax compliance, transfer pricing, and wealth management advisory." },
     ],
-    findVia: "EXPERTsuisse: expertsuisse.ch",
-    findUrl: "https://www.expertsuisse.ch/en/home",
   },
   {
-    name: "Financial Advisors",
-    icon: "&#128176;",
-    services: [
-      "Wealth management for NRIs and HNIs",
-      "Pension (2nd pillar BVG) planning",
-      "CHF to INR remittance optimization",
-      "PFIC compliance for Indian investors in US funds",
-      "Swiss life insurance and retirement planning",
+    title: "Relocation Services",
+    icon: "💜",
+    color: "text-purple-400",
+    desc: "Specialist relocation firms help Indian expats find housing, enrol children in schools, and navigate Swiss registration within the first weeks.",
+    items: [
+      { name: "Crown Relocations Switzerland", url: "https://www.crownrelo.com/ch/en-ch", note: "Full relocation from India to Switzerland — household goods, housing search, Gemeinde registration assistance." },
+      { name: "Packimpex Relocation", url: "https://www.packimpex.ch/en", note: "Swiss-based relocation specialist with 40+ years experience. Strong in Zurich, Geneva, Basel." },
+      { name: "BGRS / Weichert Workforce Mobility", url: "https://www.bgrs.com", note: "Corporate mobility provider used by large firms for Indian executive transfers." },
     ],
-    findVia: "FINMA licensed advisors: finma.ch",
-    findUrl: "https://www.finma.ch/en/authorisation/searching-for-authorised-firms-and-persons/",
   },
   {
-    name: "Relocation Services",
-    icon: "&#128666;",
-    services: [
-      "Apartment search and Gemeinde registration support",
-      "School enrolment assistance",
-      "Work permit application support",
-      "Bank account opening assistance",
-      "Settling-in packages for corporate transferees",
+    title: "Financial Advisory",
+    icon: "🏦",
+    color: "text-yellow-400",
+    desc: "Indian-aware financial advisors help with NRI investment rules, remittances, Swiss pension (pillar 2/3), and FEMA compliance.",
+    items: [
+      { name: "UBS Wealth Management", url: "https://www.ubs.com/ch/en/private/wealth-management.html", note: "Private banking for high-net-worth Indians. India desk with Bollywood and business family expertise." },
+      { name: "Neon (Digital Banking)", url: "https://www.neon-free.ch/en", note: "Easy CHF account for new arrivals. No fees, English app, and instant permit verification." },
+      { name: "Wise (Remittances)", url: "https://wise.com", note: "Best-in-class CHF to INR transfer rates. Real exchange rate with transparent fees." },
     ],
-    findVia: "EuRA (European Relocation Association) members",
-    findUrl: "https://www.eura.org",
-  },
-  {
-    name: "HR & Recruitment",
-    icon: "&#128101;",
-    services: [
-      "Indian diaspora specialist recruiters in Switzerland",
-      "IT and tech staffing agencies",
-      "Executive search firms with India connections",
-      "Swiss payroll and HR consulting",
-      "Work permit and quota management for employers",
-    ],
-    findVia: "swissstaffing.ch — licensed recruiters",
-    findUrl: "https://www.swissstaffing.ch/en",
-  },
-  {
-    name: "Healthcare Professionals",
-    icon: "&#128138;",
-    services: [
-      "Indian doctors (GPs) familiar with Indian health concerns",
-      "Ayurvedic practitioners",
-      "Dietitians familiar with South Asian diets",
-      "Mental health professionals serving Indian community",
-      "Dentists with Indian language support",
-    ],
-    findVia: "Ask in community Facebook groups for recommendations",
-    findUrl: "",
   },
 ];
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
-        title="Indian Professional Services in Switzerland"
-        subtitle="Find Indian lawyers, accountants, doctors, financial advisors, and consultants who understand both Swiss systems and Indian needs."
+        title="Professional Services"
+        subtitle="Specialist lawyers, accountants, and advisors who understand the India–Switzerland context — from permit renewals to NRI tax planning."
         badge="Professional Services"
         gradient="from-teal-500 to-cyan-600"
-        breadcrumbs={[{ label: "Business & Career", href: "/business" }, { label: "Professional Services" }]}
+        breadcrumbs={[
+          { label: "Business & Career", href: "/business" },
+          { label: "Professional Services" },
+        ]}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-2 gap-6">
-          {serviceCategories.map((cat) => (
-            <div key={cat.name} className="glass rounded-2xl p-6 card-hover">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl" dangerouslySetInnerHTML={{ __html: cat.icon }} />
-                <h2 className="text-lg font-bold text-white">{cat.name}</h2>
-              </div>
-              <ul className="space-y-2 mb-4">
-                {cat.services.map((s) => (
-                  <li key={s} className="text-sm text-slate-400 flex items-start gap-2">
-                    <span className="text-teal-400 shrink-0 mt-0.5">&#8226;</span>
-                    {s}
-                  </li>
-                ))}
-              </ul>
-              <div className="pt-4 border-t border-white/10">
-                <p className="text-xs text-slate-500 mb-1">How to find:</p>
-                {cat.findUrl ? (
-                  <a href={cat.findUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-teal-400 hover:text-teal-300">{cat.findVia} &rarr;</a>
-                ) : (
-                  <p className="text-xs text-slate-400">{cat.findVia}</p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
 
-        <div className="mt-10 glass rounded-2xl p-6 border border-teal-500/20">
-          <p className="text-sm text-slate-300">
-            <span className="text-teal-400 font-semibold">Verification tip:</span> Always check professional credentials before engaging any service provider. Lawyers must be admitted to the Swiss Bar, accountants should be EXPERTsuisse certified, and financial advisors must be FINMA licensed. The SICC member directory at <a href="https://sicc.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300">sicc.ch</a> lists vetted Indian professionals.
-          </p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        {categories.map((cat) => (
+          <section key={cat.title}>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-2xl">{cat.icon}</span>
+              <h2 className={`text-2xl font-bold ${cat.color}`}>{cat.title}</h2>
+            </div>
+            <p className="text-slate-400 mb-6">{cat.desc}</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {cat.items.map((item) => (
+                <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
+                  <h3 className="font-semibold text-white text-sm mb-2 group-hover:text-teal-400 transition-colors">{item.name}</h3>
+                  <p className="text-sm text-slate-400">{item.note}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        <div className="glass rounded-2xl p-6 border border-teal-500/20">
+          <h3 className="text-base font-semibold text-teal-400 mb-2">Community Referrals</h3>
+          <p className="text-sm text-slate-300">The best professional referrals often come from the community. Ask in the IAGZ member network (<a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">iagz.ch</a>), the SICC member directory (<a href="https://sicc.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">sicc.ch</a>), or Indian community WhatsApp groups for tried-and-tested advisors.</p>
         </div>
       </div>
     </div>

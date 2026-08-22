@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Indian Cooking Classes in Switzerland",
+  description: "Learn regional Indian cooking — classes, workshops, community events, and YouTube resources.",
+  openGraph: {
+    title: "Indian Cooking Classes in Switzerland | IndiaSwiss",
+    description: "Learn regional Indian cooking — classes, workshops, community events, and YouTube resources.",
+  },
+};
 
 const cuisines = [
   { name: "Punjabi", dishes: "Butter chicken, Dal makhani, Sarson da saag" },
@@ -37,7 +47,6 @@ export default function CookingPage() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        {/* Classes */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Where to Find Classes</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -56,7 +65,6 @@ export default function CookingPage() {
           </div>
         </section>
 
-        {/* What You Can Learn */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-4">Regional Cuisines You Can Learn</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -80,7 +88,6 @@ export default function CookingPage() {
           </div>
         </section>
 
-        {/* YouTube */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Online Resources: YouTube Channels</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -93,7 +100,6 @@ export default function CookingPage() {
           </div>
         </section>
 
-        {/* Cookware Note */}
         <div className="glass rounded-2xl p-6 border border-amber-500/20">
           <p className="text-white/80 text-sm">
             <span className="font-semibold text-amber-400">Cookware note:</span> Indian cookware like pressure cookers (Hawkins/Prestige), tawas, and kadais are not readily available in Swiss supermarkets. Order online from <strong>indiasupermarkt.ch</strong> or import from India via DHL. Swiss induction hobs work with flat-bottomed kadais and tawas.

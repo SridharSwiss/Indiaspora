@@ -1,96 +1,83 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Indians in Geneva — Community Guide",
+  description: "Geneva's 5,000+ Indian community — UN professionals, associations, Indian restaurants, and official resources.",
+  openGraph: {
+    title: "Indians in Geneva — Community Guide | IndiaSwiss",
+    description: "Geneva's 5,000+ Indian community — UN professionals, associations, Indian restaurants, and official resources.",
+  },
+};
+
+const highlights = [
+  { label: "Indian Population", value: "~5,000", icon: "👥" },
+  { label: "Language", value: "French", icon: "🗣️" },
+  { label: "Canton", value: "Genève", icon: "🏛️" },
+  { label: "Key Employers", value: "UN, WHO, WTO, Private Banking", icon: "🏢" },
+];
+
+const associations = [
+  { name: "Indian Association of Geneva", desc: "Cultural events, Diwali celebrations, and support for newcomers." },
+  { name: "ICCR Geneva", desc: "Indian Council for Cultural Relations — promotes Indian arts, music, and dance." },
+  { name: "Consulate General of India", desc: "Indian consular services for French-speaking Switzerland. Located in Geneva." },
+];
+
+const areas = [
+  { name: "Carouge", note: "Bohemian neighbourhood; cafés, restaurants, and a vibrant community feel." },
+  { name: "Meyrin", note: "Near CERN; popular with scientific professionals; affordable rents." },
+  { name: "Vernier", note: "Multicultural suburb with good access to international organisations." },
+  { name: "Onex & Lancy", note: "Family-friendly western suburbs with good transport links." },
+];
 
 export default function GenevaPage() {
   return (
-    <div className="min-h-screen">
+    <div>
       <PageHeader
         title="Indians in Geneva"
-        subtitle="The international city of peace hosts 5,000+ Indians — diplomats, UN officials, CERN scientists, and a vibrant expat community on the shores of Lac Léman."
-        badge="~5,000 Indians"
-        gradient="from-purple-600 to-violet-700"
-        breadcrumbs={[{ label: "City Guides", href: "/cities" }, { label: "Geneva" }]}
+        subtitle="Geneva's Indian community is shaped by the international organisations that call this city home — a sophisticated mix of diplomats, UN officials, and private bankers."
+        badge="City Guide"
+        gradient="from-red-600 to-rose-600"
+        breadcrumbs={[
+          { label: "Cities", href: "/cities" },
+          { label: "Geneva" },
+        ]}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-            <section className="glass rounded-2xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">Community & Associations</h2>
-              <ul className="space-y-3">
-                {[
-                  { name: "Indian Association Geneva (IAG)", desc: "Main community body — cultural events, India Day, Diwali" },
-                  { name: "Tamil Sangam Switzerland (Geneva chapter)", desc: "Tamil cultural events, Pongal, classical arts" },
-                  { name: "Malayali Association Switzerland", desc: "Onam, Vishu, cultural programmes" },
-                  { name: "ISKCON Geneva", desc: "Hare Krishna temple, Sunday programme, Janmashtami" },
-                  { name: "Indian Students Geneva (UNIGE)", desc: "Student association at University of Geneva" },
-                ].map((item) => (
-                  <li key={item.name} className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-purple-400 mt-2 shrink-0" />
-                    <div>
-                      <p className="text-sm font-medium text-white">{item.name}</p>
-                      <p className="text-xs text-slate-400">{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </section>
 
-            <section className="glass rounded-2xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">International Organisations</h2>
-              <p className="text-slate-300 text-sm mb-4">Geneva is home to 40+ international organisations employing thousands of Indian professionals:</p>
-              <div className="grid grid-cols-2 gap-2">
-                {["United Nations (UNOG)", "World Health Organization (WHO)", "World Trade Organization (WTO)", "International Labour Organization (ILO)", "CERN", "International Red Cross (ICRC)", "World Intellectual Property Org (WIPO)", "International Telecommunication Union (ITU)"].map((org) => (
-                  <div key={org} className="text-xs text-slate-300 bg-white/5 rounded-lg p-2">{org}</div>
-                ))}
-              </div>
-            </section>
-
-            <section className="glass rounded-2xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">Indian Food in Geneva</h2>
-              <ul className="space-y-2 text-sm text-slate-300">
-                <li>🍽️ <strong>Indigo Restaurant</strong> (Rue de Rive 23) — Upscale Indian fine dining</li>
-                <li>🍽️ <strong>Namaste India Geneva</strong> — North Indian, popular with UN community</li>
-                <li>🍽️ <strong>Taj Mahal Geneva</strong> — Classic Indian restaurant near Old Town</li>
-                <li>🛒 <strong>Epicentre</strong> — Indian groceries, spices, lentils</li>
-                <li>🛒 <strong>Asia Express</strong> — Indian and Asian groceries in Carouge</li>
-              </ul>
-            </section>
-          </div>
-
-          <div className="space-y-6">
-            <div className="glass rounded-2xl p-6">
-              <h3 className="font-semibold text-white mb-4">Key Stats</h3>
-              <div className="space-y-3">
-                {[
-                  { label: "Indian Population", value: "~5,000" },
-                  { label: "International Orgs", value: "40+" },
-                  { label: "Indian Restaurants", value: "15+" },
-                  { label: "Official Languages", value: "French" },
-                ].map((s) => (
-                  <div key={s.label} className="flex justify-between">
-                    <span className="text-xs text-slate-400">{s.label}</span>
-                    <span className="text-sm font-semibold text-purple-400">{s.value}</span>
-                  </div>
-                ))}
-              </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {highlights.map((h) => (
+            <div key={h.label} className="glass rounded-2xl p-4 text-center">
+              <div className="text-2xl mb-1">{h.icon}</div>
+              <p className="text-base font-bold text-white">{h.value}</p>
+              <p className="text-xs text-white/50">{h.label}</p>
             </div>
+          ))}
+        </section>
 
-            <div className="glass rounded-2xl p-6">
-              <h3 className="font-semibold text-white mb-4">Official Links</h3>
-              <ul className="space-y-2">
-                {[
-                  { label: "Ville de Genève", url: "https://www.geneve.ch/en" },
-                  { label: "TPG (Public Transport)", url: "https://www.tpg.ch" },
-                  { label: "Consulate General of India, Geneva", url: "https://www.cgigeneva.gov.in" },
-                  { label: "Canton Geneva – Welcome", url: "https://www.ge.ch/en/living-geneva" },
-                ].map((l) => (
-                  <li key={l.label}>
-                    <a href={l.url} target="_blank" rel="noopener noreferrer" className="text-xs text-purple-400 hover:text-purple-300">{l.label} →</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">Indian Associations & Consulate</h2>
+          <div className="space-y-4">
+            {associations.map((a) => (
+              <div key={a.name} className="glass card-hover rounded-2xl p-5">
+                <h3 className="text-base font-semibold text-white mb-1">{a.name}</h3>
+                <p className="text-sm text-white/60">{a.desc}</p>
+              </div>
+            ))}
           </div>
-        </div>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">Areas Popular with Indians</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {areas.map((a) => (
+              <div key={a.name} className="glass card-hover rounded-2xl p-5">
+                <h3 className="text-base font-semibold text-red-400 mb-1">{a.name}</h3>
+                <p className="text-sm text-white/60">{a.note}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

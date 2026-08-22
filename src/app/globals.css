@@ -1,242 +1,385 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/*
-  Color palette inspired by:
-  🇨🇳 Indian flag — saffron (#FF9933), white, green (#138808), Ashoka Chakra navy (#000080)
-  🇨🇭 Swiss flag  — red (#D52B1E), white
-  Combined into a deep, refined, distinctive identity.
-*/
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&display=swap');
 
-/* ─── Design Tokens ─────────────────────────────────────────── */
+/* ── Theme transition (active only during toggle) ────────────── */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.25s ease,
+    box-shadow 0.3s ease !important;
+}
+
+/* ── Tokens — light-first (default = light) ──────────────────── */
 :root {
-  --font-inter:    "Inter", system-ui, -apple-system, sans-serif;
-  --font-playfair: "Playfair Display", Georgia, serif;
-
-  /* Backgrounds — deep Ashoka-Chakra-navy inspired */
-  --base:      #04080F;
-  --surface:   #080D18;
-  --surface-2: #0D1526;
-  --surface-3: #162035;
+  /* Backgrounds */
+  --base:      #F7F6F2;
+  --surface:   #FFFFFF;
+  --surface-2: #F2F0EB;
+  --surface-3: #E8E5DC;
 
   /* Borders */
-  --border:    rgba(255, 220, 160, 0.07);
-  --border-mid: rgba(255, 220, 160, 0.13);
-  --border-hi:  rgba(255, 220, 160, 0.24);
-
-  /* Indian saffron — primary accent */
-  --saffron:    #FF9933;
-  --saffron-hi: #FFB347;
-  --saffron-lo: #CC7A22;
-
-  /* Indian green — secondary accent */
-  --india-green:    #138808;
-  --india-green-hi: #1AAB09;
-  --india-green-lo: #0E6006;
-
-  /* Swiss red — tertiary accent */
-  --swiss-red:    #D52B1E;
-  --swiss-red-hi: #E83527;
-  --swiss-red-lo: #A82016;
-
-  /* Ashoka Chakra — deep navy for subtle accents */
-  --chakra-blue: #003580;
-  --chakra-blue-hi: #0047AD;
+  --border:    rgba(0,0,0,0.07);
+  --border-2:  rgba(0,0,0,0.13);
+  --border-hi: rgba(0,0,0,0.22);
 
   /* Text */
-  --text:       #F3EDE3;
-  --text-muted: #9A9288;
-  --text-dim:   #58534E;
+  --text:   #09090D;
+  --text-2: #52525C;
+  --text-3: #A1A1AA;
 
-  /* Glows */
-  --glow-saffron: 0 0 48px rgba(255, 153, 51, 0.22);
-  --glow-green:   0 0 48px rgba(19, 136,  8, 0.18);
-  --glow-swiss:   0 0 48px rgba(213,  43, 30, 0.18);
+  /* Glass */
+  --glass-bg:     rgba(255,255,255,0.72);
+  --glass-border: rgba(0,0,0,0.09);
+
+  /* Saffron — primary */
+  --sf:      #F97316;
+  --sf-hi:   #FB923C;
+  --sf-lo:   #C2570D;
+  --sf-glow: rgba(249,115,22,0.18);
+  --sf-bg:   rgba(249,115,22,0.08);
+
+  /* Indigo — secondary */
+  --in:      #4F46E5;
+  --in-hi:   #6366F1;
+  --in-glow: rgba(79,70,229,0.18);
+  --in-bg:   rgba(79,70,229,0.07);
+
+  /* Emerald */
+  --em:    #059669;
+  --em-hi: #10B981;
+
+  /* Swiss red */
+  --sw:    #DC2626;
+  --sw-hi: #EF4444;
+
+  /* Legacy aliases so existing components don't break */
+  --bg:            var(--base);
+  --primary:       var(--sf);
+  --primary-hover: var(--sf-lo);
+  --primary-glow:  var(--sf-glow);
+  --saffron:       var(--sf);
+  --saffron-hi:    var(--sf-hi);
+  --saffron-lo:    var(--sf-lo);
+  --saffron-glow:  var(--sf-glow);
+  --aurora:        var(--in);
+  --aurora-hi:     var(--in-hi);
+  --aurora-glow:   var(--in-glow);
+  --green:         var(--em);
+  --green-hi:      var(--em-hi);
+  --swiss:         var(--sw);
+  --swiss-hi:      var(--sw-hi);
+  --gold:          #d97706;
+  --text-muted:    var(--text-2);
+  --text-dim:      var(--text-3);
 }
 
-/* ─── Reset ──────────────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+/* Dark via prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --base:       #05070F;
+    --surface:    #09101E;
+    --surface-2:  #0E1828;
+    --surface-3:  #141F33;
+    --border:     rgba(255,255,255,0.07);
+    --border-2:   rgba(255,255,255,0.13);
+    --border-hi:  rgba(255,255,255,0.22);
+    --text:       #F3F0E8;
+    --text-2:     #8B97AD;
+    --text-3:     #4B5668;
+    --glass-bg:   rgba(9,16,30,0.78);
+    --glass-border: rgba(255,255,255,0.09);
+    --sf-glow:    rgba(249,115,22,0.28);
+    --sf-bg:      rgba(249,115,22,0.1);
+    --in-glow:    rgba(99,102,241,0.22);
+    --in-bg:      rgba(79,70,229,0.1);
+    --bg:         #05070F;
+  }
 }
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  font-size: 16px;
+:root[data-theme="dark"] {
+  --base:       #05070F;
+  --surface:    #09101E;
+  --surface-2:  #0E1828;
+  --surface-3:  #141F33;
+  --border:     rgba(255,255,255,0.07);
+  --border-2:   rgba(255,255,255,0.13);
+  --border-hi:  rgba(255,255,255,0.22);
+  --text:       #F3F0E8;
+  --text-2:     #8B97AD;
+  --text-3:     #4B5668;
+  --glass-bg:   rgba(9,16,30,0.78);
+  --glass-border: rgba(255,255,255,0.09);
+  --sf-glow:    rgba(249,115,22,0.28);
+  --sf-bg:      rgba(249,115,22,0.1);
+  --in-glow:    rgba(99,102,241,0.22);
+  --in-bg:      rgba(79,70,229,0.1);
+  --bg:         #05070F;
 }
+:root[data-theme="light"] {
+  --base:       #F7F6F2;
+  --surface:    #FFFFFF;
+  --surface-2:  #F2F0EB;
+  --surface-3:  #E8E5DC;
+  --border:     rgba(0,0,0,0.07);
+  --border-2:   rgba(0,0,0,0.13);
+  --border-hi:  rgba(0,0,0,0.22);
+  --text:       #09090D;
+  --text-2:     #52525C;
+  --text-3:     #A1A1AA;
+  --glass-bg:   rgba(255,255,255,0.72);
+  --glass-border: rgba(0,0,0,0.09);
+  --sf-glow:    rgba(249,115,22,0.18);
+  --sf-bg:      rgba(249,115,22,0.08);
+  --in-glow:    rgba(79,70,229,0.18);
+  --in-bg:      rgba(79,70,229,0.07);
+  --bg:         #F7F6F2;
+}
+
+/* ── Reset ────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
   background: var(--base);
   color: var(--text);
-  font-family: var(--font-inter);
+  font-family: 'Plus Jakarta Sans', -apple-system, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  min-height: 100dvh;
 }
-input, select, textarea { font-size: 16px; }
-button, a, [role="button"] { touch-action: manipulation; }
+a { text-decoration: none; color: inherit; }
 
-/* ─── Focus ring ──────────────────────────────────────────────── */
-:focus-visible {
-  outline: 2px solid var(--saffron);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* ─── Scrollbar ──────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 4px; }
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--surface); }
-::-webkit-scrollbar-thumb { background: var(--saffron-lo); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--saffron); }
+::-webkit-scrollbar-thumb { background: var(--sf-lo); border-radius: 4px; }
 
-/* ─── Glass surfaces ─────────────────────────────────────────── */
+/* ── Focus ────────────────────────────────────────────────────── */
+:focus-visible { outline: 2px solid var(--sf); outline-offset: 3px; border-radius: 4px; }
+
+/* ── Card ─────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.25s, transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+}
+.card:hover {
+  border-color: var(--border-2);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+}
+
+/* ── Glass ────────────────────────────────────────────────────── */
 .glass {
-  background: rgba(255, 230, 180, 0.04);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border);
 }
 .glass-strong {
-  background: rgba(255, 230, 180, 0.07);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border-mid);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
 }
 .glass-card {
-  background: rgba(255, 230, 180, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 18px;
+  transition: background 0.25s, border-color 0.25s, transform 0.3s;
+}
+.glass-card:hover {
+  background: var(--sf-bg);
+  border-color: rgba(249,115,22,0.18);
+  transform: translateY(-3px);
 }
 
-/* ─── Gradients ────────────────────────────────────────────── */
-/* Saffron gradient — primary */
+/* ── Gradient text ────────────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-hi) 100%);
+  background: linear-gradient(135deg, var(--sf) 0%, var(--sf-hi) 60%, #FDBA74 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-/* Green gradient */
-.gradient-text-green {
-  background: linear-gradient(135deg, var(--india-green) 0%, var(--india-green-hi) 100%);
+.gradient-text-indigo {
+  background: linear-gradient(135deg, var(--in) 0%, var(--in-hi) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-/* Swiss red gradient */
-.gradient-text-swiss {
-  background: linear-gradient(135deg, var(--swiss-red) 0%, var(--swiss-red-hi) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-/* Tricolor gradient — Indian flag stripe */
-.gradient-text-tricolor {
-  background: linear-gradient(90deg, var(--saffron) 0%, #ffffff 50%, var(--india-green) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-/* Legacy alias */
-.gradient-text-jade  { background: linear-gradient(135deg, var(--india-green), var(--india-green-hi)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.gradient-text-blue  { background: linear-gradient(135deg, #60a5fa, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-/* Tricolor bar — decorative stripe */
-.tricolor-bar {
-  background: linear-gradient(90deg, var(--saffron) 0% 33.3%, #ffffff 33.3% 66.6%, var(--india-green) 66.6% 100%);
 }
 
-/* Swiss cross in CSS */
-.swiss-cross::before {
-  content: '';
+/* ── Tags ─────────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 100px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--in-bg);
+  border: 1px solid rgba(79,70,229,0.22);
+  color: var(--in-hi);
+}
+.tag-saffron {
+  background: var(--sf-bg);
+  border: 1px solid rgba(249,115,22,0.22);
+  color: var(--sf-hi);
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 24px; border-radius: 999px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  text-decoration: none; transition: all 0.18s ease;
+  white-space: nowrap; border: none; letter-spacing: 0.01em;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+.btn-sm { padding: 8px 18px; font-size: 13px; }
+.btn-primary {
+  background: linear-gradient(135deg, var(--sf), var(--sf-hi));
+  color: #fff;
+  box-shadow: 0 4px 20px var(--sf-glow);
+}
+.btn-primary:hover {
+  opacity: 0.92;
+  box-shadow: 0 8px 32px var(--sf-glow);
+  transform: translateY(-2px);
+}
+.btn-saffron {
+  background: linear-gradient(135deg, var(--sf), var(--sf-hi));
+  color: #fff;
+}
+.btn-saffron:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 8px 24px var(--sf-glow);
+  transform: translateY(-1px);
+}
+.btn-outline {
+  background: var(--surface);
+  color: var(--text-2);
+  border: 1px solid var(--border-2);
+}
+.btn-outline:hover {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border-hi);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text-2);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+.btn-ghost:hover { color: var(--text); background: var(--surface-2); }
+
+/* ── Reveal ───────────────────────────────────────────────────── */
+.reveal { opacity: 1; transform: none; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── Patterns ─────────────────────────────────────────────────── */
+.pattern-dots {
+  background-image: radial-gradient(var(--border-2) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.pattern-grid {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Dividers ─────────────────────────────────────────────────── */
+.divider { height: 1px; background: var(--border); }
+.divider-indigo { height: 1px; background: linear-gradient(90deg, transparent, rgba(79,70,229,0.4), transparent); }
+.divider-warm   { height: 1px; background: linear-gradient(90deg, transparent, rgba(249,115,22,0.35), transparent); }
+
+/* ── Stat number ──────────────────────────────────────────────── */
+.stat-number {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+/* ── Card hover ───────────────────────────────────────────────── */
+.card-hover {
+  transition: border-color 0.25s, transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+}
+.card-hover:hover { transform: translateY(-4px); border-color: var(--border-hi); }
+
+/* ── Aurora orbs (used by Hero) ───────────────────────────────── */
+.aurora-orb {
   position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(#fff 0 0) center / 20% 60% no-repeat,
-    linear-gradient(#fff 0 0) center / 60% 20% no-repeat;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+  pointer-events: none;
+}
+.aurora-1 {
+  width: 60vw; height: 60vw;
+  top: -15%; left: -8%;
+  background: radial-gradient(circle, rgba(249,115,22,0.14) 0%, transparent 65%);
+  animation: aurora-drift-1 16s ease-in-out infinite;
+}
+.aurora-2 {
+  width: 48vw; height: 48vw;
+  bottom: -8%; right: -5%;
+  background: radial-gradient(circle, rgba(79,70,229,0.12) 0%, transparent 65%);
+  animation: aurora-drift-2 20s ease-in-out infinite;
+}
+.aurora-3 {
+  width: 32vw; height: 32vw;
+  top: 40%; left: 58%;
+  background: radial-gradient(circle, rgba(5,150,105,0.06) 0%, transparent 65%);
+  animation: aurora-drift-3 24s ease-in-out infinite;
 }
 
-/* ─── Glows ──────────────────────────────────────────────────── */
-.glow-saffron { box-shadow: var(--glow-saffron); }
-.glow-green   { box-shadow: var(--glow-green); }
-.glow-swiss   { box-shadow: var(--glow-swiss); }
-
-/* ─── Card hover (pointer devices only) ────────────────────────────── */
-@media (hover: hover) and (pointer: fine) {
-  .card-hover:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-mid);
-  }
-  .glass-card:hover {
-    background: rgba(255, 230, 180, 0.07);
-    border-color: var(--border-mid);
-  }
+/* ── Animations ───────────────────────────────────────────────── */
+@keyframes marquee    { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes float      { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes fadeUp     { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes word-in    { from { opacity: 0; filter: blur(4px); transform: translateY(10px); } to { opacity: 1; filter: none; transform: none; } }
+@keyframes bob        { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+@keyframes chakra-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes aurora-drift-1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(5%,8%) scale(1.04); }
+  66%      { transform: translate(-3%,3%) scale(0.98); }
+}
+@keyframes aurora-drift-2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  40%      { transform: translate(-5%,-5%) scale(1.06); }
+  70%      { transform: translate(3%,-2%) scale(0.96); }
+}
+@keyframes aurora-drift-3 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%      { transform: translate(-7%,5%) scale(1.08); }
 }
 
-/* ─── Reveal ──────────────────────────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.animate-marquee  { animation: marquee 50s linear infinite; will-change: transform; }
+.animate-fade-up  { animation: fadeUp 0.5s ease-out both; }
+.animate-float    { animation: float 5s ease-in-out infinite; }
+.animate-bob      { animation: bob 2.2s ease-in-out infinite; }
+.animate-chakra   { animation: chakra-spin 12s linear infinite; }
 
-/* ─── Decorative patterns ──────────────────────────────────────── */
-.mandala-bg {
-  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF9933' fill-opacity='0.035'%3E%3Cpath d='M50 50v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-40V6h-2v4h-4v2h4v4h2V12h4v-2h-4zM10 50v-4H8v4H4v2h4v4h2v-4h4v-2h-4zM10 10V6H8v4H4v2h4v4h2V12h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-.dot-grid {
-  background-image: radial-gradient(circle, rgba(255,153,51,0.07) 1px, transparent 1px);
-  background-size: 36px 36px;
-}
+/* ── Mobile ───────────────────────────────────────────────────── */
+@media (max-width: 768px) { .hero-particles { display: none; } }
 
-/* ─── Safe areas ──────────────────────────────────────────────── */
-.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
-.safe-top    { padding-top:    env(safe-area-inset-top,    0px); }
-
-/* ─── Keyframes ──────────────────────────────────────────────── */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-10px); }
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-@keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position:  200% 0; }
-}
-@keyframes chakra-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-@keyframes tricolor-pulse {
-  0%, 100% { opacity: 0.6; }
-  50%       { opacity: 1; }
-}
-
-.animate-float    { animation: float 7s ease-in-out infinite; }
-.animate-fade-up  { animation: fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) forwards; }
-.animate-marquee  { animation: marquee 50s linear infinite; }
-.animate-chakra   { animation: chakra-spin 20s linear infinite; }
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,200,100,0.08), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 2.5s linear infinite;
-}
-
-/* ─── Reduced motion ─────────────────────────────────────────── */
+/* ── Reduced motion ───────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .reveal { opacity: 1 !important; transform: none !important; }
 }
