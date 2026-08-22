@@ -3,7 +3,8 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, Settings, UserPlus } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, Settings, UserPlus, Search } from "lucide-react";
+import SearchOverlay from "@/components/ui/SearchOverlay";
 import { NAV_ITEMS } from "@/lib/data";
 import { createClient } from "@/lib/supabase/client";
 import JoinModal from "@/components/JoinModal";
@@ -37,6 +38,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState<string | null>(null);
   const [theme, setTheme] = useState<Theme>("system");
   const [joinOpen, setJoinOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -75,10 +77,11 @@ export default function Navbar() {
   // Close on route change
   useEffect(() => { setIsOpen(false); setActiveMenu(null); setMobileOpen(null); setUserMenuOpen(false); }, [pathname]);
 
-  // Close on ESC
+  // Keyboard shortcuts
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { setIsOpen(false); setActiveMenu(null); setUserMenuOpen(false); }
+      if (e.key === "Escape") { setIsOpen(false); setActiveMenu(null); setUserMenuOpen(false); setSearchOpen(false); }
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") { e.preventDefault(); setSearchOpen(true); }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -262,8 +265,8 @@ export default function Navbar() {
                     className="flex items-center gap-1"
                     style={{
                       position: "relative", padding: "8px 11px", borderRadius: 10,
-                      fontSize: 13.5, fontWeight: 600,
-                      color: active ? "var(--sf)" : open ? "var(--text)" : "var(--text-2)",
+                      fontSize: 13.5, fontWeight: active ? 700 : 600,
+                      color: active ? "var(--sf-hi)" : open ? "var(--text)" : "var(--text-2)",
                       background: open && !active ? "var(--surface-2)" : "transparent",
                       transition: "color 0.15s, background 0.15s",
                       whiteSpace: "nowrap", textDecoration: "none",
@@ -340,6 +343,26 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="flex items-center gap-1.5">
+            {/* Search */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search pages (Ctrl+K)"
+              title="Search (Ctrl+K)"
+              className="nav-icon-btn"
+              style={{
+                display: "flex", alignItems: "center", gap: 6,
+                padding: "0 10px", height: 34, borderRadius: 10,
+                color: "var(--text-2)", background: "transparent",
+                border: "1px solid var(--border)", cursor: "pointer",
+                transition: "color 0.15s, background 0.15s, border-color 0.15s",
+                fontSize: 12, fontWeight: 500,
+              }}
+            >
+              <Search style={{ width: 14, height: 14, flexShrink: 0 }} />
+              <span className="hidden sm:inline" style={{ color: "var(--text-3)" }}>Search</span>
+              <kbd className="hidden md:inline" style={{ fontSize: 10, padding: "1px 5px", borderRadius: 5, background: "var(--surface-2)", border: "1px solid var(--border-2)", fontFamily: "monospace", color: "var(--text-3)" }}>⌘K</kbd>
+            </button>
+
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
@@ -466,27 +489,35 @@ export default function Navbar() {
               </>
             )}
 
-            {/* Mobile hamburger */}
+            {/* Mobile hamburger — labeled "Menu" per NNG guidance */}
             <button
               className="lg:hidden nav-icon-btn"
-              style={{ width: 36, height: 36, borderRadius: 10,
-                       display: "flex", alignItems: "center", justifyContent: "center",
-                       color: "var(--text-2)", background: "var(--surface-2)",
-                       border: "1px solid var(--border)", cursor: "pointer",
-                       transition: "color 0.15s, background 0.15s" }}
+              style={{
+                display: "flex", alignItems: "center", gap: 5,
+                padding: "0 10px", height: 36, borderRadius: 10,
+                color: "var(--text-2)", background: "var(--surface-2)",
+                border: "1px solid var(--border)", cursor: "pointer",
+                fontSize: 12, fontWeight: 600,
+                transition: "color 0.15s, background 0.15s",
+              }}
               onClick={() => setIsOpen(true)}
-              aria-label="Open menu"
+              aria-label="Open navigation menu"
               aria-expanded={isOpen}
+              aria-controls="mobile-nav-drawer"
             >
-              <Menu style={{ width: 18, height: 18 }} />
+              <Menu style={{ width: 16, height: 16, flexShrink: 0 }} />
+              <span>Menu</span>
             </button>
           </div>
         </div>
       </nav>
 
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
+
       {/* Mobile drawer */}
       {isOpen && (
         <div
+          id="mobile-nav-drawer"
           style={{ position: "fixed", inset: 0, zIndex: 200 }}
           role="dialog" aria-modal aria-label="Navigation menu"
         >
@@ -549,8 +580,8 @@ export default function Navbar() {
                         className="mobile-link"
                         style={{
                           flex: 1, padding: "11px 14px", borderRadius: 12,
-                          fontSize: 15, fontWeight: 600,
-                          color: active ? "var(--sf)" : "var(--text)",
+                          fontSize: 15, fontWeight: active ? 700 : 600,
+                          color: active ? "var(--sf-hi)" : "var(--text)",
                           background: active ? "var(--sf-bg)" : "transparent",
                           textDecoration: "none",
                           transition: "color 0.15s, background 0.15s",

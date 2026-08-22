@@ -1,41 +1,89 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 
-const footerLinks = {
-  Community: [
-    { label: "Indian Associations", href: "/community#associations" },
-    { label: "Temples & Spiritual", href: "/community#spiritual" },
-    { label: "Women's Network", href: "/community#women" },
-    { label: "Student Groups", href: "/community#students" },
-  ],
-  "Living Guide": [
-    { label: "Welcome to Switzerland", href: "/living#welcome" },
-    { label: "Housing & Rentals", href: "/living#housing" },
-    { label: "Healthcare", href: "/living#healthcare" },
-    { label: "Schools & Education", href: "/living#education" },
-  ],
-  "Food & Culture": [
-    { label: "Indian Restaurants", href: "/food#restaurants" },
-    { label: "Grocery Stores", href: "/food#grocery" },
-    { label: "Festivals & Events", href: "/culture#festivals" },
-    { label: "Arts & Music", href: "/culture#arts" },
-  ],
-  Business: [
-    { label: "Networking", href: "/business#networking" },
-    { label: "Jobs & Careers", href: "/business#jobs" },
-    { label: "Startups", href: "/business#startups" },
-    { label: "Professional Services", href: "/business#services" },
-  ],
-};
+// Footer structured as semantic sections so users can scan by intent (Baymard/NNG principle)
+const footerSections = [
+  {
+    heading: "Community",
+    links: [
+      { label: "Associations & Clubs", href: "/community/associations" },
+      { label: "Temples & Spiritual", href: "/community/spiritual" },
+      { label: "Women's Network", href: "/community/women" },
+      { label: "Student Groups", href: "/community/students" },
+    ],
+  },
+  {
+    heading: "Living Guide",
+    links: [
+      { label: "Welcome to Switzerland", href: "/living/welcome" },
+      { label: "Housing & Rentals", href: "/living/housing" },
+      { label: "Healthcare", href: "/living/healthcare" },
+      { label: "Banking & Finance", href: "/living/banking" },
+      { label: "Legal & Immigration", href: "/living/legal" },
+    ],
+  },
+  {
+    heading: "Food & Culture",
+    links: [
+      { label: "Indian Restaurants", href: "/food/restaurants" },
+      { label: "Grocery & Spices", href: "/food/grocery" },
+      { label: "Festivals & Events", href: "/culture/festivals" },
+      { label: "Music & Dance", href: "/culture/arts" },
+      { label: "Events Calendar", href: "/events" },
+    ],
+  },
+  {
+    heading: "Business",
+    links: [
+      { label: "Networking & Chambers", href: "/business/networking" },
+      { label: "Jobs & Recruitment", href: "/business/jobs" },
+      { label: "Startups", href: "/business/startups" },
+      { label: "Professional Services", href: "/business/services" },
+    ],
+  },
+  {
+    heading: "City Guides",
+    links: [
+      { label: "Zurich", href: "/cities/zurich" },
+      { label: "Geneva", href: "/cities/geneva" },
+      { label: "Basel", href: "/cities/basel" },
+      { label: "Bern", href: "/cities/bern" },
+      { label: "Lausanne", href: "/cities/lausanne" },
+    ],
+  },
+  {
+    heading: "Resources",
+    links: [
+      { label: "All Resources", href: "/resources" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Use", href: "/terms" },
+      { label: "Cookie Policy", href: "/privacy#cookies" },
+      { label: "Advertise With Us", href: "mailto:hello@indiaspora.ch?subject=Advertising%20Enquiry" },
+    ],
+  },
+];
 
 export default function Footer() {
   return (
     <footer className="relative border-t" style={{ background: "var(--bg)", borderColor: "var(--border)" }}>
+      {/* Subtle aurora glow at top */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
+          width: "60%", height: 1,
+          background: "var(--aurora-grad)",
+          opacity: 0.6,
+        }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         {/* Top section */}
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-12 mb-12">
-          {/* Brand */}
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-8 gap-8 lg:gap-6 mb-12">
+          {/* Brand — spans 2 cols on large screens */}
+          <div className="col-span-2 sm:col-span-3 lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "var(--aurora-grad)" }}>
                 <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
@@ -48,40 +96,54 @@ export default function Footer() {
               <div>
                 <div className="font-bold text-xl">
                   <span className="gradient-text">India</span>
-                  <span className="text-white">Swiss</span>
+                  <span style={{ color: "var(--text)" }}>spora</span>
                 </div>
                 <div className="text-xs uppercase tracking-widest" style={{ color: "var(--text-3)" }}>Community Hub</div>
               </div>
             </div>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-2)" }}>
-              The premier platform connecting 30,000+ Indians across Switzerland. Your one-stop resource for community, culture, business, and daily life.
+            <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--text-2)" }}>
+              Connecting 24,500+ Indians across Switzerland. Your one-stop resource for community, culture, business, and daily life.
             </p>
-            <div className="space-y-2">
+            <div className="space-y-2 mb-5">
               <div className="flex items-center gap-2 text-sm" style={{ color: "var(--text-2)" }}>
-                <MapPin className="w-4 h-4 shrink-0" style={{ color: "var(--primary)" }} />
+                <MapPin className="w-4 h-4 shrink-0" style={{ color: "var(--sf-hi)" }} />
                 <span>Zurich, Switzerland</span>
               </div>
               <div className="flex items-center gap-2 text-sm" style={{ color: "var(--text-2)" }}>
-                <Mail className="w-4 h-4 shrink-0" style={{ color: "var(--primary)" }} />
-                <a href="mailto:hello@indiaspora.ch" className="hover:text-orange-400 transition-colors">hello@indiaspora.ch</a>
+                <Mail className="w-4 h-4 shrink-0" style={{ color: "var(--sf-hi)" }} />
+                <a href="mailto:hello@indiaspora.ch" className="transition-colors" style={{ color: "var(--text-2)" }}
+                   onMouseEnter={(e) => (e.currentTarget.style.color = "var(--sf-hi)")}
+                   onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-2)")}>
+                  hello@indiaspora.ch
+                </a>
               </div>
             </div>
 
-            {/* Social */}
-            <div className="flex gap-3 mt-6">
+            {/* Social icons */}
+            <div className="flex gap-2">
               {[
-                { label: "F", title: "Facebook", href: "https://www.facebook.com/groups/indian.association.of.greater.zurich/" },
-                { label: "In", title: "Instagram", href: "https://www.instagram.com/namasteswitzerland.ch/" },
-                { label: "Li", title: "LinkedIn", href: "https://www.linkedin.com/company/swiss-indiaspora/" },
-                { label: "W", title: "WhatsApp", href: "https://wa.me/?text=IndiaSwiss%20Community%20Hub%20-%20https%3A%2F%2Findiaspora.ch" },
+                { label: "FB", title: "Facebook", href: "https://www.facebook.com/groups/indian.association.of.greater.zurich/" },
+                { label: "IG", title: "Instagram", href: "https://www.instagram.com/namasteswitzerland.ch/" },
+                { label: "LI", title: "LinkedIn", href: "https://www.linkedin.com/company/swiss-indiaspora/" },
+                { label: "WA", title: "WhatsApp", href: "https://wa.me/?text=Indiaspora%20Community%20Hub%20-%20https%3A%2F%2Findiaspora.ch" },
               ].map((s) => (
                 <a
                   key={s.title}
                   href={s.href}
                   title={s.title}
+                  aria-label={s.title}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/15 transition-colors text-xs font-bold"
+                  className="glass"
+                  style={{
+                    width: 36, height: 36, borderRadius: 10,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 10, fontWeight: 700, color: "var(--text-3)",
+                    transition: "color 0.15s, border-color 0.15s",
+                    flexShrink: 0,
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--sf-hi)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-3)")}
                 >
                   {s.label}
                 </a>
@@ -89,60 +151,70 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links */}
-          {Object.entries(footerLinks).map(([heading, links]) => (
-            <div key={heading}>
-              <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider" style={{ color: "var(--text)" }}>{heading}</h3>
-              <ul className="space-y-2">
-                {links.map((link) => (
+          {/* Navigation sections */}
+          {footerSections.map((section) => (
+            <nav key={section.heading} aria-label={`${section.heading} links`} className="lg:col-span-1">
+              <h3
+                className="text-xs font-bold mb-3 uppercase tracking-wider"
+                style={{ color: "var(--text)", letterSpacing: "0.1em" }}
+              >
+                {section.heading}
+              </h3>
+              <ul className="space-y-2" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {section.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm hover:text-orange-400 transition-colors" style={{ color: "var(--text-2)" }}
+                      className="text-sm transition-colors"
+                      style={{ color: "var(--text-2)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--sf-hi)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-2)")}
                     >
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
 
         {/* Newsletter */}
-        <div className="glass rounded-2xl p-6 lg:p-8 mb-10">
+        <div className="glass rounded-2xl p-6 lg:p-8 mb-10" style={{ borderColor: "var(--border-2)" }}>
           <div className="flex flex-col lg:flex-row items-center gap-6">
             <div className="flex-1">
               <h3 className="text-lg font-semibold mb-1" style={{ color: "var(--text)" }}>Stay Connected</h3>
-              <p className="text-sm" style={{ color: "var(--text-2)" }}>Weekly newsletter with events, news, and community updates</p>
+              <p className="text-sm" style={{ color: "var(--text-2)" }}>Weekly digest — events, news, and community updates across Switzerland</p>
             </div>
             <div className="flex gap-3 w-full lg:w-auto">
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 lg:w-64 px-4 py-2.5 rounded-xl text-white text-sm focus:outline-none border"
-                style={{ background: "rgba(255,255,255,0.05)", borderColor: "var(--border)" }}
+                aria-label="Email address for newsletter"
+                className="flex-1 lg:w-64 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2"
+                style={{
+                  background: "var(--surface)",
+                  border: "1px solid var(--border-2)",
+                  color: "var(--text)",
+                  // @ts-expect-error CSS custom property
+                  "--tw-ring-color": "var(--sf)",
+                }}
               />
-              <button
-                className="btn btn-primary btn-sm whitespace-nowrap"
-              >
+              <button className="btn btn-primary btn-sm whitespace-nowrap">
                 Subscribe
               </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom */}
+        {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6" style={{ borderTop: "1px solid var(--border)" }}>
           <p className="text-xs" style={{ color: "var(--text-3)" }}>
-            © 2026 IndiaSwiss Community Hub. All rights reserved.
+            © 2026 Indiaspora Community Hub. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <Link href="/privacy" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Privacy Policy</Link>
-            <Link href="/terms" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Terms of Use</Link>
-            <Link href="/privacy#cookies" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Cookie Policy</Link>
-            <a href="mailto:hello@indiaspora.ch?subject=Advertising%20Enquiry" className="text-xs hover:text-orange-400 transition-colors" style={{ color: "var(--text-3)" }}>Advertise</a>
-          </div>
+          <p className="text-xs" style={{ color: "var(--text-3)" }}>
+            Built for the Swiss-Indian community 🇮🇳🇨🇭
+          </p>
         </div>
       </div>
     </footer>

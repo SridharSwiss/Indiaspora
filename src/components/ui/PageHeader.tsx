@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import Script from "next/script";
 
 interface BreadcrumbItem {
   label: string;
@@ -23,8 +24,30 @@ export default function PageHeader({
   gradient = "from-violet-500 to-cyan-500",
   breadcrumbs,
 }: PageHeaderProps) {
+  // JSON-LD breadcrumb schema for Google rich results (principle #5)
+  const breadcrumbSchema = breadcrumbs && {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://indiaspora.ch" },
+      ...breadcrumbs.map((crumb, i) => ({
+        "@type": "ListItem",
+        position: i + 2,
+        name: crumb.label,
+        ...(crumb.href ? { item: `https://indiaspora.ch${crumb.href}` } : {}),
+      })),
+    ],
+  };
+
   return (
     <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 overflow-hidden">
+      {breadcrumbSchema && (
+        <Script
+          id={`breadcrumb-${title.replace(/\s+/g, "-").toLowerCase()}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      )}
       {/* Aurora background orbs */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div
