@@ -13,54 +13,55 @@ export const metadata: Metadata = {
 const steps = [
   {
     step: "1",
-    title: "Register at the Gemeinde",
+    title: "Register at the Gemeinde (within 14 days)",
     description:
-      "Within 14 days of arrival, register at your local Gemeinde (municipality). Bring your passport, visa/permit, rental contract, and employment contract. You'll receive a Anmeldebestätigung (registration confirmation).",
+      "You must register at your local Gemeinde (municipality / commune) within 14 days of arrival. Bring your passport, residence permit (or visa), rental contract, and employment contract. You'll receive an Anmeldebestätigung (registration confirmation). Your AHV/AVS social security number is assigned automatically at this point or by your employer.",
     icon: "🏛️",
   },
   {
     step: "2",
-    title: "Get Health Insurance",
+    title: "Get Health Insurance (within 3 months)",
     description:
-      "Health insurance (Krankenkasse) is mandatory in Switzerland. You have 3 months from arrival to choose a provider. Compare premiums at priminfo.admin.ch. Popular options: CSS, Helsana, Swica, Sanitas.",
+      "Mandatory Swiss health insurance (Krankenkasse / Grundversicherung) must be arranged within 3 months of arrival — it is backdated to your arrival date. Compare premiums by canton at priminfo.admin.ch (official Federal Office of Public Health tool) or comparis.ch. Popular providers: CSS, Helsana, Swica, Sanitas. Monthly premiums range from CHF 350–700 for adults depending on canton and deductible.",
     icon: "🏥",
   },
   {
     step: "3",
     title: "Open a Bank Account",
     description:
-      "You'll need a Swiss bank account for salary deposits and rent payments. PostFinance is the easiest to open (post office). Neon and Yuh are good digital alternatives with English-language apps.",
+      "You'll need a Swiss bank account for salary deposits, rent, and utility payments. Neon and Yuh are the easiest digital options — open entirely via app with your permit and passport. PostFinance is the traditional go-to, with post office branches everywhere. UBS is good for full-service banking. Bring your permit, passport, and (if possible) a rental contract.",
     icon: "🏦",
   },
   {
     step: "4",
     title: "Get a Swiss SIM Card",
     description:
-      "Sunrise, Salt, and Swisscom are the main operators. Salt often has the best value plans. You can buy SIMs at their shops with your passport and residence permit.",
+      "Sunrise, Salt, and Swisscom are the three main mobile operators. Salt often offers the most competitive plans for new arrivals. Aldi Talk, Migros Natel, and M-Budget Mobile offer budget MVNO options. Buy SIMs at their shops or online with your passport and residence permit.",
     icon: "📱",
   },
   {
     step: "5",
     title: "Set Up Your Transport Pass",
     description:
-      "Switzerland's public transport is world-class. Get a Half-Fare Travelcard (Halbtax) for 185 CHF/year to halve all ticket prices. For heavy commuters, the GA (General Abonnement) covers all trains, buses, and trams.",
+      "Switzerland's public transport (SBB trains, city trams, buses) is world-class. Get a Half-Fare Travelcard (Halbtax) for CHF 190/year — it halves the price of all tickets nationwide and pays for itself within a few trips. Heavy commuters should consider the GA Travelcard for unlimited travel. Buy via the SBB app (sbb.ch) or any SBB counter.",
     icon: "🚆",
   },
   {
     step: "6",
     title: "Register with the Indian Embassy",
     description:
-      "Register with the Embassy of India in Bern or the Consulate in Geneva as an Indian national resident in Switzerland. This ensures you receive consular services and emergency assistance.",
+      "Register as an Indian national residing in Switzerland with the Embassy of India in Bern (Thunstrasse 5, 3005 Bern; Tel: +41 31 350 11 10) or the Consulate General of India in Geneva. Registration ensures you can receive consular services, emergency assistance, and official notifications. Online registration is available at indembassybern.gov.in.",
     icon: "🇮🇳",
   },
 ];
 
 const tips = [
-  "Learn at least basic greetings in the local language (German/French/Italian) — it makes daily life much smoother.",
-  "Swiss supermarkets close early (usually 8–9 pm) and most shops are closed on Sundays.",
-  "Recycling is taken very seriously — familiarise yourself with the local waste-sorting rules early.",
-  "Noise rules (Ruhezeit) apply in most residential buildings — avoid loud activities after 10 pm and on Sundays.",
-  "Join local Indian community groups on Facebook and WhatsApp — they're invaluable for settling in.",
+  "Learn at least basic greetings in the local language (German: Grüezi / Hallo; French: Bonjour / Merci) — it genuinely helps in daily interactions and is appreciated by locals.",
+  "Swiss supermarkets (Migros, Coop) close at 8–9 pm on weekdays and 6–8 pm on Saturdays. Most shops are closed on Sundays — plan your grocery shopping accordingly.",
+  "Recycling rules are strict and varied by Gemeinde. Coloured bags (Kehrichtsack) must be used for general waste in most German-speaking cantons and are purchased in supermarkets. Familiarise yourself with your local sorting rules early.",
+  "Noise rules (Ruhezeit) are strictly observed in residential buildings — avoid loud activities after 10 pm, before 7 am, and during Sundays and public holidays. This includes running washing machines in some buildings.",
+  "Join local Indian community groups on Facebook, WhatsApp, and platforms like Glocals.com — fellow Indians are invaluable for settling-in advice, local deals, and a social network.",
+  "Get an Halbtax (Half-Fare Travelcard) before your first big train journey — it pays for itself within one or two inter-city return trips.",
 ];
 
 export default function WelcomePage() {
@@ -111,6 +112,24 @@ export default function WelcomePage() {
             </ul>
           </div>
         </section>
+
+        <div className="glass rounded-2xl p-6 border border-green-500/20">
+          <h3 className="text-base font-semibold text-green-400 mb-2">Indian Embassy & Consulate Contacts</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-white/70">
+            <div>
+              <p className="font-semibold text-white mb-1">Embassy of India, Bern</p>
+              <p>Thunstrasse 5, 3005 Bern</p>
+              <p>Tel: +41 31 350 11 10</p>
+              <p className="text-green-400">indembassybern.gov.in</p>
+            </div>
+            <div>
+              <p className="font-semibold text-white mb-1">Consulate General of India, Geneva</p>
+              <p>9 rue du Valais, 1202 Geneva</p>
+              <p>Tel: +41 22 906 86 86</p>
+              <p className="text-green-400">cgigeneva.gov.in</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
