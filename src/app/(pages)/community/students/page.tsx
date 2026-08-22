@@ -19,10 +19,11 @@ const universities = [
   { name: "University of Bern", url: "https://www.unibe.ch/index_eng.html", city: "Bern", rank: "Top 150 QS", desc: "Strong in medicine, law, and natural sciences. Located in the federal capital." },
 ];
 
+// Student associations verified via ETH Zurich blogs, EPFL campus associations directory (Aug 2026)
 const associations = [
-  { name: "InSAZ – Indian Students Association Zurich", url: "https://insaz.ch", city: "Zurich", desc: "Student association at ETH & UZH — cultural events, networking, Diwali, cricket tournaments." },
-  { name: "Indian Students Association EPFL", url: null, city: "Lausanne", desc: "Indian student community at EPFL — cultural events, mentorship and networking." },
-  { name: "Indian Students Geneva", url: null, city: "Geneva", desc: "Community for Indian students at UNIGE and the Graduate Institute." },
+  { name: "InSAZ – Indian Students Association Zurich", url: "https://blogs.ethz.ch/insaz/", city: "Zurich", desc: "Voluntary student association at ETH Zurich and UZH. Mentorship programme, airport pickup for newcomers, Diwali, Holi, cultural events and networking." },
+  { name: "YUVA – Indians Association EPFL/UNIL", url: "https://www.epfl.ch/campus/associations/yuva/", city: "Lausanne", desc: "Registered EPFL association for Indian and Indian-origin students at EPFL and UNIL. YUVA = Youth United Via Action. Cultural events including Diwali at the Rolex Learning Center." },
+  { name: "Indian Students Geneva", url: null, city: "Geneva", desc: "Community for Indian students at UNIGE and the Graduate Institute. No verified public website found." },
 ];
 
 const scholarships = [

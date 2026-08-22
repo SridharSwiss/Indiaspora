@@ -3,27 +3,27 @@ import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Healthcare in Switzerland for Indians",
-  description: "Swiss health insurance explained — choose the right insurer, model, and franchise. Emergency numbers and tips.",
+  description: "Swiss health insurance explained — choose the right insurer, model, and franchise. Emergency numbers and tips for Indian residents.",
   openGraph: {
     title: "Healthcare in Switzerland for Indians | IndiaSwiss",
-    description: "Swiss health insurance explained — choose the right insurer, model, and franchise. Emergency numbers and tips.",
+    description: "Swiss health insurance explained — choose the right insurer, model, and franchise. Emergency numbers and tips for Indian residents.",
   },
 };
 
 const insurers = [
-  { name: "CSS", note: "Largest Swiss insurer; good English support." },
-  { name: "Helsana", note: "Wide network; strong supplementary plans." },
-  { name: "Swica", note: "Highly rated for customer service." },
-  { name: "Sanitas", note: "Good digital app and online tools." },
-  { name: "Assura", note: "Lowest premiums but limited network." },
-  { name: "Concordia", note: "Cooperative model; good for families." },
+  { name: "CSS", note: "One of the largest insurers; good English support and online tools." },
+  { name: "Helsana", note: "Wide network; strong supplementary (Zusatzversicherung) plans." },
+  { name: "Swica", note: "Consistently highly rated for customer service and digital experience." },
+  { name: "Sanitas", note: "Good digital app; popular among younger expats." },
+  { name: "Assura", note: "Often the lowest premiums; more limited network. Good for healthy adults." },
+  { name: "Concordia", note: "Cooperative model; good value for families with children." },
 ];
 
 const models = [
-  { name: "Standard", desc: "Free choice of any doctor or specialist. Highest premium." },
-  { name: "HMO", desc: "Must use a specific group practice as gatekeeper. Lower premium." },
-  { name: "Telmed", desc: "Call a medical hotline first before seeing a doctor. Moderate savings." },
-  { name: "Family Doctor (Hausarzt)", desc: "Register with a GP who refers you to specialists. Good savings." },
+  { name: "Standard", desc: "Free choice of any doctor or specialist in Switzerland. Highest premium but maximum flexibility." },
+  { name: "HMO", desc: "Must use a specific group practice as your first point of contact (gatekeeper). Lower premium — savings of 15–25%." },
+  { name: "Telmed", desc: "Call a medical advice hotline first before seeing a doctor. Moderate savings of 10–20%." },
+  { name: "Family Doctor (Hausarzt)", desc: "Register with a GP who coordinates your care and refers you to specialists. Good savings and continuity of care." },
 ];
 
 export default function HealthcarePage() {
@@ -44,12 +44,12 @@ export default function HealthcarePage() {
         <section>
           <h2 className="text-2xl font-bold text-white mb-4">How Swiss Health Insurance Works</h2>
           <div className="glass rounded-2xl p-6 mb-6">
-            <p className="text-white/70 text-sm leading-relaxed">Health insurance (Grundversicherung / assurance de base) is <strong className="text-white">mandatory</strong> for all residents. You must enrol within 3 months of arrival — it is backdated to your arrival date. The government sets the minimum coverage; all insurers must cover the same basic benefits. You choose your insurer, model, and annual deductible (franchise).</p>
+            <p className="text-white/70 text-sm leading-relaxed">Health insurance (Grundversicherung / assurance de base / LAMal-KVG) is <strong className="text-white">mandatory</strong> for all residents. You must enrol within <strong className="text-white">3 months of arrival</strong> — it is backdated to your arrival date. The Federal government sets the minimum coverage; all approved insurers must cover the same basic benefits. You choose your insurer, model, and annual deductible (franchise). Compare all options at the official government tool: <span className="text-red-400">priminfo.admin.ch</span> (Federal Office of Public Health), or at <span className="text-red-400">comparis.ch</span> or <span className="text-red-400">moneyland.ch</span> for side-by-side premium comparisons.</p>
           </div>
           <h3 className="text-lg font-semibold text-white mb-4">Choose Your Deductible (Franchise)</h3>
           <div className="glass rounded-2xl p-6">
-            <p className="text-sm text-white/70 mb-3">The franchise ranges from <strong className="text-white">CHF 300 to CHF 2,500/year</strong>. Higher franchise = lower monthly premium, but you pay more out-of-pocket when you need care. Healthy adults who rarely visit doctors benefit from a high franchise. Families with children should consider a lower franchise.</p>
-            <p className="text-sm text-white/50">Compare all insurers and models at <span className="text-red-400">priminfo.admin.ch</span> (official government comparator).</p>
+            <p className="text-sm text-white/70 mb-3">The franchise ranges from <strong className="text-white">CHF 300 to CHF 2,500/year</strong>. Higher franchise = lower monthly premium, but you pay more out-of-pocket when you need care. As a rough guide, typical monthly premiums for a standard adult plan range from <strong className="text-white">CHF 350–700/month</strong> depending on canton (lowest in Appenzell Innerrhoden, highest in Geneva and Basel-Stadt). After your deductible is met, you also pay a 10% co-payment (Selbstbehalt) up to a maximum of CHF 700/year.</p>
+            <p className="text-sm text-white/50">Children's premiums are significantly lower and the franchise is capped at CHF 600.</p>
           </div>
         </section>
 
@@ -80,10 +80,11 @@ export default function HealthcarePage() {
         <div className="glass rounded-2xl p-6 border border-red-500/20">
           <h3 className="text-base font-semibold text-red-400 mb-3">Emergency Numbers</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-            {[{n:"112",l:"General Emergency"},{n:"144",l:"Ambulance"},{n:"117",l:"Police"},{n:"145",l:"Poisoning"}].map(e=>(
+            {[{n:"112",l:"General Emergency"},{n:"144",l:"Ambulance"},{n:"117",l:"Police"},{n:"145",l:"Poisoning (Tox)"}].map(e=>(
               <div key={e.n}><p className="text-2xl font-bold text-white">{e.n}</p><p className="text-xs text-white/50">{e.l}</p></div>
             ))}
           </div>
+          <p className="text-xs text-white/40 mt-4">After hours GP service: call your insurer's Telmed line (number on your insurance card) or dial 0800 33 66 55 (Mediphone, free, 24/7).</p>
         </div>
       </div>
     </div>

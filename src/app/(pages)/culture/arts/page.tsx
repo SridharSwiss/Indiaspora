@@ -11,20 +11,92 @@ export const metadata: Metadata = {
 };
 
 const danceSchools = [
-  { name: "Natya Academy Zurich", style: "Bharatanatyam", city: "Zurich", level: "All levels", desc: "Certified Bharatanatyam classes for children and adults. Annual Arangetram recitals." },
-  { name: "Bollywood Dance Studio Zurich", style: "Bollywood / Fusion", city: "Zurich", level: "Beginner–Intermediate", desc: "Weekly Bollywood workshops and choreography for events, weddings, and Diwali shows." },
-  { name: "Bollywood Beats Geneva", style: "Bollywood", city: "Geneva", level: "Fitness & Performance", desc: "Dance fitness classes and group performances for the Geneva Indian community." },
-  { name: "Kuchipudi Kalakshetra", style: "Kuchipudi", city: "Zurich", level: "Children & Advanced", desc: "Telugu classical dance — regular group classes and annual Guru Purnima recital." },
-  { name: "Odissi Dance Academy Basel", style: "Odissi", city: "Basel", level: "Intermediate–Advanced", desc: "Odissi classical dance with training inspired by the Odisha tradition." },
-  { name: "Dhol & Bhangra Group Zurich", style: "Bhangra / Folk", city: "Zurich", level: "All levels", desc: "High-energy Bhangra group for events, weddings, Navratri, and Lohri celebrations." },
+  {
+    name: "Chidambareshwara School of Bharathanatyam",
+    style: "Bharatanatyam",
+    city: "Zurich",
+    level: "All levels",
+    url: "https://www.chidambareshwara.com/",
+    desc: "Tamil-Indian Bharathanatyam institution in Zurich, founded by Mathuschanka Baskaran-Kajeep. Classes in Tamil, English & German at GZ Seebach (Wed) and Buchs ZH (Sat). Level exams and Arangetram recitals."
+  },
+  {
+    name: "Omkara School of Indian Dance",
+    style: "Bharatanatyam",
+    city: "Geneva",
+    level: "All levels",
+    url: "https://www.omkara-dance.com/en/home/",
+    desc: "Promoting Bharata Natyam in Geneva since 1987. Artistic director Sujatha Venkatesh trained under renowned Masters in Bangalore. ISTD (UK) and CID (France) certifications offered. Source: omkara-dance.com"
+  },
+  {
+    name: "Kalasri — School of Indian Dance & Yoga",
+    style: "Bharatanatyam & Yoga",
+    city: "Basel",
+    level: "All levels",
+    url: "https://www.kalasri.com/",
+    desc: "The first Indian dance and yoga school in Switzerland, founded in 1976 by Esther Jenny and D. Keshava. Located at Freie Strasse 3, Basel (near Marktplatz). Serves students from Switzerland, Germany, and France."
+  },
+  {
+    name: "Nateschwara Academy of Performing Indian Arts",
+    style: "Bharata Natyam & Carnatic Music",
+    city: "Baden (near Zurich)",
+    level: "Beginner to Teacher Training",
+    url: "https://nateschwara.ch/en/",
+    desc: "One of the most important Indian performing arts schools outside India, founded 1980 by Vijaya Rao. Offers Bharata Natyam, Carnatic Singing, Hindi & Sanskrit, Yoga & Meditation. Annual Festival of Dance & Music."
+  },
+  {
+    name: "NAVARASA — School of Indian Dance",
+    style: "Mohiniyattam & Bollywood",
+    city: "Switzerland",
+    level: "Beginner to Advanced",
+    url: "https://navarasa.ch/",
+    desc: "Teaches Mohiniyattam (Kerala classical dance) and Bollywood fusion. Workshops from introductory sessions for beginners to advanced training. Active on Instagram @navarasa_swiss."
+  },
+  {
+    name: "Stuti Aga Dance Company",
+    style: "Bharatanatyam Fusion",
+    city: "Zurich",
+    level: "Classes & Performances",
+    url: "https://www.stutiaga.com/portfolio/bharatanatyam/",
+    desc: "Zurich-based Bharatanatyam Fusion dance company offering classes, workshops, and performances. Blends classical Bharatanatyam with contemporary elements."
+  },
 ];
 
 const musicGroups = [
-  { name: "Indian Music Circle Switzerland", genre: "Carnatic & Hindustani", city: "Zurich", url: "https://www.facebook.com/IndianMusicSwitzerland/", desc: "Promotes classical Indian music — concerts, learning circles, and visiting artist events." },
-  { name: "Sur Swarang Zurich", genre: "Hindustani Classical", city: "Zurich", url: null, desc: "Tabla, sitar, flute, and vocal — lessons for all skill levels from beginners to advanced." },
-  { name: "Bollywood Band Switzerland", genre: "Bollywood / Film", city: "Zurich", url: null, desc: "Live band for weddings, Diwali events, and corporate shows across Switzerland." },
-  { name: "Sufi Nights Switzerland", genre: "Sufi / Qawwali", city: "Geneva", url: null, desc: "Quarterly Sufi music evenings, open to all communities. Spiritual and contemplative." },
-  { name: "Dhwani Carnatic Vocal", genre: "Carnatic Vocal", city: "Baden (Near Zurich)", url: null, desc: "Carnatic vocal lessons for children above 6 and adults. Beginner to intermediate." },
+  {
+    name: "Peter Huber — Tabla & Sitar School",
+    genre: "Tabla, Sitar, Surbahar",
+    city: "Zurich & Küttigen/AG",
+    url: "https://www.tabla-schule.ch/",
+    desc: "Tabla, sitar, and surbahar instruction by Peter Huber, who studied tabla with Pandit Arvind Mulgaonkar in Mumbai from 1988–2018. Teaching Indian classical music in Switzerland since 1992."
+  },
+  {
+    name: "Hans Wettstein — Sitar & Dhrupad Vocal",
+    genre: "Sitar, Dhrupad & Khyal Vocal",
+    city: "Zurich",
+    url: "https://www.sitar.ch/",
+    desc: "Sitar and Hindustani vocal (Dhrupad, Khyal) instruction. Hans Wettstein studied Indian classical music in Varanasi for 12 years. Individual and small-group lessons."
+  },
+  {
+    name: "Hindustani Vocal — ADEM Zurich",
+    genre: "Hindustani Vocal",
+    city: "Zurich",
+    url: "https://adem.ch/en/classes/hindustani-vocal",
+    desc: "Hindustani vocal classes offered through ADEM (Academy of Dance and Ethnic Music), Zurich. Open to all skill levels."
+  },
+  {
+    name: "Swiss Indian Orchestra",
+    genre: "Fusion & Classical",
+    city: "Switzerland",
+    url: "https://mx3.ch/swiss_indian_orchestra",
+    desc: "Orchestra blending Indian classical and Swiss/Western musical traditions. Performs at cultural events and festivals across Switzerland."
+  },
+  {
+    name: "Namaste Switzerland — Concert Events",
+    genre: "Carnatic & Hindustani Concerts",
+    city: "Switzerland-wide",
+    url: "https://namasteswitzerland.ch/",
+    desc: "Organises classical Indian music concerts including 'Classical Music of India' sitar and tabla concert series. Promotes Indian performing arts across Switzerland."
+  },
 ];
 
 const yogaStudios = [
@@ -53,21 +125,32 @@ export default function ArtsPage() {
           <p className="text-slate-400 mb-8">Classical and contemporary Indian dance across Switzerland</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {danceSchools.map((d) => (
-              <div key={d.name} className="glass rounded-2xl p-5 card-hover">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-semibold text-white text-sm flex-1 mr-2">{d.name}</h3>
-                  <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full shrink-0">{d.city}</span>
+              d.url ? (
+                <a key={d.name} href={d.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-semibold text-white text-sm flex-1 mr-2 group-hover:text-rose-400 transition-colors">{d.name}</h3>
+                    <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full shrink-0">{d.city}</span>
+                  </div>
+                  <p className="text-xs text-white/40 mb-1">{d.style} &middot; {d.level}</p>
+                  <p className="text-sm text-slate-400">{d.desc}</p>
+                </a>
+              ) : (
+                <div key={d.name} className="glass rounded-2xl p-5 card-hover">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-semibold text-white text-sm flex-1 mr-2">{d.name}</h3>
+                    <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full shrink-0">{d.city}</span>
+                  </div>
+                  <p className="text-xs text-white/40 mb-1">{d.style} &middot; {d.level}</p>
+                  <p className="text-sm text-slate-400">{d.desc}</p>
                 </div>
-                <p className="text-xs text-white/40 mb-1">{d.style} &middot; {d.level}</p>
-                <p className="text-sm text-slate-400">{d.desc}</p>
-              </div>
+              )
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Music Groups & Academies</h2>
-          <p className="text-slate-400 mb-8">Carnatic, Hindustani, Bollywood, and Sufi music communities</p>
+          <h2 className="text-2xl font-bold text-white mb-2">Music Teachers & Groups</h2>
+          <p className="text-slate-400 mb-8">Carnatic, Hindustani, and fusion music communities in Switzerland</p>
           <div className="grid md:grid-cols-2 gap-5">
             {musicGroups.map((m) => (
               m.url ? (

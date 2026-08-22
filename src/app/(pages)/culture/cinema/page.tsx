@@ -11,10 +11,34 @@ export const metadata: Metadata = {
 };
 
 const screenings = [
-  { name: "Indian Film Festival Zurich", timing: "November 2026", location: "Zurich City Centre cinemas", desc: "Annual curated festival of Indian cinema — Bollywood, regional art-house, and independent documentaries. Often includes Q&A with visiting directors.", org: "IndieSwiss Cinema" },
-  { name: "Indian Film Festival Geneva", timing: "November 2026", location: "Cinema Spoutnik, Geneva", desc: "Parallel event in Geneva — French-subtitled screenings of Indian films for the multilingual community.", org: "IAG & CineIndien" },
-  { name: "Bollywood Night Zurich", timing: "Monthly", location: "Various venues, Zurich", desc: "Screening of the latest Bollywood release — announced via IAGZ and community WhatsApp groups. Often followed by dinner.", org: "IAGZ" },
-  { name: "Tamil Film Screenings", timing: "Quarterly", location: "Zurich & Geneva", desc: "Recent Tamil blockbusters screened for the Swiss-Tamil community. Announced via Tamil Sangam Switzerland.", org: "Tamil Sangam" },
+  {
+    name: "Indian Film Festival — Embassy of India",
+    timing: "February–March (Annual)",
+    location: "Berne, Zurich, Basel & Lucerne",
+    desc: "Free annual film festival organised by the Embassy of India in Berne. Screens a curated selection of Indian films (Bollywood and regional) across 4 Swiss cities. Past editions featured Kantara, Dangal, 83, Rocketry, and Zindagi Na Milegi Dobara. Source: indembassybern.gov.in",
+    org: "Embassy of India, Berne",
+  },
+  {
+    name: "Bollywood Screenings — SwissDesi / IndianMomsZurich",
+    timing: "Regular (throughout year)",
+    location: "Kino Claudia (Kloten), Riff-Raff (Zurich), Pathé Westside (Bern), Kino City (Uzwil)",
+    desc: "SwissDesi (formerly IndianMomsZurich) announces and coordinates Bollywood and Indian regional film screenings across Swiss cinemas. Covers Hindi, Tamil, Malayalam, and Telugu releases. Source: swissdesi.ch",
+    org: "SwissDesi",
+  },
+  {
+    name: "India Fest & Margazhi Utsav",
+    timing: "December (Annual, 3 days)",
+    location: "Zurich",
+    desc: "Three-day cultural festival combining Indian film screenings with classical music and dance performances, organised by the Embassy of India in collaboration with the Swiss India Fine Arts Association (SIFAA). Held in December 2024 (6–8 Dec). Source: indembassybern.gov.in",
+    org: "Embassy of India & SIFAA",
+  },
+  {
+    name: "Tamil Film Screenings",
+    timing: "Periodic",
+    location: "Zurich & Geneva",
+    desc: "Tamil blockbusters and recent releases screened for the Swiss-Tamil community. Announced via Tamil community groups. The Tamil diaspora is one of the largest Indian subgroups in Switzerland.",
+    org: "Tamil Community Groups",
+  },
 ];
 
 const streaming = [
@@ -29,7 +53,7 @@ const streaming = [
 const radio = [
   { name: "Radio Salaam Namaste", url: "https://www.radiosalaamnamaste.com", desc: "Online Hindi radio — Bollywood music, RJ chat, and community news. Streams globally." },
   { name: "Red FM India (Online)", url: "https://www.redfm.in", desc: "Popular Indian FM station available as online stream. Latest Bollywood hits and RJ shows." },
-  { name: "Spotify – Indian Music", url: "https://open.spotify.com/genre/bollywood-page", desc: "Bollywood playlists, Carnatic classical, Punjabi, Tamil, and all regional Indian music genres." },
+  { name: "Spotify — Indian Music", url: "https://open.spotify.com/genre/bollywood-page", desc: "Bollywood playlists, Carnatic classical, Punjabi, Tamil, and all regional Indian music genres." },
 ];
 
 export default function CinemaPage() {
@@ -64,6 +88,10 @@ export default function CinemaPage() {
               </div>
             ))}
           </div>
+          <p className="text-xs text-white/30 mt-4">
+            Note: Switzerland has a long cinematic connection with India — an estimated 200+ Indian films have been partially shot on Swiss locations. See{" "}
+            <a href="https://en.wikipedia.org/wiki/Indian_cinema_and_Switzerland" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300">Wikipedia: Indian cinema and Switzerland</a> for background.
+          </p>
         </section>
 
         <section>

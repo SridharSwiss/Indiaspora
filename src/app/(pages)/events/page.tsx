@@ -4,18 +4,18 @@ import { UPCOMING_EVENTS } from "@/lib/data";
 const categories = ["All", "Festival", "Networking", "Cultural", "Food", "Arts", "Sports"];
 
 const monthlyCalendar = [
-  { month: "January", events: ["Pongal Celebration (Geneva)", "Lohri Night (Zurich)", "Makar Sankranti celebrations"] },
-  { month: "February", events: ["Valentine's Bollywood Night", "Vasant Panchami Puja"] },
-  { month: "March", events: ["Holi Festival Basel", "Holi Zurich (Landiwiese)", "Ugadi / Gudi Padwa"] },
-  { month: "April", events: ["Baisakhi Bhangra Night", "Tamil/Telugu New Year", "Ram Navami Puja"] },
-  { month: "May", events: ["Buddha Purnima", "Indian food pop-ups"] },
-  { month: "June", events: ["Rath Yatra (ISKCON)", "Summer networking events"] },
-  { month: "July", events: ["Bollywood Dance Workshop", "Guru Purnima"] },
-  { month: "August", events: ["Indian Independence Day (Embassy Bern)", "Indian Food Festival Basel", "Onam celebrations"] },
-  { month: "September", events: ["Ganesh Chaturthi", "Swiss India Business Summit (Bern)"] },
-  { month: "October", events: ["Navratri Garba Night", "Dussehra celebrations", "Diwali Mela Zurich"] },
-  { month: "November", events: ["Diwali parties and melas (all cities)", "Indian Film Festival Zurich", "Bhai Dooj events"] },
-  { month: "December", events: ["Christmas Indian fusion party", "Year-end community gala", "Advent Indian bazaar"] },
+  { month: "January", events: ["Pongal Celebration (Tamil community, Geneva & Zurich)", "Lohri Night (Zurich)", "Makar Sankranti / Uttarayan puja"] },
+  { month: "February", events: ["Valentine's Bollywood Night (Zurich & Basel)", "Vasant Panchami Puja"] },
+  { month: "March", events: ["IAGZ Holi Rang Barse (Landiwiese, Zurich — late March)", "Holi ONE Color Festival Zurich", "Ugadi / Gudi Padwa celebrations"] },
+  { month: "April", events: ["Baisakhi Bhangra Night", "Tamil/Telugu New Year (Puthandu / Ugadi)", "Ram Navami Puja"] },
+  { month: "May", events: ["InBa India Basel Festival (Theater Basel, May–Jun)", "Buddha Purnima"] },
+  { month: "June", events: ["ISKCON Rath Yatra (Zurich streets, June)", "InBa India Basel Festival (Theater Basel, May–Jun)", "Summer networking events"] },
+  { month: "July", events: ["Bollywood Dance Workshop", "Guru Purnima", "Swiss-India Business networking"] },
+  { month: "August", events: ["Indian Independence Day (Embassy of India, Kirchenfeldstrasse 28, Berne)", "Onam Sadya celebrations (Kerala community)", "Indian Food pop-ups"] },
+  { month: "September", events: ["Ganesh Chaturthi puja (Zurich & Basel)", "Swiss India Business Summit (Kursaal Bern)", "IAGZ Raas Garba / Navratri (late Sept)"] },
+  { month: "October", events: ["IAGZ Navratri Garba Night (Zurich)", "SwissPuja Durga Puja (Schwerzisaal, Langnau am Albis)", "Dussehra celebrations"] },
+  { month: "November", events: ["IAGZ Diwali Gala (Mattenhofsaal, Zurich — late Nov)", "Diwali events (Geneva, Basel, Bern)", "Bhai Dooj gatherings"] },
+  { month: "December", events: ["Year-end community gala (IAGZ)", "Christmas-Bollywood fusion party", "Advent Indian bazaar"] },
 ];
 
 export default function EventsPage() {

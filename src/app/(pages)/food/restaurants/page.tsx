@@ -14,23 +14,131 @@ const cities = [
   {
     city: "Zurich",
     restaurants: [
-      { name: "Saffron", area: "City Centre", type: "North Indian", note: "Upscale North Indian cuisine; popular for business lunches." },
-      { name: "Ganesha", area: "Langstrasse", type: "South Indian / Pan-Indian", note: "Affordable lunch thalis and dosas; community favourite." },
-      { name: "India House", area: "Oerlikon", type: "Punjabi", note: "Generous portions; halal options available." },
+      {
+        name: "Kailash Parbat",
+        area: "Enge / City West",
+        type: "Vegetarian Indian",
+        note: "Mumbai street food institution — chaats, bhel puri, pav bhaji. 100% vegetarian. Claridenstrasse 36, 8002 Zürich.",
+        url: "https://www.kailashparbat.ch",
+      },
+      {
+        name: "Tamarind Hill",
+        area: "Oerlikon",
+        type: "Modern Indian",
+        note: "Contemporary Indian cuisine with outdoor seating near Oerlikon station. Schaffhauserstrasse 306, 8050 Zürich.",
+        url: "https://tamarindhill.ch",
+      },
+      {
+        name: "Restaurant Vulkan",
+        area: "Langstrasse / Gewerbeschule",
+        type: "Pan-Indian / Buffet",
+        note: "Established Zurich favourite with traditional clay-oven tandoor dishes and all-you-can-eat buffets. Klingenstrasse 33, 8005 Zürich.",
+        url: "https://restaurant-vulkan.ch",
+      },
+      {
+        name: "Tamarind Garden",
+        area: "Zurich",
+        type: "North & South Indian",
+        note: "Relaxed setting with a wide menu spanning North Indian curries and South Indian classics.",
+        url: "https://tamarindgarden.ch",
+      },
     ],
   },
   {
     city: "Geneva",
     restaurants: [
-      { name: "Rasoi", area: "Carouge", type: "Pan-Indian", note: "Popular with UN professionals; good vegetarian options." },
-      { name: "Taj Mahal", area: "City Centre", type: "North Indian", note: "Classic Indian restaurant; open for decades." },
+      {
+        name: "Indian Plaza",
+        area: "Pâquis",
+        type: "Pan-Indian",
+        note: "Well-known restaurant in the UN district. Rue de Monthoux 58, 1201 Genève. Phone: +41 22 732 07 32.",
+        url: "https://indianplaza.ch",
+      },
+      {
+        name: "Café Gandhi",
+        area: "City Centre",
+        type: "Pan-Indian",
+        note: "Authentic curries and thalis since 1996 — one of Geneva's longest-running Indian restaurants. Also offers event catering.",
+        url: "https://gandhi.ch",
+      },
+      {
+        name: "Indian Bites",
+        area: "Geneva",
+        type: "Contemporary Indian",
+        note: "Popular for quick and flavourful Indian bites; good vegetarian selection.",
+        url: "https://www.indianbites.ch",
+      },
+      {
+        name: "Little India Street Kitchen",
+        area: "Pâquis",
+        type: "Street Food / Pan-Indian",
+        note: "Street food-style Indian kitchen. Rue de Lausanne 29, 1201 Genève. Phone: +41 22 732 71 81.",
+        url: "https://www.geneve.com/en/restaurants/little-india-street-kitchen",
+      },
     ],
   },
   {
     city: "Basel",
     restaurants: [
-      { name: "Bollywood", area: "Grossbasel", type: "Pan-Indian", note: "Lively atmosphere; popular with pharma community." },
-      { name: "Curry Heaven", area: "Kleinbasel", type: "South Indian", note: "Dosas and South Indian breakfast on weekends." },
+      {
+        name: "Bajwa Palace (The Bajwa's)",
+        area: "Vorstädte / City Centre",
+        type: "Punjabi",
+        note: "Family-run Punjabi restaurant serving authentic North Indian cuisine. Dine-in and takeaway. Elisabethenstrasse 41, 4051 Basel.",
+        url: "https://thebajwas.ch",
+      },
+      {
+        name: "Indian Tandoori Palace",
+        area: "Grossbasel / Petersgraben",
+        type: "North Indian / Tandoor",
+        note: "Family-owned restaurant with experienced chef. Gluten-free, dairy-free, and vegan options available. Petersgraben 21, 4051 Basel.",
+        url: "https://indiantandooripalacerestaurant.ch",
+      },
+    ],
+  },
+  {
+    city: "Bern",
+    restaurants: [
+      {
+        name: "Indian Kitchen",
+        area: "Lorraine",
+        type: "Pan-Indian",
+        note: "Popular neighbourhood restaurant known for generous portions and home-style cooking. Lorrainestrasse 25, 3013 Bern.",
+        url: "https://indiankitchen.ch",
+      },
+      {
+        name: "Namaste India",
+        area: "Monbijou",
+        type: "North Indian",
+        note: "Established Indian restaurant near Bern city centre. Monbijoustrasse 26, Bern.",
+        url: "https://www.namasteindia.ch",
+      },
+      {
+        name: "Way to India",
+        area: "Bärenplatz / City Centre",
+        type: "Pan-Indian",
+        note: "Central Bern location steps from Bärenplatz. Convenient for lunch. Bärenplatz 3, 3011 Bern.",
+        url: "https://www.yelp.com/biz/way-to-india-bern",
+      },
+    ],
+  },
+  {
+    city: "Lausanne",
+    restaurants: [
+      {
+        name: "Indian Zayeka",
+        area: "Chavannes-près-Renens",
+        type: "Pan-Indian",
+        note: "Well-regarded Indian restaurant near Lausanne, listed on official Lausanne tourism site. Rue de la Mouline 8, 1022 Chavannes-près-Renens.",
+        url: "https://www.indianzayeka.ch",
+      },
+      {
+        name: "New Delhi",
+        area: "City Centre",
+        type: "North Indian",
+        note: "Centrally located near Lausanne train station. Avenue Louis-Ruchonnet 2, 1003 Lausanne. Phone: +41 21 323 64 61.",
+        url: "https://www.trip.com/restaurant/switzerland/lausanne/detail/new-delhi-indian-restaurant-68670164/",
+      },
     ],
   },
 ];
@@ -56,7 +164,13 @@ export default function RestaurantsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {c.restaurants.map((r) => (
                 <div key={r.name} className="glass card-hover rounded-2xl p-5">
-                  <h3 className="text-base font-semibold text-white mb-0.5">{r.name}</h3>
+                  <h3 className="text-base font-semibold text-white mb-0.5">
+                    {r.url ? (
+                      <a href={r.url} target="_blank" rel="noopener noreferrer" className="hover:text-orange-400 transition-colors">
+                        {r.name}
+                      </a>
+                    ) : r.name}
+                  </h3>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xs text-white/40">{r.area}</span>
                     <span className="text-white/20">·</span>

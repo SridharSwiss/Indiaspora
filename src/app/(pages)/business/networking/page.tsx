@@ -3,20 +3,20 @@ import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Business Networking for Indians in Switzerland",
-  description: "Connect with Indian professionals through SICC, TiE Zurich, NASSCOM, and the Swiss-Indian business community.",
+  description: "Connect with Indian professionals through SICC, TiE Zurich, SIPN, and the Swiss-Indian business community.",
   openGraph: {
     title: "Business Networking for Indians in Switzerland | IndiaSwiss",
-    description: "Connect with Indian professionals through SICC, TiE Zurich, NASSCOM, and the Swiss-Indian business community.",
+    description: "Connect with Indian professionals through SICC, TiE Zurich, SIPN, and the Swiss-Indian business community.",
   },
 };
 
 const chambers = [
   {
-    name: "Swiss Indian Chamber of Commerce (SICC)",
+    name: "Swiss-Indian Chamber of Commerce (SICC)",
     url: "https://sicc.ch",
     founded: "1985",
     members: "400+ members",
-    desc: "The premier bilateral trade chamber with offices in Zurich, Mumbai, New Delhi, Bengaluru, and Pune. Runs trade missions, B2B matchmaking, and an annual India Day event.",
+    desc: "The premier bilateral trade chamber celebrating its 40th anniversary in 2025. Offices in Zurich and Mumbai. Hosts 50+ events annually and played a pivotal role in getting the EFTA–India Trade Agreement signed in 2024.",
     tag: "Chamber",
   },
   {
@@ -24,40 +24,40 @@ const chambers = [
     url: "https://zurich.tie.org",
     founded: "2000s",
     members: "Global 15,000+",
-    desc: "The Indus Entrepreneurs — connecting Indian-origin founders, investors, and mentors. Monthly events, annual TiECon, and 1:1 mentoring for startups.",
+    desc: "The Indus Entrepreneurs — connecting Indian-origin founders, investors, and mentors in Switzerland. Monthly events, annual TiECon, and 1:1 mentoring for startups.",
     tag: "Startups",
   },
   {
-    name: "NASSCOM Switzerland",
-    url: "https://nasscom.in",
-    founded: "1988",
-    members: "3,000+ companies",
-    desc: "India's IT industry body connects tech professionals globally. Switzerland-based Indian IT professionals use it for policy advocacy, networking, and talent forums.",
-    tag: "Technology",
+    name: "Swiss India Professional Network (SIPN)",
+    url: "https://sipn.ch",
+    founded: "2024",
+    members: "Growing",
+    desc: "Newly launched network bringing together Indian-origin professionals, entrepreneurs, researchers, and business leaders with a Swiss connection. First event held in Basel in collaboration with Walter Science.",
+    tag: "Network",
   },
   {
-    name: "India Business Switzerland (IBS)",
-    url: "https://sicc.ch/swiss-business-hub/",
+    name: "SICC Young Professionals Network",
+    url: "https://sicc.ch/young-professionals-network/",
     founded: "Via SICC",
-    members: "SME & MNC",
-    desc: "Facilitated through the SICC Swiss Business Hub — supports Indian companies entering Switzerland and Swiss companies expanding to India.",
-    tag: "Trade",
+    members: "Students & early-career",
+    desc: "Brings together India-enthusiastic students, early-career professionals, emerging leaders, and founders. Co-organises the annual Swiss-Indian Entrepreneurship Day with Venturelab and Swissnex.",
+    tag: "Youth",
   },
 ];
 
 const events = [
-  { name: "SICC Annual India Day", timing: "August", desc: "Flagship bilateral event attended by Swiss and Indian government officials, CEOs, and diplomats." },
-  { name: "TiEcon Switzerland", timing: "Autumn", desc: "Annual conference for Indian-origin entrepreneurs. Startup pitches, investor panels, and networking." },
-  { name: "Swiss India Business Summit", timing: "September", desc: "Cross-sector summit at Kursaal Bern connecting Swiss corporates with Indian business delegations." },
-  { name: "SICC Business Breakfast", timing: "Monthly", desc: "Informal breakfast networking with Swiss-Indian executives in Zurich." },
-  { name: "Pharma India Forum Basel", timing: "Bi-annual", desc: "Connecting Basel-based Indian pharma professionals at Novartis, Roche, and Lonza." },
-  { name: "TiE Zurich Pitch Night", timing: "Quarterly", desc: "Indian-origin startups pitch to a panel of investors and serial entrepreneurs." },
+  { name: "SICC Annual India Day", timing: "August", desc: "Flagship bilateral event attended by Swiss and Indian government officials, CEOs, and diplomats. Celebrating 40 years in 2025." },
+  { name: "Swiss-Indian Entrepreneurship Day", timing: "February", desc: "Annual event by SICC, Venturelab, ZHAW, and Swissnex India featuring startup pitches, power talks, and the Swiss-Indian Ambassador of Innovation award." },
+  { name: "TiEcon Switzerland", timing: "Autumn", desc: "Annual conference for Indian-origin entrepreneurs. Startup pitches, investor panels, and networking across Zurich." },
+  { name: "SICC Business Breakfast", timing: "Monthly", desc: "Informal breakfast networking with Swiss-Indian executives in Zurich — open to SICC members and invited guests." },
+  { name: "SIPN Networking Evening", timing: "Quarterly", desc: "Swiss India Professional Network events in Zurich, Basel, and Geneva, bringing together Indian diaspora across sectors." },
+  { name: "Pharma India Forum Basel", timing: "Bi-annual", desc: "Connecting Basel-based Indian pharma professionals at Novartis, Roche, and Lonza with visiting Indian delegations." },
 ];
 
 const linkedin = [
-  { name: "Indian Professionals Switzerland", url: "https://www.linkedin.com/search/results/groups/?keywords=Indian%20professionals%20Switzerland", members: "10,000+", desc: "Largest LinkedIn community for Indians working in Switzerland." },
-  { name: "Swiss-Indian Business Network", url: "https://www.linkedin.com/search/results/groups/?keywords=Swiss%20Indian%20Business", members: "2,500+", desc: "B2B networking for professionals bridging Switzerland and India." },
-  { name: "Indians at Google Zurich", url: "https://www.linkedin.com/company/google/", members: "1,000+", desc: "Informal community of Indian engineers and PMs at Google's Zurich campus." },
+  { name: "Indian Association of Greater Zurich (IAGZ)", url: "https://iagz.ch", members: "100+ families", desc: "Formed in 2010, IAGZ is the main social and cultural platform for the Indian community in the Greater Zurich Area. Non-political, open to all age groups and regions of India." },
+  { name: "Indian Association Geneva", url: "https://indianassociationgeneva.com", members: "500+ members", desc: "The largest and most active Indian association in Switzerland. Serves as a social and cultural forum for Indians in Geneva and fosters friendship with the Swiss and international community." },
+  { name: "Swiss-Indian Chamber of Commerce", url: "https://www.linkedin.com/company/swiss---indian-chamber-of-commerce/", members: "4,800+ LinkedIn followers", desc: "Official SICC LinkedIn page — announcements, events, trade mission updates, and member spotlights." },
 ];
 
 export default function NetworkingPage() {
@@ -65,7 +65,7 @@ export default function NetworkingPage() {
     <div>
       <PageHeader
         title="Networking & Chambers"
-        subtitle="Switzerland’s Indian professional community is built on strong bilateral institutions, elite startup networks, and active industry forums."
+        subtitle="Switzerland's Indian professional community is built on strong bilateral institutions, elite startup networks, and active industry forums."
         badge="Business Networking"
         gradient="from-teal-500 to-cyan-600"
         breadcrumbs={[
@@ -112,8 +112,8 @@ export default function NetworkingPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-2">Online Communities</h2>
-          <p className="text-slate-400 mb-8">LinkedIn groups and digital networks</p>
+          <h2 className="text-2xl font-bold text-white mb-2">Community Organisations</h2>
+          <p className="text-slate-400 mb-8">Associations, LinkedIn pages, and digital networks</p>
           <div className="space-y-4">
             {linkedin.map((l) => (
               <a key={l.name} href={l.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover flex items-start justify-between gap-4 block group">
@@ -129,7 +129,7 @@ export default function NetworkingPage() {
 
         <div className="glass rounded-2xl p-6 border border-teal-500/20">
           <h3 className="text-base font-semibold text-teal-400 mb-2">Tip: How to join SICC</h3>
-          <p className="text-sm text-slate-300">Annual SICC membership starts at CHF 200 for individuals. Members get access to events, the member directory, trade mission invitations, and the SICC newsletter. Apply at <a href="https://sicc.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">sicc.ch</a>.</p>
+          <p className="text-sm text-slate-300">Annual SICC membership starts at CHF 200 for individuals. Members get access to 50+ events per year, the member directory, trade mission invitations, and the SICC newsletter. The 2024 EFTA–India Trade Agreement creates new opportunities for member companies. Apply at <a href="https://sicc.ch" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">sicc.ch</a>.</p>
         </div>
       </div>
     </div>

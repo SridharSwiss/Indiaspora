@@ -3,26 +3,26 @@ import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Banking & Finance in Switzerland for Indians",
-  description: "Open a Swiss bank account, send money to India, and manage finances. PostFinance, Neon, Wise transfers, and NRI tax guide.",
+  description: "Open a Swiss bank account, send money to India, and manage finances. PostFinance, Neon, Yuh, Wise transfers, and NRI tax guide.",
   openGraph: {
     title: "Banking & Finance in Switzerland for Indians | IndiaSwiss",
-    description: "Open a Swiss bank account, send money to India, and manage finances. PostFinance, Neon, Wise transfers, and NRI tax guide.",
+    description: "Open a Swiss bank account, send money to India, and manage finances. PostFinance, Neon, Yuh, Wise transfers, and NRI tax guide.",
   },
 };
 
 const banks = [
-  { name: "PostFinance", type: "Traditional", desc: "Easiest to open for new arrivals; widespread post office branches. Basic account is free for under-26 or salary deposit.", bestFor: "First account" },
-  { name: "UBS / Credit Suisse (now UBS)", type: "Traditional", desc: "Full-service private bank with English-language support. Good for salary accounts and mortgages.", bestFor: "Full banking" },
-  { name: "Neon", type: "Digital", desc: "100% mobile bank, no fees, English app. Easy to open with just a permit and passport scan. No branch visits needed.", bestFor: "Digital-first" },
-  { name: "Yuh", type: "Digital", desc: "PostFinance-backed digital bank with investment features. English app, no monthly fees.", bestFor: "Investing" },
-  { name: "Revolut", type: "Digital", desc: "European digital bank; great for multi-currency and India transfers. Not a Swiss bank but widely used.", bestFor: "Travel & FX" },
+  { name: "PostFinance", type: "Traditional", desc: "Historically the most accessible for new arrivals, with post office branches nationwide. Note: a foreign-address surcharge (~CHF 25/month) applies if you have no Swiss address yet. Once resident, basic accounts are fee-free for under-26 or with salary deposit.", bestFor: "First account", url: "postfinance.ch" },
+  { name: "UBS", type: "Traditional", desc: "Switzerland's largest bank after absorbing Credit Suisse (2023). Full-service with English-language support. Typically requires a branch visit and may ask for a larger initial deposit for non-EU nationals.", bestFor: "Full banking", url: "ubs.com" },
+  { name: "Neon", type: "Digital", desc: "100% mobile Swiss bank, no monthly fees, fully English app. Easy to open with a valid Swiss residence permit and passport scan — no branch visit. Swiss IBAN. Very popular among Indian expats.", bestFor: "Digital-first", url: "neon-free.ch" },
+  { name: "Yuh", type: "Digital", desc: "Joint venture of PostFinance and Swissquote. Unique in that it also accepts non-residents. Holds accounts in CHF, EUR, and USD with sub-accounts in 13 currencies. Includes investment features and no monthly fee.", bestFor: "Non-residents & investing", url: "yuh.com" },
+  { name: "Revolut", type: "Digital", desc: "European fintech; not a Swiss bank but widely used by Indian expats. Excellent for multi-currency spending and low-cost transfers to India. Regulated under a Lithuanian banking licence.", bestFor: "Travel & FX", url: "revolut.com" },
 ];
 
 const transferOptions = [
-  { name: "Wise (TransferWise)", fee: "Low flat fee + FX spread", speed: "1–2 days", note: "Best exchange rates; popular in the community." },
-  { name: "Revolut", fee: "Free up to limit, then 0.5%", speed: "Same day", note: "Fast and cheap for regular small transfers." },
-  { name: "Western Union", fee: "Variable", speed: "Same day", note: "Cash pickup option for recipients without a bank account." },
-  { name: "Bank Wire (SWIFT)", fee: "25–50 CHF + FX", speed: "3–5 days", note: "Reliable but expensive; use for large amounts only." },
+  { name: "Wise (TransferWise)", fee: "Low flat fee + small FX spread", speed: "1–2 business days", note: "Mid-market exchange rate. Most popular in the Indian community for CHF → INR transfers." },
+  { name: "Revolut", fee: "Free up to monthly limit, then ~0.5%", speed: "Same day", note: "Very fast for smaller regular transfers; watch the weekend markup on FX." },
+  { name: "Western Union", fee: "Variable by amount", speed: "Same day / next day", note: "Cash pickup option — useful if recipients lack a bank account in India." },
+  { name: "Bank Wire (SWIFT)", fee: "CHF 25–50 + FX margin", speed: "3–5 business days", note: "Reliable but expensive. Use only for very large transfers where the FX rate offset the fees." },
 ];
 
 export default function BankingPage() {
@@ -41,7 +41,8 @@ export default function BankingPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Choosing a Bank</h2>
+          <h2 className="text-2xl font-bold text-white mb-2">Choosing a Bank</h2>
+          <p className="text-sm text-white/50 mb-6">Indian nationals on a valid B or L permit can open a Swiss bank account. Digital banks (Neon, Yuh) are the easiest route — no appointment needed.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {banks.map((b) => (
               <div key={b.name} className="glass card-hover rounded-2xl p-5">
@@ -49,7 +50,7 @@ export default function BankingPage() {
                   <h3 className="text-base font-semibold text-white">{b.name}</h3>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400">{b.bestFor}</span>
                 </div>
-                <p className="text-xs text-white/40 mb-2">{b.type}</p>
+                <p className="text-xs text-white/40 mb-1">{b.type} · {b.url}</p>
                 <p className="text-sm text-white/60">{b.desc}</p>
               </div>
             ))}
@@ -84,7 +85,7 @@ export default function BankingPage() {
 
         <div className="glass rounded-2xl p-6 border border-yellow-500/20">
           <h3 className="text-base font-semibold text-yellow-400 mb-2">NRI Tax Note</h3>
-          <p className="text-sm text-white/70">Indian citizens residing in Switzerland for more than 182 days/year are classified as Non-Resident Indians (NRI) for Indian tax purposes. NRI income earned abroad is generally not taxable in India, but NRI bank accounts (NRE/NRO) have specific rules. Consult a CA familiar with India–Switzerland tax treaty provisions.</p>
+          <p className="text-sm text-white/70">Indian citizens residing in Switzerland for more than 182 days/year are classified as Non-Resident Indians (NRI) for Indian tax purposes. NRI income earned abroad is generally not taxable in India, but NRI bank accounts (NRE/NRO) have specific rules. India and Switzerland have a Double Taxation Avoidance Agreement (DTAA) — consult a CA familiar with India–Switzerland tax treaty provisions before filing.</p>
         </div>
       </div>
     </div>

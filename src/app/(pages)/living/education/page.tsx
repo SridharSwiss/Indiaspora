@@ -11,18 +11,18 @@ export const metadata: Metadata = {
 };
 
 const schoolTypes = [
-  { name: "Swiss Public Schools", desc: "Free, high quality, and language-immersive. Children are placed by age. Expect the first 6–12 months to be challenging linguistically — support classes are usually provided.", icon: "🏫" },
-  { name: "International Schools", desc: "English-medium education following the IB or British/American curriculum. Popular with expat families. Fees range from CHF 20,000–40,000/year.", icon: "🌍" },
-  { name: "Indian International Schools", desc: "CBSE-curriculum Indian schools exist in Zurich and Geneva, catering to families planning to return to India.", icon: "🇮🇳" },
-  { name: "Heritage Language Classes", desc: "Many Indian associations run weekend Hindi, Tamil, Telugu, and Malayalam classes for children born in Switzerland.", icon: "📚" },
+  { name: "Swiss Public Schools", desc: "Free, high quality, and language-immersive. Children are placed by age group. The first 6–12 months can be linguistically challenging — most cantons provide language support (Deutsch als Zweitsprache / DaZ) at no extra cost. Compulsory from age 4 (Kindergarten) to 15.", icon: "🏫" },
+  { name: "International Schools", desc: "English-medium education following the IB, British, or American curriculum. Popular with families on short-term assignments or planning to return to India. Annual fees typically range from CHF 20,000–40,000. Examples: Inter-Community School Zurich (ICS), Zurich International School (ZIS), Institut International de Lancy (Geneva).", icon: "🌍" },
+  { name: "Indian / CBSE-Curriculum Schools", desc: "A small number of Indian schools operate in Switzerland, primarily in the Zurich area, following the CBSE or ICSE curriculum. These are best for families with definite plans to return to India. The Indian Embassy maintains a list of recognised Indian associations that may run such programmes.", icon: "🇮🇳" },
+  { name: "Heritage Language Classes", desc: "Indian community organisations run weekend Hindi, Tamil, Telugu, Malayalam, and Gujarati classes. In Zurich, the Hindi School Zürich (run under the Indian community) offers regular classes for children. The Indian Association of Greater Zurich (IAGZ, iagz.ch) coordinates many cultural and educational events.", icon: "📚" },
 ];
 
 const universities = [
-  { name: "ETH Zurich", city: "Zurich", note: "World top-10 technical university. Strong in engineering, science, and tech." },
-  { name: "University of Zurich", city: "Zurich", note: "Largest Swiss university; strong in medicine, law, and social sciences." },
-  { name: "EPFL", city: "Lausanne", note: "Leading technical university; English-friendly; large Indian student community." },
-  { name: "University of Geneva", city: "Geneva", note: "Strong in international relations, law, and sciences." },
-  { name: "University of Basel", city: "Basel", note: "Strong in life sciences; close to major pharma companies." },
+  { name: "ETH Zurich", city: "Zurich", note: "Consistently top-10 globally in engineering, science, and technology. Instruction mainly in German at Bachelor level; many Master's programmes in English. Large Indian student community." },
+  { name: "University of Zurich (UZH)", city: "Zurich", note: "Switzerland's largest university. Strong in medicine, law, social sciences, and economics. Some English-taught Master's programmes." },
+  { name: "EPFL", city: "Lausanne", note: "Leading technical university; English-friendly environment with a large and active Indian student association. Strong in engineering, computer science, and life sciences." },
+  { name: "University of Geneva", city: "Geneva", note: "Strong in international relations, law, sciences, and global health. Proximity to UN agencies makes it popular for policy-oriented students." },
+  { name: "University of Basel", city: "Basel", note: "Oldest Swiss university (founded 1460). Excellent in life sciences and pharmaceutical sciences — close to Novartis, Roche, and other pharma HQs." },
 ];
 
 export default function EducationPage() {
@@ -67,6 +67,11 @@ export default function EducationPage() {
             ))}
           </div>
         </section>
+
+        <div className="glass rounded-2xl p-6 border border-purple-500/20">
+          <h3 className="text-base font-semibold text-purple-400 mb-2">Tip for New Arrivals</h3>
+          <p className="text-sm text-white/70">Contact your Gemeinde (municipality) as soon as you register — they will tell you which public school your child is assigned to and what language support is available. The Swiss public school system is genuinely excellent and free of charge, including textbooks and most materials.</p>
+        </div>
       </div>
     </div>
   );

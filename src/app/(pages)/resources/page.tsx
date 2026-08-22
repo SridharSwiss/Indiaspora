@@ -16,9 +16,8 @@ const resources = [
     category: "Indian Government & Embassy",
     color: "from-orange-500 to-amber-500",
     items: [
-      { name: "Embassy of India, Berne", url: "https://www.indembassybern.gov.in", desc: "Passport, OCI, visa, attestation, diaspora services. Tel: +41 31 351 1110" },
-      { name: "Consulate General of India, Zurich", url: "https://www.cgizurich.gov.in", desc: "Consular services for Indians in German-speaking Switzerland" },
-      { name: "Consulate General of India, Geneva", url: "https://www.cgigeneva.gov.in", desc: "Consular services for Indians in French-speaking Switzerland" },
+      { name: "Embassy of India, Berne", url: "https://www.indembassybern.gov.in", desc: "Passport, OCI, visa, attestation, diaspora services. Kirchenfeldstrasse 28, 3005 Berne. Tel: +41 31 350 1130" },
+      { name: "Consulate General of India, Geneva", url: "https://www.cgigeneva.gov.in", desc: "Consular services for French-speaking Switzerland. 21 Route Appia, 1292 Chambesy, Geneva. Tel: +41 22 717 0600" },
       { name: "OCI Card Services", url: "https://ociservices.gov.in", desc: "Apply and track Overseas Citizen of India card online" },
       { name: "Passport Seva (Renewal)", url: "https://www.passportindia.gov.in", desc: "Renew Indian passport from Switzerland" },
     ],

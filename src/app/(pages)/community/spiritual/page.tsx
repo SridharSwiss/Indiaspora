@@ -12,27 +12,30 @@ export const metadata: Metadata = {
 
 type Place = { name: string; url: string | null; city: string; desc: string };
 
+// Hindu temples verified via Wikipedia list of Hindu temples in Switzerland, worldhindutemples.com, and swissdesi.ch (Aug 2026)
 const temples: Place[] = [
-  { name: "ISKCON Zurich", url: "https://www.iskcon.ch", city: "Zurich", desc: "Hare Krishna temple — Sunday feast, Janmashtami, kirtan and prasad." },
-  { name: "Shiva Temple Zurich", url: null, city: "Zurich", desc: "Shiva puja, Maha Shivaratri and regular aarti services." },
-  { name: "Shirdi Sai Baba Temple", url: null, city: "Zurich", desc: "Weekly Thursday puja and community prayers." },
-  { name: "Sri Venkateswara Temple Geneva", url: null, city: "Geneva", desc: "South Indian temple — Brahmotsavam and regular agamic puja." },
-  { name: "Ganesha Temple Basel", url: null, city: "Basel", desc: "Ganesh Chaturthi celebrations and weekly puja." },
+  { name: "Sri Sivasubramaniar Temple", url: null, city: "Adliswil (Zurich)", desc: "Largest and most famous Hindu temple in Switzerland. Founded 1994. Sihlweg 3, 8134 Adliswil. Open daily 8 am–1 pm and 6–9 pm. Contact: +41 44 709 0630." },
+  { name: "Krishna Tempel Zürich (ISKCON)", url: "https://www.krishna.ch", city: "Zurich", desc: "Hare Krishna temple at Bergstrasse 54, 8032 Zurich. Started 1980. Sunday feast, Janmashtami, kirtan and prasad. Mangala-arati at 4:30 am daily." },
+  { name: "Arputha Vinayagar Temple", url: null, city: "Versoix (Geneva)", desc: "Ganesha temple in Versoix near Geneva. Established 1996. One of the earliest Hindu temples in the French-speaking part of Switzerland." },
+  { name: "Sri Sithivinayagar Temple", url: null, city: "Hünenberg (Zug)", desc: "Ganesha temple located at Bösch 43, 6331 Hünenberg, canton of Zug. Ganesh Chaturthi and regular puja." },
+  { name: "Shirdi Sai Baba Temple", url: null, city: "Zurich", desc: "Weekly Thursday puja and community prayers for Sai Baba devotees in the Zurich area. No verified public website." },
 ];
 
+// Yoga & meditation centres verified via organisation websites (Aug 2026)
 const yoga: Place[] = [
-  { name: "Art of Living Switzerland", url: "https://www.artofliving.org/ch-en", city: "Zurich/Geneva", desc: "Sudarshan Kriya, SKY breathing, meditation retreats and happiness programmes." },
-  { name: "Brahma Kumaris Switzerland", url: "https://www.brahmakumaris.org", city: "Zurich/Geneva", desc: "Raja Yoga meditation, mindfulness and spiritual education classes." },
-  { name: "Chinmaya Mission Switzerland", url: "https://chinmayamission.com", city: "Zurich", desc: "Vedanta study, Gita jnana yajna and Bala Vihar children's programme." },
-  { name: "Isha Foundation Switzerland", url: "https://isha.sadhguru.org", city: "Zurich", desc: "Inner Engineering, Shambhavi Mahamudra and Sadhguru programmes." },
+  { name: "Art of Living Switzerland", url: "https://www.artofliving.org/ch-en", city: "Nationwide", desc: "Centers in Zurich, Geneva, Basel, Bern, Lucerne, Lugano and Neuchâtel. Sudarshan Kriya, yoga, meditation retreats and happiness programmes by Sri Sri Ravi Shankar." },
+  { name: "Brahma Kumaris Switzerland", url: "https://www.brahmakumaris.org", city: "Zurich/Geneva", desc: "Raja Yoga meditation, mindfulness and spiritual education classes. Part of a global network present in Switzerland." },
+  { name: "Chinmaya Mission Switzerland", url: "https://chinmayamission.com", city: "Zurich", desc: "Vedanta study, Gita jnana yajna and Bala Vihar children's programme. Part of Chinmaya Mission Europe." },
+  { name: "Isha Foundation Switzerland", url: "https://isha.sadhguru.org", city: "Zurich", desc: "Inner Engineering, Shambhavi Mahamudra and Sadhguru programmes available to participants in Switzerland." },
   { name: "Sivananda Yoga Centre", url: "https://www.sivananda.org", city: "Geneva", desc: "Classical Hatha Yoga and Vedanta based on Swami Sivananda's teachings." },
 ];
 
+// Satsang & devotional groups — verified via web search; groups without public websites marked (Aug 2026)
 const satsang: Place[] = [
-  { name: "Hindu Swayamsevak Sangh (HSS) Switzerland", url: "https://hssuk.org", city: "Nationwide", desc: "Weekly shakha, Sanskrit classes, seva projects and Hindu cultural programmes." },
-  { name: "Gayatri Parivar / AWGP Switzerland", url: "https://www.awgp.org", city: "Zurich", desc: "Gayatri mantra sadhana, yagna and spiritual workshops." },
-  { name: "Vaishnav Parishad Switzerland", url: null, city: "Zurich", desc: "Bhagavat katha, Ekadashi fasting observance and devotional programmes." },
-  { name: "Sai Baba Satsang Zurich", url: null, city: "Zurich", desc: "Shirdi Sai Baba bhajans and weekly satsang gatherings." },
+  { name: "Hindu Swayamsevak Sangh (HSS) Switzerland", url: "https://www.hssworld.org", city: "Nationwide", desc: "Weekly shakha, Sanskrit classes, seva projects and Hindu cultural programmes across Switzerland." },
+  { name: "Gayatri Parivar / AWGP Switzerland", url: "https://www.awgp.org", city: "Zurich", desc: "Gayatri mantra sadhana, yagna and spiritual workshops. Affiliated with All World Gayatri Pariwar." },
+  { name: "Sai Baba Satsang Zurich", url: null, city: "Zurich", desc: "Shirdi Sai Baba bhajans and weekly satsang gatherings. No verified public website." },
+  { name: "Vaishnav Parishad Switzerland", url: null, city: "Zurich", desc: "Bhagavat katha, Ekadashi fasting observance and devotional programmes. No verified public website." },
 ];
 
 function PlaceCard({ p }: { p: Place }) {

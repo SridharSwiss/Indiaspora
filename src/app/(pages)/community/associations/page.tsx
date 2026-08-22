@@ -12,36 +12,38 @@ export const metadata: Metadata = {
 
 type Org = { name: string; url: string | null; city: string; desc: string };
 
+// Umbrella associations verified via Embassy of India Bern listing, individual organisation websites, and swissdesi.ch (Aug 2026)
 const umbrella: Org[] = [
-  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", city: "Zurich", desc: "Premier Indian community organisation in Zurich. Hindi school, Diwali Mela, networking events." },
-  { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://sicc.ch", city: "Zurich/Bern", desc: "Bilateral trade promotion and business networking between India and Switzerland." },
-  { name: "Indian Association Berne (IAB)", url: "https://www.india-bern.ch", city: "Bern", desc: "Founded 1972. Community events and cultural programmes for Indians in the federal capital. 120+ members." },
-  { name: "Bharatiya Association Berne", url: "https://www.india-bab.ch", city: "Bern", desc: "Founded 1996. Promotes companionship and goodwill among Indian members and fosters Swiss-Indian contacts." },
-  { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", city: "Geneva", desc: "Founded 1947 — world's oldest continuously running Indian association. 500+ members in the Lake Geneva region." },
-  { name: "Indian Cultural Association Basel (ICAS)", url: null, city: "Basel", desc: "Diwali, Holi and cultural welfare activities for Basel's Indian community." },
+  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", city: "Zurich", desc: "Formed 2010. Gathers the Indian community in Greater Zurich for Holi, Dandiya and Diwali. 70+ member families. Non-political, non-communal." },
+  { name: "SICC – Swiss-Indian Chamber of Commerce", url: "https://sicc.ch", city: "Zurich", desc: "Founded 1985. Bi-national non-profit with 400+ Swiss and Indian members. Offices in Zurich, Mumbai, New Delhi, Bengaluru and Pune. Hosts 50+ events annually." },
+  { name: "Indian Association of Berne (IAB)", url: "https://www.india-bern.ch", city: "Bern", desc: "Founded 15 June 1972. Cultural, non-profit, non-political organisation for the Indian diaspora in Bern. 120+ members. Ambassador of India is patron." },
+  { name: "Bharatiya Association Berne (BAB)", url: "https://www.india-bab.ch", city: "Bern", desc: "Founded July 1996. Promotes companionship and goodwill among members and fosters contacts with Swiss institutions and culture." },
+  { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", city: "Geneva", desc: "Founded 1947 — one of the world's oldest continuously running Indian associations. 500+ members in the Lake Geneva region." },
+  { name: "Bruhan Maharashtra Mandal Switzerland (BMMS)", url: "https://bruhan-mms.org", city: "Nationwide", desc: "Non-profit, secular forum for the Marathi-speaking community in Switzerland. Promotes Marathi language, literature and culture." },
 ];
 
+// Regional/language associations — verified via Embassy of India listing and web search (Aug 2026)
 const regional: Org[] = [
   { name: "Gujarati Samaj Switzerland", url: "https://www.gujaratisamaj.ch", city: "Nationwide", desc: "Navratri Garba, language classes, and Gujarati cultural events across Switzerland." },
-  { name: "Maharashtra Mandal Switzerland", url: null, city: "Nationwide", desc: "Ganesh Chaturthi, Marathi culture and community welfare." },
-  { name: "Tamil Sangam Switzerland", url: null, city: "Zurich/Basel", desc: "Pongal, Tamil language education and cultural programmes." },
-  { name: "Telugu Association Switzerland (TAS)", url: null, city: "Nationwide", desc: "Ugadi, Telugu cultural events and community network." },
-  { name: "Punjabi Cultural Association", url: null, city: "Zurich", desc: "Lohri, Baisakhi and Punjabi community events." },
-  { name: "Kannada Koota Switzerland", url: null, city: "Zurich", desc: "Kannada Rajyotsava and community events for Kannadigas." },
-  { name: "Bengali Cultural Society Switzerland", url: null, city: "Zurich/Geneva", desc: "Durga Puja pandal, Rabindra Jayanti and Bengali cultural events." },
-  { name: "Malayalee Association Switzerland", url: null, city: "Nationwide", desc: "Onam, Vishu and Malayalam cultural community events." },
+  { name: "Swiss Tamil Sangam", url: "http://swisstamilsangam.com", city: "Nationwide", desc: "Cultural association for Tamil-speaking community in Switzerland. Tamil is one of the largest diaspora language groups in the country." },
+  { name: "Swiss Tamil Professionals Association (STPA)", url: "https://www.tamilprofessionals.ch", city: "Zurich", desc: "Network for Tamil professionals — collaboration, innovation and mentoring across industries." },
+  { name: "Telugu Association Switzerland (TAS)", url: null, city: "Nationwide", desc: "Ugadi, Telugu cultural events and community network. No verified public website found." },
+  { name: "Kannada Koota Switzerland", url: null, city: "Zurich", desc: "Kannada Rajyotsava and community events for Kannadigas. No verified public website found." },
+  { name: "Bengali Cultural Society Switzerland", url: null, city: "Zurich/Geneva", desc: "Durga Puja, Rabindra Jayanti and Bengali cultural events. No verified public website found." },
+  { name: "Malayalee Association Switzerland", url: null, city: "Nationwide", desc: "Onam, Vishu and Malayalam cultural community events. No verified public website found." },
 ];
 
+// Professional networks — verified via organisation websites (Aug 2026)
 const professional: Org[] = [
-  { name: "TiE Zurich (The Indus Entrepreneurs)", url: "https://zurich.tie.org", city: "Zurich", desc: "Global entrepreneurship network fostering innovation and mentoring in the Indian diaspora." },
-  { name: "NASSCOM Switzerland Chapter", url: "https://nasscom.in", city: "Zurich", desc: "IT industry association connecting Indian tech professionals and companies in Switzerland." },
-  { name: "Swiss India Business Network", url: "https://sicc.ch", city: "Zurich/Geneva", desc: "Networking for Indian professionals and entrepreneurs in Switzerland — affiliated with SICC." },
+  { name: "TiE Zurich (The Indus Entrepreneurs)", url: "https://tie.org", city: "Zurich", desc: "Global entrepreneurship network founded 1992 in Silicon Valley with chapters in 12 countries. Fosters mentoring, networking and education for entrepreneurs with Indus-region roots." },
+  { name: "Swiss-Indian Chamber of Commerce (SICC)", url: "https://sicc.ch", city: "Zurich", desc: "Founded 1985. The leading cross-border business platform between Switzerland and India. Bilateral networking, trade delegations and government contacts." },
 ];
 
+// Cultural organisations — verified via organisation websites (Aug 2026)
 const cultural: Org[] = [
   { name: "Hindu Swayamsevak Sangh (HSS) Switzerland", url: "https://www.hssworld.org", city: "Nationwide", desc: "Hindu cultural values, yoga shakhas and youth development programmes." },
-  { name: "Art of Living Switzerland", url: "https://www.artofliving.org/ch-en", city: "Zurich/Geneva", desc: "Sudarshan Kriya, meditation, and wellness programmes by Sri Sri Ravi Shankar." },
-  { name: "Chinmaya Mission Switzerland", url: "https://chinmayamission.com", city: "Zurich", desc: "Vedanta classes, Bala Vihar for children, and spiritual programmes." },
+  { name: "Art of Living Switzerland", url: "https://www.artofliving.org/ch-en", city: "Nationwide", desc: "Centers in Zurich, Geneva, Basel, Bern, Lucerne, Lugano and Neuchâtel. Sudarshan Kriya, meditation, yoga and wellness programmes by Sri Sri Ravi Shankar." },
+  { name: "Chinmaya Mission Switzerland", url: "https://chinmayamission.com", city: "Zurich", desc: "Vedanta classes, Gita study groups, Bala Vihar for children and spiritual programmes. Part of Chinmaya Mission Europe network." },
 ];
 
 function OrgCard({ org }: { org: Org }) {

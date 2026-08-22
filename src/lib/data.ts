@@ -64,8 +64,12 @@ export const NAV_ITEMS = [
   { label: "Resources", href: "/resources" },
 ];
 
+// STATS sources:
+// Indian population: Embassy of India, Berne estimates ~24,567 Indian nationals + PIOs in Switzerland (as of 2024).
+// Swiss Federal Statistical Office (bfs.admin.ch) foreign population data shows India among top 30 nationalities.
+// Community associations: IAGZ, SICC, TeluguSwiss, Maharashtra Mandal, Gujarati Samaj, + regional & religious groups.
 export const STATS = [
-  { value: "25,000+", label: "Indians in Switzerland", icon: "Users" },
+  { value: "~24,500", label: "Indians in Switzerland", icon: "Users" }, // Source: Embassy of India, Berne (2024 estimate incl. ~7,164 PIOs)
   { value: "150+", label: "Community Associations", icon: "Building2" },
   { value: "26", label: "Cantons Covered", icon: "MapPin" },
   { value: "500+", label: "Businesses Listed", icon: "Briefcase" },
@@ -76,7 +80,7 @@ export const FEATURED_CATEGORIES = [
     id: "community",
     href: "/community",
     title: "Community",
-    description: "Connect with 25,000+ Indians across Switzerland through associations, cultural groups, and social networks",
+    description: "Connect with ~24,500 Indians across Switzerland through associations, cultural groups, and social networks",
     icon: "Users",
     color: "from-orange-500 to-red-500",
     count: "150+ groups",
@@ -276,8 +280,8 @@ export const LIVING_GUIDE = [
 ];
 
 export const RESOURCES = [
-  { title: "Embassy of India, Berne", url: "https://www.indembassybern.gov.in", category: "Official", description: "Consular services, OCI cards, passport renewal, diaspora events" },
-  { title: "Indian Consulate General, Geneva", url: "https://www.cgigeneva.gov.in", category: "Official", description: "Consular services for Indians in the French-speaking region — 9 Rue du Valais, Geneva" },
+  { title: "Embassy of India, Berne", url: "https://www.indembassybern.gov.in", category: "Official", description: "Consular services, OCI cards, passport renewal, diaspora events — Kirchenfeldstrasse 28, 3005 Berne. Tel: +41 31 350 1130" },
+  { title: "Indian Consulate General, Geneva", url: "https://www.cgigeneva.gov.in", category: "Official", description: "Consular services for Indians in French-speaking Switzerland — 21 Route Appia, 1292 Chambesy, Geneva. Tel: +41 22 717 0600" },
   { title: "Comparis.ch", url: "https://www.comparis.ch", category: "Living", description: "Compare health insurance, mortgages, cars, and internet plans" },
   { title: "SBB Swiss Railways", url: "https://www.sbb.ch", category: "Transport", description: "Public transport timetables, GA Travelcard (from CHF 2,780/yr) and Half-Fare Card (CHF 190/yr)" },
   { title: "IAGZ – Indian Association Zurich", url: "https://iagz.ch", category: "Community", description: "Events, networking, and community support for Indians in Zurich" },

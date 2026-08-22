@@ -11,17 +11,71 @@ export const metadata: Metadata = {
 };
 
 const stores = [
-  { city: "Zurich", name: "Namaste India", area: "Schlieren", note: "Large selection of fresh curry leaves, Indian vegetables, frozen foods, and all major brands." },
-  { city: "Zurich", name: "Chennai Kitchen Shop", area: "Oerlikon", note: "South Indian specialties — idli rava, sambhar masala, tamarind, and sundried items." },
-  { city: "Geneva", name: "Bombay Store", area: "Carouge", note: "Well-stocked Indian grocery with French-speaking staff; also carries Pakistani and Sri Lankan items." },
-  { city: "Basel", name: "Spice of India", area: "Grossbasel", note: "Indian and South Asian groceries; also carries Ayurvedic products." },
-  { city: "Bern", name: "Masala Shop", area: "Bern Centre", note: "Small but well-curated Indian grocery; order ahead for large quantities." },
+  {
+    city: "Zurich",
+    name: "Aggarwal",
+    area: "Wiedikon",
+    note: "One of Switzerland's longest-running Indian grocery chains (est. 1986). Fresh vegetables, spices, lentils, frozen foods, pickles, and Indian household items. Kernstrasse 27, 8004 Zürich.",
+    url: "https://aggarwal.ch",
+  },
+  {
+    city: "Zurich",
+    name: "Indiasupermarkt.ch",
+    area: "Kreis 5 / Josefstrasse",
+    note: "Large-format Indian supermarket with one of the widest selections in Zurich — all major brands, fresh curry leaves, Indian vegetables, frozen meals, and cosmetics. Also ships nationwide online. Josefstrasse 91, 8005 Zürich.",
+    url: "https://indiasupermarkt.ch",
+  },
+  {
+    city: "Zurich",
+    name: "NewAsia Market",
+    area: "Kreis 4 / Langstrasse",
+    note: "Pan-Asian supermarket with a well-stocked Indian section — spices, dals, chutneys, snacks, and South Asian specialty items. Feldstrasse 24, 8004 Zürich.",
+    url: "https://newinzurich.com/ethnic-and-international-grocery-stores-in-zurich/",
+  },
+  {
+    city: "Basel",
+    name: "Aggarwal",
+    area: "Grossbasel",
+    note: "Basel branch of the Aggarwal chain — Indian spices, fresh produce, lentils, rice, and specialty groceries. Kuchengasse 9, Basel.",
+    url: "https://aggarwal.ch",
+  },
+  {
+    city: "Bern",
+    name: "Aggarwal",
+    area: "Lorraine / Schanzenstrasse",
+    note: "Bern branch of the Aggarwal chain, conveniently located near the Lorraine neighbourhood. Schanzenstrasse 4/B, Bern. Phone: +41 31 311 86 55.",
+    url: "https://aggarwal.ch",
+  },
+  {
+    city: "Geneva",
+    name: "Seelan Market",
+    area: "Geneva",
+    note: "Geneva favourite for Indian, Sri Lankan, and South Asian groceries. Good range of spices, rice varieties, and ready-to-cook items.",
+    url: "https://seelanmarket.ch",
+  },
 ];
 
 const online = [
-  { name: "indiasupermarkt.ch", desc: "Swiss-based Indian online supermarket — ships nationwide with 2-day delivery." },
-  { name: "asia-markt.ch", desc: "Broader Asian grocery store with a good Indian section." },
-  { name: "Amazon.de (Germany)", desc: "Wide range of Indian brands; ships to Switzerland but check import duties." },
+  {
+    name: "indiasupermarkt.ch",
+    desc: "Swiss-based Indian online supermarket — ships nationwide with fast delivery. One of the most comprehensive selections of Indian brands in Switzerland.",
+    url: "https://indiasupermarkt.ch",
+  },
+  {
+    name: "salpers.ch",
+    desc: "Online Asian and Indian grocery store based in Oberglatt (ZH). Wide selection of Indian spices, ready meals, and specialty items delivered across Switzerland.",
+    url: "https://salpers.ch",
+  },
+  {
+    name: "dalchinii.ch",
+    desc: "Switzerland-based online Indian grocery with curated selection of spices, lentils, flours, and pickles.",
+    url: "https://dalchinii.ch",
+  },
+  {
+    name: "Amazon.de (Germany)",
+    desc: "Wide range of Indian brands available; ships to Switzerland. Check import duties and delivery costs — usually feasible for branded packaged goods.",
+    url: "https://www.amazon.de",
+  },
 ];
 
 export default function GroceryPage() {
@@ -43,9 +97,15 @@ export default function GroceryPage() {
           <h2 className="text-2xl font-bold text-white mb-6">Physical Stores</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {stores.map((s) => (
-              <div key={s.name} className="glass card-hover rounded-2xl p-5">
+              <div key={s.name + s.city} className="glass card-hover rounded-2xl p-5">
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-base font-semibold text-white">{s.name}</h3>
+                  <h3 className="text-base font-semibold text-white">
+                    {s.url ? (
+                      <a href={s.url} target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition-colors">
+                        {s.name}
+                      </a>
+                    ) : s.name}
+                  </h3>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400">{s.city}</span>
                 </div>
                 <p className="text-xs text-white/40 mb-2">{s.area}</p>
@@ -60,7 +120,13 @@ export default function GroceryPage() {
           <div className="space-y-3">
             {online.map((o) => (
               <div key={o.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-green-400 mb-1">{o.name}</h3>
+                <h3 className="text-base font-semibold text-green-400 mb-1">
+                  {o.url ? (
+                    <a href={o.url} target="_blank" rel="noopener noreferrer" className="hover:text-green-300 transition-colors">
+                      {o.name}
+                    </a>
+                  ) : o.name}
+                </h3>
                 <p className="text-sm text-white/60">{o.desc}</p>
               </div>
             ))}

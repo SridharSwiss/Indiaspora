@@ -10,11 +10,12 @@ export const metadata: Metadata = {
   },
 };
 
+// Community networks verified via swissdesi.ch, namasteswiss.ch and web search (Aug 2026)
 const support: { name: string; url: string | null; city: string; desc: string }[] = [
-  { name: "IAGZ Women's Wing", url: "https://www.iagz.ch", city: "Zurich", desc: "Women's events, networking lunches and community activities organised by IAGZ." },
-  { name: "Desi Moms Switzerland", url: null, city: "Nationwide", desc: "WhatsApp & Facebook group for Indian mothers — parenting tips, school advice, events." },
-  { name: "Indian Women in Switzerland", url: null, city: "Nationwide", desc: "Online community for Indian women sharing expat life, career tips and social events." },
-  { name: "Swiss Indian Professional Women", url: null, city: "Zurich/Geneva", desc: "Career networking for Indian women professionals in finance, pharma, tech and consulting." },
+  { name: "Swiss Desi (formerly IndianMomsZurich)", url: "https://swissdesi.ch", city: "Zurich / Nationwide", desc: "Community platform launched 2018 for Indian women and families in Switzerland. Covers events, schools, Indian restaurants, shopping, day-to-day Swiss life tips and community connections." },
+  { name: "IAGZ Women's Wing", url: "https://www.iagz.ch", city: "Zurich", desc: "Women's events, networking lunches and community activities organised under the Indian Association of Greater Zurich." },
+  { name: "Desi Moms Switzerland", url: null, city: "Nationwide", desc: "WhatsApp and Facebook group for Indian mothers — parenting tips, school advice and local events. No verified standalone website." },
+  { name: "Swiss Indian Professional Women", url: null, city: "Zurich/Geneva", desc: "Informal career networking for Indian women professionals in finance, pharma, tech and consulting. No verified public website found." },
 ];
 
 const official: { name: string; url: string; city: string; desc: string }[] = [
