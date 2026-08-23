@@ -1,9 +1,3 @@
 {
-  "framework": "nextjs",
-  "crons": [
-    {
-      "path": "/api/cron/review-events",
-      "schedule": "0 6,18 * * *"
-    }
-  ]
+  "framework": "nextjs"
 }
