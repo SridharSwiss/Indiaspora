@@ -4,6 +4,7 @@ export const runtime = "edge";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
+// Simplified lotus representation for Apple icon (ImageResponse doesn't support SVG polygons)
 export default function AppleIcon() {
   return new ImageResponse(
     (
@@ -16,36 +17,101 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 240 220"
-          width="160"
-          height="160"
-        >
-          <polygon points="100,48 55,130 72,158 80,120" fill="#B71C1C"/>
-          <polygon points="100,48 55,130 80,120" fill="#C62828"/>
-          <polygon points="100,48 72,158 90,165 95,130" fill="#C62828"/>
-          <polygon points="140,48 185,130 168,158 160,120" fill="#B71C1C"/>
-          <polygon points="140,48 185,130 160,120" fill="#C62828"/>
-          <polygon points="140,48 168,158 150,165 145,130" fill="#C62828"/>
-          <polygon points="80,120 72,158 120,168 120,145" fill="#D32F2F"/>
-          <polygon points="160,120 168,158 120,168 120,145" fill="#C62828"/>
-          <polygon points="120,32 100,48 80,120 95,130 120,118" fill="#E53935"/>
-          <polygon points="120,32 140,48 160,120 145,130 120,118" fill="#C62828"/>
-          <polygon points="120,52 90,105 100,128 120,118" fill="#C9A06A"/>
-          <polygon points="120,52 90,105 100,115 120,110" fill="#D4AA7D"/>
-          <polygon points="120,52 150,105 140,128 120,118" fill="#C9A06A"/>
-          <polygon points="120,52 150,105 140,115 120,110" fill="#BF9560"/>
-          <polygon points="100,128 120,138 140,128 120,118" fill="#BF9560"/>
-          <polygon points="105,72 93,100 117,100" fill="white"/>
-          <polygon points="135,78 120,100 148,100" fill="white" opacity="0.8"/>
-          <polygon points="105,72 99,84 111,84" fill="white"/>
-          <polygon points="135,78 129,88 141,88" fill="white"/>
-          <polygon points="120,58 111,95 120,114 129,95" fill="#C62828"/>
-          <polygon points="120,58 111,95 120,105" fill="#D32F2F"/>
-        </svg>
+        {/* Outer petals — left */}
+        <div style={{
+          position: "absolute", width: 0, height: 0,
+          borderLeft: "42px solid transparent",
+          borderRight: "28px solid transparent",
+          borderBottom: "110px solid #B82222",
+          top: 38, left: 14, transform: "rotate(-30deg)",
+        }} />
+        {/* Outer petals — right */}
+        <div style={{
+          position: "absolute", width: 0, height: 0,
+          borderLeft: "28px solid transparent",
+          borderRight: "42px solid transparent",
+          borderBottom: "110px solid #B82222",
+          top: 38, right: 14, transform: "rotate(30deg)",
+        }} />
+        {/* Bottom-left petal */}
+        <div style={{
+          position: "absolute", width: 0, height: 0,
+          borderLeft: "50px solid transparent",
+          borderRight: "18px solid transparent",
+          borderBottom: "80px solid #A01E1E",
+          top: 88, left: 10, transform: "rotate(10deg)",
+        }} />
+        {/* Bottom-right petal */}
+        <div style={{
+          position: "absolute", width: 0, height: 0,
+          borderLeft: "18px solid transparent",
+          borderRight: "50px solid transparent",
+          borderBottom: "80px solid #A01E1E",
+          top: 88, right: 10, transform: "rotate(-10deg)",
+        }} />
+        {/* Bottom centre spread */}
+        <div style={{
+          position: "absolute", bottom: 14, left: 28, right: 28, height: 38,
+          background: "#B52020", borderRadius: "0 0 28px 28px",
+        }} />
+        {/* Golden left inner petal */}
+        <div style={{
+          position: "absolute", width: 0, height: 0,
+          borderLeft: "26px solid transparent",
+          borderRight: "26px solid transparent",
+          borderBottom: "70px solid #C9956A",
+          top: 60, left: 42,
+        }} />
+        {/* Golden right inner petal */}
+        <div style={{
+          position: "absolute", width: 0, height: 0,
+          borderLeft: "26px solid transparent",
+          borderRight: "26px solid transparent",
+          borderBottom: "70px solid #BE8A5F",
+          top: 60, right: 42,
+        }} />
+        {/* Central red petal */}
+        <div style={{
+          position: "absolute", width: 0, height: 0,
+          borderLeft: "18px solid transparent",
+          borderRight: "18px solid transparent",
+          borderBottom: "105px solid #CC2C2C",
+          top: 28, left: "50%", transform: "translateX(-50%)",
+        }} />
+        {/* Mountain peaks — left */}
+        <div style={{
+          position: "absolute", width: 0, height: 0,
+          borderLeft: "16px solid transparent",
+          borderRight: "16px solid transparent",
+          borderBottom: "30px solid white",
+          top: 56, left: 52,
+        }} />
+        {/* Mountain peaks — centre */}
+        <div style={{
+          position: "absolute", width: 0, height: 0,
+          borderLeft: "20px solid transparent",
+          borderRight: "20px solid transparent",
+          borderBottom: "36px solid white",
+          top: 50, left: "50%", transform: "translateX(-50%)",
+        }} />
+        {/* Mountain peaks — right */}
+        <div style={{
+          position: "absolute", width: 0, height: 0,
+          borderLeft: "16px solid transparent",
+          borderRight: "16px solid transparent",
+          borderBottom: "26px solid white",
+          top: 60, right: 52,
+        }} />
+        {/* White arch on central petal */}
+        <div style={{
+          position: "absolute", top: 36, left: "50%", transform: "translateX(-50%)",
+          width: 24, height: 40, border: "2px solid white",
+          borderBottom: "none", borderRadius: "12px 12px 0 0", opacity: 0.85,
+        }} />
       </div>
     ),
     { ...size }

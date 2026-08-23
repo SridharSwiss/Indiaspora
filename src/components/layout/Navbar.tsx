@@ -209,7 +209,13 @@ export default function Navbar() {
           style={{ height: 64, position: "relative" }}
         >
           {/* Logo */}
-          <Link href="/" className="shrink-0 z-10 flex items-center gap-2" aria-label="Indiaspora home" style={{ textDecoration: "none" }}>
+          <Link
+            href="/"
+            className="shrink-0 z-10 flex items-center gap-2"
+            aria-label="Indiaspora home"
+            style={{ textDecoration: "none" }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
             <img
               src="/logo.svg"
               alt="Indiaspora"
@@ -511,7 +517,7 @@ export default function Navbar() {
 
             {/* Top row */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, flexShrink: 0 }}>
-              <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsOpen(false)} style={{ textDecoration: "none" }}>
+              <Link href="/" className="flex items-center gap-2.5" onClick={() => { setIsOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} style={{ textDecoration: "none" }}>
                 <img src="/logo.svg" alt="Indiaspora" style={{ width: 30, height: 30, objectFit: "contain" }} />
                 <strong style={{ fontFamily: "'Syne', system-ui, sans-serif", fontSize: 15, fontWeight: 800, letterSpacing: "-0.03em" }}>
                   <span className="gradient-text">India</span>
