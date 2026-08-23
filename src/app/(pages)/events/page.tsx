@@ -1,5 +1,7 @@
+import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { UPCOMING_EVENTS } from "@/lib/data";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 const categories = ["All", "Festival", "Networking", "Cultural", "Food", "Arts", "Sports"];
 
@@ -18,7 +20,37 @@ const monthlyCalendar = [
   { month: "December", events: ["Year-end community gala (IAGZ)", "Christmas-Bollywood fusion party", "Advent Indian bazaar"] },
 ];
 
-export default function EventsPage() {
+async function getDbEvents() {
+  try {
+    const supabase = createAdminClient();
+    const { data } = await supabase
+      .from("events")
+      .select("*")
+      .eq("active", true)
+      .order("created_at", { ascending: false });
+    return data ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export default async function EventsPage() {
+  const dbEvents = await getDbEvents();
+  // Merge: DB events first (newest submissions), then static fallbacks
+  const allEvents = [
+    ...dbEvents.map((e: Record<string, string>) => ({
+      title: e.title,
+      date: e.date,
+      location: e.location,
+      category: e.category,
+      description: e.description,
+      organiser: e.organiser,
+      color: e.color ?? "bg-violet-500",
+      url: e.url ?? "",
+      image: e.image ?? "",
+    })),
+    ...UPCOMING_EVENTS,
+  ];
   return (
     <div>
       <PageHeader
@@ -35,23 +67,37 @@ export default function EventsPage() {
           <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Upcoming Events</h2>
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Next events in the Swiss-Indian community calendar</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {UPCOMING_EVENTS.map((event) => {
+            {allEvents.map((event) => {
               const Wrapper = event.url ? "a" : "div";
               const wrapperProps = event.url ? { href: event.url, target: "_blank", rel: "noopener noreferrer" } : {};
               return (
-                <Wrapper key={event.title} {...wrapperProps} className="glass rounded-2xl p-5 card-hover block group" style={{ textDecoration: "none" }}>
-                  <div className="flex items-start gap-3 mb-3">
-                    <div className={`w-3 h-3 rounded-full ${event.color} mt-1 shrink-0`} />
-                    <div>
-                      <h3 className="font-semibold text-sm group-hover:text-violet-400 transition-colors" style={{ color: "var(--text)" }}>{event.title}</h3>
-                      <p className="text-xs" style={{ color: "var(--text-2)" }}>{event.date}</p>
+                <Wrapper key={event.title} {...wrapperProps} className="glass rounded-2xl overflow-hidden card-hover block group" style={{ textDecoration: "none" }}>
+                  {event.image && (
+                    <div className="relative h-44 overflow-hidden">
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <span className="text-xs px-2 py-1 rounded-full font-medium text-white" style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>{event.category}</span>
+                      </div>
+                      <div className="absolute bottom-3 right-3">
+                        <span className={`w-2.5 h-2.5 rounded-full ${event.color} inline-block`} />
+                      </div>
                     </div>
-                  </div>
-                  <p className="text-xs mb-2" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{event.description}</p>
-                  <div className="flex items-center justify-between mt-3">
-                    <span className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{event.category}</span>
-                    {event.url && <span className="text-xs text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity">Visit →</span>}
+                  )}
+                  <div className="p-5">
+                    <h3 className="font-semibold text-sm group-hover:text-violet-400 transition-colors mb-1" style={{ color: "var(--text)" }}>{event.title}</h3>
+                    <p className="text-xs font-medium mb-1" style={{ color: "var(--accent, #a855f7)" }}>{event.date}</p>
+                    <p className="text-xs mb-2" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
+                    <p className="text-xs mb-3 leading-relaxed" style={{ color: "var(--text-2)" }}>{event.description}</p>
+                    <div className="flex items-center justify-between">
+                      {(event as { organiser?: string }).organiser && (
+                        <span className="text-xs" style={{ color: "var(--text-2)" }}>by {(event as { organiser?: string }).organiser}</span>
+                      )}
+                      {event.url && <span className="text-xs text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity ml-auto">Visit →</span>}
+                    </div>
                   </div>
                 </Wrapper>
               );
@@ -80,16 +126,20 @@ export default function EventsPage() {
           </div>
         </section>
 
-        {/* Submit */}
+        {/* Submit CTA */}
         <div className="glass rounded-2xl p-8 text-center">
+          <div className="text-4xl mb-4">📅</div>
           <h3 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Submit Your Event</h3>
-          <p className="mb-6" style={{ color: "var(--text-2)" }}>Organising an Indian community event in Switzerland? List it here to reach thousands of Indians across the country.</p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input type="text" placeholder="Event name" className="flex-1 px-4 py-2.5 rounded-xl border text-sm focus:outline-none focus:border-violet-500/50" style={{ background: "var(--surface)", borderColor: "var(--border)", color: "var(--text)" }} />
-            <button className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-sm font-semibold hover:from-violet-600 hover:to-purple-700 transition-all whitespace-nowrap" style={{ color: "var(--text)" }}>
-              Submit Event
-            </button>
-          </div>
+          <p className="mb-6" style={{ color: "var(--text-2)" }}>
+            Organising an Indian community event in Switzerland? List it here to reach 30,000+ Indians across the country.
+            Submissions are reviewed by our AI moderation system and go live within 12 hours.
+          </p>
+          <Link
+            href="/events/submit"
+            className="inline-block px-8 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 font-semibold text-white hover:from-violet-600 hover:to-purple-700 transition-all"
+          >
+            Submit an Event →
+          </Link>
         </div>
       </div>
     </div>

@@ -34,7 +34,7 @@ const boutiques = [
     city: "Zurich",
     address: "Josefstrasse 137, 8005 Zürich",
     phone: null,
-    url: null,
+    url: "https://www.google.com/maps/search/SKT+Nathan+Josefstrasse+Zurich",
     speciality: "Indian Clothing & Gold Jewellery",
     desc: "Zurich store in the Langstrasse neighbourhood offering Indian clothing alongside gold jewellery. Popular with the Tamil and South Indian community in Zurich."
   },
@@ -88,27 +88,15 @@ export default function FashionPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Physical Boutiques & Stores</h2>
           <div className="grid md:grid-cols-2 gap-5">
             {boutiques.map((b) => (
-              b.url ? (
-                <a key={b.name} href={b.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                  <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{b.name}</h3>
-                    <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full ml-2 shrink-0">{b.city}</span>
-                  </div>
-                  <p className="text-xs mb-1" style={{ color: "var(--text-3)" }}>{b.speciality}</p>
-                  {b.address && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{b.address}{b.phone ? ` · ${b.phone}` : ""}</p>}
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{b.desc}</p>
-                </a>
-              ) : (
-                <div key={b.name} className="glass card-hover rounded-2xl p-5">
-                  <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold" style={{ color: "var(--text)" }}>{b.name}</h3>
-                    <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full ml-2 shrink-0">{b.city}</span>
-                  </div>
-                  <p className="text-xs mb-1" style={{ color: "var(--text-3)" }}>{b.speciality}</p>
-                  {b.address && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{b.address}</p>}
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{b.desc}</p>
+              <a key={b.name} href={b.url!} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{b.name}</h3>
+                  <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full ml-2 shrink-0">{b.city}</span>
                 </div>
-              )
+                <p className="text-xs mb-1" style={{ color: "var(--text-3)" }}>{b.speciality}</p>
+                {b.address && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{b.address}{b.phone ? ` · ${b.phone}` : ""}</p>}
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{b.desc}</p>
+              </a>
             ))}
           </div>
           <p className="text-xs mt-4" style={{ color: "var(--text-3)" }}>Note: boutique availability and hours change. Verify on Google Maps or call ahead before visiting.</p>

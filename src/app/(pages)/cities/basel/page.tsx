@@ -49,11 +49,11 @@ const facts = [
 ];
 
 const restaurants = [
-  { name: "Royal Palace", address: "Spalenring 160, 4055 Basel", note: "Consistently described as the best and largest Indian restaurant in Basel. Known for high-quality Chicken Tikka Masala and a broad menu of North Indian classics. Website: royal-palace.ch." },
-  { name: "Bayleaf Gourmet Indian Restaurant", address: "Spalenring 163, 4055 Basel", note: "Upscale Indian restaurant on Spalenring offering diverse Indian, Asian, and Arabic cuisines. Beautiful ambiance, strong vegan curry menu, and catering services." },
-  { name: "Indian Tandoori Palace", address: "Basel", note: "Well-regarded for authentic tandoori preparations. Consistent community favourite." },
-  { name: "New Bombay", address: "Basel", note: "Popular Indian restaurant in Basel offering North and South Indian dishes." },
-  { name: "Dabbawalas", address: "Basel", note: "Contemporary Indian eatery in Basel, named after Mumbai's legendary lunch-box delivery system." },
+  { name: "Royal Palace", url: "https://www.google.com/search?q=Royal+Palace+Indian+restaurant+Basel+Spalenring", address: "Spalenring 160, 4055 Basel", note: "Consistently described as the best and largest Indian restaurant in Basel. Known for high-quality Chicken Tikka Masala and a broad menu of North Indian classics." },
+  { name: "Bayleaf Gourmet Indian Restaurant", url: "https://www.google.com/search?q=Bayleaf+Gourmet+Indian+Restaurant+Basel", address: "Spalenring 163, 4055 Basel", note: "Upscale Indian restaurant on Spalenring offering diverse Indian, Asian, and Arabic cuisines. Beautiful ambiance, strong vegan curry menu, and catering services." },
+  { name: "Indian Tandoori Palace", url: "https://www.google.com/search?q=Indian+Tandoori+Palace+Basel", address: "Basel", note: "Well-regarded for authentic tandoori preparations. Consistent community favourite." },
+  { name: "New Bombay", url: "https://www.google.com/search?q=New+Bombay+Indian+restaurant+Basel", address: "Basel", note: "Popular Indian restaurant in Basel offering North and South Indian dishes." },
+  { name: "Dabbawalas", url: "https://www.google.com/search?q=Dabbawalas+Indian+restaurant+Basel", address: "Basel", note: "Contemporary Indian eatery in Basel, named after Mumbai's legendary lunch-box delivery system." },
 ];
 
 export default function BaselPage() {
@@ -98,13 +98,10 @@ export default function BaselPage() {
           <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>Source: icas-online.com; Embassy of India, Berne — Indian Associations directory; aggarwal.ch</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {associations.map((a) => (
-              <div key={a.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{a.name}</h3>
-                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}>{a.desc}</p>
-                <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-xs text-orange-400 hover:text-orange-300">
-                  {a.url} ↗
-                </a>
-              </div>
+              <a key={a.name} href={a.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold mb-2 group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{a.name}</h3>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{a.desc}</p>
+              </a>
             ))}
           </div>
         </section>
@@ -124,11 +121,11 @@ export default function BaselPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {restaurants.map((r) => (
-              <div key={r.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-0.5" style={{ color: "var(--text)" }}>{r.name}</h3>
+              <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold mb-0.5 group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
                 {r.address && <p className="text-xs/40 mb-1" style={{ color: "var(--text)" }}>{r.address}</p>}
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{r.note}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>

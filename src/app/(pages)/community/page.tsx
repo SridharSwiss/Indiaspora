@@ -17,10 +17,10 @@ const orgs = [
   { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", city: "Geneva", desc: "Community platform for Indians in the Lake Geneva region and UN/diplomatic circles." },
   { name: "TeluguSwiss Association", url: "https://teluguswiss.org", city: "Nationwide", desc: "Telugu-speaking Indian community — Ugadi, Diwali, cultural events and networking across Switzerland." },
   { name: "PrangaN@Swiss", url: "https://pranganswiss.org", city: "Lausanne", desc: "Bengali community organises authentic Durga Puja in Lausanne with pandal, prasad and cultural programs." },
-  { name: "Gujarati Samaj Switzerland", url: "#", city: "Nationwide", desc: "Cultural events, language classes and support for Gujarati-speaking Indians across Switzerland." },
-  { name: "Maharashtra Mandal Switzerland", url: "#", city: "Nationwide", desc: "Marathi culture, Ganesh Chaturthi, and community welfare for Maharashtrians." },
-  { name: "Tamil Sangam Switzerland", url: "#", city: "Zurich/Basel", desc: "Tamil cultural events, Pongal celebrations, and Tamil language education." },
-  { name: "Punjabi Cultural Association", url: "#", city: "Zurich", desc: "Punjabi culture, Lohri, Baisakhi celebrations and community events." },
+  { name: "Gujarati Samaj Switzerland", url: "https://www.facebook.com/search/top?q=gujarati%20samaj%20switzerland", city: "Nationwide", desc: "Cultural events, language classes and support for Gujarati-speaking Indians across Switzerland." },
+  { name: "Maharashtra Mandal Switzerland", url: "https://www.facebook.com/search/top?q=maharashtra%20mandal%20switzerland", city: "Nationwide", desc: "Marathi culture, Ganesh Chaturthi, and community welfare for Maharashtrians." },
+  { name: "Tamil Sangam Switzerland", url: "https://www.facebook.com/search/top?q=tamil%20sangam%20switzerland", city: "Zurich/Basel", desc: "Tamil cultural events, Pongal celebrations, and Tamil language education." },
+  { name: "Punjabi Cultural Association", url: "https://www.facebook.com/search/top?q=punjabi%20cultural%20association%20zurich", city: "Zurich", desc: "Punjabi culture, Lohri, Baisakhi celebrations and community events." },
   { name: "Hindu Swayamsevak Sangh Switzerland", url: "https://hssworld.org", city: "Nationwide", desc: "Hindu cultural values, shakha, yoga, and youth development programmes." },
 ];
 
@@ -53,7 +53,7 @@ export default function CommunityPage() {
         <p className="mb-8" style={{ color: "var(--text-2)" }}>Major Indian associations and organisations active in Switzerland</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {orgs.map((org) => (
-            <a key={org.name} href={org.url === "#" ? undefined : org.url} target={org.url !== "#" ? "_blank" : undefined} rel="noopener noreferrer"
+            <a key={org.name} href={org.url} target="_blank" rel="noopener noreferrer"
               className="glass rounded-xl p-5 card-hover block group">
               <div className="flex items-start justify-between gap-2 mb-2">
                 <h3 className="font-semibold text-sm group-hover:text-orange-400 transition-colors leading-tight" style={{ color: "var(--text)" }}>{org.name}</h3>

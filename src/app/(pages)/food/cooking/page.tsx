@@ -58,10 +58,10 @@ const learnTopics = [
 ];
 
 const youtubeChannels = [
-  { name: "Hebbars Kitchen", focus: "Quick South Indian & North Indian recipes" },
-  { name: "Kunal Kapur", focus: "Professional chef techniques and regional recipes" },
-  { name: "Ranveer Brar", focus: "Restaurant-style cooking and food history" },
-  { name: "Nisha Madhulika", focus: "Hindi vegetarian recipes for home cooks" },
+  { name: "Hebbars Kitchen", focus: "Quick South Indian & North Indian recipes", url: "https://www.youtube.com/@HebbarsKitchen" },
+  { name: "Kunal Kapur", focus: "Professional chef techniques and regional recipes", url: "https://www.youtube.com/@KunalKapur" },
+  { name: "Ranveer Brar", focus: "Restaurant-style cooking and food history", url: "https://www.youtube.com/@RanveerBrar" },
+  { name: "Nisha Madhulika", focus: "Hindi vegetarian recipes for home cooks", url: "https://www.youtube.com/@nishamadhulika" },
 ];
 
 export default function CookingPage() {
@@ -83,21 +83,15 @@ export default function CookingPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Classes & Instructors in Switzerland</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {classProviders.map((p) => (
-              <div key={p.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-0.5" style={{ color: "var(--text)" }}>
-                  {p.url ? (
-                    <a href={p.url} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">
-                      {p.name}
-                    </a>
-                  ) : p.name}
-                </h3>
+              <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold mb-0.5 group-hover:text-amber-400 transition-colors" style={{ color: "var(--text)" }}>{p.name}</h3>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs/40" style={{ color: "var(--text)" }}>{p.location}</span>
                   <span className="text-white/20">·</span>
                   <span className="text-xs text-amber-400">{p.format}</span>
                 </div>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{p.note}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>
@@ -129,10 +123,10 @@ export default function CookingPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Online Resources: YouTube Channels</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {youtubeChannels.map((ch) => (
-              <div key={ch.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>{ch.name}</h3>
+              <a key={ch.name} href={ch.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold mb-1 group-hover:text-amber-400 transition-colors" style={{ color: "var(--text)" }}>{ch.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{ch.focus}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>

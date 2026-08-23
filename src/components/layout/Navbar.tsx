@@ -208,8 +208,25 @@ export default function Navbar() {
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
           style={{ height: 64, position: "relative" }}
         >
-          {/* Logo — editorial serif wordmark */}
-          <Link href="/" className="shrink-0 z-10" aria-label="Indiaspora home" style={{ textDecoration: "none" }}>
+          {/* Logo */}
+          <Link
+            href="/"
+            className="shrink-0 z-10 flex items-center gap-2"
+            aria-label="Indiaspora home"
+            style={{ textDecoration: "none" }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <img
+              src="/logo.svg"
+              alt="Indiaspora"
+              width={36}
+              height={36}
+              style={{
+                height: 36, width: "auto",
+                filter: lightNav ? "brightness(0) invert(1)" : "none",
+                transition: "filter 0.3s",
+              }}
+            />
             <span style={{
               fontSize: 18, fontWeight: 700,
               fontFamily: "'Playfair Display', Georgia, serif",
@@ -500,10 +517,8 @@ export default function Navbar() {
 
             {/* Top row */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, flexShrink: 0 }}>
-              <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsOpen(false)} style={{ textDecoration: "none" }}>
-                <div style={{ width: 30, height: 30, borderRadius: 8,
-                              background: "linear-gradient(135deg, var(--sf), var(--sf-hi))",
-                              display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14 }}>🪔</div>
+              <Link href="/" className="flex items-center gap-2.5" onClick={() => { setIsOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} style={{ textDecoration: "none" }}>
+                <img src="/logo.svg" alt="Indiaspora" style={{ width: 30, height: 30, objectFit: "contain" }} />
                 <strong style={{ fontFamily: "'Syne', system-ui, sans-serif", fontSize: 15, fontWeight: 800, letterSpacing: "-0.03em" }}>
                   <span className="gradient-text">India</span>
                   <span style={{ color: "var(--text)" }}>spora</span>

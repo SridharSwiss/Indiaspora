@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 280">
+  <!-- ── OUTER BOTTOM PETALS (widest spread, darkest red) ── -->
+  <!-- Bottom-left outer -->
+  <polygon points="150,162 28,178 55,222 95,195" fill="#9B1B1B"/>
+  <!-- Bottom-right outer -->
+  <polygon points="150,162 272,178 245,222 205,195" fill="#9B1B1B"/>
+  <!-- Bottom-centre -->
+  <polygon points="95,195 55,222 150,240 245,222 205,195 150,210" fill="#B52020"/>
+
+  <!-- ── MID-LAYER SIDE PETALS ── -->
+  <!-- Left side petal -->
+  <polygon points="150,162 22,128 28,178 95,195" fill="#C02828"/>
+  <polygon points="150,162 22,128 55,155" fill="#A81E1E"/>
+  <!-- Right side petal -->
+  <polygon points="150,162 278,128 272,178 205,195" fill="#C02828"/>
+  <polygon points="150,162 278,128 245,155" fill="#A81E1E"/>
+
+  <!-- ── UPPER OUTER PETALS (going up-left and up-right) ── -->
+  <!-- Upper-left petal -->
+  <polygon points="150,162 55,48 80,110 115,148" fill="#CC2C2C"/>
+  <polygon points="150,162 55,48 80,110" fill="#B82222"/>
+  <!-- Upper-right petal -->
+  <polygon points="150,162 245,48 220,110 185,148" fill="#CC2C2C"/>
+  <polygon points="150,162 245,48 220,110" fill="#B82222"/>
+
+  <!-- ── INNER GOLDEN PETALS (cup holding the centre) ── -->
+  <!-- Left golden -->
+  <polygon points="150,162 80,110 95,148 130,162" fill="#C9956A"/>
+  <polygon points="150,80  80,110 95,148 130,162 150,148" fill="#D4A87A"/>
+  <!-- Right golden -->
+  <polygon points="150,162 220,110 205,148 170,162" fill="#BE8A5F"/>
+  <polygon points="150,80  220,110 205,148 170,162 150,148" fill="#C9956A"/>
+  <!-- Bottom of golden cup -->
+  <polygon points="130,162 150,172 170,162 150,148" fill="#BE8A5F"/>
+
+  <!-- ── WHITE MOUNTAIN PEAKS (inside the golden cup) ── -->
+  <!-- Left peak (tallest) -->
+  <polygon points="124,108 112,132 136,132" fill="white"/>
+  <!-- Snow cap left peak -->
+  <polygon points="124,108 118,120 130,120" fill="white"/>
+  <!-- Centre peak -->
+  <polygon points="150,102 136,128 164,128" fill="white"/>
+  <!-- Snow cap centre -->
+  <polygon points="150,102 144,114 156,114" fill="white"/>
+  <!-- Right peak (shorter) -->
+  <polygon points="172,112 160,132 184,132" fill="white"/>
+  <!-- Snow cap right -->
+  <polygon points="172,112 166,122 178,122" fill="white"/>
+  <!-- Mountain base line -->
+  <rect x="108" y="131" width="84" height="2" rx="1" fill="white" opacity="0.35"/>
+
+  <!-- ── CENTRAL RED DIAMOND PETAL ── -->
+  <polygon points="150,58 136,120 150,155 164,120" fill="#C02828"/>
+  <!-- Light face of central petal -->
+  <polygon points="150,58 136,120 150,138" fill="#D43030"/>
+  <!-- Dark face -->
+  <polygon points="150,58 164,120 150,138" fill="#A81E1E"/>
+  <!-- Arch/outline highlight at top of central petal (white line) -->
+  <polyline points="138,100 150,60 162,100" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+</svg>

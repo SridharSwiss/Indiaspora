@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 };
 
 const insurers = [
-  { name: "CSS", note: "One of the largest insurers; good English support and online tools." },
-  { name: "Helsana", note: "Wide network; strong supplementary (Zusatzversicherung) plans." },
-  { name: "Swica", note: "Consistently highly rated for customer service and digital experience." },
-  { name: "Sanitas", note: "Good digital app; popular among younger expats." },
-  { name: "Assura", note: "Often the lowest premiums; more limited network. Good for healthy adults." },
-  { name: "Concordia", note: "Cooperative model; good value for families with children." },
+  { name: "CSS", url: "https://www.css.ch/en/private-customers.html", note: "One of the largest insurers; good English support and online tools." },
+  { name: "Helsana", url: "https://www.helsana.ch/en/private-customers.html", note: "Wide network; strong supplementary (Zusatzversicherung) plans." },
+  { name: "Swica", url: "https://www.swica.ch/en", note: "Consistently highly rated for customer service and digital experience." },
+  { name: "Sanitas", url: "https://www.sanitas.com/en/private-customers.html", note: "Good digital app; popular among younger expats." },
+  { name: "Assura", url: "https://www.assura.ch/en", note: "Often the lowest premiums; more limited network. Good for healthy adults." },
+  { name: "Concordia", url: "https://www.concordia.ch/en/private-individuals.html", note: "Cooperative model; good value for families with children." },
 ];
 
 const models = [
@@ -57,10 +57,10 @@ export default function HealthcarePage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Major Insurers</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {insurers.map((ins) => (
-              <div key={ins.name} className="glass card-hover rounded-2xl p-4">
-                <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>{ins.name}</h3>
+              <a key={ins.name} href={ins.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-4 block group">
+                <h3 className="text-base font-semibold mb-1 group-hover:text-red-400 transition-colors" style={{ color: "var(--text)" }}>{ins.name}</h3>
                 <p className="text-xs/50" style={{ color: "var(--text)" }}>{ins.note}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>

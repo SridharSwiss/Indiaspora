@@ -52,11 +52,11 @@ const areas = [
 ];
 
 const restaurants = [
-  { name: "Rasoi by Vineet", note: "Fine-dining Indian restaurant at the Mandarin Oriental Geneva, led by acclaimed chef Vineet Bhatia. Contemporary take on Indian cuisine. Geneva's most celebrated Indian dining experience." },
-  { name: "Café Gandhi", note: "Popular with the Indian expat community and locals alike. Consistently highly rated for authentic curry and tandoori dishes." },
-  { name: "Little India Street Kitchen", note: "Traditional Indian cuisine in a lively bazaar-inspired setting on Rue de Lausanne. Strong vegetarian and vegan selection." },
-  { name: "Indian Bites", note: "Highly praised for authentic flavours and varied regional Indian dishes. Website: indianbites.ch." },
-  { name: "Le Safran", note: "Highly rated Indian restaurant in Geneva with strong TheFork ratings and consistent community recommendations." },
+  { name: "Rasoi by Vineet", url: "https://www.mandarinoriental.com/en/geneva/old-town/dine/rasoi-by-vineet", note: "Fine-dining Indian restaurant at the Mandarin Oriental Geneva, led by acclaimed chef Vineet Bhatia. Geneva's most celebrated Indian dining experience." },
+  { name: "Café Gandhi", url: "https://www.google.com/search?q=Café+Gandhi+Geneva+Indian+restaurant", note: "Popular with the Indian expat community and locals alike. Consistently highly rated for authentic curry and tandoori dishes." },
+  { name: "Little India Street Kitchen", url: "https://www.google.com/search?q=Little+India+Street+Kitchen+Geneva", note: "Traditional Indian cuisine in a lively bazaar-inspired setting on Rue de Lausanne. Strong vegetarian and vegan selection." },
+  { name: "Indian Bites", url: "https://indianbites.ch", note: "Highly praised for authentic flavours and varied regional Indian dishes." },
+  { name: "Le Safran", url: "https://www.google.com/search?q=Le+Safran+Indian+restaurant+Geneva", note: "Highly rated Indian restaurant in Geneva with strong TheFork ratings and consistent community recommendations." },
 ];
 
 export default function GenevaPage() {
@@ -100,17 +100,15 @@ export default function GenevaPage() {
           <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Indian Associations & Consulate</h2>
           <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>Source: indianassociationgeneva.com; pmindiaun.gov.in; Embassy of India, Berne associations directory</p>
           <div className="space-y-4">
-            {associations.map((a) => (
-              <div key={a.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>{a.name}</h3>
-                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}>{a.desc}</p>
-                {a.url && (
-                  <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-xs text-red-400 hover:text-red-300">
-                    {a.url} ↗
-                  </a>
-                )}
-              </div>
-            ))}
+            {associations.map((a) => {
+              const href = a.url || `https://www.google.com/search?q=${encodeURIComponent(a.name + " Geneva")}`;
+              return (
+                <a key={a.name} href={href} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                  <h3 className="text-base font-semibold mb-1 group-hover:text-red-400 transition-colors" style={{ color: "var(--text)" }}>{a.name}</h3>
+                  <p className="text-sm/60" style={{ color: "var(--text)" }}>{a.desc}</p>
+                </a>
+              );
+            })}
           </div>
         </section>
 
@@ -118,10 +116,10 @@ export default function GenevaPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Areas Popular with Indians</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {areas.map((a) => (
-              <div key={a.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold text-red-400 mb-1">{a.name}</h3>
+              <a key={a.name} href={`https://www.google.com/maps/search/${encodeURIComponent(a.name + " Geneva")}`} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold text-red-400 mb-1 group-hover:text-red-300 transition-colors">{a.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{a.note}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>
@@ -130,10 +128,10 @@ export default function GenevaPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {restaurants.map((r) => (
-              <div key={r.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>{r.name}</h3>
+              <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold mb-1 group-hover:text-red-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{r.note}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>

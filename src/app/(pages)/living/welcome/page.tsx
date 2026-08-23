@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 const steps = [
   {
     step: "1",
+    url: "https://www.ch.ch/en/moving-to-switzerland/",
     title: "Register at the Gemeinde (within 14 days)",
     description:
       "You must register at your local Gemeinde (municipality / commune) within 14 days of arrival. Bring your passport, residence permit (or visa), rental contract, and employment contract. You'll receive an Anmeldebestätigung (registration confirmation). Your AHV/AVS social security number is assigned automatically at this point or by your employer.",
@@ -20,6 +21,7 @@ const steps = [
   },
   {
     step: "2",
+    url: "https://www.priminfo.admin.ch/en/praemien",
     title: "Get Health Insurance (within 3 months)",
     description:
       "Mandatory Swiss health insurance (Krankenkasse / Grundversicherung) must be arranged within 3 months of arrival — it is backdated to your arrival date. Compare premiums by canton at priminfo.admin.ch (official Federal Office of Public Health tool) or comparis.ch. Popular providers: CSS, Helsana, Swica, Sanitas. Monthly premiums range from CHF 350–700 for adults depending on canton and deductible.",
@@ -27,6 +29,7 @@ const steps = [
   },
   {
     step: "3",
+    url: "https://www.neon-free.ch/en/",
     title: "Open a Bank Account",
     description:
       "You'll need a Swiss bank account for salary deposits, rent, and utility payments. Neon and Yuh are the easiest digital options — open entirely via app with your permit and passport. PostFinance is the traditional go-to, with post office branches everywhere. UBS is good for full-service banking. Bring your permit, passport, and (if possible) a rental contract.",
@@ -34,6 +37,7 @@ const steps = [
   },
   {
     step: "4",
+    url: "https://www.salt.ch/en/",
     title: "Get a Swiss SIM Card",
     description:
       "Sunrise, Salt, and Swisscom are the three main mobile operators. Salt often offers the most competitive plans for new arrivals. Aldi Talk, Migros Natel, and M-Budget Mobile offer budget MVNO options. Buy SIMs at their shops or online with your passport and residence permit.",
@@ -41,6 +45,7 @@ const steps = [
   },
   {
     step: "5",
+    url: "https://www.sbb.ch/en/travelcards-and-tickets/railpasses/half-fare-travelcard.html",
     title: "Set Up Your Transport Pass",
     description:
       "Switzerland's public transport (SBB trains, city trams, buses) is world-class. Get a Half-Fare Travelcard (Halbtax) for CHF 190/year — it halves the price of all tickets nationwide and pays for itself within a few trips. Heavy commuters should consider the GA Travelcard for unlimited travel. Buy via the SBB app (sbb.ch) or any SBB counter.",
@@ -48,6 +53,7 @@ const steps = [
   },
   {
     step: "6",
+    url: "https://www.indembassybern.gov.in",
     title: "Register with the Indian Embassy",
     description:
       "Register as an Indian national residing in Switzerland with the Embassy of India in Bern (Thunstrasse 5, 3005 Bern; Tel: +41 31 350 11 10) or the Consulate General of India in Geneva. Registration ensures you can receive consular services, emergency assistance, and official notifications. Online registration is available at indembassybern.gov.in.",
@@ -83,18 +89,18 @@ export default function WelcomePage() {
           <h2 className="text-2xl font-bold mb-8" style={{ color: "var(--text)" }}>Your First 6 Steps</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {steps.map((s) => (
-              <div key={s.step} className="glass card-hover rounded-2xl p-6">
+              <a key={s.step} href={s.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-6 block group">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-lg flex-shrink-0">
                     {s.icon}
                   </div>
                   <div>
                     <p className="text-xs text-green-400 font-medium mb-1">Step {s.step}</p>
-                    <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{s.title}</h3>
+                    <h3 className="text-base font-semibold mb-2 group-hover:text-green-400 transition-colors" style={{ color: "var(--text)" }}>{s.title}</h3>
                     <p className="text-sm/60" style={{ color: "var(--text)" }}>{s.description}</p>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>

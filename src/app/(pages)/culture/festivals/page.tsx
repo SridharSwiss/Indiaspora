@@ -25,7 +25,7 @@ const festivals = [
     date: "November 2026",
     location: "Basel",
     organiser: "ICAS (Indian Community Association Switzerland)",
-    organiserUrl: null,
+    organiserUrl: "https://icas-online.com",
     desc: "Diwali celebration organised by ICAS in Basel. Cultural performances, Indian food, and community gathering for the Indian diaspora in Basel and the broader region. Past editions held at venues in Basel city.",
     type: "Festival",
   },
@@ -97,7 +97,7 @@ const festivals = [
     date: "January 2026",
     location: "Geneva & Zurich",
     organiser: "Tamil Community Switzerland",
-    organiserUrl: null,
+    organiserUrl: "https://www.facebook.com/search/top?q=pongal%20tamil%20sangam%20switzerland",
     desc: "Tamil harvest festival (Pongal / Thai Pongal) celebrated by the large Swiss-Tamil community. Traditional pongal cooking, kolam competitions, folk music, and cultural performances. Switzerland has one of the largest Tamil diaspora communities in Europe.",
     type: "Festival",
   },
@@ -106,7 +106,7 @@ const festivals = [
     date: "January 13, 2026",
     location: "Zurich",
     organiser: "Punjabi & North Indian Community",
-    organiserUrl: null,
+    organiserUrl: "https://www.facebook.com/search/top?q=lohri%20zurich%20punjabi",
     desc: "Traditional bonfire, bhangra, and gidda marking the end of winter. Rewri, popcorn, and festive food. Organised informally by Punjabi community groups across Swiss cities.",
     type: "Festival",
   },
@@ -115,7 +115,7 @@ const festivals = [
     date: "March 2026",
     location: "Zurich",
     organiser: "Muslim Indian Community",
-    organiserUrl: null,
+    organiserUrl: "https://www.facebook.com/search/top?q=indian%20iftar%20zurich",
     desc: "Community Iftar dinner open to all — celebrating Ramadan and India's shared cultural heritage with traditional food from India's Muslim culinary traditions.",
     type: "Community",
   },
@@ -147,24 +147,17 @@ export default function FestivalsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 gap-5">
           {festivals.map((f) => (
-            <div key={f.name} className="glass rounded-2xl p-6 card-hover">
+            <a key={f.name} href={f.organiserUrl!} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-6 card-hover block group">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1 mr-3">
-                  <h3 className="font-semibold" style={{ color: "var(--text)" }}>{f.name}</h3>
+                  <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{f.name}</h3>
                   <p className="text-xs text-rose-400 mt-0.5">{f.date} &middot; {f.location}</p>
                 </div>
                 <span className={`text-xs px-2 py-1 rounded-full shrink-0 ${typeColors[f.type] ?? " text-white/60"}`}>{f.type}</span>
               </div>
               <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>{f.desc}</p>
-              <div className="flex items-center justify-between">
-                <p className="text-xs" style={{ color: "var(--text-3)" }}>Organised by {f.organiser}</p>
-                {f.organiserUrl && (
-                  <a href={f.organiserUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-rose-400 hover:text-rose-300">
-                    Website →
-                  </a>
-                )}
-              </div>
-            </div>
+              <p className="text-xs" style={{ color: "var(--text-3)" }}>Organised by {f.organiser}</p>
+            </a>
           ))}
         </div>
 

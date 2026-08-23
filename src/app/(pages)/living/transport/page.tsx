@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 };
 
 const passes = [
-  { name: "Half-Fare Travelcard (Halbtax)", price: "CHF 190/year (first year); CHF 170/year thereafter", desc: "Halves the price of virtually all public transport tickets nationwide — trains, buses, trams, boats, and most cable cars. Best value for most residents. Under-25 pay CHF 100/year. Buy at any SBB ticket window or sbb.ch.", recommended: true },
-  { name: "GA Travelcard (Generalabonnement)", price: "~CHF 3,995/year 2nd class; ~CHF 6,885 1st class", desc: "Unlimited travel on all SBB trains, most city trams and buses, regional railways, and boats. Worth it for heavy commuters travelling long distances daily. Monthly GA option also available at CHF 440 (2nd class).", recommended: false },
-  { name: "Day Pass", price: "~CHF 52 (with Halbtax)", desc: "Unlimited travel anywhere in Switzerland on one day. Great for weekend day-trips. Available via the SBB app.", recommended: false },
-  { name: "Zone Subscription", price: "Varies by city and zone", desc: "Monthly or annual pass for a specific fare zone in your city (e.g., ZVV in Zurich, TPG in Geneva). More economical than GA if you commute locally within one zone.", recommended: false },
+  { name: "Half-Fare Travelcard (Halbtax)", url: "https://www.sbb.ch/en/travelcards-and-tickets/railpasses/half-fare-travelcard.html", price: "CHF 190/year (first year); CHF 170/year thereafter", desc: "Halves the price of virtually all public transport tickets nationwide — trains, buses, trams, boats, and most cable cars. Best value for most residents. Under-25 pay CHF 100/year.", recommended: true },
+  { name: "GA Travelcard (Generalabonnement)", url: "https://www.sbb.ch/en/travelcards-and-tickets/railpasses/ga.html", price: "~CHF 3,995/year 2nd class; ~CHF 6,885 1st class", desc: "Unlimited travel on all SBB trains, most city trams and buses, regional railways, and boats. Worth it for heavy commuters travelling long distances daily.", recommended: false },
+  { name: "Day Pass", url: "https://www.sbb.ch/en/travelcards-and-tickets/tickets/day-pass.html", price: "~CHF 52 (with Halbtax)", desc: "Unlimited travel anywhere in Switzerland on one day. Great for weekend day-trips. Available via the SBB app.", recommended: false },
+  { name: "Zone Subscription", url: "https://www.sbb.ch/en/travelcards-and-tickets/railpasses/zone-passes.html", price: "Varies by city and zone", desc: "Monthly or annual pass for a specific fare zone in your city (e.g., ZVV in Zurich, TPG in Geneva). More economical than GA if you commute locally within one zone.", recommended: false },
 ];
 
 const cities = [
@@ -45,14 +45,14 @@ export default function TransportPage() {
           <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>All passes and tickets can be purchased via the SBB app or at any SBB ticket counter. The SBB app (sbb.ch/en) allows mobile tickets and real-time journey planning across all Swiss transport operators.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {passes.map((p) => (
-              <div key={p.name} className={`glass card-hover rounded-2xl p-5 ${p.recommended ? 'border border-sky-500/40' : ''}`}>
+              <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className={`glass card-hover rounded-2xl p-5 block group ${p.recommended ? 'border border-sky-500/40' : ''}`}>
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>{p.name}</h3>
+                  <h3 className="text-base font-semibold group-hover:text-sky-400 transition-colors" style={{ color: "var(--text)" }}>{p.name}</h3>
                   {p.recommended && <span className="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300">Recommended</span>}
                 </div>
                 <p className="text-sm text-sky-400 font-medium mb-2">{p.price}</p>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{p.desc}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>

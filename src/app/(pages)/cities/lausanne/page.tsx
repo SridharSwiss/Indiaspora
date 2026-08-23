@@ -53,11 +53,11 @@ const facts = [
 ];
 
 const restaurants = [
-  { name: "Nandanam", note: "Rated the top Indian restaurant in Lausanne by recent reviews. South Indian specialities alongside North Indian classics." },
-  { name: "Bollywood", note: "Consistently highly praised on TheFork and TripAdvisor. Vegetarian and gluten-free options available. Popular with the EPFL student community." },
-  { name: "7 Kings Curry", note: "Reliable Indian restaurant with a broad menu spanning regional Indian cuisines." },
-  { name: "La Maison Tandoori", note: "Praised for its authentic tandoor-cooked dishes and good atmosphere." },
-  { name: "Indian Zayeka", note: "Known for its classic Indian dishes and popular lunch buffet. Traditionally decorated dining space." },
+  { name: "Nandanam", url: "https://www.google.com/search?q=Nandanam+Indian+restaurant+Lausanne", note: "Rated the top Indian restaurant in Lausanne by recent reviews. South Indian specialities alongside North Indian classics." },
+  { name: "Bollywood", url: "https://www.google.com/search?q=Bollywood+Indian+restaurant+Lausanne", note: "Consistently highly praised on TheFork and TripAdvisor. Vegetarian and gluten-free options available. Popular with the EPFL student community." },
+  { name: "7 Kings Curry", url: "https://www.google.com/search?q=7+Kings+Curry+Lausanne", note: "Reliable Indian restaurant with a broad menu spanning regional Indian cuisines." },
+  { name: "La Maison Tandoori", url: "https://www.google.com/search?q=La+Maison+Tandoori+Lausanne", note: "Praised for its authentic tandoor-cooked dishes and good atmosphere." },
+  { name: "Indian Zayeka", url: "https://www.google.com/search?q=Indian+Zayeka+Lausanne", note: "Known for its classic Indian dishes and popular lunch buffet. Traditionally decorated dining space." },
 ];
 
 export default function LausannePage() {
@@ -102,13 +102,10 @@ export default function LausannePage() {
           <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>Source: ialausanne.com; epfl.ch/campus/associations/yuva; pranganswiss.org; Embassy of India, Berne associations directory</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {associations.map((a) => (
-              <div key={a.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{a.name}</h3>
-                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}>{a.desc}</p>
-                <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-xs text-violet-400 hover:text-violet-300">
-                  {a.url} ↗
-                </a>
-              </div>
+              <a key={a.name} href={a.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold mb-2 group-hover:text-violet-400 transition-colors" style={{ color: "var(--text)" }}>{a.name}</h3>
+                <p className="text-sm/60" style={{ color: "var(--text)" }}>{a.desc}</p>
+              </a>
             ))}
           </div>
         </section>
@@ -128,10 +125,10 @@ export default function LausannePage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {restaurants.map((r) => (
-              <div key={r.name} className="glass card-hover rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>{r.name}</h3>
+              <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-base font-semibold mb-1 group-hover:text-violet-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{r.note}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>
