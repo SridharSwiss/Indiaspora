@@ -37,7 +37,7 @@ const screenings = [
   },
   {
     name: "Tamil Film Screenings",
-    url: "https://www.facebook.com/search/top?q=tamil+film+screening+switzerland",
+    url: "https://www.google.com/search?q=tamil+film+screening+switzerland",
     timing: "Periodic",
     location: "Zurich & Geneva",
     desc: "Tamil blockbusters and recent releases screened for the Swiss-Tamil community. Announced via Tamil community groups. The Tamil diaspora is one of the largest Indian subgroups in Switzerland.",
