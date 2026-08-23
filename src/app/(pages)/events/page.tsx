@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { UPCOMING_EVENTS } from "@/lib/data";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 const categories = ["All", "Festival", "Networking", "Cultural", "Food", "Arts", "Sports"];
 
@@ -19,7 +20,37 @@ const monthlyCalendar = [
   { month: "December", events: ["Year-end community gala (IAGZ)", "Christmas-Bollywood fusion party", "Advent Indian bazaar"] },
 ];
 
-export default function EventsPage() {
+async function getDbEvents() {
+  try {
+    const supabase = createAdminClient();
+    const { data } = await supabase
+      .from("events")
+      .select("*")
+      .eq("active", true)
+      .order("created_at", { ascending: false });
+    return data ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export default async function EventsPage() {
+  const dbEvents = await getDbEvents();
+  // Merge: DB events first (newest submissions), then static fallbacks
+  const allEvents = [
+    ...dbEvents.map((e: Record<string, string>) => ({
+      title: e.title,
+      date: e.date,
+      location: e.location,
+      category: e.category,
+      description: e.description,
+      organiser: e.organiser,
+      color: e.color ?? "bg-violet-500",
+      url: e.url ?? "",
+      image: e.image ?? "",
+    })),
+    ...UPCOMING_EVENTS,
+  ];
   return (
     <div>
       <PageHeader
@@ -36,7 +67,7 @@ export default function EventsPage() {
           <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Upcoming Events</h2>
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Next events in the Swiss-Indian community calendar</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {UPCOMING_EVENTS.map((event) => {
+            {allEvents.map((event) => {
               const Wrapper = event.url ? "a" : "div";
               const wrapperProps = event.url ? { href: event.url, target: "_blank", rel: "noopener noreferrer" } : {};
               return (
