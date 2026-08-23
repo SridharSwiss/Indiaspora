@@ -23,9 +23,12 @@ const envCandidates = [
 for (const envFile of envCandidates) {
   console.log("Trying:", envFile, "→", existsSync(envFile) ? "FOUND" : "not found");
   if (existsSync(envFile)) {
-    const lines = readFileSync(envFile, "utf8").split("\n");
+    const lines = readFileSync(envFile, "utf8")
+      .replace(/^﻿/, "")   // strip BOM
+      .replace(/\r/g, "")       // strip Windows \r
+      .split("\n");
     for (const line of lines) {
-      const m = line.match(/^([^#=]+)=(.*)$/);
+      const m = line.match(/^([^#=\s][^=]*)=(.*)$/);
       if (m) process.env[m[1].trim()] = m[2].trim().replace(/^['"]|['"]$/g, "");
     }
     break;
