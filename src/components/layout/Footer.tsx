@@ -116,7 +116,7 @@ export default function Footer() {
               {[
                 { label: "FB", title: "Facebook", href: "https://www.facebook.com/groups/indian.association.of.greater.zurich/" },
                 { label: "IG", title: "Instagram", href: "https://www.instagram.com/namasteswitzerland.ch/" },
-                { label: "LI", title: "LinkedIn", href: "https://www.linkedin.com/company/swiss-indiaspora/" },
+                { label: "LI", title: "LinkedIn", href: "https://www.linkedin.com/company/swiss-indiaspora/?viewAsMember=true" },
                 { label: "WA", title: "WhatsApp", href: "https://wa.me/?text=Indiaspora%20Community%20Hub%20-%20https%3A%2F%2Findiaspora.ch" },
               ].map((s) => (
                 <a
