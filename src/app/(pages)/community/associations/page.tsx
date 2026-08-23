@@ -28,8 +28,8 @@ const regional: Org[] = [
   { name: "Swiss Tamil Sangam", url: "http://swisstamilsangam.com", city: "Nationwide", desc: "Cultural association for Tamil-speaking community in Switzerland. Tamil is one of the largest diaspora language groups in the country." },
   { name: "Swiss Tamil Professionals Association (STPA)", url: "https://www.tamilprofessionals.ch", city: "Zurich", desc: "Network for Tamil professionals — collaboration, innovation and mentoring across industries." },
   { name: "Telugu Association of Switzerland (TeluguSwiss)", url: "https://teluguswiss.org", city: "Nationwide", desc: "Ugadi and other Telugu cultural events and community networking. The affiliated Swiss Telugu NRI Forum (STNRI) runs Mana Badi, a Telugu language programme for children." },
-  { name: "Kannada Koota Switzerland", url: "https://www.facebook.com/groups/kannadakoota.switzerland/", city: "Zurich", desc: "Kannada Rajyotsava and community events for Kannadigas across Switzerland." },
-  { name: "Bengali Cultural Society Switzerland", url: "https://www.facebook.com/groups/bengaliculturalsocietyswitzerland/", city: "Zurich/Geneva", desc: "Durga Puja, Rabindra Jayanti and Bengali cultural events across Switzerland." },
+  { name: "Kannada Koota Switzerland", url: "https://www.google.com/search?q=Kannada+Koota+Switzerland", city: "Zurich", desc: "Kannada Rajyotsava and community events for Kannadigas across Switzerland." },
+  { name: "Bengali Cultural Society Switzerland", url: "https://www.google.com/search?q=Bengali+Cultural+Society+Switzerland", city: "Zurich/Geneva", desc: "Durga Puja, Rabindra Jayanti and Bengali cultural events across Switzerland." },
   { name: "Kerala Associations Network", url: "https://www.keralam.ch", city: "Nationwide", desc: "Kerala's diaspora runs several regional groups rather than one body — including Keliswiss, Malayalees Swiss, Changathi Kootam and Bharatheeya Kalalayam Switzerland — organising Onam, Vishu and Malayalam-language cultural events." },
 ];
 

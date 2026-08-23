@@ -260,7 +260,7 @@ export const UPCOMING_EVENTS = [
     description: "Indian Cultural Association Switzerland presents Diwali night with dance, music, and fireworks.",
     organiser: "ICAS – Indian Cultural Association Switzerland",
     color: "bg-orange-400",
-    url: "https://www.facebook.com/search/top?q=icas%20basel%20indian",
+    url: "https://www.google.com/search?q=icas%20basel%20indian",
     image: "https://images.unsplash.com/photo-1574169208507-84376144848b?w=600&auto=format&fit=crop",
   },
   {
@@ -342,7 +342,6 @@ export const RESOURCES = [
   { title: "IAGZ – Indian Association Zurich", url: "https://iagz.ch", category: "Community", description: "Events, networking, and community support for Indians in Zurich" },
   { title: "SICC – Swiss Indian Chamber", url: "https://sicc.ch", category: "Business", description: "Business networking, events, and trade facilitation between India and Switzerland" },
   { title: "TeluguSwiss Association", url: "https://teluguswiss.org", category: "Community", description: "Telugu-speaking Indian community across Switzerland — cultural events and networking" },
-  { title: "SwissDesi", url: "https://swissdesi.ch", category: "Community", description: "Community portal for Indians in Switzerland — news, classifieds, and local resources" },
   { title: "India Supermarkt (Online)", url: "https://indiasupermarkt.ch", category: "Shopping", description: "Buy Indian groceries, spices, and products online in Switzerland" },
   { title: "TiE Zurich", url: "https://tie.org/chapter/tie-zurich/", category: "Business", description: "The Indus Entrepreneurs — mentorship, networking, and startup ecosystem" },
   { title: "India-Swiss Startup Bridge", url: "https://startupindia.gov.in/content/sih/en/international/india-swiss_startup_bridge.html", category: "Business", description: "India-Switzerland bilateral startup collaboration platform by Startup India" },
