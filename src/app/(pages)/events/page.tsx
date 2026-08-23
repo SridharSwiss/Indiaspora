@@ -39,19 +39,33 @@ export default function EventsPage() {
               const Wrapper = event.url ? "a" : "div";
               const wrapperProps = event.url ? { href: event.url, target: "_blank", rel: "noopener noreferrer" } : {};
               return (
-                <Wrapper key={event.title} {...wrapperProps} className="glass rounded-2xl p-5 card-hover block group" style={{ textDecoration: "none" }}>
-                  <div className="flex items-start gap-3 mb-3">
-                    <div className={`w-3 h-3 rounded-full ${event.color} mt-1 shrink-0`} />
-                    <div>
-                      <h3 className="font-semibold text-sm group-hover:text-violet-400 transition-colors" style={{ color: "var(--text)" }}>{event.title}</h3>
-                      <p className="text-xs" style={{ color: "var(--text-2)" }}>{event.date}</p>
+                <Wrapper key={event.title} {...wrapperProps} className="glass rounded-2xl overflow-hidden card-hover block group" style={{ textDecoration: "none" }}>
+                  {event.image && (
+                    <div className="relative h-44 overflow-hidden">
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <span className="text-xs px-2 py-1 rounded-full font-medium text-white" style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>{event.category}</span>
+                      </div>
+                      <div className="absolute bottom-3 right-3">
+                        <span className={`w-2.5 h-2.5 rounded-full ${event.color} inline-block`} />
+                      </div>
                     </div>
-                  </div>
-                  <p className="text-xs mb-2" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{event.description}</p>
-                  <div className="flex items-center justify-between mt-3">
-                    <span className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{event.category}</span>
-                    {event.url && <span className="text-xs text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity">Visit →</span>}
+                  )}
+                  <div className="p-5">
+                    <h3 className="font-semibold text-sm group-hover:text-violet-400 transition-colors mb-1" style={{ color: "var(--text)" }}>{event.title}</h3>
+                    <p className="text-xs font-medium mb-1" style={{ color: "var(--accent, #a855f7)" }}>{event.date}</p>
+                    <p className="text-xs mb-2" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
+                    <p className="text-xs mb-3 leading-relaxed" style={{ color: "var(--text-2)" }}>{event.description}</p>
+                    <div className="flex items-center justify-between">
+                      {(event as { organiser?: string }).organiser && (
+                        <span className="text-xs" style={{ color: "var(--text-2)" }}>by {(event as { organiser?: string }).organiser}</span>
+                      )}
+                      {event.url && <span className="text-xs text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity ml-auto">Visit →</span>}
+                    </div>
                   </div>
                 </Wrapper>
               );
