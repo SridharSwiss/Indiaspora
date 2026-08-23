@@ -10,15 +10,24 @@
 
 import { createClient } from "@supabase/supabase-js";
 import { readFileSync, existsSync } from "fs";
-import { resolve } from "path";
+import { resolve, dirname } from "path";
+import { fileURLToPath } from "url";
 
-// Load .env.local if present
-const envFile = resolve(process.cwd(), ".env.local");
-if (existsSync(envFile)) {
-  const lines = readFileSync(envFile, "utf8").split("\n");
-  for (const line of lines) {
-    const m = line.match(/^([^#=]+)=(.*)$/);
-    if (m) process.env[m[1].trim()] = m[2].trim().replace(/^['"]|['"]$/g, "");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Try .env.local from project root (one level up from scripts/) and cwd
+const envCandidates = [
+  resolve(__dirname, "../.env.local"),
+  resolve(process.cwd(), ".env.local"),
+];
+for (const envFile of envCandidates) {
+  if (existsSync(envFile)) {
+    const lines = readFileSync(envFile, "utf8").split("\n");
+    for (const line of lines) {
+      const m = line.match(/^([^#=]+)=(.*)$/);
+      if (m) process.env[m[1].trim()] = m[2].trim().replace(/^['"]|['"]$/g, "");
+    }
+    break;
   }
 }
 
