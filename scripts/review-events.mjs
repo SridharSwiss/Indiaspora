@@ -21,6 +21,7 @@ const envCandidates = [
   resolve(process.cwd(), ".env.local"),
 ];
 for (const envFile of envCandidates) {
+  console.log("Trying:", envFile, "→", existsSync(envFile) ? "FOUND" : "not found");
   if (existsSync(envFile)) {
     const lines = readFileSync(envFile, "utf8").split("\n");
     for (const line of lines) {
