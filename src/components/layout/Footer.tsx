@@ -83,7 +83,8 @@ export default function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-8 gap-8 lg:gap-6 mb-12">
           {/* Brand — spans 2 cols on large screens */}
           <div className="col-span-2 sm:col-span-3 lg:col-span-2">
-            <div className="mb-5">
+            <div className="mb-5 flex items-center gap-3">
+              <img src="/logo.svg" alt="Indiaspora" style={{ height: 40, width: "auto", filter: "brightness(0) invert(1)" }} />
               <span style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: 20, fontWeight: 700,
