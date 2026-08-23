@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { UPCOMING_EVENTS } from "@/lib/data";
 
@@ -94,16 +95,20 @@ export default function EventsPage() {
           </div>
         </section>
 
-        {/* Submit */}
+        {/* Submit CTA */}
         <div className="glass rounded-2xl p-8 text-center">
+          <div className="text-4xl mb-4">📅</div>
           <h3 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Submit Your Event</h3>
-          <p className="mb-6" style={{ color: "var(--text-2)" }}>Organising an Indian community event in Switzerland? List it here to reach thousands of Indians across the country.</p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input type="text" placeholder="Event name" className="flex-1 px-4 py-2.5 rounded-xl border text-sm focus:outline-none focus:border-violet-500/50" style={{ background: "var(--surface)", borderColor: "var(--border)", color: "var(--text)" }} />
-            <button className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-sm font-semibold hover:from-violet-600 hover:to-purple-700 transition-all whitespace-nowrap" style={{ color: "var(--text)" }}>
-              Submit Event
-            </button>
-          </div>
+          <p className="mb-6" style={{ color: "var(--text-2)" }}>
+            Organising an Indian community event in Switzerland? List it here to reach 30,000+ Indians across the country.
+            Submissions are reviewed by our AI moderation system and go live within 12 hours.
+          </p>
+          <Link
+            href="/events/submit"
+            className="inline-block px-8 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 font-semibold text-white hover:from-violet-600 hover:to-purple-700 transition-all"
+          >
+            Submit an Event →
+          </Link>
         </div>
       </div>
     </div>
