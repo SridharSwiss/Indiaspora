@@ -366,14 +366,32 @@ h1, h2, h3, .serif {
   line-height: 1;
 }
 
-/* ── Card hover ───────────────────────────────────────────────── */
+/* ── Card hover — editorial lift with warm glow ───────────────── */
 .card-hover {
-  transition: border-color 0.25s, transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+  transition: border-color 0.25s, transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
 }
 .card-hover:hover {
-  transform: translateY(-3px);
-  border-color: var(--border-2);
-  box-shadow: 0 10px 32px rgba(44,34,30,0.08);
+  transform: translateY(-4px);
+  border-color: var(--border-hi);
+  box-shadow:
+    0 2px 4px rgba(44,34,30,0.04),
+    0 8px 24px rgba(44,34,30,0.08),
+    0 20px 48px rgba(44,34,30,0.06),
+    0 0 0 1px var(--border-2);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .card-hover:hover {
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.3),
+      0 8px 24px rgba(0,0,0,0.4),
+      0 0 0 1px rgba(176,141,87,0.25);
+  }
+}
+:root[data-theme="dark"] .card-hover:hover {
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.3),
+    0 8px 24px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(176,141,87,0.25);
 }
 
 /* ── Ambient warm glow orbs (replaces aurora orbs) ────────────── */

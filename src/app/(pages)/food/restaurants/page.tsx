@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import SectionTabs from "@/components/ui/SectionTabs";
 
 export const metadata: Metadata = {
   title: "Indian Restaurants in Switzerland",
@@ -171,9 +172,14 @@ export default function RestaurantsPage() {
         ]}
       />
 
+      <SectionTabs
+        tabs={cities.map((c) => ({ id: c.city.toLowerCase(), label: c.city }))}
+        accentColor="var(--mg)"
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         {cities.map((c) => (
-          <section key={c.city}>
+          <section key={c.city} id={c.city.toLowerCase()}>
             <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>{c.city}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {c.restaurants.map((r) => {

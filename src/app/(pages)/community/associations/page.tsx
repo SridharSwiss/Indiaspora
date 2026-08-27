@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import SectionTabs from "@/components/ui/SectionTabs";
 
 export const metadata: Metadata = {
   title: "Indian Associations & Clubs in Switzerland",
@@ -63,9 +64,16 @@ function OrgCard({ org }: { org: Org }) {
   );
 }
 
+const SECTION_IDS: Record<string, string> = {
+  "Umbrella & City Associations": "umbrella",
+  "Regional Language Associations": "regional",
+  "Professional Networks": "professional",
+  "Cultural & Spiritual Organisations": "cultural",
+};
+
 function Section({ title, desc, items }: { title: string; desc: string; items: Org[] }) {
   return (
-    <section className="mb-12">
+    <section id={SECTION_IDS[title]} className="mb-12">
       <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>{title}</h2>
       <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>{desc}</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -84,6 +92,13 @@ export default function AssociationsPage() {
         badge="🏛️ 150+ Associations"
         breadcrumbs={[{ label: "Community", href: "/community" }, { label: "Associations & Clubs" }]}
       />
+      <SectionTabs tabs={[
+        { id: "umbrella", label: "Umbrella" },
+        { id: "regional", label: "Regional" },
+        { id: "professional", label: "Professional" },
+        { id: "cultural", label: "Cultural" },
+      ]} accentColor="var(--in)" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <Section title="Umbrella & City Associations" desc="Pan-Swiss and city-level Indian organisations" items={umbrella} />
         <Section title="Regional Language Associations" desc="Groups organised by language and state of origin" items={regional} />
