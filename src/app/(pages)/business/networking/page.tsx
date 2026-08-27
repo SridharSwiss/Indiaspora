@@ -46,12 +46,12 @@ const chambers = [
 ];
 
 const events = [
-  { name: "SICC Annual India Day", timing: "August", desc: "Flagship bilateral event attended by Swiss and Indian government officials, CEOs, and diplomats. Celebrating 40 years in 2025.", url: "https://sicc.ch/events/" },
-  { name: "Swiss-Indian Entrepreneurship Day", timing: "February", desc: "Annual event by SICC, Venturelab, ZHAW, and Swissnex India featuring startup pitches, power talks, and the Swiss-Indian Ambassador of Innovation award.", url: "https://sicc.ch/young-professionals-network/" },
-  { name: "TiEcon Switzerland", timing: "Autumn", desc: "Annual conference for Indian-origin entrepreneurs. Startup pitches, investor panels, and networking across Zurich.", url: "https://zurich.tie.org" },
-  { name: "SICC Business Breakfast", timing: "Monthly", desc: "Informal breakfast networking with Swiss-Indian executives in Zurich — open to SICC members and invited guests.", url: "https://sicc.ch/events/" },
-  { name: "SIPN Networking Evening", timing: "Quarterly", desc: "Swiss India Professional Network events in Zurich, Basel, and Geneva, bringing together Indian diaspora across sectors.", url: "https://sipn.ch" },
-  { name: "Pharma India Forum Basel", timing: "Bi-annual", desc: "Connecting Basel-based Indian pharma professionals at Novartis, Roche, and Lonza with visiting Indian delegations.", url: "https://sicc.ch/events/" },
+  { name: "Emirates Aircraft Visit (SICC)", timing: "2 Sep 2026", desc: "SICC member event at Zurich Airport featuring an Emirates aircraft visit and networking.", url: "https://sicc.ch/events/" },
+  { name: "Market Focus India — with CCIG", timing: "8 Sep 2026", desc: "SICC and CCIG (Geneva Chamber of Commerce) co-hosted session on doing business in India. Held in Geneva.", url: "https://sicc.ch/events/" },
+  { name: "Rumours vs Facts: Manufacturing in India", timing: "23 Sep 2026", desc: "SICC roundtable addressing common misconceptions about setting up manufacturing operations in India.", url: "https://sicc.ch/events/" },
+  { name: "Swiss-Indian Entrepreneurship Day", timing: "February (Annual)", desc: "Annual event by SICC, Venturelab, ZHAW, and Swissnex India featuring 20 Swiss and Indian startup pitches and the Swiss-Indian Ambassador of Innovation award.", url: "https://www.venturelab.swiss/swiss_indian_day" },
+  { name: "Indo-Swiss Sustainability Awards 2026", timing: "28 Nov 2026", desc: "SICC flagship sustainability awards recognising outstanding examples of Swiss-Indian cooperation in sustainable business.", url: "https://sicc.ch/events/" },
+  { name: "TiEcon Switzerland", timing: "Autumn (Annual)", desc: "Annual conference for Indian-origin entrepreneurs. Startup pitches, investor panels, and networking across Zurich.", url: "https://zurich.tie.org" },
 ];
 
 const linkedin = [

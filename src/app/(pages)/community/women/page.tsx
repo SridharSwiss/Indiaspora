@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   },
 };
 
-// Community networks verified via swissdesi.ch, namasteswiss.ch and web search (Aug 2026)
+// Community networks verified via namasteswitzerland.ch, iagz.ch, idcn.info and web search (Aug 2026)
 const support: { name: string; url: string | null; city: string; desc: string }[] = [
-  { name: "Swiss Desi (formerly IndianMomsZurich)", url: "https://swissdesi.ch", city: "Zurich / Nationwide", desc: "Community platform launched 2018 for Indian women and families in Switzerland. Covers events, schools, Indian restaurants, shopping, day-to-day Swiss life tips and community connections." },
+  { name: "Namaste Switzerland", url: "https://namasteswitzerland.ch", city: "Nationwide", desc: "Online infotainment magazine founded and run by Indian professional women. Mission: Connect. Inform. Integrate. Covers Swiss integration, Indian community profiles, culture and recipes. Officially listed on the Embassy of India Berne website." },
   { name: "IAGZ Women's Wing", url: "https://www.iagz.ch", city: "Zurich", desc: "Women's events, networking lunches and community activities organised under the Indian Association of Greater Zurich." },
   { name: "International Dual Career Network (IDCN)", url: "https://idcn.info", city: "Zurich / Basel", desc: "Active in the Zurich region since 2012 — networking and job-market re-entry support for accompanying spouses and partners, a common first stop for Indian women arriving on a dependant permit." },
   { name: "Professional Women's Group Zürich (PWG)", url: "https://www.pwg-zh.com", city: "Zurich", desc: "International career network for women founded in 1983 — monthly evening events, mentorship and company visits for internationally minded professionals, including many Indian members." },
@@ -113,8 +113,8 @@ export default function WomenPage() {
               <div style={{ color: "var(--text-2)" }}>
                 <p className="mb-2">Embassy of India, Bern:</p>
                 <a href="https://www.indembassybern.gov.in" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 text-sm">indembassybern.gov.in</a>
-                <p className="mt-3 mb-2">Consulate General of India, Zurich:</p>
-                <a href="https://www.cgizurich.gov.in" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 text-sm">cgizurich.gov.in</a>
+                <p className="mt-3 mb-2">Consulate General of India, Geneva:</p>
+                <a href="https://www.cgigeneva.gov.in" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 text-sm">cgigeneva.gov.in</a>
               </div>
             </div>
           </div>

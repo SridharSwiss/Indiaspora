@@ -46,10 +46,10 @@ const associations = [
     desc: "Cultural events and networking for the Gujarati-speaking community in the Zurich region.",
   },
   {
-    name: "SwissDesi (formerly IndianMomsZurich)",
+    name: "Namaste Switzerland",
     full: "",
-    url: "https://swissdesi.ch",
-    desc: "Online community platform launched 2018 connecting Indian and South Asian families in Zurich and across Switzerland. Maintains a directory of Indian associations, grocery stores, and local services.",
+    url: "https://namasteswitzerland.ch",
+    desc: "Online infotainment magazine founded and run by Indian professional women in Switzerland. Covers Swiss integration, Indian community profiles, culture, events and recipes. Listed officially on the Embassy of India Berne website.",
   },
 ];
 

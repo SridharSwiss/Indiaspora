@@ -16,7 +16,7 @@ const boutiques = [
     city: "Zurich",
     address: "Hohlstrasse 480, 8048 Zürich",
     phone: "+41 44 558 63 63",
-    url: "http://www.manjarisarees.com/",
+    url: "https://www.manjarisarees.com/",
     speciality: "Sarees, Salwar Kameez & Lehengas",
     desc: "One of the most established Indian fashion stores in Zurich. Stocks north and south Indian women's and children's fashion — sarees, salwar kameez, lehengas, and blouse pieces. In-house alterations and custom stitching. Open Tue–Sun 2–8 pm. Source: manjarisarees.com"
   },
@@ -57,7 +57,7 @@ const online = [
 ];
 
 const community = [
-  { channel: "SwissDesi — Indian Clothing Guide", desc: "SwissDesi (swissdesi.ch) maintains a curated list of Indian clothing, home decor, and jewellery options in Switzerland. Updated regularly by the community." },
+  { channel: "IAGZ Community — Indian Clothing Tips", desc: "IAGZ (iagz.ch) members frequently share tips on Indian clothing boutiques, home boutique owners, and sale events in the Zurich area. Join their community to stay updated." },
   { channel: "Facebook: Indian Wardrobe Switzerland", desc: "Buy, sell, and swap pre-loved Indian outfits. Active community with regular posts from home boutique owners and personal sellers." },
   { channel: "Instagram: #IndianFashionZurich", desc: "Follow the hashtag for boutique announcements, outfit inspiration, and sale events from the Zurich Indian fashion community." },
   { channel: "WhatsApp Community Groups", desc: "Many home boutique owners take orders via WhatsApp. Ask for recommendations in IAGZ member groups or local Indian WhatsApp networks." },

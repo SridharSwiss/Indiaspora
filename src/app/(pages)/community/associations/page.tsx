@@ -12,20 +12,20 @@ export const metadata: Metadata = {
 
 type Org = { name: string; url: string | null; city: string; desc: string };
 
-// Umbrella associations verified via Embassy of India Bern listing, individual organisation websites, and swissdesi.ch (Aug 2026)
+// Umbrella associations verified via Embassy of India Bern listing (indembassybern.gov.in/page/indian-associations-in-switzerland-and-liechtenstein/) and individual organisation websites (Aug 2026)
 const umbrella: Org[] = [
   { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", city: "Zurich", desc: "Formed 2010. Gathers the Indian community in Greater Zurich for Holi, Dandiya and Diwali. 70+ member families. Non-political, non-communal." },
   { name: "SICC – Swiss-Indian Chamber of Commerce", url: "https://sicc.ch", city: "Zurich", desc: "Founded 1985. Bi-national non-profit with 400+ Swiss and Indian members. Offices in Zurich, Mumbai, New Delhi, Bengaluru and Pune. Hosts 50+ events annually." },
   { name: "Indian Association of Berne (IAB)", url: "https://www.india-bern.ch", city: "Bern", desc: "Founded 15 June 1972. Cultural, non-profit, non-political organisation for the Indian diaspora in Bern. 120+ members. Ambassador of India is patron." },
   { name: "Bharatiya Association Berne (BAB)", url: "https://www.india-bab.ch", city: "Bern", desc: "Founded July 1996. Promotes companionship and goodwill among members and fosters contacts with Swiss institutions and culture." },
-  { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", city: "Geneva", desc: "Founded 1947 — one of the world's oldest continuously running Indian associations. 500+ members in the Lake Geneva region." },
+  { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", city: "Geneva", desc: "Founded 1947 — one of the world's oldest continuously running Indian associations. 500+ members in the Lake Geneva region. Full festival calendar including Diwali, Holi, and Independence Day." },
   { name: "Bruhan Maharashtra Mandal Switzerland (BMMS)", url: "https://bruhan-mms.org", city: "Nationwide", desc: "Non-profit, secular forum for the Marathi-speaking community in Switzerland. Promotes Marathi language, literature and culture." },
 ];
 
-// Regional/language associations — verified via Embassy of India listing, swissdesi.ch/indian-associations, and web search (Aug 2026)
+// Regional/language associations — verified via Embassy of India listing and individual organisation websites (Aug 2026)
 const regional: Org[] = [
   { name: "Gujarati Samaj Switzerland", url: "https://www.gujaratisamaj.ch", city: "Nationwide", desc: "Navratri Garba, language classes, and Gujarati cultural events across Switzerland." },
-  { name: "Swiss Tamil Sangam", url: "http://swisstamilsangam.com", city: "Nationwide", desc: "Cultural association for Tamil-speaking community in Switzerland. Tamil is one of the largest diaspora language groups in the country." },
+  { name: "Swiss Tamil Sangam", url: "https://swisstamilsangam.com", city: "Nationwide", desc: "Cultural association for Tamil-speaking community in Switzerland. Tamil is one of the largest diaspora language groups in the country." },
   { name: "Swiss Tamil Professionals Association (STPA)", url: "https://www.tamilprofessionals.ch", city: "Zurich", desc: "Network for Tamil professionals — collaboration, innovation and mentoring across industries." },
   { name: "Telugu Association of Switzerland (TeluguSwiss)", url: "https://teluguswiss.org", city: "Nationwide", desc: "Ugadi and other Telugu cultural events and community networking. The affiliated Swiss Telugu NRI Forum (STNRI) runs Mana Badi, a Telugu language programme for children." },
   { name: "Kannada Koota Switzerland", url: "https://www.google.com/search?q=Kannada+Koota+Switzerland", city: "Zurich", desc: "Kannada Rajyotsava and community events for Kannadigas across Switzerland." },

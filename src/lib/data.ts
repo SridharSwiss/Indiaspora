@@ -172,7 +172,7 @@ export const CITIES = [
     slug: "bern",
     description: "Swiss capital with a vibrant Indian diplomatic and academic community",
     population: "~2,000 Indians",
-    highlights: ["Embassy of India (Thunstrasse 5)", "Indian Association Berne (IAB)", "Bharatiya Association Berne", "University of Bern Indian Students"],
+    highlights: ["Embassy of India (Kirchenfeldstrasse 28)", "Indian Association Berne (IAB)", "Bharatiya Association Berne", "University of Bern Indian Students"],
     color: "from-teal-600 to-cyan-700",
   },
   {
