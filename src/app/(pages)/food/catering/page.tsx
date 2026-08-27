@@ -12,32 +12,39 @@ export const metadata: Metadata = {
 
 const caterers = [
   {
+    name: "Authentic Swiss Indian Catering",
+    city: "Switzerland",
+    type: "Full-service catering",
+    note: "Professional catering service specialising in both Swiss and Indian cuisine for all event types — weddings, corporate dinners, private parties, and festivals across Switzerland.",
+    url: "https://www.authenticswissindiancatering.ch",
+  },
+  {
+    name: "Spiceitupp — Personal Indian Chef",
+    city: "Basel / Zurich / Bern",
+    type: "Personal chef / cooking classes",
+    note: "Certified personal chef who comes to your home and cooks authentic Indian food. From CHF 65/hour for up to 4 adults. Also offers Indian cooking classes. Covers Basel, Bern, Zurich, and Zug.",
+    url: "https://spiceitupp.com",
+  },
+  {
     name: "Restaurant Vulkan Catering",
     city: "Zurich",
     type: "Restaurant-based catering",
-    note: "Established Indian restaurant (Klingenstrasse 33, Zürich) offering full event catering — weddings, corporate events, birthday parties. All-you-can-eat packages available. North Indian and South Indian menus.",
-    url: "https://restaurant-vulkan.ch/en/catering-service-in-zurich/",
+    note: "Established Indian restaurant (Klingenstrasse 33, Zürich) offering full event catering — weddings, corporate events, birthday parties. North Indian and South Indian menus.",
+    url: "https://restaurant-vulkan.ch",
   },
   {
     name: "Café Gandhi Catering",
     city: "Geneva",
     type: "Restaurant-based catering",
     note: "Authentic Indian catering from one of Geneva's oldest Indian restaurants (operating since 1996). Handles intimate dinners through to large wedding receptions. Tasting sessions available.",
-    url: "https://gandhi.ch/en/authentic-indian-catering-services-in-geneva/",
+    url: "https://gandhi.ch",
   },
   {
-    name: "The Indus",
-    city: "Geneva",
-    type: "Private events & weddings",
-    note: "Geneva Indian restaurant that extends to private party and corporate event catering across Geneva and surrounding areas.",
-    url: "https://www.theindus.ch",
-  },
-  {
-    name: "Swiss Desi (formerly Indian Moms Zurich)",
-    city: "Zurich area",
-    type: "Home chef / tiffin",
-    note: "Community platform connecting home chefs for tiffin services, event catering, and festival food in the Zurich area. Good source for authentic regional cooking.",
-    url: "https://swissdesi.ch/indian-catering-homemadefood/",
+    name: "The Bajwa's Catering",
+    city: "Basel",
+    type: "Punjabi catering",
+    note: "Family-run Punjabi catering service based in Basel, serving North Indian food for events, parties, and corporate functions across the Basel region.",
+    url: "https://thebajwas.ch",
   },
 ];
 
@@ -49,11 +56,10 @@ const tiffinTypes = [
 ];
 
 const findTiffin = [
-  "Search Facebook groups: 'Indian Tiffin Zurich', 'Desi Food Geneva', 'Indian Home Food Switzerland'",
-  "WhatsApp community groups — ask in your city's Indian community group",
-  "Check with your local Indian association (IAGZ, Indian Association of Geneva, etc.)",
-  "Instagram: search #indiantiffinzurich or #homecookedswiss",
-  "Swiss Desi (swissdesi.ch) maintains a directory of home chefs and tiffin providers across Switzerland",
+  "Ask in your local Indian association — IAGZ (iagz.ch), Indian Association of Geneva, or TeluguSwiss often know home chefs",
+  "Ask colleagues and neighbours — most tiffin providers work through word of mouth in the community",
+  "Submit a request on the IndiaSwiss events page — we can connect you with providers in your city",
+  "Contact the Embassy of India Berne community desk — they sometimes maintain community directories",
 ];
 
 export default function CateringPage() {
