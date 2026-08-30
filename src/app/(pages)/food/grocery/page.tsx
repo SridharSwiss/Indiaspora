@@ -11,11 +11,12 @@ export const metadata: Metadata = {
 };
 
 const stores = [
+  // ── Zurich ───────────────────────────────────────────────────────────────────
   {
     city: "Zurich",
     name: "Aggarwal",
-    area: "Wiedikon",
-    note: "One of Switzerland's longest-running Indian grocery chains (est. 1986). Fresh vegetables, spices, lentils, frozen foods, pickles, and Indian household items. Kernstrasse 27, 8004 Zürich.",
+    area: "Wiedikon (Kreis 3)",
+    note: "One of Switzerland's longest-running Indian grocery chains (est. 1986). Fresh vegetables, spices, lentils, frozen foods, pickles, and Indian household items. Kernstrasse 27, 8004 Zürich. Also has a Take Away counter with samosas and chaats.",
     url: "https://aggarwal.ch",
   },
   {
@@ -27,37 +28,63 @@ const stores = [
   },
   {
     city: "Zurich",
+    name: "Namastey India",
+    area: "Adliswil (Zurich South)",
+    note: "Well-stocked Indian grocery shop in Adliswil with fresh Indian vegetables, spices, lentils, frozen items, and ready-to-eat meals. Also offers a takeaway service. Kronenstrasse 3, 8134 Adliswil. Mon–Sat 11:00–22:00.",
+    url: "https://namasteyindia.ch",
+  },
+  {
+    city: "Zurich",
     name: "Salpers Asian Grocery",
     area: "Oberglatt / Zurich North",
-    note: "Large Asian and Indian grocery warehouse in Oberglatt — bulk quantities of rice, dals, spices, snacks, and specialty items. Also operates an online store with nationwide delivery.",
+    note: "Large Asian and Indian grocery warehouse in Oberglatt — bulk quantities of rice, dals, spices, snacks, and specialty items. Also operates an online store with nationwide delivery. 8154 Oberglatt.",
     url: "https://salpers.ch",
   },
+  // ── Winterthur ───────────────────────────────────────────────────────────────
+  {
+    city: "Winterthur",
+    name: "Tandoor Indian Supermarket",
+    area: "Neuwiesenstrasse / Hauptbahnhof",
+    note: "Indian supermarket and takeaway directly behind Winterthur main station. Large selection of Indian groceries, spices, lentils, rice, and frozen foods — plus an in-store takeaway buffet with fresh Indian dishes. Neuwiesenstrasse 6, 8400 Winterthur. Phone: 052 550 29 01.",
+    url: "https://www.indian-supermarket.ch",
+  },
+  // ── Basel ─────────────────────────────────────────────────────────────────────
   {
     city: "Basel",
     name: "Aggarwal",
-    area: "Grossbasel",
-    note: "Basel branch of the Aggarwal chain — Indian spices, fresh produce, lentils, rice, and specialty groceries. Kuchengasse 9, Basel.",
+    area: "Basel",
+    note: "Basel branch of the Aggarwal chain — Indian spices, fresh produce, lentils, rice, and specialty groceries. Full range of fresh Indian vegetables and Take Away counter. Check aggarwal.ch/stores for current address.",
     url: "https://aggarwal.ch",
   },
+  // ── Bern ─────────────────────────────────────────────────────────────────────
   {
     city: "Bern",
     name: "Aggarwal",
-    area: "Lorraine / Schanzenstrasse",
-    note: "Bern branch of the Aggarwal chain, conveniently located near the Lorraine neighbourhood. Schanzenstrasse 4/B, Bern. Phone: +41 31 311 86 55.",
+    area: "Schanzenstrasse",
+    note: "Bern branch of the Aggarwal chain. Schanzenstrasse 4/B, Bern. Phone: +41 31 311 86 55. Fresh Indian vegetables, spices, lentils, pickles, and Indian household products.",
     url: "https://aggarwal.ch",
   },
+  // ── Geneva ───────────────────────────────────────────────────────────────────
   {
     city: "Geneva",
     name: "Seelan Market",
     area: "Geneva",
-    note: "Geneva favourite for Indian, Sri Lankan, and South Asian groceries. Good range of spices, rice varieties, and ready-to-cook items.",
+    note: "Geneva favourite for Indian, Sri Lankan, and South Asian groceries. Good range of spices, rice varieties, fresh produce, and ready-to-cook items. Highly recommended by the Indian community.",
     url: "https://seelanmarket.ch",
   },
   {
+    city: "Geneva",
+    name: "Madhura",
+    area: "Rue de Liotard",
+    note: "Indian and South Asian grocery shop in central Geneva. Indian spices, dals, rice, frozen meals, and specialty items. 56 Rue de Liotard, 1202 Geneva. Phone: +41 22 344 21 20. No standalone website — search 'Madhura Geneva' on Google Maps.",
+    url: null,
+  },
+  // ── Lausanne ─────────────────────────────────────────────────────────────────
+  {
     city: "Lausanne",
-    name: "Maison de l'Inde / Asian Epicerie",
-    area: "Lausanne",
-    note: "Indian and South Asian grocery shop in Lausanne serving the Romandy Indian community. Spices, dals, frozen meals, and specialty items. Search 'épicerie indienne Lausanne' on Google Maps.",
+    name: "Asia Shop / Épicerie Indienne",
+    area: "Avenue de France",
+    note: "South Asian grocery shop in Lausanne serving the Romandy Indian community. Spices, dals, frozen meals, and specialty items. Avenue de France 2, 1004 Lausanne. Phone: +41 21 624 61 01. Search 'épicerie indienne Lausanne' on Google Maps for current hours.",
     url: null,
   },
 ];
@@ -65,22 +92,32 @@ const stores = [
 const online = [
   {
     name: "indiasupermarkt.ch",
-    desc: "Swiss-based Indian online supermarket — ships nationwide with fast delivery. One of the most comprehensive selections of Indian brands in Switzerland.",
+    desc: "Swiss-based Indian online supermarket — ships nationwide with fast delivery. One of the most comprehensive selections of Indian brands in Switzerland. Physical store in Zurich (Josefstrasse 91).",
     url: "https://indiasupermarkt.ch",
   },
   {
     name: "salpers.ch",
-    desc: "Online Asian and Indian grocery store based in Oberglatt (ZH). Wide selection of Indian spices, ready meals, and specialty items delivered across Switzerland.",
+    desc: "Online Asian and Indian grocery store based in Oberglatt (ZH). Bulk quantities of rice, dals, spices, snacks, and specialty items delivered across Switzerland. Pickup also available.",
     url: "https://salpers.ch",
   },
   {
     name: "dalchinii.ch",
-    desc: "Switzerland-based online Indian grocery with curated selection of spices, lentils, flours, and pickles.",
+    desc: "Switzerland-based online Indian grocery with curated selection of spices, lentils, flours, and pickles. Good for hard-to-find Indian brands.",
     url: "https://dalchinii.ch",
   },
   {
+    name: "asianspice.ch",
+    desc: "Online Indian and South Asian grocery store delivering across Switzerland. Known for reliable delivery and a strong spice and lentil selection.",
+    url: "https://asianspice.ch",
+  },
+  {
+    name: "piccantino.ch",
+    desc: "Organic Indian spices, herbs, curries, and peppers from India — available online and shipped within Switzerland. Good source for premium-quality spice blends.",
+    url: "https://www.piccantino.ch/en-CH/around-the-world/india-1",
+  },
+  {
     name: "Amazon.de (Germany)",
-    desc: "Wide range of Indian brands available; ships to Switzerland. Check import duties and delivery costs — usually feasible for branded packaged goods.",
+    desc: "Wide range of Indian brands (MDH, Everest, Aashirvaad, Patak's) available; ships to Switzerland. Check import duties and delivery costs — usually feasible for branded packaged goods.",
     url: "https://www.amazon.de",
   },
 ];

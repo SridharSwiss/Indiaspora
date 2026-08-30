@@ -132,12 +132,14 @@ export default async function EventsPage() {
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Never miss an event — the Swiss-Indian community is active but spread across channels</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { title: "IAGZ Newsletter & WhatsApp", body: "The Indian Association of Greater Zurich (iagz.ch) sends a monthly newsletter and maintains WhatsApp groups covering Zurich-area events. Register on their website." },
-              { title: "TASC Tamil Community", body: "Tamil Association of Switzerland (tasc.ch) publishes an events calendar for the Tamil community across German- and French-speaking Switzerland." },
-              { title: "TeluguSwiss", body: "Telugu Swiss Association (teluguswiss.ch) announces cultural evenings, Ugadi, and community events for the Telugu-speaking diaspora." },
-              { title: "SwissPuja Bengali Community", body: "SwissPuja (swisspuja.org) runs the largest Durga Puja in Switzerland and sends event updates to subscribers ahead of the Pujo season." },
-              { title: "SICC Business Events", body: "Swiss Indian Chamber of Commerce (sicc.ch) publishes a business events calendar including the annual Swiss India Business Summit and monthly networking dinners." },
-              { title: "Indian Embassy Berne Events", body: "The Embassy of India in Berne (indembassybern.gov.in) hosts official receptions for Independence Day, Republic Day, and Gandhi Jayanti — open to all Indian nationals." },
+              { title: "IAGZ Newsletter & WhatsApp", body: "The Indian Association of Greater Zurich (iagz.ch) sends a monthly newsletter and maintains WhatsApp groups. Instagram: @iagzurich · Facebook: IA GZ" },
+              { title: "TASC Tamil Community", body: "Tamil Association of Switzerland (tasc.ch) publishes an events calendar for Tamil events across German- and French-speaking Switzerland." },
+              { title: "TeluguSwiss", body: "Telugu Swiss Association (teluguswiss.ch) announces Ugadi, cultural evenings, and community events. Facebook: TeluguSwiss Association." },
+              { title: "SwissPuja Bengali Community", body: "SwissPuja (swisspuja.org) runs Switzerland's largest Durga Puja. Instagram: @swisspuja · Facebook: Swisspuja - সুইসপূজা" },
+              { title: "Indian Association Geneva", body: "IAG (indianassociationgeneva.com) — founded 1947, 500+ members in Lake Geneva region. Instagram: @indian_association_of_geneva" },
+              { title: "SICC Business Events", body: "Swiss Indian Chamber of Commerce (sicc.ch) publishes a business events calendar including the annual Swiss India Business Summit and networking dinners." },
+              { title: "Indian Embassy Berne Events", body: "The Embassy of India in Berne (indembassybern.gov.in) hosts receptions for Independence Day, Republic Day, and Gandhi Jayanti — open to all Indian nationals." },
+              { title: "YUVA EPFL / Keliswiss / SMA Basel", body: "YUVA (EPFL): yuvaali@epfl.ch for Diwali event. Keliswiss (keliswiss.org): Kalamela arts festival. SMA Basel (smabasel.ch): Onam / Ponnonam celebration." },
             ].map((item) => (
               <div key={item.title} className="glass rounded-2xl p-5">
                 <h3 className="text-sm font-semibold text-violet-400 mb-2">{item.title}</h3>
