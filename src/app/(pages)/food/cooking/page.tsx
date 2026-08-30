@@ -42,11 +42,23 @@ const classProviders = [
 ];
 
 const cuisines = [
-  { name: "Punjabi", dishes: "Butter chicken, Dal makhani, Sarson da saag" },
-  { name: "South Indian", dishes: "Sambar, Rasam, Chutneys, Avial" },
-  { name: "Gujarati", dishes: "Thepla, Dhokla, Undhiyu, Gujarati dal" },
-  { name: "Bengali", dishes: "Macher jhol, Kosha mangsho, Mishti doi" },
-  { name: "Rajasthani", dishes: "Dal baati churma, Ker sangri, Ghewar" },
+  { name: "Punjabi", dishes: "Butter chicken, Dal makhani, Sarson da saag, Chole bhature" },
+  { name: "South Indian", dishes: "Sambar, Rasam, Chutneys, Avial, Kootu, Pongal" },
+  { name: "Gujarati", dishes: "Thepla, Dhokla, Undhiyu, Gujarati dal, Fafda" },
+  { name: "Bengali", dishes: "Macher jhol, Kosha mangsho, Mishti doi, Shorshe ilish" },
+  { name: "Rajasthani", dishes: "Dal baati churma, Ker sangri, Ghewar, Laal maas" },
+  { name: "Maharashtrian", dishes: "Puran poli, Misal pav, Varan bhaat, Ukdiche modak" },
+  { name: "Keralite", dishes: "Kerala fish curry, Appam with stew, Avial, Puttu kadala" },
+  { name: "Hyderabadi", dishes: "Dum biryani, Mirchi ka salan, Haleem, Double ka meetha" },
+];
+
+const swissTips = [
+  { heading: "Induction hobs", body: "Most Swiss kitchens have glass ceramic or induction hobs. Flat-bottomed kadais and tawas work fine on induction. Traditional rounded-bottom woks and karahis do not — choose flat-base versions or use an induction adapter ring." },
+  { heading: "Sourcing spices in Switzerland", body: "Migros and Coop now stock basics — turmeric, garam masala, cumin, coriander. For MDH, Everest, or Aashirvaad brands, go to an Indian grocery (indiasupermarkt.ch, salpers.ch, Aggarwal branches). Fresh curry leaves are available at Indian stores in Zurich, Geneva, and Basel." },
+  { heading: "Pressure cookers", body: "Hawkins and Prestige pressure cookers are not sold in Swiss supermarkets. Order via indiasupermarkt.ch or bring from India. Alternatively, the Instant Pot (available at Galaxus.ch and Manor) works well for dal and rice." },
+  { heading: "Atta & flour substitutes", body: "Chapati flour (atta) is not the same as Swiss wheat flour. Most Indian grocery stores stock Aashirvaad or Pillsbury atta. In a pinch, mix Swiss whole wheat (Vollkornmehl) with plain flour (Weissmehl) at 2:1 ratio." },
+  { heading: "Dairy substitutes", body: "Full-fat Swiss milk (3.5%) and cream work excellently in Indian cooking. Ghee is available at Indian stores; Migros Bio also sells a version. Yoghurt (Naturjogurt, 3.5%) is a direct substitute for dahi in marinades and raitas." },
+  { heading: "Cookware sourcing", body: "Indian cookware (tawa, pressure cooker, idli stand, dosa griddle) can be ordered from indiasupermarkt.ch or salpers.ch. Cast iron tawas also available at Galaxus.ch and Manor. Bring specialised items like stone grinders from India in checked luggage." },
 ];
 
 const learnTopics = [
@@ -58,10 +70,12 @@ const learnTopics = [
 ];
 
 const youtubeChannels = [
-  { name: "Hebbars Kitchen", focus: "Quick South Indian & North Indian recipes", url: "https://www.youtube.com/@HebbarsKitchen" },
-  { name: "Kunal Kapur", focus: "Professional chef techniques and regional recipes", url: "https://www.youtube.com/@KunalKapur" },
-  { name: "Ranveer Brar", focus: "Restaurant-style cooking and food history", url: "https://www.youtube.com/@RanveerBrar" },
-  { name: "Nisha Madhulika", focus: "Hindi vegetarian recipes for home cooks", url: "https://www.youtube.com/@nishamadhulika" },
+  { name: "Hebbars Kitchen", focus: "Quick South Indian & North Indian recipes — ideal for beginners", url: "https://www.youtube.com/@HebbarsKitchen" },
+  { name: "Kunal Kapur", focus: "Professional chef techniques, regional recipes, and food science", url: "https://www.youtube.com/@KunalKapur" },
+  { name: "Ranveer Brar", focus: "Restaurant-style cooking, food history, and regional Indian deep dives", url: "https://www.youtube.com/@RanveerBrar" },
+  { name: "Nisha Madhulika", focus: "Hindi vegetarian recipes for home cooks — large archive", url: "https://www.youtube.com/@nishamadhulika" },
+  { name: "Manjula's Kitchen", focus: "Pure vegetarian Indian cooking in English — great for diaspora cooks", url: "https://www.youtube.com/@ManjulasKitchen" },
+  { name: "VahChef / Sanjay Thumma", focus: "Telugu and Hyderabadi recipes; strong biryani content", url: "https://www.youtube.com/@vahchef" },
 ];
 
 export default function CookingPage() {
@@ -131,9 +145,21 @@ export default function CookingPage() {
           </div>
         </section>
 
+        <section>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Cooking Indian Food in Switzerland</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {swissTips.map((t) => (
+              <div key={t.heading} className="glass rounded-2xl p-5">
+                <h3 className="text-base font-semibold text-amber-400 mb-2">{t.heading}</h3>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{t.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <div className="glass rounded-2xl p-6 border border-amber-500/20">
-          <p className="text-white/80 text-sm">
-            <span className="font-semibold text-amber-400">Cookware note:</span> Indian cookware like pressure cookers (Hawkins/Prestige), tawas, and kadais are not readily available in Swiss supermarkets. Order online from <strong>indiasupermarkt.ch</strong> or import from India via DHL. Swiss induction hobs work with flat-bottomed kadais and tawas.
+          <p className="text-sm" style={{ color: "var(--text-2)" }}>
+            <span className="font-semibold text-amber-400">Community events:</span> Many regional Indian associations in Switzerland organise cooking workshops tied to festivals — Diwali, Navratri, Onam, Pongal. Check IAGZ (iagz.ch), TASC (tasc.ch), and Bengali Association Zurich for upcoming events. These are excellent low-cost ways to learn authentic technique and meet community members.
           </p>
         </div>
       </div>

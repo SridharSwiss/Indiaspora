@@ -27,10 +27,10 @@ const stores = [
   },
   {
     city: "Zurich",
-    name: "NewAsia Market",
-    area: "Kreis 4 / Langstrasse",
-    note: "Pan-Asian supermarket with a well-stocked Indian section — spices, dals, chutneys, snacks, and South Asian specialty items. Feldstrasse 24, 8004 Zürich.",
-    url: "https://www.google.com/maps/search/Asian+grocery+Feldstrasse+Zurich",
+    name: "Salpers Asian Grocery",
+    area: "Oberglatt / Zurich North",
+    note: "Large Asian and Indian grocery warehouse in Oberglatt — bulk quantities of rice, dals, spices, snacks, and specialty items. Also operates an online store with nationwide delivery.",
+    url: "https://salpers.ch",
   },
   {
     city: "Basel",
@@ -52,6 +52,13 @@ const stores = [
     area: "Geneva",
     note: "Geneva favourite for Indian, Sri Lankan, and South Asian groceries. Good range of spices, rice varieties, and ready-to-cook items.",
     url: "https://seelanmarket.ch",
+  },
+  {
+    city: "Lausanne",
+    name: "Maison de l'Inde / Asian Epicerie",
+    area: "Lausanne",
+    note: "Indian and South Asian grocery shop in Lausanne serving the Romandy Indian community. Spices, dals, frozen meals, and specialty items. Search 'épicerie indienne Lausanne' on Google Maps.",
+    url: null,
   },
 ];
 
@@ -132,6 +139,27 @@ export default function GroceryPage() {
                 </Wrapper>
               );
             })}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>What's Available in Swiss Supermarkets</h2>
+          <div className="glass rounded-2xl p-6">
+            <p className="text-sm mb-4" style={{ color: "var(--text-2)" }}>You don't need to visit a specialist store for everything. Swiss supermarkets now stock more Indian staples than ever:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+              <div>
+                <p className="font-semibold mb-2 text-green-400">Migros & Coop — typically stock:</p>
+                <ul className="space-y-1" style={{ color: "var(--text-2)" }}>
+                  {["Basmati and jasmine rice (2 kg+ bags)", "Red and green lentils (Linsen)", "Chickpeas (canned and dried)", "Coconut milk and coconut cream", "Garam masala, turmeric, cumin, coriander", "Paneer (Migros Select and bio ranges)", "Naan bread (refrigerated section)", "Mango chutney and lime pickle", "Patak's curry pastes"].map(i => <li key={i}>• {i}</li>)}
+                </ul>
+              </div>
+              <div>
+                <p className="font-semibold mb-2 text-green-400">Go to an Indian store for:</p>
+                <ul className="space-y-1" style={{ color: "var(--text-2)" }}>
+                  {["Fresh curry leaves, methi, drumsticks", "Atta (chapati flour) and besan", "Indian brands (Aashirvaad, MDH, Everest, Priya)", "Chana dal, toor dal, urad dal, moong dal", "Tamarind paste and raw tamarind", "Indian pickles (Priya, Mother's Recipe)", "Papad, chakli, mixture, and Indian snacks", "Pressure cookers, tawas, kadais"].map(i => <li key={i}>• {i}</li>)}
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
       </div>

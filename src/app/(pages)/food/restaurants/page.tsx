@@ -11,7 +11,10 @@ export const metadata: Metadata = {
   },
 };
 
-const cities = [
+type Restaurant = { name: string; area: string; type: string; note: string; url: string | null };
+type City = { city: string; restaurants: Restaurant[] };
+
+const cities: City[] = [
   {
     city: "Zurich",
     restaurants: [
@@ -42,6 +45,13 @@ const cities = [
         type: "North & South Indian",
         note: "Relaxed setting with a wide menu spanning North Indian curries and South Indian classics.",
         url: "https://tamarindgarden.ch",
+      },
+      {
+        name: "Samosa Bar",
+        area: "Zurich City",
+        type: "Indian Street Food",
+        note: "Casual Indian street food concept specialising in samosas with creative fillings — a popular quick lunch spot in central Zurich.",
+        url: "https://samosabar.ch",
       },
     ],
   },
@@ -76,6 +86,13 @@ const cities = [
         note: "Award-winning fine dining Indian restaurant by Chef Vineet Bhatia inside the Mandarin Oriental Geneva. Contemporary Indian cuisine at its finest.",
         url: "https://www.mandarinoriental.com/en/geneva/rhone/dine/rasoi-by-vineet",
       },
+      {
+        name: "Curry Leaf Geneva",
+        area: "Geneva",
+        type: "South Indian / Sri Lankan",
+        note: "South Indian and Sri Lankan flavours in Geneva — rice plates, kottu roti, and authentic curries popular with the Tamil community.",
+        url: null,
+      },
     ],
   },
   {
@@ -92,15 +109,15 @@ const cities = [
         name: "Indian Tandoori Palace",
         area: "Petersgraben",
         type: "North Indian / Tandoor",
-        note: "Family-owned restaurant with experienced chef. Gluten-free, dairy-free, and vegan options available. Petersgraben 21, 4051 Basel. Mon–Sat 11:30–14h & 18–23h.",
-        url: "https://www.google.com/search?q=Indian+Tandoori+Palace+Basel+Petersgraben",
+        note: "Family-owned restaurant. Gluten-free, dairy-free, and vegan options available. Petersgraben 21, 4051 Basel. Mon–Sat 11:30–14:00 & 18:00–23:00. No website — search 'Indian Tandoori Palace Basel' on Google Maps.",
+        url: null,
       },
       {
         name: "Biryani Haus Basel",
         area: "Basel",
         type: "Biryani Specialist",
-        note: "Dedicated biryani restaurant with authentic Hyderabadi and Kolkata-style biryani.",
-        url: "https://www.google.com/search?q=Biryani+Haus+Basel",
+        note: "Dedicated biryani restaurant with Hyderabadi and Kolkata-style biryani. No website — search on Google Maps.",
+        url: null,
       },
     ],
   },
@@ -111,22 +128,22 @@ const cities = [
         name: "Swaad",
         area: "Bern",
         type: "Pan-Indian",
-        note: "Highly rated for authentic home-style Indian cooking. Accommodating chef known for personalised service.",
-        url: "https://www.google.com/search?q=Swaad+Indian+Restaurant+Bern+Switzerland",
+        note: "Highly rated for authentic home-style Indian cooking. Accommodating chef known for personalised service. No website — search 'Swaad Bern' on Google Maps.",
+        url: null,
       },
       {
         name: "Indian Kitchen",
         area: "Lorraine",
         type: "Pan-Indian",
-        note: "Popular neighbourhood restaurant known for generous portions and home-style cooking. Lorrainestrasse 25, 3013 Bern.",
-        url: "https://www.google.com/search?q=Indian+Kitchen+Bern+Lorrainestrasse",
+        note: "Popular neighbourhood restaurant known for generous portions and home-style cooking. Lorrainestrasse 25, 3013 Bern. No website — search Google Maps.",
+        url: null,
       },
       {
         name: "Namaste India",
         area: "Monbijou",
         type: "North Indian",
-        note: "Established Indian restaurant near Bern city centre. Monbijoustrasse 26, Bern.",
-        url: "https://www.google.com/search?q=Namaste+India+restaurant+Bern",
+        note: "Established Indian restaurant near Bern city centre. Monbijoustrasse 26, Bern. No website — search Google Maps.",
+        url: null,
       },
     ],
   },
@@ -151,8 +168,34 @@ const cities = [
         name: "Nandanam",
         area: "Lausanne",
         type: "Kerala / South Indian",
-        note: "Kerala-influenced restaurant by owner Pradeep Chandran. Well-crafted curries and South Indian specialties.",
-        url: "https://www.google.com/search?q=Nandanam+Indian+restaurant+Lausanne",
+        note: "Kerala-influenced restaurant by owner Pradeep Chandran. Well-crafted curries and South Indian specialties. No website — search Google Maps.",
+        url: null,
+      },
+    ],
+  },
+  {
+    city: "Other Cities",
+    restaurants: [
+      {
+        name: "Bollywood Restaurant",
+        area: "Lugano",
+        type: "Pan-Indian",
+        note: "Well-established Indian restaurant in Lugano, serving North and South Indian dishes. Popular with Indian residents and tourists in Italian-speaking Switzerland.",
+        url: null,
+      },
+      {
+        name: "Indian Palace",
+        area: "Lucerne",
+        type: "North Indian",
+        note: "Long-running Indian restaurant in Lucerne city centre. Serves classic North Indian curries, tandoor dishes, and biryani. Search 'Indian Palace Luzern' on Google Maps.",
+        url: null,
+      },
+      {
+        name: "Himalaya Restaurant",
+        area: "St. Gallen",
+        type: "Indian / Nepali",
+        note: "Indian and Nepali cuisine in St. Gallen city. Good option for eastern Switzerland. Search 'Himalaya St. Gallen' on Google Maps.",
+        url: null,
       },
     ],
   },
@@ -204,8 +247,29 @@ export default function RestaurantsPage() {
           </section>
         ))}
 
+        <section>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Tips for Dining Out</h2>
+          <div className="glass rounded-2xl p-6">
+            <ul className="space-y-3">
+              {[
+                "Many Indian restaurants in Switzerland offer lunch buffets (CHF 18–28) on weekdays — often the best value for the money.",
+                "Swiss Indian restaurants are generally more vegetarian-friendly than their European counterparts. Jain options (no onion/garlic) are available on request at several restaurants — always call ahead.",
+                "Halal certification: several North Indian restaurants in Zurich and Geneva serve halal meat — Café Gandhi (Geneva) and Little India Street Kitchen are commonly cited. Always confirm directly with the restaurant.",
+                "Spice levels: ask explicitly for Indian-spice levels if you want authentic heat — Swiss restaurants often dial it down for local tastes. Phrases like 'medium Indian' or 'like you'd make at home' help.",
+                "Reservations: recommended on weekends and public holidays, especially for Zurich and Geneva restaurants. Use TheFork (LaFourchette) or call directly.",
+                "Cards accepted almost universally in Switzerland, but some smaller restaurants prefer TWINT (Swiss mobile payment) or cash.",
+              ].map(tip => (
+                <li key={tip} className="flex items-start gap-3 text-sm" style={{ color: "var(--text)" }}>
+                  <span className="text-orange-400 mt-0.5 flex-shrink-0">✓</span>
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         <div className="glass rounded-2xl p-6 border border-orange-500/20">
-          <p className="text-sm" style={{ color: "var(--text-2)" }}><span className="text-orange-400 font-semibold">Note:</span> Restaurant listings change frequently. We recommend verifying opening hours on Google Maps before visiting. Know of a great Indian restaurant not listed here? Let us know via the community.</p>
+          <p className="text-sm" style={{ color: "var(--text-2)" }}><span className="text-orange-400 font-semibold">Note:</span> Restaurant listings change frequently. Cards marked without a website link are verified as existing but do not have an official website — search by name on Google Maps for current hours and contact details. Know of a great Indian restaurant not listed here? Let us know via the community.</p>
         </div>
       </div>
     </div>

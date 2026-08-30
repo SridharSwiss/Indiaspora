@@ -58,8 +58,18 @@ const tiffinTypes = [
 const findTiffin = [
   "Ask in your local Indian association — IAGZ (iagz.ch), Indian Association of Geneva, or TeluguSwiss often know home chefs",
   "Ask colleagues and neighbours — most tiffin providers work through word of mouth in the community",
+  "Post in Indian WhatsApp or Telegram community groups for your city — responses are usually quick",
   "Submit a request on the IndiaSwiss events page — we can connect you with providers in your city",
   "Contact the Embassy of India Berne community desk — they sometimes maintain community directories",
+];
+
+const planningTips = [
+  { heading: "Book early for weddings & festivals", body: "Indian wedding catering in Switzerland requires 4–8 weeks lead time minimum. Diwali and Eid season books up even faster — contact providers in September for October events." },
+  { heading: "Clarify Jain & vegan options upfront", body: "Many caterers can accommodate Jain (no root vegetables, no onion/garlic), pure veg, or vegan menus. State this when booking, not on the day." },
+  { heading: "Halal meat catering", body: "Several caterers in Zurich and Geneva can source halal-certified meat for events. Always confirm the supply chain and certification when booking." },
+  { heading: "Minimum order quantities", body: "Event catering typically starts at 15–20 guests minimum. Daily tiffin services may require a weekly subscription commitment. Confirm minimum commitments before booking." },
+  { heading: "Swiss food hygiene regulations", body: "Professional caterers operating commercially in Switzerland must comply with cantonal food hygiene regulations (Lebensmittelhygiene). Home chefs operating informally are not subject to the same rules — ask about their setup if this matters to you." },
+  { heading: "Payment & contracts", body: "For large events, agree on a written menu, delivery times, and deposit (typically 30–50%) upfront. Day-of payment is usually by TWINT or bank transfer. Credit cards are rarely accepted for home chefs." },
 ];
 
 export default function CateringPage() {
@@ -116,6 +126,18 @@ export default function CateringPage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Planning Tips</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {planningTips.map((t) => (
+              <div key={t.heading} className="glass rounded-2xl p-5">
+                <h3 className="text-base font-semibold text-pink-400 mb-2">{t.heading}</h3>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{t.body}</p>
+              </div>
+            ))}
           </div>
         </section>
 
