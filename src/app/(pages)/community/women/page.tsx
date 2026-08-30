@@ -75,15 +75,19 @@ const ngo: Org[] = [
 
 function OrgCard({ org, accent }: { org: Org; accent: string }) {
   return (
-    <a href={org.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group" style={{ textDecoration: "none" }}>
+    <a
+      href={org.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="glass rounded-xl p-5 card-hover block group"
+      style={{ textDecoration: "none", ["--card-accent" as string]: accent }}
+    >
       <div className="flex items-start justify-between gap-2 mb-2">
-        <h3 className="font-semibold text-sm leading-tight transition-colors" style={{ color: "var(--text)" }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = accent)}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text)")}
-        >{org.name}</h3>
+        <h3 className="org-card-title font-semibold text-sm leading-tight" style={{ color: "var(--text)" }}>{org.name}</h3>
         <span className="shrink-0 text-xs px-2 py-0.5 rounded-full whitespace-nowrap" style={{ background: `${accent}18`, color: accent, border: `1px solid ${accent}30` }}>{org.city}</span>
       </div>
       <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{org.desc}</p>
+      <style>{`.card-hover:hover .org-card-title { color: var(--card-accent) !important; }`}</style>
     </a>
   );
 }
