@@ -68,6 +68,10 @@ const tips = [
   "Noise rules (Ruhezeit) are strictly observed in residential buildings — avoid loud activities after 10 pm, before 7 am, and during Sundays and public holidays. This includes running washing machines in some buildings.",
   "Join local Indian community groups on Facebook, WhatsApp, and platforms like Glocals.com — fellow Indians are invaluable for settling-in advice, local deals, and a social network.",
   "Get an Halbtax (Half-Fare Travelcard) before your first big train journey — it pays for itself within one or two inter-city return trips.",
+  "Take out household contents insurance (Haushaltsversicherung) as soon as you move in — it covers theft, water, fire, and personal liability and costs as little as CHF 100–200/year. Many landlords informally expect tenants to carry personal liability cover.",
+  "Your AHV/AVS social security card is mailed to your registered address a few weeks after Gemeinde registration — keep it safe as you will need the 13-digit AHV number for payroll, insurance, and pension contributions.",
+  "If you have school-age children (4–15), enrol them in the local Volksschule within the first few days. Registration is free and handled by the Gemeinde school secretariat — bring passport, permit, and vaccination records.",
+  "Open a PostFinance or Neon bank account in your first week: Swiss employers cannot pay salaries into a foreign account, and your landlord will need a Swiss IBAN for the deposit Sperrkonto.",
 ];
 
 export default function WelcomePage() {

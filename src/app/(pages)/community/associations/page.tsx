@@ -49,6 +49,7 @@ const tamil: Org[] = [
   { name: "Swiss Tamil Professionals Association (STPA)", url: "https://www.tamilprofessionals.ch", city: "Zurich", desc: "Network for Tamil professionals — collaboration, innovation and cross-industry mentoring." },
   { name: "Basel Tamil Sangam", url: "https://baseltamilsangam.com/", city: "Basel", desc: "Cultural organisation connecting Tamil families, students and professionals in Basel through events and learning programmes." },
   { name: "Geneva Tamil Sangam", url: null, city: "Geneva", desc: "Founded 20 November 2017 (Rue de Cornavin 5, Geneva). Registered under Swiss Civil Code. Cultivates, promotes and transmits Tamil language and cultural heritage within Geneva's Tamil population." },
+  { name: "Swiss Tamil Economic Development Organisation (STEDO)", url: "https://stedo.ch", city: "Hendschiken, Aargau", desc: "Founded November 2025. Focused on economic empowerment and integration of Tamil entrepreneurs, professionals, and businesses in Switzerland. Provides regulatory guidance, networking and knowledge-sharing." },
 ];
 
 const telugu: Org[] = [
@@ -87,6 +88,18 @@ const professional: Org[] = [
 const students: Org[] = [
   { name: "InSAZ – Indian Students Association Zurich", url: "https://blogs.ethz.ch/insaz/", city: "Zurich (ETH / UZH)", desc: "Voluntary student association at ETH Zurich and UZH. Mentorship, airport pickup for newcomers, Diwali, Holi, industrial talks, hikes and cricket screenings." },
   { name: "YUVA – Indians Association at EPFL / UNIL", url: "https://www.epfl.ch/campus/associations/yuva/", city: "Lausanne", desc: "Public, non-profit, non-political association for Indian and Indian-origin students and staff at EPFL and UNIL. Known for the annual Yuvaali: Festival of Lights Diwali event (250+ guests)." },
+];
+
+// ── Sikh community ────────────────────────────────────────────────────────────
+const sikh: Org[] = [
+  { name: "Sikh Gemeinde Schweiz / Gurudwara Däniken", url: "https://www.gurudwaraswitzerland.ch", city: "Däniken, Solothurn", desc: "Founded 1986 in Basel area; dedicated Gurudwara building inaugurated 2015 at Schachenstrasse 39, Däniken. Sunday services 10 am–2 pm. Teaches Punjabi language and Sikh history to children. One of Switzerland's two principal Gurudwaras." },
+  { name: "Gurdwara Sahib Langenthal (SIS SIKH-Stiftung Schweiz)", url: "https://gurdwarasahib.com", city: "Langenthal, Bern", desc: "Registered Swiss foundation. Traditional Gurudwara building (Dennliweg 31a, 4900 Langenthal) opened 2006. Up to 400 devotees on major festivals. Provides religious care for Sikhs across the German-speaking region." },
+  { name: "Sikh Community in Switzerland (SikhNet.ch)", url: "https://sikhnet.ch", city: "Nationwide", desc: "Online portal covering all Gurudwaras in Switzerland (Basserdorf/Zurich, Langenthal, Däniken, Geneva). Community information, events, and live-streaming of kirtan. Centralised information hub for Swiss Sikhs." },
+];
+
+// ── Sports clubs ──────────────────────────────────────────────────────────────
+const sports: Org[] = [
+  { name: "Indo Swiss Sports Club (ISSC)", url: "https://www.indoswisssports.ch", city: "Wetzikon, Zurich", desc: "Registered non-profit promoting physical fitness and social integration through sports. Primary focus is badminton — organises the annual ISSC International Shuttle Tournament, recognised by the Swiss Cantonal Sports Ministry as the first Indian organisation to receive this distinction. Also runs chess, caroms, and family events." },
 ];
 
 // ── Cultural & arts organisations ────────────────────────────────────────────
@@ -144,7 +157,7 @@ export default function AssociationsPage() {
       <PageHeader
         title="Indian Associations & Clubs in Switzerland"
         subtitle="The most complete directory of Indian associations in Switzerland — from city-level pan-Indian organisations to language communities, professional networks, student bodies, arts groups and civil society."
-        badge="🏛️ 55+ Associations"
+        badge="🏛️ 60+ Associations"
         breadcrumbs={[{ label: "Community", href: "/community" }, { label: "Associations & Clubs" }]}
       />
 
@@ -153,6 +166,8 @@ export default function AssociationsPage() {
         { id: "regional", label: "Regional & Language" },
         { id: "professional", label: "Professional" },
         { id: "students", label: "Students" },
+        { id: "sikh", label: "Sikh Community" },
+        { id: "sports", label: "Sports" },
         { id: "cultural", label: "Cultural & Spiritual" },
         { id: "civil", label: "Civil Society" },
       ]} accentColor="var(--in)" />
@@ -202,6 +217,24 @@ export default function AssociationsPage() {
             For a full guide to Indian students in Switzerland including scholarships and visa information, see the{" "}
             <a href="/community/students" className="text-orange-400 hover:text-orange-300">Students page</a>.
           </p>
+        </section>
+
+        {/* Sikh */}
+        <section id="sikh" className="mb-14">
+          <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Sikh Community</h2>
+          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Gurudwaras and Sikh associations across Switzerland</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sikh.map((o) => <OrgCard key={o.name} org={o} />)}
+          </div>
+        </section>
+
+        {/* Sports */}
+        <section id="sports" className="mb-14">
+          <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Sports Clubs</h2>
+          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Indian community sports organisations in Switzerland</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {sports.map((o) => <OrgCard key={o.name} org={o} />)}
+          </div>
         </section>
 
         {/* Cultural */}

@@ -71,9 +71,21 @@ export default function LegalPage() {
           </div>
         </section>
 
+        <section>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>Permit Renewal & Practical Steps</h2>
+          <div className="glass rounded-2xl p-6 text-sm space-y-3" style={{ color: "var(--text)" }}>
+            <p><strong style={{ color: "var(--text)" }}>B permit renewal:</strong> Your employer initiates renewal 2–3 months before expiry. You will receive a new Ausländerausweis (foreigner ID card) in the post. Keep your current permit valid at all times — travel outside Switzerland on an expired permit risks re-entry complications.</p>
+            <p><strong style={{ color: "var(--text)" }}>Ausländerausweis (foreigner ID card):</strong> The physical credit-card-sized biometric card issued for L, B, C, and G permits. Carry it at all times — police can request it, and you will need it to open a bank account, register with a Gemeinde, or access many public services.</p>
+            <p><strong style={{ color: "var(--text)" }}>Permit F, N, S:</strong> These are protection/asylum-related permits (F = temporary admission; N = asylum seeker; S = protection status). They carry significant restrictions on movement and employment. Contact the cantonal migration authority (Migrationsamt) for specifics.</p>
+            <p><strong style={{ color: "var(--text)" }}>Apostille for Indian documents:</strong> Swiss public documents (birth certificates, marriage certificates, police clearance) sent to India must carry an apostille — a standardised authentication stamp issued by the cantonal chancellery (Staatskanzlei). The apostille confirms the document is genuine; India is a Hague Apostille Convention member. Cost: CHF 30–60 per document. Allow 1–2 weeks.</p>
+            <p><strong style={{ color: "var(--text)" }}>OCI and Indian citizenship:</strong> Holding an OCI card does not require you to renounce Indian citizenship. OCI holders retain full Indian citizenship and can freely repatriate earnings. The only restriction is participation in Indian elections.</p>
+            <p><strong style={{ color: "var(--text)" }}>Swiss criminal record extract (Strafregisterauszug):</strong> Required for PCC applications, some Swiss job applications, and permit renewals. Order online from the Federal Office of Justice at <a href="https://www.strafregister.admin.ch" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-300">strafregister.admin.ch</a> — costs CHF 20 and arrives by post in 2–5 days.</p>
+          </div>
+        </section>
+
         <div className="glass rounded-2xl p-6 border border-slate-500/20">
-          <h3 className="text-base font-semibold  mb-2" style={{ color: "var(--text-2)" }}>Path to Swiss Citizenship</h3>
-          <p className="text-sm/70" style={{ color: "var(--text)" }}>Indian nationals can apply for Swiss naturalisation after <strong style={{ color: "var(--text)" }}>10 years</strong> of total legal residence (years spent in Switzerland between ages 8–18 count double). You must hold a C permit, demonstrate language proficiency (A2 written + B1 oral in your canton's language), have a clean criminal and debt record, and show integration into Swiss civic life. Processing is handled at the cantonal and communal level and typically takes 1–3 years. Source: <span className="" style={{ color: "var(--text-2)" }}>sem.admin.ch</span></p>
+          <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text-2)" }}>Path to Swiss Citizenship</h3>
+          <p className="text-sm/70" style={{ color: "var(--text)" }}>Indian nationals can apply for Swiss naturalisation after <strong style={{ color: "var(--text)" }}>10 years</strong> of total legal residence (years spent in Switzerland between ages 8–18 count double). You must hold a C permit, demonstrate language proficiency (A2 written + B1 oral in your canton's language), have a clean criminal and debt record, and show integration into Swiss civic life. Processing is handled at the cantonal and communal level and typically takes 1–3 years. Source: <span style={{ color: "var(--text-2)" }}>sem.admin.ch</span></p>
         </div>
       </div>
     </div>

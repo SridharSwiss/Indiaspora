@@ -13,8 +13,10 @@ export const metadata: Metadata = {
 const banks = [
   { name: "PostFinance", type: "Traditional", desc: "Historically the most accessible for new arrivals, with post office branches nationwide. Note: a foreign-address surcharge (~CHF 25/month) applies if you have no Swiss address yet. Once resident, basic accounts are fee-free for under-26 or with salary deposit.", bestFor: "First account", url: "https://www.postfinance.ch/en/private.html" },
   { name: "UBS", type: "Traditional", desc: "Switzerland's largest bank after absorbing Credit Suisse (2023). Full-service with English-language support. Typically requires a branch visit and may ask for a larger initial deposit for non-EU nationals.", bestFor: "Full banking", url: "https://www.ubs.com/ch/en/private.html" },
+  { name: "ZKB — Zürcher Kantonalbank", type: "Cantonal", desc: "The largest cantonal bank (state-guaranteed) serving Zurich. Strong branch network in the canton, competitive mortgage rates, and solid business banking. Other major cantonal banks: BCG (Geneva), BEKB (Bern), BKB (Basel).", bestFor: "Zurich residents", url: "https://www.zkb.ch/en/" },
   { name: "Neon", type: "Digital", desc: "100% mobile Swiss bank, no monthly fees, fully English app. Easy to open with a valid Swiss residence permit and passport scan — no branch visit. Swiss IBAN. Very popular among Indian expats.", bestFor: "Digital-first", url: "https://www.neon-free.ch/en/" },
   { name: "Yuh", type: "Digital", desc: "Joint venture of PostFinance and Swissquote. Unique in that it also accepts non-residents. Holds accounts in CHF, EUR, and USD with sub-accounts in 13 currencies. Includes investment features and no monthly fee.", bestFor: "Non-residents & investing", url: "https://www.yuh.com/en/" },
+  { name: "Swissquote", type: "Online Broker", desc: "Switzerland's leading online broker and bank. Open a trading account alongside a CHF current account. Best for investing in Swiss and international stocks, ETFs, and crypto — competitive commissions and a strong English interface.", bestFor: "Investing", url: "https://www.swissquote.ch/en/" },
   { name: "Revolut", type: "Digital", desc: "European fintech; not a Swiss bank but widely used by Indian expats. Excellent for multi-currency spending and low-cost transfers to India. Regulated under a Lithuanian banking licence.", bestFor: "Travel & FX", url: "https://www.revolut.com" },
 ];
 
@@ -83,9 +85,19 @@ export default function BankingPage() {
           </div>
         </section>
 
+        <section>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>Swiss Pensions & 2nd Pillar (BVG)</h2>
+          <div className="glass rounded-2xl p-6 text-sm space-y-3" style={{ color: "var(--text)" }}>
+            <p>Switzerland operates a three-pillar pension system. As an employee you are automatically enrolled in the <strong style={{ color: "var(--text)" }}>2nd pillar (BVG / occupational pension)</strong> — both you and your employer contribute monthly (typically 7–18% of salary depending on age). This money is held in your pension fund (Pensionskasse).</p>
+            <p><strong style={{ color: "var(--text)" }}>Leaving Switzerland permanently:</strong> You can withdraw your Pensionskasse capital in full when you leave Switzerland for a non-EU/EFTA country. The mandatory portion is paid out by the Stiftung Auffangeinrichtung; the extra-mandatory portion by your employer's fund. Withdrawals are subject to a withholding tax (typically 5–8%) deducted at source.</p>
+            <p><strong style={{ color: "var(--text)" }}>3rd pillar (Pillar 3a):</strong> A voluntary tax-advantaged savings account — contributions up to CHF 7,258/year (2025) are deductible from cantonal and federal income tax. Open via any Swiss bank or insurer. Money is locked until retirement (or departure from Switzerland). Very worthwhile for anyone staying 3+ years.</p>
+            <p><strong style={{ color: "var(--text)" }}>Cash culture:</strong> Switzerland remains significantly cash-oriented. Keep CHF 100–200 on hand — many markets, small shops, and parking meters still prefer cash. Major credit cards (Visa, Mastercard) are accepted broadly; American Express less so.</p>
+          </div>
+        </section>
+
         <div className="glass rounded-2xl p-6 border border-yellow-500/20">
           <h3 className="text-base font-semibold text-yellow-400 mb-2">NRI Tax Note</h3>
-          <p className="text-sm/70" style={{ color: "var(--text)" }}>Indian citizens residing in Switzerland for more than 182 days/year are classified as Non-Resident Indians (NRI) for Indian tax purposes. NRI income earned abroad is generally not taxable in India, but NRI bank accounts (NRE/NRO) have specific rules. India and Switzerland have a Double Taxation Avoidance Agreement (DTAA) — consult a CA familiar with India–Switzerland tax treaty provisions before filing.</p>
+          <p className="text-sm/70" style={{ color: "var(--text)" }}>Indian citizens residing in Switzerland for more than 182 days/year are classified as Non-Resident Indians (NRI) for Indian tax purposes. NRI income earned abroad is generally not taxable in India, but NRI bank accounts (NRE/NRO) have specific rules. India and Switzerland have a Double Taxation Avoidance Agreement (DTAA) in force — it prevents double taxation on income, pensions, and capital gains for Indian residents in Switzerland. Swiss employers deduct tax at source (Quellensteuer) for B permit holders; you typically file a simplified return. Consult a Swiss-qualified tax advisor or a CA familiar with the India–Switzerland DTAA before filing in either country.</p>
         </div>
       </div>
     </div>

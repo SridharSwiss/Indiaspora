@@ -77,6 +77,17 @@ export default function HealthcarePage() {
           </div>
         </section>
 
+        <section>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>What's Not Covered — Dental & Supplements</h2>
+          <div className="glass rounded-2xl p-6 space-y-3 text-sm" style={{ color: "var(--text)" }}>
+            <p><strong style={{ color: "var(--text)" }}>Dental care</strong> is <strong style={{ color: "var(--text)" }}>not covered</strong> by basic insurance (Grundversicherung) for adults. Budget CHF 200–800/year for routine check-ups and cleaning. Consider supplementary dental insurance (Zahnversicherung) — available from most insurers for CHF 20–60/month.</p>
+            <p><strong style={{ color: "var(--text)" }}>Supplementary insurance (Zusatzversicherung / LCA)</strong> covers extras like private hospital rooms, alternative medicine (Komplementärmedizin), glasses, and dental. It is issued separately from the basic policy and requires underwriting — apply while healthy.</p>
+            <p><strong style={{ color: "var(--text)" }}>Maternity care</strong> is fully covered by basic insurance from the 13th week of pregnancy. The insurer waives your deductible entirely for childbirth and the 8-week postnatal period.</p>
+            <p><strong style={{ color: "var(--text)" }}>Finding an English-speaking GP:</strong> Search the <a href="https://www.healthinfo.ch" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300">healthinfo.ch</a> directory or ask at your insurer's helpline. Cantonal medical directories (e.g., aerztefinden.ch for Zurich) also allow filtering by language.</p>
+            <p><strong style={{ color: "var(--text)" }}>Pharmacies (Apotheke / Pharmacie):</strong> Open Mon–Fri 8 am–6:30 pm, Saturdays 8 am–4 pm. Each city has 24/7 duty pharmacies (Notfallapotheke) — find them at <a href="https://www.health.ch/notfall" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300">health.ch</a> or via the SBB app.</p>
+          </div>
+        </section>
+
         <div className="glass rounded-2xl p-6 border border-red-500/20">
           <h3 className="text-base font-semibold text-red-400 mb-3">Emergency Numbers</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">

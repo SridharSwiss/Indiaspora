@@ -17,6 +17,8 @@ const portals = [
   { name: "Newhome", url: "https://www.newhome.ch/en", desc: "Associated with cantonal banks; good for listings from institutional landlords. Often less competitive." },
   { name: "Comparis", url: "https://en.comparis.ch/immobilien/mieten", desc: "Aggregator that pulls listings from multiple portals — useful for a single search across sources." },
   { name: "WGZimmer", url: "https://www.wgzimmer.ch/en/", desc: "Best for shared flat (WG / colocation) rooms. Popular with students and newcomers looking for short-term arrangements." },
+  { name: "Wunderflats", url: "https://wunderflats.com/en/furnished-apartments/switzerland", desc: "Furnished apartments for 1–12 months — ideal for the first weeks while searching for a long-term flat. Higher cost but no dossier or Betreibungsauszug required." },
+  { name: "Anibis / tutti.ch", url: "https://www.anibis.ch/en/category/apartments-rooms", desc: "Swiss classifieds with private landlord listings not always found on major portals. Good for smaller towns and German-speaking cantons." },
 ];
 
 const documents = [
@@ -35,7 +37,11 @@ const tips = [
   "Facebook groups ('Wohnung Zürich', 'Appartement Genève', 'Basel WG') often have private sublets and early listings before they go on portals.",
   "Consider furnished short-term lets (Airbnb, Wunderflats, MagicStay) for your first 1–3 months while you search without time pressure.",
   "The rental deposit (Mietkaution) is typically 2–3 months' rent, held in a joint blocked bank account (Sperrkonto) — it is returned at the end of the tenancy after the final inspection.",
-  "Tenants have strong legal protections in Switzerland. The tenants' association (Mieterverband / ASLOCA) offers free or low-cost legal advice.",
+  "Tenants have strong legal protections in Switzerland. The tenants' association (Mieterverband / ASLOCA at asloca.ch, Mieterverband at mieterverband.ch) offers free or low-cost legal advice and disputes arbitration.",
+  "Rent prices are regulated — landlords must justify rent above a reference interest rate benchmark. An excessive rent can be challenged at the conciliation authority (Schlichtungsbehörde) free of charge within 30 days of signing.",
+  "Nebenkosten (ancillary costs) for heating, hot water, and building maintenance are charged separately, typically CHF 100–250/month. Always ask what is included in the advertised price.",
+  "The final apartment handover (Übergabe) involves a detailed room-by-room inspection against the original Übergabeprotokoll (condition report). Photograph every room on move-in to protect your deposit.",
+  "Indian nationals on a B permit are legally allowed to rent; some landlords unfairly discriminate. The Mieterverband can advise if you are rejected on discriminatory grounds.",
 ];
 
 export default function HousingPage() {

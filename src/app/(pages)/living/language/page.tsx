@@ -17,10 +17,35 @@ const languages = [
 ];
 
 const resources = [
-  { category: "Apps", items: ["Duolingo — free gamified daily practice for German, French, Italian", "Babbel — structured lesson paths, strong for Swiss German speakers", "Pimsleur — audio-first approach; excellent for commuters learning German", "Anki — customisable vocabulary flashcards; find shared Swiss German decks online"] },
-  { category: "Schools", items: ["Migros Klubschule — Switzerland's largest language school with 50+ locations; courses from A1 to C2; available in-person and online (klubschule.ch)", "Berlitz — flexible intensive courses and one-to-one lessons in major cities", "Alliance Française — for French learners; branches in Zurich, Geneva, Bern, Basel", "VHS (Volkshochschule) — affordable evening and weekend courses run by each city"] },
-  { category: "Integration Courses", items: ["Kanton-subsidised language courses — ask your Gemeinde or cantonal migration office for vouchers", "FIDE (fr-de-it.ch) — federally recognised language courses and passport; required for some permit renewals", "A2 written + B1 oral in your canton's language required for C permit and naturalisation", "Online FIDE test preparation materials are free at fide-ch.ch"] },
-  { category: "Community Practice", items: ["Tandem language exchange — pair with a Swiss German/French speaker learning English or an Indian language", "Stammtisch — informal German conversation meetups; many advertised on Meetup.com", "Library reading groups and conversation cafés (Bibliothek der Gemeinde)", "Fellow Indian community members who are fluent and willing to do language exchange"] },
+  { category: "Apps & Online", items: [
+    "Duolingo (duolingo.com) — free gamified daily practice for German, French, Italian; good for vocabulary building",
+    "Babbel (babbel.com/learn/german) — structured lesson paths, strong grammar focus; free trial available",
+    "Pimsleur — audio-first approach; excellent for commuters learning German or French during a train commute",
+    "Tandem (tandem.net) — language exchange app; find Swiss German or French speakers wanting to learn English",
+    "Anki — customisable vocabulary flashcards; search for shared Swiss German and Hochdeutsch decks online",
+  ] },
+  { category: "Schools", items: [
+    "Migros Klubschule (klubschule.ch) — Switzerland's largest language school, 50+ locations, courses A1–C2, in-person and online",
+    "Berlitz (berlitz.com/en-ch) — intensive one-to-one and group courses in Zurich, Geneva, Basel, Bern",
+    "Alliance Française (alliancefr.ch) — for French learners; branches in Zurich, Geneva, Bern, Basel, Lausanne",
+    "Goethe-Institut Schweiz (goethe.de/en/wwt/sch.html) — official German-language institute; courses and internationally recognised exams (Goethe-Zertifikat) in Zurich, Bern, Basel",
+    "VHS Zürich (vhszurich.ch) — affordable evening and weekend courses; subsidised rates for residents of the city",
+    "VHS Genève (cfp-genève.ch) — French-language courses and continuing education for Geneva residents",
+  ] },
+  { category: "Integration Courses", items: [
+    "Kanton-subsidised language courses — ask your Gemeinde or cantonal migration office about Integrationsförderung vouchers covering 50–80% of course costs",
+    "FIDE (fide-ch.ch) — the federally recognised Swiss language framework; required for some permit renewals and naturalisation",
+    "A2 written + B1 oral in your canton's language is required for C permit and Swiss citizenship",
+    "FIDE test preparation materials and practice tests are free at fide-ch.ch — register and practice well before your real permit renewal deadline",
+    "Speak Local / Lingua (speaklocal.ch) — free conversation programmes run in collaboration with Swiss cantonal offices",
+  ] },
+  { category: "Community Practice", items: [
+    "Tandem language exchange (tandem.net) — pair with a Swiss German or French speaker learning English, Hindi, or another Indian language",
+    "Stammtisch — informal German conversation meetups, many advertised on Meetup.com in Zurich, Bern, Basel",
+    "Swiss German vs High German: learn Hochdeutsch (Standard German) first — it is understood everywhere. Dialect (Züridütsch, Baseldytsch, Berndütsch) varies even between cities; you will pick it up naturally over 6–12 months",
+    "Library reading groups and conversation cafés (Bibliothek der Gemeinde) — free and open to all residents; a low-pressure environment to practise",
+    "Indian community members fluent in German or French — ask in Indian WhatsApp groups or IAGZ/IAB community forums for language exchange partners",
+  ] },
 ];
 
 export default function LanguagePage() {

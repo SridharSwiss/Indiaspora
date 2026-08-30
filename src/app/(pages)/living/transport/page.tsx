@@ -72,6 +72,25 @@ export default function TransportPage() {
           </div>
         </section>
 
+        <section>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>Beyond Trains — Other Ways to Get Around</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { title: "Mobility Car-Sharing", url: "https://www.mobility.ch/en/", note: "Switzerland's national car-sharing cooperative with 3,000+ vehicles at SBB stations and throughout cities. Book by the hour or day via app. Pay-as-you-go and flat monthly membership options. No need to own a car for occasional trips." },
+              { title: "PubliBike", url: "https://www.publibike.ch/en/", note: "Switzerland's national bike-sharing network in 90+ cities. Electric and standard bikes; rent by the minute via app. Ideal for the last kilometre from a train station." },
+              { title: "Zurich Airport Rail (ZRH)", url: "https://www.flughafen-zuerich.ch/en/passengers/access-and-parking/public-transport", note: "Direct SBB trains run to Zurich HB every 10 minutes — journey time 10 minutes. Trains to Bern, Basel, Winterthur, and St. Gallen depart directly from the airport underground station without going to Zurich HB." },
+              { title: "Geneva Airport (GVA)", url: "https://www.gva.ch/en/Site/Passengers/Access/PublicTransport", note: "The main TPG tram and SBB train station is in the basement of Terminal 1. Trains reach Geneva Cornavin in 7 minutes; Lausanne in 40 minutes. The UNIRESO zone pass for Geneva covers airport travel." },
+              { title: "SBB Night Trains", url: "https://www.sbb.ch/en/leisure-holidays/travel-offers/night-trains.html", note: "ÖBB Nightjet overnight trains depart from Zurich to Vienna, Hamburg, Amsterdam, Berlin, and Rome — great for weekend travel without a hotel. Book in advance for best prices; includes couchette and private sleeper options." },
+              { title: "Swiss Travel Pass (for visitors)", url: "https://www.sbb.ch/en/leisure-holidays/travel-offers/swiss-travel-pass.html", note: "If family visits from India, the Swiss Travel Pass gives unlimited travel on all trains, buses, and most boats for 3–15 consecutive days. Cheaper than buying individual tickets and includes many mountain railways and city transport." },
+            ].map(item => (
+              <a key={item.title} href={item.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <h3 className="text-sm font-semibold mb-2 group-hover:text-sky-400 transition-colors" style={{ color: "var(--text)" }}>{item.title}</h3>
+                <p className="text-xs/60" style={{ color: "var(--text)" }}>{item.note}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+
         <div className="glass rounded-2xl p-6 border border-sky-500/20">
           <h3 className="text-base font-semibold text-sky-400 mb-2">Driving in Switzerland with an Indian Licence</h3>
           <p className="text-sm/70 mb-3" style={{ color: "var(--text)" }}>An Indian driving licence is valid in Switzerland for <strong style={{ color: "var(--text)" }}>12 months from the date on your Swiss residence permit</strong>. If your licence is not in English, carry a certified translation. You must carry the original licence at all times while driving.</p>
