@@ -21,7 +21,7 @@ const banks = [
 ];
 
 const transferOptions = [
-  { name: "Wise (TransferWise)", fee: "Low flat fee + small FX spread", speed: "1–2 business days", note: "Mid-market exchange rate. Most popular in the Indian community for CHF → INR transfers." },
+  { name: "Wise (TransferWise)", fee: "Low flat fee + small FX spread", speed: "1–2 business days", note: "Mid-market exchange rate. Most popular in the Indian community for CHF → INR transfers. Use this link for a fee-free first transfer: wise.com/invite/dic/sridharg7", url: "https://wise.com/invite/dic/sridharg7" },
   { name: "Revolut", fee: "Free up to monthly limit, then ~0.5%", speed: "Same day", note: "Very fast for smaller regular transfers; watch the weekend markup on FX." },
   { name: "Western Union", fee: "Variable by amount", speed: "Same day / next day", note: "Cash pickup option — useful if recipients lack a bank account in India." },
   { name: "Bank Wire (SWIFT)", fee: "CHF 25–50 + FX margin", speed: "3–5 business days", note: "Reliable but expensive. Use only for very large transfers where the FX rate offset the fees." },
@@ -74,7 +74,11 @@ export default function BankingPage() {
               <tbody>
                 {transferOptions.map((t) => (
                   <tr key={t.name} className="border-b [border:1px_solid_var(--border)]">
-                    <td className="py-3 pr-4 font-medium" style={{ color: "var(--text)" }}>{t.name}</td>
+                    <td className="py-3 pr-4 font-medium" style={{ color: "var(--text)" }}>
+                      {(t as { url?: string }).url ? (
+                        <a href={(t as { url?: string }).url} target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300 underline underline-offset-2">{t.name}</a>
+                      ) : t.name}
+                    </td>
                     <td className="py-3 pr-4/60" style={{ color: "var(--text)" }}>{t.fee}</td>
                     <td className="py-3 pr-4/60" style={{ color: "var(--text)" }}>{t.speed}</td>
                     <td className="py-3/60" style={{ color: "var(--text)" }}>{t.note}</td>
