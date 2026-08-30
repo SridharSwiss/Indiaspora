@@ -33,7 +33,7 @@ const cities: City[] = [
         area: "Enge — Claridenstrasse 36, 8002",
         type: "Mumbai Street Food · 100% Veg",
         note: "Mumbai institution — chaats, bhel puri, pav bhaji, dahi puri, Indian sweets. 100% vegetarian. Claridenstrasse 36, 8002 Zürich.",
-        url: "https://www.kailashparbat.ch",
+        url: MAPS("Kailash Parbat Claridenstrasse 36 Zürich"),
       },
       {
         name: "Tadka",
