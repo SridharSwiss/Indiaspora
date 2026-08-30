@@ -10,17 +10,17 @@ const sections = [
 ];
 
 const orgs = [
-  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://www.iagz.ch", city: "Zurich", desc: "Premier community organisation for Indians in Zurich. Events, networking, Hindi school, Diwali Gala." },
-  { name: "SICC – Swiss Indian Chamber of Commerce", url: "https://www.sicc.ch", city: "Zurich/Bern", desc: "Bilateral trade and business networking between India and Switzerland." },
-  { name: "Indian Association Berne (IAB)", url: "https://www.indiaassociationberne.ch", city: "Bern", desc: "Community events, cultural programmes and support for Indians in the Swiss capital." },
-  { name: "Indian Cultural Association Basel (ICAS)", url: "https://icas-online.com", city: "Basel", desc: "Cultural events, Diwali, Holi, and community welfare for Basel's Indian community." },
-  { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", city: "Geneva", desc: "Community platform for Indians in the Lake Geneva region and UN/diplomatic circles." },
-  { name: "TeluguSwiss Association", url: "https://teluguswiss.org", city: "Nationwide", desc: "Telugu-speaking Indian community — Ugadi, Diwali, cultural events and networking across Switzerland." },
-  { name: "PrangaN@Swiss", url: "https://pranganswiss.org", city: "Lausanne", desc: "Bengali community organises authentic Durga Puja in Lausanne with pandal, prasad and cultural programs." },
-  { name: "Gujarati Samaj Switzerland", url: "https://www.google.com/search?q=gujarati%20samaj%20switzerland", city: "Nationwide", desc: "Cultural events, language classes and support for Gujarati-speaking Indians across Switzerland." },
-  { name: "Maharashtra Mandal Switzerland", url: "https://www.google.com/search?q=maharashtra%20mandal%20switzerland", city: "Nationwide", desc: "Marathi culture, Ganesh Chaturthi, and community welfare for Maharashtrians." },
-  { name: "Tamil Sangam Switzerland", url: "https://www.google.com/search?q=tamil%20sangam%20switzerland", city: "Zurich/Basel", desc: "Tamil cultural events, Pongal celebrations, and Tamil language education." },
-  { name: "Punjabi Cultural Association", url: "https://www.google.com/search?q=punjabi%20cultural%20association%20zurich", city: "Zurich", desc: "Punjabi culture, Lohri, Baisakhi celebrations and community events." },
+  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", city: "Zurich", desc: "Premier community organisation for Indians in Zurich. Events, networking, Hindi school, Diwali Gala." },
+  { name: "SICC – Swiss-Indian Chamber of Commerce", url: "https://sicc.ch", city: "Zurich", desc: "Bilateral trade and business networking between India and Switzerland. 400+ members, 50+ events/year." },
+  { name: "Indian Association Berne (IAB)", url: "https://www.india-bern.ch", city: "Bern", desc: "Founded 1972. One of Switzerland's oldest Indian associations. Cultural events and support for Indians in the Swiss capital." },
+  { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", city: "Geneva", desc: "Founded 1947. 500+ members. Community platform for Indians in the Lake Geneva region and UN/diplomatic circles." },
+  { name: "Indian Association Lausanne (IAL)", url: "https://www.ialausanne.com/", city: "Lausanne", desc: "Founded 1995. Non-profit for Indians in Lausanne and French-speaking Switzerland." },
+  { name: "Indian Association Basel", url: "https://iabasel.com/", city: "Basel", desc: "Cultural events, cricket tournament and community welfare for Basel's Indian community." },
+  { name: "TeluguSwiss / STNRI", url: "https://teluguswiss.org", city: "Nationwide", desc: "Telugu-speaking community — Ugadi, cultural events and the Mana Badi language school (Swiss Telugu NRI Forum)." },
+  { name: "PrangaN@Swiss", url: "https://pranganswiss.org", city: "Lausanne", desc: "Women-led Bengali diaspora organisation. Authentic Durga Puja and Vasant Utsav in Lausanne." },
+  { name: "Gujarati Samaj Switzerland", url: "https://www.gujaratisamaj.ch", city: "Nationwide", desc: "Navratri Garba, Gujarati language classes and cultural events across Switzerland." },
+  { name: "Bruhan Maharashtra Mandal Switzerland", url: "https://bruhan-mms.org", city: "Nationwide", desc: "Marathi culture, Ganesh Chaturthi, language and community welfare for Maharashtrians in Switzerland." },
+  { name: "Swiss Tamil Sangam", url: "https://swisstamilsangam.com", city: "Nationwide", desc: "Tamil cultural events, Pongal celebrations, and Tamil language community across Switzerland." },
   { name: "Hindu Swayamsevak Sangh Switzerland", url: "https://hssworld.org", city: "Nationwide", desc: "Hindu cultural values, shakha, yoga, and youth development programmes." },
 ];
 
