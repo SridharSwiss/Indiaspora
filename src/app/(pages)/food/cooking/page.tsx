@@ -26,11 +26,11 @@ const classProviders = [
     url: "https://creativeswitzerland.com/creative-shop/cooking-class-where-indian-food-meets-switzerland-by-smriti-chhabra/",
   },
   {
-    name: "Indian Moms Zurich / Swiss Desi",
-    location: "Zurich area",
-    format: "Community & home chef classes",
-    note: "Community of home cooks offering cooking lessons for Indian meals from start to finish. Good for learning regional recipes in a friendly informal setting.",
-    url: "https://swissdesi.ch",
+    name: "Spiceitupp — Personal Indian Chef",
+    location: "Basel / Zurich / Bern area",
+    format: "In-home personal chef & classes",
+    note: "Certified personal chef who comes to your home and cooks authentic Indian food. Also offers hands-on Indian cooking classes. From CHF 65/hour for up to 4 adults. Covers Basel, Bern, Zurich, and Zug.",
+    url: "https://spiceitupp.com",
   },
   {
     name: "IAGZ Community Workshops",

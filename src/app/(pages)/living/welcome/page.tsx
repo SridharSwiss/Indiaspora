@@ -56,7 +56,7 @@ const steps = [
     url: "https://www.indembassybern.gov.in",
     title: "Register with the Indian Embassy",
     description:
-      "Register as an Indian national residing in Switzerland with the Embassy of India in Bern (Thunstrasse 5, 3005 Bern; Tel: +41 31 350 11 10) or the Consulate General of India in Geneva. Registration ensures you can receive consular services, emergency assistance, and official notifications. Online registration is available at indembassybern.gov.in.",
+      "Register as an Indian national residing in Switzerland with the Embassy of India in Bern (Kirchenfeldstrasse 28, 3005 Berne; Tel: +41 31 350 11 10) or the Consulate General of India in Geneva. Registration ensures you can receive consular services, emergency assistance, and official notifications. Online registration is available at indembassybern.gov.in.",
     icon: "🇮🇳",
   },
 ];
@@ -124,7 +124,7 @@ export default function WelcomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm/70" style={{ color: "var(--text)" }}>
             <div>
               <p className="font-semibold mb-1" style={{ color: "var(--text)" }}>Embassy of India, Bern</p>
-              <p>Thunstrasse 5, 3005 Bern</p>
+              <p>Kirchenfeldstrasse 28, 3005 Berne</p>
               <p>Tel: +41 31 350 11 10</p>
               <p className="text-green-400">indembassybern.gov.in</p>
             </div>

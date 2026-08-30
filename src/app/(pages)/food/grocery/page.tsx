@@ -30,7 +30,7 @@ const stores = [
     name: "NewAsia Market",
     area: "Kreis 4 / Langstrasse",
     note: "Pan-Asian supermarket with a well-stocked Indian section — spices, dals, chutneys, snacks, and South Asian specialty items. Feldstrasse 24, 8004 Zürich.",
-    url: "https://newinzurich.com/ethnic-and-international-grocery-stores-in-zurich/",
+    url: "https://www.google.com/maps/search/Asian+grocery+Feldstrasse+Zurich",
   },
   {
     city: "Basel",

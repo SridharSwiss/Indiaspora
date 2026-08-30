@@ -20,12 +20,12 @@ const screenings = [
     org: "Embassy of India, Berne",
   },
   {
-    name: "Bollywood Screenings — SwissDesi",
-    url: "https://swissdesi.ch",
+    name: "IAGZ Bollywood Screenings",
+    url: "https://iagz.ch",
     timing: "Regular (throughout year)",
     location: "Kino Claudia (Kloten), Riff-Raff (Zurich), Pathé Westside (Bern), Kino City (Uzwil)",
-    desc: "SwissDesi (formerly IndianMomsZurich) announces and coordinates Bollywood and Indian regional film screenings across Swiss cinemas. Covers Hindi, Tamil, Malayalam, and Telugu releases.",
-    org: "SwissDesi",
+    desc: "IAGZ and community organisers coordinate Bollywood and Indian regional film screenings across Swiss cinemas. Check iagz.ch events calendar for upcoming screenings of Hindi, Tamil, Malayalam, and Telugu releases.",
+    org: "IAGZ",
   },
   {
     name: "India Fest & Margazhi Utsav",

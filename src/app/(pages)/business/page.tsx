@@ -28,8 +28,8 @@ const sectors = [
 ];
 
 const workPermitTypes = [
-  { permit: "B Permit (Residence)", eligibility: "Job offer from Swiss employer, usually 1–5 year contracts. Annual quota for non-EU nationals: ~4,500 B permits (2025–26).", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit.html" },
-  { permit: "L Permit (Short-term)", eligibility: "Short-term contracts up to 12 months. Quota: ~4,000 L permits per year (2025–26).", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit.html" },
+  { permit: "B Permit (Residence)", eligibility: "Job offer from Swiss employer, usually 1–5 year contracts. Annual quota for non-EU nationals: ~4,500 B permits (2026). TEPA (India–EFTA trade agreement in force since 1 Oct 2025) facilitates easier professional mobility.", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit.html" },
+  { permit: "L Permit (Short-term)", eligibility: "Short-term contracts up to 12 months. Quota: ~4,000 L permits per year (2026). Processing typically 2–6 months.", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit.html" },
   { permit: "C Permit (Settlement)", eligibility: "After 10 years of legal residence for Indian nationals. Requires language proficiency and integration. Unrestricted work rights.", link: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht_eu_efta/ausweis_c__niederlassungsbewilligung.html" },
   { permit: "G Permit (Cross-border)", eligibility: "Live in EU border country (France, Germany, Italy, Austria) and work in Switzerland", link: "https://www.sem.admin.ch/sem/en/home/themen/arbeit/nicht-eu_efta-angehoerige/grenzgaengerbewilligung.html" },
 ];

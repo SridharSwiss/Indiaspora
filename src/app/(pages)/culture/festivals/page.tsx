@@ -168,7 +168,7 @@ export default function FestivalsPage() {
             <a href="https://indianassociationgeneva.com" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Indian Association Geneva</a>{" "}
             (est. 1947, 500+ members), and the{" "}
             <a href="https://www.indembassybern.gov.in/page/diaspora-events/" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Embassy of India diaspora events page</a>.
-            {" "}SwissDesi (formerly IndianMomsZurich) also maintains a comprehensive community events calendar at swissdesi.ch.
+            {" "}The Embassy of India Berne also maintains a diaspora events calendar at indembassybern.gov.in.
           </p>
         </div>
       </div>

@@ -60,7 +60,7 @@ export default function LegalPage() {
 
         <section>
           <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Indian Documents from Switzerland</h2>
-          <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>All consular services for Indian nationals are handled by the Embassy of India in Bern (Thunstrasse 5, 3005 Bern) and the Consulate General of India in Geneva. Register as an Indian national at <span className="" style={{ color: "var(--text-2)" }}>indembassybern.gov.in</span></p>
+          <p className="text-sm/50 mb-6" style={{ color: "var(--text)" }}>All consular services for Indian nationals are handled by the Embassy of India in Bern (Kirchenfeldstrasse 28, 3005 Berne) and the Consulate General of India in Geneva. Register as an Indian national at <span className="" style={{ color: "var(--text-2)" }}>indembassybern.gov.in</span></p>
           <div className="space-y-4">
             {indianDocs.map((d) => (
               <a key={d.title} href={d.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">

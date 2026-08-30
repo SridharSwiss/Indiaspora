@@ -12,12 +12,13 @@ export const metadata: Metadata = {
 
 type Place = { name: string; url: string | null; city: string; desc: string };
 
-// Hindu temples verified via Wikipedia list of Hindu temples in Switzerland, worldhindutemples.com, and swissdesi.ch (Aug 2026)
+// Hindu temples verified via Wikipedia list of Hindu temples in Switzerland, sivankovil.ch, krishna.ch, and web search (Aug 2026)
 const temples: Place[] = [
-  { name: "Sri Sivasubramaniar Temple", url: null, city: "Adliswil (Zurich)", desc: "Largest and most famous Hindu temple in Switzerland. Founded 1994. Sihlweg 3, 8134 Adliswil. Open daily 8 am–1 pm and 6–9 pm. Contact: +41 44 709 0630." },
+  { name: "Arulmihu Sivan Temple (Sri Sivasubramaniar)", url: "https://sivankovil.ch", city: "Glattbrugg (Zurich)", desc: "Largest and most visited Hindu temple in Switzerland. Founded 1994. Siva and Subramaniar consecrated. Up to 4,000 devotees at major festivals. Zurich Hauptstrasse 78, 8152 Glattbrugg. Open daily 8 am–1 pm and 6–9 pm." },
   { name: "Krishna Tempel Zürich (ISKCON)", url: "https://www.krishna.ch", city: "Zurich", desc: "Hare Krishna temple at Bergstrasse 54, 8032 Zurich. Started 1980. Sunday feast, Janmashtami, kirtan and prasad. Mangala-arati at 4:30 am daily." },
   { name: "Arputha Vinayagar Temple", url: null, city: "Versoix (Geneva)", desc: "Ganesha temple in Versoix near Geneva. Established 1996. One of the earliest Hindu temples in the French-speaking part of Switzerland." },
   { name: "Sri Sithivinayagar Temple", url: null, city: "Hünenberg (Zug)", desc: "Ganesha temple located at Bösch 43, 6331 Hünenberg, canton of Zug. Ganesh Chaturthi and regular puja." },
+  { name: "BAPS Swaminarayan Satsang", url: "https://www.baps.org", city: "Zurich (Affoltern)", desc: "Regular satsang and cultural programmes at GZ Affoltern community centre, Zurich. Major celebrations for Diwali and Hindu New Year Annakut. Part of the global BAPS Swaminarayan network." },
   { name: "Shirdi Sai Baba Temple", url: null, city: "Zurich", desc: "Weekly Thursday puja and community prayers for Sai Baba devotees in the Zurich area. No verified public website." },
 ];
 
