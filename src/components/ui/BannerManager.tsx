@@ -28,10 +28,16 @@ export default function BannerManager() {
   const supabase = useMemo(() => createClient(), []);
 
   useEffect(() => {
-    // Check auth state once
+    // Check auth state once — fallback to false after 3s so a hanging request doesn't block banners
+    const timeout = setTimeout(() => setIsLoggedIn(prev => prev === null ? false : prev), 3000);
     supabase.auth.getUser().then(({ data: { user } }) => {
+      clearTimeout(timeout);
       setIsLoggedIn(!!user);
+    }).catch(() => {
+      clearTimeout(timeout);
+      setIsLoggedIn(false);
     });
+    return () => clearTimeout(timeout);
   }, [supabase]);
 
   useEffect(() => {
