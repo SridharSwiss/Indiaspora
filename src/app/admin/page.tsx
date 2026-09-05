@@ -7,6 +7,7 @@ import {
   Users, BarChart3, Globe, Eye, LogOut, RefreshCw, Download,
   MapPin, Mail, Briefcase, Calendar, CheckCircle, XCircle, Clock,
   LayoutDashboard, Search, ChevronRight, TrendingUp, UserCheck, UserX, Bell,
+  CalendarPlus, ImagePlus, Sparkles, ThumbsUp, ThumbsDown, Loader2, ExternalLink,
 } from "lucide-react";
 
 type Member = {
@@ -19,6 +20,13 @@ type Member = {
 type Subscriber = {
   id: string; email: string; consent: boolean; consent_text: string;
   source: string; subscribed_at: string; active: boolean;
+};
+type AdminEvent = {
+  id: string; title: string; date: string; location: string;
+  category: string; description: string; organiser: string;
+  url: string; image_url: string; color: string;
+  event_status: "pending" | "approved" | "rejected";
+  ai_summary: string; submitted_by: string; created_at: string;
 };
 type AnalyticsData = {
   totalViews: number; todayViews: number;
@@ -37,7 +45,7 @@ const STATUS_CONFIG = {
 
 export default function AdminPage() {
   const router = useRouter();
-  const [tab, setTab] = useState<"overview" | "members" | "analytics" | "newsletter">("overview");
+  const [tab, setTab] = useState<"overview" | "members" | "analytics" | "newsletter" | "events">("overview");
   const [members, setMembers] = useState<Member[]>([]);
   const [memberCount, setMemberCount] = useState(0);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
@@ -51,6 +59,16 @@ export default function AdminPage() {
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [rejectNote, setRejectNote] = useState<{ id: string; note: string } | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  // Events tab state
+  const [events, setEvents] = useState<AdminEvent[]>([]);
+  const [eventsFilter, setEventsFilter] = useState<"all" | "pending" | "approved" | "rejected">("all");
+  const [eventRawText, setEventRawText] = useState("");
+  const [eventImageUrl, setEventImageUrl] = useState("");
+  const [eventImageFile, setEventImageFile] = useState<File | null>(null);
+  const [eventCreateStatus, setEventCreateStatus] = useState<"idle" | "uploading" | "creating" | "done" | "error">("idle");
+  const [eventCreateError, setEventCreateError] = useState("");
+  const [eventActionLoading, setEventActionLoading] = useState<string | null>(null);
 
   const supabase = useMemo(() => createClient(), []);
 
@@ -131,6 +149,7 @@ export default function AdminPage() {
     { id: "members" as const,     icon: Users,           label: "Members",     badge: pendingCount > 0 ? pendingCount : null },
     { id: "analytics" as const,   icon: BarChart3,       label: "Analytics",   badge: null },
     { id: "newsletter" as const,  icon: Bell,            label: "Newsletter",  badge: subscribers.length > 0 ? subscribers.length : null },
+    { id: "events" as const,      icon: CalendarPlus,    label: "Events",      badge: events.filter(e => e.event_status === "pending").length > 0 ? events.filter(e => e.event_status === "pending").length : null },
   ];
 
   const downloadSubscribersCSV = () => {
@@ -147,6 +166,72 @@ export default function AdminPage() {
   const filteredSubscribers = subscribers.filter(s =>
     !subscriberSearch || s.email.toLowerCase().includes(subscriberSearch.toLowerCase())
   );
+
+  // ── Events helpers ──────────────────────────────────────────────────────
+  const fetchEvents = useCallback(async () => {
+    const res = await fetch("/api/admin/events");
+    if (res.ok) { const d = await res.json(); setEvents(d.data || []); }
+  }, []);
+
+  useEffect(() => { if (tab === "events") fetchEvents(); }, [tab, fetchEvents]);
+
+  const handleEventImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    setEventImageFile(file);
+    if (!file) { setEventImageUrl(""); return; }
+    const reader = new FileReader();
+    reader.onload = () => setEventImageUrl(reader.result as string);
+    reader.readAsDataURL(file);
+  };
+
+  const createEvent = async () => {
+    if (!eventRawText.trim()) { setEventCreateError("Please enter event details."); return; }
+    setEventCreateError("");
+    setEventCreateStatus("idle");
+
+    let uploadedImageUrl = "";
+    if (eventImageFile) {
+      setEventCreateStatus("uploading");
+      const fd = new FormData();
+      fd.append("file", eventImageFile);
+      const upRes = await fetch("/api/events/upload-image", { method: "POST", body: fd });
+      if (!upRes.ok) { setEventCreateStatus("error"); setEventCreateError("Image upload failed."); return; }
+      const upData = await upRes.json();
+      uploadedImageUrl = upData.url ?? "";
+    }
+
+    setEventCreateStatus("creating");
+    const res = await fetch("/api/admin/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rawText: eventRawText, imageUrl: uploadedImageUrl, submittedBy: user?.email }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      setEventCreateStatus("error");
+      setEventCreateError(data.error ?? "Failed to create event.");
+      return;
+    }
+    setEventCreateStatus("done");
+    setEventRawText("");
+    setEventImageUrl("");
+    setEventImageFile(null);
+    setTimeout(() => setEventCreateStatus("idle"), 2000);
+    fetchEvents();
+  };
+
+  const updateEventStatus = async (id: string, action: "approve" | "reject") => {
+    setEventActionLoading(id + action);
+    await fetch("/api/admin/events", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, action }),
+    });
+    setEventActionLoading(null);
+    fetchEvents();
+  };
+
+  const filteredEvents = events.filter(e => eventsFilter === "all" || e.event_status === eventsFilter);
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "var(--base)", fontFamily: "system-ui,sans-serif" }}>
@@ -721,6 +806,184 @@ export default function AdminPage() {
               </div>
             </div>
           )}
+          {/* ── EVENTS ── */}
+          {tab === "events" && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+
+              {/* Create form */}
+              <div style={{ background: "var(--surface)", borderRadius: 16, border: "1px solid var(--border)", padding: "24px 28px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+                  <div style={{ padding: 8, borderRadius: 10, background: "rgba(176,141,87,0.12)" }}><Sparkles size={16} style={{ color: "#B08D57", display: "block" }} /></div>
+                  <div>
+                    <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Create Event with AI</div>
+                    <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Paste or type event details — the AI will structure, enrich and categorise it for you.</div>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                  <textarea
+                    rows={6}
+                    placeholder="Paste the event description, flyer text, or any details you have — title, date, location, organiser, description, website URL. The more you provide, the better the result."
+                    value={eventRawText}
+                    onChange={e => setEventRawText(e.target.value)}
+                    style={{
+                      width: "100%", padding: "12px 14px", borderRadius: 10, fontSize: 13,
+                      border: "1px solid var(--border-2)", background: "var(--surface-2)",
+                      color: "var(--text)", outline: "none", resize: "vertical",
+                      fontFamily: "inherit", lineHeight: 1.6, boxSizing: "border-box",
+                    }}
+                  />
+
+                  {/* Image upload */}
+                  <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                    <label style={{
+                      display: "flex", alignItems: "center", gap: 8, cursor: "pointer",
+                      padding: "9px 16px", borderRadius: 10, fontSize: 13, fontWeight: 600,
+                      border: "1px dashed var(--border-2)", color: "var(--text-3)",
+                      background: "var(--surface-2)", flexShrink: 0,
+                    }}>
+                      <ImagePlus size={15} />
+                      {eventImageFile ? eventImageFile.name : "Add image (optional)"}
+                      <input type="file" accept="image/*" hidden onChange={handleEventImageChange} />
+                    </label>
+                    {eventImageUrl && (
+                      <img src={eventImageUrl} alt="preview" style={{ height: 60, borderRadius: 8, objectFit: "cover", border: "1px solid var(--border)" }} />
+                    )}
+                  </div>
+
+                  {eventCreateError && (
+                    <div style={{ fontSize: 12, color: "#f87171", display: "flex", alignItems: "center", gap: 6 }}>
+                      <XCircle size={13} /> {eventCreateError}
+                    </div>
+                  )}
+
+                  <button
+                    onClick={createEvent}
+                    disabled={["uploading", "creating"].includes(eventCreateStatus)}
+                    style={{
+                      alignSelf: "flex-start", display: "flex", alignItems: "center", gap: 8,
+                      padding: "10px 22px", borderRadius: 10, border: "none", cursor: "pointer",
+                      background: eventCreateStatus === "done" ? "#059669" : "#B08D57",
+                      color: "#1A1410", fontWeight: 700, fontSize: 13,
+                      opacity: ["uploading", "creating"].includes(eventCreateStatus) ? 0.7 : 1,
+                      transition: "background 0.2s",
+                    }}
+                  >
+                    {eventCreateStatus === "uploading" && <><Loader2 size={14} style={{ animation: "spin 1s linear infinite" }} /> Uploading image…</>}
+                    {eventCreateStatus === "creating" && <><Loader2 size={14} style={{ animation: "spin 1s linear infinite" }} /> AI is analysing…</>}
+                    {eventCreateStatus === "done" && <><CheckCircle size={14} /> Event created!</>}
+                    {(eventCreateStatus === "idle" || eventCreateStatus === "error") && <><Sparkles size={14} /> Create Event</>}
+                  </button>
+                </div>
+              </div>
+
+              {/* Filter + list */}
+              <div style={{ background: "var(--surface)", borderRadius: 16, border: "1px solid var(--border)", overflow: "hidden" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderBottom: "1px solid var(--border)" }}>
+                  <span style={{ fontWeight: 700, fontSize: 14, color: "var(--text)" }}>
+                    Events ({filteredEvents.length})
+                  </span>
+                  <div style={{ display: "flex", gap: 6 }}>
+                    {(["all", "pending", "approved", "rejected"] as const).map(f => (
+                      <button key={f} onClick={() => setEventsFilter(f)} style={{
+                        padding: "4px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700,
+                        textTransform: "capitalize", cursor: "pointer", border: "none",
+                        background: eventsFilter === f ? "var(--sf)" : "var(--surface-2)",
+                        color: eventsFilter === f ? "#fff" : "var(--text-3)",
+                      }}>{f}</button>
+                    ))}
+                    <button onClick={fetchEvents} style={{ padding: "4px 8px", borderRadius: 8, border: "1px solid var(--border-2)", background: "none", color: "var(--text-3)", cursor: "pointer" }}>
+                      <RefreshCw size={12} />
+                    </button>
+                  </div>
+                </div>
+
+                <div style={{ overflowX: "auto" }}>
+                  {filteredEvents.length === 0 ? (
+                    <div style={{ padding: "40px", textAlign: "center", color: "var(--text-3)", fontSize: 13 }}>
+                      No events found. Create one above.
+                    </div>
+                  ) : (
+                    <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+                      {filteredEvents.map((ev, i) => (
+                        <div key={ev.id} style={{
+                          display: "flex", alignItems: "flex-start", gap: 14, padding: "16px 20px",
+                          borderBottom: i < filteredEvents.length - 1 ? "1px solid var(--border)" : "none",
+                        }}>
+                          {/* Image */}
+                          <div style={{ flexShrink: 0, width: 64, height: 64, borderRadius: 10, overflow: "hidden", background: "var(--surface-2)", border: "1px solid var(--border)" }}>
+                            {ev.image_url ? (
+                              <img src={ev.image_url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                            ) : (
+                              <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                <Calendar size={22} style={{ color: "var(--text-3)" }} />
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Content */}
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                              <span style={{ fontWeight: 700, fontSize: 14, color: "var(--text)" }}>{ev.title}</span>
+                              <span style={{
+                                fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 999,
+                                textTransform: "uppercase", letterSpacing: "0.07em",
+                                background: ev.event_status === "approved" ? "rgba(5,150,105,0.12)" : ev.event_status === "rejected" ? "rgba(220,38,38,0.1)" : "rgba(217,119,6,0.1)",
+                                color: ev.event_status === "approved" ? "#059669" : ev.event_status === "rejected" ? "#DC2626" : "#D97706",
+                              }}>{ev.event_status}</span>
+                              <span style={{ fontSize: 10, color: "var(--text-3)" }}>{ev.category}</span>
+                            </div>
+                            <div style={{ fontSize: 12, color: "var(--text-3)", marginBottom: 4, display: "flex", gap: 12, flexWrap: "wrap" }}>
+                              <span><Calendar size={11} style={{ display: "inline", verticalAlign: "middle", marginRight: 3 }} />{ev.date}</span>
+                              <span><MapPin size={11} style={{ display: "inline", verticalAlign: "middle", marginRight: 3 }} />{ev.location}</span>
+                            </div>
+                            {ev.ai_summary && (
+                              <div style={{ fontSize: 11, color: "var(--text-3)", fontStyle: "italic", marginBottom: 2, lineHeight: 1.5 }}>
+                                <Sparkles size={10} style={{ display: "inline", verticalAlign: "middle", marginRight: 4, color: "#B08D57" }} />
+                                {ev.ai_summary}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Actions */}
+                          <div style={{ display: "flex", gap: 6, flexShrink: 0, alignItems: "center" }}>
+                            {ev.url && (
+                              <a href={ev.url} target="_blank" rel="noopener noreferrer" style={{ padding: "6px 8px", borderRadius: 8, border: "1px solid var(--border-2)", color: "var(--text-3)", display: "flex", alignItems: "center" }}>
+                                <ExternalLink size={12} />
+                              </a>
+                            )}
+                            {ev.event_status !== "approved" && (
+                              <button
+                                onClick={() => updateEventStatus(ev.id, "approve")}
+                                disabled={eventActionLoading === ev.id + "approve"}
+                                style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 12px", borderRadius: 8, border: "none", cursor: "pointer", background: "rgba(5,150,105,0.12)", color: "#059669", fontSize: 12, fontWeight: 700 }}
+                              >
+                                {eventActionLoading === ev.id + "approve" ? <Loader2 size={12} style={{ animation: "spin 1s linear infinite" }} /> : <ThumbsUp size={12} />}
+                                Approve
+                              </button>
+                            )}
+                            {ev.event_status !== "rejected" && (
+                              <button
+                                onClick={() => updateEventStatus(ev.id, "reject")}
+                                disabled={eventActionLoading === ev.id + "reject"}
+                                style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 12px", borderRadius: 8, border: "none", cursor: "pointer", background: "rgba(220,38,38,0.08)", color: "#DC2626", fontSize: 12, fontWeight: 700 }}
+                              >
+                                {eventActionLoading === ev.id + "reject" ? <Loader2 size={12} style={{ animation: "spin 1s linear infinite" }} /> : <ThumbsDown size={12} />}
+                                Reject
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            </div>
+          )}
+
         </main>
       </div>
     </div>

@@ -26,7 +26,7 @@ async function getDbEvents() {
     const { data } = await supabase
       .from("events")
       .select("*")
-      .eq("active", true)
+      .eq("event_status", "approved")
       .order("created_at", { ascending: false });
     return data ?? [];
   } catch {
@@ -47,7 +47,7 @@ export default async function EventsPage() {
       organiser: e.organiser,
       color: e.color ?? "bg-violet-500",
       url: e.url ?? "",
-      image: e.image ?? "",
+      image: e.image_url ?? e.image ?? "",
     })),
     ...UPCOMING_EVENTS,
   ];
