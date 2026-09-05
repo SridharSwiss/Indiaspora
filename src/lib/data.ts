@@ -187,6 +187,17 @@ export const CITIES = [
 
 export const UPCOMING_EVENTS = [
   {
+    title: "SICC Market Focus India — Geneva",
+    date: "8 Sep 2026",
+    location: "CCIG, Geneva",
+    category: "Networking",
+    description: "SICC and CCIG co-host a Market Focus India session in Geneva — briefings on business opportunities, trade, and investment between Switzerland and India.",
+    organiser: "Swiss Indian Chamber of Commerce (SICC)",
+    color: "bg-blue-500",
+    url: "https://sicc.ch",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop",
+  },
+  {
     title: "Swiss India Business Summit",
     date: "Sep 12, 2026",
     location: "Kursaal Bern",
@@ -221,7 +232,7 @@ export const UPCOMING_EVENTS = [
   },
   {
     title: "SwissPuja Durga Puja 2026",
-    date: "Oct 1–5, 2026",
+    date: "Oct 16–21, 2026",
     location: "Schwerzisaal, Langnau am Albis",
     category: "Cultural",
     description: "Authentic Durga Puja over five days with pandal, ashtami anjali, prasad, and cultural programs by SwissPuja.",
@@ -243,7 +254,7 @@ export const UPCOMING_EVENTS = [
   },
   {
     title: "IAGZ Navratri Garba Night 2026",
-    date: "Oct 10, 2026",
+    date: "Oct 25, 2026",
     location: "Zurich",
     category: "Cultural",
     description: "Largest Garba celebration in Switzerland with live dandiya music, traditional dance, and festive dinner.",
@@ -265,7 +276,7 @@ export const UPCOMING_EVENTS = [
   },
   {
     title: "IAGZ Diwali Gala 2026",
-    date: "Nov 28, 2026",
+    date: "Nov 14, 2026",
     location: "Mattenhofsaal, Zurich",
     category: "Festival",
     description: "IAGZ's flagship annual Diwali gala with cultural performances, gourmet Indian dinner, and awards.",
@@ -298,7 +309,7 @@ export const UPCOMING_EVENTS = [
   },
   {
     title: "ISKCON Rath Yatra 2026",
-    date: "Jun 2026",
+    date: "10 Jul 2026",
     location: "Zurich city centre",
     category: "Cultural",
     description: "Annual chariot procession through Zurich streets with kirtan, prasad distribution, and Hare Krishna celebrations. Open to all.",
@@ -372,6 +383,17 @@ export const UPCOMING_EVENTS = [
     color: "bg-green-600",
     url: "https://www.smabasel.ch/",
     image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Indo-Swiss Sustainability Awards 2026",
+    date: "28 Nov 2026",
+    location: "Zurich",
+    category: "Networking",
+    description: "SICC's annual awards recognising Swiss and Indian companies leading in sustainable business practices and Indo-Swiss cross-border collaboration.",
+    organiser: "Swiss Indian Chamber of Commerce (SICC)",
+    color: "bg-blue-600",
+    url: "https://sicc.ch",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop",
   },
   {
     title: "STNRI Cricket League 2026",
