@@ -1,9 +1,52 @@
+export const revalidate = 0;
+
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { UPCOMING_EVENTS } from "@/lib/data";
 import { createAdminClient } from "@/lib/supabase/admin";
 
-const categories = ["All", "Festival", "Networking", "Cultural", "Food", "Arts", "Sports"];
+const MONTHS: Record<string, number> = {
+  jan: 0, january: 0, feb: 1, february: 1, mar: 2, march: 2,
+  apr: 3, april: 3, may: 4, jun: 5, june: 5, jul: 6, july: 6,
+  aug: 7, august: 7, sep: 8, september: 8, oct: 9, october: 9,
+  nov: 10, november: 10, dec: 11, december: 11,
+};
+
+function parseEventDate(dateStr: string): Date {
+  if (!dateStr) return new Date(9999, 0, 1);
+  const s = dateStr.trim();
+
+  // "15 Oct 2026" or "15 October 2026"
+  let m = s.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
+  if (m) {
+    const mo = MONTHS[m[2].toLowerCase()];
+    if (mo !== undefined) return new Date(+m[3], mo, +m[1]);
+  }
+
+  // "Oct 15, 2026" or "October 15, 2026"
+  m = s.match(/^([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})$/);
+  if (m) {
+    const mo = MONTHS[m[1].toLowerCase()];
+    if (mo !== undefined) return new Date(+m[3], mo, +m[2]);
+  }
+
+  // "Oct 2026" or "October 2026" — no day, use 1st
+  m = s.match(/^([A-Za-z]+)\s+(\d{4})$/);
+  if (m) {
+    const mo = MONTHS[m[1].toLowerCase()];
+    if (mo !== undefined) return new Date(+m[2], mo, 1);
+  }
+
+  // ISO "2026-10-15"
+  m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (m) return new Date(+m[1], +m[2] - 1, +m[3]);
+
+  // "15/10/2026" or "15.10.2026"
+  m = s.match(/^(\d{1,2})[./](\d{1,2})[./](\d{4})$/);
+  if (m) return new Date(+m[3], +m[2] - 1, +m[1]);
+
+  return new Date(9999, 0, 1);
+}
 
 const monthlyCalendar = [
   { month: "January", events: ["TASC Pongal Celebration (Tamil community, Zurich & Geneva)", "Lohri Night (Punjabi community, Zurich & Bern)", "Makar Sankranti / Uttarayan kite festival puja", "Gujarati Samaj New Year celebrations"] },
@@ -34,10 +77,55 @@ async function getDbEvents() {
   }
 }
 
+type EventItem = {
+  title: string;
+  date: string;
+  location: string;
+  category: string;
+  description: string;
+  organiser?: string;
+  color: string;
+  url: string;
+  image: string;
+  _parsed: Date;
+};
+
+function EventCard({ event, muted }: { event: EventItem; muted?: boolean }) {
+  const Wrapper = event.url ? "a" : "div";
+  const wrapperProps = event.url ? { href: event.url, target: "_blank", rel: "noopener noreferrer" } : {};
+  return (
+    <Wrapper {...wrapperProps} className={`glass rounded-2xl overflow-hidden card-hover block group${muted ? " opacity-60" : ""}`} style={{ textDecoration: "none" }}>
+      {event.image && (
+        <div className="relative h-44 overflow-hidden">
+          <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div className="absolute top-3 left-3">
+            <span className="text-xs px-2 py-1 rounded-full font-medium text-white" style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>{event.category}</span>
+          </div>
+          <div className="absolute bottom-3 right-3">
+            <span className={`w-2.5 h-2.5 rounded-full ${event.color} inline-block`} />
+          </div>
+        </div>
+      )}
+      <div className="p-5">
+        <h3 className="font-semibold text-sm group-hover:text-violet-400 transition-colors mb-1" style={{ color: "var(--text)" }}>{event.title}</h3>
+        <p className="text-xs font-medium mb-1" style={{ color: "var(--accent, #a855f7)" }}>{event.date}</p>
+        <p className="text-xs mb-2" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
+        <p className="text-xs mb-3 leading-relaxed" style={{ color: "var(--text-2)" }}>{event.description}</p>
+        <div className="flex items-center justify-between">
+          {event.organiser && <span className="text-xs" style={{ color: "var(--text-2)" }}>by {event.organiser}</span>}
+          {event.url && <span className="text-xs text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity ml-auto">Visit →</span>}
+        </div>
+      </div>
+    </Wrapper>
+  );
+}
+
 export default async function EventsPage() {
   const dbEvents = await getDbEvents();
-  // Merge: DB events first (newest submissions), then static fallbacks
-  const allEvents = [
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const allEvents: EventItem[] = [
     ...dbEvents.map((e: Record<string, string>) => ({
       title: e.title,
       date: e.date,
@@ -48,9 +136,14 @@ export default async function EventsPage() {
       color: e.color ?? "bg-violet-500",
       url: e.url ?? "",
       image: e.image_url ?? e.image ?? "",
+      _parsed: parseEventDate(e.date),
     })),
-    ...UPCOMING_EVENTS,
+    ...UPCOMING_EVENTS.map((e) => ({ ...e, image: (e as { image?: string }).image ?? "", _parsed: parseEventDate(e.date) })),
   ];
+
+  const upcomingEvents = allEvents.filter(e => e._parsed >= today).sort((a, b) => a._parsed.getTime() - b._parsed.getTime());
+  const pastEvents = allEvents.filter(e => e._parsed < today).sort((a, b) => b._parsed.getTime() - a._parsed.getTime());
+
   return (
     <div>
       <PageHeader
@@ -67,43 +160,23 @@ export default async function EventsPage() {
           <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Upcoming Events</h2>
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Next events in the Swiss-Indian community calendar</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {allEvents.map((event) => {
-              const Wrapper = event.url ? "a" : "div";
-              const wrapperProps = event.url ? { href: event.url, target: "_blank", rel: "noopener noreferrer" } : {};
-              return (
-                <Wrapper key={event.title} {...wrapperProps} className="glass rounded-2xl overflow-hidden card-hover block group" style={{ textDecoration: "none" }}>
-                  {event.image && (
-                    <div className="relative h-44 overflow-hidden">
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute top-3 left-3">
-                        <span className="text-xs px-2 py-1 rounded-full font-medium text-white" style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>{event.category}</span>
-                      </div>
-                      <div className="absolute bottom-3 right-3">
-                        <span className={`w-2.5 h-2.5 rounded-full ${event.color} inline-block`} />
-                      </div>
-                    </div>
-                  )}
-                  <div className="p-5">
-                    <h3 className="font-semibold text-sm group-hover:text-violet-400 transition-colors mb-1" style={{ color: "var(--text)" }}>{event.title}</h3>
-                    <p className="text-xs font-medium mb-1" style={{ color: "var(--accent, #a855f7)" }}>{event.date}</p>
-                    <p className="text-xs mb-2" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
-                    <p className="text-xs mb-3 leading-relaxed" style={{ color: "var(--text-2)" }}>{event.description}</p>
-                    <div className="flex items-center justify-between">
-                      {(event as { organiser?: string }).organiser && (
-                        <span className="text-xs" style={{ color: "var(--text-2)" }}>by {(event as { organiser?: string }).organiser}</span>
-                      )}
-                      {event.url && <span className="text-xs text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity ml-auto">Visit →</span>}
-                    </div>
-                  </div>
-                </Wrapper>
-              );
-            })}
+            {upcomingEvents.map((event) => <EventCard key={event.title + event.date} event={event} />)}
+            {upcomingEvents.length === 0 && (
+              <p className="col-span-3 text-sm" style={{ color: "var(--text-2)" }}>No upcoming events listed yet. Check back soon.</p>
+            )}
           </div>
         </section>
+
+        {/* Past Events */}
+        {pastEvents.length > 0 && (
+          <section className="mb-16">
+            <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Past Events</h2>
+            <p className="mb-8" style={{ color: "var(--text-2)" }}>Events that have already taken place</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {pastEvents.map((event) => <EventCard key={event.title + event.date} event={event} muted />)}
+            </div>
+          </section>
+        )}
 
         {/* Calendar */}
         <section className="mb-16">
