@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import {
   Users, BarChart3, Globe, Eye, LogOut, RefreshCw, Download,
   MapPin, Mail, Briefcase, Calendar, CheckCircle, XCircle, Clock,
-  LayoutDashboard, Search, ChevronRight, TrendingUp, UserCheck, UserX,
+  LayoutDashboard, Search, ChevronRight, TrendingUp, UserCheck, UserX, Bell,
 } from "lucide-react";
 
 type Member = {
@@ -15,6 +15,10 @@ type Member = {
   newsletter: boolean; created_at: string;
   status: "pending" | "approved" | "rejected";
   admin_note?: string; reviewed_at?: string;
+};
+type Subscriber = {
+  id: string; email: string; consent: boolean; consent_text: string;
+  source: string; subscribed_at: string; active: boolean;
 };
 type AnalyticsData = {
   totalViews: number; todayViews: number;
@@ -33,9 +37,11 @@ const STATUS_CONFIG = {
 
 export default function AdminPage() {
   const router = useRouter();
-  const [tab, setTab] = useState<"overview" | "members" | "analytics">("overview");
+  const [tab, setTab] = useState<"overview" | "members" | "analytics" | "newsletter">("overview");
   const [members, setMembers] = useState<Member[]>([]);
   const [memberCount, setMemberCount] = useState(0);
+  const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
+  const [subscriberSearch, setSubscriberSearch] = useState("");
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
   const [days, setDays] = useState(30);
   const [loading, setLoading] = useState(true);
@@ -57,12 +63,14 @@ export default function AdminPage() {
   const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const [membersRes, analyticsRes] = await Promise.all([
+      const [membersRes, analyticsRes, nlRes] = await Promise.all([
         fetch("/api/members"),
         fetch(`/api/analytics?days=${days}`),
+        fetch("/api/newsletter"),
       ]);
       if (membersRes.ok) { const d = await membersRes.json(); setMembers(d.data || []); setMemberCount(d.count || 0); }
       if (analyticsRes.ok) setAnalytics(await analyticsRes.json());
+      if (nlRes.ok) { const d = await nlRes.json(); setSubscribers(d.data || []); }
     } finally { setLoading(false); }
   }, [days]);
 
@@ -119,10 +127,26 @@ export default function AdminPage() {
   const recentPending = members.filter(m => m.status === "pending").slice(0, 5);
 
   const navItems = [
-    { id: "overview" as const,   icon: LayoutDashboard, label: "Overview",  badge: null },
-    { id: "members" as const,    icon: Users,           label: "Members",   badge: pendingCount > 0 ? pendingCount : null },
-    { id: "analytics" as const,  icon: BarChart3,       label: "Analytics", badge: null },
+    { id: "overview" as const,    icon: LayoutDashboard, label: "Overview",    badge: null },
+    { id: "members" as const,     icon: Users,           label: "Members",     badge: pendingCount > 0 ? pendingCount : null },
+    { id: "analytics" as const,   icon: BarChart3,       label: "Analytics",   badge: null },
+    { id: "newsletter" as const,  icon: Bell,            label: "Newsletter",  badge: subscribers.length > 0 ? subscribers.length : null },
   ];
+
+  const downloadSubscribersCSV = () => {
+    const header = "Email,Subscribed At,Source,Active,Consent\n";
+    const rows = subscribers.map(s =>
+      `"${s.email}","${new Date(s.subscribed_at).toLocaleDateString()}","${s.source}","${s.active}","${s.consent}"`
+    ).join("\n");
+    const blob = new Blob([header + rows], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a"); a.href = url;
+    a.download = `indiaspora-newsletter-${new Date().toISOString().slice(0, 10)}.csv`; a.click();
+  };
+
+  const filteredSubscribers = subscribers.filter(s =>
+    !subscriberSearch || s.email.toLowerCase().includes(subscriberSearch.toLowerCase())
+  );
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "var(--base)", fontFamily: "system-ui,sans-serif" }}>
@@ -517,6 +541,92 @@ export default function AdminPage() {
                     </tbody>
                   </table>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* ── NEWSLETTER ── */}
+          {!loading && tab === "newsletter" && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              {/* Stats row */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: 14 }}>
+                {[
+                  { label: "Total Subscribers", value: subscribers.length,                                  color: "#B08D57" },
+                  { label: "Active",             value: subscribers.filter(s => s.active).length,            color: "#059669" },
+                  { label: "Via Banner",         value: subscribers.filter(s => s.source === "banner").length, color: "#4F46E5" },
+                ].map(({ label, value, color }) => (
+                  <div key={label} style={{ padding: "18px 20px", borderRadius: 14, background: "var(--surface)", border: "1px solid var(--border)", borderLeft: `3px solid ${color}` }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10 }}>{label}</div>
+                    <div style={{ fontSize: 26, fontWeight: 800, color: "var(--text)", fontFamily: "'Syne',system-ui,sans-serif" }}>{value}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Controls */}
+              <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                <div style={{ flex: 1, position: "relative" }}>
+                  <Search size={14} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--text-3)" }} />
+                  <input type="search" placeholder="Search by email…" value={subscriberSearch}
+                    onChange={e => setSubscriberSearch(e.target.value)}
+                    style={{ width: "100%", padding: "10px 14px 10px 36px", borderRadius: 10, border: "1px solid var(--border-2)", background: "var(--surface)", color: "var(--text)", fontSize: 13, outline: "none", boxSizing: "border-box" }}
+                  />
+                </div>
+                <span style={{ fontSize: 12, color: "var(--text-3)", whiteSpace: "nowrap" }}>{filteredSubscribers.length} result{filteredSubscribers.length !== 1 ? "s" : ""}</span>
+                <button onClick={downloadSubscribersCSV} style={{ display: "flex", alignItems: "center", gap: 6, padding: "10px 14px", borderRadius: 10, border: "1px solid var(--border-2)", background: "var(--surface)", color: "var(--text-2)", cursor: "pointer", fontSize: 12, fontWeight: 600, whiteSpace: "nowrap" }}>
+                  <Download size={13} /> Export CSV
+                </button>
+              </div>
+
+              {/* Table */}
+              <div style={{ background: "var(--surface)", borderRadius: 14, border: "1px solid var(--border)", overflow: "hidden" }}>
+                <div style={{ overflowX: "auto" }}>
+                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+                    <thead>
+                      <tr style={{ background: "var(--surface-2)", borderBottom: "1px solid var(--border)" }}>
+                        {["Email", "Subscribed", "Source", "Consent", "Status"].map(h => (
+                          <th key={h} style={{ padding: "11px 16px", textAlign: "left", fontWeight: 700, color: "var(--text-3)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredSubscribers.map((s, i) => (
+                        <tr key={s.id} className="admin-tr" style={{ borderBottom: i < filteredSubscribers.length - 1 ? "1px solid var(--border)" : "none", transition: "background 0.1s" }}>
+                          <td style={{ padding: "11px 16px" }}>
+                            <a href={`mailto:${s.email}`} style={{ color: "var(--text-2)", textDecoration: "none", display: "flex", alignItems: "center", gap: 6, fontSize: 13 }}>
+                              <Mail size={12} style={{ color: "#B08D57", flexShrink: 0 }} />{s.email}
+                            </a>
+                          </td>
+                          <td style={{ padding: "11px 16px", color: "var(--text-3)", fontSize: 12, whiteSpace: "nowrap" }}>
+                            <span style={{ display: "flex", alignItems: "center", gap: 4 }}><Calendar size={11} />{new Date(s.subscribed_at).toLocaleDateString()}</span>
+                          </td>
+                          <td style={{ padding: "11px 16px" }}>
+                            <span style={{ padding: "3px 9px", borderRadius: 999, fontSize: 10, fontWeight: 700, background: "rgba(176,141,87,0.12)", color: "#B08D57" }}>{s.source}</span>
+                          </td>
+                          <td style={{ padding: "11px 16px" }}>
+                            <span style={{ padding: "3px 9px", borderRadius: 999, fontSize: 10, fontWeight: 700, background: s.consent ? "rgba(5,150,105,0.1)" : "rgba(220,38,38,0.1)", color: s.consent ? "#059669" : "#DC2626" }}>
+                              {s.consent ? "✓ Given" : "No"}
+                            </span>
+                          </td>
+                          <td style={{ padding: "11px 16px" }}>
+                            <span style={{ padding: "3px 9px", borderRadius: 999, fontSize: 10, fontWeight: 700, background: s.active ? "rgba(5,150,105,0.1)" : "rgba(100,100,100,0.1)", color: s.active ? "#059669" : "var(--text-3)" }}>
+                              {s.active ? "Active" : "Unsubscribed"}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                      {filteredSubscribers.length === 0 && (
+                        <tr><td colSpan={5} style={{ padding: "48px 20px", textAlign: "center", color: "var(--text-3)", fontSize: 13 }}>
+                          {subscriberSearch ? "No subscribers match that email." : "No subscribers yet — the banner will start collecting emails shortly."}
+                        </td></tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Consent note */}
+              <div style={{ padding: "14px 18px", borderRadius: 12, background: "rgba(176,141,87,0.06)", border: "1px solid rgba(176,141,87,0.15)", fontSize: 12, color: "var(--text-3)", lineHeight: 1.6 }}>
+                <strong style={{ color: "var(--text-2)" }}>Consent record:</strong> Every subscriber ticked the consent box with the text — "I agree to receive the weekly Indiaspora newsletter. I can unsubscribe at any time." Stored in the <code>consent_text</code> column alongside the subscription timestamp.
               </div>
             </div>
           )}
