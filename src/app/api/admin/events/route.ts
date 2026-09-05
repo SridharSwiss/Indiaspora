@@ -112,6 +112,8 @@ function extractOrganiser(text: string): string {
     ["YUVA", "YUVA EPFL"],
     ["Embassy of India", "Embassy of India, Berne"],
     ["Consulate", "Indian Consulate"],
+    ["STNRI", "Swiss Telugu NRI Forum (STNRI)"],
+    ["SwissTeluguNRI", "Swiss Telugu NRI Forum (STNRI)"],
   ];
   const lower = text.toLowerCase();
   for (const [key, label] of orgs) {

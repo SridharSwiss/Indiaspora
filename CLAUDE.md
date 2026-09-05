@@ -7,7 +7,7 @@ When the user says **"execute daily routine"**, run these steps IN ORDER:
 ### Step 1 — Research new events (run first)
 Search the web for upcoming Indian community events in Switzerland from all known entities:
 IAGZ, TASC, TeluguSwiss, SwissPuja, IAG Geneva, SICC, Embassy of India Berne, ISKCON Zurich,
-InBa Basel, ISSC, Keliswiss, SMA Basel, YUVA EPFL, and a general Swiss-Indian events search.
+InBa Basel, ISSC, Keliswiss, SMA Basel, YUVA EPFL, STNRI (Swiss Telugu NRI Forum), and a general Swiss-Indian events search.
 
 **Local script (preferred — uses Claude API with web search):**
 ```powershell
@@ -57,3 +57,4 @@ array, commit, and push to `main`.
 | Keliswiss | keliswiss.org |
 | SMA Basel | smabasel.ch |
 | YUVA EPFL | — |
+| STNRI (Swiss Telugu NRI Forum) | swisstelugunri.com |

@@ -94,26 +94,49 @@ function EventCard({ event, muted }: { event: EventItem; muted?: boolean }) {
   const Wrapper = event.url ? "a" : "div";
   const wrapperProps = event.url ? { href: event.url, target: "_blank", rel: "noopener noreferrer" } : {};
   return (
-    <Wrapper {...wrapperProps} className={`glass rounded-2xl overflow-hidden card-hover block group${muted ? " opacity-60" : ""}`} style={{ textDecoration: "none" }}>
+    <Wrapper {...wrapperProps} className={`glass rounded-2xl overflow-hidden card-hover block group${muted ? " opacity-55" : ""}`} style={{ textDecoration: "none" }}>
       {event.image && (
         <div className="relative h-44 overflow-hidden">
           <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           <div className="absolute top-3 left-3">
             <span className="text-xs px-2 py-1 rounded-full font-medium text-white" style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>{event.category}</span>
           </div>
-          <div className="absolute bottom-3 right-3">
-            <span className={`w-2.5 h-2.5 rounded-full ${event.color} inline-block`} />
-          </div>
         </div>
       )}
-      <div className="p-5">
-        <h3 className="font-semibold text-sm group-hover:text-violet-400 transition-colors mb-1" style={{ color: "var(--text)" }}>{event.title}</h3>
-        <p className="text-xs font-medium mb-1" style={{ color: "var(--accent, #a855f7)" }}>{event.date}</p>
-        <p className="text-xs mb-2" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
-        <p className="text-xs mb-3 leading-relaxed" style={{ color: "var(--text-2)" }}>{event.description}</p>
-        <div className="flex items-center justify-between">
-          {event.organiser && <span className="text-xs" style={{ color: "var(--text-2)" }}>by {event.organiser}</span>}
-          {event.url && <span className="text-xs text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity ml-auto">Visit →</span>}
+      <div className="p-5 flex flex-col gap-3">
+        {/* Title — always prominent */}
+        <h3 className="font-bold text-base leading-snug group-hover:text-violet-400 transition-colors" style={{ color: "var(--text)" }}>
+          {event.title}
+        </h3>
+
+        {/* Date — visually dominant */}
+        {event.date && (
+          <div className="flex items-center gap-2">
+            <span className={`w-2 h-full min-h-[2rem] rounded-full ${event.color || "bg-violet-500"} shrink-0`} style={{ width: "3px" }} />
+            <p className="text-sm font-semibold" style={{ color: "var(--accent, #a855f7)" }}>📅 {event.date}</p>
+          </div>
+        )}
+
+        {/* Location */}
+        {event.location && (
+          <p className="text-xs" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
+        )}
+
+        {/* Description */}
+        {event.description && (
+          <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{event.description}</p>
+        )}
+
+        {/* Footer: organiser + URL always visible */}
+        <div className="flex items-center justify-between pt-1 border-t" style={{ borderColor: "var(--border, rgba(255,255,255,0.08))" }}>
+          {event.organiser
+            ? <span className="text-xs font-medium" style={{ color: "var(--text-2)" }}>by {event.organiser}</span>
+            : <span />}
+          {event.url && (
+            <span className="text-xs font-semibold text-violet-400 group-hover:text-violet-300 transition-colors flex items-center gap-1">
+              Visit event ↗
+            </span>
+          )}
         </div>
       </div>
     </Wrapper>
@@ -213,6 +236,7 @@ export default async function EventsPage() {
               { title: "SICC Business Events", body: "Swiss Indian Chamber of Commerce (sicc.ch) publishes a business events calendar including the annual Swiss India Business Summit and networking dinners." },
               { title: "Indian Embassy Berne Events", body: "The Embassy of India in Berne (indembassybern.gov.in) hosts receptions for Independence Day, Republic Day, and Gandhi Jayanti — open to all Indian nationals." },
               { title: "YUVA EPFL / Keliswiss / SMA Basel", body: "YUVA (EPFL): yuvaali@epfl.ch for Diwali event. Keliswiss (keliswiss.org): Kalamela arts festival. SMA Basel (smabasel.ch): Onam / Ponnonam celebration." },
+              { title: "Swiss Telugu NRI Forum (STNRI)", body: "STNRI (swisstelugunri.com) is Switzerland's Telugu NRI community platform — connecting Telugu professionals, families and students across Swiss cities with cultural events, networking, and community support." },
             ].map((item) => (
               <div key={item.title} className="glass rounded-2xl p-5">
                 <h3 className="text-sm font-semibold text-violet-400 mb-2">{item.title}</h3>
