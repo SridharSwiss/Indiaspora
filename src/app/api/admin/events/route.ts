@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import Anthropic from "@anthropic-ai/sdk";
 
 const CATEGORY_COLORS: Record<string, string> = {
   Cultural:   "bg-yellow-500",
@@ -14,6 +13,129 @@ const CATEGORY_COLORS: Record<string, string> = {
   Education:  "bg-teal-500",
   Other:      "bg-gray-500",
 };
+
+// Keywords → category
+const CATEGORY_KEYWORDS: [string, string[]][] = [
+  ["Spiritual",  ["puja", "aarti", "temple", "iskcon", "mandir", "prayer", "bhajan", "kirtan", "yoga", "meditation", "navratri garba", "ram navami", "hanuman", "janmashtami", "guru purnima", "diwali puja", "ganesh", "durga"]],
+  ["Festival",   ["diwali", "holi", "navratri", "garba", "dandiya", "pongal", "onam", "baisakhi", "eid", "christmas", "festival", "utsav", "utsav", "celebration", "mela"]],
+  ["Networking", ["networking", "mixer", "chamber", "summit", "forum", "sicc", "iagz", "business forum", "meet"]],
+  ["Business",   ["business", "startup", "investment", "trade", "entrepreneur", "conference", "seminar", "panel", "workshop"]],
+  ["Food",       ["food", "restaurant", "cooking", "chef", "cuisine", "thali", "biryani", "spice", "bazaar food", "tasting"]],
+  ["Arts",       ["music", "dance", "bollywood", "classical", "carnatic", "bharatnatyam", "art", "film", "cinema", "theatre", "cultural evening", "concert", "performance"]],
+  ["Sports",     ["cricket", "badminton", "kabaddi", "sport", "tournament", "match", "fitness"]],
+  ["Cultural",   ["cultural", "community", "indian", "association", "independence day", "republic day", "celebration", "gathering"]],
+  ["Education",  ["education", "study", "school", "university", "student", "scholarship", "epfl", "eth", "seminar", "lecture"]],
+];
+
+function detectCategory(text: string): string {
+  const lower = text.toLowerCase();
+  for (const [category, keywords] of CATEGORY_KEYWORDS) {
+    if (keywords.some(k => lower.includes(k))) return category;
+  }
+  return "Other";
+}
+
+// Swiss city names to look for
+const SWISS_CITIES = ["zurich", "zürich", "geneva", "genève", "genf", "basel", "bern", "berne", "lausanne", "lugano", "winterthur", "st. gallen", "st gallen", "zug", "lucerne", "luzern"];
+
+function extractLocation(text: string): string {
+  const lower = text.toLowerCase();
+  for (const city of SWISS_CITIES) {
+    if (lower.includes(city)) {
+      // Try to find a venue on the same line
+      const lines = text.split(/\n/);
+      for (const line of lines) {
+        if (line.toLowerCase().includes(city)) {
+          // Return the line trimmed, capped at 80 chars
+          const trimmed = line.replace(/^[-•*]\s*/, "").trim();
+          if (trimmed.length < 80) return trimmed;
+        }
+      }
+      // Fallback: just return the capitalised city name
+      const display = city.charAt(0).toUpperCase() + city.slice(1);
+      return `${display}, Switzerland`;
+    }
+  }
+  return "Switzerland";
+}
+
+// Date patterns: look for common formats
+const DATE_PATTERNS = [
+  // "15 October 2026", "15 Oct 2026"
+  /\b(\d{1,2})\s+(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+(\d{4})\b/i,
+  // "October 15, 2026"
+  /\b(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+(\d{1,2}),?\s+(\d{4})\b/i,
+  // "15/10/2026" or "15.10.2026"
+  /\b(\d{1,2})[.\/](\d{1,2})[.\/](20\d{2})\b/,
+  // "2026-10-15"
+  /\b(20\d{2})[-](\d{2})[-](\d{2})\b/,
+  // Just month + year: "October 2026"
+  /\b(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+(20\d{2})\b/i,
+];
+
+function extractDate(text: string): string {
+  for (const pattern of DATE_PATTERNS) {
+    const m = text.match(pattern);
+    if (m) return m[0];
+  }
+  return "";
+}
+
+function extractUrl(text: string): string {
+  const m = text.match(/https?:\/\/[^\s,)"'\]]+/i);
+  return m ? m[0] : "";
+}
+
+function extractTitle(text: string): string {
+  // Use the first non-empty line that looks like a title (not a URL, not a date line)
+  const lines = text.split(/\n/).map(l => l.trim()).filter(Boolean);
+  for (const line of lines) {
+    if (line.startsWith("http")) continue;
+    if (line.length > 4 && line.length < 120) return line.replace(/^[-•*#]+\s*/, "");
+  }
+  return lines[0]?.slice(0, 80) ?? "Community Event";
+}
+
+function extractOrganiser(text: string): string {
+  // Known orgs
+  const orgs = [
+    ["IAGZ", "Indian Association Greater Zurich (IAGZ)"],
+    ["TASC", "Tamil Association of Switzerland (TASC)"],
+    ["SICC", "Swiss Indian Chamber of Commerce (SICC)"],
+    ["SwissPuja", "SwissPuja"],
+    ["TeluguSwiss", "TeluguSwiss Association"],
+    ["Keliswiss", "Keliswiss"],
+    ["ISKCON", "ISKCON Zurich"],
+    ["ISSC", "ISSC"],
+    ["InBa", "InBa India Basel"],
+    ["SMA Basel", "SMA Basel"],
+    ["YUVA", "YUVA EPFL"],
+    ["Embassy of India", "Embassy of India, Berne"],
+    ["Consulate", "Indian Consulate"],
+  ];
+  const lower = text.toLowerCase();
+  for (const [key, label] of orgs) {
+    if (lower.includes(key.toLowerCase())) return label;
+  }
+  // Try to find "by <org>" or "organised by <org>"
+  const m = text.match(/(?:by|organis(?:ed|er)|organiz(?:ed|er)|host(?:ed)? by)[:\s]+([^\n,.(]{3,60})/i);
+  if (m) return m[1].trim();
+  return "";
+}
+
+function buildDescription(text: string, title: string): string {
+  // Take lines that aren't title/date/URL/location, compose into a description
+  const lines = text.split(/\n/).map(l => l.trim()).filter(Boolean);
+  const skip = new Set([title]);
+  const usable = lines.filter(l => {
+    if (skip.has(l)) return false;
+    if (l.startsWith("http")) return false;
+    if (/^\d{1,2}[\/.]\d{1,2}[\/.]\d{2,4}$/.test(l)) return false;
+    return l.length > 15;
+  });
+  const desc = usable.slice(0, 3).join(" ").replace(/\s+/g, " ").trim();
+  return desc.length > 20 ? desc : `Join us for ${title} — a wonderful event for the Swiss-Indian community.`;
+}
 
 // ── GET — list all events for admin ──────────────────────────────────────────
 export async function GET(req: NextRequest) {
@@ -33,7 +155,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({ data: data ?? [] });
 }
 
-// ── POST — create event with AI enrichment ──────────────────────────────────
+// ── POST — create event with smart text parsing ───────────────────────────────
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -43,75 +165,31 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Event description is required" }, { status: 400 });
     }
 
-    // Build AI prompt content
-    const userContent: Anthropic.MessageParam["content"] = [];
-
-    if (imageUrl) {
-      userContent.push({
-        type: "image",
-        source: { type: "url", url: imageUrl },
-      });
-    }
-
-    userContent.push({
-      type: "text",
-      text: `You are helping curate events for Indiaspora.ch — a community platform for Indians living in Switzerland.
-
-Analyse this event information and extract/enrich it into a structured JSON object. If the image is provided, use it to better understand the event. Fill in reasonable defaults for Switzerland where information is missing (e.g. if no city mentioned but event seems local, use "Switzerland").
-
-INPUT:
-${rawText}
-
-Return ONLY a valid JSON object with these exact keys (no markdown, no explanation):
-{
-  "title": "Full event title",
-  "date": "Human-readable date like '15 Oct 2026' or '15–17 Oct 2026' for multi-day",
-  "location": "Venue, City, Switzerland",
-  "category": "One of: Cultural, Festival, Networking, Business, Food, Arts, Sports, Spiritual, Education, Other",
-  "description": "2–3 sentences describing the event for community members. Engaging and informative.",
-  "organiser": "Organisation or person name",
-  "url": "Official event URL if mentioned, else empty string",
-  "ai_summary": "One sentence summary highlighting why this event is valuable for the Swiss-Indian community"
-}`,
-    });
-
-    const client = new Anthropic();
-    const aiResponse = await client.messages.create({
-      model: "claude-opus-5",
-      max_tokens: 1024,
-      messages: [{ role: "user", content: userContent }],
-    });
-
-    const textBlock = aiResponse.content.find((b): b is Anthropic.TextBlock => b.type === "text");
-    if (!textBlock) throw new Error("No text response from AI");
-
-    let parsed: Record<string, string>;
-    try {
-      // Strip possible markdown code fences
-      const clean = textBlock.text.replace(/^```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "").trim();
-      parsed = JSON.parse(clean);
-    } catch {
-      return NextResponse.json({ error: "AI returned invalid JSON", raw: textBlock.text }, { status: 422 });
-    }
-
-    const category = parsed.category ?? "Other";
-    const color = CATEGORY_COLORS[category] ?? "bg-gray-500";
+    const title       = extractTitle(rawText);
+    const date        = extractDate(rawText);
+    const location    = extractLocation(rawText);
+    const category    = detectCategory(rawText);
+    const organiser   = extractOrganiser(rawText);
+    const url         = extractUrl(rawText);
+    const description = buildDescription(rawText, title);
+    const color       = CATEGORY_COLORS[category] ?? "bg-gray-500";
+    const ai_summary  = `${category} event${organiser ? ` by ${organiser}` : ""}${date ? ` on ${date}` : ""}${location !== "Switzerland" ? ` in ${location}` : " in Switzerland"}.`;
 
     const supabase = createAdminClient();
     const { data, error } = await supabase
       .from("events")
       .insert({
-        title:        parsed.title ?? "Untitled Event",
-        date:         parsed.date ?? "",
-        location:     parsed.location ?? "Switzerland",
+        title,
+        date,
+        location,
         category,
         color,
-        description:  parsed.description ?? "",
-        organiser:    parsed.organiser ?? "",
-        url:          parsed.url ?? "",
+        description,
+        organiser,
+        url,
         image_url:    imageUrl ?? "",
         event_status: "pending",
-        ai_summary:   parsed.ai_summary ?? "",
+        ai_summary,
         raw_input:    rawText,
         submitted_by: submittedBy ?? null,
       })
@@ -126,7 +204,7 @@ Return ONLY a valid JSON object with these exact keys (no markdown, no explanati
   }
 }
 
-// ── PATCH — approve or reject ────────────────────────────────────────────────
+// ── PATCH — approve or reject ─────────────────────────────────────────────────
 export async function PATCH(req: NextRequest) {
   try {
     const { id, action } = await req.json();
@@ -140,7 +218,6 @@ export async function PATCH(req: NextRequest) {
       .update({
         event_status: action === "approve" ? "approved" : "rejected",
         approved_at:  action === "approve" ? new Date().toISOString() : null,
-        // Keep legacy `active` column in sync if it exists
         active:       action === "approve",
       })
       .eq("id", id);

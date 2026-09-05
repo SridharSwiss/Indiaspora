@@ -815,8 +815,8 @@ export default function AdminPage() {
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
                   <div style={{ padding: 8, borderRadius: 10, background: "rgba(176,141,87,0.12)" }}><Sparkles size={16} style={{ color: "#B08D57", display: "block" }} /></div>
                   <div>
-                    <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Create Event with AI</div>
-                    <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Paste or type event details — the AI will structure, enrich and categorise it for you.</div>
+                    <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Create Event</div>
+                    <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Paste event details — title, date, location, organiser, description. We&apos;ll auto-extract and structure it for you.</div>
                   </div>
                 </div>
 
