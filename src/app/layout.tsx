@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import BottomNav from "@/components/layout/BottomNav";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import CookieBanner from "@/components/CookieBanner";
-import NewsletterBanner from "@/components/ui/NewsletterBanner";
+import BannerManager from "@/components/ui/BannerManager";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -76,7 +76,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <BottomNav />
-        <NewsletterBanner />
+        <BannerManager />
       </body>
     </html>
   );
