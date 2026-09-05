@@ -5,8 +5,13 @@ import { X, Mail, Loader2, CheckCircle2, LogIn, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
-const STORAGE_SIGNIN  = "signin_banner_dismissed";
-const STORAGE_NL      = "nl_banner_dismissed";
+const STORAGE_SIGNIN   = "signin_banner_dismissed";
+const STORAGE_NL       = "nl_banner_dismissed";
+const STORAGE_CONSENT  = "indiaspora_cookie_consent"; // written by CookieBanner
+
+function hasConsent(): boolean {
+  try { return !!localStorage.getItem(STORAGE_CONSENT); } catch { return false; }
+}
 
 type ActiveBanner = "signin" | "newsletter" | null;
 
@@ -30,32 +35,44 @@ export default function BannerManager() {
   }, [supabase]);
 
   useEffect(() => {
-    if (isLoggedIn === null) return; // still loading
+    if (isLoggedIn === null) return; // still loading auth
 
-    const nlDismissed   = (() => { try { return !!localStorage.getItem(STORAGE_NL); } catch { return false; } })();
-    const sigDismissed  = (() => { try { return !!localStorage.getItem(STORAGE_SIGNIN); } catch { return false; } })();
+    // Wait until privacy/cookie consent has been given before showing any banner.
+    // Poll every 500ms until consent is stored by CookieBanner, then start the sequence.
+    let cancelled = false;
 
-    if (isLoggedIn) {
-      // Already signed in — skip sign-in banner, show newsletter after delay if not dismissed
-      if (!nlDismissed) {
-        const t = setTimeout(() => setActive("newsletter"), 8000);
-        return () => clearTimeout(t);
+    const start = () => {
+      if (cancelled) return;
+
+      const nlDismissed  = (() => { try { return !!localStorage.getItem(STORAGE_NL); } catch { return false; } })();
+      const sigDismissed = (() => { try { return !!localStorage.getItem(STORAGE_SIGNIN); } catch { return false; } })();
+
+      if (isLoggedIn) {
+        if (!nlDismissed) setTimeout(() => { if (!cancelled) setActive("newsletter"); }, 8000);
+        return;
       }
-      return;
+
+      if (!sigDismissed) {
+        setTimeout(() => { if (!cancelled) setActive("signin"); }, 3000);
+        return;
+      }
+
+      if (!nlDismissed) {
+        setTimeout(() => { if (!cancelled) setActive("newsletter"); }, 8000);
+      }
+    };
+
+    if (hasConsent()) {
+      start();
+    } else {
+      // Poll until the user accepts the cookie banner
+      const interval = setInterval(() => {
+        if (hasConsent()) { clearInterval(interval); start(); }
+      }, 500);
+      return () => { cancelled = true; clearInterval(interval); };
     }
 
-    // Not logged in
-    if (!sigDismissed) {
-      // Show sign-in banner first after 3s
-      const t = setTimeout(() => setActive("signin"), 3000);
-      return () => clearTimeout(t);
-    }
-
-    // Sign-in already dismissed — show newsletter if not dismissed
-    if (!nlDismissed) {
-      const t = setTimeout(() => setActive("newsletter"), 8000);
-      return () => clearTimeout(t);
-    }
+    return () => { cancelled = true; };
   }, [isLoggedIn]);
 
   const dismissSignin = () => {
