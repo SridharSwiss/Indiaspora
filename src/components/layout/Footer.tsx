@@ -210,9 +210,20 @@ export default function Footer() {
           <p className="text-xs" style={{ color: "rgba(200,185,165,0.4)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
             © 2026 Indiaspora Community Hub. All rights reserved.
           </p>
-          <p className="text-xs" style={{ color: "rgba(200,185,165,0.4)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
-            Built for the Swiss-Indian community 🇮🇳🇨🇭
-          </p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/unsubscribe"
+              className="text-xs transition-colors"
+              style={{ color: "rgba(200,185,165,0.22)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "rgba(200,185,165,0.5)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(200,185,165,0.22)")}
+            >
+              Unsubscribe
+            </Link>
+            <p className="text-xs" style={{ color: "rgba(200,185,165,0.4)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
+              Built for the Swiss-Indian community 🇮🇳🇨🇭
+            </p>
+          </div>
         </div>
       </div>
     </footer>
