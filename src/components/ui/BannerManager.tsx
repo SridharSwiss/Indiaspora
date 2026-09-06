@@ -6,7 +6,7 @@ import { X, Mail, Loader2, CheckCircle2, LogIn, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
-const AUTH_PATHS = ["/login", "/join", "/signup", "/register", "/reset-password"];
+const SUPPRESSED_PATHS = ["/login", "/join", "/signup", "/register", "/reset-password", "/admin"];
 
 const STORAGE_SIGNIN   = "signin_banner_dismissed";
 const STORAGE_NL       = "nl_banner_dismissed";
@@ -54,7 +54,7 @@ export default function BannerManager() {
 
     const start = async () => {
       if (cancelled) return;
-      if (AUTH_PATHS.some(p => pathname.startsWith(p))) return;
+      if (SUPPRESSED_PATHS.some(p => pathname.startsWith(p))) return;
 
       const sigDismissed = (() => { try { return !!localStorage.getItem(STORAGE_SIGNIN); } catch { return false; } })();
 
@@ -131,7 +131,7 @@ export default function BannerManager() {
   };
 
   if (!active) return null;
-  if (AUTH_PATHS.some(p => pathname.startsWith(p))) return null;
+  if (SUPPRESSED_PATHS.some(p => pathname.startsWith(p))) return null;
 
   const bannerStyle: React.CSSProperties = {
     position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)",
