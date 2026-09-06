@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { X, Mail, Loader2, CheckCircle2 } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
 
 const STORAGE_KEY = "nl_banner_dismissed";
 
@@ -12,14 +13,47 @@ export default function NewsletterBanner() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
+  const supabase = useMemo(() => createClient(), []);
+
   useEffect(() => {
-    try {
-      if (localStorage.getItem(STORAGE_KEY)) return;
-    } catch { /* storage blocked */ }
-    // Show banner after 8 seconds on first visit
-    const t = setTimeout(() => setVisible(true), 8000);
-    return () => clearTimeout(t);
-  }, []);
+    let cancelled = false;
+
+    const maybeShow = async () => {
+      // Never show if already dismissed this browser session
+      try {
+        if (localStorage.getItem(STORAGE_KEY)) return;
+      } catch { /* storage blocked */ }
+
+      // Check if signed-in user already has an active subscription
+      const { data: { user } } = await supabase.auth.getUser();
+      if (cancelled) return;
+
+      if (user?.email) {
+        // Pre-fill email for convenience
+        setEmail(user.email);
+
+        // Check subscription status via the newsletter API list endpoint
+        // We do a lightweight HEAD-style check by fetching the subscriber list
+        // and checking for the user's email. Use the public status check approach:
+        const res = await fetch(`/api/newsletter/status?email=${encodeURIComponent(user.email)}`);
+        if (cancelled) return;
+        if (res.ok) {
+          const json = await res.json();
+          if (json.active) return; // already subscribed — suppress banner
+        }
+      }
+
+      // Show banner after 8 seconds
+      const t = setTimeout(() => { if (!cancelled) setVisible(true); }, 8000);
+      return () => clearTimeout(t);
+    };
+
+    const cleanup = maybeShow();
+    return () => {
+      cancelled = true;
+      cleanup?.then(fn => fn?.());
+    };
+  }, [supabase]);
 
   const dismiss = () => {
     setVisible(false);
