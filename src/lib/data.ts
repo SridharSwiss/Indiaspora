@@ -18,6 +18,7 @@ export const NAV_ITEMS = [
       { label: "Healthcare", href: "/living/healthcare" },
       { label: "Education & Schools", href: "/living/education" },
       { label: "Banking & Finance", href: "/living/banking" },
+      { label: "Swiss Pension System", href: "/living/pension" },
       { label: "Transport", href: "/living/transport" },
       { label: "Legal & Immigration", href: "/living/legal" },
       { label: "Language Learning", href: "/living/language" },
@@ -65,6 +66,8 @@ export const NAV_ITEMS = [
     ],
   },
   { label: "Events", href: "/events" },
+  { label: "Seek Advice", href: "/advice" },
+  { label: "Advertise", href: "/advertise" },
   // Resources moved to footer — keeps top nav ≤7 items (cognitive load principle)
 ];
 

@@ -60,7 +60,8 @@ const footerSections = [
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Use", href: "/terms" },
       { label: "Cookie Policy", href: "/privacy#cookies" },
-      { label: "Advertise With Us", href: "mailto:hello@indiaspora.ch?subject=Advertising%20Enquiry" },
+      { label: "Advertise With Us", href: "/advertise" },
+      { label: "Seek Advice", href: "/advice" },
     ],
   },
 ];
@@ -172,6 +173,32 @@ export default function Footer() {
               </ul>
             </nav>
           ))}
+        </div>
+
+        {/* Advertise CTA */}
+        <div className="mb-6 p-6 lg:p-8" style={{ border: "1px solid rgba(176,141,87,0.25)", background: "linear-gradient(135deg, rgba(176,141,87,0.08) 0%, rgba(176,141,87,0.03) 100%)", borderRadius: 2 }}>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <div className="text-xs font-bold uppercase mb-1" style={{ color: "#B08D57", letterSpacing: "0.12em", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>Reach 24,500+ Indians Across Switzerland</div>
+              <h3 className="text-lg font-semibold" style={{ color: "rgba(245,237,224,0.9)", fontFamily: "'Playfair Display', Georgia, serif", margin: 0 }}>Advertise With <em>Indiaspora</em></h3>
+              <p className="text-sm mt-1" style={{ color: "rgba(200,185,165,0.65)", margin: 0 }}>Banners, newsletter sponsorships, city guide features &amp; more.</p>
+            </div>
+            <Link
+              href="/advertise"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                padding: "10px 22px", background: "#B08D57", color: "#1A1410",
+                fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0,
+                transition: "background 0.15s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "#CEB07A")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "#B08D57")}
+            >
+              Get in Touch →
+            </Link>
+          </div>
         </div>
 
         {/* Newsletter */}
