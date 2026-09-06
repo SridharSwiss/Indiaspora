@@ -374,6 +374,44 @@ export default function Navbar() {
               {dark ? <Sun style={{ width: 16, height: 16 }} /> : <Moon style={{ width: 16, height: 16 }} />}
             </button>
 
+            {/* Seek Advice — subtle text link */}
+            <Link
+              href="/advice"
+              className="hidden xl:inline-flex items-center nav-icon-btn"
+              style={{
+                padding: "0 10px", height: 32,
+                fontSize: 10, fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                color: lightNav ? "rgba(245,237,224,0.6)" : "var(--text-3)",
+                background: "transparent", border: "none",
+                textDecoration: "none", whiteSpace: "nowrap",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,1)" : "var(--text)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.6)" : "var(--text-3)"; }}
+            >
+              Seek Advice
+            </Link>
+
+            {/* Advertise — gold accent CTA */}
+            <Link
+              href="/advertise"
+              className="hidden xl:inline-flex items-center"
+              style={{
+                padding: "0 14px", height: 32,
+                fontSize: 10, fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                color: "#1A1410",
+                background: "#CEB07A",
+                textDecoration: "none", whiteSpace: "nowrap",
+                transition: "background 0.15s",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#B89860"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#CEB07A"; }}
+            >
+              Advertise
+            </Link>
+
             {/* Auth */}
             {userEmail ? (
               <div ref={userMenuRef} style={{ position: "relative" }} className="hidden lg:block">
@@ -618,6 +656,24 @@ export default function Navbar() {
                   </div>
                 );
               })}
+            </div>
+
+            {/* Quick action links in mobile drawer */}
+            <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
+              <Link
+                href="/advice"
+                onClick={() => setIsOpen(false)}
+                style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 12px", borderRadius: 10, fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text)", background: "var(--surface-2)", border: "1px solid var(--border)", textDecoration: "none" }}
+              >
+                Seek Advice
+              </Link>
+              <Link
+                href="/advertise"
+                onClick={() => setIsOpen(false)}
+                style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 12px", borderRadius: 10, fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#1A1410", background: "#CEB07A", border: "none", textDecoration: "none" }}
+              >
+                Advertise
+              </Link>
             </div>
 
             {/* Bottom CTAs */}
