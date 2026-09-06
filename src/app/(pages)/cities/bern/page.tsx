@@ -415,7 +415,51 @@ export default function BernPage() {
           </div>
         </section>
 
-        {/* SECTION 5 — Emergency & Contacts */}
+        {/* SECTION 5 — Indian Food & Grocery */}
+        <section style={{ marginBottom: 56 }}>
+          <h2 style={{ color: "var(--text)", fontSize: 22, fontWeight: 700, marginBottom: 4 }}>Indian Restaurants &amp; Grocery</h2>
+          <p style={{ color: "var(--text-2)", fontSize: 13, marginBottom: 24 }}>Indian dining and grocery in Bern — links open in Google Maps.</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
+
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🍛 Restaurants</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  { name: "Namaste Bern", note: "Central Bern — classic North Indian menu", href: "https://maps.google.com/?q=Namaste+Restaurant+Bern" },
+                  { name: "Rajasthan Restaurant", note: "Vegetarian and meat dishes, city centre", href: "https://maps.google.com/?q=Rajasthan+Restaurant+Bern" },
+                  { name: "Taj Mahal Bern", note: "Tandoor specialties near Bahnhof", href: "https://maps.google.com/?q=Taj+Mahal+Restaurant+Bern" },
+                  { name: "Curry House Bern", note: "Affordable curries and thalis", href: "https://maps.google.com/?q=Curry+House+Bern+Switzerland" },
+                  { name: "More on Maps →", note: "Browse all Indian restaurants", href: "https://www.google.com/maps/search/Indian+restaurants+Bern+Switzerland" },
+                ].map(r => (
+                  <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none" }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--in)" }}>{r.name}</span>
+                    <span style={{ fontSize: 11, color: "var(--text-3)", marginTop: 1 }}>{r.note}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🛒 Indian &amp; Asian Groceries</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  { name: "Asia Shop Bern", note: "Indian spices, lentils, basmati rice", href: "https://maps.google.com/?q=Asia+Shop+Bern+Switzerland" },
+                  { name: "Exotic Food Bern", note: "South Asian and tropical groceries", href: "https://maps.google.com/?q=Exotic+Food+Bern+Switzerland" },
+                  { name: "Sri Lanka Supermarket", note: "Sri Lankan and Indian products", href: "https://maps.google.com/?q=Sri+Lanka+Supermarket+Bern" },
+                  { name: "More on Maps →", note: "Browse all Indian grocery stores", href: "https://www.google.com/maps/search/Indian+grocery+Bern+Switzerland" },
+                ].map(r => (
+                  <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none" }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--in)" }}>{r.name}</span>
+                    <span style={{ fontSize: 11, color: "var(--text-3)", marginTop: 1 }}>{r.note}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* SECTION 6 — Emergency & Contacts */}
         <section>
           <h2 style={{ color: "var(--text)", fontSize: 22, fontWeight: 700, marginBottom: 4 }}>Emergency &amp; Contacts</h2>
           <p style={{ color: "var(--text-2)", fontSize: 14, marginBottom: 24 }}>Save these numbers before you need them</p>

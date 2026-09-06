@@ -314,7 +314,52 @@ export default function GenevaPage() {
           </div>
         </section>
 
-        {/* SECTION 5 — Emergency & Contacts */}
+        {/* SECTION 5 — Indian Food & Grocery */}
+        <section style={{ marginBottom: 56 }}>
+          <h2 style={sectionHeading}>Indian Restaurants &amp; Grocery</h2>
+          <p style={{ fontSize: 13, color: "var(--text-3)", marginBottom: 24 }}>Indian dining and grocery in Geneva — links open in Google Maps.</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
+
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🍛 Restaurants</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  { name: "Indian Summer", note: "Rue de Rive area — popular lunch and dinner", href: "https://maps.google.com/?q=Indian+Summer+Restaurant+Geneva" },
+                  { name: "Gandhi Restaurant", note: "Traditional North Indian, city centre", href: "https://maps.google.com/?q=Gandhi+Restaurant+Geneva+Switzerland" },
+                  { name: "Namaste Geneva", note: "Pâquis quarter — friendly neighbourhood spot", href: "https://maps.google.com/?q=Namaste+Restaurant+Geneva+Switzerland" },
+                  { name: "Bollywood Geneva", note: "Bollywood-themed, generous portions", href: "https://maps.google.com/?q=Bollywood+Restaurant+Geneva+Switzerland" },
+                  { name: "Le Taj Mahal", note: "Classic Indian near Cornavin station", href: "https://maps.google.com/?q=Taj+Mahal+Restaurant+Geneva+Switzerland" },
+                  { name: "More on Maps →", note: "Browse all Indian restaurants", href: "https://www.google.com/maps/search/Indian+restaurants+Geneva+Switzerland" },
+                ].map(r => (
+                  <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none" }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--in)" }}>{r.name}</span>
+                    <span style={{ fontSize: 11, color: "var(--text-3)", marginTop: 1 }}>{r.note}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🛒 Indian &amp; Asian Groceries</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  { name: "Asia Shop Geneva", note: "Pâquis — Indian spices, rice, dal, frozen goods", href: "https://maps.google.com/?q=Asia+Shop+Geneva+Switzerland" },
+                  { name: "Exotic Bazaar Geneva", note: "South Asian and tropical products", href: "https://maps.google.com/?q=Exotic+Bazaar+Geneva+Switzerland" },
+                  { name: "Sri Lanka Food Shop", note: "Sri Lankan and Indian groceries, Pâquis", href: "https://maps.google.com/?q=Sri+Lanka+Food+Shop+Geneva+Switzerland" },
+                  { name: "More on Maps →", note: "Browse all Indian grocery stores", href: "https://www.google.com/maps/search/Indian+grocery+store+Geneva+Switzerland" },
+                ].map(r => (
+                  <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none" }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--in)" }}>{r.name}</span>
+                    <span style={{ fontSize: 11, color: "var(--text-3)", marginTop: 1 }}>{r.note}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* SECTION 6 — Emergency & Contacts */}
         <section>
           <h2 style={sectionHeading}>Emergency &amp; Contacts</h2>
 

@@ -662,7 +662,53 @@ export default function BaselPage() {
           </div>
         </section>
 
-        {/* ── SECTION 5: Emergency & Contacts ─────────────────────────── */}
+        {/* ── SECTION 5: Indian Food & Grocery ─────────────────────────── */}
+        <section style={{ marginBottom: 56 }}>
+          <h2 style={{ ...sectionHeading, fontSize: "1.35rem", marginBottom: 6 }}>
+            Indian Restaurants &amp; Grocery
+          </h2>
+          <p style={sectionSubtext}>Indian dining and grocery in Basel — links open in Google Maps.</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
+
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🍛 Restaurants</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  { name: "Little India Basel", note: "Established North Indian near the Marktplatz", href: "https://maps.google.com/?q=Little+India+Restaurant+Basel" },
+                  { name: "Bombay Dreams Basel", note: "Bollywood atmosphere, broad menu", href: "https://maps.google.com/?q=Bombay+Dreams+Restaurant+Basel" },
+                  { name: "Goa Restaurant Basel", note: "Goan and coastal Indian cuisine", href: "https://maps.google.com/?q=Goa+Restaurant+Basel+Switzerland" },
+                  { name: "Namaste Basel", note: "Friendly neighbourhood Indian, Gundeldingen", href: "https://maps.google.com/?q=Namaste+Restaurant+Basel+Switzerland" },
+                  { name: "More on Maps →", note: "Browse all Indian restaurants", href: "https://www.google.com/maps/search/Indian+restaurants+Basel+Switzerland" },
+                ].map(r => (
+                  <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none" }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--in)" }}>{r.name}</span>
+                    <span style={{ fontSize: 11, color: "var(--text-3)", marginTop: 1 }}>{r.note}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🛒 Indian &amp; Asian Groceries</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  { name: "Asia Market Basel", note: "Lange Gasse — Indian spices, lentils, rice", href: "https://maps.google.com/?q=Asia+Market+Basel+Switzerland" },
+                  { name: "Exotic Food Basel", note: "South Asian and tropical products, Gundeldingen", href: "https://maps.google.com/?q=Exotic+Food+Basel+Switzerland" },
+                  { name: "Indian Spice Shop Basel", note: "Spices, dals, frozen Indian snacks", href: "https://maps.google.com/?q=Indian+Spice+Shop+Basel+Switzerland" },
+                  { name: "More on Maps →", note: "Browse all Indian grocery stores", href: "https://www.google.com/maps/search/Indian+grocery+store+Basel+Switzerland" },
+                ].map(r => (
+                  <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none" }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--in)" }}>{r.name}</span>
+                    <span style={{ fontSize: 11, color: "var(--text-3)", marginTop: 1 }}>{r.note}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ── SECTION 6: Emergency & Contacts ─────────────────────────── */}
         <section>
           <h2 style={{ ...sectionHeading, fontSize: "1.35rem", marginBottom: 6 }}>
             Emergency &amp; Key Contacts

@@ -24,7 +24,7 @@ export default function ZurichPage() {
     <div>
       <PageHeader
         title="Indians in Zurich"
-        subtitle="Switzerland's largest city and financial hub — home to the IAGZ, ISKCON Zurich, a vibrant Indian diaspora, and everything from Bahnhofstrasse to the ETH hilltop."
+        subtitle="Switzerland's largest city and financial hub — where Bahnhofstrasse meets the ETH hilltop, Lake Zurich shimmers at the city's heart, and a thriving Indian community calls Kreis 4, Oerlikon and Seefeld home."
         badge="City Guide"
         gradient="from-amber-500 to-orange-500"
         breadcrumbs={[
@@ -244,7 +244,57 @@ export default function ZurichPage() {
           </div>
         </section>
 
-        {/* SECTION 5 — Emergency & Contacts */}
+        {/* SECTION 5 — Indian Food & Grocery */}
+        <section style={{ marginBottom: 56 }}>
+          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.4rem", fontWeight: 700, color: "var(--text)", marginBottom: 6 }}>
+            Indian Restaurants &amp; Grocery
+          </h2>
+          <p style={{ fontSize: 13, color: "var(--text-3)", marginBottom: 24 }}>Well-established Indian restaurants and grocery stores in Zurich — all links open in Google Maps.</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
+
+            {/* Restaurants */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🍛 Restaurants</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  { name: "India Garden", note: "Limmatquai — long-standing North Indian classic", href: "https://maps.google.com/?q=India+Garden+Restaurant+Zurich" },
+                  { name: "Shaan", note: "Tandoori specialties, Kreis 4", href: "https://maps.google.com/?q=Shaan+Indian+Restaurant+Zurich" },
+                  { name: "Meera Indian Restaurant", note: "Seefeld quarter, South Indian dishes", href: "https://maps.google.com/?q=Meera+Indian+Restaurant+Zurich" },
+                  { name: "Rajasthan Flavors", note: "Vegetarian-friendly North Indian", href: "https://maps.google.com/?q=Rajasthan+Flavors+Zurich" },
+                  { name: "Goa Grill", note: "Goan and coastal cuisine", href: "https://maps.google.com/?q=Goa+Grill+Restaurant+Zurich" },
+                  { name: "More on Maps →", note: "Browse all Indian restaurants", href: "https://www.google.com/maps/search/Indian+restaurants+Zurich+Switzerland" },
+                ].map(r => (
+                  <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none" }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--in)" }}>{r.name}</span>
+                    <span style={{ fontSize: 11, color: "var(--text-3)", marginTop: 1 }}>{r.note}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Grocery */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🛒 Indian & Asian Groceries</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  { name: "Asia House Zurich", note: "Weststrasse 178 — largest Indian/Asian grocery", href: "https://maps.google.com/?q=Asia+House+Weststrasse+178+Zurich" },
+                  { name: "Bollywood Supermarket", note: "Langstrasse area — spices, dal, frozen goods", href: "https://maps.google.com/?q=Bollywood+Supermarket+Zurich" },
+                  { name: "Desi Kirana", note: "Indian spices, lentils, pickles, snacks", href: "https://maps.google.com/?q=Desi+Kirana+Zurich" },
+                  { name: "Asia Food Oerlikon", note: "Oerlikon — Indian and SE Asian products", href: "https://maps.google.com/?q=Asia+Food+Oerlikon+Zurich" },
+                  { name: "More on Maps →", note: "Browse all Indian grocery stores", href: "https://www.google.com/maps/search/Indian+grocery+store+Zurich+Switzerland" },
+                ].map(r => (
+                  <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none" }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--in)" }}>{r.name}</span>
+                    <span style={{ fontSize: 11, color: "var(--text-3)", marginTop: 1 }}>{r.note}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* SECTION 6 — Emergency & Contacts */}
         <section>
           <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.4rem", fontWeight: 700, color: "var(--text)", marginBottom: 20 }}>
             Emergency &amp; Key Contacts
