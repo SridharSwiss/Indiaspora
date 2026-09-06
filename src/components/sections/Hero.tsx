@@ -143,7 +143,7 @@ export default function Hero() {
                 animation: "pulse-dot 2s ease-in-out infinite",
                 flexShrink: 0,
               }} aria-hidden />
-              30,000+ Indians across Switzerland
+              24,500+ Indians across Switzerland
             </span>
           </div>
 

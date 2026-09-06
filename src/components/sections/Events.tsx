@@ -135,7 +135,7 @@ export default function Events() {
               Organising a community event?
             </p>
             <p style={{ fontSize: 12, color: "var(--text-2)" }}>
-              Submit it to reach 30,000+ Indians across Switzerland
+              Submit it to reach 24,500+ Indians across Switzerland
             </p>
           </div>
           <Link

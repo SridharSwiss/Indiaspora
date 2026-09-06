@@ -251,7 +251,7 @@ export default async function EventsPage() {
           <div className="text-4xl mb-4">📅</div>
           <h3 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Submit Your Event</h3>
           <p className="mb-6" style={{ color: "var(--text-2)" }}>
-            Organising an Indian community event in Switzerland? List it here to reach 30,000+ Indians across the country.
+            Organising an Indian community event in Switzerland? List it here to reach 24,500+ Indians across the country.
             Submissions are reviewed by our AI moderation system and go live within 12 hours.
           </p>
           <Link

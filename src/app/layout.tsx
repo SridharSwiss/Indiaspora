@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | IndiaSwiss",
   },
   description:
-    "The definitive platform for 30,000+ Indians living in Switzerland. Discover restaurants, associations, events, business networks, temples, and everything you need to thrive in Switzerland.",
+    "The definitive platform for 24,500+ Indians living in Switzerland. Discover restaurants, associations, events, business networks, temples, and everything you need to thrive in Switzerland.",
   keywords: [
     "Indians in Switzerland",
     "Swiss Indian community",

@@ -120,7 +120,7 @@ export default function SubmitEventPage() {
     <div>
       <PageHeader
         title="Submit an Event"
-        subtitle="Organising an Indian community event in Switzerland? List it here to reach 30,000+ Indians across the country."
+        subtitle="Organising an Indian community event in Switzerland? List it here to reach 24,500+ Indians across the country."
         badge="Free Listing"
         gradient="from-violet-500 to-purple-600"
         breadcrumbs={[{ label: "Events", href: "/events" }, { label: "Submit" }]}

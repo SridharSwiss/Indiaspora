@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { X, Mail, Loader2, CheckCircle2, LogIn, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
@@ -25,11 +25,14 @@ export default function BannerManager() {
   const [nlStatus, setNlStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [nlError, setNlError]   = useState("");
 
+  // Track whether signed-in user is an active subscriber (for dismissSignin logic)
+  const isActiveSubscriberRef = useRef<boolean>(false);
+
   const supabase = useMemo(() => createClient(), []);
 
   useEffect(() => {
-    // Check auth state once — fallback to false after 3s so a hanging request doesn't block banners
-    const timeout = setTimeout(() => setIsLoggedIn(prev => prev === null ? false : prev), 3000);
+    // 8s fallback — generous enough for Supabase auth to resolve on slow connections
+    const timeout = setTimeout(() => setIsLoggedIn(prev => prev === null ? false : prev), 8000);
     supabase.auth.getUser().then(({ data: { user } }) => {
       clearTimeout(timeout);
       setIsLoggedIn(!!user);
@@ -51,19 +54,24 @@ export default function BannerManager() {
       const sigDismissed = (() => { try { return !!localStorage.getItem(STORAGE_SIGNIN); } catch { return false; } })();
 
       if (isLoggedIn) {
-        // Check DB: only show newsletter banner if user has never subscribed
+        // Signed-in path: check DB subscription status
         const { data: { user } } = await supabase.auth.getUser();
         if (cancelled) return;
         if (user?.email) {
+          setEmail(user.email);
           const { data: row } = await supabase
             .from("newsletter_subscribers")
             .select("active")
             .eq("email", user.email)
             .maybeSingle();
           if (cancelled) return;
-          // active subscriber → don't show banner; unsubscribed → show (chance to re-subscribe)
-          if (row?.active === true) return;
+          if (row?.active === true) {
+            // Active subscriber — never show any banner
+            isActiveSubscriberRef.current = true;
+            return;
+          }
         }
+        // Signed in but not subscribed — show newsletter banner (pre-filled email)
         setTimeout(() => { if (!cancelled) setActive("newsletter"); }, 8000);
         return;
       }
@@ -74,8 +82,7 @@ export default function BannerManager() {
         return;
       }
 
-      // Sign-in already dismissed — show newsletter only if not DB-suppressed
-      // (anonymous user: fall back to localStorage so we don't spam)
+      // Sign-in already dismissed — show newsletter only if not suppressed
       const nlDismissed = (() => { try { return !!localStorage.getItem(STORAGE_NL); } catch { return false; } })();
       if (!nlDismissed) {
         setTimeout(() => { if (!cancelled) setActive("newsletter"); }, 8000);
@@ -97,10 +104,10 @@ export default function BannerManager() {
   const dismissSignin = () => {
     setActive(null);
     try { localStorage.setItem(STORAGE_SIGNIN, "1"); } catch { /* noop */ }
-    // Queue newsletter banner 8s later only if user has never subscribed/unsubscribed
+    // Only queue newsletter if this user is not an active subscriber
+    if (isActiveSubscriberRef.current) return;
     const nlDismissed = (() => { try { return !!localStorage.getItem(STORAGE_NL); } catch { return false; } })();
     if (!nlDismissed) {
-      // For anonymous visitors check localStorage only (no auth context here)
       setTimeout(() => setActive("newsletter"), 8000);
     }
   };
@@ -204,7 +211,7 @@ export default function BannerManager() {
           </div>
 
           <p style={{ margin: "12px 0 0", fontSize: 11, color: "var(--text-3, rgba(200,185,165,0.45))", textAlign: "center" }}>
-            Free to join · 30,000+ Indians across Switzerland
+            Free to join · 24,500+ Indians across Switzerland
           </p>
         </div>
       )}
