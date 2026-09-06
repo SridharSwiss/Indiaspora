@@ -205,8 +205,8 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         <div
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
-          style={{ height: 64, position: "relative" }}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-0"
+          style={{ height: 64 }}
         >
           {/* Logo */}
           <Link
@@ -238,14 +238,13 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop nav — truly centered via absolute position */}
+          {/* Desktop nav — left-aligned after logo */}
           <ul
             className="hidden lg:flex items-center gap-0"
             role="list"
             style={{
               listStyle: "none", margin: 0, padding: 0,
-              position: "absolute", left: "50%", top: "50%",
-              transform: "translate(-50%, -50%)",
+              marginLeft: 8, flex: 1,
             }}
           >
             {NAV_ITEMS.map((item) => {
