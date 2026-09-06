@@ -91,28 +91,25 @@ export default function Hero() {
         {/* Left: text content */}
         <div style={{ maxWidth: 680, animation: "fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s both" }}>
 
-          {/* Eyebrow */}
-          <div
-            style={{
-              display: "flex", alignItems: "center", gap: 12, marginBottom: 28,
-            }}
-          >
-            <span
-              style={{
-                width: 40, height: 1,
-                background: "var(--in)",
-                display: "inline-block", flexShrink: 0,
-              }}
-              aria-hidden
-            />
-            <span
-              style={{
-                fontSize: 10, fontWeight: 700, letterSpacing: "0.22em",
-                textTransform: "uppercase", color: "var(--in)",
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-              }}
-            >
-              Switzerland&apos;s Indian Community Hub
+          {/* Eyebrow — live pill */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 28, flexWrap: "wrap" }}>
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 7,
+              padding: "6px 14px", borderRadius: 999,
+              background: "rgba(99,102,241,0.12)",
+              border: "1px solid rgba(129,140,248,0.30)",
+              fontSize: 11, fontWeight: 700, color: "#A5B4FC",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              letterSpacing: "0.08em",
+            }}>
+              <span style={{
+                width: 7, height: 7, borderRadius: "50%",
+                background: "#34D399",
+                boxShadow: "0 0 0 3px rgba(52,211,153,0.25)",
+                animation: "pulse-dot 2s ease-in-out infinite",
+                flexShrink: 0,
+              }} aria-hidden />
+              30,000+ Indians across Switzerland
             </span>
           </div>
 
@@ -324,6 +321,7 @@ export default function Hero() {
         @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
         @keyframes word-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
         @keyframes slideInRight { from { opacity:0; transform:translateX(80px) scale(0.92); } to { opacity:1; transform:translateX(0) scale(1); } }
+        @keyframes pulse-dot { 0%,100% { box-shadow: 0 0 0 3px rgba(52,211,153,0.25); } 50% { box-shadow: 0 0 0 6px rgba(52,211,153,0.10); } }
         @media (max-width: 900px) {
           .hero-img-wrap { display: none !important; }
           .relative.max-w-7xl { grid-template-columns: 1fr !important; }
