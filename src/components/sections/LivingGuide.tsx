@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Plane, Heart, Home, GraduationCap, ArrowRight } from "lucide-react";
 import { LIVING_GUIDE } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import AnimateIn from "@/components/ui/AnimateIn";
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   Plane: <Plane className="w-5 h-5" />,
@@ -30,16 +31,20 @@ export default function LivingGuide() {
     <section id="living" className="py-24" style={{ background: "var(--surface-2)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-[0.3em] text-indigo-400 mb-4 block font-medium">
-            Settle In
-          </span>
-          <h2 className="text-4xl lg:text-5xl font-bold" style={{ color: "var(--text)" }}>
-            Living in{" "}
-            <span className="gradient-text">Switzerland</span>
-          </h2>
-          <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
-            Your comprehensive guide to settling into Swiss life — from day one to feeling at home
-          </p>
+          <AnimateIn from="left">
+            <span className="text-xs uppercase tracking-[0.3em] text-indigo-400 mb-4 block font-medium">
+              Settle In
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-bold" style={{ color: "var(--text)" }}>
+              Living in{" "}
+              <span className="gradient-text">Switzerland</span>
+            </h2>
+          </AnimateIn>
+          <AnimateIn from="right" delay={100}>
+            <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
+              Your comprehensive guide to settling into Swiss life — from day one to feeling at home
+            </p>
+          </AnimateIn>
         </div>
 
         {/* Quick links */}

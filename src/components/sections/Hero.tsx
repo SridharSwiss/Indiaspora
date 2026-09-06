@@ -262,7 +262,7 @@ export default function Hero() {
         >
           {/* Outer glow ring */}
           <div style={{
-            width: "clamp(280px, 28vw, 480px)",
+            width: "clamp(336px, 33.6vw, 576px)",
             aspectRatio: "1",
             borderRadius: "50%",
             padding: "5px",

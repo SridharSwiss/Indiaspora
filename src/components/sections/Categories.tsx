@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { FEATURED_CATEGORIES } from "@/lib/data";
+import AnimateIn from "@/components/ui/AnimateIn";
 
 const ACCENT_COLORS: Record<string, string> = {
   "Community":  "var(--in)",
@@ -23,7 +24,7 @@ export default function Categories() {
 
         {/* Header */}
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 48, gap: 24, flexWrap: "wrap" }}>
-          <div>
+          <AnimateIn from="left">
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
               <span style={{ width: 32, height: 1, background: "var(--in)", display: "inline-block" }} aria-hidden />
               <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--in)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
@@ -34,7 +35,8 @@ export default function Categories() {
               Everything for<br />
               <em style={{ fontStyle: "italic", color: "var(--in)" }}>Swiss Indians</em>
             </h2>
-          </div>
+          </AnimateIn>
+          <AnimateIn from="right">
           <Link
             href="/events"
             style={{
@@ -53,6 +55,7 @@ export default function Categories() {
             Browse All
             <ArrowRight style={{ width: 12, height: 12 }} />
           </Link>
+          </AnimateIn>
         </div>
 
         {/* Editorial grid: 1 hero left + 2×2 right on desktop */}

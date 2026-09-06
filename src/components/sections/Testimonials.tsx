@@ -1,5 +1,6 @@
 import { Quote } from "lucide-react";
 import { TESTIMONIALS } from "@/lib/data";
+import AnimateIn from "@/components/ui/AnimateIn";
 
 const AVATAR_COLORS = [
   "from-indigo-500 to-violet-500",
@@ -12,19 +13,24 @@ export default function Testimonials() {
     <section className="py-24" style={{ background: "rgba(15,20,40,0.5)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="tag mb-4">Community Voices</span>
-          <h2 className="text-4xl lg:text-5xl font-bold mt-3" style={{ color: "var(--text)" }}>
-            Indians Thriving in{" "}
-            <span className="gradient-text">Switzerland</span>
-          </h2>
-          <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
-            Real stories from community members who&apos;ve built their lives in Switzerland
-          </p>
+          <AnimateIn from="up">
+            <span className="tag mb-4">Community Voices</span>
+            <h2 className="text-4xl lg:text-5xl font-bold mt-3" style={{ color: "var(--text)" }}>
+              Indians Thriving in{" "}
+              <span className="gradient-text">Switzerland</span>
+            </h2>
+          </AnimateIn>
+          <AnimateIn from="up" delay={100}>
+            <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
+              Real stories from community members who&apos;ve built their lives in Switzerland
+            </p>
+          </AnimateIn>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {TESTIMONIALS.map((t, i) => (
-            <div key={t.name} className="card p-6 flex flex-col">
+            <AnimateIn key={t.name} from={i === 0 ? "left" : i === 2 ? "right" : "up"} delay={i * 130} threshold={0.1}>
+            <div className="card p-6 flex flex-col">
               <Quote className="w-8 h-8 mb-4 shrink-0" style={{ color: "rgba(249,115,22,0.3)" }} />
               <p className="text-slate-300 text-sm leading-relaxed flex-1 mb-6 italic">
                 &ldquo;{t.quote}&rdquo;
@@ -40,6 +46,7 @@ export default function Testimonials() {
                 </div>
               </div>
             </div>
+            </AnimateIn>
           ))}
         </div>
       </div>

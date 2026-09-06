@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { RESOURCES } from "@/lib/data";
+import AnimateIn from "@/components/ui/AnimateIn";
 
 const CATEGORY_COLORS: Record<string, string> = {
   Official: "bg-blue-500/20 text-blue-300 border-blue-500/30",
@@ -17,13 +18,17 @@ export default function Resources() {
     <section id="resources" className="py-24" style={{ background: "var(--bg)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="tag mb-4">Essential Links</span>
-          <h2 className="text-4xl lg:text-5xl font-bold mt-3" style={{ color: "var(--text)" }}>
-            Key <span className="gradient-text">Resources</span>
-          </h2>
-          <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
-            Curated links to official, community, and lifestyle resources every Indian in Switzerland needs
-          </p>
+          <AnimateIn from="left">
+            <span className="tag mb-4">Essential Links</span>
+            <h2 className="text-4xl lg:text-5xl font-bold mt-3" style={{ color: "var(--text)" }}>
+              Key <span className="gradient-text">Resources</span>
+            </h2>
+          </AnimateIn>
+          <AnimateIn from="right" delay={100}>
+            <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
+              Curated links to official, community, and lifestyle resources every Indian in Switzerland needs
+            </p>
+          </AnimateIn>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { MapPin, ArrowRight, Users } from "lucide-react";
 import { CITIES } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import AnimateIn from "@/components/ui/AnimateIn";
 
 export default function Cities() {
   const [activeCity, setActiveCity] = useState(0);
@@ -14,20 +15,25 @@ export default function Cities() {
     <section id="cities" className="py-24" style={{ background: "var(--surface)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-[0.3em] text-indigo-400 mb-4 block font-medium">
-            City Guides
-          </span>
-          <h2 className="text-4xl lg:text-5xl font-bold" style={{ color: "var(--text)" }}>
-            Indians Across{" "}
-            <span className="gradient-text">Switzerland</span>
-          </h2>
-          <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
-            Tailored guides for each Swiss city where the Indian community thrives
-          </p>
+          <AnimateIn from="up">
+            <span className="text-xs uppercase tracking-[0.3em] text-indigo-400 mb-4 block font-medium">
+              City Guides
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-bold" style={{ color: "var(--text)" }}>
+              Indians Across{" "}
+              <span className="gradient-text">Switzerland</span>
+            </h2>
+          </AnimateIn>
+          <AnimateIn from="up" delay={120}>
+            <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
+              Tailored guides for each Swiss city where the Indian community thrives
+            </p>
+          </AnimateIn>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* City selector */}
+          <AnimateIn from="left" threshold={0.1}>
           <div className="space-y-3">
             {CITIES.map((c, i) => (
               <button
@@ -60,8 +66,10 @@ export default function Cities() {
               </button>
             ))}
           </div>
+          </AnimateIn>
 
           {/* City detail */}
+          <AnimateIn from="right" threshold={0.1}>
           <div className="lg:col-span-2">
             <div className="glass rounded-2xl overflow-hidden h-full border border-white/5">
               {/* Header */}
@@ -109,6 +117,7 @@ export default function Cities() {
               </div>
             </div>
           </div>
+          </AnimateIn>
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Calendar, MapPin, ArrowRight, ExternalLink } from "lucide-react";
 import { UPCOMING_EVENTS } from "@/lib/data";
+import AnimateIn from "@/components/ui/AnimateIn";
 
 export default function Events() {
   const shown = UPCOMING_EVENTS.slice(0, 3);
@@ -11,7 +12,7 @@ export default function Events() {
 
         {/* Header */}
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 48, gap: 24, flexWrap: "wrap" }}>
-          <div>
+          <AnimateIn from="left">
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
               <span style={{ width: 32, height: 1, background: "var(--mg)", display: "inline-block" }} aria-hidden />
               <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mg)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
@@ -21,7 +22,8 @@ export default function Events() {
             <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.1, color: "var(--text)", margin: 0 }}>
               Upcoming <em style={{ fontStyle: "italic" }}>Events</em>
             </h2>
-          </div>
+          </AnimateIn>
+          <AnimateIn from="right">
           <Link href="/events" style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             padding: "11px 22px",
@@ -33,12 +35,13 @@ export default function Events() {
           }}>
             Full Calendar <ArrowRight style={{ width: 12, height: 12 }} />
           </Link>
+          </AnimateIn>
         </div>
 
         {/* Event cards */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}
           className="events-grid">
-          {shown.map((event) => {
+          {shown.map((event, i) => {
             const Inner = (
               <>
                 {/* Image */}
@@ -96,9 +99,8 @@ export default function Events() {
               </>
             );
 
-            return event.url ? (
+            const card = event.url ? (
               <a
-                key={event.title}
                 href={event.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -114,9 +116,14 @@ export default function Events() {
                 {Inner}
               </a>
             ) : (
-              <div key={event.title} style={{ display: "block", overflow: "hidden", background: "var(--surface)", border: "1px solid var(--border)" }}>
+              <div style={{ display: "block", overflow: "hidden", background: "var(--surface)", border: "1px solid var(--border)" }}>
                 {Inner}
               </div>
+            );
+            return (
+              <AnimateIn key={event.title} from="up" delay={i * 120} threshold={0.1}>
+                {card}
+              </AnimateIn>
             );
           })}
         </div>
