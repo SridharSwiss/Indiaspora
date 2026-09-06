@@ -9,6 +9,13 @@ import StatNumber from "@/components/ui/StatNumber";
 
 const FEATURED_WORDS = ["Community", "Culture", "Cuisine", "Connections", "Commerce"];
 
+const AVATARS = ["🇮🇳", "🙂", "👨‍💼", "👩‍🎓", "🧑‍🍳"];
+
+const FLOAT_CARDS = [
+  { emoji: "📍", label: "5 Cities", sub: "covered across Switzerland", rotate: "-4deg", top: "18%", right: "-6%" },
+  { emoji: "🤝", label: "150+ Groups", sub: "community associations", rotate: "3deg", bottom: "28%", right: "-8%" },
+];
+
 export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
   const [joinOpen, setJoinOpen] = useState(false);
@@ -53,17 +60,43 @@ export default function Hero() {
         }}
       />
 
-      {/* Warm gold glow — upper right */}
-      <div
+      {/* Organic blob — Bloom-style, upper right */}
+      <svg
         aria-hidden
+        viewBox="0 0 900 700"
         style={{
-          position: "absolute", top: "-10%", right: "-5%",
-          width: "55%", height: "75%",
-          background: "radial-gradient(ellipse, rgba(201,169,110,0.14) 0%, rgba(160,120,64,0.04) 50%, transparent 70%)",
+          position: "absolute", top: "-5%", right: "-8%",
+          width: "clamp(480px, 58vw, 820px)",
+          height: "auto",
           pointerEvents: "none",
-          filter: "blur(50px)",
+          opacity: 1,
         }}
-      />
+      >
+        <defs>
+          <radialGradient id="blob-g" cx="55%" cy="45%" r="55%">
+            <stop offset="0%"   stopColor="rgba(201,169,110,0.13)" />
+            <stop offset="50%"  stopColor="rgba(176,128,112,0.07)" />
+            <stop offset="100%" stopColor="rgba(14,12,9,0)" />
+          </radialGradient>
+          <filter id="blob-blur">
+            <feGaussianBlur stdDeviation="28" />
+          </filter>
+        </defs>
+        <path
+          d="M480,60 C620,30 820,120 800,300 C780,480 620,580 440,560
+             C260,540 80,440 70,270 C60,100 200,40 340,50 C380,52 430,65 480,60Z"
+          fill="url(#blob-g)"
+          filter="url(#blob-blur)"
+        />
+        {/* Second, subtler blob */}
+        <path
+          d="M500,90 C630,65 790,160 770,330 C750,500 590,590 410,565
+             C230,540 90,425 100,260 C110,95 230,50 370,60 C420,63 460,100 500,90Z"
+          fill="rgba(201,169,110,0.05)"
+          filter="url(#blob-blur)"
+        />
+      </svg>
+
       {/* Copper-rose glow — lower left */}
       <div
         aria-hidden
@@ -75,7 +108,6 @@ export default function Hero() {
           filter: "blur(50px)",
         }}
       />
-
 
       {/* ── Content — two-column on large screens ── */}
       <div
@@ -97,7 +129,7 @@ export default function Hero() {
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 28, flexWrap: "wrap" }}>
             <span style={{
               display: "inline-flex", alignItems: "center", gap: 7,
-              padding: "6px 14px", borderRadius: 999,
+              padding: "6px 16px", borderRadius: 999,
               background: "rgba(201,169,110,0.10)",
               border: "1px solid rgba(201,169,110,0.28)",
               fontSize: 11, fontWeight: 700, color: "#CEB07A",
@@ -115,14 +147,14 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Headline */}
+          {/* Headline — larger, Bloom editorial scale */}
           <h1
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+              fontSize: "clamp(3.2rem, 8vw, 6.2rem)",
               fontWeight: 700,
-              lineHeight: 1.06,
-              letterSpacing: "-0.01em",
+              lineHeight: 0.97,
+              letterSpacing: "-0.02em",
               color: "rgba(240,235,224,0.95)",
               marginBottom: 0,
             }}
@@ -132,12 +164,12 @@ export default function Hero() {
           <h1
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+              fontSize: "clamp(3.2rem, 8vw, 6.2rem)",
               fontWeight: 700,
-              lineHeight: 1.06,
-              letterSpacing: "-0.01em",
+              lineHeight: 0.97,
+              letterSpacing: "-0.02em",
               fontStyle: "italic",
-              marginBottom: 28,
+              marginBottom: 32,
               color: "rgba(240,235,224,0.95)",
             }}
           >
@@ -170,22 +202,33 @@ export default function Hero() {
             associations, events, business networks, temples, and everything you need to thrive.
           </p>
 
-          {/* CTAs */}
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 60 }}>
+          {/* CTAs — pill-shaped */}
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 36 }}>
             <button
               onClick={() => setJoinOpen(true)}
               style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "14px 28px",
+                display: "inline-flex", alignItems: "center", gap: 9,
+                padding: "15px 32px", borderRadius: 999,
                 background: "var(--in)",
                 color: "#1A1410",
-                fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
+                fontSize: 11, fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase",
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 border: "none", cursor: "pointer",
-                transition: "background 0.2s",
+                transition: "background 0.2s, transform 0.2s, box-shadow 0.2s",
+                boxShadow: "0 4px 28px rgba(201,169,110,0.30)",
               }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "var(--in-hi)")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "var(--in)")}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.background = "var(--in-hi)";
+                el.style.transform = "translateY(-2px)";
+                el.style.boxShadow = "0 8px 36px rgba(201,169,110,0.45)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.background = "var(--in)";
+                el.style.transform = "none";
+                el.style.boxShadow = "0 4px 28px rgba(201,169,110,0.30)";
+              }}
             >
               Join the Community
               <ArrowRight style={{ width: 14, height: 14 }} />
@@ -194,20 +237,70 @@ export default function Hero() {
               href="/events"
               style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "13px 28px",
+                padding: "14px 30px", borderRadius: 999,
                 background: "rgba(201,169,110,0.07)",
                 color: "rgba(206,176,122,0.90)",
-                fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
+                fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                border: "1px solid rgba(201,169,110,0.32)",
+                border: "1px solid rgba(201,169,110,0.28)",
                 textDecoration: "none",
-                transition: "border-color 0.2s, color 0.2s, background 0.2s",
+                transition: "border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(206,176,122,0.70)"; (e.currentTarget as HTMLElement).style.color = "rgba(240,235,224,1)"; (e.currentTarget as HTMLElement).style.background = "rgba(201,169,110,0.14)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(201,169,110,0.32)"; (e.currentTarget as HTMLElement).style.color = "rgba(206,176,122,0.90)"; (e.currentTarget as HTMLElement).style.background = "rgba(201,169,110,0.07)"; }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.borderColor = "rgba(206,176,122,0.60)";
+                el.style.color = "rgba(240,235,224,1)";
+                el.style.background = "rgba(201,169,110,0.14)";
+                el.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.borderColor = "rgba(201,169,110,0.28)";
+                el.style.color = "rgba(206,176,122,0.90)";
+                el.style.background = "rgba(201,169,110,0.07)";
+                el.style.transform = "none";
+              }}
             >
               Upcoming Events
             </Link>
+          </div>
+
+          {/* Avatar stack + social proof — Bloom pattern */}
+          <div style={{
+            display: "flex", alignItems: "center", gap: 14, marginBottom: 48,
+            animation: "fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both",
+          }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {AVATARS.map((av, i) => (
+                <div key={i} style={{
+                  width: 34, height: 34, borderRadius: "50%",
+                  background: "rgba(201,169,110,0.12)",
+                  border: "2px solid rgba(14,12,9,0.9)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 16, marginLeft: i === 0 ? 0 : -10,
+                  boxShadow: "0 0 0 1px rgba(201,169,110,0.18)",
+                  zIndex: AVATARS.length - i,
+                  position: "relative",
+                }}>
+                  {av}
+                </div>
+              ))}
+            </div>
+            <div>
+              <div style={{
+                fontSize: 13, fontWeight: 700, color: "rgba(240,235,224,0.90)",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                lineHeight: 1.3,
+              }}>
+                ~24,500 Indians in Switzerland
+              </div>
+              <div style={{
+                fontSize: 11, color: "rgba(154,142,124,0.75)",
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              }}>
+                Across 26 cantons — join your community
+              </div>
+            </div>
           </div>
 
           {/* Stats row */}
@@ -217,7 +310,7 @@ export default function Hero() {
               gridTemplateColumns: "repeat(4, auto)",
               gap: "0",
               paddingTop: 28,
-              borderTop: "1px solid rgba(201,169,110,0.18)",
+              borderTop: "1px solid rgba(201,169,110,0.14)",
               width: "fit-content",
             }}
           >
@@ -249,19 +342,62 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right: community photo — circle, slides in from right on load */}
+        {/* Right: community photo with floating stat cards */}
         <div
-          aria-hidden
           className="hero-img-wrap"
           style={{
             animation: "slideInRight 1.1s cubic-bezier(0.16,1,0.3,1) 0.35s both",
             alignSelf: "center",
             flexShrink: 0,
+            position: "relative",
           }}
         >
+          {/* Floating stat cards — Bloom pattern */}
+          {FLOAT_CARDS.map((fc) => (
+            <div
+              key={fc.label}
+              aria-hidden
+              style={{
+                position: "absolute",
+                top: fc.top, bottom: fc.bottom,
+                right: fc.right,
+                transform: `rotate(${fc.rotate})`,
+                background: "rgba(22,19,16,0.92)",
+                border: "1px solid rgba(201,169,110,0.28)",
+                borderRadius: 20,
+                padding: "14px 18px",
+                backdropFilter: "blur(24px)",
+                WebkitBackdropFilter: "blur(24px)",
+                display: "flex", alignItems: "center", gap: 12,
+                boxShadow: "0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,110,0.10)",
+                zIndex: 10,
+                animation: "float-card 4s ease-in-out infinite",
+                animationDelay: fc.top ? "0s" : "2s",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <span style={{ fontSize: 22 }}>{fc.emoji}</span>
+              <div>
+                <div style={{
+                  fontSize: 13, fontWeight: 800, color: "rgba(240,235,224,0.95)",
+                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                  lineHeight: 1.2,
+                }}>
+                  {fc.label}
+                </div>
+                <div style={{
+                  fontSize: 10, color: "rgba(201,169,110,0.70)",
+                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                }}>
+                  {fc.sub}
+                </div>
+              </div>
+            </div>
+          ))}
+
           {/* Outer glow ring */}
           <div style={{
-            width: "clamp(336px, 33.6vw, 576px)",
+            width: "clamp(320px, 32vw, 540px)",
             aspectRatio: "1",
             borderRadius: "50%",
             padding: "5px",
@@ -321,9 +457,13 @@ export default function Hero() {
 
       <style>{`
         @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
-        @keyframes word-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+        @keyframes word-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
         @keyframes slideInRight { from { opacity:0; transform:translateX(80px) scale(0.92); } to { opacity:1; transform:translateX(0) scale(1); } }
         @keyframes pulse-dot { 0%,100% { box-shadow: 0 0 0 3px rgba(52,211,153,0.25); } 50% { box-shadow: 0 0 0 6px rgba(52,211,153,0.10); } }
+        @keyframes float-card {
+          0%,100% { transform: rotate(var(--fc-rot, -4deg)) translateY(0px); }
+          50%      { transform: rotate(var(--fc-rot, -4deg)) translateY(-8px); }
+        }
         @media (max-width: 900px) {
           .hero-img-wrap { display: none !important; }
           .relative.max-w-7xl { grid-template-columns: 1fr !important; }
