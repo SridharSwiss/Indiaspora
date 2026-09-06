@@ -76,7 +76,7 @@ export default function AdvicePage() {
             <div style={{ marginBottom: 28 }}>
               <span className="tag" style={{ marginBottom: 12, display: "inline-flex" }}>Submit Your Query</span>
               <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.5rem", fontWeight: 700, color: "var(--text)", margin: 0 }}>
-                Ask the Community
+                Ask the Expert
               </h2>
               <p style={{ fontSize: 13, color: "var(--text-2)", marginTop: 8, marginBottom: 0, fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
                 Fill in your details below. All fields marked * are required.
