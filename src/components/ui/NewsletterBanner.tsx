@@ -16,42 +16,39 @@ export default function NewsletterBanner() {
   const supabase = useMemo(() => createClient(), []);
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | null = null;
     let cancelled = false;
 
-    const maybeShow = async () => {
-      // Never show if already dismissed this browser session
-      try {
-        if (localStorage.getItem(STORAGE_KEY)) return;
-      } catch { /* storage blocked */ }
+    (async () => {
+      // Never show if already dismissed
+      try { if (localStorage.getItem(STORAGE_KEY)) return; } catch {}
 
-      // Check if signed-in user already has an active subscription
+      // Check if signed-in user is already subscribed
       const { data: { user } } = await supabase.auth.getUser();
       if (cancelled) return;
 
       if (user?.email) {
-        // Pre-fill email for convenience
         setEmail(user.email);
-
-        // Check subscription status via the newsletter API list endpoint
-        // We do a lightweight HEAD-style check by fetching the subscriber list
-        // and checking for the user's email. Use the public status check approach:
-        const res = await fetch(`/api/newsletter/status?email=${encodeURIComponent(user.email)}`);
-        if (cancelled) return;
-        if (res.ok) {
-          const json = await res.json();
-          if (json.active) return; // already subscribed — suppress banner
-        }
+        try {
+          const res = await fetch(`/api/newsletter/status?email=${encodeURIComponent(user.email)}`);
+          if (cancelled) return;
+          if (res.ok) {
+            const json = await res.json();
+            if (json.active) {
+              // Mark dismissed so we never check again on this device
+              try { localStorage.setItem(STORAGE_KEY, "subscribed"); } catch {}
+              return;
+            }
+          }
+        } catch { /* network error — fall through and show banner */ }
       }
 
-      // Show banner after 8 seconds
-      const t = setTimeout(() => { if (!cancelled) setVisible(true); }, 8000);
-      return () => clearTimeout(t);
-    };
+      timer = setTimeout(() => { if (!cancelled) setVisible(true); }, 8000);
+    })();
 
-    const cleanup = maybeShow();
     return () => {
       cancelled = true;
-      cleanup?.then(fn => fn?.());
+      if (timer) clearTimeout(timer);
     };
   }, [supabase]);
 
