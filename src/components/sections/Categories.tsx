@@ -5,17 +5,41 @@ import { ArrowRight } from "lucide-react";
 import { FEATURED_CATEGORIES } from "@/lib/data";
 import AnimateIn from "@/components/ui/AnimateIn";
 
-/* Per-category visual identity — classic jewel tones */
-const CAT_META: Record<string, { emoji: string; bg: string; accent: string; shadow: string }> = {
-  Community: { emoji: "🤝", bg: "rgba(201,169,110,0.09)", accent: "#CEB07A", shadow: "rgba(201,169,110,0.30)" },
-  Living:    { emoji: "🏠", bg: "rgba(61,122,90,0.10)",   accent: "#70BC92", shadow: "rgba(61,122,90,0.30)"  },
-  Food:      { emoji: "🍛", bg: "rgba(176,128,112,0.10)", accent: "#C89880", shadow: "rgba(176,128,112,0.30)"},
-  Culture:   { emoji: "🎭", bg: "rgba(130,90,140,0.10)",  accent: "#B87EC0", shadow: "rgba(130,90,140,0.30)" },
-  Business:  { emoji: "💼", bg: "rgba(60,100,140,0.10)",  accent: "#7AAAD0", shadow: "rgba(60,100,140,0.30)" },
-  Cities:    { emoji: "🏔️", bg: "rgba(140,80,80,0.10)",   accent: "#C89090", shadow: "rgba(140,80,80,0.30)"  },
+/* Per-category visual identity — classic jewel tones + Unsplash imagery (Unsplash License) */
+const CAT_META: Record<string, { emoji: string; bg: string; accent: string; shadow: string; img: string; overlay: string }> = {
+  Community: {
+    emoji: "🤝", accent: "#CEB07A", shadow: "rgba(201,169,110,0.35)",
+    img: "https://images.unsplash.com/photo-1605289982774-9a6fef564df8?auto=format&fit=crop&w=900&q=75",
+    bg: "rgba(14,12,9,0.55)", overlay: "linear-gradient(160deg, rgba(14,12,9,0.72) 0%, rgba(40,28,10,0.60) 100%)",
+  },
+  Living: {
+    emoji: "🏠", accent: "#70BC92", shadow: "rgba(61,122,90,0.35)",
+    img: "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=900&q=75",
+    bg: "rgba(10,22,14,0.55)", overlay: "linear-gradient(160deg, rgba(10,22,14,0.72) 0%, rgba(20,40,28,0.60) 100%)",
+  },
+  Food: {
+    emoji: "🍛", accent: "#C89880", shadow: "rgba(176,128,112,0.35)",
+    img: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=900&q=75",
+    bg: "rgba(22,12,8,0.55)", overlay: "linear-gradient(160deg, rgba(22,12,8,0.72) 0%, rgba(44,22,14,0.60) 100%)",
+  },
+  Culture: {
+    emoji: "🎭", accent: "#B87EC0", shadow: "rgba(130,90,140,0.35)",
+    img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=900&q=75",
+    bg: "rgba(18,10,22,0.55)", overlay: "linear-gradient(160deg, rgba(18,10,22,0.72) 0%, rgba(36,18,44,0.60) 100%)",
+  },
+  Business: {
+    emoji: "💼", accent: "#7AAAD0", shadow: "rgba(60,100,140,0.35)",
+    img: "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=900&q=75",
+    bg: "rgba(8,14,22,0.55)", overlay: "linear-gradient(160deg, rgba(8,14,22,0.72) 0%, rgba(16,28,44,0.60) 100%)",
+  },
+  Cities: {
+    emoji: "🏔️", accent: "#C89090", shadow: "rgba(140,80,80,0.35)",
+    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=75",
+    bg: "rgba(18,10,10,0.55)", overlay: "linear-gradient(160deg, rgba(18,10,10,0.72) 0%, rgba(36,18,18,0.60) 100%)",
+  },
 };
 
-const fallback = { emoji: "✨", bg: "rgba(99,102,241,0.08)", accent: "#818CF8", shadow: "rgba(99,102,241,0.30)" };
+const fallback = { emoji: "✨", accent: "#818CF8", shadow: "rgba(99,102,241,0.30)", img: "", bg: "rgba(99,102,241,0.08)", overlay: "rgba(99,102,241,0.08)" };
 
 export default function Categories() {
   const cats = FEATURED_CATEGORIES.slice(0, 6);
@@ -60,7 +84,7 @@ export default function Categories() {
             const m = CAT_META[cats[0].title] ?? fallback;
             return (
               <AnimateIn from="left" threshold={0.08} className="bento-hero">
-                <Link href={cats[0].href} className="bento-card bento-card-hover" style={{ background: m.bg, "--card-shadow": m.shadow } as React.CSSProperties}>
+                <Link href={cats[0].href} className="bento-card bento-card-hover" style={{ background: m.bg, backgroundImage: m.img ? `${m.overlay}, url(${m.img})` : undefined, backgroundSize: "cover", backgroundPosition: "center", "--card-shadow": m.shadow } as React.CSSProperties}>
                   <span className="bento-emoji" aria-hidden>{m.emoji}</span>
                   <div className="bento-count" style={{ color: m.accent }}>{cats[0].count}</div>
                   <h3 className="bento-title" style={{ color: "var(--text)" }}>{cats[0].title}</h3>
@@ -79,7 +103,7 @@ export default function Categories() {
             const m = CAT_META[cats[2].title] ?? fallback;
             return (
               <AnimateIn from="up" delay={80} threshold={0.08} className="bento-wide">
-                <Link href={cats[2].href} className="bento-card bento-card-hover" style={{ background: m.bg, "--card-shadow": m.shadow } as React.CSSProperties}>
+                <Link href={cats[2].href} className="bento-card bento-card-hover" style={{ background: m.bg, backgroundImage: m.img ? `${m.overlay}, url(${m.img})` : undefined, backgroundSize: "cover", backgroundPosition: "center", "--card-shadow": m.shadow } as React.CSSProperties}>
                   <span className="bento-emoji bento-emoji-sm" aria-hidden>{m.emoji}</span>
                   <div className="bento-count" style={{ color: m.accent }}>{cats[2].count}</div>
                   <h3 className="bento-title" style={{ color: "var(--text)" }}>{cats[2].title}</h3>
@@ -98,7 +122,7 @@ export default function Categories() {
             const m = CAT_META[cats[3].title] ?? fallback;
             return (
               <AnimateIn from="up" delay={120} threshold={0.08} className="bento-sm">
-                <Link href={cats[3].href} className="bento-card bento-card-hover" style={{ background: m.bg, "--card-shadow": m.shadow } as React.CSSProperties}>
+                <Link href={cats[3].href} className="bento-card bento-card-hover" style={{ background: m.bg, backgroundImage: m.img ? `${m.overlay}, url(${m.img})` : undefined, backgroundSize: "cover", backgroundPosition: "center", "--card-shadow": m.shadow } as React.CSSProperties}>
                   <span className="bento-emoji bento-emoji-sm" aria-hidden>{m.emoji}</span>
                   <div className="bento-count" style={{ color: m.accent }}>{cats[3].count}</div>
                   <h3 className="bento-title" style={{ color: "var(--text)" }}>{cats[3].title}</h3>
@@ -114,7 +138,7 @@ export default function Categories() {
             const m = CAT_META[cats[1].title] ?? fallback;
             return (
               <AnimateIn from="up" delay={100} threshold={0.08} className="bento-sm">
-                <Link href={cats[1].href} className="bento-card bento-card-hover" style={{ background: m.bg, "--card-shadow": m.shadow } as React.CSSProperties}>
+                <Link href={cats[1].href} className="bento-card bento-card-hover" style={{ background: m.bg, backgroundImage: m.img ? `${m.overlay}, url(${m.img})` : undefined, backgroundSize: "cover", backgroundPosition: "center", "--card-shadow": m.shadow } as React.CSSProperties}>
                   <span className="bento-emoji bento-emoji-sm" aria-hidden>{m.emoji}</span>
                   <div className="bento-count" style={{ color: m.accent }}>{cats[1].count}</div>
                   <h3 className="bento-title" style={{ color: "var(--text)" }}>{cats[1].title}</h3>
@@ -130,7 +154,7 @@ export default function Categories() {
             const m = CAT_META[cats[4].title] ?? fallback;
             return (
               <AnimateIn from="right" delay={140} threshold={0.08} className="bento-strip">
-                <Link href={cats[4].href} className="bento-card bento-card-hover bento-card-horizontal" style={{ background: m.bg, "--card-shadow": m.shadow } as React.CSSProperties}>
+                <Link href={cats[4].href} className="bento-card bento-card-hover bento-card-horizontal" style={{ background: m.bg, backgroundImage: m.img ? `${m.overlay}, url(${m.img})` : undefined, backgroundSize: "cover", backgroundPosition: "center", "--card-shadow": m.shadow } as React.CSSProperties}>
                   <span className="bento-emoji bento-emoji-lg" aria-hidden>{m.emoji}</span>
                   <div style={{ flex: 1 }}>
                     <div className="bento-count" style={{ color: m.accent }}>{cats[4].count}</div>
@@ -151,7 +175,7 @@ export default function Categories() {
             const m = CAT_META[cats[5].title] ?? fallback;
             return (
               <AnimateIn from="right" delay={160} threshold={0.08} className="bento-sm">
-                <Link href={cats[5].href} className="bento-card bento-card-hover" style={{ background: m.bg, "--card-shadow": m.shadow } as React.CSSProperties}>
+                <Link href={cats[5].href} className="bento-card bento-card-hover" style={{ background: m.bg, backgroundImage: m.img ? `${m.overlay}, url(${m.img})` : undefined, backgroundSize: "cover", backgroundPosition: "center", "--card-shadow": m.shadow } as React.CSSProperties}>
                   <span className="bento-emoji bento-emoji-sm" aria-hidden>{m.emoji}</span>
                   <div className="bento-count" style={{ color: m.accent }}>{cats[5].count}</div>
                   <h3 className="bento-title" style={{ color: "var(--text)" }}>{cats[5].title}</h3>
@@ -184,7 +208,7 @@ export default function Categories() {
           padding: 24px; width: 100%; height: 100%;
           position: relative; overflow: hidden;
           text-decoration: none;
-          border: 1.5px solid var(--border);
+          border: 1.5px solid rgba(184,154,98,0.18);
           border-radius: 20px;
           transition: border-color 0.22s, transform 0.22s cubic-bezier(0.16,1,0.3,1), box-shadow 0.22s;
         }
@@ -225,11 +249,11 @@ export default function Categories() {
         .bento-title {
           font-family: 'Playfair Display', Georgia, serif;
           font-size: 1.25rem; font-weight: 700; line-height: 1.2;
-          margin-bottom: 8px;
+          margin-bottom: 8px; color: rgba(240,235,224,0.95) !important;
         }
         .bento-hero .bento-title { font-size: clamp(1.5rem, 2.2vw, 2rem); }
         .bento-desc {
-          font-size: 12px; color: var(--text-2); line-height: 1.65;
+          font-size: 12px; color: rgba(210,200,185,0.80); line-height: 1.65;
           font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
           margin-bottom: 16px;
         }
