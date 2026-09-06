@@ -27,7 +27,7 @@ export default function AnimateIn({
   children,
   from = "up",
   delay = 0,
-  duration = 350,
+  duration = 1500,
   distance,
   className,
   style,
