@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 // Footer structured as semantic sections so users can scan by intent (Baymard/NNG principle)
 const footerSections = [
@@ -67,6 +68,8 @@ const footerSections = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin")) return null;
   return (
     <footer className="relative" style={{ background: "#1A1410", borderTop: "1px solid rgba(176,141,87,0.15)" }}>
       {/* Thin gold accent line */}

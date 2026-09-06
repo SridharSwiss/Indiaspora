@@ -14,7 +14,7 @@ const TABS = [
 
 export default function BottomNav() {
   const pathname = usePathname();
-
+  if (pathname.startsWith("/admin")) return null;
   return (
     <>
       {/* spacer so content isn't hidden behind bar */}

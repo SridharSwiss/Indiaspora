@@ -148,6 +148,9 @@ export default function Navbar() {
 
   const isAdmin = userEmail === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
   const dark = isDarkMode(theme);
+
+  // Admin pages have their own chrome — hide the public nav
+  if (pathname.startsWith("/admin")) return null;
   // On the home page with transparent nav, text must be LIGHT (dark hero behind)
   const lightNav = pathname === "/" && !scrolled;
 
