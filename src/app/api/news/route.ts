@@ -16,57 +16,55 @@ export type NewsItem = {
 };
 
 // ── Feed registry ─────────────────────────────────────────────────────────────
+// Google News RSS is used for languages where direct publisher feeds block server IPs.
+// It aggregates the same publications (Eenadu, Sakshi, Dinamalar, etc.) reliably.
 const FEEDS = [
   // ── NRI / Diaspora ────────────────────────────────────────────────────────
-  { key: "nri-timesofindia", name: "TOI NRI", url: "https://timesofindia.indiatimes.com/rss/indiabriefing.cms", category: "NRI", language: "English" },
-  { key: "nri-ndtv", name: "NDTV NRI", url: "https://feeds.feedburner.com/ndtvnews-nri", category: "NRI", language: "English" },
-  { key: "nri-indianews", name: "India News Abroad", url: "https://www.indiaabroad.com/feed/", category: "NRI", language: "English" },
-  { key: "nri-newsindiaan", name: "News India", url: "https://newsindiaaa.com/feed/", category: "NRI", language: "English" },
+  { key: "nri-gn1",   name: "Indians Abroad",     url: "https://news.google.com/rss/search?q=Indian+diaspora+NRI&hl=en-US&gl=US&ceid=US:en",        category: "NRI", language: "English" },
+  { key: "nri-gn2",   name: "Indians in Europe",  url: "https://news.google.com/rss/search?q=Indians+in+Europe+UK+Switzerland&hl=en-US&gl=US&ceid=US:en", category: "NRI", language: "English" },
+  { key: "nri-gn3",   name: "NRI News",           url: "https://news.google.com/rss/search?q=NRI+news+Indian+expat&hl=en-US&gl=US&ceid=US:en",      category: "NRI", language: "English" },
+  { key: "nri-gn4",   name: "Indian Community",   url: "https://news.google.com/rss/search?q=Indian+community+abroad+diaspora&hl=en-US&gl=US&ceid=US:en", category: "NRI", language: "English" },
 
-  // ── Top 10 English newspapers ─────────────────────────────────────────────
-  { key: "en-toi-top",   name: "Times of India",     url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms",    category: "National", language: "English" },
-  { key: "en-ht",        name: "Hindustan Times",    url: "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml", category: "National", language: "English" },
-  { key: "en-hindu",     name: "The Hindu",          url: "https://www.thehindu.com/news/national/feeder/default.rss",      category: "National", language: "English" },
-  { key: "en-ndtv",      name: "NDTV",               url: "https://feeds.feedburner.com/ndtvnews-india-news",               category: "National", language: "English" },
-  { key: "en-ie",        name: "Indian Express",     url: "https://indianexpress.com/feed/",                                category: "National", language: "English" },
-  { key: "en-et",        name: "Economic Times",     url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms",    category: "Business", language: "English" },
-  { key: "en-mint",      name: "Mint",               url: "https://www.livemint.com/rss/news",                              category: "Business", language: "English" },
-  { key: "en-bs",        name: "Business Standard",  url: "https://www.business-standard.com/rss/home_page_top_stories.rss", category: "Business", language: "English" },
-  { key: "en-dh",        name: "Deccan Herald",      url: "https://www.deccanherald.com/rss-feed/national/feed",            category: "National", language: "English" },
-  { key: "en-wire",      name: "The Wire",           url: "https://thewire.in/feed",                                        category: "National", language: "English" },
+  // ── English national (Google News India top stories + topic feeds) ─────────
+  { key: "en-gn-top",  name: "India Top Stories", url: "https://news.google.com/rss/headlines/section/geo/IN?hl=en-IN&gl=IN&ceid=IN:en",             category: "National", language: "English" },
+  { key: "en-gn-nat",  name: "India News",        url: "https://news.google.com/rss/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNRGx1YlY4U0FtVnVLQUFQAQ?hl=en-IN&gl=IN&ceid=IN:en", category: "National", language: "English" },
+  { key: "en-gn-pol",  name: "India Politics",    url: "https://news.google.com/rss/search?q=India+politics+government&hl=en-IN&gl=IN&ceid=IN:en",   category: "National", language: "English" },
+  { key: "en-gn-biz",  name: "India Business",    url: "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtVnVHZ0pKVGlnQVAB?hl=en-IN&gl=IN&ceid=IN:en", category: "Business", language: "English" },
+  { key: "en-gn-tech", name: "India Tech",        url: "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNR1ptZHpNU0FtVnVHZ0pKVGlnQVAB?hl=en-IN&gl=IN&ceid=IN:en", category: "Business", language: "English" },
+  { key: "en-gn-sci",  name: "Science & Health",  url: "https://news.google.com/rss/search?q=India+science+health&hl=en-IN&gl=IN&ceid=IN:en",        category: "National", language: "English" },
 
   // ── Hindi ────────────────────────────────────────────────────────────────
-  { key: "hi-bhaskar",   name: "Dainik Bhaskar",     url: "https://www.bhaskar.com/rss-v1--category-1061.xml",             category: "Regional", language: "Hindi" },
-  { key: "hi-amar",      name: "Amar Ujala",         url: "https://www.amarujala.com/rss/india-news.xml",                  category: "Regional", language: "Hindi" },
-  { key: "hi-nbt",       name: "Navbharat Times",    url: "https://navbharattimes.indiatimes.com/rssfeedstopstories.cms",  category: "Regional", language: "Hindi" },
-  { key: "hi-jagran",    name: "Dainik Jagran",      url: "https://www.jagran.com/rss/news-national.xml",                  category: "Regional", language: "Hindi" },
-  { key: "hi-jtv",       name: "Jansatta",           url: "https://www.jansatta.com/feed/",                                category: "Regional", language: "Hindi" },
+  { key: "hi-gn1",    name: "हिन्दी समाचार",      url: "https://news.google.com/rss/headlines/section/geo/IN?hl=hi&gl=IN&ceid=IN:hi",                category: "Regional", language: "Hindi" },
+  { key: "hi-gn2",    name: "भारत समाचार",        url: "https://news.google.com/rss/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNRGx1YlY4U0FtaHBLQUFQAQ?hl=hi&gl=IN&ceid=IN:hi", category: "Regional", language: "Hindi" },
+  { key: "hi-gn3",    name: "हिन्दी खबरें",       url: "https://news.google.com/rss/search?q=news&hl=hi&gl=IN&ceid=IN:hi",                           category: "Regional", language: "Hindi" },
 
   // ── Tamil ────────────────────────────────────────────────────────────────
-  { key: "ta-dinamalar", name: "Dinamalar",          url: "https://www.dinamalar.com/rss.asp",                             category: "Regional", language: "Tamil" },
-  { key: "ta-dinamani",  name: "Dinamani",           url: "https://www.dinamani.com/feeds/?section=national",              category: "Regional", language: "Tamil" },
+  { key: "ta-gn1",    name: "தமிழ் செய்திகள்",    url: "https://news.google.com/rss/headlines/section/geo/IN?hl=ta&gl=IN&ceid=IN:ta",                category: "Regional", language: "Tamil" },
+  { key: "ta-gn2",    name: "Tamil News",          url: "https://news.google.com/rss/search?q=news&hl=ta&gl=IN&ceid=IN:ta",                           category: "Regional", language: "Tamil" },
 
   // ── Telugu ───────────────────────────────────────────────────────────────
-  { key: "te-eenadu",    name: "Eenadu",             url: "https://www.eenadu.net/rss",                                    category: "Regional", language: "Telugu" },
-  { key: "te-sakshi",    name: "Sakshi",             url: "https://www.sakshi.com/rss",                                    category: "Regional", language: "Telugu" },
+  { key: "te-gn1",    name: "తెలుగు వార్తలు",      url: "https://news.google.com/rss/headlines/section/geo/IN?hl=te&gl=IN&ceid=IN:te",                category: "Regional", language: "Telugu" },
+  { key: "te-gn2",    name: "Telugu News",         url: "https://news.google.com/rss/search?q=news&hl=te&gl=IN&ceid=IN:te",                           category: "Regional", language: "Telugu" },
 
   // ── Bengali ──────────────────────────────────────────────────────────────
-  { key: "bn-abp",       name: "Ananda Bazar",       url: "https://www.anandabazar.com/feed",                              category: "Regional", language: "Bengali" },
+  { key: "bn-gn1",    name: "বাংলা খবর",           url: "https://news.google.com/rss/headlines/section/geo/IN?hl=bn&gl=IN&ceid=IN:bn",                category: "Regional", language: "Bengali" },
+  { key: "bn-gn2",    name: "Bengali News",        url: "https://news.google.com/rss/search?q=news&hl=bn&gl=IN&ceid=IN:bn",                           category: "Regional", language: "Bengali" },
 
   // ── Marathi ──────────────────────────────────────────────────────────────
-  { key: "mr-lokmat",    name: "Lokmat",             url: "https://www.lokmat.com/rss/maharashtra.xml",                    category: "Regional", language: "Marathi" },
-  { key: "mr-mht",       name: "Maharashtra Times",  url: "https://maharashtratimes.com/rssfeedstopstories.cms",           category: "Regional", language: "Marathi" },
+  { key: "mr-gn1",    name: "मराठी बातम्या",       url: "https://news.google.com/rss/headlines/section/geo/IN?hl=mr&gl=IN&ceid=IN:mr",                category: "Regional", language: "Marathi" },
+  { key: "mr-gn2",    name: "Marathi News",        url: "https://news.google.com/rss/search?q=news&hl=mr&gl=IN&ceid=IN:mr",                           category: "Regional", language: "Marathi" },
 
   // ── Malayalam ────────────────────────────────────────────────────────────
-  { key: "ml-mathrubhumi", name: "Mathrubhumi",      url: "https://www.mathrubhumi.com/rss",                              category: "Regional", language: "Malayalam" },
-  { key: "ml-manorama",  name: "Manorama",           url: "https://www.manoramaonline.com/news/feeds/rss.cms",            category: "Regional", language: "Malayalam" },
+  { key: "ml-gn1",    name: "മലയാളം വാർത്തകൾ",    url: "https://news.google.com/rss/headlines/section/geo/IN?hl=ml&gl=IN&ceid=IN:ml",                category: "Regional", language: "Malayalam" },
+  { key: "ml-gn2",    name: "Malayalam News",      url: "https://news.google.com/rss/search?q=news&hl=ml&gl=IN&ceid=IN:ml",                           category: "Regional", language: "Malayalam" },
 
   // ── Gujarati ─────────────────────────────────────────────────────────────
-  { key: "gu-gujaratsamachar", name: "Gujarat Samachar", url: "https://www.gujaratsamachar.com/index.php/rss",             category: "Regional", language: "Gujarati" },
-  { key: "gu-divyabhaskar",    name: "Divya Bhaskar",    url: "https://www.divyabhaskar.co.in/rss/news/national/",         category: "Regional", language: "Gujarati" },
+  { key: "gu-gn1",    name: "ગુજરાતી સમાચાર",      url: "https://news.google.com/rss/headlines/section/geo/IN?hl=gu&gl=IN&ceid=IN:gu",                category: "Regional", language: "Gujarati" },
+  { key: "gu-gn2",    name: "Gujarati News",       url: "https://news.google.com/rss/search?q=news&hl=gu&gl=IN&ceid=IN:gu",                           category: "Regional", language: "Gujarati" },
 
   // ── Kannada ──────────────────────────────────────────────────────────────
-  { key: "kn-vijayavani", name: "Vijaya Vani",       url: "https://www.vijayavani.net/feed",                              category: "Regional", language: "Kannada" },
+  { key: "kn-gn1",    name: "ಕನ್ನಡ ಸುದ್ದಿ",        url: "https://news.google.com/rss/headlines/section/geo/IN?hl=kn&gl=IN&ceid=IN:kn",                category: "Regional", language: "Kannada" },
+  { key: "kn-gn2",    name: "Kannada News",        url: "https://news.google.com/rss/search?q=news&hl=kn&gl=IN&ceid=IN:kn",                           category: "Regional", language: "Kannada" },
 ];
 
 function parseRss(xml: string, meta: { key: string; name: string; category: string; language: string }): NewsItem[] {
