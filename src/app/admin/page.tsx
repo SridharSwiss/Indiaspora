@@ -351,6 +351,15 @@ export default function AdminPage() {
             <button onClick={fetchData} style={{ padding: "6px 10px", borderRadius: 8, border: "1px solid var(--border-2)", background: "var(--surface-2)", cursor: "pointer", color: "var(--text-2)", display: "flex", alignItems: "center" }}>
               <RefreshCw size={13} />
             </button>
+            <Link href="/" style={{
+              display: "flex", alignItems: "center", gap: 6,
+              padding: "6px 12px", borderRadius: 8,
+              border: "1px solid var(--border-2)", background: "var(--surface-2)",
+              color: "var(--text-2)", fontSize: 12, fontWeight: 600,
+              textDecoration: "none", whiteSpace: "nowrap",
+            }}>
+              <Home size={13} /> Back to site
+            </Link>
           </div>
         </header>
 
