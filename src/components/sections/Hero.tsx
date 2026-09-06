@@ -21,56 +21,56 @@ export default function Hero() {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ minHeight: "100svh", background: "#1A1410" }}
+      style={{ minHeight: "100svh", background: "#06090F" }}
     >
-      {/* Full-bleed background — rich mosaic evoking Swiss-Indian life */}
+      {/* Full-bleed background — deep midnight with subtle indigo undertone */}
       <div
         aria-hidden
         style={{
           position: "absolute", inset: 0,
           background: `
             linear-gradient(160deg,
-              #2C1F1A 0%,
-              #1A1210 30%,
-              #221810 55%,
-              #2A1F18 75%,
-              #181210 100%
+              #0A0E1C 0%,
+              #06090F 30%,
+              #080C18 55%,
+              #0C1020 75%,
+              #06090F 100%
             )
           `,
         }}
       />
 
-      {/* Warm texture pattern */}
+      {/* Electric dot grid */}
       <div
         aria-hidden
         style={{
           position: "absolute", inset: 0,
-          backgroundImage: `
-            repeating-linear-gradient(45deg, rgba(176,141,87,0.04) 0, rgba(176,141,87,0.04) 1px, transparent 0, transparent 50%),
-            repeating-linear-gradient(-45deg, rgba(176,141,87,0.04) 0, rgba(176,141,87,0.04) 1px, transparent 0, transparent 50%)
-          `,
-          backgroundSize: "24px 24px",
+          backgroundImage: `radial-gradient(rgba(99,102,241,0.12) 1px, transparent 1px)`,
+          backgroundSize: "32px 32px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
         }}
       />
 
-      {/* Subtle gold ambient glow — upper right */}
+      {/* Electric indigo glow — upper right */}
       <div
         aria-hidden
         style={{
           position: "absolute", top: "-10%", right: "-5%",
-          width: "50%", height: "70%",
-          background: "radial-gradient(ellipse, rgba(176,141,87,0.12) 0%, transparent 65%)",
+          width: "55%", height: "75%",
+          background: "radial-gradient(ellipse, rgba(99,102,241,0.18) 0%, rgba(168,85,247,0.06) 45%, transparent 70%)",
           pointerEvents: "none",
+          filter: "blur(40px)",
         }}
       />
-      {/* Lower-left warm glow */}
+      {/* Coral-saffron glow — lower left */}
       <div
         aria-hidden
         style={{
           position: "absolute", bottom: "0", left: "0",
-          width: "40%", height: "50%",
-          background: "radial-gradient(ellipse, rgba(160,97,74,0.10) 0%, transparent 65%)",
+          width: "45%", height: "55%",
+          background: "radial-gradient(ellipse, rgba(249,115,22,0.16) 0%, rgba(251,146,60,0.04) 50%, transparent 70%)",
           pointerEvents: "none",
+          filter: "blur(40px)",
         }}
       />
 
@@ -124,7 +124,7 @@ export default function Hero() {
               fontWeight: 700,
               lineHeight: 1.06,
               letterSpacing: "-0.01em",
-              color: "rgba(245,237,224,0.95)",
+              color: "rgba(238,240,255,0.95)",
               marginBottom: 0,
             }}
           >
@@ -139,7 +139,7 @@ export default function Hero() {
               letterSpacing: "-0.01em",
               fontStyle: "italic",
               marginBottom: 28,
-              color: "rgba(245,237,224,0.95)",
+              color: "rgba(238,240,255,0.95)",
             }}
           >
             <span
@@ -159,7 +159,7 @@ export default function Hero() {
           <p
             style={{
               fontSize: "clamp(0.95rem, 1.6vw, 1.1rem)",
-              color: "rgba(220,205,185,0.8)",
+              color: "rgba(139,156,196,0.9)",
               lineHeight: 1.8,
               maxWidth: 500,
               marginBottom: 40,
@@ -196,16 +196,16 @@ export default function Hero() {
               style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "13px 28px",
-                background: "transparent",
-                color: "rgba(220,205,185,0.9)",
+                background: "rgba(99,102,241,0.10)",
+                color: "rgba(165,180,252,0.95)",
                 fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                border: "1px solid rgba(176,141,87,0.45)",
+                border: "1px solid rgba(99,102,241,0.35)",
                 textDecoration: "none",
-                transition: "border-color 0.2s, color 0.2s",
+                transition: "border-color 0.2s, color 0.2s, background 0.2s",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(176,141,87,0.9)"; (e.currentTarget as HTMLElement).style.color = "rgba(245,237,224,1)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(176,141,87,0.45)"; (e.currentTarget as HTMLElement).style.color = "rgba(220,205,185,0.9)"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(129,140,248,0.8)"; (e.currentTarget as HTMLElement).style.color = "rgba(238,240,255,1)"; (e.currentTarget as HTMLElement).style.background = "rgba(99,102,241,0.18)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(99,102,241,0.35)"; (e.currentTarget as HTMLElement).style.color = "rgba(165,180,252,0.95)"; (e.currentTarget as HTMLElement).style.background = "rgba(99,102,241,0.10)"; }}
             >
               Upcoming Events
             </Link>
@@ -218,7 +218,7 @@ export default function Hero() {
               gridTemplateColumns: "repeat(4, auto)",
               gap: "0",
               paddingTop: 28,
-              borderTop: "1px solid rgba(176,141,87,0.2)",
+              borderTop: "1px solid rgba(99,102,241,0.18)",
               width: "fit-content",
             }}
           >
@@ -239,7 +239,7 @@ export default function Hero() {
                 <div
                   style={{
                     fontSize: 9, fontWeight: 700, letterSpacing: "0.14em",
-                    textTransform: "uppercase", color: "rgba(176,141,87,0.7)",
+                    textTransform: "uppercase", color: "rgba(129,140,248,0.7)",
                     fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                   }}
                 >
@@ -266,8 +266,8 @@ export default function Hero() {
             aspectRatio: "1",
             borderRadius: "50%",
             padding: "5px",
-            background: "linear-gradient(135deg, rgba(176,141,87,0.6) 0%, rgba(176,141,87,0.1) 50%, rgba(160,97,74,0.4) 100%)",
-            boxShadow: "0 0 80px rgba(176,141,87,0.18), 0 0 200px rgba(176,141,87,0.08)",
+            background: "linear-gradient(135deg, rgba(99,102,241,0.7) 0%, rgba(168,85,247,0.3) 50%, rgba(249,115,22,0.5) 100%)",
+            boxShadow: "0 0 80px rgba(99,102,241,0.25), 0 0 200px rgba(99,102,241,0.10)",
             position: "relative",
           }}>
             {/* Inner circle clipping frame */}
@@ -276,7 +276,7 @@ export default function Hero() {
               height: "100%",
               borderRadius: "50%",
               overflow: "hidden",
-              border: "2px solid rgba(176,141,87,0.25)",
+              border: "2px solid rgba(99,102,241,0.20)",
             }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -295,7 +295,7 @@ export default function Hero() {
               position: "absolute",
               inset: 5,
               borderRadius: "50%",
-              boxShadow: "inset 0 0 60px rgba(26,20,16,0.45)",
+              boxShadow: "inset 0 0 60px rgba(6,9,15,0.55)",
               pointerEvents: "none",
             }} />
           </div>
@@ -309,7 +309,7 @@ export default function Hero() {
         style={{
           position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)",
           display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-          color: "rgba(176,141,87,0.6)",
+          color: "rgba(129,140,248,0.6)",
           fontSize: 8, fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase",
           fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
           animation: "fadeUp 1.2s 1.6s both",
