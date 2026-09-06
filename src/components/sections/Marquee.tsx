@@ -16,12 +16,46 @@ const ITEMS = [
 export default function Marquee() {
   const doubled = [...ITEMS, ...ITEMS];
   return (
-    <div className="py-3.5 overflow-hidden" style={{ background: "var(--surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
+    <div
+      className="overflow-hidden"
+      style={{
+        background: "var(--surface)",
+        borderTop: "1px solid var(--border)",
+        borderBottom: "1px solid var(--border)",
+        padding: "12px 0",
+        position: "relative",
+      }}
+    >
+      {/* Fade edges */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
+        background: "linear-gradient(90deg, var(--surface) 0%, transparent 8%, transparent 92%, var(--surface) 100%)",
+      }} />
       <div className="flex animate-marquee">
         {doubled.map((item, i) => (
-          <span key={i} className="flex items-center whitespace-nowrap px-6 text-[13px]" style={{ color: "#475569" }}>
+          <span
+            key={i}
+            className="flex items-center whitespace-nowrap"
+            style={{
+              padding: "0 28px",
+              fontSize: 12, fontWeight: 600,
+              color: "var(--text-2)",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              letterSpacing: "0.04em",
+            }}
+          >
             {item}
-            <span className="inline-block w-1 h-1 rounded-full mx-6" style={{ background: "rgba(99,102,241,0.4)" }} />
+            <span
+              aria-hidden
+              style={{
+                display: "inline-block",
+                width: 4, height: 4, borderRadius: "50%",
+                marginLeft: 28,
+                background: "var(--in)",
+                opacity: 0.5,
+                flexShrink: 0,
+              }}
+            />
           </span>
         ))}
       </div>
