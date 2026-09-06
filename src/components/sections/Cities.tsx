@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { MapPin, ArrowRight, Users } from "lucide-react";
 import { CITIES } from "@/lib/data";
 import AnimateIn from "@/components/ui/AnimateIn";
@@ -151,32 +152,32 @@ export default function Cities() {
                 </div>
 
                 <div style={{ display: "flex", gap: 10 }}>
-                  <button style={{
+                  <Link href={`/cities/${city.slug}`} style={{
                     display: "inline-flex", alignItems: "center", gap: 8,
                     padding: "11px 22px", borderRadius: 999,
                     background: pal.accent, color: "#fff",
                     fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                     fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                    border: "none", cursor: "pointer",
+                    textDecoration: "none",
                     transition: "opacity 0.2s, transform 0.2s",
                   }}
                     onMouseEnter={e => (e.currentTarget.style.opacity = "0.88")}
                     onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
                   >
                     {city.name} Guide <ArrowRight style={{ width: 12, height: 12 }} />
-                  </button>
-                  <button style={{
+                  </Link>
+                  <Link href={`/events?city=${city.slug}`} style={{
                     display: "inline-flex", alignItems: "center", gap: 8,
                     padding: "11px 22px", borderRadius: 999,
                     background: "var(--surface-2)",
                     color: "var(--text-2)",
                     fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
                     fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                    border: "1px solid var(--border-2)", cursor: "pointer",
+                    border: "1px solid var(--border-2)", textDecoration: "none",
                     transition: "border-color 0.2s, color 0.2s",
                   }}>
                     Events in {city.name}
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
