@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, CSSProperties, ReactNode } from "react";
+import React, { useEffect, useRef, CSSProperties, ReactNode } from "react";
 
 type Direction = "left" | "right" | "up" | "none";
 
@@ -12,7 +12,7 @@ interface Props {
   distance?: number;    // px
   className?: string;
   style?: CSSProperties;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
   threshold?: number;   // 0–1
 }
 
@@ -67,6 +67,6 @@ export default function AnimateIn({
     return () => observer.disconnect();
   }, [delay, duration, translate, threshold]);
 
-  // @ts-expect-error dynamic tag
-  return <Tag ref={ref} className={className} style={style}>{children}</Tag>;
+  const El = Tag as React.ElementType;
+  return <El ref={ref} className={className} style={style}>{children}</El>;
 }
