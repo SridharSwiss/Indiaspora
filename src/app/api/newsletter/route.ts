@@ -20,22 +20,23 @@ export async function POST(req: NextRequest) {
     // Check if already exists (may be unsubscribed)
     const { data: existing } = await supabase
       .from("newsletter_subscribers")
-      .select("id, status")
+      .select("id, active")
       .eq("email", normalised)
       .maybeSingle();
 
     if (existing) {
-      if (existing.status === "active") {
+      if (existing.active) {
         return NextResponse.json({ ok: true, already: true });
       }
-      // Re-activate unsubscribed or any other non-active status
+      // Re-activate unsubscribed user
       const { error: upErr } = await supabase
         .from("newsletter_subscribers")
         .update({
-          status: "active",
+          active: true,
           consent: true,
           consent_text: CONSENT_TEXT,
           subscribed_at: new Date().toISOString(),
+          unsubscribed_at: null,
         })
         .eq("id", existing.id);
       if (upErr) {
