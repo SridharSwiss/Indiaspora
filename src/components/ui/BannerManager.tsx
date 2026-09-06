@@ -81,16 +81,9 @@ export default function BannerManager() {
         return;
       }
 
-      // Not logged in — show sign-in banner first, then newsletter
+      // Not logged in — show sign-in banner only (no newsletter for anonymous users)
       if (!sigDismissed) {
         setTimeout(() => { if (!cancelled) setActive("signin"); }, 3000);
-        return;
-      }
-
-      // Sign-in already dismissed — show newsletter only if not suppressed
-      const nlDismissed = (() => { try { return !!localStorage.getItem(STORAGE_NL); } catch { return false; } })();
-      if (!nlDismissed) {
-        setTimeout(() => { if (!cancelled) setActive("newsletter"); }, 8000);
       }
     };
 
@@ -109,12 +102,6 @@ export default function BannerManager() {
   const dismissSignin = () => {
     setActive(null);
     try { localStorage.setItem(STORAGE_SIGNIN, "1"); } catch { /* noop */ }
-    // Only queue newsletter if this user is not an active subscriber
-    if (isActiveSubscriberRef.current) return;
-    const nlDismissed = (() => { try { return !!localStorage.getItem(STORAGE_NL); } catch { return false; } })();
-    if (!nlDismissed) {
-      setTimeout(() => setActive("newsletter"), 8000);
-    }
   };
 
   const dismissNewsletter = () => {
