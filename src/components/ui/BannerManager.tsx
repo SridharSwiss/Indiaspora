@@ -61,8 +61,8 @@ export default function BannerManager() {
             .eq("email", user.email)
             .maybeSingle();
           if (cancelled) return;
-          // row exists (subscribed or unsubscribed) → don't show banner
-          if (row) return;
+          // active subscriber → don't show banner; unsubscribed → show (chance to re-subscribe)
+          if (row?.active === true) return;
         }
         setTimeout(() => { if (!cancelled) setActive("newsletter"); }, 8000);
         return;
