@@ -67,6 +67,7 @@ export default function BernPage() {
     <div>
       <PageHeader
         title="Indians in Bern"
+        subtitle="Switzerland's federal capital — home to the Embassy of India, the Aare river loop, and a tight-knit Indian community in the heart of the Bernese Mittelland."
         badge="City Guide"
         gradient="from-green-600 to-emerald-600"
         breadcrumbs={[

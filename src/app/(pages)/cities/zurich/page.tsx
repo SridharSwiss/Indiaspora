@@ -24,6 +24,7 @@ export default function ZurichPage() {
     <div>
       <PageHeader
         title="Indians in Zurich"
+        subtitle="Switzerland's largest city and financial hub — home to the IAGZ, ISKCON Zurich, a vibrant Indian diaspora, and everything from Bahnhofstrasse to the ETH hilltop."
         badge="City Guide"
         gradient="from-amber-500 to-orange-500"
         breadcrumbs={[

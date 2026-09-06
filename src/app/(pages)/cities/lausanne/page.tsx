@@ -241,6 +241,7 @@ export default function LausannePage() {
     <div>
       <PageHeader
         title="Indians in Lausanne"
+        subtitle="Olympic capital on Lake Geneva — home to EPFL, YUVA, and a growing Indian student and professional community on the shores of Lac Léman."
         badge="City Guide"
         gradient="from-purple-600 to-indigo-600"
         breadcrumbs={[

@@ -50,6 +50,7 @@ export default function GenevaPage() {
     <div>
       <PageHeader
         title="Indians in Geneva"
+        subtitle="Switzerland's international city — home to the UN, WHO, and a thriving Indian professional community along the shores of Lac Léman."
         badge="City Guide"
         gradient="from-blue-600 to-cyan-500"
         breadcrumbs={[
