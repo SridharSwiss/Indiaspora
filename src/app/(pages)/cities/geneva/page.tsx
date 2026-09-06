@@ -1,267 +1,371 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
-import { Users, MessageSquare, Building2, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Indians in Geneva — Community Guide",
-  description: "Geneva's Indian community — associations, restaurants, groceries, landmarks, international organisations, transport, and practical tips for Switzerland's diplomatic capital.",
+  description:
+    "Complete guide for Indians in Geneva — registration, utilities, transport, Indian consulate, community, hospitals, and emergency contacts.",
   openGraph: {
     title: "Indians in Geneva — Community Guide | Indiaspora",
-    description: "Geneva's Indian community — associations, restaurants, groceries, landmarks, international organisations, transport, and practical tips for Switzerland's diplomatic capital.",
+    description:
+      "Complete guide for Indians in Geneva — registration, utilities, transport, Indian consulate, community, hospitals, and emergency contacts.",
   },
 };
 
-const highlights = [
-  { label: "Indian Population", value: "~4,000+", icon: <Users style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-  { label: "Language", value: "French", icon: <MessageSquare style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-  { label: "Canton", value: "Geneva (GE)", icon: <Building2 style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-  { label: "Int'l Orgs", value: "UN, WHO, ICRC, WTO", icon: <Globe style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-];
+const sectionHeading: React.CSSProperties = {
+  fontFamily: "'Playfair Display', Georgia, serif",
+  fontSize: "1.4rem",
+  fontWeight: 700,
+  color: "var(--text)",
+  marginBottom: 16,
+};
 
-const associations = [
-  {
-    name: "Indian Association Geneva",
-    full: "",
-    url: "https://www.indianassociationgeneva.com",
-    desc: "One of the oldest Indian associations in Europe, founded 1947. Organises major cultural and social events throughout the year for the Geneva Indian community.",
-  },
-  {
-    name: "Permanent Mission of India to the UN",
-    full: "",
-    url: "https://www.pmindiaun.org",
-    desc: "India's diplomatic presence at the United Nations in Geneva. Handles matters relating to the UN Human Rights Council, WTO, WHO, and other Geneva-based multilateral bodies.",
-  },
-  {
-    name: "Indian Women's Association Geneva",
-    full: "",
-    url: "",
-    desc: "Networking and social support group for Indian women in the greater Geneva area. Organises cultural events, outings, and community support activities.",
-  },
-];
+const bodyText: React.CSSProperties = {
+  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+  fontSize: 13,
+  color: "var(--text-2)",
+  lineHeight: 1.6,
+};
 
-const landmarks = [
-  { name: "Jet d'Eau", url: "https://www.google.com/maps/search/Jet+d'Eau+Geneva", note: "Geneva's iconic 140 m water jet on the lake — one of the world's tallest fountains. Best viewed from the Pont du Mont-Blanc or on a lake boat." },
-  { name: "St. Peter's Cathedral", url: "https://www.google.com/maps/search/Cathedrale+Saint-Pierre+Geneva", note: "12th-century Gothic/Romanesque cathedral in the Old Town where John Calvin preached. Climb the north tower for panoramic views. Free entry to the nave." },
-  { name: "Palais des Nations (UN)", url: "https://www.google.com/maps/search/Palais+des+Nations+Geneva", note: "European headquarters of the United Nations. Guided tours available (book in advance). Free entry to the Ariana Park surroundings." },
-  { name: "CERN", url: "https://www.google.com/maps/search/CERN+Geneva+Switzerland", note: "European Organization for Nuclear Research — world's largest particle physics laboratory and birthplace of the World Wide Web. Free guided tours (advance booking required online)." },
-  { name: "Old Town (Vieille-Ville)", url: "https://www.google.com/maps/search/Vieille-Ville+Geneva", note: "Cobblestone lanes, Place du Bourg-de-Four (Geneva's oldest square), Maison Tavel, antique shops, and the Reformation Wall in Parc des Bastions." },
-  { name: "Bains des Pâquis", url: "https://www.google.com/maps/search/Bains+des+Paquis+Geneva", note: "A public lake bathing pier open year-round. Swimming in summer, sauna and fondue in winter. Beloved Genevan institution in the Pâquis neighbourhood." },
-  { name: "Carouge", url: "https://www.google.com/maps/search/Carouge+Geneva", note: "Bohemian district with Sardinian/Italian architectural heritage, artisan workshops, cafés, and a vibrant Saturday market. Called 'Geneva's village'." },
-  { name: "Flower Clock (L'Horloge Fleurie)", url: "https://www.google.com/maps/search/Flower+Clock+Geneva+English+Garden", note: "In the Jardin Anglais on the lakeside — 6,500 flowers planted in the shape of a clock face, symbolising Geneva's watchmaking heritage." },
-];
+const card: React.CSSProperties = {
+  background: "var(--surface-2)",
+  border: "1px solid var(--border)",
+  borderRadius: 16,
+  padding: "16px 20px",
+};
 
-const intlOrgs = [
-  { name: "United Nations Geneva (UNOG)", note: "Second-largest UN office globally. Hosts the Human Rights Council, Conference on Disarmament, and many treaty bodies." },
-  { name: "World Health Organization (WHO)", note: "Global HQ for public health. A major employer of Indian professionals in health policy and research." },
-  { name: "ICRC", note: "International Committee of the Red Cross. Humanitarian law and operations centre." },
-  { name: "World Trade Organization (WTO)", note: "Global trade body. India plays an active role in WTO negotiations conducted from Geneva." },
-  { name: "UNHCR", note: "UN Refugee Agency. Coordinates international refugee protection from its Geneva HQ." },
-  { name: "WIPO", note: "World Intellectual Property Organization. Important for Indian technology and pharmaceutical IP matters." },
-];
-
-const events = [
-  { name: "L'Escalade", when: "December 11–12", desc: "Geneva's most beloved local festival commemorating the repulsion of a 1602 Savoyard attack. Torchlight processions, marmite chocolatière (chocolate cauldron filled with marzipan vegetables, broken open by the youngest and oldest), and historical parades." },
-  { name: "Geneva Motor Show", when: "March", desc: "Salon International de l'Auto — one of the world's premier automobile exhibitions. Palexpo convention centre. Global debut of new models." },
-  { name: "Fêtes de Genève", when: "Late July / early August", desc: "Geneva's summer festival with open-air concerts, funfair, and a spectacular international fireworks display over Lake Geneva." },
-  { name: "Montreux Jazz Festival", when: "July", desc: "World-famous jazz and music festival 80 km from Geneva. Easy day trip by train along the scenic lake. Free outdoor concerts every evening." },
-  { name: "Geneva International Film Festival (GIFF)", when: "November", desc: "Growing prestige film festival with international and Swiss selections. Screenings at cinemas across the city." },
-  { name: "Jeûne Genevois", when: "September (Thursday)", desc: "Public holiday unique to Canton Geneva. Traditionally a day of fasting; marked by family gatherings and tarte aux pruneaux (Geneva plum tart)." },
-];
-
-const transport = [
-  { mode: "Geneva Airport (GVA)", detail: "One of Switzerland's three major airports, just 3 km from the city centre. Train to Geneva Cornavin station in 6 minutes (free with hotel card or any Swiss train ticket). Direct flights to Mumbai, Delhi, and many major hubs." },
-  { mode: "TPG Trams & Buses", detail: "Transports Publics Genevois operates an extensive tram and bus network across the city and into France. Hotel guests ride free (Tout Genève card). Unireso integrated tickets cover all modes across the canton." },
-  { mode: "LÉMAN EXPRESS (RER)", detail: "Cross-border regional rail network connecting Geneva with French Haute-Savoie (Annemasse, Evian, Annecy). Transformative for cross-border commuters living in France." },
-  { mode: "Lake Boats (CGN)", detail: "Compagnie Générale de Navigation operates steamers connecting Geneva to Lausanne, Montreux, Évian, and Nyon. Swiss Travel Pass valid on most routes." },
-  { mode: "SBB Trains", detail: "From Geneva Cornavin: Lausanne (33 min), Bern (1h40), Zurich (2h45), Basel (3h). TGV to Paris in 3h20." },
-];
-
-const areas = [
-  { name: "Pâquis (Right Bank)", url: "https://www.google.com/maps/search/Paquis+Geneva", note: "Cosmopolitan neighbourhood near the lake and train station. The most diverse area in Geneva — Indian restaurants, South Asian grocery stores, international markets, and vibrant nightlife." },
-  { name: "Eaux-Vives", url: "https://www.google.com/maps/search/Eaux-Vives+Geneva", note: "Residential lakeside neighbourhood on the Left Bank. Several Indian restaurants, Geneva Plage, and the large Parc La Grange with 200+ varieties of roses." },
-  { name: "Grand-Saconnex", url: "https://www.google.com/maps/search/Grand-Saconnex+Geneva", note: "Near the airport; popular with diplomats, international civil servants, and expat families. Many international schools nearby." },
-  { name: "Carouge", url: "https://www.google.com/maps/search/Carouge+Geneva", note: "Charming bohemian village within the city. More affordable than the centre; great for families who enjoy an artsy, village-like atmosphere." },
-];
-
-const restaurants = [
-  { name: "Taj Mahal Restaurant Geneva", url: "https://www.google.com/maps/search/Taj+Mahal+Restaurant+Geneva", note: "Long-established Indian restaurant in central Geneva. Classic North Indian curries, tandoori dishes, and biryanis." },
-  { name: "Indian Restaurants in Pâquis", url: "https://www.google.com/maps/search/Indian+restaurants+Paquis+Geneva", note: "Several Indian and South Asian restaurants are concentrated in the Pâquis neighbourhood. The area's diversity makes it the hub for Indian, Pakistani, and Sri Lankan cuisine in Geneva." },
-  { name: "Woodlands Geneva", url: "https://www.google.com/maps/search/Woodlands+vegetarian+restaurant+Geneva", note: "South Indian vegetarian restaurant. Known for dosas, thalis, and South Indian meals in Geneva." },
-];
-
-const groceries = [
-  { name: "Indian & South Asian Groceries, Pâquis", url: "https://www.google.com/maps/search/Indian+grocery+store+Geneva+Paquis", address: "Pâquis neighbourhood, Geneva", note: "Multiple South Asian grocery stores in the Pâquis area carry Indian spices, lentils, rice varieties, frozen foods, and Indian brands." },
-  { name: "Asian Supermarkets, Geneva Centre", url: "https://www.google.com/maps/search/Asian+supermarket+Geneva", address: "Central Geneva", note: "Several Asian supermarkets throughout the city carry a broad range of Indian ingredients including fresh produce, dairy, and ready-to-cook items." },
-];
-
-const practical = [
-  { title: "Consulate General of India", detail: "Located at Chemin du Champ-d'Anier 17, 1209 Geneva. Handles OCI, passport, visa, and emergency consular services for Indians in the French-speaking part of Switzerland." },
-  { title: "Residence Registration", detail: "Register at the Office cantonal de la population et des migrations (OCPM) within 8 days of arrival. Required for all residents including EU nationals." },
-  { title: "Health Insurance", detail: "Mandatory under the LAMal system from day 1. Apply within 3 months (coverage backdates). Geneva has higher premiums than most Swiss cantons. Compare at priminfo.ch or comparis.ch." },
-  { title: "Language", detail: "French is essential for daily life and integration. English is widely spoken in the international sector but not for administration, healthcare, or schools. Free French courses are offered by several Geneva communes." },
-  { title: "Cross-border Living", detail: "Many Indian families live in France (Annemasse, Ferney-Voltaire, Saint-Julien-en-Genevois) for significantly lower housing costs and commute into Geneva. Requires a frontalier work permit and different tax treatment." },
-  { title: "Cost of Living", detail: "Geneva is consistently among the world's three most expensive cities. Cross-border shopping in France (Annemasse is 10 min by tram) can reduce grocery and daily costs by 20–40%." },
-];
+const subLabel: React.CSSProperties = {
+  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+  fontSize: 13,
+  fontWeight: 600,
+  color: "var(--text)",
+  marginBottom: 4,
+  marginTop: 12,
+};
 
 export default function GenevaPage() {
   return (
     <div>
       <PageHeader
         title="Indians in Geneva"
-        subtitle="Geneva is Switzerland's international capital — home to the UN, WHO, ICRC, and over 40 international organisations, with a thriving Indian diplomatic, professional, and student community."
         badge="City Guide"
-        gradient="from-red-500 to-rose-600"
+        gradient="from-blue-600 to-cyan-500"
         breadcrumbs={[
           { label: "Cities", href: "/cities" },
           { label: "Geneva" },
         ]}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        <div style={{ marginBottom: -32 }}>
-          <Image
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Jet_d%27eau_Geneve.jpg/1280px-Jet_d%27eau_Geneve.jpg"
-            alt="Geneva lakeside with the Jet d'Eau fountain"
-            width={1200}
-            height={400}
-            unoptimized
-            className="w-full rounded-2xl object-cover"
-            style={{ height: 280, objectFit: "cover" }}
-          />
-        </div>
+      {/* Hero Image */}
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "24px 16px 0" }}>
+        <Image
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Jet_d%27eau_Geneve.jpg/1280px-Jet_d%27eau_Geneve.jpg"
+          alt="Geneva Jet d'Eau fountain"
+          width={1200}
+          height={400}
+          unoptimized
+          style={{ width: "100%", height: 280, objectFit: "cover", borderRadius: 16 }}
+        />
+      </div>
 
-        <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {highlights.map((h) => (
-            <div key={h.label} className="glass rounded-2xl p-4 text-center">
-              <div className="flex justify-center mb-1">{h.icon}</div>
-              <p className="text-base font-bold" style={{ color: "var(--text)" }}>{h.value}</p>
-              <p className="text-xs/50" style={{ color: "var(--text)" }}>{h.label}</p>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "32px 16px 64px", display: "flex", flexDirection: "column", gap: 48 }}>
+
+        {/* SECTION 1 — Quick Actions */}
+        <section>
+          <h2 style={sectionHeading}>Quick Actions</h2>
+          <style>{`
+            .geneva-quick-grid {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 12px;
+            }
+            @media (min-width: 640px) {
+              .geneva-quick-grid {
+                grid-template-columns: repeat(4, 1fr);
+              }
+            }
+          `}</style>
+          <div className="geneva-quick-grid">
+            {[
+              { emoji: "🏛️", label: "Register Address", sub: "OCPM — ge.ch", href: "https://www.ge.ch/population-genevoise-population/annonce-arrivee-commune" },
+              { emoji: "🚎", label: "TPG Transport", sub: "Trams & buses", href: "https://www.tpg.ch/en" },
+              { emoji: "🇮🇳", label: "Indian Consulate", sub: "cgigeneva.gov.in", href: "https://www.cgigeneva.gov.in" },
+              { emoji: "💻", label: "Canton Services", sub: "ge.ch", href: "https://www.ge.ch" },
+            ].map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  ...card,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  gap: 6,
+                  padding: "20px 12px",
+                  textDecoration: "none",
+                  transition: "opacity 0.15s",
+                }}
+              >
+                <span style={{ fontSize: 28 }}>{item.emoji}</span>
+                <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 700, color: "var(--text)" }}>{item.label}</span>
+                <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 11, color: "var(--text-2)" }}>{item.sub}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 2 — Newcomer Track */}
+        <section style={{ ...card, borderLeft: "4px solid #f97316" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+            <span style={{
+              background: "rgba(249,115,22,0.12)",
+              color: "#f97316",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              padding: "3px 10px",
+              borderRadius: 20,
+              textTransform: "uppercase",
+            }}>For Newcomers</span>
+          </div>
+          <h2 style={{ ...sectionHeading, marginBottom: 20 }}>Settling In</h2>
+
+          {/* Registration */}
+          <div style={{ marginBottom: 24 }}>
+            <p style={subLabel}>Registration — OCPM</p>
+            <div style={{ ...card, marginTop: 8 }}>
+              <p style={bodyText}><strong style={{ color: "var(--text)" }}>Office:</strong> Office cantonal de la population et des migrations (OCPM) — <a href="https://www.ge.ch/population" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>ge.ch/population</a></p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>Deadline:</strong> Within <strong style={{ color: "#f97316" }}>8 days of arrival</strong> — stricter than most Swiss cantons.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>Online form:</strong> <a href="https://www.ge.ch/s-annoncer-dans-commune-genevoise" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>ge.ch/s-annoncer-dans-commune-genevoise</a></p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>Documents needed:</strong> Valid passport/ID, signed lease or accommodation proof, residence permit (L/B/C/G/F), passport photos, birth/marriage certificates for families.</p>
             </div>
-          ))}
-        </section>
+          </div>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Indian Associations</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Source: Embassy of India, Berne — Indian Associations directory</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {associations.map((a) => {
-              const href = a.url || `https://www.google.com/search?q=${encodeURIComponent(a.name + " Geneva")}`;
-              return (
-                <a key={a.name} href={href} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                  <h3 className="text-base font-semibold mb-0.5 group-hover:text-red-400 transition-colors" style={{ color: "var(--text)" }}>{a.name}</h3>
-                  {a.full && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{a.full}</p>}
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{a.desc}</p>
+          {/* Utilities */}
+          <div style={{ marginBottom: 24 }}>
+            <p style={subLabel}>Utilities</p>
+            <div style={{ ...card, marginTop: 8 }}>
+              <p style={bodyText}><strong style={{ color: "var(--text)" }}>SIG — <a href="https://www.sig-ge.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>sig-ge.ch</a></strong> — Services Industriels de Genève handles electricity, water, gas, and heating for all of Geneva. One-stop setup.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>Internet:</strong> <a href="https://www.swisscom.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>Swisscom</a>, <a href="https://www.sunrise.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>Sunrise</a>, <a href="https://www.salt.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>Salt</a> — compare at <a href="https://www.comparis.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>comparis.ch</a>.</p>
+            </div>
+          </div>
+
+          {/* Transport */}
+          <div style={{ marginBottom: 24 }}>
+            <p style={subLabel}>Public Transport</p>
+            <div style={{ ...card, marginTop: 8 }}>
+              <p style={bodyText}><strong style={{ color: "var(--text)" }}>TPG — <a href="https://www.tpg.ch/en" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>tpg.ch</a></strong> — Transports Publics Genevois: trams, buses, trolleybuses across Geneva.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>unireso — <a href="https://www.unireso.com" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>unireso.com</a></strong> — Regional network covering Geneva and surrounding French territory.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>TPG App:</strong> Tickets, journey planner, real-time departures.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}>Geneva is very walkable; many enjoy the free electric Mouettes boat taxis on Lake Geneva.</p>
+            </div>
+          </div>
+
+          {/* Education */}
+          <div style={{ marginBottom: 24 }}>
+            <p style={subLabel}>Education &amp; Universities</p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 10, marginTop: 8 }}>
+              {[
+                { name: "University of Geneva (UNIGE)", url: "https://www.unige.ch", note: "~17,000 students; medicine, law, science, international relations." },
+                { name: "Graduate Institute", url: "https://www.graduateinstitute.ch", note: "International affairs; attracts Indian diplomatic and policy students." },
+                { name: "Webster University Geneva", url: "https://www.webstergeneva.ch", note: "English-medium; popular with international families." },
+                { name: "Ecolint (Geneva International School)", url: "https://www.ecolint.ch", note: "IB curriculum; expat-friendly." },
+              ].map((u) => (
+                <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" style={{ ...card, textDecoration: "none", display: "block" }}>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>{u.name}</p>
+                  <p style={bodyText}>{u.note}</p>
                 </a>
-              );
-            })}
+              ))}
+            </div>
+          </div>
+
+          {/* Making Friends */}
+          <div>
+            <p style={subLabel}>Making Friends &amp; Expat Groups</p>
+            <div style={{ ...card, marginTop: 8 }}>
+              <p style={bodyText}><strong style={{ color: "var(--text)" }}>Indian Association Geneva (IAG) — <a href="https://www.indianassociationgeneva.com" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>indianassociationgeneva.com</a></strong> — Cultural events, Diwali, Holi, festivals year-round.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>InterNations Geneva</strong> — Large expat meetup community with regular events.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>UN / CERN / WHO staff networks</strong> — Many Indians work at UN Geneva, CERN, WHO, and WTO; professional networking via LinkedIn is common.</p>
+            </div>
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Neighbourhoods Popular with Indians</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {areas.map((n) => (
-              <a key={n.name} href={n.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold text-red-400 mb-1 group-hover:text-red-300 transition-colors">{n.name}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{n.note}</p>
-              </a>
-            ))}
+        {/* SECTION 3 — Resident Track */}
+        <section style={{ ...card, borderLeft: "4px solid #10b981" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+            <span style={{
+              background: "rgba(16,185,129,0.12)",
+              color: "#10b981",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              padding: "3px 10px",
+              borderRadius: 20,
+              textTransform: "uppercase",
+            }}>Community &amp; Daily Life</span>
+          </div>
+          <h2 style={{ ...sectionHeading, marginBottom: 20 }}>Living in Geneva</h2>
+
+          {/* Indian Community */}
+          <div style={{ marginBottom: 24 }}>
+            <p style={subLabel}>Indian Community</p>
+            <div style={{ ...card, marginTop: 8 }}>
+              <p style={bodyText}><strong style={{ color: "var(--text)" }}>Indian Consulate General Geneva — <a href="https://www.cgigeneva.gov.in" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>cgigeneva.gov.in</a></strong> — Handles OCI, passport, visa, and attestation for Western Switzerland (Romandy + Ticino); appointment-based.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>Indian Association Geneva (IAG) — <a href="https://www.indianassociationgeneva.com" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>indianassociationgeneva.com</a></strong> — Festivals, cultural programs, and community networking.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}>Many Indians are employed at CERN, WHO, WTO, UN Geneva, and international NGOs, making Geneva one of the most professionally connected Indian communities in Europe.</p>
+            </div>
+          </div>
+
+          {/* City Resources */}
+          <div style={{ marginBottom: 24 }}>
+            <p style={subLabel}>City Resources</p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 10, marginTop: 8 }}>
+              {[
+                { label: "City of Geneva", url: "https://www.geneve.ch", note: "geneve.ch — city services, events, local administration." },
+                { label: "Canton Geneva", url: "https://www.ge.ch", note: "ge.ch — taxes, permits, official forms, OCPM." },
+              ].map((r) => (
+                <a key={r.label} href={r.url} target="_blank" rel="noopener noreferrer" style={{ ...card, textDecoration: "none", display: "block" }}>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>{r.label}</p>
+                  <p style={bodyText}>{r.note}</p>
+                </a>
+              ))}
+            </div>
+            <p style={{ ...bodyText, marginTop: 10 }}>Geneva is bilingual in practice but the official language is French — learning French is strongly recommended for integration.</p>
+          </div>
+
+          {/* Civic Engagement */}
+          <div>
+            <p style={subLabel}>Civic Engagement</p>
+            <div style={{ ...card, marginTop: 8 }}>
+              <p style={bodyText}><strong style={{ color: "var(--text)" }}>Neighbourhood councils (Conseils municipaux de quartier)</strong> — Geneva has 8 districts; residents can participate in local decision-making.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>Volunteering:</strong> <a href="https://www.caritas-geneve.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>Caritas Genève</a>, CICR volunteers, and Croix-Rouge Geneva all welcome volunteers.</p>
+              <p style={{ ...bodyText, marginTop: 6 }}><strong style={{ color: "var(--text)" }}>City council meetings (Conseil Municipal):</strong> Public; schedule at <a href="https://www.geneve.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>geneve.ch</a>.</p>
+            </div>
           </div>
         </section>
 
+        {/* SECTION 4 — Amenities & Recreation */}
         <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Landmarks & Attractions</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Must-see places in Geneva — from the iconic lake to world diplomacy</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {landmarks.map((l) => (
-              <a key={l.name} href={l.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold mb-2 group-hover:text-red-400 transition-colors" style={{ color: "var(--text)" }}>{l.name}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{l.note}</p>
-              </a>
-            ))}
-          </div>
-        </section>
+          <h2 style={sectionHeading}>Amenities &amp; Recreation</h2>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>International Organisations</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Geneva hosts more international organisations than any other city in the world</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {intlOrgs.map((o) => (
-              <div key={o.name} className="glass rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{o.name}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{o.note}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Annual Events & Festivals</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Geneva's calendar — plan ahead especially for December and July</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {events.map((e) => (
-              <div key={e.name} className="glass rounded-2xl p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>{e.name}</h3>
-                  <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(239,68,68,0.15)", color: "#f87171" }}>{e.when}</span>
+          {/* Parks */}
+          <div style={{ marginBottom: 20 }}>
+            <p style={subLabel}>Parks &amp; Nature</p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 10, marginTop: 8 }}>
+              {[
+                { name: "Parc des Bastions", note: "Central park with giant chess sets and the Reformation Wall in university gardens." },
+                { name: "Jardin Anglais", note: "Lakeside park home to the famous Flower Clock (Horloge Fleurie)." },
+                { name: "Bois de la Bâtie", note: "Forested park with small animal enclosure and BBQ areas." },
+                { name: "Lac Léman (Lake Geneva)", note: "Swimming at Plage des Eaux-Vives and Genève-Plage in summer." },
+                { name: "Salève Mountain", note: "Cable car from Veyrier (France side); hiking, paragliding, panoramic Alps views." },
+              ].map((p) => (
+                <div key={p.name} style={card}>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>{p.name}</p>
+                  <p style={bodyText}>{p.note}</p>
                 </div>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{e.desc}</p>
+              ))}
+            </div>
+          </div>
+
+          {/* Health & Safety */}
+          <div style={{ marginBottom: 20 }}>
+            <p style={subLabel}>Health &amp; Safety</p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 10, marginTop: 8 }}>
+              {[
+                { name: "HUG — Hôpitaux Universitaires de Genève", url: "https://www.hug.ch", note: "Main university hospital with 24/7 ER. Rue Gabrielle-Perret-Gentil 4, 1211 Geneva." },
+                { name: "Hôpital de la Tour", url: "https://www.latour.ch", note: "Private hospital with 24/7 ER; popular with expats, multilingual staff." },
+                { name: "Police cantonale", url: "https://www.police.ge.ch", note: "police.ge.ch — Geneva cantonal police services." },
+              ].map((h) => (
+                <a key={h.name} href={h.url} target="_blank" rel="noopener noreferrer" style={{ ...card, textDecoration: "none", display: "block" }}>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>{h.name}</p>
+                  <p style={bodyText}>{h.note}</p>
+                </a>
+              ))}
+            </div>
+            <p style={{ ...bodyText, marginTop: 10 }}>Late-night pharmacy: Pharmacie Principale near Cornavin station (extended hours).</p>
+          </div>
+
+          {/* Cultural & Sports */}
+          <div>
+            <p style={subLabel}>Cultural &amp; Sports</p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 10, marginTop: 8 }}>
+              {[
+                { name: "Musée d'Art et d'Histoire (MAH)", url: "https://www.mahgeneve.ch", note: "Free entry on first Sunday of each month." },
+                { name: "Palais des Nations", url: "https://www.ungeneva.org", note: "UN Geneva — guided tours available, book in advance." },
+                { name: "MAMCO", url: "https://www.mamco.ch", note: "Contemporary art museum in central Geneva." },
+                { name: "Piscine des Vernets", url: "https://www.geneve.ch", note: "Olympic indoor swimming pool." },
+                { name: "Bibliothèque de Genève (BGE)", url: "https://www.bge-geneve.ch", note: "Main public library with extensive collections." },
+              ].map((c) => (
+                <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" style={{ ...card, textDecoration: "none", display: "block" }}>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>{c.name}</p>
+                  <p style={bodyText}>{c.note}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 5 — Emergency & Contacts */}
+        <section>
+          <h2 style={sectionHeading}>Emergency &amp; Contacts</h2>
+
+          {/* Emergency numbers */}
+          <div style={{ marginBottom: 20 }}>
+            <p style={subLabel}>Swiss Emergency Numbers</p>
+            <div style={{ ...card, marginTop: 8 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 10 }}>
+                {[
+                  { num: "117", label: "Police" },
+                  { num: "118", label: "Fire" },
+                  { num: "144", label: "Ambulance" },
+                  { num: "1414", label: "REGA Helicopter" },
+                  { num: "145", label: "Poison Control" },
+                  { num: "143", label: "Emotional Support" },
+                  { num: "112", label: "European Emergency" },
+                ].map((e) => (
+                  <div key={e.num} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={{
+                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                      fontSize: 18,
+                      fontWeight: 800,
+                      color: "#ef4444",
+                      minWidth: 48,
+                    }}>{e.num}</span>
+                    <span style={bodyText}>{e.label}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+              <p style={{ ...bodyText, marginTop: 12, color: "var(--text-3)", fontSize: 12 }}>All numbers are the same nationwide across Switzerland.</p>
+            </div>
+          </div>
+
+          {/* Geneva contacts */}
+          <div>
+            <p style={subLabel}>Geneva Key Contacts</p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 10, marginTop: 8 }}>
+              {[
+                { name: "Police cantonale Geneva", url: "https://www.police.ge.ch", detail: "police.ge.ch" },
+                { name: "City Hall (Hôtel de Ville)", url: "https://www.geneve.ch", detail: "Rue de l'Hôtel-de-Ville 2, 1204 Geneva — geneve.ch" },
+                { name: "Indian Consulate General Geneva", url: "https://www.cgigeneva.gov.in", detail: "cgigeneva.gov.in — OCI, passport, visa, attestation" },
+                { name: "Indian Embassy Berne", url: "https://www.indembassybern.gov.in", detail: "indembassybern.gov.in — overall diplomatic mission" },
+              ].map((c) => (
+                <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" style={{ ...card, textDecoration: "none", display: "block" }}>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>{c.name}</p>
+                  <p style={bodyText}>{c.detail}</p>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Getting Around</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Hotel guests ride public transport free — Geneva's Tout Genève card covers all trams and buses</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {transport.map((t) => (
-              <div key={t.mode} className="glass rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{t.mode}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{t.detail}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {restaurants.map((r) => (
-              <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold mb-1 group-hover:text-red-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{r.note}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Grocery Stores</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {groceries.map((g) => (
-              <a key={g.name} href={g.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold mb-0.5 group-hover:text-red-400 transition-colors" style={{ color: "var(--text)" }}>{g.name}</h3>
-                <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{g.address}</p>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{g.note}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Practical Tips for Indians</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Essentials for settling into Geneva</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {practical.map((p) => (
-              <div key={p.title} className="glass rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{p.title}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{p.detail}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </div>
   );

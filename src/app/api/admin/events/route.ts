@@ -170,14 +170,14 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { rawText, imageUrl, submittedBy } = body;
+    const { rawText, imageUrl, submittedBy, eventDate } = body;
 
     if (!rawText?.trim()) {
       return NextResponse.json({ error: "Event description is required" }, { status: 400 });
     }
 
     const title       = extractTitle(rawText);
-    const date        = extractDate(rawText);
+    const date        = eventDate ? formatIsoDate(eventDate) : extractDate(rawText);
     const location    = extractLocation(rawText);
     const category    = detectCategory(rawText);
     const organiser   = extractOrganiser(rawText);

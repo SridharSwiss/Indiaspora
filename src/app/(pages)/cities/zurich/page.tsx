@@ -1,112 +1,22 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
-import { Users, MessageSquare, Building2, Briefcase, Train, Cloud, GraduationCap, Calendar } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Indians in Zurich — Community Guide",
-  description: "Zurich's Indian community — associations, neighbourhoods, restaurants, grocery stores, landmarks, transport, and official resources for Switzerland's financial capital.",
+  description: "Complete guide for Indians in Zurich — registration, utilities, transport, Indian community, hospitals, parks, and emergency contacts.",
   openGraph: {
     title: "Indians in Zurich — Community Guide | Indiaspora",
-    description: "Zurich's Indian community — associations, neighbourhoods, restaurants, grocery stores, landmarks, transport, and official resources for Switzerland's financial capital.",
+    description: "Complete guide for Indians in Zurich — registration, utilities, transport, Indian community, hospitals, parks, and emergency contacts.",
   },
 };
 
-const highlights = [
-  { label: "Indian Population", value: "~10,000+", icon: <Users style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-  { label: "Language", value: "Swiss German", icon: <MessageSquare style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-  { label: "Canton", value: "Zürich", icon: <Building2 style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-  { label: "Key Employers", value: "UBS, Google, IBM, ETH", icon: <Briefcase style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-];
-
-const associations = [
-  {
-    name: "IAGZ",
-    full: "Indian Association of Greater Zurich",
-    url: "https://iagz.ch",
-    desc: "Founded 2010, IAGZ is the primary Indian social association in the Greater Zurich area with 100+ member families. Organises Holi, Dandiya, Diwali, family picnics, and community meetups across age groups and regions of India.",
-  },
-  {
-    name: "InSAZ",
-    full: "Indian Students Association of Zurich",
-    url: "https://blogs.ethz.ch/insaz/",
-    desc: "Student association for Indians at ETH Zurich and the University of Zurich. Organises cultural events, academic networking, and orientation support for new Indian students.",
-  },
-  {
-    name: "TASC",
-    full: "Tamil Association of Switzerland",
-    url: "https://tasc.ch",
-    desc: "Active Tamil cultural and social association serving the Tamil community across Switzerland, with a strong presence in the Zurich region.",
-  },
-  {
-    name: "Gujarati Samaj Zurich",
-    full: "",
-    url: "",
-    desc: "Cultural events and networking for the Gujarati-speaking community in the Zurich region.",
-  },
-];
-
-const neighbourhoods = [
-  { name: "Oerlikon (District 11)", url: "https://www.google.com/maps/search/Oerlikon+Zurich", note: "Popular with tech and finance professionals. Well-connected by tram and S-Bahn; home to Saravanaa Bhavan South Indian restaurant. Google and ABB offices nearby." },
-  { name: "Schlieren & Dietikon", url: "https://www.google.com/maps/search/Schlieren+Zurich", note: "Western suburbs with more affordable rents, good Indian grocery access, and a growing Indian family community. Easy S-Bahn links into the city." },
-  { name: "Districts 3, 4 & 5 (Zürich West)", url: "https://www.google.com/maps/search/District+4+Zurich+Langstrasse", note: "Central city districts; vibrant and walkable, higher rents but home to several Indian restaurants and the Aggarwal grocery store on Kernstrasse." },
-  { name: "Winterthur", url: "https://www.google.com/maps/search/Winterthur+Switzerland", note: "30 minutes by S-Bahn; a growing Indian community, noticeably more affordable than Zurich city proper. Good schools and parks for families." },
-];
-
-const landmarks = [
-  { name: "Grossmünster", url: "https://www.google.com/maps/search/Grossmünster+Zurich", note: "Zurich's iconic twin-towered Romanesque cathedral dating to the 12th century. Climb the Karlsturm tower for panoramic views of the old town and Lake Zurich." },
-  { name: "Fraumünster", url: "https://www.google.com/maps/search/Fraumünster+Zurich", note: "Abbey church on the west bank of the Limmat, celebrated for its five stunning stained-glass windows by Marc Chagall (1970) and Giacometti (1945)." },
-  { name: "Lake Zurich (Zürichsee)", url: "https://www.google.com/maps/search/Lake+Zurich", note: "The centrepiece of the city. In summer, swim at Seebad Enge or Strandbad Mythenquai. Sunset lake cruises are popular with families and visitors." },
-  { name: "Uetliberg", url: "https://www.google.com/maps/search/Uetliberg+Zurich", note: "Zurich's local mountain (871 m). Reachable in 20 min by train from HB. Hiking trails, an observation tower, and the famous Planetenweg (Planet Trail). Spectacular city views." },
-  { name: "Kunsthaus Zürich", url: "https://www.google.com/maps/search/Kunsthaus+Zurich", note: "Switzerland's largest art museum, expanded in 2021. Houses Giacometti sculptures, Monet, Picasso, Munch, and a major Impressionist collection." },
-  { name: "Bahnhofstrasse", url: "https://www.google.com/maps/search/Bahnhofstrasse+Zurich", note: "One of the world's most exclusive shopping streets, 1.4 km from Hauptbahnhof to the lake. Sprüngli chocolates, Swiss watch boutiques, and department stores." },
-  { name: "Niederdorf (Old Town)", url: "https://www.google.com/maps/search/Niederdorf+Zurich+Altstadt", note: "Medieval old town on the east bank of the Limmat. Cobblestone lanes, guild houses, independent boutiques, cafés, and the Sunday flea market at Bürkliplatz." },
-  { name: "Zurich Zoo", url: "https://www.google.com/maps/search/Zoo+Zurich", note: "One of Europe's finest zoos, home to Masoala Rainforest Hall — the largest tropical hall of any zoo in Europe. Excellent for families with children." },
-];
-
-const events = [
-  { name: "Street Parade", when: "August", desc: "Europe's largest techno music parade along the lake. Over 1 million participants. Book accommodation many months in advance." },
-  { name: "Zürifäscht", when: "Every 3 years (July)", desc: "Zurich's largest free public festival with a massive fireworks display over the lake. Next in 2026." },
-  { name: "Sechseläuten", when: "April", desc: "Traditional spring festival where guild members in historical dress parade through the city and burn a cotton snowman (Böögg) at 6 pm to predict summer weather." },
-  { name: "Zurich Film Festival", when: "September/October", desc: "One of Europe's leading film festivals, held across several cinemas in the city. Red-carpet premieres and international directors." },
-  { name: "Christmas Markets", when: "December", desc: "Markets at Bellevue, Hauptbahnhof (inside the station), and Wienachtsdorf on Sechseläutenplatz. The HB market features a giant Christmas tree." },
-  { name: "Zurich Jazz Festival", when: "June", desc: "Free outdoor concerts on Münsterhof and other city squares. International and Swiss jazz artists." },
-];
-
-const transport = [
-  { mode: "ZVV Trams & Buses", detail: "Zurich's ZVV network covers the city and canton. Zone 110 covers the city; Zone 121 extends to Winterthur. Day passes (Tageskarte) offer unlimited travel. A half-fare card (Halbtax) is worth buying for any frequent traveller." },
-  { mode: "S-Bahn (Suburban Rail)", detail: "Runs from Hauptbahnhof (HB) to suburbs every 15–30 min. Key lines: S3/S9 to Uster, S8 to Airport, S1/S16 to Winterthur, S2/S10 to Dietikon/Schlieren." },
-  { mode: "ZRH Airport", detail: "Zurich Airport is 10 min from HB by Airport Train (every 10 min). It is Switzerland's largest international hub with direct flights to Mumbai, Delhi, and other Indian metros." },
-  { mode: "Cycling", detail: "Zurich has an extensive cycle network. Züri Velo (public bike rental) stations are across the city. The lake and Limmat riverside cycle routes are excellent." },
-];
-
-const universities = [
-  { name: "ETH Zurich", url: "https://ethz.ch", note: "Ranked consistently in the world's top 10 universities. Strong in engineering, computer science, and natural sciences. Hosts many Indian PhD students and researchers." },
-  { name: "University of Zurich (UZH)", url: "https://www.uzh.ch/en.html", note: "Switzerland's largest university with 28,000 students. Strong medicine, law, and social science faculties." },
-  { name: "ZHAW", url: "https://www.zhaw.ch/en/", note: "Zurich University of Applied Sciences. Popular for engineering, business, and applied science programmes. Campuses in Winterthur and Wädenswil." },
-];
-
-const restaurants = [
-  { name: "Tadka", url: "https://www.google.com/maps/search/Tadka+restaurant+Zurich", note: "North Indian curries, tandoori, and Thali meals in District 5 (Zürich West). Known for Kerala-style preparations. Casual and community-loved." },
-  { name: "Malabar", url: "https://www.google.com/maps/search/Malabar+restaurant+Zurich+South+Indian", note: "Elegant South Indian restaurant, praised for its traditional recipes and quality of ingredients." },
-  { name: "Bombay Karachi", url: "https://www.google.com/maps/search/Bombay+Karachi+Zurich", note: "Indian and Pakistani cuisine in central Zurich. Reliable halal options and Karachi-style biryani." },
-  { name: "New Bombay", url: "https://www.google.com/maps/search/New+Bombay+restaurant+Zurich", note: "One of Zurich's longest-running Indian restaurants. Menu spans North and South Indian classics." },
-  { name: "Saravanaa Bhavan", url: "https://www.saravanabhavan.com", note: "Legendary Chennai-based vegetarian chain with a Zurich branch in Oerlikon. South Indian thalis, dosas, and filter coffee." },
-];
-
-const groceries = [
-  { name: "Aggarwal", url: "https://www.google.com/maps/search/Aggarwal+Indian+Grocery+Kernstrasse+Zurich", address: "Kernstrasse 27, 8004 Zürich", note: "Fresh Indian produce, spices, pickles, dairy, and household products. Also has branches in Bern, Basel, and Baden. Mon–Fri 9am–8pm, Sat 9am–7pm." },
-  { name: "Indiasupermarkt.ch", url: "https://indiasupermarkt.ch", address: "Josefstrasse 91, 8005 Zürich", note: "Wide selection of Indian and Asian groceries, spices, and cosmetics. Also ships across Switzerland." },
-  { name: "Namastey India", url: "https://www.google.com/maps/search/Namastey+India+grocery+Zurich", address: "Zürich", note: "Well-stocked Indian grocery with fresh produce, masalas, and ready-to-eat items." },
-];
-
-const practical = [
-  { title: "Residence Registration", detail: "Register at your local Kreisbüro (district office) within 14 days of arrival. Bring passport, rental contract, and employment/university letter." },
-  { title: "Health Insurance", detail: "Mandatory from day 1. Apply within 3 months of arrival — coverage backdates. Compare premiums at priminfo.admin.ch. Popular basic insurers: Helsana, CSS, Swica." },
-  { title: "Banking", detail: "UBS and Credit Suisse (now merged with UBS) are traditional choices. Neon and Zak offer free digital accounts suitable for new arrivals. Many require a residence permit." },
-  { title: "Tax Filing", detail: "Residents file annual Steuererklärung (tax return) in March. Employees on Quellensteuer (withholding tax) may not need to file unless income exceeds CHF 120,000." },
-  { title: "Indian Consulate", detail: "The Consulate General of India is in Geneva. The Embassy of India is in Berne (Kirchenfeldstrasse 28). For Zurich-area OCI, passport, and emergency services, use the Geneva Consulate." },
-  { title: "Hindi / Indian Communities", detail: "IAGZ WhatsApp groups, Facebook groups (Indians in Zurich, Indian Expats Switzerland), and the Meetup platform have active Indian community events." },
+const quickActions = [
+  { emoji: "🏛️", label: "Register Address", sub: "Einwohnerkontrolle", href: "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/einwohnerkon.html" },
+  { emoji: "🚊", label: "ZVV Transport", sub: "Trams, buses & S-Bahn", href: "https://www.zvv.ch/en/home.html" },
+  { emoji: "🗑️", label: "Waste Calendar", sub: "Abfuhrtermine", href: "https://www.stadt-zuerich.ch/ted/de/index/entsorgung_recycling/abfuhrtermine.html" },
+  { emoji: "💻", label: "City Services", sub: "stadt-zuerich.ch", href: "https://www.stadt-zuerich.ch" },
 ];
 
 export default function ZurichPage() {
@@ -114,159 +24,283 @@ export default function ZurichPage() {
     <div>
       <PageHeader
         title="Indians in Zurich"
-        subtitle="Zurich is home to Switzerland's largest Indian community — a thriving diaspora of IT professionals, bankers, researchers, and families centred around the financial capital."
         badge="City Guide"
-        gradient="from-blue-600 to-indigo-600"
+        gradient="from-amber-500 to-orange-500"
         breadcrumbs={[
           { label: "Cities", href: "/cities" },
           { label: "Zurich" },
         ]}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        <div style={{ marginBottom: -32 }}>
+      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 24px 80px" }}>
+
+        {/* Hero Image */}
+        <div style={{ margin: "32px 0 40px" }}>
           <Image
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Zurich_Grossmunster_and_Limmat_River.jpg/1280px-Zurich_Grossmunster_and_Limmat_River.jpg"
             alt="Zurich Grossmünster and Limmat River"
-            width={1200}
+            width={1280}
             height={400}
             unoptimized
-            className="w-full rounded-2xl object-cover"
-            style={{ height: 280, objectFit: "cover" }}
+            style={{ width: "100%", height: 300, objectFit: "cover", borderRadius: 20 }}
           />
         </div>
 
-        <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {highlights.map((h) => (
-            <div key={h.label} className="glass rounded-2xl p-4 text-center">
-              <div className="flex justify-center mb-1">{h.icon}</div>
-              <p className="text-base font-bold" style={{ color: "var(--text)" }}>{h.value}</p>
-              <p className="text-xs/50" style={{ color: "var(--text)" }}>{h.label}</p>
+        {/* SECTION 1 — Quick Actions */}
+        <section style={{ marginBottom: 56 }}>
+          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.4rem", fontWeight: 700, color: "var(--text)", marginBottom: 20 }}>
+            Quick Actions
+          </h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
+            {quickActions.map((a) => (
+              <Link
+                key={a.label}
+                href={a.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "var(--surface-2)",
+                  border: "1px solid var(--border)",
+                  borderRadius: 16,
+                  padding: "28px 16px",
+                  textDecoration: "none",
+                  transition: "transform 0.15s ease, box-shadow 0.15s ease",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.12)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
+              >
+                <span style={{ fontSize: 36, marginBottom: 10 }}>{a.emoji}</span>
+                <span style={{ fontWeight: 700, fontSize: 15, color: "var(--text)", textAlign: "center", marginBottom: 4 }}>{a.label}</span>
+                <span style={{ fontSize: 12, color: "var(--text-3)", textAlign: "center" }}>{a.sub}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 2 — Newcomer Track */}
+        <section style={{ marginBottom: 56 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.4rem", fontWeight: 700, color: "var(--text)", margin: 0 }}>
+              Getting Settled
+            </h2>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", background: "rgba(249,115,22,0.12)", color: "#f97316", border: "1px solid rgba(249,115,22,0.3)", borderRadius: 6, padding: "3px 10px", textTransform: "uppercase" }}>
+              For Newcomers
+            </span>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
+
+            {/* Registration */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #f97316", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🏛️ Residence Registration</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Office:</strong> Kreisbüro — 12 district offices across Zurich</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Deadline:</strong> Within 14 days of moving in</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Documents:</strong> Valid passport/ID, signed rental contract, residence permit (L/B/C/G), birth/marriage certificates for families, Abmeldung from previous Swiss municipality</li>
+                <li><a href="https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/einwohnerkon.html" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: "#f97316", textDecoration: "none" }}>→ Official registration page</a></li>
+              </ul>
             </div>
-          ))}
-        </section>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Indian Associations</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Source: Embassy of India, Berne — Indian Associations directory; iagz.ch</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {associations.map((a) => {
-              const href = a.url || `https://www.google.com/search?q=${encodeURIComponent(a.name + " Zurich Indian association")}`;
-              return (
-                <a key={a.name} href={href} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                  <h3 className="text-base font-semibold mb-0.5 group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{a.name}</h3>
-                  {a.full && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{a.full}</p>}
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{a.desc}</p>
-                </a>
-              );
-            })}
+            {/* Utilities */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #f97316", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>⚡ Utilities</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.ewz.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>EWZ (ewz.ch)</a> — Electricity, district heating, solar</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.energie360.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>Energie 360° (energie360.ch)</a> — Gas, renewable energy</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Water:</strong> Provided by city (Wasserversorgung Zürich, included via municipal services)</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Internet:</strong> <a href="https://www.swisscom.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>Swisscom</a>, <a href="https://www.sunrise.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>Sunrise</a>, <a href="https://www.salt.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>Salt</a> — compare at <a href="https://www.comparis.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>comparis.ch</a></li>
+              </ul>
+            </div>
+
+            {/* Public Transport */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #f97316", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🚊 Public Transport</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.zvv.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>ZVV (zvv.ch)</a> — Covers all trams, buses, S-Bahn in Zurich canton. Zone 110 = city centre</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>ZVV App:</strong> Tickets, journey planner, real-time departures</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>SBB App:</strong> National rail tickets</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Züricard:</strong> 24/48/72hr tourist pass — public transport + museum entry</li>
+              </ul>
+            </div>
+
+            {/* Education */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #f97316", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🎓 Education & Universities</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://ethz.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>ETH Zurich (ethz.ch)</a> — World-top engineering & science; large Indian student community</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.uzh.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>University of Zurich UZH (uzh.ch)</a> — Medicine, humanities, law, ~27,000 students</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.zis.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>Zurich International School ZIS (zis.ch)</a> — English-medium private school for expat families</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>City schools:</strong> Enrollment via <a href="https://www.vsz.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>Volksschulamt (vsz.ch)</a></li>
+              </ul>
+            </div>
+
+            {/* Making Friends */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #f97316", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🤝 Making Friends & Expat Groups</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>IAGZ (iagz.ch)</a> — Indian Association of Greater Zurich; Diwali, Holi, family events</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>InSAZ</strong> — Indian Students Association Zurich (ETH/UZH)</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>InterNations Zurich</strong> — Large expat community meetups</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Meetup.com Zurich</strong> — Various interest-based groups</li>
+              </ul>
+            </div>
+
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Neighbourhoods Popular with Indians</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {neighbourhoods.map((n) => (
-              <a key={n.name} href={n.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold text-blue-400 mb-1 group-hover:text-blue-300 transition-colors">{n.name}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{n.note}</p>
-              </a>
-            ))}
+        {/* SECTION 3 — Resident Track */}
+        <section style={{ marginBottom: 56 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.4rem", fontWeight: 700, color: "var(--text)", margin: 0 }}>
+              Community &amp; Daily Life
+            </h2>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", background: "rgba(16,185,129,0.1)", color: "#10b981", border: "1px solid rgba(16,185,129,0.3)", borderRadius: 6, padding: "3px 10px", textTransform: "uppercase" }}>
+              Community &amp; Daily Life
+            </span>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
+
+            {/* Indian Community */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #10b981", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🇮🇳 Indian Community</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>IAGZ (iagz.ch)</a> — Primary Indian association, 100+ member families</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>ISKCON Zurich</strong> — Hare Krishna temple, bhajans, prasad, festivals</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Gujarati, Telugu, Punjabi associations</strong> — Regional cultural groups</li>
+              </ul>
+            </div>
+
+            {/* City Resources */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #10b981", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🌐 City Resources</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.stadt-zuerich.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>stadt-zuerich.ch</a> — City portal, all services</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.zh.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>zh.ch</a> — Canton Zurich portal</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>City council decisions:</strong> <a href="https://www.stadt-zuerich.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>stadt-zuerich.ch</a></li>
+              </ul>
+            </div>
+
+            {/* Civic Engagement */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #10b981", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🗳️ Civic Engagement</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Neighbourhood associations (Quartiervereins)</strong> — Join via local notice boards</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}>Volunteer: <a href="https://www.caritas-zuerich.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>Caritas Zürich</a>, <a href="https://www.benevol-zh.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>Benevol</a></li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>City council meetings:</strong> Public — schedule at <a href="https://www.stadt-zuerich.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>stadt-zuerich.ch</a></li>
+              </ul>
+            </div>
+
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Landmarks & Attractions</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Must-see places in and around Zurich</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {landmarks.map((l) => (
-              <a key={l.name} href={l.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold mb-2 group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{l.name}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{l.note}</p>
-              </a>
-            ))}
+        {/* SECTION 4 — Amenities & Recreation */}
+        <section style={{ marginBottom: 56 }}>
+          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.4rem", fontWeight: 700, color: "var(--text)", marginBottom: 24 }}>
+            Amenities &amp; Recreation
+          </h2>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
+
+            {/* Parks & Nature */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🌳 Parks &amp; Nature</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Zürichhorn</strong> — Lakeside park, barbecue areas, Chinese Garden nearby</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Irchelpark</strong> — Large park with meadows, near UZH, family-friendly</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Rieterpark</strong> — Rose garden, Museum Rietberg, quiet walks</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Uetliberg</strong> — Zurich's local mountain, 869m, hiking, panoramic views</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Lake Zurich</strong> — Public swimming lidos (Freibäder) at Mythenquai, Tiefenbrunnen</li>
+              </ul>
+            </div>
+
+            {/* Health & Safety */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🏥 Health &amp; Safety</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.usz.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--in)", textDecoration: "none" }}>Universitätsspital Zürich USZ</a> — Main university hospital, 24/7 ER, Rämistrasse 100</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.triemli.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--in)", textDecoration: "none" }}>Stadtspital Triemli</a> — City hospital, 24/7 ER, Birmensdorferstrasse 497</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Stadtspital Waid</strong> — Community hospital, north Zurich</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Late-night pharmacy:</strong> Apotheke HB (Zurich main station, open 24h)</li>
+              </ul>
+            </div>
+
+            {/* Cultural & Sports */}
+            <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🎨 Cultural &amp; Sports</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.kunsthaus.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--in)", textDecoration: "none" }}>Kunsthaus Zürich (kunsthaus.ch)</a> — Major art museum</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.nationalmuseum.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--in)", textDecoration: "none" }}>Landesmuseum (nationalmuseum.ch)</a> — Swiss national history museum</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.opernhaus.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--in)", textDecoration: "none" }}>Zurich Opera House (opernhaus.ch)</a></li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Hallenbäder (indoor pools):</strong> Hallenbad City, Hallenbad Oerlikon</li>
+                <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.stabi.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--in)", textDecoration: "none" }}>Stadtbibliothek Zürich (stabi.ch)</a> — Public library network</li>
+              </ul>
+            </div>
+
           </div>
         </section>
 
+        {/* SECTION 5 — Emergency & Contacts */}
         <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Annual Events & Festivals</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Zurich's calendar of events — plan ahead, especially for summer</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {events.map((e) => (
-              <div key={e.name} className="glass rounded-2xl p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>{e.name}</h3>
-                  <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(99,102,241,0.15)", color: "#818cf8" }}>{e.when}</span>
-                </div>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{e.desc}</p>
+          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.4rem", fontWeight: 700, color: "var(--text)", marginBottom: 20 }}>
+            Emergency &amp; Key Contacts
+          </h2>
+          <div style={{ background: "#111827", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "28px 28px 24px", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28 }}>
+
+            {/* Swiss Emergency Numbers */}
+            <div>
+              <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#f87171", marginBottom: 14 }}>🚨 Swiss Emergency Numbers</h3>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 16px" }}>
+                {[
+                  ["117", "Police"],
+                  ["118", "Fire"],
+                  ["144", "Ambulance"],
+                  ["1414", "REGA Helicopter"],
+                  ["145", "Poison Control"],
+                  ["143", "Emotional Support"],
+                  ["112", "European Emergency"],
+                ].map(([num, label]) => (
+                  <div key={num} style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                    <span style={{ fontSize: 16, fontWeight: 800, color: "#f87171", fontVariantNumeric: "tabular-nums" }}>{num}</span>
+                    <span style={{ fontSize: 12, color: "#9ca3af" }}>{label}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Zurich Contacts */}
+            <div>
+              <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#60a5fa", marginBottom: 14 }}>🏙️ Zurich Contacts</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+                <li style={{ fontSize: 13, color: "#9ca3af" }}><a href="https://www.stadtpolizei.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#60a5fa", textDecoration: "none" }}>Stadtpolizei Zürich</a></li>
+                <li style={{ fontSize: 13, color: "#9ca3af" }}><strong style={{ color: "#d1d5db" }}>City Hall:</strong> Stadthaus, Stadthausquai 17, 8001 Zürich — <a href="https://www.stadt-zuerich.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#60a5fa", textDecoration: "none" }}>stadt-zuerich.ch</a></li>
+              </ul>
+            </div>
+
+            {/* Indian Diplomatic */}
+            <div>
+              <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#f59e0b", marginBottom: 14 }}>🇮🇳 Indian Diplomatic Missions</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+                <li style={{ fontSize: 13, color: "#9ca3af" }}>
+                  <strong style={{ color: "#d1d5db" }}>Embassy of India, Berne</strong><br />
+                  <a href="https://www.indembassybern.gov.in" target="_blank" rel="noopener noreferrer" style={{ color: "#f59e0b", textDecoration: "none" }}>indembassybern.gov.in</a>
+                  <span style={{ display: "block", marginTop: 2 }}>Kirchenfeldstrasse 28, 3005 Bern</span>
+                </li>
+                <li style={{ fontSize: 13, color: "#9ca3af" }}>
+                  <strong style={{ color: "#d1d5db" }}>Indian Consulate General, Geneva</strong><br />
+                  <a href="https://www.cgigeneva.gov.in" target="_blank" rel="noopener noreferrer" style={{ color: "#f59e0b", textDecoration: "none" }}>cgigeneva.gov.in</a>
+                </li>
+              </ul>
+            </div>
+
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Getting Around</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Zurich has one of the world's most reliable public transport systems</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {transport.map((t) => (
-              <div key={t.mode} className="glass rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{t.mode}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{t.detail}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Universities & Research</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Zurich is a world-class academic hub — a major draw for Indian students and researchers</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {universities.map((u) => (
-              <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold mb-2 group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{u.name}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{u.note}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {restaurants.map((r) => (
-              <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold mb-1 group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{r.note}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Grocery Stores</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {groceries.map((g) => (
-              <a key={g.name} href={g.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold mb-0.5 group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{g.name}</h3>
-                <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{g.address}</p>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{g.note}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Practical Tips for Indians</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Essentials for settling into Zurich</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {practical.map((p) => (
-              <div key={p.title} className="glass rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{p.title}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{p.detail}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </div>
   );

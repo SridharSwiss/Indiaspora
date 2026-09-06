@@ -29,10 +29,16 @@ type AdminEvent = {
   event_status: "pending" | "approved" | "rejected";
   ai_summary: string; submitted_by: string; created_at: string;
 };
+type UserSession = {
+  userId: string; email: string; sessionId: string;
+  pages: string[]; pageCount: number;
+  startedAt: string; lastSeen: string; totalDuration: number; country: string | null;
+};
 type AnalyticsData = {
   totalViews: number; todayViews: number;
   topPages: { path: string; views: number }[];
   byCountry: { country: string; views: number }[];
+  userSessions?: UserSession[];
 };
 
 const TIER_COLORS: Record<string, string> = {
@@ -67,6 +73,7 @@ export default function AdminPage() {
   const [eventRawText, setEventRawText] = useState("");
   const [eventImageUrl, setEventImageUrl] = useState("");
   const [eventImageFile, setEventImageFile] = useState<File | null>(null);
+  const [eventDate, setEventDate] = useState("");
   const [eventCreateStatus, setEventCreateStatus] = useState<"idle" | "uploading" | "creating" | "done" | "error">("idle");
   const [eventCreateError, setEventCreateError] = useState("");
   const [eventActionLoading, setEventActionLoading] = useState<string | null>(null);
@@ -205,7 +212,7 @@ export default function AdminPage() {
     const res = await fetch("/api/admin/events", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ rawText: eventRawText, imageUrl: uploadedImageUrl, submittedBy: user?.email }),
+      body: JSON.stringify({ rawText: eventRawText, imageUrl: uploadedImageUrl, submittedBy: user?.email, eventDate: eventDate || undefined }),
     });
     const data = await res.json();
     if (!res.ok) {
@@ -215,6 +222,7 @@ export default function AdminPage() {
     }
     setEventCreateStatus("done");
     setEventRawText("");
+    setEventDate("");
     setEventImageUrl("");
     setEventImageFile(null);
     setTimeout(() => setEventCreateStatus("idle"), 2000);
@@ -829,6 +837,55 @@ export default function AdminPage() {
                   </div>
                 </div>
               </div>
+
+              {/* ── User Sessions Table ── */}
+              <div style={{ background: "var(--surface)", borderRadius: 16, border: "1px solid var(--border)", overflow: "hidden" }}>
+                <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ fontWeight: 700, fontSize: 14, color: "var(--text)" }}>Logged-in User Sessions</span>
+                  <span style={{ fontSize: 12, color: "var(--text-3)" }}>({analytics?.userSessions?.length ?? 0} sessions in last {days}d)</span>
+                </div>
+                {!analytics?.userSessions?.length ? (
+                  <div style={{ padding: "40px", textAlign: "center", color: "var(--text-3)", fontSize: 13 }}>
+                    No logged-in user sessions recorded yet. Sessions appear once users browse while signed in.
+                  </div>
+                ) : (
+                  <div style={{ overflowX: "auto" }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+                      <thead>
+                        <tr style={{ background: "var(--surface-2)" }}>
+                          {["User", "Session", "Pages Visited", "Page Count", "Duration", "Country", "Started", "Last Seen"].map(h => (
+                            <th key={h} style={{ padding: "10px 14px", textAlign: "left", fontWeight: 700, color: "var(--text-3)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.07em", whiteSpace: "nowrap" }}>{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {analytics.userSessions.map((s, i) => {
+                          const durationMin = s.totalDuration > 0 ? Math.round(s.totalDuration / 60) : null;
+                          return (
+                            <tr key={`${s.userId}-${s.sessionId}-${i}`} style={{ borderTop: "1px solid var(--border)", background: i % 2 === 0 ? "transparent" : "rgba(0,0,0,0.02)" }}>
+                              <td style={{ padding: "10px 14px", color: "var(--text-2)", fontWeight: 600, maxWidth: 180, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.email}</td>
+                              <td style={{ padding: "10px 14px", color: "var(--text-3)", fontFamily: "monospace", fontSize: 10 }}>{s.sessionId.slice(0, 10)}…</td>
+                              <td style={{ padding: "10px 14px", color: "var(--text-3)", maxWidth: 220 }}>
+                                <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                                  {s.pages.slice(0, 5).map((p, j) => (
+                                    <span key={j} style={{ fontSize: 10, padding: "2px 6px", borderRadius: 4, background: "var(--surface-2)", color: "var(--text-3)" }}>{p}</span>
+                                  ))}
+                                  {s.pages.length > 5 && <span style={{ fontSize: 10, color: "var(--text-3)" }}>+{s.pages.length - 5}</span>}
+                                </div>
+                              </td>
+                              <td style={{ padding: "10px 14px", color: "var(--text)", fontWeight: 700, fontVariantNumeric: "tabular-nums", textAlign: "center" }}>{s.pageCount}</td>
+                              <td style={{ padding: "10px 14px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{durationMin !== null ? `${durationMin}m` : "–"}</td>
+                              <td style={{ padding: "10px 14px", color: "var(--text-3)" }}>{s.country ?? "–"}</td>
+                              <td style={{ padding: "10px 14px", color: "var(--text-3)", whiteSpace: "nowrap" }}>{new Date(s.startedAt).toLocaleString("en-GB", { dateStyle: "short", timeStyle: "short" })}</td>
+                              <td style={{ padding: "10px 14px", color: "var(--text-3)", whiteSpace: "nowrap" }}>{new Date(s.lastSeen).toLocaleString("en-GB", { dateStyle: "short", timeStyle: "short" })}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
             </div>
           )}
           {/* ── EVENTS ── */}
@@ -858,6 +915,24 @@ export default function AdminPage() {
                       fontFamily: "inherit", lineHeight: 1.6, boxSizing: "border-box",
                     }}
                   />
+
+                  {/* Event date */}
+                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                    <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                      Event Date <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional — overrides AI extraction)</span>
+                    </label>
+                    <input
+                      type="date"
+                      value={eventDate}
+                      onChange={e => setEventDate(e.target.value)}
+                      style={{
+                        padding: "10px 14px", borderRadius: 10, fontSize: 13,
+                        border: "1px solid var(--border-2)", background: "var(--surface-2)",
+                        color: "var(--text)", outline: "none", maxWidth: 220,
+                        colorScheme: "dark",
+                      }}
+                    />
+                  </div>
 
                   {/* Image upload */}
                   <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>

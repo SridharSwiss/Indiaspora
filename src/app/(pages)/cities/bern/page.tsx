@@ -1,91 +1,65 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
-import { Users, MessageSquare, Building2, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Indians in Bern — Community Guide",
-  description: "Bern's Indian community — associations, Embassy of India, restaurants, landmarks, the UNESCO Old Town, and practical tips for Switzerland's federal capital.",
+  description:
+    "Complete guide for Indians in Bern — registration, utilities, transport, Indian Embassy, federal employment, hospitals, UNESCO Old Town, and emergency contacts.",
   openGraph: {
     title: "Indians in Bern — Community Guide | Indiaspora",
-    description: "Bern's Indian community — associations, Embassy of India, restaurants, landmarks, the UNESCO Old Town, and practical tips for Switzerland's federal capital.",
+    description:
+      "Complete guide for Indians in Bern — registration, utilities, transport, Indian Embassy, federal employment, hospitals, UNESCO Old Town, and emergency contacts.",
   },
 };
 
-const highlights = [
-  { label: "Indian Population", value: "~1,500+", icon: <Users style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-  { label: "Language", value: "Swiss German", icon: <MessageSquare style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-  { label: "Status", value: "Federal Capital", icon: <Globe style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-  { label: "Key Employers", value: "Swiss Post, SBB, Federal Govt", icon: <Building2 style={{ width: 20, height: 20, color: "var(--sf)" }} /> },
-];
+const cardStyle: React.CSSProperties = {
+  background: "var(--surface-2)",
+  border: "1px solid var(--border)",
+  borderRadius: 16,
+  padding: "16px 20px",
+};
 
-const associations = [
+const quickActions = [
   {
-    name: "Embassy of India, Berne",
-    full: "",
-    url: "https://www.indembassybern.gov.in",
-    desc: "The Embassy of India at Kirchenfeldstrasse 28, 3005 Bern (+41 31 350 11 30) is the primary diplomatic mission for Indians in Switzerland. Handles OCI, passport renewal, visa, attestation, and emergency services for all of Switzerland.",
+    emoji: "🏛️",
+    label: "Register Address",
+    sub: "Einwohnerdienste Bern",
+    href: "https://www.bern.ch/themen/bevolkerung-und-einwohnerdienste",
+    external: true,
   },
   {
-    name: "IAB — Indian Association Berne",
-    full: "",
-    url: "",
-    desc: "Cultural and social association for Indians in the Bern region. Organises Indian festivals, social gatherings, and cultural events throughout the year.",
+    emoji: "🚎",
+    label: "BERNMOBIL Transport",
+    sub: "Trams & buses in Bern",
+    href: "https://www.bernmobil.ch",
+    external: true,
   },
   {
-    name: "BAB — Bharatiya Association Bern",
-    full: "",
-    url: "",
-    desc: "Community organisation serving Indians and people of Indian origin in the Berne area. Focus on cultural preservation and community support.",
+    emoji: "🇮🇳",
+    label: "Indian Embassy",
+    sub: "indembassybern.gov.in",
+    href: "https://www.indembassybern.gov.in",
+    external: true,
+  },
+  {
+    emoji: "💻",
+    label: "City Services",
+    sub: "bern.ch official portal",
+    href: "https://www.bern.ch",
+    external: true,
   },
 ];
 
-const landmarks = [
-  { name: "Zytglogge (Clock Tower)", url: "https://www.google.com/maps/search/Zytglogge+Bern+Clock+Tower", note: "Bern's iconic medieval clock tower dating to 1191. An astronomical clock mechanism (installed ~1530) performs animated figures 4 minutes before each hour. Guided tower tours available." },
-  { name: "Bundeshaus (Federal Palace)", url: "https://www.google.com/maps/search/Bundeshaus+Bern+Parliament", note: "Seat of the Swiss Federal Parliament and Federal Council. Built 1894–1902 in Florentine Renaissance style with an iconic green dome. Free guided tours when Parliament is not in session." },
-  { name: "Bear Park (BärenPark)", url: "https://www.google.com/maps/search/BärenPark+Bern", note: "Bern's bears are the city's symbol (the name 'Bern' is linked etymologically to bears). The large outdoor BärenPark opened in 2009 on the Aare riverbank. Free entry; open year-round." },
-  { name: "Rosengarten (Rose Garden)", url: "https://www.google.com/maps/search/Rosengarten+Bern", note: "Elevated park with over 200 varieties of roses and a breathtaking panoramic view over the UNESCO Old Town and the Aare river. Free entry. Best May–October. Café on site." },
-  { name: "Einstein House (Einsteinhaus)", url: "https://www.google.com/maps/search/Einstein+House+Bern+Kramgasse", note: "Albert Einstein lived at Kramgasse 49 from 1902–1909, developing the Special Theory of Relativity here (1905). Museum with period furnishings; also see the large Einstein Museum inside the Historisches Museum Bern." },
-  { name: "UNESCO Old Town (Altstadt)", url: "https://www.google.com/maps/search/Bern+Altstadt+Old+Town", note: "One of the best-preserved medieval cities in Europe; inscribed on the UNESCO World Heritage List since 1983. Six kilometres of sandstone arcaded walkways (Lauben). Eleven ornate Renaissance fountains." },
-  { name: "Gurten (Local Mountain)", url: "https://www.google.com/maps/search/Gurten+Bern+funicular", note: "Bern's local hill (858 m), reached by the Gurtenbahn funicular. Panoramic views including the Bernese Alps (Eiger, Mönch, Jungfrau on clear days). Annual Gurtenfestival music event in July." },
-  { name: "Aare River Swimming (Marzili)", url: "https://www.google.com/maps/search/Marzilibad+Bern", note: "Outdoor Aare river swimming is a beloved Bern summer tradition. The Marzilibad (free) is right below the Bundeshaus. Let the current carry you — the Aare is clean, fast (~18°C in summer), and exhilarating." },
-];
-
-const events = [
-  { name: "Zibelemärit (Onion Market)", when: "4th Monday of November", desc: "A 500-year-old Bern tradition. Tonnes of onions and braided onion strings sold in the old town. Famous for confetti battles across the city." },
-  { name: "Gurtenfestival", when: "July", desc: "Major open-air music festival on Gurten hill. International and Swiss artists across multiple stages. One of Switzerland's best-loved summer music events." },
-  { name: "Buskers Bern", when: "August", desc: "International street music festival in the UNESCO Old Town. Musicians from around the world perform in the arcades and squares." },
-  { name: "Museumsnacht", when: "March", desc: "Night of Museums — all Bern museums open late with a single ticket. Live music, events, and special exhibitions." },
-  { name: "Christmas Markets", when: "November–December", desc: "Traditional markets at Bundesplatz, Waisenhausplatz, and Münsterplatz. The Bundesplatz market backdrop is the illuminated Parliament building." },
-  { name: "Bern Jazz Festival", when: "April/May", desc: "City-wide jazz festival with international and Swiss artists performing across various Bern venues." },
-];
-
-const transport = [
-  { mode: "BERNMOBIL Trams & Buses", detail: "Bern's tram and trolleybus network covers the city and surrounding areas. Compact and highly walkable old town — most landmarks are within 15 minutes on foot. Reliable, punctual service." },
-  { mode: "Bern Hauptbahnhof (HB)", detail: "Major intercity rail hub directly beneath the old town. Direct trains: Zurich (~57 min), Basel (~55 min), Geneva (~1h40), Lausanne (~65 min), Interlaken (~50 min for Bernese Oberland / Jungfrau region)." },
-  { mode: "Day Trips", detail: "Bern is the perfect base for Bernese Oberland day trips: Grindelwald, Lauterbrunnen, Interlaken, and the Jungfraujoch (3,454 m, 'Top of Europe') are all accessible within 2 hours by train." },
-  { mode: "Cycling", detail: "The Aare riverside cycling paths are excellent. PubliBike rental available across the city. The old town is walkable but has hills — cycling is easiest in the lower areas along the river." },
-];
-
-const universities = [
-  { name: "University of Bern (Universität Bern)", url: "https://www.unibe.ch/index_eng.html", note: "Founded 1834. ~20,000 students. Strong medicine, law, veterinary medicine, natural sciences, and economics faculties. Located in the Länggasse student quarter." },
-  { name: "Bern University of Applied Sciences (BFH)", url: "https://www.bfh.ch/en/", note: "University of Applied Sciences across multiple Bern campuses. Engineering, business, health sciences, architecture, and arts (including a music conservatory). ~6,000 students." },
-];
-
-const foodAndGrocery: { name: string; url: string; address?: string; note: string }[] = [
-  { name: "Indian Restaurants Bern", url: "https://www.google.com/maps/search/Indian+restaurant+Bern+Switzerland", note: "Several Indian restaurants operate in Bern city centre and surrounding areas. North Indian curries, tandoori, and biryani are commonly available. Search Google Maps for current options." },
-  { name: "Pakistani / South Asian Bern", url: "https://www.google.com/maps/search/Pakistani+restaurant+Bern", note: "Pakistani and South Asian restaurants in Bern provide additional South Asian dining options, including halal cuisine and biryanis." },
-  { name: "Aggarwal Supermarkt Bern", url: "https://www.google.com/maps/search/Aggarwal+Indian+grocery+Bern", address: "Bern", note: "Branch of the well-known Swiss-Indian grocery chain. Indian spices, lentils, fresh produce, dairy, and packaged goods." },
-  { name: "Asian Grocery Stores, Bern", url: "https://www.google.com/maps/search/Asian+supermarket+Bern", address: "Bern city centre", note: "Several Asian supermarkets in Bern carry Indian staples. Larger Indian grocery runs are sometimes made to Zurich (55 min by train) for better selection." },
-];
-
-const practical = [
-  { title: "Embassy of India", detail: "Kirchenfeldstrasse 28, 3005 Bern. Tel: +41 31 350 11 30. Open Monday–Friday. Handles passport renewal, OCI, visas, and emergency consular services for all Indians in Switzerland. Visit indembassybern.gov.in for appointments." },
-  { title: "Federal Employment", detail: "Bern is the seat of Switzerland's federal government. Indians with backgrounds in law, economics, public health, and international relations may find opportunities in federal departments, the Swiss National Bank, Swiss Post, and SBB headquarters." },
-  { title: "Health Insurance", detail: "Mandatory from day 1. Apply within 3 months of arrival. Compare at priminfo.ch or comparis.ch. Canton Bern has moderate premium costs." },
-  { title: "University Quarter (Länggasse)", detail: "The Länggasse neighbourhood near the University of Bern has a student and international atmosphere with affordable dining options, cafés, and a lively community feel." },
-  { title: "Day Trips from Bern", detail: "Bern's central location makes it ideal for exploring Switzerland: Zurich (57 min), Basel (55 min), Geneva (1h40), and the Jungfrau region for mountain experiences (from 50 min to Interlaken)." },
-  { title: "Language", detail: "Swiss German (Berndeutsch) is the local dialect. High German used in formal settings. English widely spoken in federal institutions and universities. French starts ~40 km west; Biel/Bienne is bilingual." },
+const emergencyNumbers = [
+  { number: "117", label: "Police" },
+  { number: "118", label: "Fire" },
+  { number: "144", label: "Ambulance" },
+  { number: "1414", label: "REGA helicopter" },
+  { number: "145", label: "Poison Control" },
+  { number: "143", label: "Emotional support" },
+  { number: "112", label: "European emergency" },
 ];
 
 export default function BernPage() {
@@ -93,7 +67,6 @@ export default function BernPage() {
     <div>
       <PageHeader
         title="Indians in Bern"
-        subtitle="Switzerland's federal capital and UNESCO World Heritage city — home to the Embassy of India, the Parliament, and a community of Indian diplomats, civil servants, and professionals."
         badge="City Guide"
         gradient="from-green-600 to-emerald-600"
         breadcrumbs={[
@@ -102,126 +75,400 @@ export default function BernPage() {
         ]}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        <div style={{ marginBottom: -32 }}>
+      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "40px 20px 80px", display: "flex", flexDirection: "column", gap: 56 }}>
+
+        {/* Hero Image */}
+        <div>
           <Image
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Bern_Bundeshaus_2009.jpg/1280px-Bern_Bundeshaus_2009.jpg"
-            alt="Bern Federal Palace (Bundeshaus) panorama"
-            width={1200}
-            height={400}
+            alt="Bern Federal Palace (Bundeshaus)"
+            width={1280}
+            height={426}
             unoptimized
-            className="w-full rounded-2xl object-cover"
-            style={{ height: 280, objectFit: "cover" }}
+            style={{ width: "100%", height: 280, objectFit: "cover", borderRadius: 16 }}
           />
         </div>
 
-        <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {highlights.map((h) => (
-            <div key={h.label} className="glass rounded-2xl p-4 text-center">
-              <div className="flex justify-center mb-1">{h.icon}</div>
-              <p className="text-base font-bold" style={{ color: "var(--text)" }}>{h.value}</p>
-              <p className="text-xs/50" style={{ color: "var(--text)" }}>{h.label}</p>
-            </div>
-          ))}
-        </section>
-
+        {/* SECTION 1 — Quick Actions */}
         <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Indian Associations & Embassy</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>The Embassy of India in Berne serves all Indians in Switzerland</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {associations.map((a) => {
-              const href = a.url || `https://www.google.com/search?q=${encodeURIComponent(a.name + " Bern")}`;
-              return (
-                <a key={a.name} href={href} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                  <h3 className="text-base font-semibold mb-0.5 group-hover:text-green-400 transition-colors" style={{ color: "var(--text)" }}>{a.name}</h3>
-                  {a.full && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{a.full}</p>}
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{a.desc}</p>
+          <h2 style={{ color: "var(--text)", fontSize: 22, fontWeight: 700, marginBottom: 4 }}>Quick Actions</h2>
+          <p style={{ color: "var(--text-2)", fontSize: 14, marginBottom: 20 }}>Essential links for Indians in Bern</p>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: 16,
+          }}>
+            {quickActions.map((action) =>
+              action.external ? (
+                <a
+                  key={action.label}
+                  href={action.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ ...cardStyle, display: "flex", alignItems: "center", gap: 16, textDecoration: "none" }}
+                >
+                  <span style={{ fontSize: 28, lineHeight: 1, flexShrink: 0 }}>{action.emoji}</span>
+                  <div>
+                    <div style={{ color: "var(--text)", fontWeight: 700, fontSize: 15 }}>{action.label}</div>
+                    <div style={{ color: "var(--text-2)", fontSize: 12, marginTop: 2 }}>{action.sub}</div>
+                  </div>
                 </a>
-              );
-            })}
+              ) : (
+                <Link
+                  key={action.label}
+                  href={action.href}
+                  style={{ ...cardStyle, display: "flex", alignItems: "center", gap: 16, textDecoration: "none" }}
+                >
+                  <span style={{ fontSize: 28, lineHeight: 1, flexShrink: 0 }}>{action.emoji}</span>
+                  <div>
+                    <div style={{ color: "var(--text)", fontWeight: 700, fontSize: 15 }}>{action.label}</div>
+                    <div style={{ color: "var(--text-2)", fontSize: 12, marginTop: 2 }}>{action.sub}</div>
+                  </div>
+                </Link>
+              )
+            )}
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Landmarks & Attractions</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>The UNESCO Old Town is one of Europe's most intact medieval city centres</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {landmarks.map((l) => (
-              <a key={l.name} href={l.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold mb-2 group-hover:text-green-400 transition-colors" style={{ color: "var(--text)" }}>{l.name}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{l.note}</p>
-              </a>
-            ))}
+        {/* SECTION 2 — Newcomer Track */}
+        <section style={{ borderLeft: "4px solid #f97316", paddingLeft: 24 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
+            <h2 style={{ color: "var(--text)", fontSize: 22, fontWeight: 700, margin: 0 }}>Newcomer Track</h2>
+            <span style={{
+              background: "rgba(249,115,22,0.15)",
+              color: "#f97316",
+              fontSize: 11,
+              fontWeight: 700,
+              padding: "2px 10px",
+              borderRadius: 99,
+              letterSpacing: "0.04em",
+            }}>FOR NEWCOMERS</span>
+          </div>
+          <p style={{ color: "var(--text-2)", fontSize: 14, marginBottom: 24 }}>Everything you need to settle in during your first weeks in Bern</p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+
+            {/* Registration */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 8 }}>
+                Registration — Einwohnerdienste
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <strong style={{ color: "var(--text)" }}>Office:</strong> Einwohnerdienste Bern, Predigergasse 5, 3000 Bern 7
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <strong style={{ color: "var(--text)" }}>Website:</strong>{" "}
+                  <a href="https://www.bern.ch/themen/bevolkerung-und-einwohnerdienste" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316" }}>
+                    bern.ch/themen/bevolkerung-und-einwohnerdienste
+                  </a>
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <strong style={{ color: "var(--text)" }}>Deadline:</strong> Within 14 days of moving in
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <strong style={{ color: "var(--text)" }}>Documents required:</strong> Valid passport/ID, signed rental contract or landlord confirmation, residence permit (L/B/C/G), birth/marriage certificates for families, Abmeldung from previous Swiss municipality
+                </p>
+              </div>
+            </div>
+
+            {/* Utilities */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 8 }}>Utilities</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <strong style={{ color: "var(--text)" }}>Electricity, gas, water & heating:</strong>{" "}
+                  <a href="https://www.ewb.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316" }}>ewb.ch</a>
+                  {" "}— ewb (Energie Wasser Bern) is the municipal utility providing all services in Bern city
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <strong style={{ color: "var(--text)" }}>Internet providers:</strong>{" "}
+                  <a href="https://www.swisscom.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316" }}>Swisscom</a>,{" "}
+                  <a href="https://www.sunrise.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316" }}>Sunrise</a>,{" "}
+                  <a href="https://www.salt.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316" }}>Salt</a>{" "}
+                  — compare plans at{" "}
+                  <a href="https://www.comparis.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316" }}>comparis.ch</a>
+                </p>
+              </div>
+            </div>
+
+            {/* Transport */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 8 }}>Public Transport</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <a href="https://www.bernmobil.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", fontWeight: 600 }}>BERNMOBIL</a>
+                  {" "}— Trams and buses within Bern city; app available for tickets and real-time timetables
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <a href="https://www.rbs.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", fontWeight: 600 }}>RBS — Regionalverkehr Bern-Solothurn</a>
+                  {" "}— Regional rail connections beyond the city
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <strong style={{ color: "var(--text)" }}>SBB — Bern Hauptbahnhof:</strong> Direct trains to Zurich (57 min), Basel (55 min), Geneva (1h40), Lausanne (65 min), Interlaken (50 min)
+                </p>
+              </div>
+            </div>
+
+            {/* Education */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 8 }}>Education & Universities</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <a href="https://www.unibe.ch/index_eng.html" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", fontWeight: 600 }}>University of Bern (Universität Bern)</a>
+                  {" "}— ~20,000 students; strong medicine, law, veterinary medicine, and natural sciences; located in Länggasse quarter
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <a href="https://www.bfh.ch/en/" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", fontWeight: 600 }}>Bern University of Applied Sciences (BFH)</a>
+                  {" "}— Engineering, business, health, architecture; ~6,000 students
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <a href="https://www.isberne.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", fontWeight: 600 }}>International School Berne</a>
+                  {" "}— IB curriculum for expat families
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  City school enrollment via Schulamt Bern — see bern.ch/schulamt
+                </p>
+              </div>
+            </div>
+
+            {/* Making Friends */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 8 }}>Making Friends & Expat Groups</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>Indian community in Bern is largely connected through the Embassy of India and federal government roles</p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>InterNations Bern — expat networking events across the city</p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>University international office networks — for students and researchers</p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>Länggasse neighbourhood (near University of Bern) — student and international community atmosphere</p>
+              </div>
+            </div>
+
           </div>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Annual Events & Festivals</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Bern's calendar — the Zibelemärit onion market is a uniquely Bernese experience</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {events.map((e) => (
-              <div key={e.name} className="glass rounded-2xl p-5">
-                <div className="flex items-center gap-2 mb-2 flex-wrap">
-                  <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>{e.name}</h3>
-                  <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(34,197,94,0.15)", color: "#4ade80" }}>{e.when}</span>
+        {/* SECTION 3 — Resident Track */}
+        <section style={{ borderLeft: "4px solid #10b981", paddingLeft: 24 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
+            <h2 style={{ color: "var(--text)", fontSize: 22, fontWeight: 700, margin: 0 }}>Community & Daily Life</h2>
+            <span style={{
+              background: "rgba(16,185,129,0.15)",
+              color: "#10b981",
+              fontSize: 11,
+              fontWeight: 700,
+              padding: "2px 10px",
+              borderRadius: 99,
+              letterSpacing: "0.04em",
+            }}>COMMUNITY &amp; DAILY LIFE</span>
+          </div>
+          <p style={{ color: "var(--text-2)", fontSize: 14, marginBottom: 24 }}>Indian associations, civic life, and city resources for residents</p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+
+            {/* Indian Community */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 10 }}>Indian Community</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <div>
+                  <a href="https://www.indembassybern.gov.in" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", fontWeight: 700, fontSize: 14 }}>
+                    Embassy of India, Berne
+                  </a>
+                  <p style={{ color: "var(--text-2)", fontSize: 13, marginTop: 2 }}>
+                    Kirchenfeldstrasse 28, 3005 Bern — Tel: +41 31 350 11 30. CRITICAL resource: handles passport renewal, OCI, visa, and attestation for ALL Indians in Switzerland. Appointment via website.
+                  </p>
                 </div>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{e.desc}</p>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>IAB — Indian Association Berne</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13, marginTop: 2 }}>Cultural events and festivals for the local Indian community in Bern</p>
+                </div>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>BAB — Bharatiya Association Bern</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13, marginTop: 2 }}>Community support and cultural preservation for Indians and people of Indian origin in the Berne area</p>
+                </div>
+                <p style={{ color: "var(--text-2)", fontSize: 13 }}>
+                  Indian community in Bern is relatively small (~1,500–2,000) but well-connected through diplomatic, federal government, and university networks
+                </p>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Getting Around</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>The compact old town is highly walkable — Bern HB connects the country</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {transport.map((t) => (
-              <div key={t.mode} className="glass rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{t.mode}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{t.detail}</p>
+            {/* City Resources */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 8 }}>City Resources</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <a href="https://www.bern.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", fontWeight: 600 }}>bern.ch</a>
+                  {" "}— City of Bern official portal
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  <a href="https://www.be.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", fontWeight: 600 }}>be.ch</a>
+                  {" "}— Canton Bern portal; taxes, permits, official cantonal services
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  Bern is Switzerland&apos;s federal capital and seat of the Federal Council and Parliament (Bundesrat)
+                </p>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
 
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Universities</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Bern's research institutions attract Indian students and academics</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {universities.map((u) => (
-              <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold mb-2 group-hover:text-green-400 transition-colors" style={{ color: "var(--text)" }}>{u.name}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{u.note}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants & Grocery</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {foodAndGrocery.map((r) => (
-              <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
-                <h3 className="text-base font-semibold mb-1 group-hover:text-green-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
-                {r.address && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{r.address}</p>}
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{r.note}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Practical Tips for Indians</h2>
-          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Essentials for settling into Bern</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {practical.map((p) => (
-              <div key={p.title} className="glass rounded-2xl p-5">
-                <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text)" }}>{p.title}</h3>
-                <p className="text-sm" style={{ color: "var(--text-2)" }}>{p.detail}</p>
+            {/* Civic Engagement */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 8 }}>Civic Engagement</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>Stadtrat (city council) — public sessions; schedule at bern.ch</p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  Volunteer:{" "}
+                  <a href="https://www.caritas-bern.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981" }}>Caritas Bern</a>,{" "}
+                  Benevol Bern
+                </p>
+                <p style={{ color: "var(--text-2)", fontSize: 14 }}>
+                  Federal Parliament tours when not in session — free;{" "}
+                  <a href="https://www.parl.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981" }}>parl.ch</a>
+                </p>
               </div>
-            ))}
+            </div>
+
           </div>
         </section>
+
+        {/* SECTION 4 — Amenities & Recreation */}
+        <section>
+          <h2 style={{ color: "var(--text)", fontSize: 22, fontWeight: 700, marginBottom: 4 }}>Amenities &amp; Recreation</h2>
+          <p style={{ color: "var(--text-2)", fontSize: 14, marginBottom: 24 }}>Parks, health services, culture, and sport in Switzerland&apos;s UNESCO-listed federal capital</p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
+
+            {/* Parks & Nature */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 10 }}>Parks &amp; Nature</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Rosengarten (Rose Garden)</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>200+ rose varieties; panoramic view over UNESCO Old Town and Aare river; free entry; best May–October</p>
+                </div>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>BärenPark</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Bern&apos;s famous bear park on the Aare riverbank; free entry; year-round</p>
+                </div>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Gurten (858 m)</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Bern&apos;s local hill via Gurtenbahn funicular; panoramic Alps views (Eiger, Mönch, Jungfrau); annual Gurtenfestival in July</p>
+                </div>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Aare River — Marzilibad</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Beloved summer swimming tradition; free entry; let the current carry you downstream; clean, fast water ~18°C in summer</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Health & Safety */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 10 }}>Health &amp; Safety</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <div>
+                  <a href="https://www.insel.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Inselspital — Bern University Hospital</a>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Main hospital, 24/7 ER; Freiburgstrasse 18, 3010 Bern</p>
+                </div>
+                <div>
+                  <a href="https://www.lindenhofgruppe.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Lindenhofspital</a>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Private hospital; Bremgartenstrasse 119, Bern</p>
+                </div>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Late-night pharmacy</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Bahnhof-Apotheke — near Bern HB main station</p>
+                </div>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Police</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>
+                    Stadtpolizei Bern and Kantonspolizei Bern —{" "}
+                    <a href="https://www.police.be.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981" }}>police.be.ch</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Cultural & Sports */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 10 }}>Culture &amp; Landmarks</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <div>
+                  <a href="https://www.bhm.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Historisches Museum Bern</a>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Also houses the Einstein Museum; largest historical museum in Switzerland</p>
+                </div>
+                <div>
+                  <a href="https://www.kunstmuseumbern.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Kunstmuseum Bern</a>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Permanent collection includes Paul Klee works</p>
+                </div>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>UNESCO Old Town (Altstadt)</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>6 km of sandstone arcaded walkways (Lauben); 11 Renaissance fountains; free to explore</p>
+                </div>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Zytglogge (Clock Tower)</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Animated clock mechanism performs 4 min before every hour; guided tours available</p>
+                </div>
+                <div>
+                  <a href="https://www.einstein-bern.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Einstein House, Kramgasse 49</a>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Where Einstein developed Special Relativity (1905)</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* SECTION 5 — Emergency & Contacts */}
+        <section>
+          <h2 style={{ color: "var(--text)", fontSize: 22, fontWeight: 700, marginBottom: 4 }}>Emergency &amp; Contacts</h2>
+          <p style={{ color: "var(--text-2)", fontSize: 14, marginBottom: 24 }}>Save these numbers before you need them</p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
+
+            {/* Swiss Emergency Numbers */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 12 }}>Swiss Emergency Numbers</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {emergencyNumbers.map((e) => (
+                  <div key={e.number} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <span style={{
+                      background: "rgba(239,68,68,0.12)",
+                      color: "#ef4444",
+                      fontWeight: 800,
+                      fontSize: 15,
+                      padding: "2px 10px",
+                      borderRadius: 8,
+                      minWidth: 48,
+                      textAlign: "center",
+                      fontVariantNumeric: "tabular-nums",
+                    }}>{e.number}</span>
+                    <span style={{ color: "var(--text-2)", fontSize: 14 }}>{e.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bern Key Contacts */}
+            <div style={cardStyle}>
+              <h3 style={{ color: "var(--text)", fontWeight: 700, fontSize: 16, marginBottom: 12 }}>Bern Key Contacts</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Stadtpolizei / Kantonspolizei Bern</p>
+                  <a href="https://www.police.be.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", fontSize: 13 }}>police.be.ch</a>
+                </div>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>City Hall — Rathaus Bern</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Rathausplatz 2, 3011 Bern</p>
+                  <a href="https://www.bern.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", fontSize: 13 }}>bern.ch</a>
+                </div>
+                <div>
+                  <p style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>Indian Embassy Berne</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Kirchenfeldstrasse 28, 3005 Bern</p>
+                  <p style={{ color: "var(--text-2)", fontSize: 13 }}>Tel: +41 31 350 11 30</p>
+                  <a href="https://www.indembassybern.gov.in" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", fontSize: 13 }}>indembassybern.gov.in</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
       </div>
     </div>
   );
