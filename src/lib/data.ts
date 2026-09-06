@@ -471,27 +471,27 @@ export const RESOURCES = [
 
 export const TESTIMONIALS = [
   {
-    name: "Priya Sharma",
+    name: "Community Member",
     role: "Software Engineer, Zurich",
-    origin: "Mumbai, Maharashtra",
+    origin: "Maharashtra",
     years: "7 years in Switzerland",
     quote: "Moving to Switzerland was daunting, but the Indian community here made it feel like home. From finding a flat to celebrating Diwali with 500 people — this platform has been my go-to guide.",
-    avatar: "PS",
+    avatar: "🙂",
   },
   {
-    name: "Rajesh Menon",
+    name: "Community Member",
     role: "Pharma Executive, Basel",
-    origin: "Thrissur, Kerala",
+    origin: "Kerala",
     years: "4 years in Switzerland",
     quote: "The business networking resources here connected me with the right people at SICC. Switzerland's Indian professional community is incredibly strong and supportive.",
-    avatar: "RM",
+    avatar: "🙂",
   },
   {
-    name: "Ananya Gupta",
+    name: "Community Member",
     role: "Doctor, Bern",
-    origin: "Delhi, NCR",
+    origin: "Delhi NCR",
     years: "10 years in Switzerland",
     quote: "As a working mother, I rely on this community for everything — from finding a Hindi tutor for my daughter to the best chaat near us in Bern. Indispensable resource.",
-    avatar: "AG",
+    avatar: "🙂",
   },
 ];

@@ -2,11 +2,6 @@ import { Quote } from "lucide-react";
 import { TESTIMONIALS } from "@/lib/data";
 import AnimateIn from "@/components/ui/AnimateIn";
 
-const AVATAR_COLORS = [
-  "from-indigo-500 to-violet-500",
-  "from-blue-500 to-indigo-600",
-  "from-teal-500 to-cyan-600",
-];
 
 export default function Testimonials() {
   return (
@@ -36,7 +31,7 @@ export default function Testimonials() {
                 &ldquo;{t.quote}&rdquo;
               </p>
               <div className="flex items-center gap-3 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${AVATAR_COLORS[i]} flex items-center justify-center text-white text-sm font-bold shrink-0`}>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center text-xl shrink-0" style={{ background: "var(--surface-3)" }}>
                   {t.avatar}
                 </div>
                 <div>
