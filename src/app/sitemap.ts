@@ -52,6 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/living/education/zurich`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     // Other
     { url: `${base}/events`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: `${base}/news`, lastModified: now, changeFrequency: "hourly", priority: 0.9 },
     { url: `${base}/resources`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/advice`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/advertise`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },

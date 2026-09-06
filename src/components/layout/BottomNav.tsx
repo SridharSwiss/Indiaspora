@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, CalendarDays, UtensilsCrossed, Users, Globe } from "lucide-react";
+import { Home, CalendarDays, UtensilsCrossed, Users, Globe, Newspaper } from "lucide-react";
 
 const TABS = [
   { label: "Home",      href: "/",          icon: Home },
   { label: "Events",    href: "/events",     icon: CalendarDays },
+  { label: "News",      href: "/news",       icon: Newspaper },
   { label: "Food",      href: "/food",       icon: UtensilsCrossed },
   { label: "Community", href: "/community",  icon: Users },
   { label: "Explore",   href: "/cities",     icon: Globe },

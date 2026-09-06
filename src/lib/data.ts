@@ -66,6 +66,7 @@ export const NAV_ITEMS = [
     ],
   },
   { label: "Events", href: "/events" },
+  { label: "News", href: "/news" },
   // Resources moved to footer — keeps top nav ≤7 items (cognitive load principle)
 ];
 

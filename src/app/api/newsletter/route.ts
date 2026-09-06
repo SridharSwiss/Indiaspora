@@ -15,18 +15,44 @@ export async function POST(req: NextRequest) {
     }
 
     const supabase = createAdminClient();
+    const normalised = email.trim().toLowerCase();
+
+    // Check if already exists (may be unsubscribed)
+    const { data: existing } = await supabase
+      .from("newsletter_subscribers")
+      .select("id, status")
+      .eq("email", normalised)
+      .maybeSingle();
+
+    if (existing) {
+      if (existing.status === "active") {
+        return NextResponse.json({ ok: true, already: true });
+      }
+      // Re-activate unsubscribed or any other non-active status
+      const { error: upErr } = await supabase
+        .from("newsletter_subscribers")
+        .update({
+          status: "active",
+          consent: true,
+          consent_text: CONSENT_TEXT,
+          subscribed_at: new Date().toISOString(),
+        })
+        .eq("id", existing.id);
+      if (upErr) {
+        console.error("Newsletter reactivate error:", upErr);
+        return NextResponse.json({ error: "Failed to subscribe" }, { status: 500 });
+      }
+      return NextResponse.json({ ok: true, reactivated: true });
+    }
+
     const { error } = await supabase.from("newsletter_subscribers").insert({
-      email: email.trim().toLowerCase(),
+      email: normalised,
       consent: true,
       consent_text: CONSENT_TEXT,
       source: "banner",
     });
 
     if (error) {
-      if (error.code === "23505") {
-        // Already subscribed — treat as success (idempotent)
-        return NextResponse.json({ ok: true, already: true });
-      }
       console.error("Newsletter insert error:", error);
       return NextResponse.json({ error: "Failed to subscribe" }, { status: 500 });
     }
