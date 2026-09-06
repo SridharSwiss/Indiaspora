@@ -192,11 +192,11 @@ export default function NewsPage() {
 
   return (
     <main style={{ minHeight: "100vh", background: "var(--bg)" }}>
-      {/* Page header */}
+      {/* Page header — pt-24 clears the 64px sticky navbar (same pattern as PageHeader component) */}
       <div style={{
         borderBottom: "1px solid var(--border)",
         background: "var(--surface)",
-        padding: "24px 0 0",
+        paddingTop: "96px", /* 24 * 4 = 96px ≈ pt-24 */
       }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
