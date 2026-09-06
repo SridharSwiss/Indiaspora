@@ -171,7 +171,15 @@ export default function SubmitEventPage() {
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <Field label="Date *">
-                  <input required type="text" placeholder="e.g. Nov 28, 2026 or Oct 1–5, 2026" value={form.date} onChange={set("date")} className="field-input" />
+                  <input
+                    required
+                    type="date"
+                    min={new Date().toISOString().split("T")[0]}
+                    value={form.date}
+                    onChange={set("date")}
+                    className="field-input"
+                    style={{ colorScheme: "dark" }}
+                  />
                 </Field>
                 <Field label="Location *">
                   <input required type="text" placeholder="e.g. Mattenhofsaal, Zurich" value={form.location} onChange={set("location")} className="field-input" />

@@ -81,6 +81,15 @@ function extractDate(text: string): string {
   return "";
 }
 
+function formatIsoDate(raw: string): string {
+  const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (iso) {
+    const d = new Date(+iso[1], +iso[2] - 1, +iso[3]);
+    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  }
+  return raw;
+}
+
 function extractUrl(text: string): string {
   const m = text.match(/https?:\/\/[^\s,)"'\]]+/i);
   return m ? m[0] : "";

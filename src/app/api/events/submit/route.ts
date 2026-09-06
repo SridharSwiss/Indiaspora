@@ -1,6 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
+function formatDate(raw: string): string {
+  // If ISO date from calendar picker (YYYY-MM-DD), convert to "15 Nov 2026"
+  const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (iso) {
+    const d = new Date(+iso[1], +iso[2] - 1, +iso[3]);
+    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  }
+  return raw.trim();
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -14,7 +24,7 @@ export async function POST(req: NextRequest) {
     const { data, error } = await supabase.from("event_submissions").insert({
       title: title.trim(),
       organiser: organiser.trim(),
-      date: date.trim(),
+      date: formatDate(date),
       location: location.trim(),
       category,
       description: description.trim(),
