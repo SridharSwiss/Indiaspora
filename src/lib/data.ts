@@ -403,7 +403,7 @@ export const UPCOMING_EVENTS = [
     description: "Annual cricket league organised by Swiss Telugu NRI Forum (STNRI) — open to the broader Indian community. Competitive format with teams from across Zurich.",
     organiser: "Swiss Telugu NRI Forum (STNRI)",
     color: "bg-sky-500",
-    url: "http://www.stnri.org/",
+    url: "https://swisstelugunri.com/",
     image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&auto=format&fit=crop",
   },
 ];

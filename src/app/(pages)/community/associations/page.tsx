@@ -54,7 +54,7 @@ const tamil: Org[] = [
 
 const telugu: Org[] = [
   { name: "Telugu Association of Switzerland (TeluguSwiss / TAS)", url: "https://teluguswiss.org", city: "Nationwide", desc: "Ugadi and other Telugu cultural events and community networking. The affiliated Swiss Telugu NRI Forum (STNRI) runs Mana Badi, a Telugu language programme for children." },
-  { name: "Swiss Telugu NRI Forum (STNRI)", url: "http://www.stnri.org/", city: "Opfikon / Zurich", desc: "Registered with the City of Opfikon. Non-profit encouraging Telugu-speaking people in Switzerland to participate in community progress. Runs Mana Badi Telugu language classes and organises the STNRI Cricket League, Ganesh Mahotsav and Sankranthi festivals." },
+  { name: "Swiss Telugu NRI Forum (STNRI)", url: "https://swisstelugunri.com/", city: "Opfikon / Zurich", desc: "Registered with the City of Opfikon. Non-profit encouraging Telugu-speaking people in Switzerland to participate in community progress. Runs Mana Badi Telugu language classes and organises the STNRI Cricket League, Ganesh Mahotsav and Sankranthi festivals." },
 ];
 
 const malayalam: Org[] = [
