@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, Settings, UserPlus, Search } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, Settings, UserPlus, Search, HelpCircle } from "lucide-react";
 import SearchOverlay from "@/components/ui/SearchOverlay";
 import { NAV_ITEMS } from "@/lib/data";
 import { createClient } from "@/lib/supabase/client";
@@ -262,7 +262,7 @@ export default function Navbar() {
                     href={item.href}
                     className="flex items-center gap-1"
                     style={{
-                      position: "relative", padding: "8px 12px",
+                      position: "relative", padding: "8px 10px",
                       fontSize: 11, fontWeight: active ? 700 : 600,
                       letterSpacing: "0.12em", textTransform: "uppercase",
                       fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
@@ -282,7 +282,7 @@ export default function Navbar() {
                     {item.label}
                     {active && (
                       <span aria-hidden style={{
-                        position: "absolute", bottom: 2, left: 12, right: 12,
+                        position: "absolute", bottom: 2, left: 10, right: 10,
                         height: 1, background: "var(--in)",
                       }} />
                     )}
@@ -374,23 +374,24 @@ export default function Navbar() {
               {dark ? <Sun style={{ width: 16, height: 16 }} /> : <Moon style={{ width: 16, height: 16 }} />}
             </button>
 
-            {/* Seek Advice — subtle text link */}
+            {/* Seek Advice — icon only to save space */}
             <Link
               href="/advice"
-              className="hidden xl:inline-flex items-center nav-icon-btn"
+              aria-label="Seek Advice"
+              title="Seek Advice"
+              className="hidden lg:inline-flex nav-icon-btn"
               style={{
-                padding: "0 10px", height: 32,
-                fontSize: 10, fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase",
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                color: lightNav ? "rgba(245,237,224,0.6)" : "var(--text-3)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                width: 32, height: 32,
+                color: lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)",
                 background: "transparent", border: "none",
-                textDecoration: "none", whiteSpace: "nowrap",
+                textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,1)" : "var(--text)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.6)" : "var(--text-3)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)"; }}
             >
-              Seek Advice
+              <HelpCircle style={{ width: 17, height: 17 }} />
             </Link>
 
             {/* Advertise — gold accent CTA */}
