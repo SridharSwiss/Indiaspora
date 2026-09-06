@@ -45,12 +45,6 @@ const associations = [
     url: "",
     desc: "Cultural events and networking for the Gujarati-speaking community in the Zurich region.",
   },
-  {
-    name: "Namaste Switzerland",
-    full: "",
-    url: "https://namasteswitzerland.ch",
-    desc: "Online infotainment magazine founded and run by Indian professional women in Switzerland. Covers Swiss integration, Indian community profiles, culture, events and recipes. Listed officially on the Embassy of India Berne website.",
-  },
 ];
 
 const neighbourhoods = [

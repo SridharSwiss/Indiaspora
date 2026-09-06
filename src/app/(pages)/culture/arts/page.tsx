@@ -90,13 +90,6 @@ const musicGroups = [
     url: "https://mx3.ch/swiss_indian_orchestra",
     desc: "Orchestra blending Indian classical and Swiss/Western musical traditions. Performs at cultural events and festivals across Switzerland."
   },
-  {
-    name: "Namaste Switzerland — Concert Events",
-    genre: "Carnatic & Hindustani Concerts",
-    city: "Switzerland-wide",
-    url: "https://namasteswitzerland.ch/",
-    desc: "Organises classical Indian music concerts including 'Classical Music of India' sitar and tabla concert series. Promotes Indian performing arts across Switzerland."
-  },
 ];
 
 const yogaStudios = [

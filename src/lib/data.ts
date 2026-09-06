@@ -469,7 +469,6 @@ export const RESOURCES = [
   { title: "India Supermarkt (Online)", url: "https://indiasupermarkt.ch", category: "Shopping", description: "Buy Indian groceries, spices, and products online in Switzerland" },
   { title: "TiE Zurich", url: "https://tie.org/chapter/tie-zurich/", category: "Business", description: "The Indus Entrepreneurs — mentorship, networking, and startup ecosystem" },
   { title: "India-Swiss Startup Bridge", url: "https://startupindia.gov.in/content/sih/en/international/india-swiss_startup_bridge.html", category: "Business", description: "India-Switzerland bilateral startup collaboration platform by Startup India" },
-  { title: "Namaste Switzerland", url: "https://namasteswitzerland.ch", category: "Media", description: "Online magazine for the Swiss Indian community with news and features" },
 ];
 
 export const TESTIMONIALS = [

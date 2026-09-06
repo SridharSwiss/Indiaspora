@@ -117,7 +117,6 @@ const cultural: Org[] = [
 const civil: Org[] = [
   { name: "Be Friends Switzerland (BFS)", url: "https://befriends.ch/", city: "Nationwide", desc: "Binational organisation strengthening civil society bridges between India and Switzerland. Cultivates cultural interaction and contributes to community resilience. Listed by Embassy of India Bern." },
   { name: "Indo-Swiss Center", url: "https://www.indo-swiss.center/", city: "Adliswil, Zurich", desc: "Builds India-Switzerland partnerships with government, business and non-profit organisations. Promotes collaboration in trade, technology, tourism, education, culture and development. Listed by Embassy of India Bern." },
-  { name: "Namaste Switzerland", url: "https://namasteswitzerland.ch", city: "Nationwide (online)", desc: "Online infotainment magazine founded on International Women's Day 2017 by four Indian women co-founders. Mission: Connect. Inform. Integrate. Listed on the Embassy of India Berne website." },
   { name: "SICC – Swiss-Indian Chamber of Commerce", url: "https://sicc.ch", city: "Zurich", desc: "Also operates as a binational civil society platform — see Professional Networks." },
 ];
 
