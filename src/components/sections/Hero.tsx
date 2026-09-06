@@ -74,58 +74,21 @@ export default function Hero() {
         }}
       />
 
-      {/* Decorative chakra — center-right at large screens */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute", right: "8%", top: "50%",
-          transform: "translateY(-50%)",
-          width: "clamp(200px, 30vw, 420px)",
-          aspectRatio: "1",
-          opacity: 0.06,
-          pointerEvents: "none",
-        }}
-      >
-        <div style={{
-          width: "100%", height: "100%",
-          borderRadius: "50%",
-          border: "1px solid rgba(176,141,87,1)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-        }}>
-          <div className="animate-chakra" style={{
-            width: "68%", height: "68%",
-            borderRadius: "50%",
-            border: "1px solid rgba(176,141,87,1)",
-            position: "relative",
-          }}>
-            {Array.from({ length: 24 }).map((_, i) => (
-              <div
-                key={i}
-                style={{
-                  position: "absolute", top: "50%", left: "50%",
-                  width: 1, height: "48%",
-                  background: "rgba(176,141,87,1)",
-                  transformOrigin: "top center",
-                  transform: `rotate(${i * 15}deg) translateX(-50%)`,
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
 
-      {/* ── Content — left-aligned, vertically centered ── */}
+      {/* ── Content — two-column on large screens ── */}
       <div
         className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         style={{
           minHeight: "100svh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          display: "grid",
+          gridTemplateColumns: "1fr auto",
+          alignItems: "center",
+          gap: "clamp(32px, 5vw, 80px)",
           paddingTop: "clamp(100px, 14vw, 140px)",
           paddingBottom: "clamp(80px, 10vw, 120px)",
         }}
       >
+        {/* Left: text content */}
         <div style={{ maxWidth: 680, animation: "fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s both" }}>
 
           {/* Eyebrow */}
@@ -286,6 +249,57 @@ export default function Hero() {
             ))}
           </div>
         </div>
+
+        {/* Right: community photo — circle, slides in from right on load */}
+        <div
+          aria-hidden
+          className="hero-img-wrap"
+          style={{
+            animation: "slideInRight 1.1s cubic-bezier(0.16,1,0.3,1) 0.35s both",
+            alignSelf: "center",
+            flexShrink: 0,
+          }}
+        >
+          {/* Outer glow ring */}
+          <div style={{
+            width: "clamp(280px, 28vw, 480px)",
+            aspectRatio: "1",
+            borderRadius: "50%",
+            padding: "5px",
+            background: "linear-gradient(135deg, rgba(176,141,87,0.6) 0%, rgba(176,141,87,0.1) 50%, rgba(160,97,74,0.4) 100%)",
+            boxShadow: "0 0 80px rgba(176,141,87,0.18), 0 0 200px rgba(176,141,87,0.08)",
+            position: "relative",
+          }}>
+            {/* Inner circle clipping frame */}
+            <div style={{
+              width: "100%",
+              height: "100%",
+              borderRadius: "50%",
+              overflow: "hidden",
+              border: "2px solid rgba(176,141,87,0.25)",
+            }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hub-community.jpg"
+                alt="Swiss Indian community gathering"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
+              />
+            </div>
+            {/* Subtle inner vignette to blend edges */}
+            <div style={{
+              position: "absolute",
+              inset: 5,
+              borderRadius: "50%",
+              boxShadow: "inset 0 0 60px rgba(26,20,16,0.45)",
+              pointerEvents: "none",
+            }} />
+          </div>
+        </div>
       </div>
 
       {/* Scroll cue */}
@@ -309,6 +323,11 @@ export default function Hero() {
       <style>{`
         @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
         @keyframes word-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+        @keyframes slideInRight { from { opacity:0; transform:translateX(80px) scale(0.92); } to { opacity:1; transform:translateX(0) scale(1); } }
+        @media (max-width: 900px) {
+          .hero-img-wrap { display: none !important; }
+          .relative.max-w-7xl { grid-template-columns: 1fr !important; }
+        }
         @media (max-width: 640px) {
           .hero-stats { grid-template-columns: repeat(2, auto) !important; gap: 24px !important; }
         }
