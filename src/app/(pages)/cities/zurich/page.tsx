@@ -72,8 +72,6 @@ export default function ZurichPage() {
                   transition: "transform 0.15s ease, box-shadow 0.15s ease",
                   cursor: "pointer",
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.12)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
               >
                 <span style={{ fontSize: 36, marginBottom: 10 }}>{a.emoji}</span>
                 <span style={{ fontWeight: 700, fontSize: 15, color: "var(--text)", textAlign: "center", marginBottom: 4 }}>{a.label}</span>
