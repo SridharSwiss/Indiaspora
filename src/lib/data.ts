@@ -10,7 +10,7 @@ export const NAV_ITEMS = [
     ],
   },
   {
-    label: "Living Guide",
+    label: "Living",
     href: "/living",
     children: [
       { label: "Welcome to Switzerland", href: "/living/welcome" },
@@ -25,7 +25,7 @@ export const NAV_ITEMS = [
     ],
   },
   {
-    label: "Food & Dining",
+    label: "Food",
     href: "/food",
     children: [
       { label: "Indian Restaurants", href: "/food/restaurants" },
@@ -55,7 +55,7 @@ export const NAV_ITEMS = [
     ],
   },
   {
-    label: "City Guides",
+    label: "Cities",
     href: "/cities",
     children: [
       { label: "Zurich", href: "/cities/zurich" },
