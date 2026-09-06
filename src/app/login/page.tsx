@@ -79,15 +79,27 @@ function LoginForm() {
         {/* Header */}
         <div style={{
           background: "linear-gradient(135deg,#F97316,#DC2626)",
-          padding: "36px 36px 32px", textAlign: "center",
+          padding: "36px 36px 28px", textAlign: "center",
         }}>
           <Link href="/" style={{ fontSize: 32, textDecoration: "none" }}>🪔</Link>
           <h1 style={{ margin: "12px 0 4px", color: "#fff", fontSize: 22, fontWeight: 800, fontFamily: "'Syne',system-ui,sans-serif" }}>
             {isGated ? "Members only" : mode === "login" ? "Welcome back" : "Magic link"}
           </h1>
-          <p style={{ margin: 0, color: "rgba(255,255,255,0.8)", fontSize: 13 }}>
+          <p style={{ margin: "0 0 20px", color: "rgba(255,255,255,0.8)", fontSize: 13 }}>
             {isGated ? "Sign in to access the full Indiaspora platform" : "Indiaspora · Switzerland's Indian Community Hub"}
           </p>
+          {!isGated && (
+            <Link href="/join" style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              padding: "9px 22px", borderRadius: 999,
+              background: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)",
+              border: "1px solid rgba(255,255,255,0.3)",
+              color: "#fff", fontSize: 13, fontWeight: 700, textDecoration: "none",
+              transition: "background 0.2s",
+            }}>
+              New here? Join the community →
+            </Link>
+          )}
         </div>
 
         {/* Gated prompt */}
@@ -223,7 +235,13 @@ function LoginForm() {
           </div>
         </div>
 
-        <div style={{ padding: "0 32px 28px", textAlign: "center" }}>
+        <div style={{ padding: "0 32px 28px", textAlign: "center", display: "flex", flexDirection: "column", gap: 10 }}>
+          <p style={{ margin: 0, fontSize: 13, color: "var(--text-3)" }}>
+            Don&apos;t have an account?{" "}
+            <Link href="/join" style={{ color: "#F97316", fontWeight: 700, textDecoration: "none" }}>
+              Join the community
+            </Link>
+          </p>
           <Link href="/" style={{ fontSize: 13, color: "var(--text-3)", textDecoration: "none" }}>
             ← Back to Indiaspora
           </Link>
