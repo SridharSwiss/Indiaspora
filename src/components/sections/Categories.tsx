@@ -5,14 +5,14 @@ import { ArrowRight } from "lucide-react";
 import { FEATURED_CATEGORIES } from "@/lib/data";
 import AnimateIn from "@/components/ui/AnimateIn";
 
-/* Per-category visual identity */
+/* Per-category visual identity — classic jewel tones */
 const CAT_META: Record<string, { emoji: string; bg: string; accent: string; shadow: string }> = {
-  Community: { emoji: "🤝", bg: "rgba(99,102,241,0.10)",  accent: "#818CF8", shadow: "rgba(99,102,241,0.35)" },
-  Living:    { emoji: "🏠", bg: "rgba(16,185,129,0.10)",  accent: "#34D399", shadow: "rgba(16,185,129,0.35)" },
-  Food:      { emoji: "🍛", bg: "rgba(249,115,22,0.10)",  accent: "#FB923C", shadow: "rgba(249,115,22,0.35)" },
-  Culture:   { emoji: "🎭", bg: "rgba(168,85,247,0.10)",  accent: "#C084FC", shadow: "rgba(168,85,247,0.35)" },
-  Business:  { emoji: "💼", bg: "rgba(14,165,233,0.10)",  accent: "#38BDF8", shadow: "rgba(14,165,233,0.35)" },
-  Cities:    { emoji: "🏔️", bg: "rgba(239,68,68,0.10)",   accent: "#F87171", shadow: "rgba(239,68,68,0.35)" },
+  Community: { emoji: "🤝", bg: "rgba(201,169,110,0.09)", accent: "#CEB07A", shadow: "rgba(201,169,110,0.30)" },
+  Living:    { emoji: "🏠", bg: "rgba(61,122,90,0.10)",   accent: "#70BC92", shadow: "rgba(61,122,90,0.30)"  },
+  Food:      { emoji: "🍛", bg: "rgba(176,128,112,0.10)", accent: "#C89880", shadow: "rgba(176,128,112,0.30)"},
+  Culture:   { emoji: "🎭", bg: "rgba(130,90,140,0.10)",  accent: "#B87EC0", shadow: "rgba(130,90,140,0.30)" },
+  Business:  { emoji: "💼", bg: "rgba(60,100,140,0.10)",  accent: "#7AAAD0", shadow: "rgba(60,100,140,0.30)" },
+  Cities:    { emoji: "🏔️", bg: "rgba(140,80,80,0.10)",   accent: "#C89090", shadow: "rgba(140,80,80,0.30)"  },
 };
 
 const fallback = { emoji: "✨", bg: "rgba(99,102,241,0.08)", accent: "#818CF8", shadow: "rgba(99,102,241,0.30)" };

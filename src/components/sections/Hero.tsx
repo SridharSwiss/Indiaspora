@@ -21,56 +21,58 @@ export default function Hero() {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ minHeight: "100svh", background: "#06090F" }}
+      style={{ minHeight: "100svh", background: "#0E0C09" }}
     >
-      {/* Full-bleed background — deep midnight with subtle indigo undertone */}
+      {/* Full-bleed background — deep obsidian */}
       <div
         aria-hidden
         style={{
           position: "absolute", inset: 0,
           background: `
             linear-gradient(160deg,
-              #0A0E1C 0%,
-              #06090F 30%,
-              #080C18 55%,
-              #0C1020 75%,
-              #06090F 100%
+              #161008 0%,
+              #0E0C09 30%,
+              #120E08 55%,
+              #181210 75%,
+              #0E0C09 100%
             )
           `,
         }}
       />
 
-      {/* Electric dot grid */}
+      {/* Subtle woven texture */}
       <div
         aria-hidden
         style={{
           position: "absolute", inset: 0,
-          backgroundImage: `radial-gradient(rgba(99,102,241,0.12) 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
+          backgroundImage: `
+            repeating-linear-gradient(45deg, rgba(201,169,110,0.03) 0, rgba(201,169,110,0.03) 1px, transparent 0, transparent 50%),
+            repeating-linear-gradient(-45deg, rgba(201,169,110,0.03) 0, rgba(201,169,110,0.03) 1px, transparent 0, transparent 50%)
+          `,
+          backgroundSize: "28px 28px",
         }}
       />
 
-      {/* Electric indigo glow — upper right */}
+      {/* Warm gold glow — upper right */}
       <div
         aria-hidden
         style={{
           position: "absolute", top: "-10%", right: "-5%",
           width: "55%", height: "75%",
-          background: "radial-gradient(ellipse, rgba(99,102,241,0.18) 0%, rgba(168,85,247,0.06) 45%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(201,169,110,0.14) 0%, rgba(160,120,64,0.04) 50%, transparent 70%)",
           pointerEvents: "none",
-          filter: "blur(40px)",
+          filter: "blur(50px)",
         }}
       />
-      {/* Coral-saffron glow — lower left */}
+      {/* Copper-rose glow — lower left */}
       <div
         aria-hidden
         style={{
           position: "absolute", bottom: "0", left: "0",
           width: "45%", height: "55%",
-          background: "radial-gradient(ellipse, rgba(249,115,22,0.16) 0%, rgba(251,146,60,0.04) 50%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(176,128,112,0.12) 0%, rgba(155,107,90,0.03) 50%, transparent 70%)",
           pointerEvents: "none",
-          filter: "blur(40px)",
+          filter: "blur(50px)",
         }}
       />
 
@@ -96,16 +98,16 @@ export default function Hero() {
             <span style={{
               display: "inline-flex", alignItems: "center", gap: 7,
               padding: "6px 14px", borderRadius: 999,
-              background: "rgba(99,102,241,0.12)",
-              border: "1px solid rgba(129,140,248,0.30)",
-              fontSize: 11, fontWeight: 700, color: "#A5B4FC",
+              background: "rgba(201,169,110,0.10)",
+              border: "1px solid rgba(201,169,110,0.28)",
+              fontSize: 11, fontWeight: 700, color: "#CEB07A",
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               letterSpacing: "0.08em",
             }}>
               <span style={{
                 width: 7, height: 7, borderRadius: "50%",
-                background: "#34D399",
-                boxShadow: "0 0 0 3px rgba(52,211,153,0.25)",
+                background: "#70BC92",
+                boxShadow: "0 0 0 3px rgba(90,158,120,0.25)",
                 animation: "pulse-dot 2s ease-in-out infinite",
                 flexShrink: 0,
               }} aria-hidden />
@@ -121,7 +123,7 @@ export default function Hero() {
               fontWeight: 700,
               lineHeight: 1.06,
               letterSpacing: "-0.01em",
-              color: "rgba(238,240,255,0.95)",
+              color: "rgba(240,235,224,0.95)",
               marginBottom: 0,
             }}
           >
@@ -136,7 +138,7 @@ export default function Hero() {
               letterSpacing: "-0.01em",
               fontStyle: "italic",
               marginBottom: 28,
-              color: "rgba(238,240,255,0.95)",
+              color: "rgba(240,235,224,0.95)",
             }}
           >
             <span
@@ -156,7 +158,7 @@ export default function Hero() {
           <p
             style={{
               fontSize: "clamp(0.95rem, 1.6vw, 1.1rem)",
-              color: "rgba(139,156,196,0.9)",
+              color: "rgba(154,142,124,0.9)",
               lineHeight: 1.8,
               maxWidth: 500,
               marginBottom: 40,
@@ -193,16 +195,16 @@ export default function Hero() {
               style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "13px 28px",
-                background: "rgba(99,102,241,0.10)",
-                color: "rgba(165,180,252,0.95)",
+                background: "rgba(201,169,110,0.07)",
+                color: "rgba(206,176,122,0.90)",
                 fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                border: "1px solid rgba(99,102,241,0.35)",
+                border: "1px solid rgba(201,169,110,0.32)",
                 textDecoration: "none",
                 transition: "border-color 0.2s, color 0.2s, background 0.2s",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(129,140,248,0.8)"; (e.currentTarget as HTMLElement).style.color = "rgba(238,240,255,1)"; (e.currentTarget as HTMLElement).style.background = "rgba(99,102,241,0.18)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(99,102,241,0.35)"; (e.currentTarget as HTMLElement).style.color = "rgba(165,180,252,0.95)"; (e.currentTarget as HTMLElement).style.background = "rgba(99,102,241,0.10)"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(206,176,122,0.70)"; (e.currentTarget as HTMLElement).style.color = "rgba(240,235,224,1)"; (e.currentTarget as HTMLElement).style.background = "rgba(201,169,110,0.14)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(201,169,110,0.32)"; (e.currentTarget as HTMLElement).style.color = "rgba(206,176,122,0.90)"; (e.currentTarget as HTMLElement).style.background = "rgba(201,169,110,0.07)"; }}
             >
               Upcoming Events
             </Link>
@@ -215,7 +217,7 @@ export default function Hero() {
               gridTemplateColumns: "repeat(4, auto)",
               gap: "0",
               paddingTop: 28,
-              borderTop: "1px solid rgba(99,102,241,0.18)",
+              borderTop: "1px solid rgba(201,169,110,0.18)",
               width: "fit-content",
             }}
           >
@@ -236,7 +238,7 @@ export default function Hero() {
                 <div
                   style={{
                     fontSize: 9, fontWeight: 700, letterSpacing: "0.14em",
-                    textTransform: "uppercase", color: "rgba(129,140,248,0.7)",
+                    textTransform: "uppercase", color: "rgba(201,169,110,0.65)",
                     fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                   }}
                 >
@@ -263,8 +265,8 @@ export default function Hero() {
             aspectRatio: "1",
             borderRadius: "50%",
             padding: "5px",
-            background: "linear-gradient(135deg, rgba(99,102,241,0.7) 0%, rgba(168,85,247,0.3) 50%, rgba(249,115,22,0.5) 100%)",
-            boxShadow: "0 0 80px rgba(99,102,241,0.25), 0 0 200px rgba(99,102,241,0.10)",
+            background: "linear-gradient(135deg, rgba(201,169,110,0.65) 0%, rgba(206,176,122,0.20) 50%, rgba(176,128,112,0.50) 100%)",
+            boxShadow: "0 0 80px rgba(201,169,110,0.18), 0 0 200px rgba(201,169,110,0.07)",
             position: "relative",
           }}>
             {/* Inner circle clipping frame */}
@@ -273,7 +275,7 @@ export default function Hero() {
               height: "100%",
               borderRadius: "50%",
               overflow: "hidden",
-              border: "2px solid rgba(99,102,241,0.20)",
+              border: "2px solid rgba(201,169,110,0.22)",
             }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -306,7 +308,7 @@ export default function Hero() {
         style={{
           position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)",
           display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-          color: "rgba(129,140,248,0.6)",
+          color: "rgba(201,169,110,0.55)",
           fontSize: 8, fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase",
           fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
           animation: "fadeUp 1.2s 1.6s both",
