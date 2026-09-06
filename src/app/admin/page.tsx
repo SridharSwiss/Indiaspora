@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import {
   Users, BarChart3, Globe, Eye, LogOut, RefreshCw, Download,
   MapPin, Mail, Briefcase, Calendar, CheckCircle, XCircle, Clock,
   LayoutDashboard, Search, ChevronRight, TrendingUp, UserCheck, UserX, Bell,
-  CalendarPlus, ImagePlus, Sparkles, ThumbsUp, ThumbsDown, Loader2, ExternalLink,
+  CalendarPlus, ImagePlus, Sparkles, ThumbsUp, ThumbsDown, Loader2, ExternalLink, Home,
 } from "lucide-react";
 
 type Member = {
@@ -289,6 +290,21 @@ export default function AdminPage() {
 
         {/* User + sign out */}
         <div style={{ padding: "12px 10px", borderTop: "1px solid var(--border)" }}>
+          {/* Home link */}
+          <Link href="/" style={{
+            display: "flex", alignItems: "center", gap: 10,
+            padding: sidebarOpen ? "9px 12px" : "9px",
+            borderRadius: 10, cursor: "pointer", width: "100%",
+            color: "var(--text-3)", fontSize: 13, textDecoration: "none",
+            justifyContent: sidebarOpen ? "flex-start" : "center",
+            marginBottom: 2,
+          }}
+          onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.05)")}
+          onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+          >
+            <Home size={15} style={{ flexShrink: 0 }} />
+            {sidebarOpen && "Back to site"}
+          </Link>
           {sidebarOpen && user?.email && (
             <div style={{ fontSize: 11, color: "var(--text-3)", padding: "0 12px 8px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{user.email}</div>
           )}
