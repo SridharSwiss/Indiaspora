@@ -43,26 +43,40 @@ export default function BannerManager() {
   useEffect(() => {
     if (isLoggedIn === null) return; // still loading auth
 
-    // Wait until privacy/cookie consent has been given before showing any banner.
-    // Poll every 500ms until consent is stored by CookieBanner, then start the sequence.
     let cancelled = false;
 
-    const start = () => {
+    const start = async () => {
       if (cancelled) return;
 
-      const nlDismissed  = (() => { try { return !!localStorage.getItem(STORAGE_NL); } catch { return false; } })();
       const sigDismissed = (() => { try { return !!localStorage.getItem(STORAGE_SIGNIN); } catch { return false; } })();
 
       if (isLoggedIn) {
-        if (!nlDismissed) setTimeout(() => { if (!cancelled) setActive("newsletter"); }, 8000);
+        // Check DB: only show newsletter banner if user has never subscribed
+        const { data: { user } } = await supabase.auth.getUser();
+        if (cancelled) return;
+        if (user?.email) {
+          const { data: row } = await supabase
+            .from("newsletter_subscribers")
+            .select("active")
+            .eq("email", user.email)
+            .maybeSingle();
+          if (cancelled) return;
+          // row exists (subscribed or unsubscribed) → don't show banner
+          if (row) return;
+        }
+        setTimeout(() => { if (!cancelled) setActive("newsletter"); }, 8000);
         return;
       }
 
+      // Not logged in — show sign-in banner first, then newsletter
       if (!sigDismissed) {
         setTimeout(() => { if (!cancelled) setActive("signin"); }, 3000);
         return;
       }
 
+      // Sign-in already dismissed — show newsletter only if not DB-suppressed
+      // (anonymous user: fall back to localStorage so we don't spam)
+      const nlDismissed = (() => { try { return !!localStorage.getItem(STORAGE_NL); } catch { return false; } })();
       if (!nlDismissed) {
         setTimeout(() => { if (!cancelled) setActive("newsletter"); }, 8000);
       }
@@ -71,7 +85,6 @@ export default function BannerManager() {
     if (hasConsent()) {
       start();
     } else {
-      // Poll until the user accepts the cookie banner
       const interval = setInterval(() => {
         if (hasConsent()) { clearInterval(interval); start(); }
       }, 500);
@@ -79,14 +92,15 @@ export default function BannerManager() {
     }
 
     return () => { cancelled = true; };
-  }, [isLoggedIn]);
+  }, [isLoggedIn, supabase]);
 
   const dismissSignin = () => {
     setActive(null);
     try { localStorage.setItem(STORAGE_SIGNIN, "1"); } catch { /* noop */ }
-    // Queue newsletter banner 8s later if not already dismissed
+    // Queue newsletter banner 8s later only if user has never subscribed/unsubscribed
     const nlDismissed = (() => { try { return !!localStorage.getItem(STORAGE_NL); } catch { return false; } })();
     if (!nlDismissed) {
+      // For anonymous visitors check localStorage only (no auth context here)
       setTimeout(() => setActive("newsletter"), 8000);
     }
   };
