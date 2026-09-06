@@ -221,10 +221,10 @@ export default function LausannePage() {
         <section>
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants & Grocery</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[...restaurants, ...groceries].map((r) => (
+            {foodAndGrocery.map((r) => (
               <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
                 <h3 className="text-base font-semibold mb-1 group-hover:text-violet-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
-                {"address" in r && r.address && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{r.address}</p>}
+                {r.address && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{r.address}</p>}
                 <p className="text-sm" style={{ color: "var(--text-2)" }}>{r.note}</p>
               </a>
             ))}
