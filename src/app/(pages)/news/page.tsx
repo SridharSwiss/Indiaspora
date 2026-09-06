@@ -4,24 +4,20 @@ import { useEffect, useState, useCallback } from "react";
 import type { NewsItem } from "@/app/api/news/route";
 
 const TABS = [
-  { key: "All",              label: "All News" },
-  { key: "NRI",              label: "NRI / Diaspora" },
-  { key: "National",         label: "National" },
-  { key: "Delhi / NCR",      label: "Delhi / NCR" },
-  { key: "Maharashtra",      label: "Maharashtra" },
-  { key: "Karnataka",        label: "Karnataka" },
-  { key: "Tamil Nadu",       label: "Tamil Nadu" },
-  { key: "Telangana & AP",   label: "Telangana & AP" },
-  { key: "Gujarat",          label: "Gujarat" },
-  { key: "West Bengal",      label: "West Bengal" },
-  { key: "Kerala",           label: "Kerala" },
-  { key: "Uttar Pradesh",    label: "Uttar Pradesh" },
-  { key: "Rajasthan",        label: "Rajasthan" },
-  { key: "Punjab",           label: "Punjab" },
-  { key: "Madhya Pradesh",   label: "Madhya Pradesh" },
+  { key: "All",      label: "All News" },
+  { key: "NRI",      label: "NRI / Diaspora" },
+  { key: "English",  label: "English" },
+  { key: "Hindi",    label: "हिन्दी" },
+  { key: "Tamil",    label: "தமிழ்" },
+  { key: "Telugu",   label: "తెలుగు" },
+  { key: "Bengali",  label: "বাংলা" },
+  { key: "Marathi",  label: "मराठी" },
+  { key: "Malayalam",label: "മലയാളം" },
+  { key: "Gujarati", label: "ગુજરાતી" },
+  { key: "Kannada",  label: "ಕನ್ನಡ" },
 ];
 
-const STATE_ORDER = TABS.filter(t => !["All", "NRI", "National"].includes(t.key)).map(t => t.key);
+const LANG_ORDER = ["Hindi","Tamil","Telugu","Bengali","Marathi","Malayalam","Gujarati","Kannada"];
 
 function timeAgo(dateStr: string): string {
   if (!dateStr) return "";
@@ -37,21 +33,13 @@ function timeAgo(dateStr: string): string {
 
 function NewsCard({ item }: { item: NewsItem }) {
   return (
-    <a
-      href={item.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        display: "flex", gap: 12, padding: "14px 0",
-        borderBottom: "1px solid var(--border)",
-        textDecoration: "none", color: "inherit", alignItems: "flex-start",
-      }}
-    >
+    <a href={item.url} target="_blank" rel="noopener noreferrer" style={{
+      display: "flex", gap: 12, padding: "14px 0",
+      borderBottom: "1px solid var(--border)",
+      textDecoration: "none", color: "inherit", alignItems: "flex-start",
+    }}>
       {item.imageUrl && (
-        <img
-          src={item.imageUrl}
-          alt=""
-          aria-hidden
+        <img src={item.imageUrl} alt="" aria-hidden
           style={{ width: 80, height: 60, objectFit: "cover", borderRadius: 4, flexShrink: 0, background: "var(--surface)" }}
           onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
         />
@@ -62,9 +50,7 @@ function NewsCard({ item }: { item: NewsItem }) {
             fontSize: 10, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase",
             color: item.category === "NRI" ? "#B08D57" : "var(--text-3)",
             fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-          }}>
-            {item.source}
-          </span>
+          }}>{item.source}</span>
           <span style={{ fontSize: 10, color: "var(--text-3)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
             · {timeAgo(item.pubDate)}
           </span>
@@ -73,17 +59,13 @@ function NewsCard({ item }: { item: NewsItem }) {
           margin: 0, fontSize: 14, fontWeight: 600, lineHeight: 1.45,
           color: "var(--text)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
           display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
-        }}>
-          {item.title}
-        </p>
+        }}>{item.title}</p>
         {item.description && (
           <p style={{
             margin: "4px 0 0", fontSize: 12, color: "var(--text-2)", lineHeight: 1.5,
             fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
             display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
-          }}>
-            {item.description}
-          </p>
+          }}>{item.description}</p>
         )}
       </div>
     </a>
@@ -133,20 +115,22 @@ export default function NewsPage() {
     return () => clearInterval(iv);
   }, [load]);
 
-  const byCategory = (cat: string) => items.filter(i => i.category === cat);
-
-  const filtered = activeTab === "All" ? items : items.filter(i => i.category === activeTab);
+  const byLang = (lang: string) => items.filter(i => i.language === lang && i.category !== "NRI");
+  const nationalItems = items.filter(i => i.category === "National");
+  const nriItems = items.filter(i => i.category === "NRI");
+  const filtered = activeTab === "All" ? items
+    : activeTab === "NRI" ? nriItems
+    : activeTab === "English" ? items.filter(i => i.language === "English")
+    : items.filter(i => i.language === activeTab);
 
   return (
     <main style={{ minHeight: "100vh", background: "var(--bg)" }}>
-      {/* Page header */}
       <div style={{ borderBottom: "1px solid var(--border)", background: "var(--surface)", paddingTop: 96 }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
-            <h1 style={{
-              margin: 0, fontSize: 26, fontWeight: 800,
-              color: "var(--text)", fontFamily: "'Playfair Display', Georgia, serif",
-            }}>India News</h1>
+            <h1 style={{ margin: 0, fontSize: 26, fontWeight: 800, color: "var(--text)", fontFamily: "'Playfair Display', Georgia, serif" }}>
+              India News
+            </h1>
             {fetchedAt && (
               <span style={{ fontSize: 11, color: "var(--text-3)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
                 Updated {timeAgo(fetchedAt)}
@@ -154,8 +138,7 @@ export default function NewsPage() {
             )}
           </div>
 
-          {/* State / category tabs */}
-          <div style={{ display: "flex", gap: 0, overflowX: "auto", paddingBottom: 0, scrollbarWidth: "none" }}>
+          <div style={{ display: "flex", overflowX: "auto", paddingBottom: 0, scrollbarWidth: "none" }}>
             {TABS.map(({ key, label }) => {
               const active = activeTab === key;
               return (
@@ -166,11 +149,8 @@ export default function NewsPage() {
                   color: active ? "var(--in)" : "var(--text-3)",
                   background: "transparent", border: "none",
                   borderBottom: active ? "2px solid var(--in)" : "2px solid transparent",
-                  cursor: "pointer", whiteSpace: "nowrap",
-                  transition: "color 0.15s", marginBottom: -1,
-                }}>
-                  {label}
-                </button>
+                  cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.15s", marginBottom: -1,
+                }}>{label}</button>
               );
             })}
           </div>
@@ -191,13 +171,11 @@ export default function NewsPage() {
         {!loading && !error && (
           activeTab === "All" ? (
             <>
-              <Section title="National"          items={byCategory("National")} />
-              {STATE_ORDER.map(state =>
-                byCategory(state).length
-                  ? <Section key={state} title={state} items={byCategory(state)} />
-                  : null
+              <Section title="National" items={nationalItems} />
+              {LANG_ORDER.map(lang =>
+                byLang(lang).length ? <Section key={lang} title={lang} items={byLang(lang)} /> : null
               )}
-              <Section title="NRI & Diaspora" items={byCategory("NRI")} />
+              <Section title="NRI & Diaspora" items={nriItems} />
               {items.length === 0 && (
                 <div style={{ textAlign: "center", padding: "60px 0", color: "var(--text-3)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
                   No stories loaded yet.
@@ -207,11 +185,9 @@ export default function NewsPage() {
           ) : (
             filtered.length > 0
               ? <div>{filtered.map(item => <NewsCard key={item.id} item={item} />)}</div>
-              : (
-                <div style={{ textAlign: "center", padding: "60px 0", color: "var(--text-3)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
-                  No stories for this state yet.
+              : <div style={{ textAlign: "center", padding: "60px 0", color: "var(--text-3)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
+                  No stories for this language yet.
                 </div>
-              )
           )
         )}
       </div>
