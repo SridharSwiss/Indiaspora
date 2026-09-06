@@ -72,13 +72,9 @@ const universities = [
   { name: "Bern University of Applied Sciences (BFH)", url: "https://www.bfh.ch/en/", note: "University of Applied Sciences across multiple Bern campuses. Engineering, business, health sciences, architecture, and arts (including a music conservatory). ~6,000 students." },
 ];
 
-const restaurants = [
+const foodAndGrocery: { name: string; url: string; address?: string; note: string }[] = [
   { name: "Indian Restaurants Bern", url: "https://www.google.com/maps/search/Indian+restaurant+Bern+Switzerland", note: "Several Indian restaurants operate in Bern city centre and surrounding areas. North Indian curries, tandoori, and biryani are commonly available. Search Google Maps for current options." },
   { name: "Pakistani / South Asian Bern", url: "https://www.google.com/maps/search/Pakistani+restaurant+Bern", note: "Pakistani and South Asian restaurants in Bern provide additional South Asian dining options, including halal cuisine and biryanis." },
-  { name: "Aggarwal Stores — Bern Branch", url: "https://www.google.com/maps/search/Aggarwal+Indian+supermarket+Bern", note: "The Aggarwal Indian grocery chain has a Bern location serving the Indian community with spices, lentils, fresh produce, and Indian household brands." },
-];
-
-const groceries = [
   { name: "Aggarwal Supermarkt Bern", url: "https://www.google.com/maps/search/Aggarwal+Indian+grocery+Bern", address: "Bern", note: "Branch of the well-known Swiss-Indian grocery chain. Indian spices, lentils, fresh produce, dairy, and packaged goods." },
   { name: "Asian Grocery Stores, Bern", url: "https://www.google.com/maps/search/Asian+supermarket+Bern", address: "Bern city centre", note: "Several Asian supermarkets in Bern carry Indian staples. Larger Indian grocery runs are sometimes made to Zurich (55 min by train) for better selection." },
 ];
@@ -204,10 +200,10 @@ export default function BernPage() {
         <section>
           <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Indian Restaurants & Grocery</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[...restaurants, ...groceries].map((r) => (
+            {foodAndGrocery.map((r) => (
               <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
                 <h3 className="text-base font-semibold mb-1 group-hover:text-green-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
-                {"address" in r && r.address && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{r.address}</p>}
+                {r.address && <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{r.address}</p>}
                 <p className="text-sm" style={{ color: "var(--text-2)" }}>{r.note}</p>
               </a>
             ))}

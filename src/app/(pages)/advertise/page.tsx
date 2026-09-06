@@ -30,11 +30,6 @@ const DURATIONS = [
 const BUDGETS = [
   "CHF 50–200",
   "CHF 200–500",
-  "CHF 500–1,000",
-  "CHF 1,000–3,000",
-  "CHF 3,000–5,000",
-  "CHF 5,000–10,000",
-  "CHF 10,000+",
   "Open to proposal",
 ];
 

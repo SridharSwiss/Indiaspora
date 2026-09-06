@@ -81,13 +81,10 @@ const areas = [
   { name: "Renens & Prilly", url: "https://www.google.com/maps/search/Renens+Lausanne", note: "Western suburbs with lower rents and good transport links. A practical choice for families and professionals on more modest budgets." },
 ];
 
-const restaurants = [
+const foodAndGrocery: { name: string; url: string; address?: string; note: string }[] = [
   { name: "Indian Restaurants, Lausanne", url: "https://www.google.com/maps/search/Indian+restaurant+Lausanne", note: "Several Indian restaurants in central Lausanne, particularly around the Flon and Saint-François areas. North Indian, South Indian, and fusion options available." },
   { name: "EPFL / UNIL Campus Canteens", url: "https://www.google.com/maps/search/EPFL+restaurant+Lausanne", note: "The EPFL campus has multiple restaurants including Indian-inspired options in the Restaurants des Rives. Open to the public." },
   { name: "South Asian Restaurants, Lausanne", url: "https://www.google.com/maps/search/Pakistani+Sri+Lankan+restaurant+Lausanne", note: "Pakistani and Sri Lankan restaurants in Lausanne supplement the Indian dining scene, offering biryanis, halal options, and South Asian home cooking." },
-];
-
-const groceries = [
   { name: "Indian & Asian Groceries, Lausanne", url: "https://www.google.com/maps/search/Indian+Asian+grocery+Lausanne", address: "Central Lausanne", note: "Several Asian supermarkets in Lausanne carry Indian staples — spices, lentils, basmati rice, and Indian brands. Larger Indian grocery runs are often made to Geneva (33 min by train)." },
 ];
 
