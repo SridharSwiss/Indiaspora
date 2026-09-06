@@ -59,22 +59,23 @@ export default function BannerManager() {
       const sigDismissed = (() => { try { return !!localStorage.getItem(STORAGE_SIGNIN); } catch { return false; } })();
 
       if (isLoggedIn) {
-        // Signed-in path: check DB subscription status
+        // Signed-in path: check subscription status via API (uses admin client, bypasses RLS)
         const { data: { user } } = await supabase.auth.getUser();
         if (cancelled) return;
         if (user?.email) {
           setEmail(user.email);
-          const { data: row } = await supabase
-            .from("newsletter_subscribers")
-            .select("active")
-            .eq("email", user.email)
-            .maybeSingle();
-          if (cancelled) return;
-          if (row?.active === true) {
-            // Active subscriber — never show any banner
-            isActiveSubscriberRef.current = true;
-            return;
-          }
+          try {
+            const res = await fetch(`/api/newsletter/status?email=${encodeURIComponent(user.email)}`);
+            if (cancelled) return;
+            if (res.ok) {
+              const json = await res.json();
+              if (json.active === true) {
+                // Active subscriber — never show any banner
+                isActiveSubscriberRef.current = true;
+                return;
+              }
+            }
+          } catch { /* network error — fall through and show banner */ }
         }
         // Signed in but not subscribed — show newsletter banner (pre-filled email)
         setTimeout(() => { if (!cancelled) setActive("newsletter"); }, 8000);
