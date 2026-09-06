@@ -60,70 +60,14 @@ export default function Cities() {
           </AnimateIn>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 20, alignItems: "start" }} className="cities-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 20, alignItems: "start" }} className="cities-grid">
 
-          {/* City selector */}
+          {/* City detail — now LEFT column (reversed from LivingGuide) */}
           <AnimateIn from="left" threshold={0.1}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {CITIES.map((c, i) => {
-                const p = CITY_PALETTE[i % CITY_PALETTE.length];
-                const isActive = activeCity === i;
-                return (
-                  <button
-                    key={c.name}
-                    onClick={() => setActiveCity(i)}
-                    style={{
-                      display: "flex", alignItems: "center", gap: 14,
-                      padding: "14px 18px", borderRadius: 16,
-                      border: isActive ? `1px solid ${p.accent}44` : "1px solid var(--border)",
-                      background: isActive ? p.bg : "var(--surface-2)",
-                      cursor: "pointer", textAlign: "left",
-                      transition: "all 0.25s cubic-bezier(0.16,1,0.3,1)",
-                      boxShadow: isActive ? `0 4px 20px ${p.bg}` : "none",
-                    }}
-                  >
-                    <div style={{
-                      width: 40, height: 40, borderRadius: 12, flexShrink: 0,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      background: isActive ? p.accent : "var(--surface-3)",
-                      color: isActive ? "#fff" : "var(--text-3)",
-                      transition: "all 0.25s",
-                    }}>
-                      <MapPin style={{ width: 16, height: 16 }} />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{
-                        fontSize: 14, fontWeight: 700,
-                        color: isActive ? "var(--text)" : "var(--text-2)",
-                        fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                        marginBottom: 2, transition: "color 0.25s",
-                      }}>
-                        {c.name}
-                      </div>
-                      <div style={{ fontSize: 11, color: "var(--text-3)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
-                        {c.population}
-                      </div>
-                    </div>
-                    {isActive && (
-                      <div style={{
-                        width: 8, height: 8, borderRadius: "50%",
-                        background: p.accent, flexShrink: 0,
-                        boxShadow: `0 0 0 3px ${p.bg}`,
-                        animation: "city-pulse 2s ease-in-out infinite",
-                      }} />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </AnimateIn>
-
-          {/* City detail */}
-          <AnimateIn from="right" threshold={0.1}>
             <div style={{
               background: "var(--surface)",
               border: `1px solid ${pal.accent}33`,
-              borderRadius: 20, overflow: "hidden",
+              borderRadius: 28, overflow: "hidden",
               boxShadow: `0 8px 40px ${pal.bg}`,
               transition: "border-color 0.35s, box-shadow 0.35s",
             }}>
@@ -209,7 +153,7 @@ export default function Cities() {
                 <div style={{ display: "flex", gap: 10 }}>
                   <button style={{
                     display: "inline-flex", alignItems: "center", gap: 8,
-                    padding: "11px 22px", borderRadius: 12,
+                    padding: "11px 22px", borderRadius: 999,
                     background: pal.accent, color: "#fff",
                     fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                     fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
@@ -223,7 +167,7 @@ export default function Cities() {
                   </button>
                   <button style={{
                     display: "inline-flex", alignItems: "center", gap: 8,
-                    padding: "11px 22px", borderRadius: 12,
+                    padding: "11px 22px", borderRadius: 999,
                     background: "var(--surface-2)",
                     color: "var(--text-2)",
                     fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
@@ -237,6 +181,63 @@ export default function Cities() {
               </div>
             </div>
           </AnimateIn>
+
+          {/* City selector — now RIGHT column */}
+          <AnimateIn from="right" threshold={0.1}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {CITIES.map((c, i) => {
+                const p = CITY_PALETTE[i % CITY_PALETTE.length];
+                const isActive = activeCity === i;
+                return (
+                  <button
+                    key={c.name}
+                    onClick={() => setActiveCity(i)}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 14,
+                      padding: "14px 18px", borderRadius: 16,
+                      border: isActive ? `1px solid ${p.accent}44` : "1px solid var(--border)",
+                      background: isActive ? p.bg : "var(--surface-2)",
+                      cursor: "pointer", textAlign: "left",
+                      transition: "all 0.25s cubic-bezier(0.16,1,0.3,1)",
+                      boxShadow: isActive ? `0 4px 20px ${p.bg}` : "none",
+                    }}
+                  >
+                    <div style={{
+                      width: 40, height: 40, borderRadius: 12, flexShrink: 0,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      background: isActive ? p.accent : "var(--surface-3)",
+                      color: isActive ? "#fff" : "var(--text-3)",
+                      transition: "all 0.25s",
+                    }}>
+                      <MapPin style={{ width: 16, height: 16 }} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{
+                        fontSize: 14, fontWeight: 700,
+                        color: isActive ? "var(--text)" : "var(--text-2)",
+                        fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                        marginBottom: 2, transition: "color 0.25s",
+                      }}>
+                        {c.name}
+                      </div>
+                      <div style={{ fontSize: 11, color: "var(--text-3)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
+                        {c.population}
+                      </div>
+                    </div>
+                    {isActive && (
+                      <div style={{
+                        width: 8, height: 8, borderRadius: "50%",
+                        background: p.accent, flexShrink: 0,
+                        boxShadow: `0 0 0 3px ${p.bg}`,
+                        animation: "city-pulse 2s ease-in-out infinite",
+                      }} />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </AnimateIn>
+
         </div>
       </div>
 
@@ -246,7 +247,10 @@ export default function Cities() {
           50%      { box-shadow: 0 0 0 5px rgba(201,169,110,0.15); }
         }
         @media (max-width: 900px) {
-          .cities-grid { grid-template-columns: 1fr !important; }
+          /* On mobile, show selector first, then detail */
+          .cities-grid { grid-template-columns: 1fr !important; grid-template-areas: "selector" "detail" !important; }
+          .cities-detail { grid-area: detail; }
+          .cities-selector { grid-area: selector; }
           .city-highlights-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>

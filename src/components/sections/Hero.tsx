@@ -11,9 +11,9 @@ const FEATURED_WORDS = ["Community", "Culture", "Cuisine", "Connections", "Comme
 
 const AVATARS = ["🇮🇳", "🙂", "👨‍💼", "👩‍🎓", "🧑‍🍳"];
 
-const FLOAT_CARDS = [
-  { emoji: "📍", label: "5 Cities", sub: "covered across Switzerland", rotate: "-4deg", top: "18%", right: "-6%" },
-  { emoji: "🤝", label: "150+ Groups", sub: "community associations", rotate: "3deg", bottom: "28%", right: "-8%" },
+const INLINE_STATS = [
+  { emoji: "📍", label: "5 Cities", sub: "across Switzerland" },
+  { emoji: "🤝", label: "150+ Groups", sub: "community associations" },
 ];
 
 export default function Hero() {
@@ -265,41 +265,79 @@ export default function Hero() {
             </Link>
           </div>
 
-          {/* Avatar stack + social proof — Bloom pattern */}
+          {/* Social proof row — avatar stack + inline stat chips */}
           <div style={{
-            display: "flex", alignItems: "center", gap: 14, marginBottom: 48,
+            display: "flex", alignItems: "center", gap: 16, marginBottom: 48,
+            flexWrap: "wrap",
             animation: "fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both",
           }}>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              {AVATARS.map((av, i) => (
-                <div key={i} style={{
-                  width: 34, height: 34, borderRadius: "50%",
-                  background: "rgba(201,169,110,0.12)",
-                  border: "2px solid rgba(14,12,9,0.9)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 16, marginLeft: i === 0 ? 0 : -10,
-                  boxShadow: "0 0 0 1px rgba(201,169,110,0.18)",
-                  zIndex: AVATARS.length - i,
-                  position: "relative",
+            {/* Avatar stack */}
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                {AVATARS.map((av, i) => (
+                  <div key={i} style={{
+                    width: 32, height: 32, borderRadius: "50%",
+                    background: "rgba(201,169,110,0.12)",
+                    border: "2px solid rgba(14,12,9,0.85)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 15, marginLeft: i === 0 ? 0 : -9,
+                    boxShadow: "0 0 0 1px rgba(201,169,110,0.15)",
+                    zIndex: AVATARS.length - i, position: "relative",
+                  }}>
+                    {av}
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div style={{
+                  fontSize: 12, fontWeight: 700, color: "rgba(240,235,224,0.88)",
+                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", lineHeight: 1.3,
                 }}>
-                  {av}
+                  ~24,500 Indians
+                </div>
+                <div style={{
+                  fontSize: 10, color: "rgba(154,142,124,0.70)",
+                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                }}>
+                  across 26 cantons
+                </div>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div style={{
+              width: 1, height: 32, background: "rgba(201,169,110,0.18)", flexShrink: 0,
+            }} />
+
+            {/* Inline stat chips */}
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              {INLINE_STATS.map((s) => (
+                <div key={s.label} style={{
+                  display: "inline-flex", alignItems: "center", gap: 7,
+                  padding: "7px 13px", borderRadius: 999,
+                  background: "rgba(201,169,110,0.08)",
+                  border: "1px solid rgba(201,169,110,0.20)",
+                  backdropFilter: "blur(8px)",
+                }}>
+                  <span style={{ fontSize: 14 }}>{s.emoji}</span>
+                  <div>
+                    <div style={{
+                      fontSize: 11, fontWeight: 800, color: "rgba(240,235,224,0.90)",
+                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                      lineHeight: 1.2,
+                    }}>
+                      {s.label}
+                    </div>
+                    <div style={{
+                      fontSize: 9, color: "rgba(201,169,110,0.65)",
+                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                      fontWeight: 600, letterSpacing: "0.04em",
+                    }}>
+                      {s.sub}
+                    </div>
+                  </div>
                 </div>
               ))}
-            </div>
-            <div>
-              <div style={{
-                fontSize: 13, fontWeight: 700, color: "rgba(240,235,224,0.90)",
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                lineHeight: 1.3,
-              }}>
-                ~24,500 Indians in Switzerland
-              </div>
-              <div style={{
-                fontSize: 11, color: "rgba(154,142,124,0.75)",
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-              }}>
-                Across 26 cantons — join your community
-              </div>
             </div>
           </div>
 
@@ -352,49 +390,6 @@ export default function Hero() {
             position: "relative",
           }}
         >
-          {/* Floating stat cards — Bloom pattern */}
-          {FLOAT_CARDS.map((fc) => (
-            <div
-              key={fc.label}
-              aria-hidden
-              style={{
-                position: "absolute",
-                top: fc.top, bottom: fc.bottom,
-                right: fc.right,
-                transform: `rotate(${fc.rotate})`,
-                background: "rgba(22,19,16,0.92)",
-                border: "1px solid rgba(201,169,110,0.28)",
-                borderRadius: 20,
-                padding: "14px 18px",
-                backdropFilter: "blur(24px)",
-                WebkitBackdropFilter: "blur(24px)",
-                display: "flex", alignItems: "center", gap: 12,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,110,0.10)",
-                zIndex: 10,
-                animation: "float-card 4s ease-in-out infinite",
-                animationDelay: fc.top ? "0s" : "2s",
-                whiteSpace: "nowrap",
-              }}
-            >
-              <span style={{ fontSize: 22 }}>{fc.emoji}</span>
-              <div>
-                <div style={{
-                  fontSize: 13, fontWeight: 800, color: "rgba(240,235,224,0.95)",
-                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                  lineHeight: 1.2,
-                }}>
-                  {fc.label}
-                </div>
-                <div style={{
-                  fontSize: 10, color: "rgba(201,169,110,0.70)",
-                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                }}>
-                  {fc.sub}
-                </div>
-              </div>
-            </div>
-          ))}
-
           {/* Outer glow ring */}
           <div style={{
             width: "clamp(320px, 32vw, 540px)",
@@ -460,10 +455,6 @@ export default function Hero() {
         @keyframes word-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
         @keyframes slideInRight { from { opacity:0; transform:translateX(80px) scale(0.92); } to { opacity:1; transform:translateX(0) scale(1); } }
         @keyframes pulse-dot { 0%,100% { box-shadow: 0 0 0 3px rgba(52,211,153,0.25); } 50% { box-shadow: 0 0 0 6px rgba(52,211,153,0.10); } }
-        @keyframes float-card {
-          0%,100% { transform: rotate(var(--fc-rot, -4deg)) translateY(0px); }
-          50%      { transform: rotate(var(--fc-rot, -4deg)) translateY(-8px); }
-        }
         @media (max-width: 900px) {
           .hero-img-wrap { display: none !important; }
           .relative.max-w-7xl { grid-template-columns: 1fr !important; }
