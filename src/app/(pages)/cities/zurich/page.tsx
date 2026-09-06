@@ -126,8 +126,8 @@ export default function ZurichPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <div style={{ marginBottom: -32 }}>
           <Image
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80&auto=format&fit=crop"
-            alt="Zurich lakeside view with the city skyline"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Zurich_Grossmunster_and_Limmat_River.jpg/1280px-Zurich_Grossmunster_and_Limmat_River.jpg"
+            alt="Zurich Grossmünster and Limmat River"
             width={1200}
             height={400}
             unoptimized

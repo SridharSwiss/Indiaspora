@@ -105,8 +105,8 @@ export default function BernPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <div style={{ marginBottom: -32 }}>
           <Image
-            src="https://images.unsplash.com/photo-1574226516831-e1dff420e562?w=1200&q=80&auto=format&fit=crop"
-            alt="Bern Old Town and Aare river panorama"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Bern_Bundeshaus_2009.jpg/1280px-Bern_Bundeshaus_2009.jpg"
+            alt="Bern Federal Palace (Bundeshaus) panorama"
             width={1200}
             height={400}
             unoptimized
