@@ -3,15 +3,16 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 import { RESOURCES } from "@/lib/data";
 import AnimateIn from "@/components/ui/AnimateIn";
 
-const CATEGORY_COLORS: Record<string, string> = {
-  Official: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  Living: "bg-teal-500/20 text-teal-300 border-teal-500/30",
-  Transport: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  Community: "bg-indigo-500/15 text-indigo-300 border-indigo-500/25",
-  Business: "bg-green-500/20 text-green-300 border-green-500/30",
-  Media: "bg-rose-500/20 text-rose-300 border-rose-500/30",
-  Shopping: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+const CATEGORY_STYLE: Record<string, { bg: string; color: string; border: string }> = {
+  Official:  { bg: "rgba(128,168,208,0.14)", color: "#80A8D0", border: "rgba(128,168,208,0.28)" },
+  Living:    { bg: "rgba(112,188,146,0.14)", color: "#70BC92", border: "rgba(112,188,146,0.28)" },
+  Transport: { bg: "rgba(184,128,200,0.14)", color: "#B880C8", border: "rgba(184,128,200,0.28)" },
+  Community: { bg: "rgba(201,169,110,0.14)", color: "#CEB07A", border: "rgba(201,169,110,0.28)" },
+  Business:  { bg: "rgba(112,188,146,0.14)", color: "#70BC92", border: "rgba(112,188,146,0.28)" },
+  Media:     { bg: "rgba(200,120,128,0.14)", color: "#C87880", border: "rgba(200,120,128,0.28)" },
+  Shopping:  { bg: "rgba(212,144,106,0.14)", color: "#D4906A", border: "rgba(212,144,106,0.28)" },
 };
+const DEFAULT_CAT = { bg: "rgba(180,170,160,0.14)", color: "var(--text-3)", border: "rgba(180,170,160,0.28)" };
 
 export default function Resources() {
   return (
@@ -40,22 +41,44 @@ export default function Resources() {
               rel="noopener noreferrer"
               className="card p-5 group block"
             >
-              <div className="flex items-start justify-between mb-3">
-                <span className={`text-xs font-medium px-2 py-0.5 rounded-md border ${CATEGORY_COLORS[r.category] ?? "bg-slate-500/20 text-slate-300"}`}>
-                  {r.category}
-                </span>
-                <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-indigo-400 transition-colors" />
-              </div>
-              <h3 className="text-sm font-semibold mb-1.5 group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>
-                {r.title}
-              </h3>
-              <p className="text-xs text-slate-500 leading-relaxed">{r.description}</p>
+              {(() => {
+                const s = CATEGORY_STYLE[r.category] ?? DEFAULT_CAT;
+                return (
+                  <>
+                    <div className="flex items-start justify-between mb-3">
+                      <span style={{
+                        fontSize: 10, fontWeight: 700, padding: "3px 8px", borderRadius: 6,
+                        background: s.bg, color: s.color, border: `1px solid ${s.border}`,
+                        fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                        letterSpacing: "0.06em", textTransform: "uppercase",
+                      }}>
+                        {r.category}
+                      </span>
+                      <ExternalLink style={{ width: 13, height: 13, color: "var(--text-3)", flexShrink: 0 }} />
+                    </div>
+                    <h3 style={{
+                      fontSize: 13, fontWeight: 700, marginBottom: 6,
+                      color: "var(--text)",
+                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                      transition: "color 0.2s",
+                    }}
+                      className="resource-title"
+                    >
+                      {r.title}
+                    </h3>
+                    <p style={{ fontSize: 12, color: "var(--text-3)", lineHeight: 1.6, margin: 0, fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
+                      {r.description}
+                    </p>
+                  </>
+                );
+              })()}
             </a>
           ))}
         </div>
 
-        <div className="card p-8 lg:p-12 text-center relative overflow-hidden" style={{ borderColor: "rgba(249,115,22,0.1)" }}>
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/5 to-blue-600/5 rounded-[18px]" />
+        <div className="card p-8 lg:p-12 text-center relative overflow-hidden" style={{ borderColor: "rgba(201,169,110,0.18)" }}>
+          <div aria-hidden style={{ position:"absolute", inset:0, borderRadius:18, pointerEvents:"none",
+            background:"radial-gradient(ellipse at 70% 30%, rgba(201,169,110,0.07) 0%, transparent 65%)" }} />
           <div className="relative">
             <h3 className="text-2xl lg:text-3xl font-bold mb-3" style={{ color: "var(--text)" }}>
               Know a Resource We&apos;re Missing?
@@ -75,6 +98,9 @@ export default function Resources() {
           </div>
         </div>
       </div>
+      <style>{`
+        .group:hover .resource-title { color: var(--in) !important; }
+      `}</style>
     </section>
   );
 }
