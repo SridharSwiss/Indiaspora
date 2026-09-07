@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -80,12 +79,9 @@ export default function BernPage() {
 
         {/* Hero Image */}
         <div>
-          <Image
+          <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Bern_Bundeshaus_2009.jpg/1280px-Bern_Bundeshaus_2009.jpg"
             alt="Bern Federal Palace (Bundeshaus)"
-            width={1280}
-            height={426}
-            unoptimized
             style={{ width: "100%", height: 280, objectFit: "cover", borderRadius: 16 }}
           />
         </div>

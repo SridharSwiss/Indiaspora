@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -37,12 +36,9 @@ export default function ZurichPage() {
 
         {/* Hero Image */}
         <div style={{ margin: "32px 0 40px" }}>
-          <Image
+          <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Zurich_Grossmunster_and_Limmat_River.jpg/1280px-Zurich_Grossmunster_and_Limmat_River.jpg"
             alt="Zurich Grossmünster and Limmat River"
-            width={1280}
-            height={400}
-            unoptimized
             style={{ width: "100%", height: 300, objectFit: "cover", borderRadius: 20 }}
           />
         </div>

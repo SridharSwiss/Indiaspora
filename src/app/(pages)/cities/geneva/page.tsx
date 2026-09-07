@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -61,12 +60,9 @@ export default function GenevaPage() {
 
       {/* Hero Image */}
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "24px 16px 0" }}>
-        <Image
+        <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Jet_d%27eau_Geneve.jpg/1280px-Jet_d%27eau_Geneve.jpg"
           alt="Geneva Jet d'Eau fountain"
-          width={1200}
-          height={400}
-          unoptimized
           style={{ width: "100%", height: 280, objectFit: "cover", borderRadius: 16 }}
         />
       </div>

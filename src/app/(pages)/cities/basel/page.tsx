@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -134,13 +133,9 @@ export default function BaselPage() {
 
       {/* Hero Image */}
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "24px 20px 0" }}>
-        <Image
+        <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Basel_-_Mittlere_Bruecke1.jpg/1280px-Basel_-_Mittlere_Bruecke1.jpg"
           alt="Basel Mittlere Brücke over the Rhine"
-          width={1280}
-          height={480}
-          unoptimized
-          priority
           style={{
             width: "100%",
             height: 280,

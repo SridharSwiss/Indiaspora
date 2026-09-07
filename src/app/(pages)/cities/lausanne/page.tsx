@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -262,12 +261,9 @@ export default function LausannePage() {
       >
         {/* ── Hero image ── */}
         <div style={{ marginTop: 32 }}>
-          <Image
+          <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Lausanne_-_panorama_depuis_Sauvabelin_-_panoramio.jpg/1280px-Lausanne_-_panorama_depuis_Sauvabelin_-_panoramio.jpg"
             alt="Lausanne panorama from Sauvabelin"
-            width={1280}
-            height={400}
-            unoptimized
             style={{
               width: "100%",
               height: 260,
