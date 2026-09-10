@@ -9,6 +9,7 @@ import {
   MapPin, Mail, Briefcase, Calendar, CheckCircle, XCircle, Clock,
   LayoutDashboard, Search, ChevronRight, TrendingUp, UserCheck, UserX, Bell,
   CalendarPlus, ImagePlus, Sparkles, ThumbsUp, ThumbsDown, Loader2, ExternalLink, Home,
+  MessageSquare, ChevronDown,
 } from "lucide-react";
 
 type Member = {
@@ -34,6 +35,11 @@ type UserSession = {
   pages: string[]; pageCount: number;
   startedAt: string; lastSeen: string; totalDuration: number; country: string | null;
 };
+type AdviceInquiry = {
+  id: string; name: string; email: string; phone?: string;
+  location?: string; topic: string; query: string;
+  status: "new" | "replied" | "closed"; created_at: string;
+};
 type AnalyticsData = {
   totalViews: number; todayViews: number;
   topPages: { path: string; views: number }[];
@@ -52,7 +58,7 @@ const STATUS_CONFIG = {
 
 export default function AdminPage() {
   const router = useRouter();
-  const [tab, setTab] = useState<"overview" | "members" | "analytics" | "newsletter" | "events">("overview");
+  const [tab, setTab] = useState<"overview" | "members" | "analytics" | "newsletter" | "events" | "advice">("overview");
   const [members, setMembers] = useState<Member[]>([]);
   const [memberCount, setMemberCount] = useState(0);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
@@ -66,6 +72,10 @@ export default function AdminPage() {
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [rejectNote, setRejectNote] = useState<{ id: string; note: string } | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  // Advice tab state
+  const [adviceItems, setAdviceItems] = useState<AdviceInquiry[]>([]);
+  const [adviceExpanded, setAdviceExpanded] = useState<string | null>(null);
 
   // Events tab state
   const [events, setEvents] = useState<AdminEvent[]>([]);
@@ -158,6 +168,7 @@ export default function AdminPage() {
     { id: "analytics" as const,   icon: BarChart3,       label: "Analytics",   badge: null },
     { id: "newsletter" as const,  icon: Bell,            label: "Newsletter",  badge: subscribers.length > 0 ? subscribers.length : null },
     { id: "events" as const,      icon: CalendarPlus,    label: "Events",      badge: events.filter(e => e.event_status === "pending").length > 0 ? events.filter(e => e.event_status === "pending").length : null },
+    { id: "advice" as const,      icon: MessageSquare,   label: "Advice",      badge: adviceItems.filter(a => a.status === "new").length > 0 ? adviceItems.filter(a => a.status === "new").length : null },
   ];
 
   const downloadSubscribersCSV = () => {
@@ -182,6 +193,13 @@ export default function AdminPage() {
   }, []);
 
   useEffect(() => { if (tab === "events") fetchEvents(); }, [tab, fetchEvents]);
+
+  const fetchAdvice = useCallback(async () => {
+    const res = await fetch("/api/inquiries/advice");
+    if (res.ok) { const d = await res.json(); setAdviceItems(d.inquiries || []); }
+  }, []);
+
+  useEffect(() => { if (tab === "advice") fetchAdvice(); }, [tab, fetchAdvice]);
 
   const handleEventImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;
@@ -1081,6 +1099,72 @@ export default function AdminPage() {
               </div>
 
               <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            </div>
+          )}
+
+          {/* ── Advice Tab ── */}
+          {tab === "advice" && (
+            <div>
+              <div style={{ marginBottom: 24, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+                <div>
+                  <h2 style={{ margin: 0, fontSize: 20, fontWeight: 800, color: "var(--text)" }}>Seek Advice Submissions</h2>
+                  <p style={{ margin: "4px 0 0", fontSize: 13, color: "var(--text-3)" }}>{adviceItems.length} total · {adviceItems.filter(a => a.status === "new").length} new</p>
+                </div>
+                <button onClick={fetchAdvice} style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 14px", borderRadius: 10, border: "1px solid var(--border-2)", background: "var(--surface)", color: "var(--text-2)", fontSize: 13, cursor: "pointer" }}>
+                  <RefreshCw size={13} /> Refresh
+                </button>
+              </div>
+
+              {adviceItems.length === 0 ? (
+                <div style={{ textAlign: "center", padding: "48px 0", color: "var(--text-3)", fontSize: 14 }}>
+                  <MessageSquare size={32} style={{ margin: "0 auto 12px", opacity: 0.3 }} />
+                  No advice submissions yet.
+                </div>
+              ) : (
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  {adviceItems.map(item => (
+                    <div key={item.id} style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 14, overflow: "hidden" }}>
+                      <div
+                        style={{ padding: "16px 20px", display: "flex", alignItems: "flex-start", justifyContent: "space-between", cursor: "pointer", gap: 12 }}
+                        onClick={() => setAdviceExpanded(adviceExpanded === item.id ? null : item.id)}
+                      >
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 4 }}>
+                            <span style={{ fontWeight: 700, fontSize: 14, color: "var(--text)" }}>{item.name}</span>
+                            <span style={{
+                              padding: "2px 8px", borderRadius: 99, fontSize: 11, fontWeight: 700,
+                              background: item.status === "new" ? "rgba(249,115,22,0.12)" : item.status === "replied" ? "rgba(5,150,105,0.1)" : "rgba(100,116,139,0.1)",
+                              color: item.status === "new" ? "#F97316" : item.status === "replied" ? "#059669" : "#64748B",
+                            }}>{item.status.toUpperCase()}</span>
+                            <span style={{ fontSize: 11, color: "var(--text-3)" }}>{item.topic}</span>
+                          </div>
+                          <div style={{ fontSize: 12, color: "var(--text-3)", display: "flex", gap: 16, flexWrap: "wrap" }}>
+                            <span>{item.email}</span>
+                            {item.phone && <span>{item.phone}</span>}
+                            {item.location && <span><MapPin size={10} style={{ display: "inline", verticalAlign: "middle" }} /> {item.location}</span>}
+                            <span>{new Date(item.created_at).toLocaleDateString()}</span>
+                          </div>
+                        </div>
+                        <ChevronDown size={16} style={{ color: "var(--text-3)", flexShrink: 0, transform: adviceExpanded === item.id ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
+                      </div>
+
+                      {adviceExpanded === item.id && (
+                        <div style={{ padding: "0 20px 20px", borderTop: "1px solid var(--border)" }}>
+                          <p style={{ margin: "16px 0 12px", fontSize: 13, color: "var(--text-2)", lineHeight: 1.6, background: "var(--surface-2)", padding: "14px 16px", borderRadius: 10, whiteSpace: "pre-wrap" }}>
+                            {item.query}
+                          </p>
+                          <a
+                            href={`mailto:${item.email}?subject=Re: Your Indiaspora Advice Request (${item.topic})&body=Dear ${item.name},%0A%0AThank you for reaching out to Indiaspora.%0A%0A`}
+                            style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 16px", borderRadius: 10, background: "linear-gradient(135deg,#F97316,#FB923C)", color: "#fff", fontSize: 13, fontWeight: 700, textDecoration: "none" }}
+                          >
+                            <Mail size={13} /> Reply via Email
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
