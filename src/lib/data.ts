@@ -257,7 +257,7 @@ export const UPCOMING_EVENTS = [
   {
     title: "IAGZ Navratri Garba Night 2026",
     date: "Oct 25, 2026",
-    location: "Zurich",
+    location: "Stadthalle Dietikon, Zurich",
     category: "Cultural",
     description: "Largest Garba celebration in Switzerland with live dandiya music, traditional dance, and festive dinner.",
     organiser: "Indian Association Zurich (IAGZ)",

@@ -96,24 +96,37 @@ export default async function EventsPage() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const allEvents: EventItem[] = [
-    ...dbEvents.map((e: Record<string, string>) => ({
-      title: e.title,
-      date: e.date,
-      location: e.location,
-      category: e.category,
-      description: e.description,
-      organiser: e.organiser,
-      color: e.color ?? "bg-violet-500",
-      url: e.url ?? "",
-      image: e.image_url ?? e.image ?? "",
-      _parsed: parseEventDate(e.date),
-    })),
-    ...UPCOMING_EVENTS.map((e) => ({ ...e, image: (e as { image?: string }).image ?? "", _parsed: parseEventDate(e.date) })),
-  ];
+  const toItem = (e: Record<string, string>): EventItem => ({
+    title: e.title,
+    date: e.date,
+    location: e.location,
+    category: e.category,
+    description: e.description,
+    organiser: e.organiser,
+    color: e.color ?? "bg-violet-500",
+    url: e.url ?? "",
+    image: e.image_url ?? e.image ?? "",
+    _parsed: parseEventDate(e.date),
+  });
 
-  const upcomingEvents = allEvents.filter(e => e._parsed >= today).sort((a, b) => a._parsed.getTime() - b._parsed.getTime());
-  const pastEvents = allEvents.filter(e => e._parsed < today).sort((a, b) => b._parsed.getTime() - a._parsed.getTime());
+  const submittedItems: EventItem[] = dbEvents.map(toItem);
+  const curatedItems: EventItem[] = UPCOMING_EVENTS.map((e) => ({
+    ...e,
+    image: (e as { image?: string }).image ?? "",
+    _parsed: parseEventDate(e.date),
+  }));
+
+  const submittedUpcoming = submittedItems.filter(e => e._parsed >= today).sort((a, b) => a._parsed.getTime() - b._parsed.getTime());
+  const submittedPast     = submittedItems.filter(e => e._parsed < today).sort((a, b) => b._parsed.getTime() - a._parsed.getTime());
+  const curatedUpcoming   = curatedItems.filter(e => e._parsed >= today).sort((a, b) => a._parsed.getTime() - b._parsed.getTime());
+  const curatedPast       = curatedItems.filter(e => e._parsed < today).sort((a, b) => b._parsed.getTime() - a._parsed.getTime());
+
+  const strip = (items: EventItem[]) => items.map(({ _parsed: _, ...e }) => e);
+
+  // Nearest upcoming event across all sources — shown as auto-dismissing banner
+  const allUpcoming = [...submittedUpcoming, ...curatedUpcoming].sort((a, b) => a._parsed.getTime() - b._parsed.getTime());
+  const featuredRaw = allUpcoming[0] ?? null;
+  const featured = featuredRaw ? (({ _parsed: _, ...e }) => e)(featuredRaw) : undefined;
 
   return (
     <div>
@@ -126,19 +139,56 @@ export default async function EventsPage() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Upcoming */}
+
+        {/* ── Community-submitted events (approved) ── */}
+        {submittedUpcoming.length > 0 && (
+          <section className="mb-16">
+            <div className="flex items-center gap-3 mb-2">
+              <h2 className="text-2xl font-bold" style={{ color: "var(--text)" }}>Community Events</h2>
+              <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: "rgba(124,58,237,0.12)", color: "#a855f7", border: "1px solid rgba(124,58,237,0.25)" }}>
+                ✓ Submitted &amp; Approved
+              </span>
+            </div>
+            <p className="mb-8" style={{ color: "var(--text-2)" }}>Events submitted directly by the Swiss-Indian community and verified by Indiaspora</p>
+            <EventsGrid events={strip(submittedUpcoming)} featured={featured} />
+          </section>
+        )}
+
+        {/* ── Curated upcoming events ── */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Upcoming Events</h2>
-          <p className="mb-8" style={{ color: "var(--text-2)" }}>Next events in the Swiss-Indian community calendar</p>
-          <EventsGrid events={upcomingEvents.map(({ _parsed: _, ...e }) => e)} />
+          <div className="flex items-center gap-3 mb-2">
+            <h2 className="text-2xl font-bold" style={{ color: "var(--text)" }}>
+              {submittedUpcoming.length > 0 ? "Curated Calendar" : "Upcoming Events"}
+            </h2>
+            {submittedUpcoming.length > 0 && (
+              <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: "rgba(184,154,98,0.12)", color: "var(--sf)", border: "1px solid rgba(184,154,98,0.25)" }}>
+                Indiaspora Picks
+              </span>
+            )}
+          </div>
+          <p className="mb-8" style={{ color: "var(--text-2)" }}>
+            {submittedUpcoming.length > 0
+              ? "Regular community events and festivals curated by Indiaspora"
+              : "Next events in the Swiss-Indian community calendar"}
+          </p>
+          <EventsGrid events={strip(curatedUpcoming)} featured={submittedUpcoming.length === 0 ? featured : undefined} />
         </section>
 
-        {/* Past Events */}
-        {pastEvents.length > 0 && (
+        {/* ── Past submitted events ── */}
+        {submittedPast.length > 0 && (
+          <section className="mb-16">
+            <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Past Community Events</h2>
+            <p className="mb-8" style={{ color: "var(--text-2)" }}>Community-submitted events that have already taken place</p>
+            <EventsGrid events={strip(submittedPast)} muted />
+          </section>
+        )}
+
+        {/* ── Past curated events ── */}
+        {curatedPast.length > 0 && (
           <section className="mb-16">
             <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Past Events</h2>
             <p className="mb-8" style={{ color: "var(--text-2)" }}>Events that have already taken place</p>
-            <EventsGrid events={pastEvents.map(({ _parsed: _, ...e }) => e)} muted />
+            <EventsGrid events={strip(curatedPast)} muted />
           </section>
         )}
 
@@ -171,7 +221,7 @@ export default async function EventsPage() {
             {[
               { title: "IAGZ Newsletter & WhatsApp", body: "The Indian Association of Greater Zurich (iagz.ch) sends a monthly newsletter and maintains WhatsApp groups. Instagram: @iagzurich · Facebook: IA GZ" },
               { title: "TASC Tamil Community", body: "Tamil Association of Switzerland (tasc.ch) publishes an events calendar for Tamil events across German- and French-speaking Switzerland." },
-              { title: "TeluguSwiss", body: "Telugu Swiss Association (teluguswiss.ch) announces Ugadi, cultural evenings, and community events. Facebook: TeluguSwiss Association." },
+              { title: "TeluguSwiss", body: "Telugu Swiss Association (teluguswiss.org) announces Ugadi, cultural evenings, and community events. Facebook: TeluguSwiss Association." },
               { title: "SwissPuja Bengali Community", body: "SwissPuja (swisspuja.org) runs Switzerland's largest Durga Puja. Instagram: @swisspuja · Facebook: Swisspuja - সুইসপূজা" },
               { title: "Indian Association Geneva", body: "IAG (indianassociationgeneva.com) — founded 1947, 500+ members in Lake Geneva region. Instagram: @indian_association_of_geneva" },
               { title: "SICC Business Events", body: "Swiss Indian Chamber of Commerce (sicc.ch) publishes a business events calendar including the annual Swiss India Business Summit and networking dinners." },

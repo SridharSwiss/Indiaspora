@@ -254,8 +254,148 @@ function EventLightbox({ event, onClose }: { event: EventItem; onClose: () => vo
   );
 }
 
-export function EventsGrid({ events, muted }: { events: EventItem[]; muted?: boolean }) {
+const BANNER_DURATION = 4500;
+
+function FeaturedEventBanner({ event, onClose }: { event: EventItem; onClose: () => void }) {
+  const [progress, setProgress] = useState(100);
+
+  useEffect(() => {
+    const start = Date.now();
+    const tick = setInterval(() => {
+      const elapsed = Date.now() - start;
+      const pct = Math.max(0, 100 - (elapsed / BANNER_DURATION) * 100);
+      setProgress(pct);
+      if (pct === 0) clearInterval(tick);
+    }, 50);
+    const timer = setTimeout(onClose, BANNER_DURATION);
+    return () => { clearInterval(tick); clearTimeout(timer); };
+  }, [onClose]);
+
+  return (
+    <div
+      style={{
+        position: "fixed", inset: 0, zIndex: 500,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "16px",
+        animation: "lbIn 0.3s cubic-bezier(0.16,1,0.3,1) both",
+      }}
+    >
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.72)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }} />
+      <div style={{
+        position: "relative", zIndex: 1,
+        display: "flex", flexDirection: "column",
+        background: "var(--surface)",
+        borderRadius: 20,
+        border: "1px solid var(--border-2)",
+        boxShadow: "0 32px 80px rgba(0,0,0,0.45)",
+        maxWidth: 860, width: "100%",
+        maxHeight: "88vh",
+        overflow: "hidden",
+        animation: "lbIn 0.28s cubic-bezier(0.16,1,0.3,1) both",
+      }}>
+        {/* Featured badge */}
+        <div style={{
+          position: "absolute", top: 14, left: event.image ? "calc(45% + 14px)" : 14, zIndex: 10,
+          display: "flex", alignItems: "center", gap: 6,
+          padding: "4px 10px", borderRadius: 999,
+          background: "linear-gradient(135deg,#7c3aed,#a855f7)",
+          color: "#fff", fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase",
+        }}>
+          ✦ Featured Event
+        </div>
+
+        {/* Close */}
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          style={{
+            position: "absolute", top: 14, right: 14, zIndex: 10,
+            width: 36, height: 36, borderRadius: "50%",
+            background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)",
+            border: "1px solid rgba(255,255,255,0.15)",
+            color: "#fff", fontSize: 18, lineHeight: 1,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            cursor: "pointer",
+          }}
+        >×</button>
+
+        {/* Body */}
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", flex: 1, overflow: "hidden" }}>
+          {event.image && (
+            <div style={{ flex: "0 0 45%", minWidth: 200, maxWidth: "45%", position: "relative", overflow: "hidden" }}>
+              <img src={event.image} alt={event.title} style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: 220, display: "block" }} />
+              <span style={{
+                position: "absolute", top: 14, left: 14,
+                fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+                padding: "4px 10px", borderRadius: 999,
+                background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", color: "#fff",
+              }}>{event.category}</span>
+            </div>
+          )}
+          <div style={{ flex: 1, minWidth: 240, padding: "36px 26px 22px", overflowY: "auto", display: "flex", flexDirection: "column", gap: 14 }}>
+            <h2 style={{ margin: 0, fontSize: 22, fontWeight: 800, lineHeight: 1.2, fontFamily: "'Playfair Display', Georgia, serif", color: "var(--text)" }}>
+              {event.title}
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+              {event.date && (
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ fontSize: 15 }}>📅</span>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: "var(--accent, #a855f7)" }}>{event.date}</span>
+                </div>
+              )}
+              {event.location && (
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ fontSize: 15 }}>📍</span>
+                  <span style={{ fontSize: 13, color: "var(--text-2)" }}>{event.location}</span>
+                </div>
+              )}
+              {event.organiser && (
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ fontSize: 15 }}>🏛️</span>
+                  <span style={{ fontSize: 12, color: "var(--text-2)" }}>by {event.organiser}</span>
+                </div>
+              )}
+            </div>
+            {event.description && (
+              <p style={{ margin: 0, fontSize: 13, lineHeight: 1.7, color: "var(--text-2)" }}>{event.description}</p>
+            )}
+            {event.url && (
+              <div style={{ marginTop: "auto", paddingTop: 8, borderTop: "1px solid var(--border-2)" }}>
+                <a href={event.url} target="_blank" rel="noopener noreferrer" style={{
+                  display: "flex", alignItems: "center", gap: 8,
+                  padding: "11px 18px", borderRadius: 10,
+                  background: "linear-gradient(135deg,#7c3aed,#a855f7)",
+                  color: "#fff", fontSize: 13, fontWeight: 700,
+                  textDecoration: "none", boxShadow: "0 4px 18px rgba(124,58,237,0.35)",
+                }}>
+                  <span>🔗</span>
+                  <span style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    {event.url.replace(/^https?:\/\//, "")}
+                  </span>
+                  <span>↗</span>
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Progress bar */}
+        <div style={{ height: 3, background: "var(--border-2, rgba(255,255,255,0.08))" }}>
+          <div style={{
+            height: "100%",
+            width: `${progress}%`,
+            background: "linear-gradient(90deg,#7c3aed,#a855f7)",
+            transition: "width 0.05s linear",
+          }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function EventsGrid({ events, muted, featured }: { events: EventItem[]; muted?: boolean; featured?: EventItem }) {
   const [selected, setSelected] = useState<EventItem | null>(null);
+  const [showFeatured, setShowFeatured] = useState(!!featured);
 
   const openEvent = useCallback((event: EventItem) => {
     setSelected(event);
@@ -264,6 +404,10 @@ export function EventsGrid({ events, muted }: { events: EventItem[]; muted?: boo
 
   const closeEvent = useCallback(() => {
     setSelected(null);
+  }, []);
+
+  const closeFeatured = useCallback(() => {
+    setShowFeatured(false);
   }, []);
 
   // Handle browser back button
@@ -286,6 +430,7 @@ export function EventsGrid({ events, muted }: { events: EventItem[]; muted?: boo
         )}
       </div>
       {selected && <EventLightbox event={selected} onClose={closeEvent} />}
+      {showFeatured && featured && !selected && <FeaturedEventBanner event={featured} onClose={closeFeatured} />}
     </>
   );
 }
