@@ -229,7 +229,7 @@ export const UPCOMING_EVENTS = [
     description: "Annual Telugu cultural evening with classical music, Kuchipudi dance, and authentic Telugu cuisine.",
     organiser: "Telugu Swiss Association",
     color: "bg-green-500",
-    url: "https://teluguswiss.ch",
+    url: "https://teluguswiss.org",
     image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=600&auto=format&fit=crop",
   },
   {
@@ -339,7 +339,7 @@ export const UPCOMING_EVENTS = [
     description: "Gujarati community Annakut celebration following Diwali — mountain of food offered as prasad, traditional bhajans and community dinner.",
     organiser: "Gujarati Samaj Switzerland",
     color: "bg-amber-500",
-    url: "https://www.gujaratisamaj.ch",
+    url: "",
     image: "https://images.unsplash.com/photo-1515825838458-f2a94b20105a?w=600&auto=format&fit=crop",
   },
   {
