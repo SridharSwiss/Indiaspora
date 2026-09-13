@@ -4,6 +4,7 @@ import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { UPCOMING_EVENTS } from "@/lib/data";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { EventsGrid } from "@/components/ui/EventsGrid";
 
 const MONTHS: Record<string, number> = {
   jan: 0, january: 0, feb: 1, february: 1, mar: 2, march: 2,
@@ -90,59 +91,6 @@ type EventItem = {
   _parsed: Date;
 };
 
-function EventCard({ event, muted }: { event: EventItem; muted?: boolean }) {
-  const Wrapper = event.url ? "a" : "div";
-  const wrapperProps = event.url ? { href: event.url, target: "_blank", rel: "noopener noreferrer" } : {};
-  return (
-    <Wrapper {...wrapperProps} className={`glass rounded-2xl overflow-hidden card-hover block group${muted ? " opacity-55" : ""}`} style={{ textDecoration: "none" }}>
-      {event.image && (
-        <div className="relative h-44 overflow-hidden">
-          <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-          <div className="absolute top-3 left-3">
-            <span className="text-xs px-2 py-1 rounded-full font-medium text-white" style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>{event.category}</span>
-          </div>
-        </div>
-      )}
-      <div className="p-5 flex flex-col gap-3">
-        {/* Title — always prominent */}
-        <h3 className="font-bold text-base leading-snug group-hover:text-violet-400 transition-colors" style={{ color: "var(--text)" }}>
-          {event.title}
-        </h3>
-
-        {/* Date — visually dominant */}
-        {event.date && (
-          <div className="flex items-center gap-2">
-            <span className={`w-2 h-full min-h-[2rem] rounded-full ${event.color || "bg-violet-500"} shrink-0`} style={{ width: "3px" }} />
-            <p className="text-sm font-semibold" style={{ color: "var(--accent, #a855f7)" }}>📅 {event.date}</p>
-          </div>
-        )}
-
-        {/* Location */}
-        {event.location && (
-          <p className="text-xs" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
-        )}
-
-        {/* Description */}
-        {event.description && (
-          <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{event.description}</p>
-        )}
-
-        {/* Footer: organiser + URL always visible */}
-        <div className="flex items-center justify-between pt-1 border-t" style={{ borderColor: "var(--border, rgba(255,255,255,0.08))" }}>
-          {event.organiser
-            ? <span className="text-xs font-medium" style={{ color: "var(--text-2)" }}>by {event.organiser}</span>
-            : <span />}
-          {event.url && (
-            <span className="text-xs font-semibold text-violet-400 group-hover:text-violet-300 transition-colors flex items-center gap-1">
-              Visit event ↗
-            </span>
-          )}
-        </div>
-      </div>
-    </Wrapper>
-  );
-}
-
 export default async function EventsPage() {
   const dbEvents = await getDbEvents();
   const today = new Date();
@@ -182,12 +130,7 @@ export default async function EventsPage() {
         <section className="mb-16">
           <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Upcoming Events</h2>
           <p className="mb-8" style={{ color: "var(--text-2)" }}>Next events in the Swiss-Indian community calendar</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {upcomingEvents.map((event) => <EventCard key={event.title + event.date} event={event} />)}
-            {upcomingEvents.length === 0 && (
-              <p className="col-span-3 text-sm" style={{ color: "var(--text-2)" }}>No upcoming events listed yet. Check back soon.</p>
-            )}
-          </div>
+          <EventsGrid events={upcomingEvents.map(({ _parsed: _, ...e }) => e)} />
         </section>
 
         {/* Past Events */}
@@ -195,9 +138,7 @@ export default async function EventsPage() {
           <section className="mb-16">
             <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Past Events</h2>
             <p className="mb-8" style={{ color: "var(--text-2)" }}>Events that have already taken place</p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {pastEvents.map((event) => <EventCard key={event.title + event.date} event={event} muted />)}
-            </div>
+            <EventsGrid events={pastEvents.map(({ _parsed: _, ...e }) => e)} muted />
           </section>
         )}
 
