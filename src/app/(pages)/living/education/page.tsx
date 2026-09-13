@@ -138,6 +138,16 @@ export default function EducationPage() {
           <h3 className="text-base font-semibold text-purple-400 mb-2">Tip for New Arrivals</h3>
           <p className="text-sm/70" style={{ color: "var(--text)" }}>Contact your Gemeinde (municipality) as soon as you register — they will tell you which public school your child is assigned to and what language support is available. The Swiss public school system is genuinely excellent and free of charge, including textbooks and most materials.</p>
         </div>
+
+        <div className="glass rounded-2xl p-6 border border-indigo-500/20 flex items-start justify-between gap-6">
+          <div>
+            <h3 className="text-base font-semibold mb-1" style={{ color: "var(--text)" }}>Zurich Education Deep-Dive</h3>
+            <p className="text-sm" style={{ color: "var(--text-2)" }}>A detailed canton-level guide covering compulsory schooling phases, Gymnasium pathways, Berufslehre apprenticeships, tertiary options, and key statistics for Indian families settling in Zurich.</p>
+          </div>
+          <a href="/living/education/zurich" className="shrink-0 text-sm font-bold px-4 py-2 rounded-xl bg-indigo-500/15 text-indigo-400 hover:bg-indigo-500/25 transition-colors whitespace-nowrap">
+            View Guide →
+          </a>
+        </div>
       </div>
     </div>
   );

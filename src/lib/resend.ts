@@ -195,8 +195,8 @@ export async function sendMembershipConfirmEmail(email: string, name: string, ti
     <div style="padding:36px">
       <p style="font-size:15px;color:#52525C;line-height:1.7">Hi ${name}, your <strong>${tier}</strong> membership is now active.
       Thank you for supporting the Indian community in Switzerland!</p>
-      <a href="https://indiaspora.ch/profile" style="display:block;text-align:center;background:linear-gradient(135deg,#4F46E5,#6366F1);color:#fff;text-decoration:none;padding:14px 28px;border-radius:999px;font-weight:700;margin-top:24px">
-        View Your Profile →
+      <a href="https://indiaspora.ch/" style="display:block;text-align:center;background:linear-gradient(135deg,#4F46E5,#6366F1);color:#fff;text-decoration:none;padding:14px 28px;border-radius:999px;font-weight:700;margin-top:24px">
+        Explore Indiaspora →
       </a>
     </div>
   </div>
