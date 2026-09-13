@@ -83,14 +83,14 @@ export default function PageHeader({
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {breadcrumbs && (
           <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 mb-5 text-xs sm:text-sm">
-            <Link href="/" className="transition-colors hover:text-amber-600" style={{ color: "var(--text-3)" }}>
+            <Link href="/" className="transition-colors" style={{ color: "var(--text-3)" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color="var(--sf)"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color="var(--text-3)"}>
               Home
             </Link>
             {breadcrumbs.map((crumb, i) => (
               <span key={i} className="flex items-center gap-1.5">
                 <ChevronRight className="w-3 h-3 shrink-0" style={{ color: "var(--text-3)" }} aria-hidden />
                 {crumb.href ? (
-                  <Link href={crumb.href} className="transition-colors hover:text-amber-600" style={{ color: "var(--text-3)" }}>
+                  <Link href={crumb.href} className="transition-colors" style={{ color: "var(--text-3)" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color="var(--sf)"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color="var(--text-3)"}>
                     {crumb.label}
                   </Link>
                 ) : (
@@ -108,7 +108,7 @@ export default function PageHeader({
               padding: "4px 14px", borderRadius: 999,
               fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
               background: "var(--sf-bg)",
-              border: "1px solid rgba(139,92,246,0.25)",
+              border: "1px solid rgba(184,154,98,0.25)",
               color: "var(--sf-hi)",
               backdropFilter: "blur(10px)",
             }}

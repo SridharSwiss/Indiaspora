@@ -479,25 +479,45 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <Link
-                href="/login"
-                className="hidden lg:inline-flex items-center gap-1.5 nav-icon-btn"
-                style={{
-                  padding: "0 14px", height: 32,
-                  fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
-                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                  color: lightNav ? "rgba(245,237,224,0.7)" : "var(--text-2)",
-                  background: "transparent",
-                  border: lightNav ? "1px solid rgba(245,237,224,0.3)" : "1px solid var(--border-hi)",
-                  textDecoration: "none",
-                  transition: "color 0.3s, border-color 0.3s",
-                  display: "inline-flex", alignItems: "center",
-                }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,1)" : "var(--text)"; (e.currentTarget as HTMLElement).style.borderColor = lightNav ? "rgba(245,237,224,0.7)" : "var(--text)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.7)" : "var(--text-2)"; (e.currentTarget as HTMLElement).style.borderColor = lightNav ? "rgba(245,237,224,0.3)" : "var(--border-hi)"; }}
-              >
-                Sign in
-              </Link>
+              <>
+                <Link
+                  href="/login"
+                  className="hidden lg:inline-flex items-center gap-1.5 nav-icon-btn"
+                  style={{
+                    padding: "0 14px", height: 32,
+                    fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+                    fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                    color: lightNav ? "rgba(245,237,224,0.7)" : "var(--text-2)",
+                    background: "transparent",
+                    border: lightNav ? "1px solid rgba(245,237,224,0.3)" : "1px solid var(--border-hi)",
+                    textDecoration: "none",
+                    transition: "color 0.3s, border-color 0.3s",
+                    display: "inline-flex", alignItems: "center",
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,1)" : "var(--text)"; (e.currentTarget as HTMLElement).style.borderColor = lightNav ? "rgba(245,237,224,0.7)" : "var(--text)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.7)" : "var(--text-2)"; (e.currentTarget as HTMLElement).style.borderColor = lightNav ? "rgba(245,237,224,0.3)" : "var(--border-hi)"; }}
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/join"
+                  className="hidden lg:inline-flex items-center"
+                  style={{
+                    padding: "0 14px", height: 32,
+                    fontSize: 10, fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase",
+                    fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                    color: "#1A1410",
+                    background: lightNav ? "rgba(206,176,122,0.9)" : "#CEB07A",
+                    textDecoration: "none", whiteSpace: "nowrap",
+                    transition: "background 0.15s",
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#B89860"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = lightNav ? "rgba(206,176,122,0.9)" : "#CEB07A"; }}
+                >
+                  <UserPlus style={{ width: 11, height: 11, marginRight: 5 }} />
+                  Join
+                </Link>
+              </>
             )}
 
             {/* Mobile hamburger — labeled "Menu" per NNG guidance */}
@@ -560,7 +580,7 @@ export default function Navbar() {
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, flexShrink: 0 }}>
               <Link href="/" className="flex items-center gap-2.5" onClick={() => { setIsOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} style={{ textDecoration: "none" }}>
                 <img src="/logo.svg" alt="Indiaspora" style={{ width: 30, height: 30, objectFit: "contain" }} />
-                <strong style={{ fontFamily: "'Syne', system-ui, sans-serif", fontSize: 15, fontWeight: 800, letterSpacing: "-0.03em" }}>
+                <strong style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 15, fontWeight: 800, letterSpacing: "-0.03em" }}>
                   <span className="gradient-text">India</span>
                   <span style={{ color: "var(--text)" }}>spora</span>
                 </strong>
@@ -626,7 +646,7 @@ export default function Navbar() {
                       <div style={{
                         marginTop: 2, marginBottom: 4,
                         marginLeft: 8, paddingLeft: 14,
-                        borderLeft: "2px solid rgba(139,92,246,0.25)",
+                        borderLeft: "2px solid rgba(184,154,98,0.25)",
                       }}>
                         {item.children.map((child) => {
                           const childActive = pathname === child.href || pathname.startsWith(child.href + "/");

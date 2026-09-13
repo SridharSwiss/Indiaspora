@@ -78,11 +78,11 @@ function LoginForm() {
       }}>
         {/* Header */}
         <div style={{
-          background: "linear-gradient(135deg,#F97316,#DC2626)",
+          background: "linear-gradient(135deg,var(--sf),var(--in))",
           padding: "36px 36px 28px", textAlign: "center",
         }}>
           <Link href="/" style={{ fontSize: 32, textDecoration: "none" }}>🪔</Link>
-          <h1 style={{ margin: "12px 0 4px", color: "#fff", fontSize: 22, fontWeight: 800, fontFamily: "'Syne',system-ui,sans-serif" }}>
+          <h1 style={{ margin: "12px 0 4px", color: "#1A1410", fontSize: 22, fontWeight: 800, fontFamily: "'Playfair Display',Georgia,serif" }}>
             {isGated ? "Members only" : mode === "login" ? "Welcome back" : "Magic link"}
           </h1>
           <p style={{ margin: "0 0 20px", color: "rgba(255,255,255,0.8)", fontSize: 13 }}>
@@ -94,7 +94,7 @@ function LoginForm() {
               padding: "9px 22px", borderRadius: 999,
               background: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)",
               border: "1px solid rgba(255,255,255,0.3)",
-              color: "#fff", fontSize: 13, fontWeight: 700, textDecoration: "none",
+              color: "#1A1410", fontSize: 13, fontWeight: 700, textDecoration: "none",
               transition: "background 0.2s",
             }}>
               New here? Join the community →
@@ -247,7 +247,6 @@ function LoginForm() {
           </Link>
         </div>
       </div>
-      <style>{`@keyframes spin { to { transform:rotate(360deg) } }`}</style>
     </div>
   );
 }

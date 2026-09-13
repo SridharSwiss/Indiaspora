@@ -30,6 +30,11 @@ html.theme-transitioning *::after {
   --border-2:  rgba(44,30,14,0.16);
   --border-hi: rgba(44,30,14,0.30);
 
+  /* Radius scale */
+  --r-card: 28px;
+  --r-input: 12px;
+  --r-chip: 999px;
+
   /* Text — warm charcoal */
   --text:   #18130C;
   --text-2: #5C4E3A;
@@ -212,8 +217,7 @@ h1, h2, h3, .serif {
 ::-webkit-scrollbar-track { background: var(--surface-2); }
 ::-webkit-scrollbar-thumb { background: var(--in); border-radius: 4px; }
 
-/* ── Focus ────────────────────────────────────────────────────── */
-:focus-visible { outline: 2px solid var(--in); outline-offset: 3px; border-radius: 4px; }
+/* ── Focus — defined once below at line ~580 ─────────────────── */
 
 /* ── Card — refined, gold-tinted border ───────────────────────── */
 .card {
@@ -311,6 +315,7 @@ h1, h2, h3, .serif {
   transform: translateY(-2px);
   box-shadow: 0 8px 32px var(--sf-glow);
 }
+.btn-primary:active { transform: scale(0.97) translateY(0); }
 .btn-saffron {
   background: linear-gradient(135deg, var(--sf) 0%, var(--sf-hi) 100%);
   color: #fff;
@@ -593,4 +598,5 @@ button:active:not(:disabled), a:active, [role="button"]:active {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .aurora-orb { will-change: auto; animation: none !important; }
 }

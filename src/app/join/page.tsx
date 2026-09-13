@@ -101,11 +101,11 @@ function JoinForm() {
       }}>
         {/* Header */}
         <div style={{
-          background: "linear-gradient(135deg,#B08D57,#d4a853)",
+          background: "linear-gradient(135deg,var(--sf),var(--in))",
           padding: "36px 36px 28px", textAlign: "center",
         }}>
           <Link href="/" style={{ fontSize: 32, textDecoration: "none" }}>🪔</Link>
-          <h1 style={{ margin: "12px 0 4px", color: "#1A1410", fontSize: 22, fontWeight: 800, fontFamily: "'Syne',system-ui,sans-serif" }}>
+          <h1 style={{ margin: "12px 0 4px", color: "#1A1410", fontSize: 22, fontWeight: 800, fontFamily: "'Playfair Display',Georgia,serif" }}>
             Join Indiaspora
           </h1>
           <p style={{ margin: 0, color: "rgba(26,20,16,0.7)", fontSize: 13 }}>
@@ -187,7 +187,7 @@ function JoinForm() {
 
                 <button onClick={handleAccountStep} disabled={loading} style={{
                   padding: "13px", borderRadius: 12, border: "none", cursor: loading ? "default" : "pointer",
-                  background: loading ? "var(--surface-2)" : "linear-gradient(135deg,#B08D57,#d4a853)",
+                  background: loading ? "var(--surface-2)" : "linear-gradient(135deg,var(--sf),var(--in))",
                   color: loading ? "var(--text-3)" : "#1A1410",
                   fontSize: 15, fontWeight: 700,
                   display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
@@ -229,7 +229,7 @@ function JoinForm() {
                 {/* Newsletter */}
                 <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer" }}>
                   <input type="checkbox" checked={newsletter} onChange={e => setNewsletter(e.target.checked)}
-                    style={{ marginTop: 3, accentColor: "#B08D57", flexShrink: 0 }} />
+                    style={{ marginTop: 3, accentColor: "var(--sf)", flexShrink: 0 }} />
                   <span style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.5 }}>
                     Subscribe to the weekly Indiaspora newsletter — events, community news and more across Switzerland.
                   </span>
@@ -243,7 +243,7 @@ function JoinForm() {
 
                 <button onClick={handleProfileStep} disabled={loading} style={{
                   padding: "13px", borderRadius: 12, border: "none", cursor: loading ? "default" : "pointer",
-                  background: loading ? "var(--surface-2)" : "linear-gradient(135deg,#B08D57,#d4a853)",
+                  background: loading ? "var(--surface-2)" : "linear-gradient(135deg,var(--sf),var(--in))",
                   color: loading ? "var(--text-3)" : "#1A1410",
                   fontSize: 15, fontWeight: 700,
                   display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
@@ -263,7 +263,7 @@ function JoinForm() {
 
           {step === "done" && (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16, padding: "16px 0", textAlign: "center" }}>
-              <CheckCircle2 size={48} style={{ color: "#B08D57" }} />
+              <CheckCircle2 size={48} style={{ color: "var(--sf)" }} />
               <div>
                 <p style={{ margin: "0 0 6px", fontWeight: 800, fontSize: 18, color: "var(--text)", fontFamily: "'Playfair Display',Georgia,serif" }}>
                   Welcome to Indiaspora!
@@ -276,7 +276,7 @@ function JoinForm() {
               <Link href="/" style={{
                 display: "inline-flex", alignItems: "center", gap: 6,
                 padding: "12px 28px", borderRadius: 12,
-                background: "linear-gradient(135deg,#B08D57,#d4a853)",
+                background: "linear-gradient(135deg,var(--sf),var(--in))",
                 color: "#1A1410", fontWeight: 700, fontSize: 14, textDecoration: "none",
               }}>
                 Explore Indiaspora →
@@ -290,14 +290,13 @@ function JoinForm() {
           <div style={{ padding: "0 32px 28px", textAlign: "center" }}>
             <p style={{ margin: 0, fontSize: 13, color: "var(--text-3)" }}>
               Already have an account?{" "}
-              <Link href="/login" style={{ color: "#B08D57", fontWeight: 700, textDecoration: "none" }}>
+              <Link href="/login" style={{ color: "var(--sf)", fontWeight: 700, textDecoration: "none" }}>
                 Sign in
               </Link>
             </p>
           </div>
         )}
       </div>
-      <style>{`@keyframes spin { to { transform:rotate(360deg) } }`}</style>
     </div>
   );
 }
