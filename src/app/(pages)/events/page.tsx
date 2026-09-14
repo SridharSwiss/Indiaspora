@@ -71,7 +71,7 @@ async function getDbEvents() {
       .from("events")
       .select("*")
       .eq("event_status", "approved")
-      .order("created_at", { ascending: false });
+      .order("date", { ascending: true });
     return data ?? [];
   } catch {
     return [];
@@ -119,8 +119,14 @@ export default async function EventsPage() {
   const thisMonth = today.getMonth();
   const thisYear  = today.getFullYear();
 
-  // Current month first, then future months — all ascending within each group
+  const FALLBACK_TIME = new Date(9999, 0, 1).getTime();
+
+  // Current month first, then future months ascending; unparseable dates last
   const monthFirstSort = (a: EventItem, b: EventItem) => {
+    const aFallback = a._parsed.getTime() === FALLBACK_TIME;
+    const bFallback = b._parsed.getTime() === FALLBACK_TIME;
+    if (aFallback && !bFallback) return 1;
+    if (!aFallback && bFallback) return -1;
     const aCurrent = a._parsed.getFullYear() === thisYear && a._parsed.getMonth() === thisMonth;
     const bCurrent = b._parsed.getFullYear() === thisYear && b._parsed.getMonth() === thisMonth;
     if (aCurrent && !bCurrent) return -1;
