@@ -116,9 +116,21 @@ export default async function EventsPage() {
     _parsed: parseEventDate(e.date),
   }));
 
-  const submittedUpcoming = submittedItems.filter(e => e._parsed >= today).sort((a, b) => a._parsed.getTime() - b._parsed.getTime());
+  const thisMonth = today.getMonth();
+  const thisYear  = today.getFullYear();
+
+  // Current month first, then future months — all ascending within each group
+  const monthFirstSort = (a: EventItem, b: EventItem) => {
+    const aCurrent = a._parsed.getFullYear() === thisYear && a._parsed.getMonth() === thisMonth;
+    const bCurrent = b._parsed.getFullYear() === thisYear && b._parsed.getMonth() === thisMonth;
+    if (aCurrent && !bCurrent) return -1;
+    if (!aCurrent && bCurrent) return 1;
+    return a._parsed.getTime() - b._parsed.getTime();
+  };
+
+  const submittedUpcoming = submittedItems.filter(e => e._parsed >= today).sort(monthFirstSort);
   const submittedPast     = submittedItems.filter(e => e._parsed < today).sort((a, b) => b._parsed.getTime() - a._parsed.getTime());
-  const curatedUpcoming   = curatedItems.filter(e => e._parsed >= today).sort((a, b) => a._parsed.getTime() - b._parsed.getTime());
+  const curatedUpcoming   = curatedItems.filter(e => e._parsed >= today).sort(monthFirstSort);
   const curatedPast       = curatedItems.filter(e => e._parsed < today).sort((a, b) => b._parsed.getTime() - a._parsed.getTime());
 
   const strip = (items: EventItem[]) => items.map(({ _parsed: _, ...e }) => e);
