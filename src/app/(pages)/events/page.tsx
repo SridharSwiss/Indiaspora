@@ -71,7 +71,7 @@ async function getDbEvents() {
       .from("events")
       .select("*")
       .eq("event_status", "approved")
-      .order("date", { ascending: true });
+      .order("date", { ascending: true, nullsFirst: false });
     return data ?? [];
   } catch {
     return [];
