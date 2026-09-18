@@ -99,14 +99,16 @@ export default function AdminPage() {
   const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const [membersRes, analyticsRes, nlRes] = await Promise.all([
+      const [membersRes, analyticsRes, nlRes, eventsRes] = await Promise.all([
         fetch("/api/members"),
         fetch(`/api/analytics?days=${days}`),
         fetch("/api/newsletter"),
+        fetch("/api/admin/events"),
       ]);
       if (membersRes.ok) { const d = await membersRes.json(); setMembers(d.data || []); setMemberCount(d.count || 0); }
       if (analyticsRes.ok) setAnalytics(await analyticsRes.json());
       if (nlRes.ok) { const d = await nlRes.json(); setSubscribers(d.data || []); }
+      if (eventsRes.ok) { const d = await eventsRes.json(); setEvents(d.data || []); }
     } finally { setLoading(false); }
   }, [days]);
 

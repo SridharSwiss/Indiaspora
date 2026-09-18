@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     }
 
     const supabase = createAdminClient();
-    const { data, error } = await supabase.from("event_submissions").insert({
+    const { data, error } = await supabase.from("events").insert({
       title: title.trim(),
       organiser: organiser.trim(),
       date: formatDate(date),
@@ -29,10 +29,11 @@ export async function POST(req: NextRequest) {
       category,
       description: description.trim(),
       url: url?.trim() || null,
-      contact_email: contact_email?.trim() || null,
-      contact_name: contact_name?.trim() || null,
       image_url: image_url?.trim() || null,
-      status: "pending",
+      submitted_by: contact_email?.trim() || null,
+      event_status: "pending",
+      color: "bg-violet-500",
+      ai_summary: `${category} event by ${organiser.trim()} on ${formatDate(date)} in ${location.trim()}.`,
     }).select("id").single();
 
     if (error) throw error;
