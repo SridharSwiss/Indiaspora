@@ -88,6 +88,7 @@ type EventItem = {
   color: string;
   url: string;
   image: string;
+  daysUntil?: number;
   _parsed: Date;
 };
 
@@ -120,8 +121,24 @@ export default async function EventsPage() {
   const thisYear  = today.getFullYear();
 
   const FALLBACK_TIME = new Date(9999, 0, 1).getTime();
+  const MS_PER_DAY = 86_400_000;
 
-  // Current month first, then future months ascending; unparseable dates last
+  const daysUntil = (parsed: Date) => {
+    if (parsed.getTime() === FALLBACK_TIME) return undefined;
+    const diff = parsed.getTime() - today.getTime();
+    return diff >= 0 ? Math.ceil(diff / MS_PER_DAY) : undefined;
+  };
+
+  // Submitted events: pure ascending by date (nearest first); unparseable last
+  const submittedAscSort = (a: EventItem, b: EventItem) => {
+    const aFallback = a._parsed.getTime() === FALLBACK_TIME;
+    const bFallback = b._parsed.getTime() === FALLBACK_TIME;
+    if (aFallback && !bFallback) return 1;
+    if (!aFallback && bFallback) return -1;
+    return a._parsed.getTime() - b._parsed.getTime();
+  };
+
+  // Curated: current month first, then future months ascending; unparseable last
   const monthFirstSort = (a: EventItem, b: EventItem) => {
     const aFallback = a._parsed.getTime() === FALLBACK_TIME;
     const bFallback = b._parsed.getTime() === FALLBACK_TIME;
@@ -134,7 +151,10 @@ export default async function EventsPage() {
     return a._parsed.getTime() - b._parsed.getTime();
   };
 
-  const submittedUpcoming = submittedItems.filter(e => e._parsed >= today).sort(monthFirstSort);
+  const addDaysUntil = (items: EventItem[]) =>
+    items.map(e => ({ ...e, daysUntil: daysUntil(e._parsed) }));
+
+  const submittedUpcoming = addDaysUntil(submittedItems.filter(e => e._parsed >= today).sort(submittedAscSort));
   const submittedPast     = submittedItems.filter(e => e._parsed < today).sort((a, b) => b._parsed.getTime() - a._parsed.getTime());
   const curatedUpcoming   = curatedItems.filter(e => e._parsed >= today).sort(monthFirstSort);
   const curatedPast       = curatedItems.filter(e => e._parsed < today).sort((a, b) => b._parsed.getTime() - a._parsed.getTime());

@@ -12,6 +12,7 @@ export type EventItem = {
   color: string;
   url: string;
   image: string;
+  daysUntil?: number; // undefined = no urgency highlight
 };
 
 function EventCard({
@@ -50,12 +51,24 @@ function EventCard({
         <h3 className="font-bold text-base leading-snug group-hover:text-violet-400 transition-colors" style={{ color: "var(--text)" }}>
           {event.title}
         </h3>
-        {event.date && (
-          <div className="flex items-center gap-2">
-            <span className="rounded-full shrink-0" style={{ width: 3, minHeight: "2rem", background: "var(--accent, #a855f7)" }} />
-            <p className="text-sm font-semibold" style={{ color: "var(--accent, #a855f7)" }}>📅 {event.date}</p>
-          </div>
-        )}
+        {event.date && (() => {
+          const d = event.daysUntil;
+          const urgent  = d !== undefined && d <= 3;
+          const soon    = d !== undefined && d <= 7  && !urgent;
+          const near    = d !== undefined && d <= 14 && !urgent && !soon;
+          const color   = urgent ? "#ef4444" : soon ? "#f97316" : near ? "#eab308" : "var(--accent, #a855f7)";
+          const bg      = urgent ? "rgba(239,68,68,0.10)" : soon ? "rgba(249,115,22,0.10)" : near ? "rgba(234,179,8,0.10)" : "transparent";
+          const label   = urgent ? ` · in ${d}d` : soon ? ` · in ${d}d` : near ? ` · in ${d}d` : "";
+          return (
+            <div className="flex items-center gap-2">
+              <span className="rounded-full shrink-0" style={{ width: 3, minHeight: "2rem", background: color }} />
+              <div style={{ display: "flex", alignItems: "center", gap: 6, padding: urgent || soon || near ? "2px 8px" : "0", borderRadius: 999, background: bg }}>
+                <p className="text-sm font-semibold" style={{ color }}>📅 {event.date}</p>
+                {label && <span style={{ fontSize: 10, fontWeight: 800, color, letterSpacing: "0.05em" }}>{label}</span>}
+              </div>
+            </div>
+          );
+        })()}
         {event.location && (
           <p className="text-xs" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
         )}
