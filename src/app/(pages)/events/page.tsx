@@ -9,13 +9,14 @@ import { EventsGrid } from "@/components/ui/EventsGrid";
 const MONTHS: Record<string, number> = {
   jan: 0, january: 0, feb: 1, february: 1, mar: 2, march: 2,
   apr: 3, april: 3, may: 4, jun: 5, june: 5, jul: 6, july: 6,
-  aug: 7, august: 7, sep: 8, september: 8, oct: 9, october: 9,
+  aug: 7, august: 7, sep: 8, sept: 8, september: 8, oct: 9, october: 9,
   nov: 10, november: 10, dec: 11, december: 11,
 };
 
 function parseEventDate(dateStr: string): Date {
   if (!dateStr) return new Date(9999, 0, 1);
-  const s = dateStr.trim();
+  // Normalise ordinal suffixes: "29th" → "29", "1st" → "1"
+  const s = dateStr.trim().replace(/(\d+)(st|nd|rd|th)\b/gi, "$1");
 
   // "15 Oct 2026" or "15 October 2026"
   let m = s.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
