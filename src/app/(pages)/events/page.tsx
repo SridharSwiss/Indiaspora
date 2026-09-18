@@ -164,8 +164,7 @@ export default async function EventsPage() {
   // Banner only for approved events within the next 14 days
   const twoWeeksOut = new Date(today);
   twoWeeksOut.setDate(twoWeeksOut.getDate() + 14);
-  const allUpcoming = [...submittedUpcoming, ...curatedUpcoming].sort((a, b) => a._parsed.getTime() - b._parsed.getTime());
-  const featuredRaw = allUpcoming.find(e => e._parsed >= today && e._parsed <= twoWeeksOut) ?? null;
+  const featuredRaw = submittedUpcoming.find(e => e._parsed >= today && e._parsed <= twoWeeksOut) ?? null;
   const featured = featuredRaw ? (({ _parsed: _, ...e }) => e)(featuredRaw) : undefined;
 
   return (
