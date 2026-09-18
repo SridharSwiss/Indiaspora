@@ -76,9 +76,7 @@ function EventCard({
           <p className="text-xs leading-relaxed line-clamp-3" style={{ color: "var(--text-2)" }}>{event.description}</p>
         )}
         <div className="flex items-center justify-between pt-1 border-t" style={{ borderColor: "var(--border, rgba(255,255,255,0.08))" }}>
-          {event.organiser
-            ? <span className="text-xs font-medium" style={{ color: "var(--text-2)" }}>by {event.organiser}</span>
-            : <span />}
+          {event.organiser && (() => { const org = event.organiser.replace(/^by[:\s]+/i, "").trim(); return org ? <span className="text-xs font-medium" style={{ color: "var(--text-2)" }}>by {org}</span> : <span />; })()}
           <span className="text-xs font-semibold text-violet-400 group-hover:text-violet-300 transition-colors">
             View details ↗
           </span>
@@ -215,7 +213,7 @@ function EventLightbox({ event, onClose }: { event: EventItem; onClose: () => vo
               {event.organiser && (
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <span style={{ fontSize: 16 }}>🏛️</span>
-                  <span style={{ fontSize: 13, color: "var(--text-2)" }}>by {event.organiser}</span>
+                  <span style={{ fontSize: 13, color: "var(--text-2)" }}>by {event.organiser.replace(/^by[:\s]+/i, "").trim()}</span>
                 </div>
               )}
             </div>
@@ -365,7 +363,7 @@ function FeaturedEventBanner({ event, onClose }: { event: EventItem; onClose: ()
               {event.organiser && (
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <span style={{ fontSize: 15 }}>🏛️</span>
-                  <span style={{ fontSize: 12, color: "var(--text-2)" }}>by {event.organiser}</span>
+                  <span style={{ fontSize: 12, color: "var(--text-2)" }}>by {event.organiser.replace(/^by[:\s]+/i, "").trim()}</span>
                 </div>
               )}
             </div>

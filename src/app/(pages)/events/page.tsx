@@ -154,7 +154,7 @@ export default async function EventsPage() {
   const addDaysUntil = (items: EventItem[]) =>
     items.map(e => ({ ...e, daysUntil: daysUntil(e._parsed) }));
 
-  const submittedUpcoming = addDaysUntil(submittedItems.filter(e => e._parsed >= today).sort(submittedAscSort));
+  const submittedUpcoming = addDaysUntil(submittedItems.filter(e => e._parsed >= today && e._parsed.getTime() !== FALLBACK_TIME).sort(submittedAscSort));
   const submittedPast     = submittedItems.filter(e => e._parsed < today).sort((a, b) => b._parsed.getTime() - a._parsed.getTime());
   const curatedUpcoming   = curatedItems.filter(e => e._parsed >= today).sort(monthFirstSort);
   const curatedPast       = curatedItems.filter(e => e._parsed < today).sort((a, b) => b._parsed.getTime() - a._parsed.getTime());
