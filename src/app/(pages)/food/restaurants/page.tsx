@@ -280,10 +280,10 @@ const cities: City[] = [
       },
       {
         name: "Bayleaf Gourmet Indian Restaurant",
-        area: "Basel",
+        area: "Spalenring 163, Basel",
         type: "Pan-Indian / Gourmet",
-        note: "Consistently rated as one of Basel's top Indian restaurants on TripAdvisor. Large selection of dishes from different Indian regions. Popular for both lunch and dinner.",
-        url: MAPS("Bayleaf Gourmet Indian Restaurant Basel Switzerland"),
+        note: "Consistently rated as one of Basel's top Indian restaurants. Tue–Sat lunch & dinner, Mon & Sun dinner only. Spalenring 163, 4055 Basel. Tel: 061 271 03 47.",
+        url: MAPS("Bayleaf Gourmet Indian Restaurant Spalenring 163 Basel"),
       },
       {
         name: "Indian Tandoori Palace",

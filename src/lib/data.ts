@@ -234,6 +234,17 @@ export const UPCOMING_EVENTS = [
     image: "https://images.unsplash.com/photo-1515825838458-f2a94b20105a?w=600&auto=format&fit=crop",
   },
   {
+    title: "Cognizant & SICC: Diwali Evening of Exchange",
+    date: "4 Nov 2026",
+    location: "Prime Tower, 18th Floor, Hardstrasse 201, Zurich",
+    category: "Networking",
+    description: "High-level Indo-Swiss networking dinner co-hosted by SICC and Cognizant, shaping the narrative for WEF Davos 2027. Held at Prime Tower's 18th-floor event space, Zurich's most iconic venue for executive gatherings.",
+    organiser: "Swiss Indian Chamber of Commerce (SICC) & Cognizant",
+    color: "bg-amber-600",
+    url: "https://sicc.ch/event/cognizant-a-diwali-evening-of-exchange-shaping-the-narrative-for-wef-davos-2027/",
+    image: "https://images.unsplash.com/photo-1515825838458-f2a94b20105a?w=600&auto=format&fit=crop",
+  },
+  {
     title: "Indo-Swiss Sustainability Awards 2026",
     date: "28 Nov 2026",
     location: "Zurich",
