@@ -3,11 +3,12 @@ import PageHeader from "@/components/ui/PageHeader";
 import SectionTabs from "@/components/ui/SectionTabs";
 
 export const metadata: Metadata = {
-  title: "Indian Restaurants in Switzerland",
-  description: "Find the best Indian restaurants in Zurich, Geneva, Basel, Bern, Lausanne, Winterthur and beyond — 60+ verified listings from South Indian dosas to Punjabi dhabas.",
+  title: "Indian Restaurants in Switzerland — South Indian, Buffet & Vegetarian",
+  description: "Find the best Indian restaurants in Zurich, Geneva, Basel, Bern, Lausanne, Winterthur and beyond. South Indian restaurants Zurich, Indian lunch buffet Basel, vegetarian Indian restaurants Lucerne Interlaken, Indian food near Zurich HB — 60+ verified listings.",
+  keywords: ["South Indian restaurant Zurich", "Indian lunch buffet Basel", "vegetarian Indian restaurant Switzerland", "Indian restaurant near Zurich HB", "best Indian restaurant Zurich"],
   openGraph: {
     title: "Indian Restaurants in Switzerland | Indiaspora",
-    description: "Find the best Indian restaurants in Zurich, Geneva, Basel, Bern, Lausanne, Winterthur and beyond — 60+ verified listings.",
+    description: "South Indian dosas to Punjabi dhabas — find Indian restaurants near Zurich HB, Indian lunch buffets in Basel, and vegetarian Indian dining in Lucerne and Interlaken.",
   },
 };
 
@@ -538,8 +539,65 @@ const cities: City[] = [
 ];
 
 export default function RestaurantsPage() {
+  const restaurantSchemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Saravanaa Bhavan",
+      "servesCuisine": "South Indian Vegetarian",
+      "address": { "@type": "PostalAddress", "addressLocality": "Zurich", "addressRegion": "Oerlikon (Kreis 11)", "addressCountry": "CH" },
+      "url": "https://saravanaabhavan.swiss",
+      "priceRange": "$$",
+      "description": "Global South Indian vegetarian chain — dosas, idlis, vadas, thalis. Pure veg. One of the most authentic South Indian spots in Switzerland.",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Tadka",
+      "servesCuisine": "Indian",
+      "address": { "@type": "PostalAddress", "streetAddress": "Quellenstrasse 49", "addressLocality": "Zurich", "postalCode": "8005", "addressCountry": "CH" },
+      "url": "https://tadka.ch",
+      "telephone": "+41445780641",
+      "priceRange": "$$",
+      "description": "Vibrant corner restaurant and bar with diverse curries including Kerala fish, Goa preparations, lamb vindaloo, Dal Makhani, tandoori BBQ.",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "New Bombay",
+      "servesCuisine": "North Indian Vegetarian",
+      "address": { "@type": "PostalAddress", "streetAddress": "Predigerplatz 34", "addressLocality": "Zurich", "addressCountry": "CH" },
+      "url": "https://newbombay-zurich.ch",
+      "priceRange": "$$",
+      "description": "Hidden gem near Predigerkirche in Zurich's old town. Fresh local ingredients, Tandoori Chicken, Vegi Thali. Best value Indian in central Zurich.",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Restaurant Vulkan",
+      "servesCuisine": "Indian",
+      "address": { "@type": "PostalAddress", "streetAddress": "Klingenstrasse 33", "addressLocality": "Zurich", "postalCode": "8005", "addressCountry": "CH" },
+      "url": "https://restaurant-vulkan.ch",
+      "priceRange": "$$",
+      "description": "Zurich favourite with traditional clay-oven tandoor dishes and all-you-can-eat buffets.",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Tamarind Hill",
+      "servesCuisine": "Contemporary Indian",
+      "address": { "@type": "PostalAddress", "streetAddress": "Schaffhauserstrasse 306", "addressLocality": "Zurich", "postalCode": "8050", "addressCountry": "CH" },
+      "url": "https://tamarindhill.ch",
+      "telephone": "+41435352595",
+      "priceRange": "$$$",
+      "description": "Ranked #21 of 2,400+ restaurants in Zürich on TripAdvisor. Contemporary Indian cuisine celebrating the culinary heritage of India.",
+    },
+  ];
+
   return (
-    <div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantSchemas) }} />
+      <div>
       <PageHeader
         title="Indian Restaurants"
         subtitle="From crispy dosas to rich Mughlai curries — find the best Indian dining across Switzerland. 60+ verified restaurants."
@@ -618,5 +676,6 @@ export default function RestaurantsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

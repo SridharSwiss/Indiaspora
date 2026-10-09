@@ -3,13 +3,12 @@ import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indians in Basel — Community Guide",
-  description:
-    "Complete guide for Indians in Basel — registration, utilities, transport, Indian community, pharma industry, hospitals, and emergency contacts.",
+  title: "Indians in Basel — Community & Pharma Jobs Guide | IndiaSwiss",
+  description: "Guide for Indians in Basel — pharma jobs Basel (Novartis, Roche), Indian community, InBa festival, registration, transport, and emergency contacts.",
+  keywords: ["Indians in Basel", "Indian community Basel", "pharma jobs Basel", "Indian professionals Basel", "Novartis Roche Indian employees", "InBa Basel"],
   openGraph: {
-    title: "Indians in Basel — Community Guide",
-    description:
-      "Complete guide for Indians in Basel — registration, utilities, transport, Indian community, pharma industry, hospitals, and emergency contacts.",
+    title: "Indians in Basel — Community & Pharma Jobs Guide | IndiaSwiss",
+    description: "Guide for Indians in Basel — pharma jobs Basel (Novartis, Roche), Indian community, InBa festival, registration, transport, and emergency contacts.",
     type: "website",
   },
 };

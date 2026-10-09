@@ -3,13 +3,12 @@ import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indians in Lausanne — Community Guide",
-  description:
-    "Complete guide for Indians in Lausanne — registration, utilities, EPFL/UNIL, transport, Indian community, Olympic capital, hospitals, and emergency contacts.",
+  title: "Indians in Lausanne — EPFL Students & Community Guide | IndiaSwiss",
+  description: "Guide for Indians in Lausanne — EPFL Indian students, cost of living Lausanne, YUVA association, Swiss student visa, blocked account, and community resources.",
+  keywords: ["Indians in Lausanne", "EPFL Indian students", "cost of living Lausanne", "Indian students EPFL", "Swiss student visa blocked account", "YUVA EPFL"],
   openGraph: {
-    title: "Indians in Lausanne — Community Guide | Indiaspora",
-    description:
-      "Complete guide for Indians in Lausanne — registration, utilities, EPFL/UNIL, transport, Indian community, Olympic capital, hospitals, and emergency contacts.",
+    title: "Indians in Lausanne — EPFL Students & Community Guide | IndiaSwiss",
+    description: "Guide for Indians in Lausanne — EPFL Indian students, cost of living Lausanne, YUVA association, Swiss student visa, blocked account, and community resources.",
   },
 };
 

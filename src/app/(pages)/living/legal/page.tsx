@@ -2,13 +2,25 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Swiss Residence Permits & Indian Documents",
-  description: "Swiss residence permits (L, B, C), OCI cards, passport renewal, naturalization, and power of attorney for Indians.",
+  title: "Swiss Permits & Indian Docs Guide for Indians",
+  description: "Swiss B permit to C permit guide for Indians, non-EU work permit IT tech quota, Indian embassy Bern passport renewal, OCI card renewal — complete guide for Indian residents.",
+  keywords: [
+    "B permit C permit Switzerland Indians",
+    "non-EU work permit IT Switzerland",
+    "Indian embassy Bern passport renewal",
+    "OCI card renewal Switzerland",
+    "Swiss residence permit guide Indians",
+    "Swiss B to C permit upgrade Indians",
+    "tech quota Switzerland non-EU",
+    "passport renewal appointment Bern",
+  ] as string[],
   openGraph: {
-    title: "Swiss Residence Permits & Indian Documents | IndiaSwiss",
-    description: "Swiss residence permits (L, B, C), OCI cards, passport renewal, naturalization, and power of attorney for Indians.",
+    title: "Swiss B to C Permit & Indian Documents Guide | IndiaSwiss",
+    description: "Step-by-step guide: Swiss B permit to C permit for Indians, non-EU IT tech quota work permits, Indian embassy Bern passport renewal appointments, and OCI card renewal from Switzerland.",
   },
 };
+
+const SEO_INTRO = "Indian nationals in Switzerland navigating the Swiss B permit to C permit upgrade must complete 10 years of uninterrupted legal residence as a non-EU/EFTA national, though exceptional integration can shorten this to 5 years. For those on non-EU work permits under the IT or tech quota, the annual quota limits set by the Swiss federal government apply and your employer must apply early in the year. The Indian Embassy in Bern handles passport renewal appointments via the Passport Seva portal — book well in advance as slots fill quickly, especially before Indian public holidays."
 
 const permits = [
   { code: "L", name: "Short-term permit", duration: "Up to 1 year", url: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht_eu_efta/ausweis_l__kurzaufenthaltsbewilligung.html", desc: "For fixed-term employment contracts under 12 months. Renewable. Fewer rights than B permit — you cannot freely change employer or canton. Issued by the cantonal migration authority (Migrationsamt)." },

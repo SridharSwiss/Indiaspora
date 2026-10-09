@@ -3,13 +3,12 @@ import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indians in Geneva — Community Guide",
-  description:
-    "Complete guide for Indians in Geneva — registration, utilities, transport, Indian consulate, community, hospitals, and emergency contacts.",
+  title: "Indians in Geneva — Community & Professional Guide | IndiaSwiss",
+  description: "Guide for Indians in Geneva — Indian association Geneva, UN jobs, professional networking groups, consulate, registration, and Indian community events.",
+  keywords: ["Indians in Geneva", "Indian association Geneva", "Indian professional networking Geneva", "Indian community Geneva", "Indian consulate Geneva"],
   openGraph: {
-    title: "Indians in Geneva — Community Guide | Indiaspora",
-    description:
-      "Complete guide for Indians in Geneva — registration, utilities, transport, Indian consulate, community, hospitals, and emergency contacts.",
+    title: "Indians in Geneva — Community & Professional Guide | IndiaSwiss",
+    description: "Guide for Indians in Geneva — Indian association Geneva, UN jobs, professional networking groups, consulate, registration, and Indian community events.",
   },
 };
 

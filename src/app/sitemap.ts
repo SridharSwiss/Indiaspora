@@ -49,6 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/cities/lausanne`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     // Living extra pages
     { url: `${base}/living/pension`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/living/recycling`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/living/education/zurich`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     // Other
     { url: `${base}/events`, lastModified: now, changeFrequency: "daily", priority: 0.9 },

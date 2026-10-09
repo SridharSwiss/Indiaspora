@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indian Music & Dance in Switzerland",
-  description: "Classical dance schools, music academies, and Bollywood studios for Indians in Zurich, Geneva, Basel, and Lausanne.",
+  title: "Bharatanatyam & Bollywood Dance Classes for Kids in Switzerland — Zurich, Zug, Uster",
+  description: "Bharatanatyam and Bollywood dance classes for children and adults in Zurich, Zug, Uster, Basel, Geneva and Lausanne. Also Carnatic music, tabla, sitar, and Indian classical arts. Find the best Indian dance school near you in Switzerland.",
+  keywords: ["Bharatanatyam classes Zurich", "Bollywood dance classes kids Switzerland", "Indian dance school Zurich", "Bharatanatyam Uster", "Bollywood dance Zug", "Indian classical dance Switzerland", "Carnatic music Switzerland", "tabla classes Zurich", "Indian music school Switzerland"],
   openGraph: {
-    title: "Indian Music & Dance in Switzerland | IndiaSwiss",
-    description: "Classical dance schools, music academies, and Bollywood studios for Indians in Zurich, Geneva, Basel, and Lausanne.",
+    title: "Bharatanatyam & Bollywood Dance Classes in Switzerland | IndiaSwiss",
+    description: "Find Bharatanatyam and Bollywood dance classes for kids and adults in Zurich, Zug, Uster, Basel and Geneva.",
   },
 };
 

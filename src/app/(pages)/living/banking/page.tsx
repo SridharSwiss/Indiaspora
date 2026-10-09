@@ -2,13 +2,25 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Banking & Finance in Switzerland for Indians",
-  description: "Open a Swiss bank account, send money to India, and manage finances. PostFinance, Neon, Yuh, Wise transfers, and NRI tax guide.",
+  title: "Bank Account & Pillar 3a Switzerland Indian Expat",
+  description: "Opening a bank account in Switzerland with Indian passport — Neon, PostFinance, Yuh reviewed. Pillar 3a options for expats, send money India Switzerland best rate.",
+  keywords: [
+    "Pillar 3a Switzerland expat Indians",
+    "3a pension Swiss expat",
+    "bank account Indian passport Switzerland",
+    "send money India Switzerland best rate",
+    "opening bank account Switzerland Indian",
+    "Swiss bank account non-EU Indian passport",
+    "CHF INR transfer best rate Wise",
+    "Swiss banking guide Indian expat",
+  ] as string[],
   openGraph: {
-    title: "Banking & Finance in Switzerland for Indians | IndiaSwiss",
-    description: "Open a Swiss bank account, send money to India, and manage finances. PostFinance, Neon, Yuh, Wise transfers, and NRI tax guide.",
+    title: "Bank Account & Pillar 3a in Switzerland for Indian Expats | IndiaSwiss",
+    description: "How to open a bank account in Switzerland with an Indian passport, best Pillar 3a pension options for Indian expats, and the best way to send money from Switzerland to India.",
   },
 };
+
+const SEO_INTRO = "Opening a bank account in Switzerland with an Indian passport is straightforward with digital banks like Neon or Yuh — no branch visit required, and your B or L permit plus passport scan is sufficient. Indian expats working in Switzerland can also contribute to Pillar 3a (the Swiss private pension), which offers significant tax deductions of up to CHF 7,056 per year (2025), making it one of the best tax-saving tools for salaried expats. For sending money from Switzerland to India, Wise consistently offers the best CHF to INR exchange rates with low flat fees, outperforming bank SWIFT transfers by a significant margin."
 
 const banks = [
   { name: "PostFinance", type: "Traditional", desc: "Historically the most accessible for new arrivals, with post office branches nationwide. Note: a foreign-address surcharge (~CHF 25/month) applies if you have no Swiss address yet. Once resident, basic accounts are fee-free for under-26 or with salary deposit.", bestFor: "First account", url: "https://www.postfinance.ch/en/private.html" },

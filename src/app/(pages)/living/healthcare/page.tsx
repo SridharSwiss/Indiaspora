@@ -2,13 +2,25 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Healthcare in Switzerland for Indians",
-  description: "Swiss health insurance explained — choose the right insurer, model, and franchise. Emergency numbers and tips for Indian residents.",
+  title: "Best Health Insurance Switzerland Expat Family",
+  description: "Best health insurance Switzerland expat family Zurich — compare Krankenkasse for Indians, franchise options, Helsana, CSS, Swica, Concordia family plans reviewed.",
+  keywords: [
+    "best health insurance Switzerland family",
+    "health insurance comparison expat Zurich",
+    "Krankenkasse India Switzerland",
+    "Swiss health insurance Indian expat",
+    "health insurance Switzerland family plan",
+    "Grundversicherung expat Switzerland",
+    "Swiss Krankenkasse best rates 2025",
+    "health insurance franchise Switzerland expat",
+  ] as string[],
   openGraph: {
-    title: "Healthcare in Switzerland for Indians | IndiaSwiss",
-    description: "Swiss health insurance explained — choose the right insurer, model, and franchise. Emergency numbers and tips for Indian residents.",
+    title: "Best Health Insurance Switzerland for Indian Expat Families | IndiaSwiss",
+    description: "Compare the best Krankenkasse (health insurance) options in Switzerland for Indian expat families in Zurich — franchise levels, insurer ratings, family plans, and how to switch.",
   },
 };
+
+const SEO_INTRO = "Choosing the best health insurance in Switzerland as an Indian expat family in Zurich means comparing Krankenkasse premiums across insurers like Helsana, CSS, Swica, and Concordia — premiums vary by up to 30% for identical coverage. All residents must enrol in Swiss Grundversicherung (LAMal/KVG) within 3 months of arrival, backdated to the arrival date, and families benefit from significantly lower children's premiums. Use the official priminfo.admin.ch tool or comparis.ch to compare health insurance options across all approved Swiss insurers side by side."
 
 const insurers = [
   { name: "CSS", url: "https://www.css.ch/en/private-customers.html", note: "One of the largest insurers; good English support and online tools." },

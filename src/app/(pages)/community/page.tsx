@@ -1,6 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { Users, Building2, Heart, GraduationCap, Globe } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Indian Community in Switzerland — Associations, Temples & Networks",
+  description: "Find Indian community associations, temples, student groups, and women's networks across Switzerland. 150+ organisations covering all 26 cantons — IAGZ, SICC, TASC, TeluguSwiss, BAPS, ISKCON and more.",
+  keywords: ["Indian community Switzerland", "Indians in Switzerland", "Indian associations Switzerland", "Indian organisations Zurich", "IAGZ", "SICC Switzerland", "Indian expat community Switzerland"],
+  openGraph: {
+    title: "Indian Community in Switzerland | IndiaSwiss",
+    description: "150+ Indian associations, temples, student groups, and women's networks across Switzerland.",
+  },
+};
 
 const sections = [
   { icon: Building2, label: "Associations & Clubs", href: "/community/associations", desc: "150+ regional, cultural & professional associations", color: "from-orange-500 to-red-500" },

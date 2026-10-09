@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indian Catering & Tiffin Services in Switzerland",
-  description: "Home-cooked Indian tiffin delivery and event catering across Zurich, Geneva, Basel, and beyond.",
+  title: "Indian Catering for Birthday Parties, Weddings & Events in Switzerland",
+  description: "Indian catering for birthday parties, weddings, Diwali celebrations, corporate events, and tiffin delivery in Zurich, Geneva, Basel, Bern, and Zug. Home chefs and full-service caterers available across Switzerland.",
+  keywords: ["Indian catering Zurich", "Indian catering birthday party Zurich", "Indian wedding catering Switzerland", "Indian food for party Zurich", "tiffin delivery Zurich", "Indian home chef Zurich", "Indian caterer Basel", "Indian food delivery Switzerland"],
   openGraph: {
-    title: "Indian Catering & Tiffin Services in Switzerland | IndiaSwiss",
-    description: "Home-cooked Indian tiffin delivery and event catering across Zurich, Geneva, Basel, and beyond.",
+    title: "Indian Catering for Parties & Events in Switzerland | IndiaSwiss",
+    description: "Indian catering for birthday parties, weddings, Diwali events, and daily tiffin in Zurich, Geneva, Basel and Bern.",
   },
 };
 

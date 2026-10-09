@@ -1,6 +1,17 @@
 export const revalidate = 0;
 
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Indian Community Events in Switzerland 2026 — Diwali, Navratri, Puja & More",
+  description: "Upcoming Indian cultural events in Switzerland 2026 — Diwali Zurich, Navratri Garba, Durga Puja, SICC networking evenings, and festivals across Zurich, Geneva, Basel and Bern.",
+  keywords: ["Indian events Switzerland 2026", "Diwali events Zurich 2026", "Navratri Switzerland", "Indian cultural events Zurich", "Durga Puja Switzerland", "Indian festival events Switzerland", "SICC events", "IAGZ events Zurich"],
+  openGraph: {
+    title: "Indian Community Events Switzerland 2026 | IndiaSwiss",
+    description: "Diwali, Navratri Garba, Durga Puja, and Indian cultural events across Zurich, Geneva, Basel and Bern.",
+  },
+};
 import PageHeader from "@/components/ui/PageHeader";
 import { UPCOMING_EVENTS } from "@/lib/data";
 import { createAdminClient } from "@/lib/supabase/admin";

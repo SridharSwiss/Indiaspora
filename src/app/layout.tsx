@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     "Diwali Switzerland",
     "Indian community Zurich",
     "NRI Switzerland",
+    "SwissDesi",
+    "Swiss Indian portal",
+    "Indian community hub Switzerland",
   ],
   openGraph: {
     title: "IndiaSwiss – The Swiss Indian Community Hub",
@@ -55,6 +58,33 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "IndiaSwiss — Indiaspora",
+  "alternateName": ["Indiaspora", "IndiaSwiss", "Swiss Indian Community Hub"],
+  "url": "https://indiaspora.ch",
+  "logo": "https://indiaspora.ch/logo.svg",
+  "description": "The definitive platform for 24,500+ Indians living in Switzerland. Indian community hub covering restaurants, events, temples, associations, business networking, and living guides.",
+  "foundingLocation": { "@type": "Place", "name": "Switzerland" },
+  "areaServed": { "@type": "Country", "name": "Switzerland" },
+  "sameAs": [],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "IndiaSwiss — Indiaspora",
+  "url": "https://indiaspora.ch",
+  "description": "The Swiss Indian community hub for 24,500+ Indians in Switzerland — restaurants, events, temples, associations, living guides.",
+  "inLanguage": "en",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": { "@type": "EntryPoint", "urlTemplate": "https://indiaspora.ch/search?q={search_term_string}" },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -66,6 +96,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       </head>
       <body className="min-h-full flex flex-col" style={{ background: "var(--bg)", color: "var(--text)" }}>
         <CookieBanner />

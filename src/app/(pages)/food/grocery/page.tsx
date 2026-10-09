@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indian Grocery Stores in Switzerland",
-  description: "Find Indian spices, dals, flours, and groceries near you — physical stores by city and online delivery across Switzerland.",
+  title: "Best Indian Grocery Stores in Switzerland — Haldiram's, MDH, Everest",
+  description: "Best Indian grocery stores in Zurich, Geneva, Basel and Bern. Buy Haldiram's snacks, MDH and Everest masalas, Patanjali products, fresh curry leaves, dals, and Indian vegetables. Physical stores and online delivery across Switzerland.",
+  keywords: ["Indian grocery Switzerland", "buy Haldiram's Switzerland", "MDH masala Switzerland", "Everest spices Zurich", "Indian supermarket Zurich", "Indian spices Geneva", "Indian grocery store Basel", "buy Indian food Switzerland"],
   openGraph: {
-    title: "Indian Grocery Stores in Switzerland | IndiaSwiss",
-    description: "Find Indian spices, dals, flours, and groceries near you — physical stores by city and online delivery across Switzerland.",
+    title: "Best Indian Grocery Stores in Switzerland | IndiaSwiss",
+    description: "Buy Haldiram's, MDH masalas, Everest spices, dal, atta and Indian vegetables at stores in Zurich, Geneva, Basel and Bern — or order online.",
   },
 };
 
@@ -135,6 +136,10 @@ export default function GroceryPage() {
           { label: "Grocery Stores" },
         ]}
       />
+
+      <p className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-0 text-sm" style={{ color: "var(--text-2)" }}>
+        Looking for an Indian grocery store near Zurich HB, Indian grocery Basel, or online Indian grocery delivery across Switzerland? Whether you need Haldiram&apos;s snacks, MDH masala, Everest spices, Patanjali products, fresh paneer, dal, atta, or curry leaves, Swiss cities have well-stocked Indian supermarkets — several offering free shipping or nationwide delivery. Find stores in Zurich, Basel, Geneva, Bern, Winterthur and Lausanne below.
+      </p>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <section>

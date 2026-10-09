@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Jobs & Careers in Switzerland for Indians",
-  description: "Find jobs in Switzerland — top portals, major sectors, CV tips, salary benchmarks, and work permit guide for Indian nationals.",
+  title: "IT & Pharma Jobs Switzerland for Indian Professionals | IndiaSwiss",
+  description: "Jobs in Switzerland for Indians — IT jobs Zurich English speakers, pharma jobs Basel, salary benchmarks, work permit guide, and top job portals.",
+  keywords: ["IT jobs Zurich Indians", "IT jobs Zurich English speakers", "pharma jobs Basel", "Indian professionals Switzerland", "jobs Switzerland Indian nationals", "work permit Switzerland India"],
   openGraph: {
-    title: "Jobs & Careers in Switzerland for Indians | IndiaSwiss",
-    description: "Find jobs in Switzerland — top portals, major sectors, CV tips, salary benchmarks, and work permit guide for Indian nationals.",
+    title: "IT & Pharma Jobs Switzerland for Indian Professionals | IndiaSwiss",
+    description: "Jobs in Switzerland for Indians — IT jobs Zurich English speakers, pharma jobs Basel, salary benchmarks, work permit guide, and top job portals.",
   },
 };
 

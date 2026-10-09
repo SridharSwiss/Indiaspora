@@ -1,6 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { Plane, Home, Heart, GraduationCap, Building2, Train, Scale, Languages } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Living in Switzerland — Complete Guide for Indians & Expats",
+  description: "The complete guide to living in Switzerland for Indian expats — B permit to C permit, work permits, apartment hunting in Zurich, health insurance, banking with Indian passport, Pillar 3a, OCI renewal, and more.",
+  keywords: ["moving to Switzerland from India", "Indian expat guide Switzerland", "B permit to C permit India", "work permit Switzerland IT", "Swiss permit guide Indians", "apartment Zurich Indian expat", "health insurance Switzerland expat", "bank account Switzerland Indian passport"],
+  openGraph: {
+    title: "Living in Switzerland — Indian Expat Guide | IndiaSwiss",
+    description: "Permits, housing, healthcare, banking, schools, and daily life guides for Indians moving to Switzerland.",
+  },
+};
 
 const guides = [
   { icon: Plane, label: "Welcome Guide", href: "/living/welcome", desc: "First steps — registration, permits, SIM card, bank account in your first 2 weeks", color: "from-orange-500 to-amber-500" },

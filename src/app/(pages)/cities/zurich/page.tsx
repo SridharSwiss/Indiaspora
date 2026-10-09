@@ -3,11 +3,12 @@ import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indians in Zurich — Community Guide",
-  description: "Complete guide for Indians in Zurich — registration, utilities, transport, Indian community, hospitals, parks, and emergency contacts.",
+  title: "Indians in Zurich — Community Guide | IndiaSwiss",
+  description: "Guide for Indians in Zurich — IAGZ community, Indian restaurants Zurich, Indian grocery near Zurich HB, Diwali Zurich 2026, registration, and transport.",
+  keywords: ["Indians in Zurich", "Indian community Zurich", "Diwali Zurich", "Indian restaurants Zurich", "IAGZ Zurich", "Indian grocery near Zurich HB"],
   openGraph: {
-    title: "Indians in Zurich — Community Guide | Indiaspora",
-    description: "Complete guide for Indians in Zurich — registration, utilities, transport, Indian community, hospitals, parks, and emergency contacts.",
+    title: "Indians in Zurich — Community Guide | IndiaSwiss",
+    description: "Guide for Indians in Zurich — IAGZ community, Indian restaurants Zurich, Indian grocery near Zurich HB, Diwali Zurich 2026, registration, and transport.",
   },
 };
 

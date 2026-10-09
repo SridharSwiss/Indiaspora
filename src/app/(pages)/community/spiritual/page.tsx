@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Hindu Temples, Yoga & Spiritual Centres in Switzerland",
-  description: "Find Hindu temples, yoga ashrams, meditation centres, and satsang groups for the Indian community across Switzerland.",
+  title: "Hindu Temples, Pandits & Spiritual Centres in Switzerland",
+  description: "Hindu temples, pandit services for Gruhapravesha, Satyanarayan Puja and rituals, yoga ashrams, and satsang groups across Switzerland — Zurich, Basel, Bern, Geneva.",
+  keywords: ["Hindu temples Switzerland", "pandit Switzerland", "Hindu priest Switzerland", "Gruhapravesha Switzerland", "puja ceremony Zurich", "Satyanarayan puja Switzerland", "Hindu priest Zurich", "Gurdwara Switzerland", "Gurdwara Langenthal", "ISKCON Zurich Sunday feast"],
   openGraph: {
-    title: "Hindu Temples, Yoga & Spiritual Centres in Switzerland | IndiaSwiss",
-    description: "Find Hindu temples, yoga ashrams, meditation centres, and satsang groups for the Indian community across Switzerland.",
+    title: "Hindu Temples & Pandits in Switzerland | IndiaSwiss",
+    description: "Hindu temples, pandit services for Gruhapravesha, Satyanarayan Puja and rituals, yoga ashrams, and satsang groups across Switzerland.",
   },
 };
 
@@ -29,6 +30,19 @@ const yoga: Place[] = [
   { name: "Chinmaya Mission Switzerland", url: "https://chinmayamission.com", city: "Zurich", desc: "Vedanta study, Gita jnana yajna and Bala Vihar children's programme. Part of Chinmaya Mission Europe." },
   { name: "Isha Foundation Switzerland", url: "https://isha.sadhguru.org", city: "Zurich", desc: "Inner Engineering, Shambhavi Mahamudra and Sadhguru programmes available to participants in Switzerland." },
   { name: "Sivananda Yoga Centre", url: "https://www.sivananda.org", city: "Geneva", desc: "Classical Hatha Yoga and Vedanta based on Swami Sivananda's teachings." },
+];
+
+// Hindu priests / pandits for home rituals — verified via web search (Oct 2026)
+const pandits: Place[] = [
+  { name: "Pandit Naresh Kumar Shastri", url: "https://sivankovil.ch/contact", city: "Zurich", desc: "Priest at Arulmihu Sivan Temple, Glattbrugg. Available for home ceremonies including Gruhapravesha (housewarming), Satyanarayan Puja, Namkaran, Sathabhishekam, and other Sanskrit rituals. Contact via the Sivankovil office." },
+  { name: "ISKCON Zurich — Puja Services", url: "https://www.krishna.ch", city: "Zurich", desc: "ISKCON Zurich offers puja services and home visit ceremonies on request. Suitable for Griha Pravesh, Satyanarayan Katha, and other Vaishnav rituals. Contact the temple at Bergstrasse 54, Zurich." },
+  { name: "Hindu Community Zurich (HCZ)", url: "https://hcz.ch", city: "Zurich", desc: "The Hindu Community Zurich (hcz.ch) maintains a list of priests available for home ceremonies across the Zurich region. Contact for referrals to qualified pandits for Gruhapravesha, weddings, Satyanarayan Puja, and other rituals." },
+];
+
+// Gurdwaras — verified via web search (Oct 2026)
+const gurdwaras: Place[] = [
+  { name: "Gurdwara Sahib Langenthal", url: "https://www.gurdwarasahib.ch", city: "Langenthal (Bern)", desc: "Switzerland's principal Gurdwara. Located at Gasstrasse 33, 4900 Langenthal, Canton Bern. Open daily for darshan, langar (free community meals), and religious services. Accessible by train from Bern and Zurich. Tel: 062 922 16 62." },
+  { name: "Gurdwara Singh Sabha Zürich", url: null, city: "Zurich", desc: "Sikh congregation in Zurich serving the Punjabi and Sikh community with regular services, Gurpurab celebrations, and langar. Contact via the Langenthal Gurdwara for current location details." },
 ];
 
 // Satsang & devotional groups — verified via web search; groups without public websites marked (Aug 2026)
@@ -60,12 +74,24 @@ export default function SpiritualPage() {
   return (
     <div>
       <PageHeader
-        title="Temples, Yoga & Spiritual Centres"
-        subtitle="Hindu temples, yoga ashrams, meditation groups and satsang communities across Switzerland."
+        title="Hindu Temples, Pandits & Spiritual Centres in Switzerland"
+        subtitle="Find Hindu temples, qualified pandits for home rituals (Gruhapravesha, Satyanarayan Puja), yoga ashrams, and satsang communities across Switzerland."
         badge="🕉️ Spiritual Community"
         breadcrumbs={[{ label: "Community", href: "/community" }, { label: "Temples & Spiritual" }]}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section className="mb-12">
+          <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Hindu Priests & Pandit Services</h2>
+          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Qualified pandits available for Gruhapravesha (housewarming), Satyanarayan Puja, Namkaran, Sathabhishekam, weddings and other Sanskrit rituals at your home across Switzerland</p>
+          <div className="glass rounded-2xl p-5 mb-4 border border-orange-500/20">
+            <p className="text-sm" style={{ color: "var(--text-2)" }}>
+              <strong style={{ color: "var(--text)" }}>Need a Hindu priest in Switzerland?</strong> Finding a qualified pandit for Gruhapravesha (Griha Pravesh), Satyanarayan Puja, Namkaran, Upanayana, or other home rituals is one of the most common requests in the Swiss Indian community. The contacts below can help connect you with priests serving Zurich, Basel, Bern, Geneva, and other Swiss cities.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {pandits.map((p) => <PlaceCard key={p.name} p={p} />)}
+          </div>
+        </section>
         <section className="mb-12">
           <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Hindu Temples</h2>
           <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Temples and Hindu prayer centres in Switzerland</p>
@@ -85,6 +111,13 @@ export default function SpiritualPage() {
           <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Community bhajans, kathas and devotional gatherings</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {satsang.map((p) => <PlaceCard key={p.name} p={p} />)}
+          </div>
+        </section>
+        <section className="mb-12">
+          <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>Gurdwaras in Switzerland</h2>
+          <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>Sikh prayer centres and Gurdwaras serving the Punjabi community across Switzerland</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {gurdwaras.map((p) => <PlaceCard key={p.name} p={p} />)}
           </div>
         </section>
       </div>

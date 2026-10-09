@@ -20,6 +20,7 @@ export const NAV_ITEMS = [
       { label: "Banking & Finance", href: "/living/banking" },
       { label: "Swiss Pension System", href: "/living/pension" },
       { label: "Transport", href: "/living/transport" },
+      { label: "Waste & Recycling", href: "/living/recycling" },
       { label: "Legal & Immigration", href: "/living/legal" },
       { label: "Language Learning", href: "/living/language" },
     ],

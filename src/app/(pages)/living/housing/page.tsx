@@ -2,13 +2,25 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Housing & Rentals in Switzerland",
-  description: "Find an apartment in Switzerland — required documents, top portals, tenant rights, and community tips for Indian residents.",
+  title: "How to Find an Apartment in Zurich — Indian Expat",
+  description: "How to find an apartment in Zurich as an Indian expat — rental documents Switzerland Indian, top portals, Betreibungsauszug, deposit rules, and tenant rights.",
+  keywords: [
+    "apartment hunting Zurich Indian expat",
+    "how to find apartment Zurich",
+    "rental documents Switzerland Indian",
+    "Betreibungsauszug Switzerland expat",
+    "Swiss rental market Indian immigrant",
+    "housing Switzerland B permit Indian",
+    "furnished apartment Zurich expat",
+    "Swiss rental dossier Indian",
+  ] as string[],
   openGraph: {
-    title: "Housing & Rentals in Switzerland | IndiaSwiss",
-    description: "Find an apartment in Switzerland — required documents, top portals, tenant rights, and community tips for Indian residents.",
+    title: "How to Find an Apartment in Zurich as an Indian Expat | IndiaSwiss",
+    description: "Complete guide for Indian expats: how to find an apartment in Zurich, rental documents needed (Betreibungsauszug, payslips, permit), top portals, and tips to beat the competition.",
   },
 };
+
+const SEO_INTRO = "Finding an apartment in Zurich as an Indian expat requires a complete dossier — you will need your Swiss residence permit (B or L), three months of payslips, and a Betreibungsregisterauszug (debt enforcement extract) from your Gemeinde. The Swiss rental market is highly competitive, with Zurich's vacancy rate hovering below 0.5%, so preparing your rental documents in advance before searching is essential. Indian nationals on a valid B permit are fully entitled to rent, and platforms like Neon and Homegate together cover most of the available inventory."
 
 const portals = [
   { name: "Homegate", url: "https://www.homegate.ch/rent", desc: "Switzerland's largest rental portal with the widest listing inventory. Set up alerts for new listings immediately." },

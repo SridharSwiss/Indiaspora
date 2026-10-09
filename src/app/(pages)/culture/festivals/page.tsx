@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indian Festivals in Switzerland 2026",
-  description: "Diwali, Holi, Navratri, Durga Puja, Pongal — celebrate India's festivals with the Swiss-Indian community.",
+  title: "Indian Festivals in Switzerland 2026 — Diwali Zurich, Navratri, Durga Puja",
+  description: "Indian festivals 2026: Diwali celebration Zurich, Navratri Garba night, Durga Puja SwissPuja Basel/Zurich, Holi Lausanne Lake Geneva, Pongal — dates, venues, and event tickets for the Swiss Indian community.",
+  keywords: ["Diwali Zurich 2026", "Navratri Garba Switzerland", "Durga Puja Switzerland 2026", "Indian festival calendar Switzerland 2026", "Holi party Lausanne", "Diwali celebration Zurich tickets", "Navratri Dandiya Geneva", "SwissPuja Durga Puja schedule"],
   openGraph: {
-    title: "Indian Festivals in Switzerland 2026 | IndiaSwiss",
-    description: "Diwali, Holi, Navratri, Durga Puja, Pongal — celebrate India's festivals with the Swiss-Indian community.",
+    title: "Diwali Zurich, Navratri & Indian Festivals 2026 | IndiaSwiss",
+    description: "Diwali Zurich 2026, Navratri Garba night, SwissPuja Durga Puja, Holi Lausanne — dates, venues, and event info for the Swiss Indian community.",
   },
 };
 
@@ -131,9 +132,75 @@ const typeColors: Record<string, string> = {
 };
 
 export default function FestivalsPage() {
+  const eventSchemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "IAGZ Diwali Gala 2026",
+      "startDate": "2026-11-14",
+      "endDate": "2026-11-14",
+      "location": { "@type": "Place", "name": "Mattenhofsaal, Zurich", "address": { "@type": "PostalAddress", "addressLocality": "Zurich", "addressCountry": "CH" } },
+      "organizer": { "@type": "Organization", "name": "Indian Association of Greater Zurich (IAGZ)", "url": "https://iagz.ch" },
+      "description": "IAGZ's annual Diwali Gala with cultural performances, gourmet Indian dinner, and awards.",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "IAGZ Navratri Garba 2026",
+      "startDate": "2026-10-25",
+      "endDate": "2026-10-25",
+      "location": { "@type": "Place", "name": "Stadthalle Dietikon", "address": { "@type": "PostalAddress", "addressLocality": "Dietikon", "addressCountry": "CH" } },
+      "organizer": { "@type": "Organization", "name": "Indian Association of Greater Zurich (IAGZ)", "url": "https://iagz.ch" },
+      "description": "IAGZ's annual Dandiya and Garba night — one of Switzerland's largest Navratri celebrations with live music and community dancing.",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "SwissPuja Durga Puja 2026",
+      "startDate": "2026-10-16",
+      "endDate": "2026-10-21",
+      "location": { "@type": "Place", "name": "Schwerzisaal, Langnau am Albis", "address": { "@type": "PostalAddress", "addressLocality": "Langnau am Albis", "addressCountry": "CH" } },
+      "organizer": { "@type": "Organization", "name": "SwissPuja", "url": "https://www.swisspuja.org" },
+      "description": "SwissPuja's annual Durga Puja celebration with traditional pandal, daily pujas, and cultural programmes.",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "SICC Diwali Evening 2026",
+      "startDate": "2026-11-04",
+      "endDate": "2026-11-04",
+      "location": { "@type": "Place", "name": "Prime Tower Zurich", "address": { "@type": "PostalAddress", "addressLocality": "Zurich", "addressCountry": "CH" } },
+      "organizer": { "@type": "Organization", "name": "Swiss Indian Chamber of Commerce (SICC)", "url": "https://sicc.ch" },
+      "description": "SICC's annual Diwali Evening — celebrating the festival of lights with the Swiss-Indian business community.",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "InBa India Basel Festival 2026",
+      "startDate": "2026-05-01",
+      "endDate": "2026-06-30",
+      "location": { "@type": "Place", "name": "Theater Basel", "address": { "@type": "PostalAddress", "addressLocality": "Basel", "addressCountry": "CH" } },
+      "organizer": { "@type": "Organization", "name": "InBa India Basel", "url": "https://inba.ch" },
+      "description": "InBa India Basel Festival — celebrating Indian culture, arts, and performances in Basel.",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    },
+  ];
+
   return (
-    <div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchemas) }} />
+      <div>
       <PageHeader
+
         title="Indian Festivals in Switzerland"
         subtitle="India's vibrant festival calendar comes alive in Switzerland — from Diwali Mela in Zurich to Pongal in Geneva."
         badge="100+ Events / Year"
@@ -173,5 +240,6 @@ export default function FestivalsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
