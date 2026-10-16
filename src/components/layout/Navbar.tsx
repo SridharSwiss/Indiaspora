@@ -559,246 +559,137 @@ export default function Navbar() {
 
       <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
 
-      {/* Mobile drawer */}
+      {/* Mobile dropdown — compact panel from top-right */}
       {isOpen && (
         <div
           id="mobile-nav-drawer"
           style={{ position: "fixed", inset: 0, zIndex: 200 }}
           role="dialog" aria-modal aria-label="Navigation menu"
         >
-          {/* Backdrop */}
-          <div
-            onClick={() => setIsOpen(false)}
-            style={{ position: "absolute", inset: 0,
-                     background: "rgba(0,0,0,0.5)",
-                     backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }}
-          />
+          {/* Transparent backdrop to close */}
+          <div onClick={() => setIsOpen(false)} style={{ position: "absolute", inset: 0 }} />
 
-          {/* Panel — full-width bottom sheet on mobile */}
-          <div
-            style={{
-              position: "absolute", left: 0, right: 0, bottom: 0,
-              maxHeight: "88svh",
-              background: "var(--surface)",
-              borderTop: "1px solid var(--border-2)",
-              borderRadius: "20px 20px 0 0",
-              display: "flex", flexDirection: "column",
-              padding: "16px 16px 28px", gap: 2, overflowY: "auto",
-              animation: "slideUp 0.28s cubic-bezier(0.16,1,0.3,1) both",
-            }}
-          >
-            <style>{`@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }`}</style>
-            {/* Drag handle */}
-            <div style={{ width: 40, height: 4, borderRadius: 99, background: "var(--border-2)", margin: "0 auto 12px", flexShrink: 0 }} />
+          {/* Compact panel */}
+          <div style={{
+            position: "absolute", top: 72, right: 12,
+            width: "min(280px, calc(100vw - 24px))",
+            maxHeight: "calc(100svh - 88px)",
+            overflowY: "auto",
+            background: "var(--surface)",
+            border: "1px solid var(--border-2)",
+            borderRadius: 16,
+            boxShadow: "0 8px 40px rgba(0,0,0,0.18)",
+            animation: "mnDrop 0.2s cubic-bezier(0.16,1,0.3,1) both",
+            padding: "6px 6px 8px",
+          }}>
+            <style>{`@keyframes mnDrop { from { opacity:0; transform:scale(0.95) translateY(-8px); transform-origin:top right; } to { opacity:1; transform:none; } }`}</style>
 
-            {/* Top row */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, flexShrink: 0 }}>
-              <Link href="/" className="flex items-center gap-2.5" onClick={() => { setIsOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} style={{ textDecoration: "none" }}>
-                <img src="/logo.svg" alt="Indiaspora" style={{ width: 30, height: 30, objectFit: "contain" }} />
-                <strong style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 15, fontWeight: 800, letterSpacing: "-0.03em" }}>
-                  <span className="gradient-text">India</span>
-                  <span style={{ color: "var(--text)" }}>spora</span>
-                </strong>
-              </Link>
-              <button
-                onClick={() => setIsOpen(false)}
-                aria-label="Close menu"
-                style={{ width: 34, height: 34, borderRadius: 10, flexShrink: 0,
-                         display: "flex", alignItems: "center", justifyContent: "center",
-                         color: "var(--text-2)", background: "var(--surface-2)",
-                         border: "none", cursor: "pointer" }}
-              >
-                <X style={{ width: 18, height: 18 }} />
-              </button>
-            </div>
-
-            {/* Mobile nav links — sleek single column */}
-            <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: 2 }}>
-              {NAV_ITEMS.map((item) => {
-                const active = pathname === item.href || pathname.startsWith(item.href + "/");
-                const expanded = mobileOpen === item.label;
-                return (
-                  <div key={item.label}>
-                    {/* Row: label + optional chevron */}
-                    <div style={{
-                      display: "flex", alignItems: "center",
-                      borderRadius: 12,
-                      background: active ? "var(--sf-bg)" : "transparent",
-                      transition: "background 0.15s",
-                    }}>
-                      <Link
-                        href={item.href}
-                        onClick={() => { if (!item.children) setIsOpen(false); }}
-                        className="mobile-link"
+            {/* Nav items */}
+            {NAV_ITEMS.map((item) => {
+              const active = pathname === item.href || pathname.startsWith(item.href + "/");
+              const expanded = mobileOpen === item.label;
+              return (
+                <div key={item.label}>
+                  <div style={{
+                    display: "flex", alignItems: "center",
+                    borderRadius: 10,
+                    background: active ? "var(--sf-bg)" : "transparent",
+                  }}>
+                    <Link
+                      href={item.href}
+                      onClick={() => { if (!item.children) setIsOpen(false); }}
+                      className="mobile-link"
+                      style={{
+                        flex: 1, padding: "8px 10px",
+                        display: "flex", alignItems: "center", gap: 9,
+                        fontSize: 14, fontWeight: active ? 700 : 500,
+                        color: active ? "var(--sf-hi)" : "var(--text)",
+                        textDecoration: "none",
+                      }}
+                    >
+                      {NAV_ICONS[item.label] && (
+                        <span style={{
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          width: 28, height: 28, borderRadius: 7, flexShrink: 0,
+                          background: active ? "rgba(184,154,98,0.18)" : "var(--surface-2)",
+                          color: active ? "var(--sf-hi)" : "var(--text-3)",
+                        }}>
+                          {NAV_ICONS[item.label]}
+                        </span>
+                      )}
+                      {item.label}
+                    </Link>
+                    {item.children && (
+                      <button
+                        onClick={() => setMobileOpen(expanded ? null : item.label)}
+                        aria-label={`${expanded ? "Collapse" : "Expand"} ${item.label}`}
                         style={{
-                          flex: 1, padding: "10px 12px",
-                          display: "flex", alignItems: "center", gap: 10,
-                          fontSize: 15, fontWeight: active ? 700 : 500,
-                          color: active ? "var(--sf-hi)" : "var(--text)",
-                          textDecoration: "none",
-                          letterSpacing: "-0.01em",
+                          width: 34, height: 36, flexShrink: 0,
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          color: expanded ? "var(--sf-hi)" : "var(--text-3)",
+                          background: "transparent", border: "none", cursor: "pointer",
                         }}
                       >
-                        {NAV_ICONS[item.label] && (
-                          <span style={{
-                            display: "flex", alignItems: "center", justifyContent: "center",
-                            width: 32, height: 32, borderRadius: 9, flexShrink: 0,
-                            background: active ? "var(--sf-bg)" : "var(--surface-2)",
-                            color: active ? "var(--sf-hi)" : "var(--text-3)",
-                            transition: "background 0.15s, color 0.15s",
-                          }}>
-                            {NAV_ICONS[item.label]}
-                          </span>
-                        )}
-                        {item.label}
-                      </Link>
-                      {item.children && (
-                        <button
-                          onClick={() => setMobileOpen(expanded ? null : item.label)}
-                          aria-label={`${expanded ? "Collapse" : "Expand"} ${item.label}`}
-                          style={{
-                            width: 40, height: 44, flexShrink: 0,
-                            display: "flex", alignItems: "center", justifyContent: "center",
-                            color: expanded ? "var(--sf-hi)" : "var(--text-3)",
-                            background: "transparent", border: "none", cursor: "pointer",
-                          }}
-                        >
-                          <ChevronDown style={{
-                            width: 15, height: 15,
-                            transition: "transform 0.22s ease",
-                            transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
-                          }} />
-                        </button>
-                      )}
-                    </div>
-
-                    {/* Sub-items */}
-                    {item.children && expanded && (
-                      <div style={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr 1fr",
-                        gap: 2,
-                        margin: "2px 0 6px 16px",
-                        paddingLeft: 12,
-                        borderLeft: "2px solid rgba(184,154,98,0.22)",
-                      }}>
-                        {item.children.map((child) => {
-                          const childActive = pathname === child.href || pathname.startsWith(child.href + "/");
-                          return (
-                            <Link
-                              key={child.label}
-                              href={child.href}
-                              onClick={() => setIsOpen(false)}
-                              className="mobile-link"
-                              style={{
-                                display: "block",
-                                padding: "8px 10px", borderRadius: 8,
-                                fontSize: 13, fontWeight: childActive ? 600 : 400,
-                                textDecoration: "none",
-                                color: childActive ? "var(--sf-hi)" : "var(--text-2)",
-                                background: childActive ? "var(--sf-bg)" : "transparent",
-                                transition: "color 0.12s, background 0.12s",
-                                whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                              }}
-                            >
-                              {child.label}
-                            </Link>
-                          );
-                        })}
-                      </div>
+                        <ChevronDown style={{
+                          width: 13, height: 13,
+                          transition: "transform 0.2s",
+                          transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
+                        }} />
+                      </button>
                     )}
                   </div>
-                );
-              })}
-            </div>
 
-            {/* Quick action links in mobile drawer */}
-            <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
-              <Link
-                href="/advice"
-                onClick={() => setIsOpen(false)}
-                style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 12px", borderRadius: 10, fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text)", background: "var(--surface-2)", border: "1px solid var(--border)", textDecoration: "none" }}
-              >
-                Seek Advice
-              </Link>
-              <Link
-                href="/advertise"
-                onClick={() => setIsOpen(false)}
-                style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 12px", borderRadius: 10, fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#1A1410", background: "#CEB07A", border: "none", textDecoration: "none" }}
-              >
-                Advertise
-              </Link>
-            </div>
-
-            {/* Bottom CTAs */}
-            <div style={{ paddingTop: 16, borderTop: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: 8, flexShrink: 0 }}>
-              {userEmail ? (
-                <>
-                  <div style={{ padding: "12px 14px", borderRadius: 14, background: "var(--surface-2)", display: "flex", alignItems: "center", gap: 12, border: "1px solid var(--border)" }}>
-                    <div style={{ width: 38, height: 38, borderRadius: "50%", background: "var(--aurora-grad)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 15, flexShrink: 0 }}>
-                      {userEmail.charAt(0).toUpperCase()}
+                  {/* Sub-items — single column */}
+                  {item.children && expanded && (
+                    <div style={{
+                      display: "flex", flexDirection: "column", gap: 1,
+                      margin: "2px 0 4px 14px",
+                      paddingLeft: 10,
+                      borderLeft: "2px solid rgba(184,154,98,0.22)",
+                    }}>
+                      {item.children.map((child) => {
+                        const childActive = pathname === child.href || pathname.startsWith(child.href + "/");
+                        return (
+                          <Link
+                            key={child.label}
+                            href={child.href}
+                            onClick={() => setIsOpen(false)}
+                            className="mobile-link"
+                            style={{
+                              padding: "6px 8px", borderRadius: 7,
+                              fontSize: 12, fontWeight: childActive ? 600 : 400,
+                              textDecoration: "none",
+                              color: childActive ? "var(--sf-hi)" : "var(--text-2)",
+                              background: childActive ? "var(--sf-bg)" : "transparent",
+                              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                            }}
+                          >
+                            {child.label}
+                          </Link>
+                        );
+                      })}
                     </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 14, fontWeight: 700, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{userEmail.split("@")[0]}</div>
-                      <div style={{ fontSize: 11, color: "var(--text-3)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{userEmail}</div>
-                    </div>
-                  </div>
-                  {isAdmin && (
-                    <Link href="/admin" onClick={() => setIsOpen(false)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "11px 20px", borderRadius: 999, fontSize: 13, fontWeight: 700, color: "var(--sf)", background: "var(--sf-bg)", border: "1px solid rgba(249,115,22,0.2)", textDecoration: "none" }}>
-                      <Settings size={14} /> Admin Dashboard
-                    </Link>
                   )}
-                  <button
-                    onClick={signOut}
-                    style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "11px 20px", borderRadius: 999, fontSize: 13, fontWeight: 600, color: "var(--text-2)", background: "transparent", border: "1px solid var(--border-2)", cursor: "pointer" }}
-                  >
-                    <LogOut size={14} /> Sign out
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    onClick={() => { setIsOpen(false); setJoinOpen(true); }}
-                    style={{
-                      display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-                      padding: "13px 24px", borderRadius: 999,
-                      fontSize: 14, fontWeight: 700, color: "#fff",
-                      background: "var(--aurora-grad)",
-                      boxShadow: "0 4px 24px var(--sf-glow)",
-                      border: "none", cursor: "pointer",
-                    }}
-                  >
-                    <UserPlus size={15} /> Join Community
-                  </button>
-                  <Link
-                    href="/login"
-                    onClick={() => setIsOpen(false)}
-                    style={{
-                      display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-                      padding: "12px 24px", borderRadius: 999,
-                      fontSize: 14, fontWeight: 600,
-                      color: "var(--text)", background: "var(--surface-2)",
-                      border: "1px solid var(--border-2)", textDecoration: "none",
-                    }}
-                  >
-                    <User size={14} /> Sign in
-                  </Link>
-                </>
-              )}
+                </div>
+              );
+            })}
 
-              {/* Theme toggle in mobile drawer */}
-              <button
-                onClick={() => { toggleTheme(); }}
-                style={{
-                  display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-                  padding: "10px", borderRadius: 999,
-                  fontSize: 12, fontWeight: 600, color: "var(--text-3)",
-                  background: "transparent", border: "none", cursor: "pointer",
-                }}
-              >
-                {dark ? <Sun size={14} /> : <Moon size={14} />}
-                {dark ? "Switch to light mode" : "Switch to dark mode"}
-              </button>
+            {/* Divider + actions */}
+            <div style={{ borderTop: "1px solid var(--border)", margin: "6px 4px 4px", paddingTop: 6, display: "flex", flexDirection: "column", gap: 2 }}>
+              <Link href="/advice" onClick={() => setIsOpen(false)} className="mobile-link"
+                style={{ padding: "8px 10px", borderRadius: 10, fontSize: 13, fontWeight: 500, color: "var(--text)", textDecoration: "none", display: "flex", alignItems: "center", gap: 8 }}>
+                <HelpCircle size={14} style={{ flexShrink: 0, color: "var(--text-3)" }} /> Seek Advice
+              </Link>
+              {userEmail ? (
+                <button onClick={signOut} style={{ padding: "8px 10px", borderRadius: 10, fontSize: 13, fontWeight: 500, color: "var(--text-2)", background: "none", border: "none", cursor: "pointer", textAlign: "left", display: "flex", alignItems: "center", gap: 8 }}>
+                  <LogOut size={14} style={{ flexShrink: 0, color: "var(--text-3)" }} /> Sign out
+                </button>
+              ) : (
+                <Link href="/login" onClick={() => setIsOpen(false)} className="mobile-link"
+                  style={{ padding: "8px 10px", borderRadius: 10, fontSize: 13, fontWeight: 500, color: "var(--text)", textDecoration: "none", display: "flex", alignItems: "center", gap: 8 }}>
+                  <User size={14} style={{ flexShrink: 0, color: "var(--text-3)" }} /> Sign in
+                </Link>
+              )}
             </div>
           </div>
         </div>
