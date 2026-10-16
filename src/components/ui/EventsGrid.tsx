@@ -146,14 +146,26 @@ function EventLightbox({ event, onClose }: { event: EventItem; onClose: () => vo
           .lb-outer { align-items: flex-end; padding: 0; }
           .lb-panel {
             border-radius: 20px 20px 0 0;
-            max-width: 100%; max-height: 92svh; height: 92svh;
+            max-width: 100%; max-height: 92svh;
+            height: auto;
             overflow-y: auto; overflow-x: hidden;
             animation: lbUp 0.3s cubic-bezier(0.16,1,0.3,1) both;
           }
           .lb-body { flex-direction: column; overflow: visible; }
-          .lb-img-pane { flex: none; width: 100%; max-width: 100%; height: 48vw; min-height: 180px; }
-          .lb-img-pane img { min-height: unset; height: 100%; }
-          .lb-text-pane { overflow-y: visible; min-width: unset; padding: 20px 18px 28px; }
+          /* Image: full width, natural height, never cropped */
+          .lb-img-pane {
+            flex: none; width: 100%; max-width: 100%;
+            height: auto; min-height: unset;
+            position: relative; overflow: hidden;
+          }
+          .lb-img-pane img {
+            width: 100%; height: auto;
+            min-height: unset; max-height: 60svh;
+            object-fit: contain;
+            background: #000;
+            display: block;
+          }
+          .lb-text-pane { overflow-y: visible; min-width: unset; padding: 20px 18px 32px; }
         }
       `}</style>
 
