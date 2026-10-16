@@ -562,19 +562,22 @@ export default function Navbar() {
                      backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }}
           />
 
-          {/* Panel */}
+          {/* Panel — full-width bottom sheet on mobile */}
           <div
             style={{
-              position: "absolute", top: 0, right: 0, bottom: 0,
-              width: "min(360px, 92vw)",
+              position: "absolute", left: 0, right: 0, bottom: 0,
+              maxHeight: "88svh",
               background: "var(--surface)",
-              borderLeft: "1px solid var(--border-2)",
+              borderTop: "1px solid var(--border-2)",
+              borderRadius: "20px 20px 0 0",
               display: "flex", flexDirection: "column",
-              padding: "20px 16px", gap: 2, overflowY: "auto",
-              animation: "slideIn 0.25s cubic-bezier(0.16,1,0.3,1) both",
+              padding: "16px 16px 28px", gap: 2, overflowY: "auto",
+              animation: "slideUp 0.28s cubic-bezier(0.16,1,0.3,1) both",
             }}
           >
-            <style>{`@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }`}</style>
+            <style>{`@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }`}</style>
+            {/* Drag handle */}
+            <div style={{ width: 40, height: 4, borderRadius: 99, background: "var(--border-2)", margin: "0 auto 12px", flexShrink: 0 }} />
 
             {/* Top row */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, flexShrink: 0 }}>
@@ -597,8 +600,8 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Mobile nav links */}
-            <div style={{ flex: 1, overflowY: "auto" }}>
+            {/* Mobile nav links — 2-col grid, full width */}
+            <div style={{ flex: 1, overflowY: "auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
               {NAV_ITEMS.map((item) => {
                 const active = pathname === item.href || pathname.startsWith(item.href + "/");
                 const expanded = mobileOpen === item.label;

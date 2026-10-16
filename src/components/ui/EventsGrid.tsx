@@ -102,12 +102,61 @@ function EventLightbox({ event, onClose }: { event: EventItem; onClose: () => vo
       role="dialog"
       aria-modal
       aria-label={event.title}
-      style={{
-        position: "fixed", inset: 0, zIndex: 500,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        padding: "16px",
-      }}
+      style={{ position: "fixed", inset: 0, zIndex: 500 }}
     >
+      <style>{`
+        @keyframes lbIn    { from { opacity:0; transform:scale(0.93) translateY(12px); } to { opacity:1; transform:none; } }
+        @keyframes lbUp    { from { opacity:0; transform:translateY(100%); } to { opacity:1; transform:translateY(0); } }
+
+        /* ── Desktop: centered dialog ─────────────────────────────── */
+        .lb-outer {
+          display: flex; align-items: center; justify-content: center;
+          position: absolute; inset: 0; padding: 16px;
+        }
+        .lb-panel {
+          position: relative; z-index: 1;
+          display: flex; flex-direction: column;
+          background: var(--surface);
+          border-radius: 20px;
+          border: 1px solid var(--border-2);
+          box-shadow: 0 32px 80px rgba(0,0,0,0.45);
+          max-width: 900px; width: 100%;
+          max-height: 92vh;
+          overflow: hidden;
+          animation: lbIn 0.22s cubic-bezier(0.16,1,0.3,1) both;
+        }
+        .lb-body {
+          display: flex; flex-direction: row; flex-wrap: wrap;
+          flex: 1; overflow: hidden;
+        }
+        .lb-img-pane {
+          flex: 0 0 45%; min-width: 220px; max-width: 45%;
+          position: relative; overflow: hidden;
+        }
+        .lb-img-pane img { width:100%; height:100%; object-fit:cover; min-height:240px; display:block; }
+        .lb-text-pane {
+          flex: 1; min-width: 260px;
+          padding: 32px 28px 28px;
+          overflow-y: auto;
+          display: flex; flex-direction: column; gap: 16px;
+        }
+
+        /* ── Mobile: full-height bottom sheet ────────────────────── */
+        @media (max-width: 640px) {
+          .lb-outer { align-items: flex-end; padding: 0; }
+          .lb-panel {
+            border-radius: 20px 20px 0 0;
+            max-width: 100%; max-height: 92svh; height: 92svh;
+            overflow-y: auto; overflow-x: hidden;
+            animation: lbUp 0.3s cubic-bezier(0.16,1,0.3,1) both;
+          }
+          .lb-body { flex-direction: column; overflow: visible; }
+          .lb-img-pane { flex: none; width: 100%; max-width: 100%; height: 48vw; min-height: 180px; }
+          .lb-img-pane img { min-height: unset; height: 100%; }
+          .lb-text-pane { overflow-y: visible; min-width: unset; padding: 20px 18px 28px; }
+        }
+      `}</style>
+
       {/* Backdrop */}
       <div
         onClick={onClose}
@@ -119,145 +168,103 @@ function EventLightbox({ event, onClose }: { event: EventItem; onClose: () => vo
         }}
       />
 
-      {/* Panel */}
-      <div
-        style={{
-          position: "relative", zIndex: 1,
-          display: "flex", flexDirection: "column",
-          background: "var(--surface)",
-          borderRadius: 20,
-          border: "1px solid var(--border-2)",
-          boxShadow: "0 32px 80px rgba(0,0,0,0.45)",
-          maxWidth: 900, width: "100%",
-          maxHeight: "92vh",
-          overflow: "hidden",
-          animation: "lbIn 0.22s cubic-bezier(0.16,1,0.3,1) both",
-        }}
-      >
-        <style>{`@keyframes lbIn { from { opacity:0; transform:scale(0.93) translateY(12px); } to { opacity:1; transform:none; } }`}</style>
+      <div className="lb-outer">
+        {/* Panel */}
+        <div className="lb-panel">
+          {/* Close */}
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            style={{
+              position: "absolute", top: 14, right: 14, zIndex: 10,
+              width: 36, height: 36, borderRadius: "50%",
+              background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)",
+              border: "1px solid rgba(255,255,255,0.15)",
+              color: "#fff", fontSize: 18, lineHeight: 1,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "pointer",
+            }}
+          >×</button>
 
-        {/* Close */}
-        <button
-          onClick={onClose}
-          aria-label="Close"
-          style={{
-            position: "absolute", top: 14, right: 14, zIndex: 10,
-            width: 36, height: 36, borderRadius: "50%",
-            background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)",
-            border: "1px solid rgba(255,255,255,0.15)",
-            color: "#fff", fontSize: 18, lineHeight: 1,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            cursor: "pointer",
-          }}
-        >
-          ×
-        </button>
-
-        {/* Content: image left + details right on md+, stacked on mobile */}
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", flex: 1, overflow: "hidden" }}>
-          {/* Image pane */}
-          {event.image ? (
-            <div style={{ flex: "0 0 45%", minWidth: 220, maxWidth: "45%", position: "relative", overflow: "hidden" }}>
-              <img
-                src={event.image}
-                alt={event.title}
-                style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: 240, display: "block" }}
-              />
-              {/* Category badge */}
-              <span
-                style={{
+          {/* Content */}
+          <div className="lb-body">
+            {/* Image */}
+            {event.image && (
+              <div className="lb-img-pane">
+                <img src={event.image} alt={event.title} />
+                <span style={{
                   position: "absolute", top: 14, left: 14,
                   fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
                   padding: "4px 10px", borderRadius: 999,
-                  background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)",
-                  color: "#fff",
-                }}
-              >
-                {event.category}
-              </span>
-            </div>
-          ) : null}
-
-          {/* Text pane */}
-          <div
-            style={{
-              flex: 1, minWidth: 260,
-              padding: "32px 28px 28px",
-              overflowY: "auto",
-              display: "flex", flexDirection: "column", gap: 16,
-            }}
-          >
-            <h2
-              style={{
-                margin: 0, fontSize: 22, fontWeight: 800, lineHeight: 1.2,
-                fontFamily: "'Playfair Display', Georgia, serif",
-                color: "var(--text)",
-              }}
-            >
-              {event.title}
-            </h2>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {event.date && (
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 16 }}>📅</span>
-                  <span style={{ fontSize: 14, fontWeight: 600, color: "var(--accent, #a855f7)" }}>{event.date}</span>
-                </div>
-              )}
-              {event.location && (
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 16 }}>📍</span>
-                  <span style={{ fontSize: 14, color: "var(--text-2)" }}>{event.location}</span>
-                </div>
-              )}
-              {event.organiser && (
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 16 }}>🏛️</span>
-                  <span style={{ fontSize: 13, color: "var(--text-2)" }}>by {event.organiser.replace(/^by[:\s]+/i, "").trim()}</span>
-                </div>
-              )}
-            </div>
-
-            {event.description && (
-              <p style={{ margin: 0, fontSize: 14, lineHeight: 1.7, color: "var(--text-2)" }}>
-                {event.description}
-              </p>
-            )}
-
-            {event.url && (
-              <div style={{ marginTop: "auto", paddingTop: 8, borderTop: "1px solid var(--border-2)" }}>
-                <p style={{ margin: "0 0 10px", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-3)" }}>
-                  Official event page
-                </p>
-                <a
-                  href={event.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "flex", alignItems: "center", gap: 8,
-                    padding: "13px 20px", borderRadius: 12,
-                    background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-                    color: "#fff", fontSize: 14, fontWeight: 700,
-                    textDecoration: "none",
-                    boxShadow: "0 4px 18px rgba(124,58,237,0.35)",
-                    transition: "opacity 0.15s, transform 0.15s",
-                    wordBreak: "break-all",
-                  }}
-                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.opacity = "0.88"; el.style.transform = "translateY(-1px)"; }}
-                  onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.opacity = "1"; el.style.transform = "none"; }}
-                >
-                  <span style={{ fontSize: 18, flexShrink: 0 }}>🔗</span>
-                  <span style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    {event.url.replace(/^https?:\/\//, "")}
-                  </span>
-                  <span style={{ flexShrink: 0 }}>↗</span>
-                </a>
+                  background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", color: "#fff",
+                }}>{event.category}</span>
               </div>
             )}
 
-            <p style={{ margin: "4px 0 0", fontSize: 11, color: "var(--text-3)" }}>
-              Press <kbd style={{ padding: "1px 5px", borderRadius: 4, border: "1px solid var(--border-2)", fontSize: 10, fontFamily: "monospace" }}>Esc</kbd> or tap outside to close
-            </p>
+            {/* Text */}
+            <div className="lb-text-pane">
+              <h2 style={{
+                margin: 0, fontSize: 22, fontWeight: 800, lineHeight: 1.2,
+                fontFamily: "'Playfair Display', Georgia, serif", color: "var(--text)",
+              }}>{event.title}</h2>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {event.date && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontSize: 16 }}>📅</span>
+                    <span style={{ fontSize: 14, fontWeight: 600, color: "var(--accent, #a855f7)" }}>{event.date}</span>
+                  </div>
+                )}
+                {event.location && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontSize: 16 }}>📍</span>
+                    <span style={{ fontSize: 14, color: "var(--text-2)" }}>{event.location}</span>
+                  </div>
+                )}
+                {event.organiser && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontSize: 16 }}>🏛️</span>
+                    <span style={{ fontSize: 13, color: "var(--text-2)" }}>by {event.organiser.replace(/^by[:\s]+/i, "").trim()}</span>
+                  </div>
+                )}
+              </div>
+
+              {event.description && (
+                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.7, color: "var(--text-2)" }}>{event.description}</p>
+              )}
+
+              {event.url && (
+                <div style={{ marginTop: "auto", paddingTop: 8, borderTop: "1px solid var(--border-2)" }}>
+                  <p style={{ margin: "0 0 10px", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-3)" }}>
+                    Official event page
+                  </p>
+                  <a
+                    href={event.url} target="_blank" rel="noopener noreferrer"
+                    style={{
+                      display: "flex", alignItems: "center", gap: 8,
+                      padding: "13px 20px", borderRadius: 12,
+                      background: "linear-gradient(135deg,#7c3aed,#a855f7)",
+                      color: "#fff", fontSize: 14, fontWeight: 700,
+                      textDecoration: "none",
+                      boxShadow: "0 4px 18px rgba(124,58,237,0.35)",
+                      transition: "opacity 0.15s, transform 0.15s",
+                    }}
+                    onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.opacity = "0.88"; el.style.transform = "translateY(-1px)"; }}
+                    onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.opacity = "1"; el.style.transform = "none"; }}
+                  >
+                    <span style={{ fontSize: 18, flexShrink: 0 }}>🔗</span>
+                    <span style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      {event.url.replace(/^https?:\/\//, "")}
+                    </span>
+                    <span style={{ flexShrink: 0 }}>↗</span>
+                  </a>
+                </div>
+              )}
+
+              <p style={{ margin: "4px 0 0", fontSize: 11, color: "var(--text-3)" }}>
+                Press <kbd style={{ padding: "1px 5px", borderRadius: 4, border: "1px solid var(--border-2)", fontSize: 10, fontFamily: "monospace" }}>Esc</kbd> or tap outside to close
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -283,121 +290,75 @@ function FeaturedEventBanner({ event, onClose }: { event: EventItem; onClose: ()
   }, [onClose]);
 
   return (
-    <div
-      style={{
-        position: "fixed", inset: 0, zIndex: 500,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        padding: "16px",
-        animation: "lbIn 0.3s cubic-bezier(0.16,1,0.3,1) both",
-      }}
-    >
+    <div style={{ position: "fixed", inset: 0, zIndex: 500 }}>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.72)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }} />
-      <div style={{
-        position: "relative", zIndex: 1,
-        display: "flex", flexDirection: "column",
-        background: "var(--surface)",
-        borderRadius: 20,
-        border: "1px solid var(--border-2)",
-        boxShadow: "0 32px 80px rgba(0,0,0,0.45)",
-        maxWidth: 860, width: "100%",
-        maxHeight: "88vh",
-        overflow: "hidden",
-        animation: "lbIn 0.28s cubic-bezier(0.16,1,0.3,1) both",
-      }}>
-        {/* Featured badge */}
-        <div style={{
-          position: "absolute", top: 14, left: event.image ? "calc(45% + 14px)" : 14, zIndex: 10,
-          display: "flex", alignItems: "center", gap: 6,
-          padding: "4px 10px", borderRadius: 999,
-          background: "linear-gradient(135deg,#7c3aed,#a855f7)",
-          color: "#fff", fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase",
-        }}>
-          ✦ Featured Event
-        </div>
 
-        {/* Close */}
-        <button
-          onClick={onClose}
-          aria-label="Close"
-          style={{
+      <div className="lb-outer">
+        <div className="lb-panel" style={{ maxWidth: 860 }}>
+          {/* Featured badge */}
+          <div className="feat-badge" style={{
+            position: "absolute", top: 14, left: 14, zIndex: 10,
+            display: "flex", alignItems: "center", gap: 6,
+            padding: "4px 10px", borderRadius: 999,
+            background: "linear-gradient(135deg,#7c3aed,#a855f7)",
+            color: "#fff", fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase",
+          }}>✦ Featured Event</div>
+
+          {/* Close */}
+          <button onClick={onClose} aria-label="Close" style={{
             position: "absolute", top: 14, right: 14, zIndex: 10,
             width: 36, height: 36, borderRadius: "50%",
             background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)",
             border: "1px solid rgba(255,255,255,0.15)",
             color: "#fff", fontSize: 18, lineHeight: 1,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            cursor: "pointer",
-          }}
-        >×</button>
+            display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer",
+          }}>×</button>
 
-        {/* Body */}
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", flex: 1, overflow: "hidden" }}>
-          {event.image && (
-            <div style={{ flex: "0 0 45%", minWidth: 200, maxWidth: "45%", position: "relative", overflow: "hidden" }}>
-              <img src={event.image} alt={event.title} style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: 220, display: "block" }} />
-              <span style={{
-                position: "absolute", top: 14, left: 14,
-                fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
-                padding: "4px 10px", borderRadius: 999,
-                background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", color: "#fff",
-              }}>{event.category}</span>
-            </div>
-          )}
-          <div style={{ flex: 1, minWidth: 240, padding: "36px 26px 22px", overflowY: "auto", display: "flex", flexDirection: "column", gap: 14 }}>
-            <h2 style={{ margin: 0, fontSize: 22, fontWeight: 800, lineHeight: 1.2, fontFamily: "'Playfair Display', Georgia, serif", color: "var(--text)" }}>
-              {event.title}
-            </h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-              {event.date && (
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 15 }}>📅</span>
-                  <span style={{ fontSize: 14, fontWeight: 600, color: "var(--accent, #a855f7)" }}>{event.date}</span>
-                </div>
-              )}
-              {event.location && (
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 15 }}>📍</span>
-                  <span style={{ fontSize: 13, color: "var(--text-2)" }}>{event.location}</span>
-                </div>
-              )}
-              {event.organiser && (
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 15 }}>🏛️</span>
-                  <span style={{ fontSize: 12, color: "var(--text-2)" }}>by {event.organiser.replace(/^by[:\s]+/i, "").trim()}</span>
-                </div>
-              )}
-            </div>
-            {event.description && (
-              <p style={{ margin: 0, fontSize: 13, lineHeight: 1.7, color: "var(--text-2)" }}>{event.description}</p>
-            )}
-            {event.url && (
-              <div style={{ marginTop: "auto", paddingTop: 8, borderTop: "1px solid var(--border-2)" }}>
-                <a href={event.url} target="_blank" rel="noopener noreferrer" style={{
-                  display: "flex", alignItems: "center", gap: 8,
-                  padding: "11px 18px", borderRadius: 10,
-                  background: "linear-gradient(135deg,#7c3aed,#a855f7)",
-                  color: "#fff", fontSize: 13, fontWeight: 700,
-                  textDecoration: "none", boxShadow: "0 4px 18px rgba(124,58,237,0.35)",
-                }}>
-                  <span>🔗</span>
-                  <span style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    {event.url.replace(/^https?:\/\//, "")}
-                  </span>
-                  <span>↗</span>
-                </a>
+          {/* Body */}
+          <div className="lb-body">
+            {event.image && (
+              <div className="lb-img-pane">
+                <img src={event.image} alt={event.title} />
+                <span style={{
+                  position: "absolute", top: 14, left: 14,
+                  fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+                  padding: "4px 10px", borderRadius: 999,
+                  background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", color: "#fff",
+                }}>{event.category}</span>
               </div>
             )}
+            <div className="lb-text-pane" style={{ paddingTop: 36 }}>
+              <h2 style={{ margin: 0, fontSize: 22, fontWeight: 800, lineHeight: 1.2, fontFamily: "'Playfair Display', Georgia, serif", color: "var(--text)" }}>
+                {event.title}
+              </h2>
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                {event.date && <div style={{ display: "flex", alignItems: "center", gap: 8 }}><span style={{ fontSize: 15 }}>📅</span><span style={{ fontSize: 14, fontWeight: 600, color: "var(--accent, #a855f7)" }}>{event.date}</span></div>}
+                {event.location && <div style={{ display: "flex", alignItems: "center", gap: 8 }}><span style={{ fontSize: 15 }}>📍</span><span style={{ fontSize: 13, color: "var(--text-2)" }}>{event.location}</span></div>}
+                {event.organiser && <div style={{ display: "flex", alignItems: "center", gap: 8 }}><span style={{ fontSize: 15 }}>🏛️</span><span style={{ fontSize: 12, color: "var(--text-2)" }}>by {event.organiser.replace(/^by[:\s]+/i, "").trim()}</span></div>}
+              </div>
+              {event.description && <p style={{ margin: 0, fontSize: 13, lineHeight: 1.7, color: "var(--text-2)" }}>{event.description}</p>}
+              {event.url && (
+                <div style={{ marginTop: "auto", paddingTop: 8, borderTop: "1px solid var(--border-2)" }}>
+                  <a href={event.url} target="_blank" rel="noopener noreferrer" style={{
+                    display: "flex", alignItems: "center", gap: 8,
+                    padding: "11px 18px", borderRadius: 10,
+                    background: "linear-gradient(135deg,#7c3aed,#a855f7)",
+                    color: "#fff", fontSize: 13, fontWeight: 700,
+                    textDecoration: "none", boxShadow: "0 4px 18px rgba(124,58,237,0.35)",
+                  }}>
+                    <span>🔗</span>
+                    <span style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{event.url.replace(/^https?:\/\//, "")}</span>
+                    <span>↗</span>
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* Progress bar */}
-        <div style={{ height: 3, background: "var(--border-2, rgba(255,255,255,0.08))" }}>
-          <div style={{
-            height: "100%",
-            width: `${progress}%`,
-            background: "linear-gradient(90deg,#7c3aed,#a855f7)",
-            transition: "width 0.05s linear",
-          }} />
+          {/* Progress bar */}
+          <div style={{ height: 3, background: "var(--border-2, rgba(255,255,255,0.08))", flexShrink: 0 }}>
+            <div style={{ height: "100%", width: `${progress}%`, background: "linear-gradient(90deg,#7c3aed,#a855f7)", transition: "width 0.05s linear" }} />
+          </div>
         </div>
       </div>
     </div>
