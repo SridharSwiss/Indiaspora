@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import Script from "next/script";
@@ -29,6 +30,18 @@ export default function PageHeader({
   heroImageAlt = "",
   heroImagePosition = "center 35%",
 }: PageHeaderProps) {
+  const [blurred, setBlurred] = useState(false);
+  const bannerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!heroImage) return;
+    const onScroll = () => {
+      // Start blurring as soon as user scrolls at all (content moving over image)
+      setBlurred(window.scrollY > 30);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [heroImage]);
   const breadcrumbSchema = breadcrumbs && {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -57,6 +70,7 @@ export default function PageHeader({
 
         {/* Sticky image container — stays at top:0 as content scrolls over it */}
         <div
+          ref={bannerRef}
           style={{
             position: "sticky",
             top: 0,
@@ -66,7 +80,7 @@ export default function PageHeader({
           }}
           aria-hidden={false}
         >
-          {/* Blurred, Ken-Burns background image */}
+          {/* Sharp image — blurs only when content scrolls over it */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={heroImage}
@@ -76,22 +90,25 @@ export default function PageHeader({
               width: "100%", height: "100%",
               objectFit: "cover",
               objectPosition: heroImagePosition,
-              filter: "blur(10px) saturate(1.15)",
-              transform: "scale(1.10)",
+              filter: blurred ? "blur(10px) saturate(1.1)" : "none",
+              transform: blurred ? "scale(1.10)" : "scale(1.0)",
+              transition: "filter 0.45s ease, transform 0.45s ease",
               animation: "phZoom 18s ease-in-out infinite alternate",
             }}
           />
 
-          {/* Two-layer overlay for maximum text clarity */}
-          {/* Layer 1: dark tint */}
+          {/* Overlay — lighter when image is sharp, stronger when blurred for text clarity */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "rgba(6,4,2,0.55)",
+            background: blurred ? "rgba(6,4,2,0.52)" : "rgba(6,4,2,0.28)",
+            transition: "background 0.45s ease",
           }} aria-hidden />
-          {/* Layer 2: gradient — darker at top (nav) + bottom (text) */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.10) 35%, rgba(0,0,0,0.30) 65%, rgba(0,0,0,0.80) 100%)",
+            background: blurred
+              ? "linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.10) 35%, rgba(0,0,0,0.28) 65%, rgba(0,0,0,0.82) 100%)"
+              : "linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.04) 35%, rgba(0,0,0,0.18) 65%, rgba(0,0,0,0.68) 100%)",
+            transition: "background 0.45s ease",
           }} aria-hidden />
 
           {/* Text — absolutely pinned to the bottom of the image */}
