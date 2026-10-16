@@ -3,6 +3,7 @@ export const NAV_ITEMS = [
     label: "Community",
     href: "/community",
     children: [
+      { label: "Daily Life Hub", href: "/community/hub" },
       { label: "Associations & Clubs", href: "/community/associations" },
       { label: "Temples & Spiritual", href: "/community/spiritual" },
       { label: "Women's Network", href: "/community/women" },
@@ -14,12 +15,15 @@ export const NAV_ITEMS = [
     href: "/living",
     children: [
       { label: "Welcome to Switzerland", href: "/living/welcome" },
+      { label: "First 30 Days Checklist", href: "/living/first-30-days" },
       { label: "Housing & Real Estate", href: "/living/housing" },
       { label: "Healthcare", href: "/living/healthcare" },
       { label: "Education & Schools", href: "/living/education" },
       { label: "Banking & Finance", href: "/living/banking" },
       { label: "Swiss Pension System", href: "/living/pension" },
       { label: "Transport", href: "/living/transport" },
+      { label: "Driving License Conversion", href: "/living/driving-license" },
+      { label: "Parents Visiting", href: "/living/parents-visiting" },
       { label: "Waste & Recycling", href: "/living/recycling" },
       { label: "Legal & Immigration", href: "/living/legal" },
       { label: "Language Learning", href: "/living/language" },

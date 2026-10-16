@@ -410,7 +410,7 @@ export default function Hero() {
             }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/hub-community.jpg"
+                src="/hub-community.webp"
                 alt="Swiss Indian community gathering"
                 style={{
                   width: "100%",

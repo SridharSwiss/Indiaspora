@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/community/spiritual`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/community/students`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/community/women`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/community/hub`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
     // Living
     { url: `${base}/living`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/living/welcome`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
@@ -50,6 +51,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Living extra pages
     { url: `${base}/living/pension`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/living/recycling`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/living/first-30-days`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.9 },
+    { url: `${base}/living/driving-license`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.85 },
+    { url: `${base}/living/parents-visiting`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.85 },
     { url: `${base}/living/education/zurich`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     // Other
     { url: `${base}/events`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
