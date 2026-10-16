@@ -2,6 +2,9 @@
 -- Phase 1: Verified Directory tables
 -- Phase 3: Classifieds / Community Pulse tables
 
+-- Enable pgvector extension (required before knowledge_chunks table)
+CREATE EXTENSION IF NOT EXISTS vector;
+
 -- ──────────────────────────────────────────────
 -- VERIFIED DIRECTORY
 -- ──────────────────────────────────────────────
@@ -152,9 +155,6 @@ CREATE TABLE IF NOT EXISTS public.knowledge_chunks (
   language text DEFAULT 'en',
   last_indexed_at timestamptz DEFAULT now()
 );
-
--- Enable pgvector extension (must be done by superuser in Supabase dashboard)
--- CREATE EXTENSION IF NOT EXISTS vector;
 
 CREATE INDEX idx_knowledge_page ON public.knowledge_chunks(page_path);
 
