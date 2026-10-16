@@ -27,6 +27,9 @@ export default function ZurichPage() {
         subtitle="Switzerland's largest city and financial hub — where Bahnhofstrasse meets the ETH hilltop, Lake Zurich shimmers at the city's heart, and a thriving Indian community calls Kreis 4, Oerlikon and Seefeld home."
         badge="City Guide"
         gradient="from-amber-500 to-orange-500"
+        heroImage="/hero-zurich.jpg"
+        heroImageAlt="Indiaspora Zurich event by the Limmat with Grossmünster backdrop"
+        heroImagePosition="center 35%"
         breadcrumbs={[
           { label: "Cities", href: "/cities" },
           { label: "Zurich" },

@@ -631,6 +631,9 @@ export default function RestaurantsPage() {
         subtitle="From crispy dosas to rich Mughlai curries — find the best Indian dining across Switzerland. 60+ verified restaurants."
         badge="60+ Restaurants"
         gradient="from-red-500 to-orange-500"
+        heroImage="/hero-food.jpg"
+        heroImageAlt="Indian food spread — curries, naan and biryani in a Swiss alpine setting"
+        heroImagePosition="center 45%"
         breadcrumbs={[
           { label: "Food & Dining", href: "/food" },
           { label: "Restaurants" },

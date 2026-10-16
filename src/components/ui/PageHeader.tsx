@@ -15,6 +15,9 @@ interface PageHeaderProps {
   badge?: string;
   gradient?: string;
   breadcrumbs?: BreadcrumbItem[];
+  heroImage?: string;
+  heroImageAlt?: string;
+  heroImagePosition?: string;
 }
 
 export default function PageHeader({
@@ -23,6 +26,9 @@ export default function PageHeader({
   badge,
   gradient = "from-violet-500 to-cyan-500",
   breadcrumbs,
+  heroImage,
+  heroImageAlt = "",
+  heroImagePosition = "center 35%",
 }: PageHeaderProps) {
   // JSON-LD breadcrumb schema for Google rich results (principle #5)
   const breadcrumbSchema = breadcrumbs && {
@@ -40,8 +46,43 @@ export default function PageHeader({
   };
 
   return (
-    <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 overflow-hidden"
-      style={{ background: "var(--base)" }}>
+    <section
+      className="relative pb-12 sm:pb-16 overflow-hidden"
+      style={{
+        background: "var(--base)",
+        paddingTop: heroImage ? 0 : undefined,
+      }}
+    >
+      {heroImage && (
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "clamp(220px, 30vw, 400px)",
+            overflow: "hidden",
+            marginBottom: 0,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={heroImage}
+            alt={heroImageAlt}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: heroImagePosition,
+              animation: "heroZoom 12s ease-in-out infinite alternate",
+            }}
+          />
+          {/* gradient overlay fading to page bg at bottom */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 60%, var(--base) 100%)",
+          }} />
+        </div>
+      )}
+
       {breadcrumbSchema && (
         <Script
           id={`breadcrumb-${title.replace(/\s+/g, "-").toLowerCase()}`}
@@ -80,7 +121,11 @@ export default function PageHeader({
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {heroImage && (
+        <style>{`@keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.06); } }`}</style>
+      )}
+
+      <div className={`relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${heroImage ? "pt-8 sm:pt-10" : "pt-24 sm:pt-28 lg:pt-32"}`}>
         {breadcrumbs && (
           <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 mb-5 text-xs sm:text-sm">
             <Link href="/" className="transition-colors" style={{ color: "var(--text-3)" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color="var(--sf)"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color="var(--text-3)"}>

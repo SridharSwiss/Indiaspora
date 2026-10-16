@@ -186,6 +186,9 @@ export default async function EventsPage() {
         subtitle="From Diwali melas and Garba nights to business summits and food festivals — never miss an event in the Swiss-Indian calendar."
         badge="100+ Events/Year"
         gradient="from-violet-500 to-purple-600"
+        heroImage="/hero-events.jpg"
+        heroImageAlt="Indiaspora Switzerland large outdoor events with Zurich skyline backdrop"
+        heroImagePosition="center 25%"
         breadcrumbs={[{ label: "Events" }]}
       />
 

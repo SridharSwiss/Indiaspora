@@ -69,6 +69,9 @@ export default function NetworkingPage() {
         subtitle="Switzerland's Indian professional community is built on strong bilateral institutions, elite startup networks, and active industry forums."
         badge="Business Networking"
         gradient="from-teal-500 to-cyan-600"
+        heroImage="/hero-business.jpg"
+        heroImageAlt="Indiaspora Switzerland business networking event in Zurich"
+        heroImagePosition="center 30%"
         breadcrumbs={[
           { label: "Business & Career", href: "/business" },
           { label: "Networking & Chambers" },

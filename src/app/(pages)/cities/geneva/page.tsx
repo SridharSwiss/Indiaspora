@@ -51,6 +51,9 @@ export default function GenevaPage() {
         subtitle="Switzerland's international city — home to the UN, WHO, and a thriving Indian professional community along the shores of Lac Léman."
         badge="City Guide"
         gradient="from-blue-600 to-cyan-500"
+        heroImage="/hero-geneva.jpg"
+        heroImageAlt="Indiaspora Geneva networking event with Jet d'Eau in the background"
+        heroImagePosition="center 30%"
         breadcrumbs={[
           { label: "Cities", href: "/cities" },
           { label: "Geneva" },

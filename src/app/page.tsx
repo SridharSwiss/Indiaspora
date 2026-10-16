@@ -5,6 +5,7 @@ import Categories from "@/components/sections/Categories";
 const Events = dynamic(() => import("@/components/sections/Events"));
 const Cities = dynamic(() => import("@/components/sections/Cities"));
 const LivingGuide = dynamic(() => import("@/components/sections/LivingGuide"));
+const TravelBanner = dynamic(() => import("@/components/sections/TravelBanner"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
 const Resources = dynamic(() => import("@/components/sections/Resources"));
 
@@ -16,6 +17,7 @@ export default function Home() {
       <Events />
       <Cities />
       <LivingGuide />
+      <TravelBanner />
       <Testimonials />
       <Resources />
     </>

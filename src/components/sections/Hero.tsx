@@ -7,6 +7,8 @@ import { STATS } from "@/lib/data";
 import JoinModal from "@/components/JoinModal";
 import StatNumber from "@/components/ui/StatNumber";
 
+const BG_IMAGES = ["/hero-community.jpg", "/hero-events.jpg", "/hero-zurich.jpg"];
+
 const FEATURED_WORDS = ["Community", "Culture", "Cuisine", "Connections", "Commerce"];
 
 const AVATARS = ["🇮🇳", "🙂", "👨‍💼", "👩‍🎓", "🧑‍🍳"];
@@ -18,10 +20,23 @@ const INLINE_STATS = [
 
 export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
+  const [bgIndex, setBgIndex] = useState(0);
+  const [bgFade, setBgFade] = useState(true);
   const [joinOpen, setJoinOpen] = useState(false);
 
   useEffect(() => {
     const t = setInterval(() => setWordIndex((p) => (p + 1) % FEATURED_WORDS.length), 3200);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setBgFade(false);
+      setTimeout(() => {
+        setBgIndex((p) => (p + 1) % BG_IMAGES.length);
+        setBgFade(true);
+      }, 700);
+    }, 5500);
     return () => clearInterval(t);
   }, []);
 
@@ -30,18 +45,32 @@ export default function Hero() {
       className="relative overflow-hidden"
       style={{ minHeight: "100svh", background: "#0E0C09" }}
     >
-      {/* Full-bleed background — deep obsidian */}
+      {/* Full-bleed background — crossfading photo */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        aria-hidden
+        src={BG_IMAGES[bgIndex]}
+        alt=""
+        style={{
+          position: "absolute", inset: 0, width: "100%", height: "100%",
+          objectFit: "cover", objectPosition: "center 30%",
+          opacity: bgFade ? 0.18 : 0,
+          transition: "opacity 0.7s ease-in-out",
+          filter: "saturate(0.7)",
+        }}
+      />
+      {/* Deep obsidian overlay */}
       <div
         aria-hidden
         style={{
           position: "absolute", inset: 0,
           background: `
             linear-gradient(160deg,
-              #161008 0%,
-              #0E0C09 30%,
-              #120E08 55%,
-              #181210 75%,
-              #0E0C09 100%
+              rgba(22,16,8,0.96) 0%,
+              rgba(14,12,9,0.88) 30%,
+              rgba(18,14,8,0.82) 55%,
+              rgba(24,18,16,0.90) 75%,
+              rgba(14,12,9,0.96) 100%
             )
           `,
         }}
@@ -410,13 +439,13 @@ export default function Hero() {
             }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/hub-community.webp"
-                alt="Swiss Indian community gathering"
+                src="/hero-community.jpg"
+                alt="Indian community on a Swiss street with Alps backdrop"
                 style={{
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
-                  objectPosition: "center",
+                  objectPosition: "center 40%",
                 }}
               />
             </div>
