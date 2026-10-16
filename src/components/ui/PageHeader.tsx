@@ -60,7 +60,7 @@ export default function PageHeader({
           the space. The inner sticky div peeks out at top:0 while the
           wrapper scrolls, giving a "pinned background" effect.
         */}
-        <div style={{ position: "relative", height: "100svh" }}>
+        <div style={{ position: "relative", height: "clamp(280px, 60svh, 100svh)" }}>
 
         {/* Sticky image — stays at top:0 while content scrolls over it */}
         <div
@@ -68,7 +68,7 @@ export default function PageHeader({
             position: "sticky",
             top: 0,
             width: "100%",
-            height: "100svh",
+            height: "clamp(280px, 60svh, 100svh)",
             overflow: "hidden",
             zIndex: 0,
           }}
@@ -101,7 +101,7 @@ export default function PageHeader({
           {/* Text — absolutely pinned to the bottom of the image */}
           <div style={{
             position: "absolute", bottom: 0, left: 0, right: 0,
-            padding: "clamp(24px,4vw,56px) clamp(16px,5vw,80px) clamp(28px,4vw,52px)",
+            padding: "clamp(16px,4vw,56px) clamp(16px,5vw,80px) clamp(20px,4vw,52px)",
             zIndex: 2,
           }}>
             {/* Breadcrumbs */}
@@ -180,7 +180,7 @@ export default function PageHeader({
             {/* Title */}
             <h1 style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(2rem, 5vw, 3.8rem)",
+              fontSize: "clamp(1.5rem, 5vw, 3.8rem)",
               fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em",
               color: "#FFFFFF",
               textShadow: "0 2px 16px rgba(0,0,0,0.90), 0 1px 4px rgba(0,0,0,0.70)",
@@ -192,7 +192,7 @@ export default function PageHeader({
             {/* Subtitle */}
             <p style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-              fontSize: "clamp(0.88rem, 1.6vw, 1.05rem)",
+              fontSize: "clamp(0.78rem, 1.6vw, 1.05rem)",
               color: "rgba(255,255,255,0.88)",
               textShadow: "0 1px 8px rgba(0,0,0,0.85)",
               lineHeight: 1.65, maxWidth: 620, margin: 0,
