@@ -571,8 +571,8 @@ export default function Navbar() {
 
           {/* Compact panel */}
           <div style={{
-            position: "absolute", top: 72, right: 12,
-            width: "min(280px, calc(100vw - 24px))",
+            position: "absolute", top: 68, right: 8,
+            width: "min(280px, calc(100vw - 16px))",
             maxHeight: "calc(100svh - 88px)",
             overflowY: "auto",
             background: "var(--surface)",
