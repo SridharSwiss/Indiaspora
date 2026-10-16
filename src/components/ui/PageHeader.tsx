@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import Script from "next/script";
@@ -30,18 +29,6 @@ export default function PageHeader({
   heroImageAlt = "",
   heroImagePosition = "center 35%",
 }: PageHeaderProps) {
-  const [blurred, setBlurred] = useState(false);
-  const bannerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!heroImage) return;
-    const onScroll = () => {
-      // Start blurring as soon as user scrolls at all (content moving over image)
-      setBlurred(window.scrollY > 30);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [heroImage]);
   const breadcrumbSchema = breadcrumbs && {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -68,19 +55,16 @@ export default function PageHeader({
           />
         )}
 
-        {/* Sticky image container — stays at top:0 as content scrolls over it */}
+        {/* Full-screen hero banner — scrolls naturally with the page */}
         <div
-          ref={bannerRef}
           style={{
-            position: "sticky",
-            top: 0,
-            zIndex: 0,
-            height: "clamp(320px, 52vh, 560px)",
+            position: "relative",
+            width: "100%",
+            height: "100svh",
             overflow: "hidden",
           }}
-          aria-hidden={false}
         >
-          {/* Sharp image — blurs only when content scrolls over it */}
+          {/* Sharp, full-screen image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={heroImage}
@@ -90,25 +74,19 @@ export default function PageHeader({
               width: "100%", height: "100%",
               objectFit: "cover",
               objectPosition: heroImagePosition,
-              filter: blurred ? "blur(10px) saturate(1.1)" : "none",
-              transform: blurred ? "scale(1.10)" : "scale(1.0)",
-              transition: "filter 0.45s ease, transform 0.45s ease",
               animation: "phZoom 18s ease-in-out infinite alternate",
             }}
           />
 
-          {/* Overlay — lighter when image is sharp, stronger when blurred for text clarity */}
+          {/* Subtle dark tint so text is always readable */}
           <div style={{
             position: "absolute", inset: 0,
-            background: blurred ? "rgba(6,4,2,0.52)" : "rgba(6,4,2,0.28)",
-            transition: "background 0.45s ease",
+            background: "rgba(4,3,2,0.30)",
           }} aria-hidden />
+          {/* Gradient: darkest at bottom where title sits */}
           <div style={{
             position: "absolute", inset: 0,
-            background: blurred
-              ? "linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.10) 35%, rgba(0,0,0,0.28) 65%, rgba(0,0,0,0.82) 100%)"
-              : "linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.04) 35%, rgba(0,0,0,0.18) 65%, rgba(0,0,0,0.68) 100%)",
-            transition: "background 0.45s ease",
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.04) 40%, rgba(0,0,0,0.22) 65%, rgba(0,0,0,0.72) 100%)",
           }} aria-hidden />
 
           {/* Text — absolutely pinned to the bottom of the image */}
