@@ -591,6 +591,15 @@ button:active:not(:disabled), a:active, [role="button"]:active {
 /* ── Mobile ───────────────────────────────────────────────────── */
 @media (max-width: 768px) { .hero-particles { display: none; } }
 
+/* ── Page content slides over sticky hero banner ─────────────── */
+/* The outer wrapper in PageHeader reserves 100svh. Any sibling div
+   that follows it in the same parent (main) needs a stacking context
+   and a background to properly cover the sticky image beneath. */
+main > div > div:not([data-hero-wrapper]) {
+  position: relative;
+  z-index: 1;
+}
+
 /* ── Reduced motion ───────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -55,13 +55,22 @@ export default function PageHeader({
           />
         )}
 
-        {/* Full-screen hero banner — scrolls naturally with the page */}
+        {/*
+          Outer wrapper: height 100svh so normal document flow reserves
+          the space. The inner sticky div peeks out at top:0 while the
+          wrapper scrolls, giving a "pinned background" effect.
+        */}
+        <div style={{ position: "relative", height: "100svh" }}>
+
+        {/* Sticky image — stays at top:0 while content scrolls over it */}
         <div
           style={{
-            position: "relative",
+            position: "sticky",
+            top: 0,
             width: "100%",
             height: "100svh",
             overflow: "hidden",
+            zIndex: 0,
           }}
         >
           {/* Sharp, full-screen image */}
@@ -78,15 +87,15 @@ export default function PageHeader({
             }}
           />
 
-          {/* Subtle dark tint so text is always readable */}
+          {/* Light tint — lets the image breathe while staying legible */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "rgba(4,3,2,0.30)",
+            background: "rgba(4,3,2,0.18)",
           }} aria-hidden />
-          {/* Gradient: darkest at bottom where title sits */}
+          {/* Gradient concentrated at bottom so title/subtitle pop */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.04) 40%, rgba(0,0,0,0.22) 65%, rgba(0,0,0,0.72) 100%)",
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.35) 72%, rgba(0,0,0,0.75) 100%)",
           }} aria-hidden />
 
           {/* Text — absolutely pinned to the bottom of the image */}
@@ -193,6 +202,7 @@ export default function PageHeader({
             </p>
           </div>
         </div>
+        </div>{/* /outer height-reserving wrapper */}
 
         <style>{`
           @keyframes phZoom {
