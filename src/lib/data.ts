@@ -70,6 +70,19 @@ export const NAV_ITEMS = [
       { label: "Lausanne", href: "/cities/lausanne" },
     ],
   },
+  {
+    label: "Travel",
+    href: "/travel",
+    children: [
+      { label: "Explore Switzerland", href: "/travel" },
+      { label: "From Zürich", href: "/travel?hub=Z%C3%BCrich" },
+      { label: "From Basel", href: "/travel?hub=Basel" },
+      { label: "From Geneva", href: "/travel?hub=Geneva" },
+      { label: "From Lausanne", href: "/travel?hub=Lausanne" },
+      { label: "From Bern", href: "/travel?hub=Bern" },
+      { label: "From Zug", href: "/travel?hub=Zug" },
+    ],
+  },
   { label: "Events", href: "/events" },
   { label: "News", href: "/news" },
   // Resources moved to footer — keeps top nav ≤7 items (cognitive load principle)
