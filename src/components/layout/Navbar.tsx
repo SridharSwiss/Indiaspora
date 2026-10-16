@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, Settings, UserPlus, Search, HelpCircle } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, Settings, UserPlus, Search, HelpCircle, Users, Home, UtensilsCrossed, Briefcase, Palette, MapPin, Plane, CalendarDays, Newspaper } from "lucide-react";
 import SearchOverlay from "@/components/ui/SearchOverlay";
 import { NAV_ITEMS } from "@/lib/data";
 import { createClient } from "@/lib/supabase/client";
@@ -147,6 +147,18 @@ export default function Navbar() {
   }, [supabase, router]);
 
   const isAdmin = userEmail === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+
+  const NAV_ICONS: Record<string, React.ReactNode> = {
+    Community: <Users size={16} />,
+    Living:    <Home size={16} />,
+    Food:      <UtensilsCrossed size={16} />,
+    Business:  <Briefcase size={16} />,
+    Culture:   <Palette size={16} />,
+    Cities:    <MapPin size={16} />,
+    Travel:    <Plane size={16} />,
+    Events:    <CalendarDays size={16} />,
+    News:      <Newspaper size={16} />,
+  };
   const dark = isDarkMode(theme);
 
   // Admin pages have their own chrome — hide the public nav
@@ -619,13 +631,25 @@ export default function Navbar() {
                         onClick={() => { if (!item.children) setIsOpen(false); }}
                         className="mobile-link"
                         style={{
-                          flex: 1, padding: "12px 16px",
+                          flex: 1, padding: "10px 12px",
+                          display: "flex", alignItems: "center", gap: 10,
                           fontSize: 15, fontWeight: active ? 700 : 500,
                           color: active ? "var(--sf-hi)" : "var(--text)",
                           textDecoration: "none",
                           letterSpacing: "-0.01em",
                         }}
                       >
+                        {NAV_ICONS[item.label] && (
+                          <span style={{
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                            width: 32, height: 32, borderRadius: 9, flexShrink: 0,
+                            background: active ? "var(--sf-bg)" : "var(--surface-2)",
+                            color: active ? "var(--sf-hi)" : "var(--text-3)",
+                            transition: "background 0.15s, color 0.15s",
+                          }}>
+                            {NAV_ICONS[item.label]}
+                          </span>
+                        )}
                         {item.label}
                       </Link>
                       {item.children && (
