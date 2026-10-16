@@ -24,9 +24,9 @@ const cities: City[] = [
     restaurants: [
       {
         name: "Saravanaa Bhavan",
-        area: "Oerlikon (Kreis 11)",
+        area: "Kreis 5 — Limmatstrasse 50, 8005",
         type: "South Indian Vegetarian",
-        note: "Global South Indian vegetarian chain — dosas, idlis, vadas, thalis. Pure veg. One of the most authentic South Indian spots in Switzerland. Part of the worldwide brand.",
+        note: "Global South Indian vegetarian chain — dosas, idlis, vadas, thalis. Pure veg. One of the most authentic South Indian spots in Switzerland. Part of the worldwide brand. Open daily 11:30–22:00.",
         url: "https://saravanaabhavan.swiss",
       },
       {
@@ -169,6 +169,13 @@ const cities: City[] = [
         note: "Authentic Indian cuisine specialising in tandoor and BBQ preparations near Escher Wyss Platz in Kreis 5. Friendly service. Search 'Indian BBQ Zurich' on Google Maps.",
         url: null,
       },
+      {
+        name: "Namaste Oerlikon",
+        area: "Oerlikon — Ellen-Widmann-Weg 6, 8050",
+        type: "Vegetarian / Vegan / Tandoori",
+        note: "Inclusive menu covering vegetarian thalis, vegan curries, and tandoori. One of the most comprehensive vegetarian Indian menus in Zurich. Open daily 11:00–14:00 & 17:00–22:30.",
+        url: MAPS("Namaste Oerlikon Ellen-Widmann-Weg 6 Zürich"),
+      },
     ],
   },
   {
@@ -258,6 +265,13 @@ const cities: City[] = [
         type: "South Indian / Sri Lankan",
         note: "South Indian and Sri Lankan flavours popular with the Tamil community — rice plates, kottu roti, and authentic curries. Search 'Curry Leaf Geneva' on Google Maps.",
         url: null,
+      },
+      {
+        name: "Indian Rasoi",
+        area: "Carouge — Rue Jacques-Dalphin 54, 1227",
+        type: "Modern Indian · Michelin Bib Gourmand",
+        note: "Michelin Bib Gourmand 2026 — the only Indian restaurant in Switzerland with this distinction. Chef Kuldeep Rawat. Falstaff 85 points (2026). Listed on MySwitzerland and Geneva Tourism. Open Tue–Sat lunch and dinner. +41 22 300 06 09.",
+        url: MAPS("Indian Rasoi Rue Jacques-Dalphin 54 Carouge Geneva"),
       },
     ],
   },
@@ -410,6 +424,20 @@ const cities: City[] = [
         type: "Pan-Indian",
         note: "Indian restaurant with well-reviewed curries and a casual atmosphere. Search 'Chillis Way to India Bern' on Google Maps.",
         url: null,
+      },
+      {
+        name: "Tulsi",
+        area: "Bern — Freiestrasse 65",
+        type: "North & South Indian",
+        note: "MySwitzerland-listed with confirmed hours Mon–Fri 11:30–14:00 & Tue–Sat 17:30–23:30. Recommended by Bern's Indian community on Reddit (2024) as one of the city's best. Freiestrasse 65, Bern.",
+        url: MAPS("Tulsi Indian Restaurant Freiestrasse 65 Bern"),
+      },
+      {
+        name: "Indian Yaadein",
+        area: "Belpstrasse 45, 3007",
+        type: "Indian / Vegetarian-friendly",
+        note: "Rated 'best by far' for Indian takeaway in Bern by the r/bern community (2024). Fresh Indian food with strong vegetarian options. Belpstrasse 45, 3007 Bern.",
+        url: MAPS("Indian Yaadein Belpstrasse 45 Bern"),
       },
     ],
   },
