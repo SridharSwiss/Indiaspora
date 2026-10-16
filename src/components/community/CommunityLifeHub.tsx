@@ -2,283 +2,512 @@
 
 import React, { useState, useMemo } from "react";
 
-type Canton = "ALL" | "ZH" | "BS" | "GE" | "VD" | "ZG";
-type LifeStage = "newcomer" | "settling" | "family" | "longterm";
+type Canton =
+  | "ALL" | "ZH" | "BS" | "GE" | "VD" | "ZG" | "BE" | "AG" | "LU"
+  | "SG" | "TI" | "NE" | "FR" | "SO" | "SH" | "GR" | "VS" | "BL"
+  | "AR" | "AI" | "GL" | "NW" | "OW" | "SZ" | "UR" | "TG" | "JU";
+
+type LanguagePillar = "ALL" | "Hindi" | "Tamil" | "Telugu" | "Gujarati" | "Marathi" | "Bengali" | "Kannada" | "Malayalam" | "Punjabi";
+
+type LifeStage = "ALL" | "New Arrival (0–12m)" | "Settled (1–8y)" | "Parents Visiting" | "Student";
 
 interface ErrandItem {
   id: string;
+  emoji: string;
   title: string;
-  stage: LifeStage;
-  cantons: Canton[];
-  urgency: "Day 1–14" | "Month 1–3" | "Ongoing" | "Before 12 Months";
-  swissTerm: string;
   summary: string;
-  microTip: string;
+  cantons: Canton[];
+  lifeStages: LifeStage[];
+  languages?: LanguagePillar[];
+  deadline?: string;
+  microTip?: string;
+  officialLink?: { label: string; url: string };
 }
+
+interface GroceryItem {
+  german: string;
+  english: string;
+  indianEquivalent: string;
+  found: string;
+}
+
+interface CantonInfo {
+  code: string;
+  name: string;
+  region: "DE" | "FR" | "IT" | "RM";
+  gemeinde?: string;
+  strassenverkehrsamt?: string;
+  kantonalbank?: string;
+}
+
+const CANTONS: CantonInfo[] = [
+  { code: "ZH", name: "Zurich", region: "DE", gemeinde: "stadtentwicklung.ch/kreisbuero", strassenverkehrsamt: "strassenverkehrsamt.zh.ch", kantonalbank: "zkb.ch" },
+  { code: "BE", name: "Bern", region: "DE", gemeinde: "bern.ch/anmeldung", strassenverkehrsamt: "be.ch/mofis", kantonalbank: "bekb.ch" },
+  { code: "LU", name: "Luzern", region: "DE", strassenverkehrsamt: "strassenverkehr.lu.ch", kantonalbank: "lukb.ch" },
+  { code: "UR", name: "Uri", region: "DE", strassenverkehrsamt: "ur.ch/svamt" },
+  { code: "SZ", name: "Schwyz", region: "DE", strassenverkehrsamt: "sz.ch/mfa" },
+  { code: "OW", name: "Obwalden", region: "DE" },
+  { code: "NW", name: "Nidwalden", region: "DE" },
+  { code: "GL", name: "Glarus", region: "DE" },
+  { code: "ZG", name: "Zug", region: "DE", gemeinde: "zug.ch/anmeldung", strassenverkehrsamt: "mfa.zg.ch", kantonalbank: "zugerkb.ch" },
+  { code: "FR", name: "Fribourg", region: "FR", strassenverkehrsamt: "fr.ch/saesfr", kantonalbank: "bcf.ch" },
+  { code: "SO", name: "Solothurn", region: "DE", strassenverkehrsamt: "so.ch/amt-fuer-motorfahrzeuge" },
+  { code: "BS", name: "Basel-Stadt", region: "DE", gemeinde: "bs.ch/anmeldung", strassenverkehrsamt: "mfp.bs.ch", kantonalbank: "bkbs.ch" },
+  { code: "BL", name: "Basel-Landschaft", region: "DE", strassenverkehrsamt: "bl.ch/motorfahrzeuge" },
+  { code: "SH", name: "Schaffhausen", region: "DE", strassenverkehrsamt: "sh.ch/mfkpruefwesen" },
+  { code: "AR", name: "Appenzell Ausserrhoden", region: "DE" },
+  { code: "AI", name: "Appenzell Innerrhoden", region: "DE" },
+  { code: "SG", name: "St. Gallen", region: "DE", strassenverkehrsamt: "sg.ch/strassenverkehr", kantonalbank: "sgkb.ch" },
+  { code: "GR", name: "Graubünden", region: "RM", strassenverkehrsamt: "gr.ch/mfa" },
+  { code: "AG", name: "Aargau", region: "DE", strassenverkehrsamt: "ag.ch/motorfahrzeuge", kantonalbank: "akb.ch" },
+  { code: "TG", name: "Thurgau", region: "DE", strassenverkehrsamt: "tg.ch/mfk" },
+  { code: "TI", name: "Ticino", region: "IT", strassenverkehrsamt: "ti.ch/udc", kantonalbank: "bancastato.ch" },
+  { code: "VD", name: "Vaud", region: "FR", gemeinde: "vd.ch/themes/population/etat-civil", strassenverkehrsamt: "vd.ch/sev", kantonalbank: "bcv.ch" },
+  { code: "VS", name: "Valais", region: "FR", strassenverkehrsamt: "vs.ch/web/scfa" },
+  { code: "NE", name: "Neuchâtel", region: "FR", strassenverkehrsamt: "ne.ch/sdca", kantonalbank: "bcn.ch" },
+  { code: "GE", name: "Geneva", region: "FR", gemeinde: "ge.ch/ctpe/annoncer-arrivee", strassenverkehrsamt: "ge.ch/ocpm", kantonalbank: "bcge.ch" },
+  { code: "JU", name: "Jura", region: "FR" },
+];
 
 const ERRANDS_DATA: ErrandItem[] = [
   {
-    id: "gemeinde-reg",
-    title: "Register at Gemeinde / Kreisbüro",
-    stage: "newcomer",
-    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG"],
-    urgency: "Day 1–14",
-    swissTerm: "Anmeldung / Contrôle des habitants",
-    summary: "Mandatory registration within 14 days of arrival and before your first day of work.",
-    microTip: "Bring your employment contract, rental agreement (ensure your name is on the mailbox!), passport, and marriage/birth certificates (apostilled).",
+    id: "gemeinde",
+    emoji: "🏛️",
+    title: "Gemeinde Registration (Anmeldung)",
+    summary: "Register within 14 days of arrival. Bring employment contract, rental agreement (mailbox name must match), passport, and apostilled marriage/birth certificates.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG", "TI"],
+    lifeStages: ["New Arrival (0–12m)"],
+    deadline: "14 days from arrival",
+    microTip: "In Zurich, register at the Kreisbüro for your district (not the central city hall). Book online — walk-ins often have 2-hour waits.",
+    officialLink: { label: "Zurich Kreisbüro", url: "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt/einwohnerkontrolle.html" },
+  },
+  {
+    id: "krankenkasse",
+    emoji: "🏥",
+    title: "Krankenkasse (Health Insurance) Selection",
+    summary: "Mandatory within 3 months of arrival — retroactive to arrival date. Choose your annual deductible (Franchise: CHF 300–2,500) and Tiers payant vs. Tiers garant model. Higher franchise = lower premium, but you pay the first CHF 2,500 out-of-pocket.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG"],
+    lifeStages: ["New Arrival (0–12m)", "Settled (1–8y)"],
+    microTip: "Use comparis.ch to compare premiums by PLZ. Tiers payant (Geneva/Vaud standard) means the insurer pays the doctor directly — preferred for frequent doctor visits. Tiers garant means you pay, then claim back.",
+    officialLink: { label: "Federal Health Insurance Guide", url: "https://www.bag.admin.ch/bag/en/home/versicherungen/krankenversicherung.html" },
   },
   {
     id: "grocery-decoder",
-    title: "Migros & Coop Grocery Decoder",
-    stage: "newcomer",
-    cantons: ["ALL"],
-    urgency: "Day 1–14",
-    swissTerm: "Speisequark / Vollrahm / Kichererbsenmehl",
-    summary: "Find Indian kitchen equivalents in standard Swiss supermarkets plus local Indian store delivery days.",
-    microTip: "Fresh curry leaves, okra, and Alphonso mangoes arrive at Zurich (Oerlikon/Langstrasse) & Basel Indian stores every Tuesday Afternoon.",
+    emoji: "🛒",
+    title: "Swiss Supermarket Decoder",
+    summary: "Migros and Coop are the two main chains. Neither sells alcohol at Migros. Aldi/Lidl for budget. Globus Delicatessa for specialty items. Use the decoder below for Indian kitchen equivalents.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG", "TI"],
+    lifeStages: ["New Arrival (0–12m)", "Parents Visiting"],
   },
   {
     id: "zurisack",
-    title: "Zürisack & Swiss Waste System",
-    stage: "newcomer",
-    cantons: ["ALL", "ZH"],
-    urgency: "Day 1–14",
-    swissTerm: "Zürisack / Kehrichtsack / Entsorgungskalender",
-    summary: "Garbage in Zurich requires official paid Zürisack bags — regular plastic bags are refused. Each canton has its own system.",
-    microTip: "Buy Zürisacks (35L ~CHF 2.15 each) at Migros/Coop. Glass must be separated by colour (white, brown, green). Cardboard collection is calendar-based — check your PLZ at stadt-zuerich.ch/entsorgung.",
+    emoji: "🗑️",
+    title: "Zürisack & Waste Rules by Canton",
+    summary: "In Zurich, all household waste requires official Zürisack bags (35L ≈ CHF 2.15), sold at Migros/Coop. Glass separated by colour. Each canton has its own system — Basel, Geneva, and Vaud have different waste brands.",
+    cantons: ["ZH", "BS", "GE", "VD", "ZG", "BE"],
+    lifeStages: ["New Arrival (0–12m)"],
+    microTip: "Basel uses 'Müllsack Basel' (orange). Geneva/Vaud use 'Sacs poubelles officiels' (grey). Never use regular plastic bags — they will be left uncollected with a notice.",
+    officialLink: { label: "Zurich Waste Guide", url: "https://www.stadt-zuerich.ch/gudv/de/index/entsorgung_recycling.html" },
   },
   {
-    id: "ceiling-lights",
-    title: "No Ceiling Lights in Swiss Apartments",
-    stage: "newcomer",
-    cantons: ["ALL"],
-    urgency: "Day 1–14",
-    swissTerm: "Lüsterklemme / Deckenauslass",
-    summary: "Swiss apartments typically have no ceiling light fittings — only a Lüsterklemme (exposed wire connector) for tenants to install their own fixtures.",
-    microTip: "Rent a Bohrhammer (hammer drill) from Migros Do-it+Garden or Hornbach to mount IKEA pendant lamps into concrete ceilings. Most fixtures need M8 concrete anchors.",
+    id: "kontrollfahrt",
+    emoji: "🚗",
+    title: "Indian Driving License → Swiss (Kontrollfahrt)",
+    summary: "You have exactly 12 months from Swiss arrival to pass the Kontrollfahrt (practical test). One attempt only. Apply at your canton's Strassenverkehrsamt with your Indian license + official translation.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG"],
+    lifeStages: ["New Arrival (0–12m)", "Settled (1–8y)"],
+    deadline: "12 months from arrival — HARD DEADLINE",
+    microTip: "Take 5–8 lessons with an instructor who knows your specific Strassenverkehrsamt test route. Examiners look for mirror-checks at exact Swiss intervals, not Indian style.",
+    officialLink: { label: "ASTRA Official Guide", url: "https://www.astra.admin.ch/astra/en/home/topics/drivers--vehicles/fahrzeugfuehrerausweise/auslaendische-ausweise.html" },
   },
   {
-    id: "driving-license",
-    title: "Convert Indian Driving License",
-    stage: "settling",
-    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG"],
-    urgency: "Before 12 Months",
-    swissTerm: "Kontrollfahrt / Course de contrôle",
-    summary: "You have 12 months from arrival to pass the practical Kontrollfahrt — you only get ONE attempt.",
-    microTip: "Do not attempt the Kontrollfahrt without 5–8 lessons with an instructor who knows your local Strassenverkehrsamt test routes. Contact the ASTRA (astra.admin.ch) for your canton's office.",
+    id: "permit-transitions",
+    emoji: "📄",
+    title: "Permit Transitions: L → B → C",
+    summary: "Permit L (short-stay, <1yr). Permit B (residence, renewable annually). Permit C (settlement, permanent after 5–10 years). C permits are canton-dependent — ZH/ZG grant C after 5 years for EU nationals, 10 years for non-EU (Indians).",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG"],
+    lifeStages: ["Settled (1–8y)", "New Arrival (0–12m)"],
+    microTip: "Your B permit is tied to your employer for the first 12 months. After that, you can switch jobs freely. Notify the Ausländeramt within 14 days of any employer change.",
+    officialLink: { label: "SEM Permits Guide", url: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht_eu_efta.html" },
   },
   {
-    id: "laundry-room",
-    title: "Waschküche (Laundry Room) Etiquette",
-    stage: "newcomer",
-    cantons: ["ALL"],
-    urgency: "Day 1–14",
-    swissTerm: "Waschküche / Ruhezeiten / Waschplan",
-    summary: "Most Swiss apartment buildings have a shared Waschküche with a booking system. Strict Ruhezeiten (quiet hours) apply on Sundays and after 10 PM.",
-    microTip: "Never use the laundry room on Sundays or public holidays without checking the Hausordnung (house rules). Leave the machine spotless — in Swiss culture, this is taken very seriously.",
+    id: "waschkueche",
+    emoji: "🧺",
+    title: "Waschküche (Shared Laundry) Booking",
+    summary: "Most Swiss apartment buildings have a shared laundry room (Waschküche). You book a 3-hour slot on a physical wall calendar. Unwritten rule: arrive on time or your neighbours will remove your laundry.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG", "TI"],
+    lifeStages: ["New Arrival (0–12m)"],
+    microTip: "Wash curry-scented items at 60°C minimum. Swiss neighbours notice. Add a fabric softener to neutralise strong food odours — it's an unspoken social expectation.",
   },
   {
     id: "parents-visiting",
-    title: "Parents Visiting (Visa + Day Companions)",
-    stage: "family",
-    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG"],
-    urgency: "Ongoing",
-    swissTerm: "Verpflichtungserklärung & Schengen Visa",
-    summary: "Schengen sponsorship checklist + connect your visiting parents with other Indian seniors in your PLZ for morning walks.",
-    microTip: "Your Verpflichtungserklärung (financial guarantee) must be notarised at your Gemeinde. Get Schengen travel insurance (min €30,000 cover) from Helsana or Zurich Insurance. Apply at VFS New Delhi/Mumbai 3 months before.",
+    emoji: "👴👵",
+    title: "Parents Visiting — Schengen Visa Checklist",
+    summary: "Submit a Verpflichtungserklärung (financial guarantee, notarised at your Gemeinde), proof of accommodation, travel insurance (min. €30,000), your Swiss permit copy, and your parents' bank statements. Apply via VFS Global 3+ months ahead.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG"],
+    lifeStages: ["Parents Visiting", "Settled (1–8y)"],
+    microTip: "Parents staying 90 days can be covered on your Swiss health insurance as 'Zusatzversicherung'. Check with your insurer — it's often cheaper than standalone travel insurance for 3 months.",
+    officialLink: { label: "VFS Global Switzerland", url: "https://visa.vfsglobal.com/ind/en/che/" },
   },
   {
-    id: "kids-language",
-    title: "Kita Subsidies & School System for Indian Kids",
-    stage: "family",
-    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG"],
-    urgency: "Month 1–3",
-    swissTerm: "Kita / Chindsgi / Gymiprüfung",
-    summary: "Swiss Kita (daycare) subsidies vary by canton and income. Understanding the school system (Kindergarten → Primarschule → Gymiprüfung) is crucial for bicultural families.",
-    microTip: "In Zurich, apply for Kita subsidies via kitas.ch immediately on arrival — waitlists are 6–18 months. The Gymiprüfung (age 12) determines secondary school path; Bala Vihar, Hindi classes, and dance help maintain Indian heritage.",
+    id: "kita-schooling",
+    emoji: "🏫",
+    title: "Kita Subsidies & Swiss School System",
+    summary: "Kita (daycare) subsidies are canton and income-dependent. ZH subsidises heavily; GE has the most generous system. Gymnasium (Gymi) entry exam at age 11–12 is the key Swiss educational sorting moment — prep early.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG"],
+    lifeStages: ["Settled (1–8y)", "New Arrival (0–12m)"],
+    microTip: "Indian parents: the Gymiprüfung (Gymnasium exam) is at Grade 5/6. Swiss maths at this level is weaker than Indian curriculum — your child will likely excel. German language and essay-writing are the gap to close.",
+    officialLink: { label: "Zurich Kita Subsidies", url: "https://www.stadt-zuerich.ch/sd/de/index/kinderbetreuung/kitanet.html" },
   },
   {
-    id: "pillar-3a-nre",
-    title: "Swiss Taxes, Pillar 3a & India NRE/NRO",
-    stage: "longterm",
-    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG"],
-    urgency: "Ongoing",
-    swissTerm: "Quellensteuer / Säule 3a / DTAA",
-    summary: "Navigate Swiss wealth tax declaration for Indian assets, Double Taxation Avoidance Agreement (DTAA), and Pillar 3a.",
-    microTip: "Even on Permit B (Quellensteuer), if your gross income exceeds CHF 120,000 or global wealth exceeds canton thresholds, you must file a full tax return (ordentliche Veranlagung). Declare Indian NRE/NRO accounts on your Swiss tax return.",
+    id: "taxes",
+    emoji: "🧾",
+    title: "Taxes: Quellensteuer, DTAA & NRE/NRO",
+    summary: "On Permit B: Quellensteuer (withholding tax) is deducted automatically by your employer. If gross income > CHF 120,000, file a full Steuererklärung. DTAA between India and Switzerland prevents double taxation — file Form 10F and a Tax Residency Certificate from Swiss tax authority.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG"],
+    lifeStages: ["Settled (1–8y)", "New Arrival (0–12m)"],
+    microTip: "Declare Indian NRE/NRO bank accounts on your Swiss tax return (Schedule E1). Failure to declare foreign assets is a criminal offence in Switzerland, not a civil one. NRE interest is tax-free in India but taxable in Switzerland.",
+    officialLink: { label: "Swiss Federal Tax Administration", url: "https://www.estv.admin.ch/estv/en/home.html" },
+  },
+  {
+    id: "pillar3a",
+    emoji: "💰",
+    title: "Pillar 3a — Tax-Efficient Retirement Savings",
+    summary: "Contribute up to CHF 7,056/year (employed, 2025) into Pillar 3a and deduct the full amount from taxable income. VIAC and Finpension invest in global equities — better returns than bank accounts. Withdraw within 3 years of C permit or Swiss citizenship.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG"],
+    lifeStages: ["Settled (1–8y)", "New Arrival (0–12m)"],
+    microTip: "On Quellensteuer (B permit), submit a Nachtragsformular (Form DA-1) to your canton tax office to claim the Pillar 3a deduction retroactively — employers don't do this automatically.",
+    officialLink: { label: "VIAC (Pillar 3a App)", url: "https://viac.ch/en/" },
+  },
+  {
+    id: "pet-import",
+    emoji: "🐾",
+    title: "Bringing Your Pet from India to Switzerland",
+    summary: "India is classified as a 'non-listed country' by Switzerland. Requirements: microchip, rabies vaccination, rabies antibody titer test (wait 3 months after titer before travel), tapeworm treatment 24–120h before entry. Minimum 210 days from titer test to entry into Switzerland.",
+    cantons: ["ALL"],
+    lifeStages: ["New Arrival (0–12m)", "Settled (1–8y)"],
+    deadline: "210 days minimum lead time from rabies titer test",
+    microTip: "Use a IATA-certified pet relocation service (PetAir, IPATA members). Swiss customs at Zurich airport has a dedicated animal import desk — book an appointment via BLV (Federal Food Safety and Veterinary Office) at least 2 weeks before travel.",
+    officialLink: { label: "BLV Pet Import Guide", url: "https://www.blv.admin.ch/blv/en/home/tiere/reisen-mit-tieren/aus-drittlaendern.html" },
   },
   {
     id: "oci-renewal",
-    title: "OCI Card Renewal & Indian Passport in Switzerland",
-    stage: "longterm",
-    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG"],
-    urgency: "Ongoing",
-    swissTerm: "OCI / VFS Global / Embassy Bern",
-    summary: "OCI card renewals, Indian passport renewal, and birth registration for children born in Switzerland handled through VFS Global Zurich/Geneva and Embassy of India Bern.",
-    microTip: "OCI re-issue is mandatory when your Indian passport expires (required every passport renewal). VFS Zurich (Flughafen Zurich, Airside Centre) for consular services. Book appointments 4–6 weeks in advance at vfsglobal.com/IND/CH.",
+    emoji: "🛂",
+    title: "OCI Card Renewal & Indian Passport Services",
+    summary: "OCI must be re-stamped when: Indian passport renewed, child turns 20, any change in personal details. Do this via VFS Global (Zurich/Geneva) — not the Indian Embassy directly. OCI exempts you from Indian visa requirements for life.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE"],
+    lifeStages: ["Settled (1–8y)", "New Arrival (0–12m)"],
+    microTip: "Book VFS appointment 6–8 weeks ahead. OCI re-stamping currently takes 6–10 weeks. Travel to India with both old and new passports until the OCI is re-stamped — Indian immigration accepts the combination.",
+    officialLink: { label: "VFS Global OCI Services", url: "https://visa.vfsglobal.com/ind/en/che/attend-centre/oci" },
+  },
+  {
+    id: "student-permit",
+    emoji: "🎓",
+    title: "Student Permit (Permit B Student) — ETH / EPFL / UZH / UNIGE",
+    summary: "Student Permit B requires university acceptance letter, proof of sufficient funds (CHF 21,000/year recommended), and health insurance. You may work max 15 hours/week during term. Transition to Permit B (employment) after graduation requires a new employer sponsorship.",
+    cantons: ["ZH", "VD", "GE", "BS", "BE"],
+    lifeStages: ["Student"],
+    microTip: "ETH Zurich and EPFL both have dedicated international student offices. Swiss student permits cannot be changed to work permits without leaving Switzerland and re-applying — plan the employment transition 6 months ahead.",
+    officialLink: { label: "SEM Student Permit", url: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht_eu_efta/ausweis-b--jahresaufenthaltsbewilligung-.html" },
+  },
+  {
+    id: "mother-tongue",
+    emoji: "🗣️",
+    title: "Mother-Tongue Classes & Language Communities",
+    summary: "Mana Badi (Telugu weekend school), Hindi Shala, Tamil Sangam classes run across major Swiss cities. IAGZ, TASC, and TeluguSwiss run regular cultural events. Saturday language schools for children maintain heritage languages.",
+    cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE"],
+    lifeStages: ["Settled (1–8y)", "Parents Visiting", "New Arrival (0–12m)"],
+    languages: ["Hindi", "Tamil", "Telugu", "Gujarati", "Marathi", "Bengali", "Kannada", "Malayalam", "Punjabi"],
+    microTip: "Join your language community's WhatsApp group first — this is where 80% of peer knowledge-sharing happens. IAGZ (iagz.ch) maintains the most comprehensive directory of Hindi/Gujarati/Marathi groups in ZH.",
+    officialLink: { label: "IAGZ Community", url: "https://www.iagz.ch" },
   },
 ];
 
-const GROCERY_DICTIONARY = [
-  { indian: "Dahi / Curd (Thick)", swiss: "Nature Joghurt / Griechischer Joghurt", store: "Migros / Coop" },
-  { indian: "Shrikhand Base", swiss: "Speisequark (Rahmquark)", store: "Migros / Coop" },
-  { indian: "Heavy Cream (for Makhani)", swiss: "Vollrahm (35% fat) or Doppelrahm", store: "Migros / Coop" },
-  { indian: "All-Purpose Flour (Maida)", swiss: "Weissmehl (Typ 400)", store: "Migros / Coop" },
-  { indian: "Whole Wheat (Chakki Atta substitute)", swiss: "Ruchmehl or Vollkornmehl", store: "Migros / Coop (or Ashirvaad at Aggarwal)" },
-  { indian: "Besan (Gram / Chickpea Flour)", swiss: "Kichererbsenmehl", store: "Coop / Alnatura / Indian stores" },
-  { indian: "Baking Soda (for Dhokla/Idli)", swiss: "Natron (NOT Backpulver!)", store: "Coop / Pharmacy / Reformhaus" },
-  { indian: "Hing / Asafoetida", swiss: "Asant (very rare — buy at Indian stores)", store: "Aggarwal / Indian Supermarkt Oerlikon" },
-  { indian: "Curry Leaves (fresh)", swiss: "Curryblätter (not curry powder!)", store: "Indian stores Tues delivery" },
-  { indian: "Jaggery / Gur", swiss: "Rohrzucker / Palmzucker (approx)", store: "Bio stores / Indian stores" },
-  { indian: "Ghee", swiss: "Butterreinfett / Butterschmalz", store: "Migros / Coop / Indian stores" },
-  { indian: "Urad Dal (black lentils)", swiss: "Schwarze Linsen / Belugalinsen (approx)", store: "Indian stores / Bio stores" },
+const GROCERY_DICTIONARY: GroceryItem[] = [
+  { german: "Halbweissmehl", english: "Semi-white flour (Type 720)", indianEquivalent: "Atta (closest available)", found: "Migros, Coop" },
+  { german: "Rahm / Crème fraîche", english: "Heavy cream / Sour cream", indianEquivalent: "Malai (closest)", found: "All supermarkets" },
+  { german: "Quark", english: "Fresh cheese curd", indianEquivalent: "Thick hung curd / Chena", found: "Migros, Coop, Lidl" },
+  { german: "Kokosmilch (BIO)", english: "Coconut milk", indianEquivalent: "Nariyal doodh", found: "Migros Bio, Coop Naturaplan" },
+  { german: "Kichererbsen (gekocht)", english: "Cooked chickpeas (tin)", indianEquivalent: "Kala/Safed chana (tinned)", found: "All supermarkets" },
+  { german: "Linsen rot/grün", english: "Lentils red/green", indianEquivalent: "Masoor dal / Moong dal", found: "Migros, Coop, Denner" },
+  { german: "Bockshornklee", english: "Fenugreek", indianEquivalent: "Methi seeds", found: "Asian stores, Reformhaus" },
+  { german: "Kurkuma (gemahlen)", english: "Ground turmeric", indianEquivalent: "Haldi", found: "All supermarkets" },
+  { german: "Kardamom (ganz)", english: "Whole cardamom", indianEquivalent: "Elaichi", found: "Coop, Migros Aroma" },
+  { german: "Ghee (Butterschmalz)", english: "Clarified butter", indianEquivalent: "Desi ghee (substitute)", found: "Reformhaus, Bio shops, Indian stores" },
+  { german: "Paneer", english: "Indian cottage cheese", indianEquivalent: "Paneer — available ready-made", found: "Indian grocery stores (ZH, BS, GE)" },
+  { german: "Chapati / Rotiblätter", english: "Ready-made roti/chapati", indianEquivalent: "Frozen chapati", found: "Coop (limited), Indian stores" },
 ];
+
+const LANGUAGE_COMMUNITIES: Record<LanguagePillar, { association: string; url: string; cities: string } | null> = {
+  ALL: null,
+  Hindi: { association: "IAGZ — Indian Association Greater Zurich", url: "https://www.iagz.ch", cities: "Zurich, Bern, Basel" },
+  Tamil: { association: "TASC — Tamil Association of Switzerland", url: "https://www.tasc.ch", cities: "Zurich, Geneva, Basel" },
+  Telugu: { association: "TeluguSwiss Association", url: "https://www.teluguswiss.ch", cities: "Zurich, Basel, Zug" },
+  Gujarati: { association: "Gujarati Samaj Switzerland", url: "https://www.iagz.ch", cities: "Zurich, Basel" },
+  Marathi: { association: "Marathi Mandal Switzerland", url: "https://www.iagz.ch", cities: "Zurich, Bern" },
+  Bengali: { association: "Bengali Association Switzerland", url: "https://www.iagz.ch", cities: "Zurich, Geneva" },
+  Kannada: { association: "Kannada Koota Switzerland", url: "https://www.iagz.ch", cities: "Zurich, Basel" },
+  Malayalam: { association: "Kerala Association Switzerland", url: "https://www.iagz.ch", cities: "Zurich, Geneva, Basel" },
+  Punjabi: { association: "Punjabi Association Switzerland", url: "https://www.iagz.ch", cities: "Zurich" },
+};
+
+const STAGE_COLORS: Record<string, string> = {
+  "New Arrival (0–12m)": "bg-amber-500/15 text-amber-400",
+  "Settled (1–8y)": "bg-blue-500/15 text-blue-400",
+  "Parents Visiting": "bg-emerald-500/15 text-emerald-400",
+  "Student": "bg-purple-500/15 text-purple-400",
+};
 
 export default function CommunityLifeHub() {
   const [selectedCanton, setSelectedCanton] = useState<Canton>("ZH");
-  const [selectedStage, setSelectedStage] = useState<LifeStage>("newcomer");
+  const [selectedLanguage, setSelectedLanguage] = useState<LanguagePillar>("ALL");
+  const [selectedStage, setSelectedStage] = useState<LifeStage>("ALL");
   const [searchQuery, setSearchQuery] = useState("");
+  const [showGrocery, setShowGrocery] = useState(false);
+  const [showAllCantons, setShowAllCantons] = useState(false);
+
+  const commonCantons: Canton[] = ["ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG", "TI"];
 
   const filteredErrands = useMemo(() => {
     return ERRANDS_DATA.filter((item) => {
-      const matchesStage = searchQuery ? true : item.stage === selectedStage;
-      const matchesCanton =
-        selectedCanton === "ALL" ||
-        item.cantons.includes("ALL") ||
-        item.cantons.includes(selectedCanton);
-      const matchesSearch =
+      const cantonMatch = item.cantons.includes("ALL") || item.cantons.includes(selectedCanton);
+      const stageMatch = selectedStage === "ALL" || item.lifeStages.includes(selectedStage);
+      const languageMatch =
+        selectedLanguage === "ALL" ||
+        !item.languages ||
+        item.languages.includes(selectedLanguage);
+      const searchMatch =
         !searchQuery ||
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.swissTerm.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesStage && matchesCanton && matchesSearch;
+        item.summary.toLowerCase().includes(searchQuery.toLowerCase());
+      return cantonMatch && stageMatch && languageMatch && searchMatch;
     });
-  }, [selectedCanton, selectedStage, searchQuery]);
+  }, [selectedCanton, selectedStage, selectedLanguage, searchQuery]);
+
+  const activeCantonInfo = CANTONS.find((c) => c.code === selectedCanton);
+  const languageCommunity = selectedLanguage !== "ALL" ? LANGUAGE_COMMUNITIES[selectedLanguage] : null;
+  const displayedCantons = showAllCantons ? CANTONS : CANTONS.filter((c) => commonCantons.includes(c.code as Canton));
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-12">
-      {/* Top Context & Canton Bar */}
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-orange-200/40 bg-orange-500/5 p-4">
-        <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-orange-400">
-            Swiss-Indian Daily Navigator
-          </span>
-          <h2 className="text-2xl font-bold tracking-tight" style={{ color: "var(--text)" }}>
-            Everything You Need for Daily Life in Switzerland
-          </h2>
-        </div>
-        <div className="flex items-center gap-2">
-          <label htmlFor="canton-select" className="text-sm font-medium" style={{ color: "var(--text-2)" }}>
-            📍 Your Canton:
-          </label>
-          <select
-            id="canton-select"
-            value={selectedCanton}
-            onChange={(e) => setSelectedCanton(e.target.value as Canton)}
-            className="rounded-lg border px-3 py-1.5 text-sm font-semibold"
-            style={{ background: "var(--surface)", color: "var(--text)", borderColor: "var(--border)" }}
-          >
-            <option value="ALL">All Switzerland</option>
-            <option value="ZH">Zürich (ZH)</option>
-            <option value="BS">Basel (BS/BL)</option>
-            <option value="GE">Geneva (GE)</option>
-            <option value="VD">Vaud / Lausanne (VD)</option>
-            <option value="ZG">Zug (ZG)</option>
-          </select>
-        </div>
-      </div>
+    <section className="mx-auto max-w-7xl px-4 py-10">
 
-      {/* Search & Life-Stage Tabs */}
-      <div className="mb-8 grid gap-4 md:grid-cols-12">
-        <div className="md:col-span-5">
+      {/* ── Header ── */}
+      <div className="mb-8 glass rounded-2xl p-6 md:p-8 border border-orange-500/20">
+        <span className="inline-block rounded-full bg-orange-500/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-orange-400 mb-3">
+          Swiss-Indian Daily Life Engine
+        </span>
+        <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl mb-2" style={{ color: "var(--text)" }}>
+          Your Interactive Life Planner
+        </h2>
+        <p className="text-sm max-w-3xl mb-5" style={{ color: "var(--text-2)" }}>
+          Every errand, deadline, and community resource — filtered to your canton, life stage, and language community. From Day 1 Gemeinde registration to Pillar 3a optimisation.
+        </p>
+        {/* Search */}
+        <div className="relative max-w-md">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "var(--text-3)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
           <input
-            type="search"
+            type="text"
+            placeholder="Search: Krankenkasse, permit, Gymi, taxes…"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search: 'Kontrollfahrt', 'paneer', 'parents visa', 'Zürisack'..."
-            className="w-full rounded-xl border px-4 py-3 text-sm focus:outline-none focus:border-orange-500"
+            className="w-full rounded-xl border pl-9 pr-4 py-2.5 text-sm"
             style={{ background: "var(--surface)", color: "var(--text)", borderColor: "var(--border)" }}
           />
         </div>
-        <div className="flex flex-wrap gap-2 md:col-span-7 md:justify-end">
-          {(
-            [
-              { id: "newcomer" as LifeStage, label: "🛬 Just Landed (0–90d)" },
-              { id: "settling" as LifeStage, label: "🏠 Settling In" },
-              { id: "family" as LifeStage, label: "👨‍👩‍👧 Family & Parents" },
-              { id: "longterm" as LifeStage, label: "📈 Taxes & Long-Term" },
-            ]
-          ).map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => { setSelectedStage(tab.id); setSearchQuery(""); }}
-              className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition-all ${
-                selectedStage === tab.id && !searchQuery
-                  ? "bg-orange-500 text-white"
-                  : "glass border text-sm"
-              }`}
-              style={selectedStage === tab.id && !searchQuery ? {} : { color: "var(--text-2)" }}
-            >
-              {tab.label}
-            </button>
-          ))}
+      </div>
+
+      {/* ── Filters row ── */}
+      <div className="grid gap-5 md:grid-cols-3 mb-8">
+
+        {/* Canton */}
+        <div>
+          <label className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "var(--text-3)" }}>
+            1. Your Canton
+          </label>
+          <div className="flex flex-wrap gap-1.5 mb-1">
+            {displayedCantons.map((c) => (
+              <button
+                key={c.code}
+                onClick={() => setSelectedCanton(c.code as Canton)}
+                className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
+                  selectedCanton === c.code ? "bg-orange-500 text-white" : "glass border"
+                }`}
+                style={selectedCanton === c.code ? {} : { color: "var(--text-2)" }}
+                title={c.name}
+              >
+                {c.code}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={() => setShowAllCantons(!showAllCantons)}
+            className="text-xs text-orange-400 hover:underline mt-1"
+          >
+            {showAllCantons ? "Show fewer cantons" : `+ Show all 26 cantons`}
+          </button>
+          {activeCantonInfo && (
+            <div className="mt-2 glass rounded-lg p-2.5 text-xs" style={{ color: "var(--text-2)" }}>
+              <span className="font-semibold" style={{ color: "var(--text)" }}>{activeCantonInfo.name}</span>
+              {" · "}{activeCantonInfo.region === "FR" ? "French-speaking" : activeCantonInfo.region === "IT" ? "Italian-speaking" : "German-speaking"}
+              {activeCantonInfo.strassenverkehrsamt && (
+                <div className="mt-1">
+                  <a href={`https://${activeCantonInfo.strassenverkehrsamt}`} target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline">
+                    Strassenverkehrsamt ↗
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Life Stage */}
+        <div>
+          <label className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "var(--text-3)" }}>
+            2. Your Life Stage
+          </label>
+          <div className="flex flex-col gap-1.5">
+            {(["ALL", "New Arrival (0–12m)", "Settled (1–8y)", "Parents Visiting", "Student"] as LifeStage[]).map((s) => (
+              <button
+                key={s}
+                onClick={() => setSelectedStage(s)}
+                className={`rounded-lg px-3 py-2 text-xs font-semibold text-left transition-all ${
+                  selectedStage === s ? "bg-orange-500 text-white" : "glass border"
+                }`}
+                style={selectedStage === s ? {} : { color: "var(--text-2)" }}
+              >
+                {s === "ALL" ? "All Life Stages" : s}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Language Pillar */}
+        <div>
+          <label className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "var(--text-3)" }}>
+            3. Language Community
+          </label>
+          <div className="flex flex-wrap gap-1.5">
+            {(["ALL", "Hindi", "Tamil", "Telugu", "Gujarati", "Marathi", "Bengali", "Kannada", "Malayalam", "Punjabi"] as LanguagePillar[]).map((l) => (
+              <button
+                key={l}
+                onClick={() => setSelectedLanguage(l)}
+                className={`rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all ${
+                  selectedLanguage === l ? "bg-teal-600 text-white" : "glass border"
+                }`}
+                style={selectedLanguage === l ? {} : { color: "var(--text-2)" }}
+              >
+                {l === "ALL" ? "All" : l}
+              </button>
+            ))}
+          </div>
+          {languageCommunity && (
+            <div className="mt-2 glass rounded-lg p-2.5 text-xs" style={{ color: "var(--text-2)" }}>
+              <div className="font-semibold mb-0.5" style={{ color: "var(--text)" }}>{languageCommunity.association}</div>
+              <div className="mb-1">{languageCommunity.cities}</div>
+              <a href={languageCommunity.url} target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:underline">
+                Visit website ↗
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Actionable Micro-Needs Cards */}
-      <div className="mb-12 grid gap-6 md:grid-cols-2">
+      {/* ── Results count ── */}
+      <p className="text-sm mb-5" style={{ color: "var(--text-3)" }}>
+        Showing <strong style={{ color: "var(--text)" }}>{filteredErrands.length}</strong> guide{filteredErrands.length !== 1 ? "s" : ""}
+        {selectedCanton !== "ALL" && <span> · Canton <strong style={{ color: "var(--text)" }}>{selectedCanton}</strong></span>}
+        {selectedStage !== "ALL" && <span> · <strong style={{ color: "var(--text)" }}>{selectedStage}</strong></span>}
+        {selectedLanguage !== "ALL" && <span> · <strong style={{ color: "var(--text)" }}>{selectedLanguage}</strong></span>}
+      </p>
+
+      {/* ── Errand cards ── */}
+      <div className="grid gap-4 md:grid-cols-2 mb-10">
         {filteredErrands.length === 0 && (
-          <div className="md:col-span-2 text-center py-10" style={{ color: "var(--text-2)" }}>
-            No results found. Try a different search term.
+          <div className="col-span-2 glass rounded-xl p-8 text-center" style={{ color: "var(--text-2)" }}>
+            No guides match these filters. Try &quot;All Life Stages&quot; or a different canton.
           </div>
         )}
         {filteredErrands.map((item) => (
-          <div
-            key={item.id}
-            className="glass flex flex-col justify-between rounded-xl p-6 card-hover"
-          >
-            <div>
-              <div className="mb-3 flex items-center justify-between gap-2">
-                <span className="rounded-md bg-orange-500/15 px-2.5 py-1 text-xs font-bold text-orange-400">
-                  {item.urgency}
-                </span>
-                <span className="font-mono text-xs" style={{ color: "var(--text-3)" }}>
-                  🇨🇭 {item.swissTerm}
-                </span>
+          <div key={item.id} className="glass rounded-xl p-5 card-hover">
+            <div className="flex items-start gap-3 mb-3">
+              <span className="text-2xl flex-shrink-0">{item.emoji}</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-bold text-sm leading-tight mb-1.5" style={{ color: "var(--text)" }}>
+                  {item.title}
+                </h3>
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {item.lifeStages.map((s) => (
+                    <span key={s} className={`text-xs rounded-full px-2 py-0.5 font-semibold ${STAGE_COLORS[s] ?? ""}`}>
+                      {s}
+                    </span>
+                  ))}
+                  {item.deadline && (
+                    <span className="text-xs rounded-full px-2 py-0.5 font-semibold bg-red-500/15 text-red-400">
+                      ⏰ {item.deadline}
+                    </span>
+                  )}
+                </div>
               </div>
-              <h3 className="mb-2 text-lg font-bold" style={{ color: "var(--text)" }}>{item.title}</h3>
-              <p className="mb-4 text-sm" style={{ color: "var(--text-2)" }}>{item.summary}</p>
             </div>
-            <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-3 text-xs text-emerald-400">
-              <strong>💡 Community Insider Tip:</strong> {item.microTip}
-            </div>
+            <p className="text-xs mb-3 leading-relaxed" style={{ color: "var(--text-2)" }}>{item.summary}</p>
+            {item.microTip && (
+              <div className="rounded-lg border border-orange-500/20 bg-orange-500/5 p-2.5 text-xs mb-3">
+                <span className="font-bold text-orange-400">💡 Community tip: </span>
+                <span style={{ color: "var(--text-2)" }}>{item.microTip}</span>
+              </div>
+            )}
+            {item.officialLink && (
+              <a
+                href={item.officialLink.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs text-orange-400 hover:text-orange-300 font-semibold"
+              >
+                🔗 {item.officialLink.label} ↗
+              </a>
+            )}
           </div>
         ))}
       </div>
 
-      {/* Quick Utility: The Swiss Supermarket Decoder */}
-      <div className="glass rounded-xl p-6">
-        <div className="mb-4">
-          <h3 className="text-lg font-bold" style={{ color: "var(--text)" }}>
-            🛒 Instant Swiss Supermarket Decoder (Migros / Coop)
-          </h3>
-          <p className="text-xs mt-1" style={{ color: "var(--text-2)" }}>
-            Never buy Backpulver instead of Natron again — what Indian staples are called on Swiss shelves.
-          </p>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {GROCERY_DICTIONARY.map((row) => (
-            <div
-              key={row.indian}
-              className="rounded-lg border p-3 text-sm"
-              style={{ borderColor: "var(--border)", background: "var(--surface)" }}
-            >
-              <div className="font-bold" style={{ color: "var(--text)" }}>{row.indian}</div>
-              <div className="text-orange-400 font-medium">→ {row.swiss}</div>
-              <div className="mt-1 text-xs" style={{ color: "var(--text-3)" }}>Available at: {row.store}</div>
-            </div>
-          ))}
-        </div>
+      {/* ── Grocery Decoder ── */}
+      <div className="glass rounded-2xl border border-teal-500/20 overflow-hidden">
+        <button
+          onClick={() => setShowGrocery(!showGrocery)}
+          className="w-full flex items-center justify-between p-5 text-left"
+        >
+          <div>
+            <h3 className="font-bold" style={{ color: "var(--text)" }}>🛒 Swiss Supermarket Decoder</h3>
+            <p className="text-xs mt-0.5" style={{ color: "var(--text-2)" }}>German/French product names → Indian kitchen equivalents</p>
+          </div>
+          <span className="text-xl" style={{ color: "var(--text-3)" }}>{showGrocery ? "−" : "+"}</span>
+        </button>
+        {showGrocery && (
+          <div className="overflow-x-auto border-t" style={{ borderColor: "var(--border)" }}>
+            <table className="w-full text-xs">
+              <thead>
+                <tr style={{ background: "var(--surface)" }}>
+                  <th className="text-left p-3 font-bold" style={{ color: "var(--text)" }}>German / French name</th>
+                  <th className="text-left p-3 font-bold" style={{ color: "var(--text)" }}>English</th>
+                  <th className="text-left p-3 font-bold" style={{ color: "var(--text)" }}>Indian equivalent</th>
+                  <th className="text-left p-3 font-bold" style={{ color: "var(--text)" }}>Where to find</th>
+                </tr>
+              </thead>
+              <tbody>
+                {GROCERY_DICTIONARY.map((g, i) => (
+                  <tr key={i} style={{ borderTop: "1px solid var(--border)" }}>
+                    <td className="p-3 font-semibold" style={{ color: "var(--text)" }}>{g.german}</td>
+                    <td className="p-3" style={{ color: "var(--text-2)" }}>{g.english}</td>
+                    <td className="p-3 text-teal-400 font-semibold">{g.indianEquivalent}</td>
+                    <td className="p-3" style={{ color: "var(--text-3)" }}>{g.found}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </section>
   );

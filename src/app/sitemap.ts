@@ -54,6 +54,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/living/first-30-days`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.9 },
     { url: `${base}/living/driving-license`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.85 },
     { url: `${base}/living/parents-visiting`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.85 },
+    { url: `${base}/living/krankenkasse`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.9 },
+    { url: `${base}/living/permits`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.9 },
+    { url: `${base}/living/taxes`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.9 },
     { url: `${base}/living/education/zurich`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     // Travel
     { url: `${base}/travel`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
