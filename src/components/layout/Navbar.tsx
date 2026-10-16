@@ -600,26 +600,30 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Mobile nav links — 2-col grid, full width */}
-            <div style={{ flex: 1, overflowY: "auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
+            {/* Mobile nav links — sleek single column */}
+            <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: 2 }}>
               {NAV_ITEMS.map((item) => {
                 const active = pathname === item.href || pathname.startsWith(item.href + "/");
                 const expanded = mobileOpen === item.label;
                 return (
                   <div key={item.label}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                    {/* Row: label + optional chevron */}
+                    <div style={{
+                      display: "flex", alignItems: "center",
+                      borderRadius: 12,
+                      background: active ? "var(--sf-bg)" : "transparent",
+                      transition: "background 0.15s",
+                    }}>
                       <Link
                         href={item.href}
                         onClick={() => { if (!item.children) setIsOpen(false); }}
                         className="mobile-link"
                         style={{
-                          flex: 1, padding: "11px 14px", borderRadius: 12,
-                          fontSize: 15, fontWeight: active ? 700 : 600,
+                          flex: 1, padding: "12px 16px",
+                          fontSize: 15, fontWeight: active ? 700 : 500,
                           color: active ? "var(--sf-hi)" : "var(--text)",
-                          background: active ? "var(--sf-bg)" : "transparent",
                           textDecoration: "none",
-                          transition: "color 0.15s, background 0.15s",
-                          display: "block",
+                          letterSpacing: "-0.01em",
                         }}
                       >
                         {item.label}
@@ -629,17 +633,17 @@ export default function Navbar() {
                           onClick={() => setMobileOpen(expanded ? null : item.label)}
                           aria-label={`${expanded ? "Collapse" : "Expand"} ${item.label}`}
                           style={{
-                            width: 38, height: 38, borderRadius: 10, flexShrink: 0,
+                            width: 40, height: 44, flexShrink: 0,
                             display: "flex", alignItems: "center", justifyContent: "center",
-                            color: expanded ? "var(--sf)" : "var(--text-3)",
-                            background: expanded ? "var(--sf-bg)" : "var(--surface-2)",
-                            border: "none", cursor: "pointer",
-                            transition: "color 0.15s, background 0.15s",
+                            color: expanded ? "var(--sf-hi)" : "var(--text-3)",
+                            background: "transparent", border: "none", cursor: "pointer",
                           }}
                         >
-                          <ChevronDown style={{ width: 16, height: 16,
-                                               transition: "transform 0.25s cubic-bezier(0.16,1,0.3,1)",
-                                               transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }} />
+                          <ChevronDown style={{
+                            width: 15, height: 15,
+                            transition: "transform 0.22s ease",
+                            transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
+                          }} />
                         </button>
                       )}
                     </div>
@@ -647,9 +651,12 @@ export default function Navbar() {
                     {/* Sub-items */}
                     {item.children && expanded && (
                       <div style={{
-                        marginTop: 2, marginBottom: 4,
-                        marginLeft: 8, paddingLeft: 14,
-                        borderLeft: "2px solid rgba(184,154,98,0.25)",
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr",
+                        gap: 2,
+                        margin: "2px 0 6px 16px",
+                        paddingLeft: 12,
+                        borderLeft: "2px solid rgba(184,154,98,0.22)",
                       }}>
                         {item.children.map((child) => {
                           const childActive = pathname === child.href || pathname.startsWith(child.href + "/");
@@ -660,19 +667,16 @@ export default function Navbar() {
                               onClick={() => setIsOpen(false)}
                               className="mobile-link"
                               style={{
-                                display: "flex", alignItems: "center", gap: 8,
-                                padding: "9px 10px", borderRadius: 10, marginBottom: 1,
-                                fontSize: 13.5, fontWeight: 500, textDecoration: "none",
-                                color: childActive ? "var(--sf)" : "var(--text-2)",
+                                display: "block",
+                                padding: "8px 10px", borderRadius: 8,
+                                fontSize: 13, fontWeight: childActive ? 600 : 400,
+                                textDecoration: "none",
+                                color: childActive ? "var(--sf-hi)" : "var(--text-2)",
                                 background: childActive ? "var(--sf-bg)" : "transparent",
                                 transition: "color 0.12s, background 0.12s",
+                                whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                               }}
                             >
-                              <span style={{
-                                width: 6, height: 6, borderRadius: "50%", flexShrink: 0,
-                                background: childActive ? "var(--sf)" : "var(--border-2)",
-                                transition: "background 0.12s",
-                              }} />
                               {child.label}
                             </Link>
                           );
