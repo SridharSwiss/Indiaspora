@@ -32,6 +32,9 @@ export default function LivingPage() {
         subtitle="Your complete guide to every aspect of life in Switzerland — from arriving with a suitcase to raising a family and planning your future."
         badge="🇨🇭 The Complete Guide"
         gradient="from-blue-500 to-indigo-600"
+        heroImage="/hero-community.jpg"
+        heroImageAlt="Living in Switzerland guide for Indians"
+        heroImagePosition="center 45%"
         breadcrumbs={[{ label: "Living in Switzerland" }]}
       />
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">

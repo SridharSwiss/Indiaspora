@@ -46,6 +46,9 @@ export default function HealthcarePage() {
         subtitle="Switzerland has one of the world's best healthcare systems. Here's how to navigate it as an Indian resident."
         badge="Health Guide"
         gradient="from-red-500 to-pink-500"
+        heroImage="/hero-community.jpg"
+        heroImageAlt="Indian community healthcare Switzerland"
+        heroImagePosition="center 45%"
         breadcrumbs={[
           { label: "Living in Switzerland", href: "/living" },
           { label: "Healthcare" },

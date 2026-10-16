@@ -86,6 +86,9 @@ export default function CookingPage() {
         subtitle="Learn to cook authentic regional Indian cuisines — from Kerala fish curry to Rajasthani dal baati — with expert instructors."
         badge="Classes & Workshops"
         gradient="from-amber-500 to-orange-500"
+        heroImage="/hero-food.jpg"
+        heroImageAlt="Indian home cooking in Switzerland"
+        heroImagePosition="center 50%"
         breadcrumbs={[
           { label: "Food & Dining", href: "/food" },
           { label: "Cooking Classes" },

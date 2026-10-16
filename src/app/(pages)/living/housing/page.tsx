@@ -64,6 +64,9 @@ export default function HousingPage() {
         subtitle="Finding an apartment in Switzerland requires preparation. Here's everything you need to know about the Swiss rental market."
         badge="Housing Guide"
         gradient="from-blue-500 to-indigo-500"
+        heroImage="/hero-zurich.jpg"
+        heroImageAlt="Housing in Zurich Switzerland for Indians"
+        heroImagePosition="center 45%"
         breadcrumbs={[
           { label: "Living in Switzerland", href: "/living" },
           { label: "Housing" },

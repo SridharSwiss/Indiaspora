@@ -131,6 +131,9 @@ export default function GroceryPage() {
         subtitle="Find the ingredients you need — from fresh curry leaves to atta flour — at Indian grocery stores across Switzerland."
         badge="Groceries"
         gradient="from-green-500 to-emerald-500"
+        heroImage="/hero-food.jpg"
+        heroImageAlt="Indian food and grocery in Switzerland"
+        heroImagePosition="center 40%"
         breadcrumbs={[
           { label: "Food & Dining", href: "/food" },
           { label: "Grocery Stores" },

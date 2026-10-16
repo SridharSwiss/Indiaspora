@@ -34,6 +34,9 @@ export default function ParentsVisitingPage() {
           subtitle="Schengen visa checklist, travel insurance, VFS application guide, and connecting your visiting parents with the Indian community near their postcode."
           badge="👪 Parents Visiting"
           gradient="from-rose-500 to-pink-600"
+        heroImage="/hero-travel.jpg"
+        heroImageAlt="Indian parents visiting Switzerland travel guide"
+        heroImagePosition="center 35%"
           breadcrumbs={[
             { label: "Living in Switzerland", href: "/living" },
             { label: "Parents Visiting" },

@@ -42,6 +42,9 @@ export default function BusinessPage() {
         subtitle="Advance your career in one of the world's most competitive economies. Connect with Indian professionals, explore top employers, and navigate work permits."
         badge="300+ Opportunities"
         gradient="from-teal-500 to-cyan-600"
+        heroImage="/hero-business.jpg"
+        heroImageAlt="Indian business community Switzerland"
+        heroImagePosition="center 35%"
         breadcrumbs={[{ label: "Business & Career" }]}
       />
 

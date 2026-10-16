@@ -56,6 +56,9 @@ export default function LanguagePage() {
         subtitle="Switzerland has four national languages. Learning the local language opens doors socially, professionally, and legally."
         badge="Language Guide"
         gradient="from-teal-500 to-cyan-500"
+        heroImage="/hero-community.jpg"
+        heroImageAlt="Swiss language learning guide for Indian expats"
+        heroImagePosition="center 50%"
         breadcrumbs={[
           { label: "Living in Switzerland", href: "/living" },
           { label: "Language Learning" },

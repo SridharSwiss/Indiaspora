@@ -39,6 +39,9 @@ export default function CulturePage() {
         subtitle="Celebrate India's rich cultural tapestry — classical dance, Bollywood, music, festivals, fashion, and cinema across Switzerland."
         badge="100+ Events/Year"
         gradient="from-rose-500 to-pink-600"
+        heroImage="/hero-culture.jpg"
+        heroImageAlt="Indian culture and arts Switzerland"
+        heroImagePosition="center 25%"
         breadcrumbs={[{ label: "Culture & Arts" }]}
       />
 

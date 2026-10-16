@@ -129,6 +129,9 @@ export default function TravelPage() {
           subtitle="Curated day trips and Alpine excursions from every Swiss hub city — with senior/parents mobility notes, Indian vegetarian food stops, and official pass guidance."
           badge="🏔️ Travel Guide"
           gradient="from-teal-500 to-blue-600"
+        heroImage="/hero-travel.jpg"
+        heroImageAlt="Indiaspora Express — Indians travel Switzerland"
+        heroImagePosition="center 40%"
           breadcrumbs={[{ label: "Travel & Excursions" }]}
         />
 

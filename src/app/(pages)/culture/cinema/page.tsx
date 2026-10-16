@@ -68,6 +68,9 @@ export default function CinemaPage() {
         subtitle="From Bollywood blockbusters to regional art cinema — how the Indian community in Switzerland stays connected to Indian screen culture."
         badge="Film & Media"
         gradient="from-rose-500 to-pink-600"
+        heroImage="/hero-culture.jpg"
+        heroImageAlt="Indian cinema and arts event Switzerland"
+        heroImagePosition="center 35%"
         breadcrumbs={[
           { label: "Culture & Arts", href: "/culture" },
           { label: "Cinema & Entertainment" },

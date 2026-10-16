@@ -632,6 +632,9 @@ export default function PensionPage() {
         subtitle="The three-pillar system explained — state pension (AHV), occupational pension (BVG), and private savings (Pillar 3). Your complete guide as an Indian in Switzerland."
         badge="Retirement Guide"
         gradient="from-amber-500 to-yellow-400"
+        heroImage="/hero-business.jpg"
+        heroImageAlt="Swiss pension guide for Indian expats"
+        heroImagePosition="center 40%"
         breadcrumbs={[
           { label: "Living in Switzerland", href: "/living" },
           { label: "Swiss Pension System" },

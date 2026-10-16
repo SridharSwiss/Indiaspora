@@ -99,6 +99,9 @@ export default function RecyclingPage() {
         title="Waste & Recycling in Switzerland"
         subtitle="How garbage collection works — Züri-Sack, waste separation, Grüngut, recycling stations, and what happens if you get it wrong. A plain-language guide for Indian residents."
         badge="♻️ Living Guide"
+        heroImage="/hero-zurich.jpg"
+        heroImageAlt="Recycling guide for Indians in Zurich Switzerland"
+        heroImagePosition="center 45%"
         breadcrumbs={[{ label: "Living", href: "/living" }, { label: "Waste & Recycling" }]}
       />
 

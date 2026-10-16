@@ -36,6 +36,9 @@ export default function DrivingLicensePage() {
           subtitle="Everything you need to know about the Kontrollfahrt — the mandatory practical driving test you must pass within 12 months of arrival."
           badge="🚗 Driving Guide"
           gradient="from-blue-500 to-indigo-600"
+        heroImage="/hero-zurich.jpg"
+        heroImageAlt="Swiss driving licence guide for Indians"
+        heroImagePosition="center 40%"
           breadcrumbs={[
             { label: "Living in Switzerland", href: "/living" },
             { label: "Driving License Conversion" },

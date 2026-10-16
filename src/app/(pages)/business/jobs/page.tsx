@@ -73,6 +73,9 @@ export default function JobsPage() {
         subtitle="Switzerland is one of the world's highest-paying job markets. Here's everything you need to find and land your ideal role."
         badge="Careers Guide"
         gradient="from-teal-500 to-cyan-600"
+        heroImage="/hero-business.jpg"
+        heroImageAlt="Indian professionals networking in Switzerland"
+        heroImagePosition="center 30%"
         breadcrumbs={[
           { label: "Business & Career", href: "/business" },
           { label: "Jobs & Recruitment" },

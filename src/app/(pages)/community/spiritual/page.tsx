@@ -77,6 +77,9 @@ export default function SpiritualPage() {
         title="Hindu Temples, Pandits & Spiritual Centres in Switzerland"
         subtitle="Find Hindu temples, qualified pandits for home rituals (Gruhapravesha, Satyanarayan Puja), yoga ashrams, and satsang communities across Switzerland."
         badge="🕉️ Spiritual Community"
+        heroImage="/hero-culture.jpg"
+        heroImageAlt="Indian cultural and spiritual event in Switzerland"
+        heroImagePosition="center 25%"
         breadcrumbs={[{ label: "Community", href: "/community" }, { label: "Temples & Spiritual" }]}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

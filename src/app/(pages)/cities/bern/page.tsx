@@ -69,6 +69,9 @@ export default function BernPage() {
         subtitle="Switzerland's federal capital — home to the Embassy of India, the Aare river loop, and a tight-knit Indian community in the heart of the Bernese Mittelland."
         badge="City Guide"
         gradient="from-green-600 to-emerald-600"
+        heroImage="/hero-zurich.jpg"
+        heroImageAlt="Indian community Bern Switzerland evening event"
+        heroImagePosition="center 40%"
         breadcrumbs={[
           { label: "Cities", href: "/cities" },
           { label: "Bern" },

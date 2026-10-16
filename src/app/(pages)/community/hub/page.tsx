@@ -61,6 +61,9 @@ export default function CommunityHubPage() {
           subtitle="From Day 1 at Zurich Airport to long-term wealth building — interactive guides, errands, and insider tips for every stage of your Swiss journey."
           badge="Life in Switzerland"
           gradient="from-orange-500 to-amber-600"
+        heroImage="/hero-community.jpg"
+        heroImageAlt="Indian community hub Switzerland"
+        heroImagePosition="center 40%"
           breadcrumbs={[
             { label: "Community", href: "/community" },
             { label: "Daily Life Hub" },

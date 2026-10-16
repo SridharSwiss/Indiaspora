@@ -70,6 +70,9 @@ export default function StudentsPage() {
         title="Indian Students in Switzerland"
         subtitle="Universities, scholarships, student associations and visa information for Indian students in Switzerland."
         badge="🎓 Student Guide"
+        heroImage="/hero-community.jpg"
+        heroImageAlt="Indian students in Switzerland"
+        heroImagePosition="center 50%"
         breadcrumbs={[{ label: "Community", href: "/community" }, { label: "Students" }]}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

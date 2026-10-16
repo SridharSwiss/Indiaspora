@@ -33,6 +33,9 @@ export default function TransportPage() {
         subtitle="Switzerland's public transport is among the world's best — punctual, clean, and comprehensive. Here's how to make the most of it."
         badge="Transport Guide"
         gradient="from-sky-500 to-blue-500"
+        heroImage="/hero-travel.jpg"
+        heroImageAlt="Swiss transport guide for Indians — SBB trains and trams"
+        heroImagePosition="center 30%"
         breadcrumbs={[
           { label: "Living in Switzerland", href: "/living" },
           { label: "Transport" },

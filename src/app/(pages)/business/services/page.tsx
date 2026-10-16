@@ -68,6 +68,9 @@ export default function ServicesPage() {
         subtitle="Specialist lawyers, accountants, and advisors who understand the India–Switzerland context — from permit renewals to NRI tax planning."
         badge="Professional Services"
         gradient="from-teal-500 to-cyan-600"
+        heroImage="/hero-business.jpg"
+        heroImageAlt="Indian professional services Switzerland"
+        heroImagePosition="center 40%"
         breadcrumbs={[
           { label: "Business & Career", href: "/business" },
           { label: "Professional Services" },

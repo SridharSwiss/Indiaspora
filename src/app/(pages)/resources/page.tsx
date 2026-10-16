@@ -72,6 +72,9 @@ export default function ResourcesPage() {
         subtitle="Curated links to Swiss government services, Indian embassy resources, community organisations, and everything else you need for life in Switzerland."
         badge="50+ Resources"
         gradient="from-slate-600 to-slate-800"
+        heroImage="/hero-community.jpg"
+        heroImageAlt="Resources for Indians in Switzerland"
+        heroImagePosition="center 45%"
         breadcrumbs={[{ label: "Resources" }]}
       />
 

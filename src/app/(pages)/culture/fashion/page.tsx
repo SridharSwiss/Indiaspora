@@ -77,6 +77,9 @@ export default function FashionPage() {
         subtitle="Find Indian ethnic wear in Switzerland — from Kanjivaram silk sarees to bridal lehengas — through boutiques, community networks, and online orders."
         badge="Fashion Guide"
         gradient="from-rose-500 to-pink-600"
+        heroImage="/hero-culture.jpg"
+        heroImageAlt="Indian fashion and culture Switzerland"
+        heroImagePosition="center 30%"
         breadcrumbs={[
           { label: "Culture & Arts", href: "/culture" },
           { label: "Fashion & Boutiques" },

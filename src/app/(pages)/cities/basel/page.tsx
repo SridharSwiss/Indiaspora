@@ -124,6 +124,9 @@ export default function BaselPage() {
         subtitle="Switzerland's pharmaceutical capital — home to Novartis, Roche, Art Basel, and a growing Indian professional community at the tri-national CH/DE/FR border."
         badge="City Guide"
         gradient="from-red-600 to-orange-500"
+        heroImage="/hero-community.jpg"
+        heroImageAlt="Indian community Basel Switzerland"
+        heroImagePosition="center 45%"
         breadcrumbs={[
           { label: "Cities", href: "/cities" },
           { label: "Basel" },

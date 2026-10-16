@@ -98,6 +98,9 @@ export default function AdvertisePage() {
         subtitle="Reach the Indian community across Switzerland — a highly engaged, educated audience of professionals, families, and students."
         badge="Partnerships"
         gradient="from-amber-500 to-yellow-400"
+        heroImage="/hero-business.jpg"
+        heroImageAlt="Advertise to the Indian community in Switzerland"
+        heroImagePosition="center 40%"
         breadcrumbs={[{ label: "Advertise With Us" }]}
       />
 

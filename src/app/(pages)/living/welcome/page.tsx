@@ -82,6 +82,9 @@ export default function WelcomePage() {
         subtitle="Your first weeks in Switzerland can feel overwhelming. This step-by-step guide covers everything you need to do to settle in smoothly."
         badge="Getting Started"
         gradient="from-green-500 to-emerald-500"
+        heroImage="/hero-community.jpg"
+        heroImageAlt="Welcome guide for Indians in Switzerland"
+        heroImagePosition="center 45%"
         breadcrumbs={[
           { label: "Living in Switzerland", href: "/living" },
           { label: "Welcome Guide" },

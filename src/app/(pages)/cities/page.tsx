@@ -52,6 +52,9 @@ export default function CitiesPage() {
         subtitle="Explore the Indian community in each Swiss city — from Zurich's financial district to Geneva's international arena and Basel's pharma corridor."
         badge="26 Cantons"
         gradient="from-blue-500 to-indigo-600"
+        heroImage="/hero-community.jpg"
+        heroImageAlt="Indian community across Swiss cities"
+        heroImagePosition="center 40%"
         breadcrumbs={[{ label: "City Guides" }]}
       />
 

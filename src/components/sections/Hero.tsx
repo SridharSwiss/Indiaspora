@@ -45,7 +45,24 @@ export default function Hero() {
       className="relative overflow-hidden"
       style={{ minHeight: "100svh", background: "#0E0C09" }}
     >
-      {/* Full-bleed background — crossfading photo */}
+      {/* Intro video — autoplay, muted, loop, behind everything */}
+      <video
+        aria-hidden
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{
+          position: "absolute", inset: 0, width: "100%", height: "100%",
+          objectFit: "cover", objectPosition: "center 30%",
+          opacity: 0.22,
+          filter: "saturate(0.6) brightness(0.9)",
+        }}
+      >
+        <source src="/intro.mp4" type="video/mp4" />
+      </video>
+
+      {/* Crossfading photo fallback / accent layer */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         aria-hidden
@@ -54,9 +71,10 @@ export default function Hero() {
         style={{
           position: "absolute", inset: 0, width: "100%", height: "100%",
           objectFit: "cover", objectPosition: "center 30%",
-          opacity: bgFade ? 0.18 : 0,
+          opacity: bgFade ? 0.10 : 0,
           transition: "opacity 0.7s ease-in-out",
-          filter: "saturate(0.7)",
+          filter: "saturate(0.5)",
+          mixBlendMode: "screen",
         }}
       />
       {/* Deep obsidian overlay */}
@@ -66,11 +84,11 @@ export default function Hero() {
           position: "absolute", inset: 0,
           background: `
             linear-gradient(160deg,
-              rgba(22,16,8,0.96) 0%,
-              rgba(14,12,9,0.88) 30%,
-              rgba(18,14,8,0.82) 55%,
-              rgba(24,18,16,0.90) 75%,
-              rgba(14,12,9,0.96) 100%
+              rgba(22,16,8,0.94) 0%,
+              rgba(14,12,9,0.86) 30%,
+              rgba(18,14,8,0.80) 55%,
+              rgba(24,18,16,0.88) 75%,
+              rgba(14,12,9,0.94) 100%
             )
           `,
         }}

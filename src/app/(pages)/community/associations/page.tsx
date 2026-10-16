@@ -157,6 +157,9 @@ export default function AssociationsPage() {
         title="Indian Associations & Clubs in Switzerland"
         subtitle="The most complete directory of Indian associations in Switzerland — from city-level pan-Indian organisations to language communities, professional networks, student bodies, arts groups and civil society."
         badge="🏛️ 60+ Associations"
+        heroImage="/hero-events.jpg"
+        heroImageAlt="Indiaspora Switzerland community event"
+        heroImagePosition="center 30%"
         breadcrumbs={[{ label: "Community", href: "/community" }, { label: "Associations & Clubs" }]}
       />
 
