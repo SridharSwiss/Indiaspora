@@ -24,12 +24,6 @@ interface ErrandItem {
   officialLink?: { label: string; url: string };
 }
 
-interface GroceryItem {
-  german: string;
-  english: string;
-  indianEquivalent: string;
-  found: string;
-}
 
 interface CantonInfo {
   code: string;
@@ -95,9 +89,10 @@ const ERRANDS_DATA: ErrandItem[] = [
     id: "grocery-decoder",
     emoji: "🛒",
     title: "Swiss Supermarket Decoder",
-    summary: "Migros and Coop are the two main chains. Neither sells alcohol at Migros. Aldi/Lidl for budget. Globus Delicatessa for specialty items. Use the decoder below for Indian kitchen equivalents.",
+    summary: "Decode Swiss supermarket labels, dairy, flour, spices and vegetables. Full guide with 80+ mappings — Migros, Coop, Denner, Aldi, Lidl chain tips, loyalty cards, ghee from butter, and what needs an Indian store.",
     cantons: ["ALL", "ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG", "TI"],
     lifeStages: ["New Arrival (0–12m)", "Parents Visiting"],
+    officialLink: { label: "Open Full Supermarket Decoder →", url: "/food/supermarket" },
   },
   {
     id: "zurisack",
@@ -223,20 +218,6 @@ const ERRANDS_DATA: ErrandItem[] = [
   },
 ];
 
-const GROCERY_DICTIONARY: GroceryItem[] = [
-  { german: "Halbweissmehl", english: "Semi-white flour (Type 720)", indianEquivalent: "Atta (closest available)", found: "Migros, Coop" },
-  { german: "Rahm / Crème fraîche", english: "Heavy cream / Sour cream", indianEquivalent: "Malai (closest)", found: "All supermarkets" },
-  { german: "Quark", english: "Fresh cheese curd", indianEquivalent: "Thick hung curd / Chena", found: "Migros, Coop, Lidl" },
-  { german: "Kokosmilch (BIO)", english: "Coconut milk", indianEquivalent: "Nariyal doodh", found: "Migros Bio, Coop Naturaplan" },
-  { german: "Kichererbsen (gekocht)", english: "Cooked chickpeas (tin)", indianEquivalent: "Kala/Safed chana (tinned)", found: "All supermarkets" },
-  { german: "Linsen rot/grün", english: "Lentils red/green", indianEquivalent: "Masoor dal / Moong dal", found: "Migros, Coop, Denner" },
-  { german: "Bockshornklee", english: "Fenugreek", indianEquivalent: "Methi seeds", found: "Asian stores, Reformhaus" },
-  { german: "Kurkuma (gemahlen)", english: "Ground turmeric", indianEquivalent: "Haldi", found: "All supermarkets" },
-  { german: "Kardamom (ganz)", english: "Whole cardamom", indianEquivalent: "Elaichi", found: "Coop, Migros Aroma" },
-  { german: "Ghee (Butterschmalz)", english: "Clarified butter", indianEquivalent: "Desi ghee (substitute)", found: "Reformhaus, Bio shops, Indian stores" },
-  { german: "Paneer", english: "Indian cottage cheese", indianEquivalent: "Paneer — available ready-made", found: "Indian grocery stores (ZH, BS, GE)" },
-  { german: "Chapati / Rotiblätter", english: "Ready-made roti/chapati", indianEquivalent: "Frozen chapati", found: "Coop (limited), Indian stores" },
-];
 
 const LANGUAGE_COMMUNITIES: Record<LanguagePillar, { association: string; url: string; cities: string } | null> = {
   ALL: null,
@@ -263,7 +244,6 @@ export default function CommunityLifeHub() {
   const [selectedLanguage, setSelectedLanguage] = useState<LanguagePillar>("ALL");
   const [selectedStage, setSelectedStage] = useState<LifeStage>("ALL");
   const [searchQuery, setSearchQuery] = useState("");
-  const [showGrocery, setShowGrocery] = useState(false);
   const [showAllCantons, setShowAllCantons] = useState(false);
 
   const commonCantons: Canton[] = ["ZH", "BS", "GE", "VD", "ZG", "BE", "LU", "AG", "SG", "TI"];
@@ -472,43 +452,22 @@ export default function CommunityLifeHub() {
         ))}
       </div>
 
-      {/* ── Grocery Decoder ── */}
-      <div className="glass rounded-2xl border border-teal-500/20 overflow-hidden">
-        <button
-          onClick={() => setShowGrocery(!showGrocery)}
-          className="w-full flex items-center justify-between p-5 text-left"
-        >
-          <div>
-            <h3 className="font-bold" style={{ color: "var(--text)" }}>🛒 Swiss Supermarket Decoder</h3>
-            <p className="text-xs mt-0.5" style={{ color: "var(--text-2)" }}>German/French product names → Indian kitchen equivalents</p>
-          </div>
-          <span className="text-xl" style={{ color: "var(--text-3)" }}>{showGrocery ? "−" : "+"}</span>
-        </button>
-        {showGrocery && (
-          <div className="overflow-x-auto border-t" style={{ borderColor: "var(--border)" }}>
-            <table className="w-full text-xs">
-              <thead>
-                <tr style={{ background: "var(--surface)" }}>
-                  <th className="text-left p-3 font-bold" style={{ color: "var(--text)" }}>German / French name</th>
-                  <th className="text-left p-3 font-bold" style={{ color: "var(--text)" }}>English</th>
-                  <th className="text-left p-3 font-bold" style={{ color: "var(--text)" }}>Indian equivalent</th>
-                  <th className="text-left p-3 font-bold" style={{ color: "var(--text)" }}>Where to find</th>
-                </tr>
-              </thead>
-              <tbody>
-                {GROCERY_DICTIONARY.map((g, i) => (
-                  <tr key={i} style={{ borderTop: "1px solid var(--border)" }}>
-                    <td className="p-3 font-semibold" style={{ color: "var(--text)" }}>{g.german}</td>
-                    <td className="p-3" style={{ color: "var(--text-2)" }}>{g.english}</td>
-                    <td className="p-3 text-teal-400 font-semibold">{g.indianEquivalent}</td>
-                    <td className="p-3" style={{ color: "var(--text-3)" }}>{g.found}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+      {/* ── Supermarket Decoder link ── */}
+      <a
+        href="/food/supermarket"
+        className="glass rounded-2xl border border-teal-500/20 flex items-center justify-between p-5 card-hover group"
+        style={{ textDecoration: "none" }}
+      >
+        <div>
+          <h3 className="font-bold" style={{ color: "var(--text)" }}>🛒 Swiss Supermarket Decoder</h3>
+          <p className="text-xs mt-0.5" style={{ color: "var(--text-2)" }}>
+            Full guide — dairy, flour, spices, vegetables, label decoder, loyalty cards & shopping hacks
+          </p>
+        </div>
+        <span className="text-sm font-semibold text-teal-400 opacity-70 group-hover:opacity-100 transition-opacity shrink-0 ml-4">
+          Open guide →
+        </span>
+      </a>
     </section>
   );
 }
