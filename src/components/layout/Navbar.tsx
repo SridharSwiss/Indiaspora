@@ -595,8 +595,7 @@ export default function Navbar() {
                 width: "100%", display: "flex", alignItems: "center", gap: 8,
                 padding: "10px 12px",
                 borderBottom: "1px solid var(--border)",
-                background: "transparent", border: "none", cursor: "pointer",
-                borderBottom: "1px solid var(--border)",
+                background: "transparent", cursor: "pointer",
               }}
             >
               <Search size={13} style={{ color: "var(--text-3)", flexShrink: 0 }} />
