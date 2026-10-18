@@ -170,7 +170,7 @@ export default function Categories() {
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(1.1rem, 2.5vw, 1.9rem)", fontWeight: 800,
                   color: "var(--in-hi)", lineHeight: 1, display: "block",
-                  whiteSpace: "nowrap",
+                  whiteSpace: "nowrap", wordBreak: "keep-all", overflowWrap: "normal",
                 }}>
                   {s.v}
                 </span>
@@ -446,7 +446,7 @@ export default function Categories() {
           .cat-grid { grid-template-columns: 1fr; }
           .cat-strip-stat { min-width: 86px; padding: 0 8px !important; }
           .cat-strip-stat:first-child { padding-left: 4px !important; }
-          .cat-stat-val { font-size: 1rem !important; }
+          .cat-stat-val { font-size: 1rem !important; white-space: nowrap !important; word-break: keep-all !important; overflow-wrap: normal !important; }
           .cat-stat-label { font-size: 9.5px !important; line-height: 1.2 !important; }
         }
         @media (prefers-reduced-motion: reduce) {
