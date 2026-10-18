@@ -170,6 +170,7 @@ export default function Categories() {
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(1.4rem, 2.5vw, 1.9rem)", fontWeight: 800,
                   color: "var(--in-hi)", lineHeight: 1, display: "block",
+                  whiteSpace: "nowrap",
                 }}>
                   {s.v}
                 </span>
