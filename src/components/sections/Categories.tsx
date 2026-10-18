@@ -172,7 +172,7 @@ export default function Categories() {
                   color: "var(--in-hi)", lineHeight: 1, display: "block",
                   whiteSpace: "nowrap", wordBreak: "keep-all", overflowWrap: "normal",
                 }}>
-                  {s.v}
+                  {s.v.replace(",", ",⁠")}
                 </span>
                 <span className="cat-stat-label" style={{
                   fontSize: 11, color: "var(--text-3)",

@@ -259,7 +259,7 @@ export default function Navbar() {
             role="list"
             style={{
               listStyle: "none", margin: 0, padding: 0,
-              marginLeft: 8, flex: 1,
+              marginLeft: 4, flex: 1,
             }}
           >
             {NAV_ITEMS.map((item) => {
@@ -276,9 +276,9 @@ export default function Navbar() {
                     href={item.href}
                     className="flex items-center gap-1"
                     style={{
-                      position: "relative", padding: "8px 10px",
-                      fontSize: 11, fontWeight: active ? 700 : 600,
-                      letterSpacing: "0.12em", textTransform: "uppercase",
+                      position: "relative", padding: "8px 7px",
+                      fontSize: 10, fontWeight: active ? 700 : 600,
+                      letterSpacing: "0.09em", textTransform: "uppercase",
                       fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                       color: active
                         ? (lightNav ? "rgba(245,237,224,0.95)" : "var(--text)")
@@ -352,7 +352,7 @@ export default function Navbar() {
           </ul>
 
           {/* Right actions — icon-only Maison style */}
-          <div className="flex items-center gap-3 z-10">
+          <div className="flex items-center gap-2 z-10">
             {/* Search icon */}
             <button
               onClick={() => setSearchOpen(true)}
