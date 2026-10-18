@@ -166,7 +166,7 @@ export default function Categories() {
               { v: "150+", l: "Community groups" },
             ].map((s, i) => (
               <div key={s.l} className="cat-strip-stat" style={{ animationDelay: `${i * 0.12}s` }}>
-                <span style={{
+                <span className="cat-stat-val" style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(1.1rem, 2.5vw, 1.9rem)", fontWeight: 800,
                   color: "var(--in-hi)", lineHeight: 1, display: "block",
@@ -174,7 +174,7 @@ export default function Categories() {
                 }}>
                   {s.v}
                 </span>
-                <span style={{
+                <span className="cat-stat-label" style={{
                   fontSize: 11, color: "var(--text-3)",
                   fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                   fontWeight: 600,
@@ -444,8 +444,10 @@ export default function Categories() {
         }
         @media (max-width: 560px) {
           .cat-grid { grid-template-columns: 1fr; }
-          .cat-strip-stat { min-width: 100px; padding: 0 14px !important; }
+          .cat-strip-stat { min-width: 86px; padding: 0 8px !important; }
           .cat-strip-stat:first-child { padding-left: 4px !important; }
+          .cat-stat-val { font-size: 1rem !important; }
+          .cat-stat-label { font-size: 9.5px !important; line-height: 1.2 !important; }
         }
         @media (prefers-reduced-motion: reduce) {
           .cat-card, .cat-orb, .cat-bar { animation: none !important; }

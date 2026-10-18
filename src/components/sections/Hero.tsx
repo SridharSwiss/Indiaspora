@@ -181,7 +181,7 @@ export default function Hero() {
               border: "1px solid rgba(201,169,110,0.28)",
               fontSize: 11, fontWeight: 700, color: "#CEB07A",
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-              letterSpacing: "0.08em",
+              letterSpacing: "0.08em", whiteSpace: "nowrap",
             }}>
               <span style={{
                 width: 7, height: 7, borderRadius: "50%",
