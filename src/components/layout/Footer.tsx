@@ -4,8 +4,7 @@ import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-// Footer structured as semantic sections so users can scan by intent (Baymard/NNG principle)
-const footerSections = [
+const NAV_COLS = [
   {
     heading: "Community",
     links: [
@@ -13,12 +12,13 @@ const footerSections = [
       { label: "Temples & Spiritual", href: "/community/spiritual" },
       { label: "Women's Network", href: "/community/women" },
       { label: "Student Groups", href: "/community/students" },
+      { label: "Daily Life Hub", href: "/community/hub" },
     ],
   },
   {
-    heading: "Living Guide",
+    heading: "Living",
     links: [
-      { label: "Welcome to Switzerland", href: "/living/welcome" },
+      { label: "Welcome Guide", href: "/living/welcome" },
       { label: "Housing & Rentals", href: "/living/housing" },
       { label: "Healthcare", href: "/living/healthcare" },
       { label: "Banking & Finance", href: "/living/banking" },
@@ -30,39 +30,20 @@ const footerSections = [
     links: [
       { label: "Indian Restaurants", href: "/food/restaurants" },
       { label: "Grocery & Spices", href: "/food/grocery" },
+      { label: "Supermarket Decoder", href: "/food/supermarket" },
       { label: "Festivals & Events", href: "/culture/festivals" },
       { label: "Music & Dance", href: "/culture/arts" },
-      { label: "Events Calendar", href: "/events" },
     ],
   },
   {
-    heading: "Business",
+    heading: "Business & Cities",
     links: [
       { label: "Networking & Chambers", href: "/business/networking" },
-      { label: "Jobs & Recruitment", href: "/business/jobs" },
       { label: "Startups", href: "/business/startups" },
       { label: "Professional Services", href: "/business/services" },
-    ],
-  },
-  {
-    heading: "City Guides",
-    links: [
       { label: "Zurich", href: "/cities/zurich" },
       { label: "Geneva", href: "/cities/geneva" },
-      { label: "Basel", href: "/cities/basel" },
-      { label: "Bern", href: "/cities/bern" },
-      { label: "Lausanne", href: "/cities/lausanne" },
-    ],
-  },
-  {
-    heading: "Resources",
-    links: [
-      { label: "All Resources", href: "/resources" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Use", href: "/terms" },
-      { label: "Cookie Policy", href: "/privacy#cookies" },
-      { label: "Advertise With Us", href: "/advertise" },
-      { label: "Seek Advice", href: "/advice" },
+      { label: "Basel · Bern · Lausanne", href: "/cities/basel" },
     ],
   },
 ];
@@ -70,105 +51,90 @@ const footerSections = [
 export default function Footer() {
   const pathname = usePathname();
   if (pathname.startsWith("/admin")) return null;
+
   return (
     <footer className="relative" style={{ background: "#1A1410", borderTop: "1px solid rgba(176,141,87,0.15)" }}>
-      {/* Thin gold accent line */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
-          width: "40%", height: 1,
-          background: "linear-gradient(90deg, transparent, rgba(176,141,87,0.6), transparent)",
-        }}
-      />
+      {/* Gold accent line */}
+      <div aria-hidden style={{
+        position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
+        width: "40%", height: 1,
+        background: "linear-gradient(90deg, transparent, rgba(176,141,87,0.6), transparent)",
+      }} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        {/* Top section */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-8 gap-8 lg:gap-6 mb-12">
-          {/* Brand — spans 2 cols on large screens */}
-          <div className="col-span-2 sm:col-span-3 lg:col-span-2">
-            <div className="mb-5 flex items-center gap-3">
-              <img src="/logo.svg" alt="Indiaspora" style={{ height: 40, width: "auto", filter: "brightness(0) invert(1)" }} />
-              <span style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: 20, fontWeight: 700,
-                color: "rgba(245,237,224,0.95)",
-              }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6">
+
+        {/* ── Main grid ─────────────────────────────────────────────────── */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
+
+          {/* Brand column — 2 cols on lg */}
+          <div className="col-span-2 lg:col-span-2">
+            <div className="mb-4 flex items-center gap-2.5">
+              <img src="/logo.svg" alt="Indiaspora" style={{ height: 34, width: "auto", filter: "brightness(0) invert(1)" }} />
+              <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 700, color: "rgba(245,237,224,0.95)" }}>
                 India<span style={{ color: "#B08D57" }}>spora</span>
               </span>
             </div>
-            <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(200,185,165,0.7)" }}>
-              Connecting 24,500+ Indians across Switzerland. Your one-stop resource for community, culture, business, and daily life.
+            <p className="text-xs leading-relaxed mb-4" style={{ color: "rgba(200,185,165,0.65)" }}>
+              Connecting 24,500+ Indians across Switzerland — community, culture, business, and daily life.
             </p>
-            <div className="space-y-2 mb-5">
-              <div className="flex items-center gap-2 text-sm" style={{ color: "rgba(200,185,165,0.7)" }}>
-                <MapPin className="w-4 h-4 shrink-0" style={{ color: "#B08D57" }} />
+            <div className="space-y-1.5 mb-4">
+              <div className="flex items-center gap-2 text-xs" style={{ color: "rgba(200,185,165,0.65)" }}>
+                <MapPin className="w-3.5 h-3.5 shrink-0" style={{ color: "#B08D57" }} />
                 <span>Zurich, Switzerland</span>
               </div>
-              <div className="flex items-center gap-2 text-sm" style={{ color: "rgba(200,185,165,0.7)" }}>
-                <Mail className="w-4 h-4 shrink-0" style={{ color: "#B08D57" }} />
-                <a href="mailto:hello@indiaspora.ch" style={{ color: "rgba(200,185,165,0.7)", transition: "color 0.15s" }}
-                   onMouseEnter={(e) => (e.currentTarget.style.color = "#B08D57")}
-                   onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.7)")}>
+              <div className="flex items-center gap-2 text-xs" style={{ color: "rgba(200,185,165,0.65)" }}>
+                <Mail className="w-3.5 h-3.5 shrink-0" style={{ color: "#B08D57" }} />
+                <a href="mailto:hello@indiaspora.ch"
+                  style={{ color: "rgba(200,185,165,0.65)", transition: "color 0.15s" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#B08D57")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.65)")}>
                   hello@indiaspora.ch
                 </a>
               </div>
             </div>
-
-            {/* Social icons — LinkedIn only */}
-            <div className="flex gap-2">
-              <a
-                href="https://www.linkedin.com/company/swiss-indiaspora/?viewAsMember=true"
-                title="LinkedIn"
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  width: 36, height: 36,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "rgba(200,185,165,0.5)",
-                  border: "1px solid rgba(176,141,87,0.2)",
-                  borderRadius: 8,
-                  transition: "color 0.15s, border-color 0.15s, background 0.15s",
-                  flexShrink: 0, textDecoration: "none",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "#0A66C2";
-                  (e.currentTarget as HTMLElement).style.borderColor = "#0A66C2";
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "rgba(200,185,165,0.5)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(176,141,87,0.2)";
-                  (e.currentTarget as HTMLElement).style.background = "transparent";
-                }}
-              >
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden>
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-            </div>
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/company/swiss-indiaspora/?viewAsMember=true"
+              title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center", justifyContent: "center",
+                width: 32, height: 32,
+                color: "rgba(200,185,165,0.5)",
+                border: "1px solid rgba(176,141,87,0.2)",
+                borderRadius: 7, transition: "color 0.15s, border-color 0.15s, background 0.15s",
+                textDecoration: "none",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "#0A66C2";
+                (e.currentTarget as HTMLElement).style.borderColor = "#0A66C2";
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "rgba(200,185,165,0.5)";
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(176,141,87,0.2)";
+                (e.currentTarget as HTMLElement).style.background = "transparent";
+              }}
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
           </div>
 
-          {/* Navigation sections */}
-          {footerSections.map((section) => (
-            <nav key={section.heading} aria-label={`${section.heading} links`} className="lg:col-span-1">
-              <h3
-                className="text-xs font-bold mb-4 uppercase"
-                style={{ color: "rgba(245,237,224,0.6)", letterSpacing: "0.12em", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
-              >
+          {/* Nav columns — each 1 col on lg */}
+          {NAV_COLS.map((section) => (
+            <nav key={section.heading} aria-label={`${section.heading} links`}>
+              <h3 className="text-xs font-bold mb-3 uppercase"
+                style={{ color: "rgba(245,237,224,0.55)", letterSpacing: "0.10em", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
                 {section.heading}
               </h3>
-              <ul className="space-y-2.5" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              <ul className="space-y-2" style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm transition-colors"
-                      style={{ color: "rgba(200,185,165,0.6)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
+                    <Link href={link.href} className="text-xs transition-colors"
+                      style={{ color: "rgba(200,185,165,0.55)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
                       onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(245,237,224,0.9)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.6)")}
-                    >
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.55)")}>
                       {link.label}
                     </Link>
                   </li>
@@ -178,83 +144,86 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Advertise CTA */}
-        <div className="mb-6 p-6 lg:p-8" style={{ border: "1px solid rgba(176,141,87,0.25)", background: "linear-gradient(135deg, rgba(176,141,87,0.08) 0%, rgba(176,141,87,0.03) 100%)", borderRadius: 2 }}>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* ── Advertise + Newsletter — combined compact strip ────────────── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          {/* Advertise */}
+          <div className="flex items-center justify-between gap-4 px-5 py-4"
+            style={{ border: "1px solid rgba(176,141,87,0.22)", background: "linear-gradient(135deg, rgba(176,141,87,0.07) 0%, rgba(176,141,87,0.02) 100%)", borderRadius: 2 }}>
             <div>
-              <div className="text-xs font-bold uppercase mb-1" style={{ color: "#B08D57", letterSpacing: "0.12em", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>Reach 24,500+ Indians Across Switzerland</div>
-              <h3 className="text-lg font-semibold" style={{ color: "rgba(245,237,224,0.9)", fontFamily: "'Playfair Display', Georgia, serif", margin: 0 }}>Advertise With <em>Indiaspora</em></h3>
-              <p className="text-sm mt-1" style={{ color: "rgba(200,185,165,0.65)", margin: 0 }}>Banners, newsletter sponsorships, city guide features &amp; more.</p>
+              <p className="text-xs font-bold uppercase mb-0.5" style={{ color: "#B08D57", letterSpacing: "0.10em", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
+                Reach 24,500+ Indians
+              </p>
+              <p className="text-xs" style={{ color: "rgba(200,185,165,0.6)" }}>Banners, newsletter &amp; city guide features</p>
             </div>
-            <Link
-              href="/advertise"
+            <Link href="/advertise"
               style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "10px 22px", background: "#B08D57", color: "#1A1410",
-                fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+                display: "inline-flex", alignItems: "center",
+                padding: "7px 16px", background: "#B08D57", color: "#1A1410",
+                fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0,
                 transition: "background 0.15s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "#CEB07A")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "#B08D57")}
-            >
-              Get in Touch →
+              onMouseLeave={(e) => (e.currentTarget.style.background = "#B08D57")}>
+              Advertise →
             </Link>
           </div>
-        </div>
 
-        {/* Newsletter */}
-        <div className="p-6 lg:p-8 mb-10" style={{ border: "1px solid rgba(176,141,87,0.15)", background: "rgba(255,255,255,0.03)" }}>
-          <div className="flex flex-col lg:flex-row items-center gap-6">
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold mb-1" style={{ color: "rgba(245,237,224,0.9)", fontFamily: "'Playfair Display', Georgia, serif" }}>Stay Connected</h3>
-              <p className="text-sm" style={{ color: "rgba(200,185,165,0.65)" }}>Weekly digest — events, news, and community updates across Switzerland</p>
+          {/* Newsletter */}
+          <div className="flex items-center gap-4 px-5 py-4"
+            style={{ border: "1px solid rgba(176,141,87,0.15)", background: "rgba(255,255,255,0.02)", borderRadius: 2 }}>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-bold uppercase mb-0.5" style={{ color: "rgba(245,237,224,0.7)", letterSpacing: "0.10em", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
+                Weekly digest
+              </p>
+              <p className="text-xs" style={{ color: "rgba(200,185,165,0.55)" }}>Events, news &amp; community updates</p>
             </div>
-            <div className="flex gap-3 w-full lg:w-auto">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                aria-label="Email address for newsletter"
-                className="flex-1 lg:w-64 px-4 py-2.5 text-sm focus:outline-none"
+            <div className="flex gap-2 shrink-0">
+              <input type="email" placeholder="your@email.com" aria-label="Email for newsletter"
+                className="px-3 py-2 text-xs w-36 focus:outline-none"
                 style={{
                   background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(176,141,87,0.25)",
+                  border: "1px solid rgba(176,141,87,0.22)",
                   color: "rgba(245,237,224,0.9)",
-                }}
-              />
+                }} />
               <button style={{
-                padding: "10px 20px", background: "#B08D57", color: "#1A1410",
-                fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+                padding: "7px 14px", background: "#B08D57", color: "#1A1410",
+                fontSize: 10, fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase",
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 border: "none", cursor: "pointer", whiteSpace: "nowrap",
               }}>
-                Subscribe
+                Go
               </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6" style={{ borderTop: "1px solid rgba(176,141,87,0.1)" }}>
-          <p className="text-xs" style={{ color: "rgba(200,185,165,0.4)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
+        {/* ── Bottom bar ────────────────────────────────────────────────── */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-5"
+          style={{ borderTop: "1px solid rgba(176,141,87,0.1)" }}>
+          <p className="text-xs" style={{ color: "rgba(200,185,165,0.35)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
             © 2026 Indiaspora Community Hub. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/unsubscribe"
-              className="text-xs transition-colors"
-              style={{ color: "rgba(200,185,165,0.22)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "rgba(200,185,165,0.5)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(200,185,165,0.22)")}
-            >
-              Unsubscribe
-            </Link>
-            <p className="text-xs" style={{ color: "rgba(200,185,165,0.4)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
-              Built for the Swiss-Indian community 🇮🇳🇨🇭
-            </p>
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            {[
+              { label: "Privacy", href: "/privacy" },
+              { label: "Terms", href: "/terms" },
+              { label: "Cookies", href: "/privacy#cookies" },
+              { label: "Unsubscribe", href: "/unsubscribe" },
+              { label: "Seek Advice", href: "/advice" },
+            ].map((l) => (
+              <Link key={l.label} href={l.href} className="text-xs transition-colors"
+                style={{ color: "rgba(200,185,165,0.3)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.6)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.3)")}>
+                {l.label}
+              </Link>
+            ))}
+            <span className="text-xs" style={{ color: "rgba(200,185,165,0.35)" }}>🇮🇳🇨🇭</span>
           </div>
         </div>
+
       </div>
     </footer>
   );
