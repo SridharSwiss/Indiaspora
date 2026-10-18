@@ -536,13 +536,13 @@ export default function Navbar() {
             <button
               className="lg:hidden nav-icon-btn"
               style={{
-                display: "flex", alignItems: "center", gap: 5,
-                padding: "0 10px", height: 36, borderRadius: 10,
+                display: "flex", alignItems: "center", gap: 4,
+                padding: "0 8px", height: 34, borderRadius: 10,
                 color: lightNav ? "rgba(245,237,224,0.8)" : "var(--text-2)",
                 background: lightNav ? "rgba(255,255,255,0.08)" : "var(--surface-2)",
                 border: lightNav ? "1px solid rgba(245,237,224,0.2)" : "1px solid var(--border)",
                 cursor: "pointer",
-                fontSize: 12, fontWeight: 600,
+                fontSize: 11, fontWeight: 600, whiteSpace: "nowrap",
                 transition: "color 0.3s, background 0.3s, border-color 0.3s",
               }}
               onClick={() => setIsOpen(true)}
