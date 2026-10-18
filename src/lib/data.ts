@@ -38,6 +38,7 @@ export const NAV_ITEMS = [
     children: [
       { label: "Indian Restaurants", href: "/food/restaurants" },
       { label: "Grocery & Spices", href: "/food/grocery" },
+      { label: "Supermarket Decoder", href: "/food/supermarket" },
       { label: "Catering & Home Chefs", href: "/food/catering" },
       { label: "Cooking Classes", href: "/food/cooking" },
     ],
