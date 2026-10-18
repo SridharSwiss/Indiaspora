@@ -168,7 +168,7 @@ export default function Categories() {
               <div key={s.l} className="cat-strip-stat" style={{ animationDelay: `${i * 0.12}s` }}>
                 <span style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
-                  fontSize: "clamp(1.4rem, 2.5vw, 1.9rem)", fontWeight: 800,
+                  fontSize: "clamp(1.1rem, 2.5vw, 1.9rem)", fontWeight: 800,
                   color: "var(--in-hi)", lineHeight: 1, display: "block",
                   whiteSpace: "nowrap",
                 }}>
@@ -424,12 +424,28 @@ export default function Categories() {
         /* ── Responsive ── */
         @media (max-width: 900px) {
           .cat-grid { grid-template-columns: repeat(2,1fr); }
-          .cat-strip { grid-template-columns: repeat(2,1fr); gap: 16px; }
-          .cat-strip-stat { border-right: none; padding: 0; align-items: center !important; text-align: center !important; }
-          .cat-strip-stat:nth-child(odd) { border-right: 1px solid var(--border); padding-right: 20px; align-items: flex-end !important; text-align: right !important; }
+          .cat-strip {
+            display: flex; flex-direction: row;
+            overflow-x: auto; overflow-y: hidden;
+            scrollbar-width: none; -webkit-overflow-scrolling: touch;
+            gap: 0; flex-wrap: nowrap;
+          }
+          .cat-strip::-webkit-scrollbar { display: none; }
+          .cat-strip-stat {
+            flex: 0 0 auto;
+            min-width: 110px;
+            border-right: 1px solid var(--border) !important;
+            padding: 0 20px !important;
+            align-items: center !important;
+            text-align: center !important;
+          }
+          .cat-strip-stat:first-child { padding-left: 0 !important; align-items: flex-start !important; text-align: left !important; }
+          .cat-strip-stat:last-child  { border-right: none !important; padding-right: 0 !important; align-items: flex-end !important; text-align: right !important; }
         }
         @media (max-width: 560px) {
           .cat-grid { grid-template-columns: 1fr; }
+          .cat-strip-stat { min-width: 100px; padding: 0 14px !important; }
+          .cat-strip-stat:first-child { padding-left: 4px !important; }
         }
         @media (prefers-reduced-motion: reduce) {
           .cat-card, .cat-orb, .cat-bar { animation: none !important; }
