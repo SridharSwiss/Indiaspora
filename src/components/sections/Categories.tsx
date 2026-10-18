@@ -168,11 +168,11 @@ export default function Categories() {
               <div key={s.l} className="cat-strip-stat" style={{ animationDelay: `${i * 0.12}s` }}>
                 <span className="cat-stat-val" style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
-                  fontSize: "clamp(1.1rem, 2.5vw, 1.9rem)", fontWeight: 800,
+                  fontSize: "clamp(1.3rem, 2.5vw, 1.9rem)", fontWeight: 800,
                   color: "var(--in-hi)", lineHeight: 1, display: "block",
-                  whiteSpace: "nowrap", wordBreak: "keep-all", overflowWrap: "normal",
+                  whiteSpace: "nowrap",
                 }}>
-                  {s.v.replace(",", ",⁠")}
+                  {s.v}
                 </span>
                 <span className="cat-stat-label" style={{
                   fontSize: 11, color: "var(--text-3)",
@@ -424,30 +424,33 @@ export default function Categories() {
         /* ── Responsive ── */
         @media (max-width: 900px) {
           .cat-grid { grid-template-columns: repeat(2,1fr); }
+        }
+        @media (max-width: 640px) {
           .cat-strip {
-            display: flex; flex-direction: row;
-            overflow-x: auto; overflow-y: hidden;
-            scrollbar-width: none; -webkit-overflow-scrolling: touch;
-            gap: 0; flex-wrap: nowrap;
+            grid-template-columns: repeat(2,1fr);
+            gap: 0;
+            padding: 20px 16px;
           }
-          .cat-strip::-webkit-scrollbar { display: none; }
           .cat-strip-stat {
-            flex: 0 0 auto;
-            min-width: 110px;
             border-right: 1px solid var(--border) !important;
-            padding: 0 20px !important;
+            border-bottom: 1px solid var(--border);
+            padding: 14px 12px !important;
             align-items: center !important;
             text-align: center !important;
           }
-          .cat-strip-stat:first-child { padding-left: 0 !important; align-items: flex-start !important; text-align: left !important; }
-          .cat-strip-stat:last-child  { border-right: none !important; padding-right: 0 !important; align-items: flex-end !important; text-align: right !important; }
+          .cat-strip-stat:first-child  { align-items: center !important; text-align: center !important; }
+          .cat-strip-stat:last-child   { border-right: none !important; }
+          /* 2nd row: no bottom border */
+          .cat-strip-stat:nth-child(3),
+          .cat-strip-stat:nth-child(4) { border-bottom: none; }
+          /* even cells (right column): no right border */
+          .cat-strip-stat:nth-child(2),
+          .cat-strip-stat:nth-child(4) { border-right: none !important; }
+          .cat-stat-val   { font-size: clamp(1.3rem,5vw,1.6rem) !important; white-space: nowrap !important; }
+          .cat-stat-label { font-size: 10px !important; line-height: 1.3 !important; }
         }
-        @media (max-width: 560px) {
+        @media (max-width: 420px) {
           .cat-grid { grid-template-columns: 1fr; }
-          .cat-strip-stat { min-width: 86px; padding: 0 8px !important; }
-          .cat-strip-stat:first-child { padding-left: 4px !important; }
-          .cat-stat-val { font-size: 1rem !important; white-space: nowrap !important; word-break: keep-all !important; overflow-wrap: normal !important; }
-          .cat-stat-label { font-size: 9.5px !important; line-height: 1.2 !important; }
         }
         @media (prefers-reduced-motion: reduce) {
           .cat-card, .cat-orb, .cat-bar { animation: none !important; }
