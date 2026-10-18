@@ -255,7 +255,7 @@ export default function Hero() {
               onClick={() => setJoinOpen(true)}
               style={{
                 display: "inline-flex", alignItems: "center", gap: 9,
-                padding: "15px 32px", borderRadius: 999,
+                padding: "13px clamp(18px,4vw,32px)", borderRadius: 999,
                 background: "var(--in)",
                 color: "#1A1410",
                 fontSize: 11, fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase",
@@ -284,7 +284,7 @@ export default function Hero() {
               href="/events"
               style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "14px 30px", borderRadius: 999,
+                padding: "12px clamp(16px,3.5vw,30px)", borderRadius: 999,
                 background: "rgba(201,169,110,0.07)",
                 color: "rgba(206,176,122,0.90)",
                 fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",

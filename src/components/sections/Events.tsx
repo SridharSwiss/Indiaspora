@@ -7,7 +7,7 @@ export default function Events() {
   const shown = UPCOMING_EVENTS.slice(0, 3);
 
   return (
-    <section id="events" style={{ background: "var(--surface-2)", padding: "96px 0" }}>
+    <section id="events" style={{ background: "var(--surface-2)", padding: "clamp(48px,8vw,96px) 0" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -129,7 +129,7 @@ export default function Events() {
         </div>
 
         {/* Submit CTA */}
-        <div style={{ marginTop: 24, padding: "28px 32px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, background: "var(--surface)", border: "1px solid var(--border)", flexWrap: "wrap" }}>
+        <div style={{ marginTop: 24, padding: "clamp(16px,3vw,28px) clamp(16px,3.5vw,32px)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, background: "var(--surface)", border: "1px solid var(--border)", flexWrap: "wrap" }}>
           <div>
             <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.1rem", fontWeight: 700, color: "var(--text)", marginBottom: 4 }}>
               Organising a community event?

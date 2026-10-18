@@ -101,7 +101,7 @@ export default function PageHeader({
           {/* Text — absolutely pinned to the bottom of the image */}
           <div style={{
             position: "absolute", bottom: 0, left: 0, right: 0,
-            padding: "clamp(16px,4vw,56px) clamp(16px,5vw,80px) clamp(20px,4vw,52px)",
+            padding: "clamp(16px,4vw,56px) clamp(16px,4vw,56px) clamp(20px,4vw,52px)",
             zIndex: 2,
           }}>
             {/* Breadcrumbs */}

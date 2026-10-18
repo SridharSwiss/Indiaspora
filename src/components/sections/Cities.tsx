@@ -23,7 +23,7 @@ export default function Cities() {
   return (
     <section
       id="cities"
-      style={{ background: "var(--surface)", padding: "96px 0", position: "relative", overflow: "hidden" }}
+      style={{ background: "var(--surface)", padding: "clamp(48px,8vw,96px) 0", position: "relative", overflow: "hidden" }}
     >
       {/* Ambient orb */}
       <div aria-hidden style={{
@@ -74,7 +74,7 @@ export default function Cities() {
             }}>
               {/* Hero header */}
               <div style={{
-                padding: "36px 32px",
+                padding: "clamp(20px,4vw,36px) clamp(16px,3.5vw,32px)",
                 background: pal.bg,
                 borderBottom: `1px solid ${pal.accent}22`,
                 position: "relative", overflow: "hidden",
@@ -123,7 +123,7 @@ export default function Cities() {
               </div>
 
               {/* Highlights */}
-              <div style={{ padding: "28px 32px" }}>
+              <div style={{ padding: "clamp(16px,3vw,28px) clamp(16px,3.5vw,32px)" }}>
                 <div style={{
                   fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase",
                   color: "var(--text-3)", marginBottom: 18,

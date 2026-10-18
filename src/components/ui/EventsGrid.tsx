@@ -136,7 +136,7 @@ function EventLightbox({ event, onClose }: { event: EventItem; onClose: () => vo
         .lb-img-pane img { width:100%; height:100%; object-fit:cover; min-height:240px; display:block; }
         .lb-text-pane {
           flex: 1; min-width: 260px;
-          padding: 32px 28px 28px;
+          padding: clamp(16px,3.5vw,32px) clamp(16px,3vw,28px) clamp(16px,3vw,28px);
           overflow-y: auto;
           display: flex; flex-direction: column; gap: 16px;
         }

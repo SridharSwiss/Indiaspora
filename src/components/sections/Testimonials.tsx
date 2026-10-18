@@ -14,7 +14,7 @@ export default function Testimonials() {
   return (
     <section
       style={{
-        padding: "96px 0",
+        padding: "clamp(48px,8vw,96px) 0",
         background: "var(--base)",
         position: "relative",
         overflow: "hidden",
@@ -70,7 +70,7 @@ export default function Testimonials() {
                   background: "var(--surface)",
                   border: `1px solid ${c.border}`,
                   borderRadius: 20,
-                  padding: "32px 28px",
+                  padding: "clamp(16px,3.5vw,32px) clamp(16px,3vw,28px)",
                   display: "flex", flexDirection: "column",
                   height: "100%",
                   position: "relative",

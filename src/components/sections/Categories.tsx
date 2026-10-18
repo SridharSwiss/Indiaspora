@@ -69,7 +69,7 @@ export default function Categories() {
   const cats = FEATURED_CATEGORIES.slice(0, 6);
 
   return (
-    <section id="categories" style={{ background: "var(--base)", padding: "96px 0 80px" }}>
+    <section id="categories" style={{ background: "var(--base)", padding: "clamp(48px,8vw,96px) 0 clamp(40px,6vw,80px)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -201,7 +201,7 @@ export default function Categories() {
           background: var(--surface);
           border: 1px solid var(--border);
           border-radius: 24px;
-          padding: 28px 26px 24px;
+          padding: clamp(16px,3vw,28px) clamp(14px,2.5vw,26px) clamp(14px,2.5vw,24px);
           text-decoration: none;
           position: relative; overflow: hidden;
           min-height: 248px;
@@ -401,7 +401,7 @@ export default function Categories() {
           background: var(--surface);
           border: 1px solid var(--border);
           border-radius: 20px;
-          padding: 24px 32px;
+          padding: clamp(16px,3vw,24px) clamp(16px,3.5vw,32px);
           margin-top: 16px;
           transition: box-shadow 0.3s;
         }

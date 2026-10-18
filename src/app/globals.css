@@ -202,7 +202,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
+img, video, svg, iframe { max-width: 100%; }
+/* Tables never cause horizontal page scroll — wrap them */
+table { border-collapse: collapse; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 a { text-decoration: none; color: inherit; }
 
 /* ── Serif headings — the Maison editorial signature ──────────── */
@@ -590,6 +596,22 @@ button:active:not(:disabled), a:active, [role="button"]:active {
 
 /* ── Mobile ───────────────────────────────────────────────────── */
 @media (max-width: 768px) { .hero-particles { display: none; } }
+
+@media (max-width: 639px) {
+  /* Tighten large Tailwind spacing utilities on small phones */
+  .py-16  { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  .py-20  { padding-top: 3rem !important;   padding-bottom: 3rem !important; }
+  .py-24  { padding-top: 3rem !important;   padding-bottom: 3rem !important; }
+  .space-y-16 > * + * { margin-top: 2.5rem !important; }
+  .space-y-20 > * + * { margin-top: 3rem !important; }
+
+  /* Prevent long words / URLs from blowing out card widths */
+  .glass, .card-hover, [class*="rounded"] {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
+  }
+}
 
 /* ── Page content slides over sticky hero banner ─────────────── */
 /* The outer wrapper in PageHeader reserves 100svh. Any sibling div

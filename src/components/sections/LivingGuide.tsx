@@ -37,7 +37,7 @@ export default function LivingGuide() {
   return (
     <section
       id="living"
-      style={{ background: "var(--surface-2)", padding: "96px 0", position: "relative", overflow: "hidden" }}
+      style={{ background: "var(--surface-2)", padding: "clamp(48px,8vw,96px) 0", position: "relative", overflow: "hidden" }}
     >
       {/* Background orb */}
       <div aria-hidden style={{
@@ -200,7 +200,7 @@ export default function LivingGuide() {
             background: "var(--surface)",
             border: `1px solid ${acc.light}33`,
             borderRadius: 20,
-            padding: "32px 28px",
+            padding: "clamp(16px,3.5vw,32px) clamp(16px,3vw,28px)",
             position: "sticky", top: 88,
             boxShadow: `0 8px 40px ${acc.glow}`,
             transition: "border-color 0.3s, box-shadow 0.3s",
