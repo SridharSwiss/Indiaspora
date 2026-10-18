@@ -339,6 +339,7 @@ export default function Hero() {
                 <div style={{
                   fontSize: 12, fontWeight: 700, color: "rgba(240,235,224,0.88)",
                   fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", lineHeight: 1.3,
+                  whiteSpace: "nowrap",
                 }}>
                   ~24,500 Indians
                 </div>
@@ -376,7 +377,7 @@ export default function Hero() {
                       {s.label}
                     </div>
                     <div style={{
-                      fontSize: 9, color: "rgba(201,169,110,0.65)",
+                      fontSize: 10, color: "rgba(201,169,110,0.65)",
                       fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                       fontWeight: 600, letterSpacing: "0.04em",
                     }}>
@@ -390,6 +391,7 @@ export default function Hero() {
 
           {/* Stats row */}
           <div
+            className="hero-stats"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(4, auto)",
@@ -415,7 +417,7 @@ export default function Hero() {
                 />
                 <div
                   style={{
-                    fontSize: 9, fontWeight: 700, letterSpacing: "0.14em",
+                    fontSize: 10, fontWeight: 700, letterSpacing: "0.14em",
                     textTransform: "uppercase", color: "rgba(201,169,110,0.65)",
                     fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                   }}
@@ -487,7 +489,7 @@ export default function Hero() {
           position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)",
           display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
           color: "rgba(201,169,110,0.55)",
-          fontSize: 8, fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase",
+          fontSize: 10, fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase",
           fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
           animation: "fadeUp 1.2s 1.6s both",
           textDecoration: "none",

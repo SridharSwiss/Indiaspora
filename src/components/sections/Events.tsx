@@ -15,7 +15,7 @@ export default function Events() {
           <AnimateIn from="left">
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
               <span style={{ width: 32, height: 1, background: "var(--mg)", display: "inline-block" }} aria-hidden />
-              <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mg)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
+              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mg)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
                 What&apos;s On
               </span>
             </div>

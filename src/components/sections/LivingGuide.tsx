@@ -291,6 +291,9 @@ export default function LivingGuide() {
         @media (max-width: 480px) {
           .quick-links-grid { grid-template-columns: repeat(4,1fr) !important; }
         }
+        @media (max-width: 360px) {
+          .quick-links-grid { grid-template-columns: repeat(2,1fr) !important; }
+        }
       `}</style>
     </section>
   );

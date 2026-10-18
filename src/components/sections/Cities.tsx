@@ -125,7 +125,7 @@ export default function Cities() {
               {/* Highlights */}
               <div style={{ padding: "clamp(16px,3vw,28px) clamp(16px,3.5vw,32px)" }}>
                 <div style={{
-                  fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase",
+                  fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase",
                   color: "var(--text-3)", marginBottom: 18,
                   fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 }}>

@@ -344,7 +344,7 @@ export default function Categories() {
         }
         .cat-card:hover .cat-stat-num { transform: scale(1.08); }
         .cat-stat-label {
-          font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+          font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
           text-transform: uppercase; color: var(--text-3);
           font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
         }
