@@ -288,7 +288,12 @@ export default function AdminPage() {
         .admin-action-btn { transition: opacity 0.15s, transform 0.1s; }
         .admin-action-btn:hover:not(:disabled) { opacity: 0.85; transform: translateY(-1px); }
         .admin-tr:hover { background: var(--surface-2); }
-        @media (max-width: 768px) { .admin-sidebar { display: none !important; } }
+        .admin-mobile-tabs { display: none; }
+        @media (max-width: 768px) {
+          .admin-sidebar { display: none !important; }
+          .admin-mobile-tabs { display: flex !important; }
+          .admin-main { padding: 16px !important; }
+        }
       `}</style>
 
       {/* ── Sidebar ── */}
@@ -409,7 +414,47 @@ export default function AdminPage() {
           </div>
         </header>
 
-        <main style={{ flex: 1, padding: "28px 28px", maxWidth: 1100, width: "100%" }}>
+        {/* ── Mobile tab strip (hidden on desktop) ── */}
+        <nav className="admin-mobile-tabs" style={{
+          overflowX: "auto", overflowY: "hidden",
+          borderBottom: "1px solid var(--border)",
+          background: "var(--surface)",
+          scrollbarWidth: "none",
+          WebkitOverflowScrolling: "touch",
+          gap: 0,
+          flexShrink: 0,
+        }}>
+          <style>{`.admin-mobile-tabs::-webkit-scrollbar { display: none; }`}</style>
+          {navItems.map(({ id, icon: Icon, label, badge }) => {
+            const active = tab === id;
+            return (
+              <button key={id} onClick={() => setTab(id)} style={{
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                gap: 3, padding: "8px 14px", border: "none", cursor: "pointer",
+                background: "transparent", flexShrink: 0, position: "relative",
+                color: active ? "var(--sf)" : "var(--text-3)",
+                borderBottom: active ? "2px solid var(--sf)" : "2px solid transparent",
+                transition: "color 0.15s",
+              }}>
+                <div style={{ position: "relative" }}>
+                  <Icon size={18} />
+                  {badge !== null && (
+                    <span style={{
+                      position: "absolute", top: -5, right: -7,
+                      fontSize: 9, fontWeight: 800, minWidth: 14, height: 14,
+                      borderRadius: 999, background: "#F97316", color: "#fff",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      padding: "0 3px",
+                    }}>{badge}</span>
+                  )}
+                </div>
+                <span style={{ fontSize: 10, fontWeight: active ? 700 : 500, whiteSpace: "nowrap" }}>{label}</span>
+              </button>
+            );
+          })}
+        </nav>
+
+        <main className="admin-main" style={{ flex: 1, padding: "28px 28px", maxWidth: 1100, width: "100%" }}>
 
           {loading && (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 16 }}>
