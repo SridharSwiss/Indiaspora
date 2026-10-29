@@ -284,7 +284,7 @@ function EventLightbox({ event, onClose }: { event: EventItem; onClose: () => vo
   );
 }
 
-const BANNER_DURATION = 4500;
+const BANNER_DURATION = 9000;
 
 function FeaturedEventBanner({ event, onClose }: { event: EventItem; onClose: () => void }) {
   const [progress, setProgress] = useState(100);
@@ -302,7 +302,8 @@ function FeaturedEventBanner({ event, onClose }: { event: EventItem; onClose: ()
   }, [onClose]);
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 500 }}>
+    <div className="feat-wrap" style={{ position: "fixed", inset: 0, zIndex: 500 }}>
+      <style>{`@media (max-width: 768px) { .feat-wrap { display: none !important; } }`}</style>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.72)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }} />
 
       <div className="lb-outer">
