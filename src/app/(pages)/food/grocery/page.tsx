@@ -46,8 +46,8 @@ const stores = [
     city: "Winterthur",
     name: "Tandoor Indian Supermarket",
     area: "Neuwiesenstrasse / Hauptbahnhof",
-    note: "Indian supermarket and takeaway directly behind Winterthur main station. Large selection of Indian groceries, spices, lentils, rice, and frozen foods — plus an in-store takeaway buffet with fresh Indian dishes. Neuwiesenstrasse 6, 8400 Winterthur. Phone: 052 550 29 01.",
-    url: "https://www.indian-supermarket.ch",
+    note: "Indian supermarket and takeaway directly behind Winterthur main station. Large selection of Indian groceries, spices, lentils, rice, and frozen foods — plus an in-store takeaway buffet with fresh Indian dishes. Neuwiesenstrasse 6, 8400 Winterthur. Phone: 052 550 29 01. No verified website — search 'Tandoor Indian Supermarket Winterthur' on Google Maps.",
+    url: null,
   },
   // ── Basel ─────────────────────────────────────────────────────────────────────
   {
@@ -105,11 +105,6 @@ const online = [
     name: "dalchinii.ch",
     desc: "Switzerland-based online Indian grocery with curated selection of spices, lentils, flours, and pickles. Good for hard-to-find Indian brands.",
     url: "https://dalchinii.ch",
-  },
-  {
-    name: "asianspice.ch",
-    desc: "Online Indian and South Asian grocery store delivering across Switzerland. Known for reliable delivery and a strong spice and lentil selection.",
-    url: "https://asianspice.ch",
   },
   {
     name: "piccantino.ch",

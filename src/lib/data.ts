@@ -247,7 +247,7 @@ export const UPCOMING_EVENTS = [
   {
     title: "IAGZ Diwali Gala 2026",
     date: "Nov 14, 2026",
-    location: "Mattenhofsaal, Zurich",
+    location: "Zurich (venue to be confirmed)",
     category: "Festival",
     description: "IAGZ's flagship annual Diwali gala with cultural performances, gourmet Indian dinner, and awards.",
     organiser: "Indian Association Zurich (IAGZ)",
@@ -265,17 +265,6 @@ export const UPCOMING_EVENTS = [
     color: "bg-amber-600",
     url: "https://sicc.ch/event/cognizant-a-diwali-evening-of-exchange-shaping-the-narrative-for-wef-davos-2027/",
     image: "https://images.unsplash.com/photo-1515825838458-f2a94b20105a?w=600&auto=format&fit=crop",
-  },
-  {
-    title: "Indo-Swiss Sustainability Awards 2026",
-    date: "28 Nov 2026",
-    location: "Zurich",
-    category: "Networking",
-    description: "SICC's annual awards recognising Swiss and Indian companies leading in sustainable business practices and Indo-Swiss cross-border collaboration.",
-    organiser: "Swiss Indian Chamber of Commerce (SICC)",
-    color: "bg-blue-600",
-    url: "https://sicc.ch",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop",
   },
   // ── Past (shown in Past Events section) ──────────────────────────────────
   {
