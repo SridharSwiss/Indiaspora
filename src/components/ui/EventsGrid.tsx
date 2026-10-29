@@ -284,7 +284,7 @@ function EventLightbox({ event, onClose }: { event: EventItem; onClose: () => vo
   );
 }
 
-const BANNER_DURATION = 9000;
+const BANNER_DURATION = 15000;
 
 function FeaturedEventBanner({ event, onClose }: { event: EventItem; onClose: () => void }) {
   const [progress, setProgress] = useState(100);
@@ -303,11 +303,26 @@ function FeaturedEventBanner({ event, onClose }: { event: EventItem; onClose: ()
 
   return (
     <div className="feat-wrap" style={{ position: "fixed", inset: 0, zIndex: 500 }}>
-      <style>{`@media (max-width: 768px) { .feat-wrap { display: none !important; } }`}</style>
+      <style>{`
+        @keyframes featIn { from { opacity:0; transform:scale(0.94) translateY(12px); } to { opacity:1; transform:none; } }
+        @media (max-width: 768px) { .feat-wrap { display: none !important; } }
+        .feat-outer { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:24px; pointer-events:none; }
+        .feat-panel {
+          position:relative; pointer-events:auto; display:flex; flex-direction:column;
+          width:100%; max-width:860px; max-height:88vh; overflow:hidden;
+          background:var(--surface); border:1px solid var(--border-2); border-radius:20px;
+          box-shadow:0 32px 80px rgba(0,0,0,0.5);
+          animation: featIn 0.3s cubic-bezier(0.16,1,0.3,1) both;
+        }
+        .feat-body { display:flex; flex-direction:row; flex:1; min-height:0; overflow:hidden; }
+        .feat-img { flex:0 0 45%; max-width:45%; position:relative; overflow:hidden; }
+        .feat-img img { width:100%; height:100%; min-height:320px; object-fit:cover; display:block; }
+        .feat-text { flex:1; min-width:0; padding:36px 28px 28px; overflow-y:auto; display:flex; flex-direction:column; gap:16px; }
+      `}</style>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.72)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }} />
 
-      <div className="lb-outer">
-        <div className="lb-panel" style={{ maxWidth: 860 }}>
+      <div className="feat-outer">
+        <div className="feat-panel" >
           {/* Featured badge */}
           <div className="feat-badge" style={{
             position: "absolute", top: 14, left: 14, zIndex: 10,
@@ -328,9 +343,9 @@ function FeaturedEventBanner({ event, onClose }: { event: EventItem; onClose: ()
           }}>×</button>
 
           {/* Body */}
-          <div className="lb-body">
+          <div className="feat-body">
             {event.image && (
-              <div className="lb-img-pane">
+              <div className="feat-img">
                 <img src={event.image} alt={event.title} />
                 <span style={{
                   position: "absolute", top: 14, left: 14,
@@ -340,7 +355,7 @@ function FeaturedEventBanner({ event, onClose }: { event: EventItem; onClose: ()
                 }}>{event.category}</span>
               </div>
             )}
-            <div className="lb-text-pane" style={{ paddingTop: 36 }}>
+            <div className="feat-text">
               <h2 style={{ margin: 0, fontSize: 22, fontWeight: 800, lineHeight: 1.2, fontFamily: "'Playfair Display', Georgia, serif", color: "var(--text)" }}>
                 {event.title}
               </h2>
