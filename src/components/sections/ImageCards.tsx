@@ -125,7 +125,7 @@ export default function ImageCards() {
         </div>
 
         {/* Main card + side thumbnails */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "clamp(16px,3vw,40px)", alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "clamp(16px,3vw,40px)", alignItems: "stretch" }}>
 
           {/* FEATURED CARD */}
           <div
@@ -266,9 +266,14 @@ export default function ImageCards() {
 
           {/* RIGHT: Thumbnail stack */}
           <div style={{
-            display: "flex", flexDirection: "column", gap: 10,
+            position: "relative",
             width: "clamp(140px, 18vw, 220px)",
           }} className="thumbnails-col">
+          <div className="thumbnails-scroll" style={{
+            position: "absolute", inset: 0,
+            display: "flex", flexDirection: "column", gap: 10,
+            overflowY: "auto", padding: 4, scrollbarWidth: "thin",
+          }}>
             {CARDS.map((c, i) => (
               <button
                 key={i}
@@ -313,6 +318,7 @@ export default function ImageCards() {
                 </span>
               </button>
             ))}
+          </div>
           </div>
         </div>
       </div>
