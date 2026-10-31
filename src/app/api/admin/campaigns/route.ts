@@ -6,7 +6,6 @@ import { fetchDigestNews } from "@/lib/campaigns/feeds";
 import { upcomingForDigest } from "@/lib/campaigns/events";
 import { digestHtml, loginNudgeHtml, festivalHtml, customHtml, SITE, esc } from "@/lib/campaigns/templates";
 import { FESTIVALS } from "@/lib/campaigns/festivals";
-import { llmWrite, llmConfigured, llmModel, EDITOR_SYSTEM } from "@/lib/campaigns/llm";
 
 export const maxDuration = 60;
 
@@ -53,7 +52,6 @@ export async function GET() {
   return NextResponse.json({
     counts: Object.fromEntries(Object.entries(aud).map(([k, v]) => [k, v.length])),
     history: history ?? [],
-    ai: { configured: llmConfigured(), model: llmModel() },
     festivals: FESTIVALS.map(f => ({ id: f.id, name: f.name, emoji: f.emoji, fixed: f.fixed ?? null })),
   });
 }
@@ -69,25 +67,22 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ error: "Unknown action" }, { status: 400 });
 }
 
-async function socialKit(ai: (u: string, t?: number) => Promise<string | null>, topic: string, facts: string) {
+function socialKit(topic: string, lines: string[]) {
   const tags = "#Indiaspora #IndiansInSwitzerland #SwissIndian";
-  const [wa, li, ig] = await Promise.all([
-    ai(`Write a short WhatsApp broadcast message (max 60 words, 1-2 emojis, ends with https://indiaspora.ch) about: ${topic}. Facts:\n${facts}`, 200),
-    ai(`Write a LinkedIn post (max 90 words, professional but warm, end with https://indiaspora.ch and these hashtags: ${tags}) about: ${topic}. Facts:\n${facts}`, 260),
-    ai(`Write an Instagram caption (max 50 words, 2-3 emojis, then these hashtags: ${tags} #Diaspora) about: ${topic}. Facts:\n${facts}`, 200),
-  ]);
+  const top = lines.slice(0, 3).map(l => `• ${l}`).join("\n");
   return {
-    whatsapp: wa ?? `${topic}\n\n${facts.split("\n").slice(0, 3).join("\n")}\n\nMore: https://indiaspora.ch`,
-    linkedin: li ?? `${topic}\n\n${facts.split("\n").slice(0, 3).join("\n")}\n\nMore on https://indiaspora.ch\n\n${tags}`,
-    instagram: ig ?? `${topic} 🪔\n\n${tags} #Diaspora`,
+    whatsapp: `🪔 ${topic}\n\n${top}\n\nAll details: ${SITE}`,
+    linkedin: `${topic}\n\n${top}\n\nFind everything for the Indian community in Switzerland on ${SITE}\n\n${tags}`,
+    instagram: `🪔 ${topic}\n\n${top}\n\nLink in bio.\n\n${tags} #Diaspora`,
   };
 }
+
+const pickGreeting = (n: number) => ["Namaste!", "Namaste, everyone!", "Hello from the Swiss Indiaspora Team!"][n % 3];
 
 async function generate(body: { type: string; festivalId?: string; notes?: string }) {
   const notes = (body.notes ?? "").slice(0, 2000);
   const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-  let aiUsed = false;
-  const ai = async (user: string, tokens = 300) => { const t = await llmWrite(EDITOR_SYSTEM, user, tokens); if (t) aiUsed = true; return t; };
+  const aiUsed = false;
 
   if (body.type === "digest") {
     const [news, { data: dbEvents }] = await Promise.all([
@@ -95,34 +90,35 @@ async function generate(body: { type: string; festivalId?: string; notes?: strin
       createAdminClient().from("events").select("title,date,location,organiser,url").eq("event_status", "approved").eq("active", true).limit(60),
     ]);
     const events = upcomingForDigest((dbEvents ?? []).map(e => ({ title: e.title, date: e.date, location: e.location, organiser: e.organiser ?? undefined, url: e.url ?? undefined })));
-    const headlines = [...news.diaspora, ...news.switzerland].map(i => `- ${i.title} (${i.source})`).join("\n");
-    const evLines = events.map(e => `- ${e.title}, ${e.date}, ${e.location}`).join("\n");
-    const intro =
-      (await ai(`Today is ${today}. Write a warm 3-4 sentence opening for the weekly Indiaspora newsletter to Indians in Switzerland. Mention the themes of this week using only these items.\n\nEvents:\n${evLines || "(none)"}\n\nHeadlines:\n${headlines || "(none)"}\n\nSite updates from the team:\n${notes || "(none)"}`)) ??
-      `Namaste! Here is your weekly round-up of what's happening in the Indian community in Switzerland: ${events.length ? `${events.length} upcoming event${events.length > 1 ? "s" : ""}, ` : ""}plus stories and reading we picked for you.`;
+    const first = events[0];
+    const parts = [
+      `${pickGreeting(new Date().getDate())} Here is your weekly round-up from the Indian community in Switzerland.`,
+      events.length
+        ? `${events.length} event${events.length > 1 ? "s are" : " is"} coming up, starting with ${first.title} on ${first.date} (${first.location}).`
+        : "No new community events are listed right now, so check the events page for updates.",
+      news.diaspora.length ? `We also collected ${news.diaspora.length} stories on the Indian diaspora in Switzerland and Europe, and a few reads from the big newsrooms.` : "",
+    ].filter(Boolean);
+    const intro = parts.join(" ");
+    const lines = events.map(e => `${e.title}, ${e.date}, ${e.location}`);
     return NextResponse.json({
       subject: `Indiaspora Weekly · ${today}`,
       html: digestHtml({ intro, events, ...news, changes: notes }),
-      social: await socialKit(ai, `This week in the Indian community in Switzerland (${today})`, evLines || headlines || "Events, news and community updates"),
-      aiUsed, model: aiUsed ? llmModel() : null,
+      social: socialKit(`This week in the Indian community in Switzerland (${today})`, lines.length ? lines : news.diaspora.map(i => i.title)),
+      aiUsed, model: null,
       stats: { events: events.length, diaspora: news.diaspora.length, newsrooms: news.newsrooms.length },
     });
   }
 
   if (body.type === "login_nudge") {
-    const message =
-      (await ai(`Write a friendly 3-sentence note (starting with "Namaste {{NAME}},") inviting a registered Indiaspora member to log in to the community. Benefits: events calendar, Indian restaurants and grocery directory, community associations, living guide for housing/health/banking. Extra context from the team: ${notes || "none"}`)) ??
-      `Namaste {{NAME}},\n\nThank you for joining Indiaspora! We noticed you haven't logged in yet. Your account gives you the full community: the events calendar, Indian restaurants and grocery stores, associations across all cantons and our living guide for housing, healthcare and banking.\n\nIt takes ten seconds. We'd love to see you there.`;
-    return NextResponse.json({ subject: "Your Indiaspora community is waiting for you", html: loginNudgeHtml({ message }), aiUsed, model: aiUsed ? llmModel() : null });
+    const message = `Namaste {{NAME}},\n\nThank you for joining Indiaspora! We noticed you haven't logged in yet. Your account gives you the full community: the events calendar, Indian restaurants and grocery stores, associations across all cantons and our living guide for housing, healthcare and banking.${notes.trim() ? `\n\n${notes.trim()}` : ""}\n\nIt takes ten seconds. We'd love to see you there.`;
+    return NextResponse.json({ subject: "Your Indiaspora community is waiting for you", html: loginNudgeHtml({ message }), aiUsed, model: null });
   }
 
   if (body.type === "festival") {
     const f = FESTIVALS.find(x => x.id === body.festivalId);
     if (!f) return NextResponse.json({ error: "Choose a festival" }, { status: 400 });
-    const message =
-      (await ai(`Write a heartfelt 3-sentence festival greeting (starting with "Namaste {{NAME}},") for ${f.name} from Indiaspora to Indians living in Switzerland. Seed message: ${f.blurb} Extra from the team: ${notes || "none"}`)) ??
-      `Namaste {{NAME}},\n\n${f.blurb}\n\nWith warm wishes from all of us at Indiaspora.`;
-    return NextResponse.json({ subject: `${f.emoji} ${f.greeting} from Indiaspora`, html: festivalHtml(f, { message }), social: await socialKit(ai, `${f.greeting}: ${f.name} wishes from Swiss Indiaspora`, f.blurb), aiUsed, model: aiUsed ? llmModel() : null });
+    const message = `Namaste {{NAME}},\n\n${f.blurb}${notes.trim() ? `\n\n${notes.trim()}` : ""}\n\nWith warm wishes from all of us at Indiaspora.`;
+    return NextResponse.json({ subject: `${f.emoji} ${f.greeting} from Indiaspora`, html: festivalHtml(f, { message }), social: socialKit(`${f.greeting}! Warm ${f.name} wishes from the Swiss Indiaspora Team`, [f.blurb]), aiUsed, model: null });
   }
 
   if (body.type === "custom") {

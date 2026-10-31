@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { Mail, Sparkles, Send, FlaskConical, Loader2, Wand2 } from "lucide-react";
+import { Mail, Send, FlaskConical, Loader2, Wand2 } from "lucide-react";
 
 type Type = "digest" | "login_nudge" | "festival" | "custom";
 type Audience = "not_logged_in" | "members" | "subscribers" | "everyone";
 type Meta = {
   counts: Record<Audience, number>;
   history: { id: string; type: string; subject: string; audience: string; status: string; recipients: number; failed: number; ai_model: string | null; created_at: string }[];
-  ai: { configured: boolean; model: string };
   festivals: { id: string; name: string; emoji: string; fixed: string | null }[];
 };
 
@@ -55,7 +54,6 @@ export default function CampaignComposer() {
     setBusy("");
     if (!r.ok) return setMsg({ ok: false, text: j.error ?? "Could not generate" });
     setSubject(j.subject); setHtml(j.html); setModel(j.model ?? null); setSocial(j.social ?? null);
-    if (!j.aiUsed) setMsg({ ok: true, text: meta?.ai.configured ? "AI was unreachable, so the standard template text was used." : "Draft built from the standard template. Set OSS_LLM_API_KEY to enable open-source AI writing." });
   };
 
   const send = async (testOnly: boolean) => {
@@ -77,9 +75,6 @@ export default function CampaignComposer() {
           <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Email campaigns</div>
           <div style={{ fontSize: 12, color: "var(--text-3)" }}>Signed &ldquo;Swiss Indiaspora Team&rdquo; · every email has an unsubscribe link</div>
         </div>
-        <span style={{ fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 999, background: meta?.ai.configured ? "rgba(5,150,105,0.12)" : "rgba(217,119,6,0.12)", color: meta?.ai.configured ? "#059669" : "#D97706" }}>
-          <Sparkles size={11} style={{ display: "inline", marginRight: 4 }} />{meta?.ai.configured ? `AI: ${meta.ai.model.split("/").pop()}` : "AI not configured"}
-        </span>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 10, marginBottom: 16 }}>
@@ -108,7 +103,7 @@ export default function CampaignComposer() {
       </div>
 
       <label style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-        {type === "custom" ? "Your message" : type === "digest" ? "What's new on Indiaspora (optional)" : "Extra context for the writer (optional)"}
+        {type === "custom" ? "Your message" : type === "digest" ? "What's new on Indiaspora (optional)" : "Add a personal line (optional)"}
         <textarea rows={3} value={notes} onChange={e => setNotes(e.target.value)} placeholder={type === "digest" ? "e.g. New Living Guide pages for taxes; community directory now open for submissions" : "Anything you want mentioned"} style={{ ...input, marginTop: 6, resize: "vertical" }} />
       </label>
 
