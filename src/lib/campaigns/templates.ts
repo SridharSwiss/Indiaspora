@@ -19,7 +19,7 @@ function shell(opts: { colors: [string, string]; emoji: string; title: string; s
     <p style="margin:8px 0 0;color:rgba(255,255,255,.88);font-size:13px">${esc(opts.sub)}</p>
   </div>
   <div style="padding:32px 34px">${opts.body}
-    ${opts.share ?? ""}${opts.cta ? `<a href="${opts.cta.href}" style="display:block;text-align:center;background:linear-gradient(135deg,${c1},${c2});color:#fff;text-decoration:none;padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;margin-top:8px">${esc(opts.cta.label)}</a>` : ""}
+    ${opts.cta ? `<a href="${opts.cta.href}" style="display:block;text-align:center;background:linear-gradient(135deg,${c1},${c2});color:#fff;text-decoration:none;padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;margin-top:24px">${esc(opts.cta.label)}</a>` : ""}${opts.share ?? ""}
     <p style="font-size:14px;color:#3F3832;line-height:1.6;margin:28px 0 0">Warm regards,<br><strong style="color:#1A1410">Swiss Indiaspora Team</strong></p>
   </div>
   <div style="padding:22px 34px;border-top:1px solid #F2F0EB;text-align:center">
@@ -77,3 +77,80 @@ export function festivalHtml(f: Festival, p: { message: string }) {
 export function customHtml(p: { title: string; message: string }) {
   return shell({ colors: ["#F97316", "#DC2626"], emoji: "🪔", title: p.title, sub: "Indiaspora", body: paras(p.message), cta: { label: "Visit Indiaspora ", href: SITE } });
 }
+
+export type WelcomeVariant = "associations" | "businesses" | "individuals";
+
+const WELCOME: Record<WelcomeVariant, {
+  title: string; sub: string; colors: [string, string]; emoji: string; subject: string;
+  intro: string; features: [string, string, string][]; steps: [string, string, string, string][]; cta: { label: string; href: string };
+}> = {
+  associations: {
+    title: "Bring your association to the whole community", sub: "Welcome to Indiaspora for associations, temples and student groups", colors: ["#C2410C", "#9F1239"], emoji: "🏛️",
+    subject: "Welcome to Indiaspora: reach every Indian in Switzerland with your events",
+    intro: "Namaste {{NAME}},\n\nIndiaspora is the community hub for Indians living in Switzerland. For an association, temple or student group it is a free place to be found, to announce your events and to meet people who are looking for exactly what you offer.",
+    features: [
+      ["📅", "Events calendar", "Every festival, cultural evening and meet-up in one place, across all cantons."],
+      ["🤝", "Community pages", "Associations, spiritual centres, student groups and women's networks, listed by city."],
+      ["🗺️", "City guides", "Zurich, Geneva, Basel, Bern and Lausanne, so newcomers find you in their own city."],
+      ["📰", "News and weekly digest", "Your announcements can reach members through the Indiaspora weekly email."],
+    ],
+    steps: [
+      ["📣", "Submit your event", "Send us the title, date, place and a poster. We review it and publish it on the events calendar.", `${SITE}/events/submit`],
+      ["💬", "Ask the community", "Organising a first festival or dealing with permits and venues? Ask for advice from people who have done it.", `${SITE}/advice`],
+      ["🏷️", "Promote a campaign", "Sponsorship drives, fundraisers or membership campaigns can be featured to the wider community.", `${SITE}/advertise`],
+    ],
+    cta: { label: "Submit your first event", href: `${SITE}/events/submit` },
+  },
+  businesses: {
+    title: "Reach Switzerland's Indian community", sub: "Welcome to Indiaspora for businesses and professionals", colors: ["#1D4ED8", "#6D28D9"], emoji: "💼",
+    subject: "Welcome to Indiaspora: put your business in front of the Indian community in Switzerland",
+    intro: "Namaste {{NAME}},\n\nIndiaspora is where Indians in Switzerland look for restaurants, grocery stores, professionals, jobs and services. If you run a business or offer a service, this is a direct line to the people who need it.",
+    features: [
+      ["🍛", "Food and grocery", "Restaurants, caterers and grocery stores people search for every week."],
+      ["💼", "Business network", "Networking groups, startups and professional services, with jobs and the chamber of commerce."],
+      ["🏠", "Living guide", "Housing, banking, insurance, tax and legal pages that newcomers read first."],
+      ["📅", "Events", "Sponsor or list an event to meet the community in person."],
+    ],
+    steps: [
+      ["📢", "Promote your business", "Banners, newsletter features, sponsored content and event listings. Tell us your goal and audience.", `${SITE}/advertise`],
+      ["📣", "List an event", "Hosting a launch, workshop or concert? Submit it to the events calendar.", `${SITE}/events/submit`],
+      ["💬", "Seek advice", "Setting up in Switzerland or hiring? Ask the community for practical guidance.", `${SITE}/advice`],
+    ],
+    cta: { label: "Promote your business", href: `${SITE}/advertise` },
+  },
+  individuals: {
+    title: "Your guide to Indian life in Switzerland", sub: "Welcome to Indiaspora", colors: ["#F97316", "#DC2626"], emoji: "🪔",
+    subject: "Welcome to Indiaspora: everything for the Indian community in Switzerland",
+    intro: "Namaste {{NAME}},\n\nIndiaspora brings together what Indians in Switzerland look for: where to eat and shop, which festivals are near you, how to handle permits, housing and health insurance, and who to ask when you are stuck.",
+    features: [
+      ["📅", "Events near you", "Diwali, Holi, Garba, concerts and meet-ups across all cantons."],
+      ["🍛", "Food and grocery", "Indian restaurants, caterers and grocery stores by city."],
+      ["🏠", "Living guide", "First 30 days, permits, Krankenkasse, taxes, housing, banking and more."],
+      ["🤝", "Community", "Associations, temples, student and women's groups, plus city guides and news."],
+    ],
+    steps: [
+      ["🙋", "Join and log in", "Create your free profile to follow the community and get the weekly digest.", `${SITE}/join`],
+      ["💬", "Seek advice", "Ask a question about moving, paperwork, schools or work. People who have been there reply.", `${SITE}/advice`],
+      ["📣", "Share an event", "Organising a gathering or festival? Submit it so everyone can find it.", `${SITE}/events/submit`],
+    ],
+    cta: { label: "Join the community", href: `${SITE}/join` },
+  },
+};
+
+export function welcomeHtml(variant: WelcomeVariant) {
+  const w = WELCOME[variant];
+  const feats = w.features.map(([i, t, d]) =>
+    `<td width="50%" valign="top" style="padding:6px"><div style="padding:14px;border:1px solid #EAE4DA;border-radius:12px;height:100%"><div style="font-size:22px">${i}</div><div style="font-weight:700;font-size:14px;color:#1A1410;margin-top:6px">${esc(t)}</div><div style="font-size:12.5px;color:#5C524A;margin-top:4px;line-height:1.5">${esc(d)}</div></div></td>`);
+  const grid = `<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${feats[0]}${feats[1]}</tr><tr>${feats[2]}${feats[3]}</tr></table>`;
+  const steps = w.steps.map(([i, t, d, href]) =>
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;background:#FBF3E8;border-radius:12px"><tr>
+      <td width="52" align="center" valign="top" style="padding:14px 0 14px 12px;font-size:24px">${i}</td>
+      <td style="padding:14px"><div style="font-weight:700;font-size:15px;color:#1A1410">${esc(t)}</div><div style="font-size:13px;color:#3F3832;margin-top:3px;line-height:1.55">${esc(d)}</div>
+      <a href="${href}" style="display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:#C2410C;text-decoration:none">Go to this page</a></td></tr></table>`).join("");
+  const forward = `<div style="margin-top:24px;padding:18px 20px;border-radius:14px;background:#1A1410;text-align:center">
+    <div style="font-size:16px;font-weight:800;color:#fff">Please forward this welcome</div>
+    <div style="font-size:13px;color:#E8DFD3;margin-top:6px;line-height:1.55">Send it to your friends and family in Switzerland. The more of us who are here, the more useful this community becomes for everyone.</div></div>`;
+  const body = paras(w.intro) + h2("What you'll find") + grid + h2("How to get started") + steps + forward;
+  return shell({ colors: w.colors, emoji: w.emoji, title: w.title, sub: w.sub, body, cta: w.cta, share: shareRow("Welcome to Indiaspora, the community hub for Indians in Switzerland") });
+}
+export const welcomeSubject = (v: WelcomeVariant) => WELCOME[v].subject;

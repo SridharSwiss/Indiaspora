@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { fetchDigestNews } from "@/lib/campaigns/feeds";
 import { upcomingForDigest } from "@/lib/campaigns/events";
-import { digestHtml, loginNudgeHtml, festivalHtml, customHtml, SITE, esc } from "@/lib/campaigns/templates";
+import { digestHtml, loginNudgeHtml, festivalHtml, customHtml, welcomeHtml, welcomeSubject, SITE, esc, type WelcomeVariant } from "@/lib/campaigns/templates";
 import { FESTIVALS } from "@/lib/campaigns/festivals";
 
 export const maxDuration = 60;
@@ -90,7 +90,7 @@ function socialKit(topic: string, lines: string[]) {
 
 const pickGreeting = (n: number) => ["Namaste!", "Namaste, everyone!", "Hello from the Swiss Indiaspora Team!"][n % 3];
 
-async function generate(body: { type: string; festivalId?: string; notes?: string }) {
+async function generate(body: { type: string; festivalId?: string; notes?: string; variant?: WelcomeVariant }) {
   const notes = (body.notes ?? "").slice(0, 2000);
   const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   const aiUsed = false;
@@ -130,6 +130,12 @@ async function generate(body: { type: string; festivalId?: string; notes?: strin
     if (!f) return NextResponse.json({ error: "Choose a festival" }, { status: 400 });
     const message = `Namaste {{NAME}},\n\n${f.blurb}${notes.trim() ? `\n\n${notes.trim()}` : ""}\n\nWith warm wishes from all of us at Indiaspora.`;
     return NextResponse.json({ subject: `${f.emoji} ${f.greeting} from Indiaspora`, html: festivalHtml(f, { message }), social: socialKit(`${f.greeting}! Warm ${f.name} wishes from the Swiss Indiaspora Team`, [f.blurb]), aiUsed, model: null });
+  }
+
+  if (body.type === "welcome") {
+    const v: WelcomeVariant = body.variant && ["associations", "businesses", "individuals"].includes(body.variant) ? body.variant : "individuals";
+    const topic = { associations: "Welcome, associations: submit your events to Indiaspora", businesses: "Welcome, businesses: reach the Indian community in Switzerland", individuals: "Welcome to Indiaspora, the community hub for Indians in Switzerland" }[v];
+    return NextResponse.json({ subject: welcomeSubject(v), html: welcomeHtml(v), social: socialKit(topic, ["Events calendar and event submissions", "Seek advice from the community", "Food, business and living guides"]), aiUsed: false, model: null });
   }
 
   if (body.type === "custom") {

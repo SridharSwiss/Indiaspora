@@ -3,7 +3,8 @@
 import { useEffect, useState, useCallback } from "react";
 import { Mail, Send, FlaskConical, Loader2, Wand2 } from "lucide-react";
 
-type Type = "digest" | "login_nudge" | "festival" | "custom";
+type Type = "digest" | "login_nudge" | "festival" | "custom" | "welcome";
+type Variant = "associations" | "businesses" | "individuals";
 type Audience = "not_logged_in" | "members" | "subscribers" | "everyone" | "associations" | "businesses" | "individuals";
 type Meta = {
   counts: Record<Audience, number>;
@@ -12,6 +13,7 @@ type Meta = {
 };
 
 const TYPES: { id: Type; emoji: string; label: string; hint: string; audience: Audience }[] = [
+  { id: "welcome", emoji: "👋", label: "Welcome and how it works", hint: "Site summary, submit events, seek advice, promote a business. Tailored per group", audience: "individuals" },
   { id: "digest", emoji: "📰", label: "Weekly digest", hint: "Events, site updates, diaspora news and big-newsroom reads", audience: "everyone" },
   { id: "login_nudge", emoji: "👋", label: "Login follow-up", hint: "Invite members who haven't logged in yet", audience: "not_logged_in" },
   { id: "festival", emoji: "🪔", label: "Festival wishes", hint: "Diwali, Holi, Eid, Christmas, national days…", audience: "everyone" },
@@ -35,6 +37,7 @@ export default function CampaignComposer() {
   const [type, setType] = useState<Type>("digest");
   const [audience, setAudience] = useState<Audience>("everyone");
   const [festivalId, setFestivalId] = useState("diwali");
+  const [variant, setVariant] = useState<Variant>("individuals");
   const [notes, setNotes] = useState("");
   const [subject, setSubject] = useState("");
   const [html, setHtml] = useState("");
@@ -50,11 +53,11 @@ export default function CampaignComposer() {
   }, []);
   useEffect(() => { load(); }, [load]);
 
-  const pick = (t: Type) => { setType(t); setAudience(TYPES.find(x => x.id === t)!.audience); setHtml(""); setMsg(null); };
+  const pick = (t: Type) => { setType(t); setAudience(t === "welcome" ? variant : TYPES.find(x => x.id === t)!.audience); setHtml(""); setMsg(null); };
 
   const generate = async () => {
     setBusy("gen"); setMsg(null);
-    const r = await fetch("/api/admin/campaigns", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "generate", type, festivalId, notes }) });
+    const r = await fetch("/api/admin/campaigns", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "generate", type, festivalId, notes, variant }) });
     const j = await r.json();
     setBusy("");
     if (!r.ok) return setMsg({ ok: false, text: j.error ?? "Could not generate" });
@@ -102,6 +105,15 @@ export default function CampaignComposer() {
             ))}
           </select>
         </label>
+        {type === "welcome" && (
+          <label style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Version
+            <select value={variant} onChange={e => { const v = e.target.value as Variant; setVariant(v); setAudience(v); setHtml(""); }} style={{ ...input, marginTop: 6 }}>
+              <option value="associations">Associations</option>
+              <option value="businesses">Businesses</option>
+              <option value="individuals">Individuals</option>
+            </select>
+          </label>
+        )}
         {type === "festival" && (
           <label style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Festival
             <select value={festivalId} onChange={e => setFestivalId(e.target.value)} style={{ ...input, marginTop: 6 }}>

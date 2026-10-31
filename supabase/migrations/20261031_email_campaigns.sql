@@ -1,6 +1,6 @@
 create table if not exists public.email_campaigns (
   id uuid primary key default gen_random_uuid(),
-  type text not null check (type in ('digest','login_nudge','festival','custom')),
+  type text not null check (type in ('digest','login_nudge','festival','custom','welcome')),
   subject text not null,
   html text not null,
   audience text not null,
