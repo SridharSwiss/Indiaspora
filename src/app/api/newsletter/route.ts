@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 const CONSENT_TEXT = "I agree to receive the weekly Indiaspora newsletter. I can unsubscribe at any time.";
@@ -66,6 +67,11 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   // Admin-only: list subscribers
+  const authClient = await createClient();
+  const { data: { user } } = await authClient.auth.getUser();
+  if (!user?.email || user.email !== process.env.ADMIN_EMAIL) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("newsletter_subscribers")

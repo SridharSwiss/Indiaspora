@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import CampaignComposer from "@/components/admin/CampaignComposer";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -618,6 +619,7 @@ export default function AdminPage() {
           {/* ── MEMBERS ── */}
           {!loading && tab === "members" && (
             <div>
+              <CampaignComposer />
               {/* Reject modal */}
               {rejectNote && (
                 <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 200, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>

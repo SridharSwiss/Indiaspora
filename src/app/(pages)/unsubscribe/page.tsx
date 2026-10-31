@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Mail, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function UnsubscribePage() {
   const [email, setEmail]   = useState("");
+  useEffect(() => { const e = new URLSearchParams(window.location.search).get("email"); if (e) setEmail(e); }, []);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error" | "notfound">("idle");
 
   const submit = async (e: React.FormEvent) => {
