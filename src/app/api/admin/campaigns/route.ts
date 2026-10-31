@@ -9,7 +9,11 @@ import { FESTIVALS } from "@/lib/campaigns/festivals";
 
 export const maxDuration = 60;
 
-type Audience = "not_logged_in" | "members" | "subscribers" | "everyone";
+type Audience = "not_logged_in" | "members" | "subscribers" | "everyone" | "associations" | "businesses" | "individuals";
+
+// Group members by the directory category stored in `interests`.
+const ASSOC = ["Associations & Community", "Religious & Spiritual", "Students", "Government & Diplomatic"];
+const BIZ = ["Business & Trade", "Business & Services"];
 type Recipient = { email: string; name: string };
 
 async function requireAdmin() {
@@ -21,7 +25,7 @@ async function requireAdmin() {
 async function loadAudiences() {
   const db = createAdminClient();
   const [{ data: members }, { data: subs }, usersRes] = await Promise.all([
-    db.from("members").select("full_name,email,newsletter,status,user_id").eq("status", "approved"),
+    db.from("members").select("full_name,email,newsletter,status,user_id,interests").eq("status", "approved"),
     db.from("newsletter_subscribers").select("email,active,consent").eq("active", true).eq("consent", true),
     db.auth.admin.listUsers({ page: 1, perPage: 1000 }),
   ]);
@@ -35,7 +39,14 @@ async function loadAudiences() {
     members: memberList.filter(m => m.newsletter !== false).map(m => ({ email: norm(m.email), name: first(m.full_name) })),
     subscribers: (subs ?? []).map(s => ({ email: norm(s.email), name: "there" })),
     everyone: [],
+    associations: [], businesses: [], individuals: [],
   };
+  const optedIn = memberList.filter(m => m.newsletter !== false);
+  const to = (m: (typeof memberList)[number]) => ({ email: norm(m.email), name: first(m.full_name) });
+  const has = (m: (typeof memberList)[number], cats: string[]) => (m.interests ?? []).some((i: string) => cats.includes(i));
+  aud.associations = optedIn.filter(m => has(m, ASSOC)).map(to);
+  aud.businesses = optedIn.filter(m => has(m, BIZ)).map(to);
+  aud.individuals = optedIn.filter(m => !has(m, ASSOC) && !has(m, BIZ)).map(to);
   const all = new Map<string, Recipient>();
   for (const r of [...aud.subscribers, ...aud.members]) all.set(r.email, r);
   aud.everyone = [...all.values()];

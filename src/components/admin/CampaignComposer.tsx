@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { Mail, Send, FlaskConical, Loader2, Wand2 } from "lucide-react";
 
 type Type = "digest" | "login_nudge" | "festival" | "custom";
-type Audience = "not_logged_in" | "members" | "subscribers" | "everyone";
+type Audience = "not_logged_in" | "members" | "subscribers" | "everyone" | "associations" | "businesses" | "individuals";
 type Meta = {
   counts: Record<Audience, number>;
   history: { id: string; type: string; subject: string; audience: string; status: string; recipients: number; failed: number; ai_model: string | null; created_at: string }[];
@@ -20,7 +20,12 @@ const TYPES: { id: Type; emoji: string; label: string; hint: string; audience: A
 const AUD_LABEL: Record<Audience, string> = {
   not_logged_in: "Members who haven't logged in", members: "All approved members (opted in)",
   subscribers: "Newsletter subscribers", everyone: "Everyone (members + subscribers)",
+  associations: "Associations (community groups, temples, students, embassies)", businesses: "Businesses (chambers, shops, services)", individuals: "Individuals (members, teachers, artists)",
 };
+const GROUPS: { label: string; items: Audience[] }[] = [
+  { label: "By group", items: ["associations", "businesses", "individuals"] },
+  { label: "By status", items: ["everyone", "members", "subscribers", "not_logged_in"] },
+];
 
 const card = { background: "var(--surface)", borderRadius: 16, border: "1px solid var(--border)", padding: 20 } as const;
 const input = { width: "100%", padding: "10px 12px", borderRadius: 10, border: "1px solid var(--border-2)", background: "var(--surface-2)", color: "var(--text)", fontSize: 13, outline: "none", boxSizing: "border-box", fontFamily: "inherit" } as const;
@@ -90,7 +95,11 @@ export default function CampaignComposer() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12, marginBottom: 12 }}>
         <label style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Audience
           <select value={audience} onChange={e => setAudience(e.target.value as Audience)} style={{ ...input, marginTop: 6 }}>
-            {(Object.keys(AUD_LABEL) as Audience[]).map(a => <option key={a} value={a}>{AUD_LABEL[a]} ({meta?.counts[a] ?? "…"})</option>)}
+            {GROUPS.map(g => (
+              <optgroup key={g.label} label={g.label}>
+                {g.items.map(a => <option key={a} value={a}>{AUD_LABEL[a]} ({meta?.counts[a] ?? "…"})</option>)}
+              </optgroup>
+            ))}
           </select>
         </label>
         {type === "festival" && (
