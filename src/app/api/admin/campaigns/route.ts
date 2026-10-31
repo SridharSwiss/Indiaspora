@@ -31,7 +31,7 @@ async function loadAudiences() {
 
   const memberList = (members ?? []).filter(m => m.email);
   const aud: Record<Audience, Recipient[]> = {
-    not_logged_in: memberList.filter(m => !m.user_id || !signedIn.has(m.user_id)).map(m => ({ email: norm(m.email), name: first(m.full_name) })),
+    not_logged_in: memberList.filter(m => m.newsletter !== false && (!m.user_id || !signedIn.has(m.user_id))).map(m => ({ email: norm(m.email), name: first(m.full_name) })),
     members: memberList.filter(m => m.newsletter !== false).map(m => ({ email: norm(m.email), name: first(m.full_name) })),
     subscribers: (subs ?? []).map(s => ({ email: norm(s.email), name: "there" })),
     everyone: [],
