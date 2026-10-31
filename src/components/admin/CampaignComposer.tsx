@@ -8,6 +8,7 @@ type Variant = "associations" | "businesses" | "individuals";
 type Audience = "not_logged_in" | "members" | "subscribers" | "everyone" | "associations" | "businesses" | "individuals";
 type Meta = {
   counts: Record<Audience, number>;
+  countsAll: Record<Audience, number>;
   history: { id: string; type: string; subject: string; audience: string; status: string; recipients: number; failed: number; ai_model: string | null; created_at: string }[];
   festivals: { id: string; name: string; emoji: string; fixed: string | null }[];
 };
@@ -21,8 +22,8 @@ const TYPES: { id: Type; emoji: string; label: string; hint: string; audience: A
 ];
 const AUD_LABEL: Record<Audience, string> = {
   not_logged_in: "Members who haven't logged in", members: "All approved members (opted in)",
-  subscribers: "Newsletter subscribers", everyone: "Everyone (members + subscribers)",
-  associations: "Associations (community groups, temples, students, embassies)", businesses: "Businesses (chambers, shops, services)", individuals: "Individuals (members, teachers, artists)",
+  subscribers: "Newsletter subscribers", everyone: "Everyone (all groups together)",
+  associations: "Associations (community groups, temples, students, embassies)", businesses: "Businesses (chambers, shops, services, schools)", individuals: "Individuals (people, teachers, artists)",
 };
 const GROUPS: { label: string; items: Audience[] }[] = [
   { label: "By group", items: ["associations", "businesses", "individuals"] },
@@ -37,6 +38,7 @@ export default function CampaignComposer() {
   const [type, setType] = useState<Type>("digest");
   const [audience, setAudience] = useState<Audience>("everyone");
   const [festivalId, setFestivalId] = useState("diwali");
+  const [includeUnopted, setIncludeUnopted] = useState(false);
   const [variant, setVariant] = useState<Variant>("individuals");
   const [notes, setNotes] = useState("");
   const [subject, setSubject] = useState("");
@@ -53,6 +55,7 @@ export default function CampaignComposer() {
   }, []);
   useEffect(() => { load(); }, [load]);
 
+  const count = (includeUnopted ? meta?.countsAll : meta?.counts)?.[audience] ?? 0;
   const pick = (t: Type) => { setType(t); setAudience(t === "welcome" ? variant : TYPES.find(x => x.id === t)!.audience); setHtml(""); setMsg(null); };
 
   const generate = async () => {
@@ -65,10 +68,10 @@ export default function CampaignComposer() {
   };
 
   const send = async (testOnly: boolean) => {
-    const n = meta?.counts[audience] ?? 0;
+    const n = count;
     if (!testOnly && !confirm(`Send "${subject}" to ${n} recipient${n === 1 ? "" : "s"} (${AUD_LABEL[audience]})? This cannot be undone.`)) return;
     setBusy(testOnly ? "test" : "send"); setMsg(null);
-    const r = await fetch("/api/admin/campaigns", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "send", type, subject, html, audience, testOnly, aiModel: model }) });
+    const r = await fetch("/api/admin/campaigns", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "send", type, subject, html, audience, testOnly, includeUnopted, aiModel: model }) });
     const j = await r.json();
     setBusy("");
     setMsg(r.ok ? { ok: j.ok, text: testOnly ? "Test email sent to your admin address." : `Sent to ${j.sent} recipient(s)${j.failed ? `, ${j.failed} failed` : ""}.` } : { ok: false, text: j.error ?? "Send failed" });
@@ -100,10 +103,15 @@ export default function CampaignComposer() {
           <select value={audience} onChange={e => setAudience(e.target.value as Audience)} style={{ ...input, marginTop: 6 }}>
             {GROUPS.map(g => (
               <optgroup key={g.label} label={g.label}>
-                {g.items.map(a => <option key={a} value={a}>{AUD_LABEL[a]} ({meta?.counts[a] ?? "…"})</option>)}
+                {g.items.map(a => <option key={a} value={a}>{AUD_LABEL[a]} ({(includeUnopted ? meta?.countsAll : meta?.counts)?.[a] ?? "…"})</option>)}
               </optgroup>
             ))}
           </select>
+        </label>
+        <label style={{ display: "flex", gap: 8, alignItems: "flex-start", fontSize: 12, color: "var(--text-2)", alignSelf: "end", lineHeight: 1.45 }}>
+          <input type="checkbox" checked={includeUnopted} onChange={e => setIncludeUnopted(e.target.checked)} style={{ marginTop: 2 }} />
+          <span>Include contacts who haven&apos;t ticked the email box (imported lists). Only do this if you have their permission to write to them.
+            {meta && <> <strong>{meta.countsAll.everyone - meta.counts.everyone}</strong> more people.</>}</span>
         </label>
         {type === "welcome" && (
           <label style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Version
@@ -149,7 +157,7 @@ export default function CampaignComposer() {
               {busy === "test" ? <Loader2 size={14} className="animate-spin" /> : <FlaskConical size={14} />} Send test to me
             </button>
             <button onClick={() => send(false)} disabled={!!busy || !subject.trim()} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 18px", borderRadius: 10, border: "none", background: "#059669", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
-              {busy === "send" ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />} Send to {meta?.counts[audience] ?? 0} recipient{(meta?.counts[audience] ?? 0) === 1 ? "" : "s"}
+              {busy === "send" ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />} Send to {count} recipient{count === 1 ? "" : "s"}
             </button>
           </div>
         </div>
