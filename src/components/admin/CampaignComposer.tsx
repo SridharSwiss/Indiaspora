@@ -22,12 +22,12 @@ const TYPES: { id: Type; emoji: string; label: string; hint: string; audience: A
 ];
 const AUD_LABEL: Record<Audience, string> = {
   not_logged_in: "Members who haven't logged in", members: "All approved members (opted in)",
-  subscribers: "Newsletter subscribers", everyone: "Everyone (all groups together)",
+  subscribers: "Newsletter subscribers", everyone: "All (associations + businesses + individuals)",
   associations: "Associations (community groups, temples, students, embassies)", businesses: "Businesses (chambers, shops, services, schools)", individuals: "Individuals (people, teachers, artists)",
 };
 const GROUPS: { label: string; items: Audience[] }[] = [
   { label: "By group", items: ["associations", "businesses", "individuals"] },
-  { label: "By status", items: ["everyone", "members", "subscribers", "not_logged_in"] },
+  { label: "By status", items: ["members", "subscribers", "not_logged_in"] },
 ];
 
 const card = { background: "var(--surface)", borderRadius: 16, border: "1px solid var(--border)", padding: 20 } as const;
@@ -101,6 +101,7 @@ export default function CampaignComposer() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12, marginBottom: 12 }}>
         <label style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Audience
           <select value={audience} onChange={e => setAudience(e.target.value as Audience)} style={{ ...input, marginTop: 6 }}>
+            <option value="everyone">{AUD_LABEL.everyone} ({(includeUnopted ? meta?.countsAll : meta?.counts)?.everyone ?? "…"})</option>
             {GROUPS.map(g => (
               <optgroup key={g.label} label={g.label}>
                 {g.items.map(a => <option key={a} value={a}>{AUD_LABEL[a]} ({(includeUnopted ? meta?.countsAll : meta?.counts)?.[a] ?? "…"})</option>)}
