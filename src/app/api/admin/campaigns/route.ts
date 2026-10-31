@@ -18,6 +18,10 @@ const BIZ_NAME = /\b(gmbh|ag|sa|sarl|ltd|llc|inc|co|company|consulting|solutions
 const ORG_LOCAL = /^(info|contact|office|admin|hello|events|team|enquiries|inquiries|secretary|president|treasurer|learn|support|mail)$/i;
 const ORG_DOMAIN = /\.(org|gov|edu)$|\.gov\.|\.ethz\.ch$|\.uzh\.ch$|\.epfl\.ch$|student\./i;
 
+// Substring hints inside the email address itself (domain or mailbox), e.g. kapurjewels.com, hss.zurich@gmail.com
+const ORG_ADDR = /(assoc|mandal|mandir|temple|sangh|samaj|samiti|sabha|club|forum|utsav|puja|gurdwara|church|trust|foundation|community|students|embassy|consulate|chamber|bharatiya|keli|telugu|tamil|kannada|marathi|bengali|punjabi|gujarati|malayali|sathyasai|iskcon|svbf|hss)/i;
+const BIZ_ADDR = /(jewel|studio|beauty|salon|boutique|shop|store|mart|market|restaurant|kitchen|catering|bakery|sweets|travel|tours|consult|solutions|tech|software|digital|gmbh|clinic|dental|ayurved|yoga|dance|music|school|academy|kids|preschool|events|concert|realty|insurance|legal|law|tax|finance|logistics|cargo|express|trading|exports|imports)/i;
+
 type Group = "associations" | "businesses" | "individuals";
 function classify(email: string, name: string, interests: string[] | null): Group {
   const cats = interests ?? [];
@@ -26,8 +30,8 @@ function classify(email: string, name: string, interests: string[] | null): Grou
   const [local, domain = ""] = email.toLowerCase().split("@");
   const personalMail = WEBMAIL.test(email);
   const orgAddress = !personalMail || ORG_LOCAL.test(local);
-  if (ORG_NAME.test(name) || ORG_DOMAIN.test(domain)) return "associations";
-  if (BIZ_NAME.test(name)) return "businesses";
+  if (ORG_NAME.test(name) || ORG_DOMAIN.test(domain) || ORG_ADDR.test(email)) return "associations";
+  if (BIZ_NAME.test(name) || BIZ_ADDR.test(email)) return "businesses";
   if (cats.some(c => c === "Arts, Dance & Music" || c === "Education & Language") && orgAddress) return "businesses"; // dance schools, tutoring centres
   if (orgAddress && !personalMail) {
     // Company-style domain with no other signal: treat generic mailboxes as businesses
