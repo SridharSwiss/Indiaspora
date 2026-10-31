@@ -24,7 +24,7 @@ function shell(opts: { colors: [string, string]; emoji: string; title: string; s
   </div>
   <div style="padding:22px 34px;border-top:1px solid #F2F0EB;text-align:center">
     <p style="font-size:12px;color:#A1A1AA;margin:0;line-height:1.7">© ${new Date().getFullYear()} Indiaspora · Switzerland<br>
-    <a href="${SITE}/privacy" style="color:#F97316;text-decoration:none">Privacy</a> · <a href="{{UNSUB}}" style="color:#F97316;text-decoration:none">Unsubscribe</a></p>
+    <a href="https://www.linkedin.com/company/swiss-indiaspora/?viewAsMember=true" style="color:#0A66C2;text-decoration:none;font-weight:700">in LinkedIn</a> · <a href="${SITE}/privacy" style="color:#F97316;text-decoration:none">Privacy</a> · <a href="{{UNSUB}}" style="color:#F97316;text-decoration:none">Unsubscribe</a></p>
   </div>
 </div></body></html>`;
 }
@@ -37,7 +37,7 @@ export function shareRow(text: string) {
     <div style="font-size:14px;font-weight:700;color:#1A1410;margin-bottom:4px">Know someone who'd like this?</div>
     <div style="font-size:12px;color:#5C524A;margin-bottom:10px">Share Indiaspora with friends and family in Switzerland.</div>
     ${btn(`https://wa.me/?text=${t}%20${u}`, "WhatsApp", "#15803D")}${btn(`https://www.linkedin.com/sharing/share-offsite/?url=${u}`, "LinkedIn", "#0A66C2")}${btn(`https://twitter.com/intent/tweet?text=${t}&url=${u}`, "X", "#1A1410")}${btn(`mailto:?subject=${encodeURIComponent("Indiaspora")}&body=${t}%20${u}`, "Email", "#C2410C")}
-    <div style="margin-top:10px"><a href="https://www.linkedin.com/company/swiss-indiaspora/" style="font-size:12px;color:#C2410C;font-weight:700;text-decoration:none">Follow Swiss Indiaspora on LinkedIn</a></div>
+    <div style="margin-top:10px"><a href="https://www.linkedin.com/company/swiss-indiaspora/?viewAsMember=true" style="font-size:12px;color:#C2410C;font-weight:700;text-decoration:none">Follow Swiss Indiaspora on LinkedIn</a></div>
   </div>`;
 }
 
