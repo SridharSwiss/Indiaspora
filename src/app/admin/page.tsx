@@ -51,6 +51,19 @@ type AnalyticsData = {
   topPages: { path: string; views: number }[];
   byCountry: { country: string; views: number }[];
   userSessions?: UserSession[];
+  uniqueVisitors?: number; newVisitors?: number; returningVisitors?: number;
+  loggedInVisitors?: number; registeredUsers?: number; totalLogins?: number;
+  byDevice?: { name: string; views: number }[];
+  byBrowser?: { name: string; views: number }[];
+  byOs?: { name: string; views: number }[];
+  daily?: { date: string; views: number; visitors: number }[];
+  users?: {
+    userId: string; email: string | null; name: string | null; firstSeen: string; lastSeen: string;
+    visits: number; pageViews: number; viewsInPeriod: number; timeSpentSeconds: number; logins: number;
+    country: string | null; device: string | null; browser: string | null; os: string | null;
+    lastPath: string | null; topPages: { path: string; views: number }[];
+  }[];
+  recentLogins?: { user_id: string; email: string | null; provider: string | null; country: string | null; device: string | null; browser: string | null; created_at: string }[];
 };
 
 const TIER_COLORS: Record<string, string> = {
@@ -840,7 +853,10 @@ export default function AdminPage() {
                 {[
                   { label: "Total Views",   value: analytics?.totalViews ?? "–",   icon: Eye,         color: "#4F46E5" },
                   { label: "Today",         value: analytics?.todayViews ?? "–",   icon: TrendingUp,  color: "#059669" },
-                  { label: "Unique Pages",  value: analytics?.topPages?.length ?? "–", icon: BarChart3, color: "#F97316" },
+                  { label: "Unique Visitors", value: analytics?.uniqueVisitors ?? "–", icon: Users, color: "#F97316" },
+                  { label: "Returning",     value: analytics?.returningVisitors ?? "–", icon: TrendingUp, color: "#0EA5E9" },
+                  { label: "Signed-in Users", value: analytics?.registeredUsers ?? "–", icon: Users, color: "#7C3AED" },
+                  { label: "Logins",        value: analytics?.totalLogins ?? "–",  icon: CheckCircle, color: "#16A34A" },
                   { label: "Countries",     value: analytics?.byCountry?.length ?? "–", icon: Globe,   color: "#DC2626" },
                 ].map(({ label, value, icon: Icon, color }) => (
                   <div key={label} style={{ padding: "16px 18px", borderRadius: 14, background: "var(--surface)", border: "1px solid var(--border)", borderLeft: `3px solid ${color}` }}>
@@ -866,7 +882,7 @@ export default function AdminPage() {
                 ))}
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 20 }}>
                 {/* Top pages */}
                 <div style={{ background: "var(--surface)", borderRadius: 14, border: "1px solid var(--border)", padding: "20px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
@@ -921,49 +937,123 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              {/* ── User Sessions Table ── */}
+              {/* ── Daily traffic ── */}
+              {!!analytics?.daily?.length && (() => {
+                const d = analytics.daily!;
+                const max = Math.max(1, ...d.map(x => x.views));
+                return (
+                  <div style={{ background: "var(--surface)", borderRadius: 14, border: "1px solid var(--border)", padding: 20 }}>
+                    <div style={{ fontWeight: 700, fontSize: 14, color: "var(--text)", marginBottom: 14 }}>
+                      Daily traffic <span style={{ fontWeight: 400, fontSize: 11, color: "var(--text-3)" }}>· views (bars) · peak {max}</span>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "flex-end", gap: 2, height: 120 }}>
+                      {d.map(x => (
+                        <div key={x.date} title={`${x.date}: ${x.views} views, ${x.visitors} visitors`}
+                          style={{ flex: 1, minWidth: 2, height: `${Math.max(2, (x.views / max) * 100)}%`, background: "linear-gradient(180deg,#F97316,#FB923C)", borderRadius: "3px 3px 0 0" }} />
+                      ))}
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10, color: "var(--text-3)", marginTop: 6 }}>
+                      <span>{d[0].date}</span><span>{d[d.length - 1].date}</span>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* ── Device / browser / OS ── */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 20 }}>
+                {([["Devices", analytics?.byDevice, "#0EA5E9"], ["Browsers", analytics?.byBrowser, "#7C3AED"], ["Operating systems", analytics?.byOs, "#16A34A"]] as const).map(([title, rows, color]) => {
+                  const max = rows?.[0]?.views || 1;
+                  return (
+                    <div key={title} style={{ background: "var(--surface)", borderRadius: 14, border: "1px solid var(--border)", padding: 20 }}>
+                      <div style={{ fontWeight: 700, fontSize: 14, color: "var(--text)", marginBottom: 14 }}>{title}</div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                        {(rows ?? []).map(r => (
+                          <div key={r.name}>
+                            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "var(--text-2)", marginBottom: 4 }}>
+                              <span style={{ textTransform: "capitalize" }}>{r.name}</span><span>{r.views.toLocaleString()}</span>
+                            </div>
+                            <div style={{ height: 5, borderRadius: 999, background: "var(--surface-2)" }}>
+                              <div style={{ height: "100%", width: `${(r.views / max) * 100}%`, background: color, borderRadius: 999 }} />
+                            </div>
+                          </div>
+                        ))}
+                        {!rows?.length && <div style={{ color: "var(--text-3)", fontSize: 13 }}>No data yet</div>}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* ── User-based analytics ── */}
               <div style={{ background: "var(--surface)", borderRadius: 16, border: "1px solid var(--border)", overflow: "hidden" }}>
-                <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontWeight: 700, fontSize: 14, color: "var(--text)" }}>Logged-in User Sessions</span>
-                  <span style={{ fontSize: 12, color: "var(--text-3)" }}>({analytics?.userSessions?.length ?? 0} sessions in last {days}d)</span>
+                <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--border)" }}>
+                  <span style={{ fontWeight: 700, fontSize: 14, color: "var(--text)" }}>Users</span>
+                  <span style={{ fontSize: 12, color: "var(--text-3)", marginLeft: 8 }}>
+                    ({analytics?.users?.length ?? 0} signed-in users · activity counted from cookie-consenting visits)
+                  </span>
                 </div>
-                {!analytics?.userSessions?.length ? (
-                  <div style={{ padding: "40px", textAlign: "center", color: "var(--text-3)", fontSize: 13 }}>
-                    No logged-in user sessions recorded yet. Sessions appear once users browse while signed in.
+                {!analytics?.users?.length ? (
+                  <div style={{ padding: 40, textAlign: "center", color: "var(--text-3)", fontSize: 13 }}>
+                    No signed-in users tracked yet. A user appears after they accept cookies and browse while logged in.
                   </div>
                 ) : (
                   <div style={{ overflowX: "auto" }}>
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
                       <thead>
                         <tr style={{ background: "var(--surface-2)" }}>
-                          {["User", "Session", "Pages Visited", "Page Count", "Duration", "Country", "Started", "Last Seen"].map(h => (
+                          {["User", "Visits", "Page views", `Views (${days}d)`, "Time on site", "Logins", "Top pages", "Device", "Country", "First seen", "Last seen"].map(h => (
                             <th key={h} style={{ padding: "10px 14px", textAlign: "left", fontWeight: 700, color: "var(--text-3)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.07em", whiteSpace: "nowrap" }}>{h}</th>
                           ))}
                         </tr>
                       </thead>
                       <tbody>
-                        {analytics.userSessions.map((s, i) => {
-                          const durationMin = s.totalDuration > 0 ? Math.round(s.totalDuration / 60) : null;
-                          return (
-                            <tr key={`${s.userId}-${s.sessionId}-${i}`} style={{ borderTop: "1px solid var(--border)", background: i % 2 === 0 ? "transparent" : "rgba(0,0,0,0.02)" }}>
-                              <td style={{ padding: "10px 14px", color: "var(--text-2)", fontWeight: 600, maxWidth: 180, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.email}</td>
-                              <td style={{ padding: "10px 14px", color: "var(--text-3)", fontFamily: "monospace", fontSize: 10 }}>{s.sessionId.slice(0, 10)}…</td>
-                              <td style={{ padding: "10px 14px", color: "var(--text-3)", maxWidth: 220 }}>
-                                <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-                                  {s.pages.slice(0, 5).map((p, j) => (
-                                    <span key={j} style={{ fontSize: 10, padding: "2px 6px", borderRadius: 4, background: "var(--surface-2)", color: "var(--text-3)" }}>{p}</span>
-                                  ))}
-                                  {s.pages.length > 5 && <span style={{ fontSize: 10, color: "var(--text-3)" }}>+{s.pages.length - 5}</span>}
-                                </div>
-                              </td>
-                              <td style={{ padding: "10px 14px", color: "var(--text)", fontWeight: 700, fontVariantNumeric: "tabular-nums", textAlign: "center" }}>{s.pageCount}</td>
-                              <td style={{ padding: "10px 14px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{durationMin !== null ? `${durationMin}m` : "–"}</td>
-                              <td style={{ padding: "10px 14px", color: "var(--text-3)" }}>{s.country ?? "–"}</td>
-                              <td style={{ padding: "10px 14px", color: "var(--text-3)", whiteSpace: "nowrap" }}>{new Date(s.startedAt).toLocaleString("en-GB", { dateStyle: "short", timeStyle: "short" })}</td>
-                              <td style={{ padding: "10px 14px", color: "var(--text-3)", whiteSpace: "nowrap" }}>{new Date(s.lastSeen).toLocaleString("en-GB", { dateStyle: "short", timeStyle: "short" })}</td>
-                            </tr>
-                          );
-                        })}
+                        {analytics.users.map(u => (
+                          <tr key={u.userId} style={{ borderTop: "1px solid var(--border)" }}>
+                            <td style={{ padding: "10px 14px", maxWidth: 200 }}>
+                              <div style={{ fontWeight: 600, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{u.name || u.email || u.userId.slice(0, 8)}</div>
+                              {u.name && u.email && <div style={{ fontSize: 10, color: "var(--text-3)" }}>{u.email}</div>}
+                            </td>
+                            <td style={{ padding: "10px 14px", fontVariantNumeric: "tabular-nums", color: "var(--text)", fontWeight: 700 }}>{u.visits}</td>
+                            <td style={{ padding: "10px 14px", fontVariantNumeric: "tabular-nums", color: "var(--text-2)" }}>{u.pageViews}</td>
+                            <td style={{ padding: "10px 14px", fontVariantNumeric: "tabular-nums", color: "var(--text-2)" }}>{u.viewsInPeriod}</td>
+                            <td style={{ padding: "10px 14px", color: "var(--text-2)" }}>{u.timeSpentSeconds > 0 ? `${Math.max(1, Math.round(u.timeSpentSeconds / 60))}m` : "–"}</td>
+                            <td style={{ padding: "10px 14px", fontVariantNumeric: "tabular-nums", color: "var(--text-2)" }}>{u.logins}</td>
+                            <td style={{ padding: "10px 14px", maxWidth: 220 }}>
+                              <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                                {u.topPages.map(p => <span key={p.path} style={{ fontSize: 10, padding: "2px 6px", borderRadius: 4, background: "var(--surface-2)", color: "var(--text-3)" }}>{p.path} ·{p.views}</span>)}
+                                {!u.topPages.length && <span style={{ color: "var(--text-3)" }}>–</span>}
+                              </div>
+                            </td>
+                            <td style={{ padding: "10px 14px", color: "var(--text-3)", whiteSpace: "nowrap" }}>{[u.device, u.browser, u.os].filter(Boolean).join(" · ") || "–"}</td>
+                            <td style={{ padding: "10px 14px", color: "var(--text-3)" }}>{u.country ?? "–"}</td>
+                            <td style={{ padding: "10px 14px", color: "var(--text-3)", whiteSpace: "nowrap" }}>{new Date(u.firstSeen).toLocaleDateString("en-GB")}</td>
+                            <td style={{ padding: "10px 14px", color: "var(--text-3)", whiteSpace: "nowrap" }}>{new Date(u.lastSeen).toLocaleString("en-GB", { dateStyle: "short", timeStyle: "short" })}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+
+              {/* ── Recent logins ── */}
+              <div style={{ background: "var(--surface)", borderRadius: 16, border: "1px solid var(--border)", overflow: "hidden" }}>
+                <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--border)", fontWeight: 700, fontSize: 14, color: "var(--text)" }}>Recent logins</div>
+                {!analytics?.recentLogins?.length ? (
+                  <div style={{ padding: 32, textAlign: "center", color: "var(--text-3)", fontSize: 13 }}>No logins recorded yet — logins are logged from now on.</div>
+                ) : (
+                  <div style={{ overflowX: "auto" }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+                      <tbody>
+                        {analytics.recentLogins.map((l, i) => (
+                          <tr key={i} style={{ borderTop: i ? "1px solid var(--border)" : "none" }}>
+                            <td style={{ padding: "9px 14px", fontWeight: 600, color: "var(--text-2)" }}>{l.email ?? l.user_id.slice(0, 8)}</td>
+                            <td style={{ padding: "9px 14px", color: "var(--text-3)" }}>{l.provider ?? "–"}</td>
+                            <td style={{ padding: "9px 14px", color: "var(--text-3)" }}>{[l.device, l.browser].filter(Boolean).join(" · ")}</td>
+                            <td style={{ padding: "9px 14px", color: "var(--text-3)" }}>{l.country ?? "–"}</td>
+                            <td style={{ padding: "9px 14px", color: "var(--text-3)", whiteSpace: "nowrap" }}>{new Date(l.created_at).toLocaleString("en-GB", { dateStyle: "short", timeStyle: "short" })}</td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>

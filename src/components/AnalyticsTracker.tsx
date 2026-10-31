@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { createClient } from "@/lib/supabase/client";
 
 // Generate or reuse a session ID for this browser tab session
 function getSessionId(): string {
@@ -18,11 +17,34 @@ function getSessionId(): string {
   }
 }
 
+// Persistent anonymous browser id (only created after cookie consent)
+function getVisitorId(): string {
+  try {
+    let vid = localStorage.getItem("indiaspora_vid");
+    if (!vid) {
+      vid = crypto.randomUUID();
+      localStorage.setItem("indiaspora_vid", vid);
+    }
+    return vid;
+  } catch {
+    return "unknown";
+  }
+}
+
+function isNewSession(): boolean {
+  try {
+    if (sessionStorage.getItem("indiaspora_sess_counted")) return false;
+    sessionStorage.setItem("indiaspora_sess_counted", "1");
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export default function AnalyticsTracker() {
   const pathname = usePathname();
   const enterTimeRef = useRef<number>(Date.now());
   const prevPathRef = useRef<string | null>(null);
-  const supabase = createClient();
 
   useEffect(() => {
     const track = async () => {
@@ -37,13 +59,6 @@ export default function AnalyticsTracker() {
         ? Math.round((now - enterTimeRef.current) / 1000)
         : null;
 
-      // Get current user (best-effort, non-blocking)
-      let userId: string | null = null;
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        userId = user?.id ?? null;
-      } catch { /* ignore */ }
-
       fetch("/api/analytics", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -51,7 +66,8 @@ export default function AnalyticsTracker() {
           path: pathname,
           referrer: document.referrer || null,
           sessionId: getSessionId(),
-          userId,
+          visitorId: getVisitorId(),
+          newSession: isNewSession(),
           prevPath: prevPathRef.current,
           prevDuration: duration,
         }),
