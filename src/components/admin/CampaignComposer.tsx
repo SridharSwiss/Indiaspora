@@ -35,6 +35,8 @@ export default function CampaignComposer() {
   const [subject, setSubject] = useState("");
   const [html, setHtml] = useState("");
   const [model, setModel] = useState<string | null>(null);
+  const [social, setSocial] = useState<{ whatsapp: string; linkedin: string; instagram: string } | null>(null);
+  const [copied, setCopied] = useState("");
   const [busy, setBusy] = useState<"" | "gen" | "test" | "send">("");
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
@@ -52,7 +54,7 @@ export default function CampaignComposer() {
     const j = await r.json();
     setBusy("");
     if (!r.ok) return setMsg({ ok: false, text: j.error ?? "Could not generate" });
-    setSubject(j.subject); setHtml(j.html); setModel(j.model ?? null);
+    setSubject(j.subject); setHtml(j.html); setModel(j.model ?? null); setSocial(j.social ?? null);
     if (!j.aiUsed) setMsg({ ok: true, text: meta?.ai.configured ? "AI was unreachable, so the standard template text was used." : "Draft built from the standard template. Set OSS_LLM_API_KEY to enable open-source AI writing." });
   };
 
@@ -133,6 +135,24 @@ export default function CampaignComposer() {
             <button onClick={() => send(false)} disabled={!!busy || !subject.trim()} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 18px", borderRadius: 10, border: "none", background: "#059669", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
               {busy === "send" ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />} Send to {meta?.counts[audience] ?? 0} recipient{(meta?.counts[audience] ?? 0) === 1 ? "" : "s"}
             </button>
+          </div>
+        </div>
+      )}
+
+      {html && social && (
+        <div style={{ marginTop: 22, borderTop: "1px solid var(--border)", paddingTop: 16 }}>
+          <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)", marginBottom: 4 }}>Social share kit</div>
+          <div style={{ fontSize: 12, color: "var(--text-3)", marginBottom: 12 }}>Ready-to-post copy from the same verified items. Edit, then paste.</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 12 }}>
+            {([["whatsapp", "WhatsApp broadcast", "#15803D"], ["linkedin", "LinkedIn post", "#0A66C2"], ["instagram", "Instagram caption", "#C2410C"]] as const).map(([k, label, color]) => (
+              <div key={k} style={{ border: "1px solid var(--border-2)", borderRadius: 12, padding: 12, background: "var(--surface-2)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                  <span style={{ fontSize: 12, fontWeight: 800, color }}>{label}</span>
+                  <button onClick={async () => { try { await navigator.clipboard.writeText(social[k]); setCopied(k); setTimeout(() => setCopied(""), 1500); } catch {} }} style={{ fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 999, border: "1px solid var(--border-2)", background: "var(--surface)", color: "var(--text-2)", cursor: "pointer" }}>{copied === k ? "Copied" : "Copy"}</button>
+                </div>
+                <textarea rows={7} value={social[k]} onChange={e => setSocial({ ...social, [k]: e.target.value })} style={{ ...input, resize: "vertical", fontSize: 12, lineHeight: 1.5 }} />
+              </div>
+            ))}
           </div>
         </div>
       )}

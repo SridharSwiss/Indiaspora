@@ -19,5 +19,5 @@ export function upcomingForDigest(extra: DigestEvent[] = [], windowDays = 45): D
     .map(e => ({ e, d: parseEventDate(e.date) }))
     .filter(x => x.d && x.d.getTime() >= now - 86400000 && x.d.getTime() <= end)
     .sort((a, b) => a.d!.getTime() - b.d!.getTime())
-    .map(x => x.e).slice(0, 8);
+    .map(x => ({ ...x.e, day: String(x.d!.getUTCDate()), mon: x.d!.toLocaleString("en-GB", { month: "short", timeZone: "UTC" }).toUpperCase() })).slice(0, 8);
 }

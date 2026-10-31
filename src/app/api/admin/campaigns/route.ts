@@ -69,6 +69,20 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ error: "Unknown action" }, { status: 400 });
 }
 
+async function socialKit(ai: (u: string, t?: number) => Promise<string | null>, topic: string, facts: string) {
+  const tags = "#Indiaspora #IndiansInSwitzerland #SwissIndian";
+  const [wa, li, ig] = await Promise.all([
+    ai(`Write a short WhatsApp broadcast message (max 60 words, 1-2 emojis, ends with https://indiaspora.ch) about: ${topic}. Facts:\n${facts}`, 200),
+    ai(`Write a LinkedIn post (max 90 words, professional but warm, end with https://indiaspora.ch and these hashtags: ${tags}) about: ${topic}. Facts:\n${facts}`, 260),
+    ai(`Write an Instagram caption (max 50 words, 2-3 emojis, then these hashtags: ${tags} #Diaspora) about: ${topic}. Facts:\n${facts}`, 200),
+  ]);
+  return {
+    whatsapp: wa ?? `${topic}\n\n${facts.split("\n").slice(0, 3).join("\n")}\n\nMore: https://indiaspora.ch`,
+    linkedin: li ?? `${topic}\n\n${facts.split("\n").slice(0, 3).join("\n")}\n\nMore on https://indiaspora.ch\n\n${tags}`,
+    instagram: ig ?? `${topic} 🪔\n\n${tags} #Diaspora`,
+  };
+}
+
 async function generate(body: { type: string; festivalId?: string; notes?: string }) {
   const notes = (body.notes ?? "").slice(0, 2000);
   const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
@@ -89,6 +103,7 @@ async function generate(body: { type: string; festivalId?: string; notes?: strin
     return NextResponse.json({
       subject: `Indiaspora Weekly · ${today}`,
       html: digestHtml({ intro, events, ...news, changes: notes }),
+      social: await socialKit(ai, `This week in the Indian community in Switzerland (${today})`, evLines || headlines || "Events, news and community updates"),
       aiUsed, model: aiUsed ? llmModel() : null,
       stats: { events: events.length, diaspora: news.diaspora.length, newsrooms: news.newsrooms.length },
     });
@@ -107,7 +122,7 @@ async function generate(body: { type: string; festivalId?: string; notes?: strin
     const message =
       (await ai(`Write a heartfelt 3-sentence festival greeting (starting with "Namaste {{NAME}},") for ${f.name} from Indiaspora to Indians living in Switzerland. Seed message: ${f.blurb} Extra from the team: ${notes || "none"}`)) ??
       `Namaste {{NAME}},\n\n${f.blurb}\n\nWith warm wishes from all of us at Indiaspora.`;
-    return NextResponse.json({ subject: `${f.emoji} ${f.greeting} from Indiaspora`, html: festivalHtml(f, { message }), aiUsed, model: aiUsed ? llmModel() : null });
+    return NextResponse.json({ subject: `${f.emoji} ${f.greeting} from Indiaspora`, html: festivalHtml(f, { message }), social: await socialKit(ai, `${f.greeting}: ${f.name} wishes from Swiss Indiaspora`, f.blurb), aiUsed, model: aiUsed ? llmModel() : null });
   }
 
   if (body.type === "custom") {
