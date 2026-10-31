@@ -9,6 +9,7 @@ type Audience = "not_logged_in" | "members" | "subscribers" | "everyone" | "asso
 type Meta = {
   counts: Record<Audience, number>;
   countsAll: Record<Audience, number>;
+  testRecipients: string[];
   history: { id: string; type: string; subject: string; audience: string; status: string; recipients: number; failed: number; ai_model: string | null; created_at: string }[];
   festivals: { id: string; name: string; emoji: string; fixed: string | null }[];
 };
@@ -46,6 +47,7 @@ export default function CampaignComposer() {
   const [model, setModel] = useState<string | null>(null);
   const [social, setSocial] = useState<{ whatsapp: string; linkedin: string; instagram: string } | null>(null);
   const [copied, setCopied] = useState("");
+  const [tested, setTested] = useState(false);
   const [busy, setBusy] = useState<"" | "gen" | "test" | "send">("");
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
@@ -64,7 +66,7 @@ export default function CampaignComposer() {
     const j = await r.json();
     setBusy("");
     if (!r.ok) return setMsg({ ok: false, text: j.error ?? "Could not generate" });
-    setSubject(j.subject); setHtml(j.html); setModel(j.model ?? null); setSocial(j.social ?? null);
+    setSubject(j.subject); setHtml(j.html); setTested(false); setModel(j.model ?? null); setSocial(j.social ?? null);
   };
 
   const send = async (testOnly: boolean) => {
@@ -74,8 +76,9 @@ export default function CampaignComposer() {
     const r = await fetch("/api/admin/campaigns", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "send", type, subject, html, audience, testOnly, includeUnopted, aiModel: model }) });
     const j = await r.json();
     setBusy("");
-    setMsg(r.ok ? { ok: j.ok, text: testOnly ? "Test email sent to your admin address." : `Sent to ${j.sent} recipient(s)${j.failed ? `, ${j.failed} failed` : ""}.` } : { ok: false, text: j.error ?? "Send failed" });
-    if (!testOnly) load();
+    setMsg(r.ok ? { ok: j.ok, text: testOnly ? `Test email sent to ${(meta?.testRecipients ?? []).join(", ")}. Check your inbox, then send to the audience.` : `Sent to ${j.sent} recipient(s)${j.failed ? `, ${j.failed} failed` : ""}.` } : { ok: false, text: j.error ?? "Send failed" });
+    if (testOnly && r.ok && j.ok) setTested(true);
+    if (!testOnly) { load(); setTested(false); }
   };
 
   return (
@@ -148,18 +151,21 @@ export default function CampaignComposer() {
       {html && (
         <div style={{ marginTop: 18 }}>
           <label style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Subject
-            <input value={subject} onChange={e => setSubject(e.target.value)} style={{ ...input, marginTop: 6 }} />
+            <input value={subject} onChange={e => { setSubject(e.target.value); setTested(false); }} style={{ ...input, marginTop: 6 }} />
           </label>
           <div style={{ marginTop: 12, borderRadius: 12, overflow: "hidden", border: "1px solid var(--border-2)" }}>
             <iframe title="Email preview" srcDoc={html.replace(/\{\{UNSUB\}\}/g, "#").replace(/\{\{NAME\}\}/g, "Priya")} style={{ width: "100%", height: 560, border: "none", background: "#F7F6F2" }} sandbox="" />
           </div>
           <div style={{ display: "flex", gap: 10, marginTop: 14, flexWrap: "wrap" }}>
             <button onClick={() => send(true)} disabled={!!busy} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 16px", borderRadius: 10, border: "1px solid var(--border-2)", background: "var(--surface)", color: "var(--text-2)", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
-              {busy === "test" ? <Loader2 size={14} className="animate-spin" /> : <FlaskConical size={14} />} Send test to me
+              {busy === "test" ? <Loader2 size={14} className="animate-spin" /> : <FlaskConical size={14} />} Send test to {(meta?.testRecipients ?? []).length > 1 ? `${meta!.testRecipients.length} test inboxes` : "me"}
             </button>
-            <button onClick={() => send(false)} disabled={!!busy || !subject.trim()} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 18px", borderRadius: 10, border: "none", background: "#059669", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
+            <button onClick={() => send(false)} disabled={!!busy || !subject.trim() || !tested} title={tested ? "" : "Send a test first"} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 18px", borderRadius: 10, border: "none", opacity: tested ? 1 : 0.5, background: "#059669", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
               {busy === "send" ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />} Send to {count} recipient{count === 1 ? "" : "s"}
             </button>
+          </div>
+          <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 8 }}>
+            Test goes to: {(meta?.testRecipients ?? []).join(", ")}. {tested ? "Test sent. You can now send to the audience." : "Sending to the audience unlocks after you send a test of this draft."}
           </div>
         </div>
       )}

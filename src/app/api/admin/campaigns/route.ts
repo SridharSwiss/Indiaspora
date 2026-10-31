@@ -43,6 +43,12 @@ function classify(email: string, name: string, interests: string[] | null): Grou
 type Audience = "not_logged_in" | "members" | "subscribers" | "everyone" | "associations" | "businesses" | "individuals";
 type Recipient = { email: string; name: string };
 
+// Test sends go to the logged-in admin plus Sridhar's address (override with CAMPAIGN_TEST_EMAILS, comma-separated).
+const testRecipients = (adminEmail: string): Recipient[] => {
+  const extra = (process.env.CAMPAIGN_TEST_EMAILS || "sridhar.gande@gmail.com").split(",").map(e => e.trim().toLowerCase()).filter(Boolean);
+  return [...new Set([adminEmail.toLowerCase(), ...extra])].map(email => ({ email, name: "Sridhar" }));
+};
+
 async function requireAdmin() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -92,8 +98,10 @@ async function loadAudiences(includeUnopted = false) {
 }
 
 export async function GET() {
-  if (!(await requireAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const adminUser = await requireAdmin();
+  if (!adminUser) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const db = createAdminClient();
+  const admin = adminUser;
   const [aud, audAll, { data: history }] = await Promise.all([
     loadAudiences(false),
     loadAudiences(true),
@@ -101,6 +109,7 @@ export async function GET() {
   ]);
   return NextResponse.json({
     counts: Object.fromEntries(Object.entries(aud).map(([k, v]) => [k, v.length])),
+    testRecipients: testRecipients(admin!.email!).map(r => r.email),
     countsAll: Object.fromEntries(Object.entries(audAll).map(([k, v]) => [k, v.length])),
     history: history ?? [],
     festivals: FESTIVALS.map(f => ({ id: f.id, name: f.name, emoji: f.emoji, fixed: f.fixed ?? null })),
@@ -190,7 +199,7 @@ async function send(body: { type: string; subject: string; html: string; audienc
   if (!subject?.trim() || !html?.includes("{{UNSUB}}")) return NextResponse.json({ error: "Subject and a template with an unsubscribe link are required" }, { status: 400 });
   if (!process.env.RESEND_API_KEY) return NextResponse.json({ error: "RESEND_API_KEY is not set" }, { status: 500 });
 
-  const list: Recipient[] = body.testOnly ? [{ email: adminEmail, name: "Admin" }] : (await loadAudiences(!!body.includeUnopted))[audience] ?? [];
+  const list: Recipient[] = body.testOnly ? testRecipients(adminEmail) : (await loadAudiences(!!body.includeUnopted))[audience] ?? [];
   if (!list.length) return NextResponse.json({ error: "No recipients in this audience" }, { status: 400 });
 
   const resend = new Resend(process.env.RESEND_API_KEY);
