@@ -61,33 +61,63 @@ export const IMAGE_CREDITS = [
     "source": "https://pixabay.com/photos/holi-festival-happy-holi-10136266/"
   },
   {
-    "event": "Zurich (city photo)",
+    "event": "Zurich (summer)",
     "file": "/images/cities/zurich.webp",
-    "photographer": "anncapictures",
-    "source": "https://pixabay.com/photos/zurich-grossm%C3%BCnster-church-tower-1443575/"
+    "photographer": "photosforyou",
+    "source": "https://pixabay.com/photos/city-europe-zurich-switzerland-2422392/"
   },
   {
-    "event": "Geneva (city photo)",
+    "event": "Zurich (winter)",
+    "file": "/images/cities/winter/zurich.webp",
+    "photographer": "Sonyuser",
+    "source": "https://pixabay.com/photos/winter-mountain-cabin-snow-6860682/"
+  },
+  {
+    "event": "Geneva (summer)",
     "file": "/images/cities/geneva.webp",
     "photographer": "ChiemSeherin",
-    "source": "https://pixabay.com/photos/geneva-lake-geneva-jet-deau-8259296/"
+    "source": "https://pixabay.com/photos/geneva-lake-geneva-jet-deau-6977950/"
   },
   {
-    "event": "Basel (city photo)",
+    "event": "Geneva (winter)",
+    "file": "/images/cities/winter/geneva.webp",
+    "photographer": "barbusse-philippe",
+    "source": "https://pixabay.com/photos/landscape-snow-winter-landscape-2749780/"
+  },
+  {
+    "event": "Basel (summer)",
     "file": "/images/cities/basel.webp",
     "photographer": "fietzfotos",
     "source": "https://pixabay.com/photos/bridge-river-rhine-buildings-7060684/"
   },
   {
-    "event": "Bern (city photo)",
-    "file": "/images/cities/bern.webp",
-    "photographer": "TeeFarm",
-    "source": "https://pixabay.com/photos/bern-switzerland-rose-garden-2155080/"
+    "event": "Basel (winter)",
+    "file": "/images/cities/winter/basel.webp",
+    "photographer": "Photo-pixler",
+    "source": "https://pixabay.com/photos/town-bridge-winter-river-old-town-6087144/"
   },
   {
-    "event": "Lausanne (city photo)",
+    "event": "Bern (summer)",
+    "file": "/images/cities/bern.webp",
+    "photographer": "ELG21",
+    "source": "https://pixabay.com/photos/river-bern-switzerland-panorama-3740371/"
+  },
+  {
+    "event": "Bern (winter)",
+    "file": "/images/cities/winter/bern.webp",
+    "photographer": "HeckiMG",
+    "source": "https://pixabay.com/photos/village-winter-landscape-winter-7659907/"
+  },
+  {
+    "event": "Lausanne (summer)",
     "file": "/images/cities/lausanne.webp",
     "photographer": "SophieML",
     "source": "https://pixabay.com/photos/lausanne-leman-switzerland-city-4617734/"
+  },
+  {
+    "event": "Lausanne (winter)",
+    "file": "/images/cities/winter/lausanne.webp",
+    "photographer": "csr_ch",
+    "source": "https://pixabay.com/photos/lake-mountain-landscape-clouds-4081004/"
   }
 ] as const;

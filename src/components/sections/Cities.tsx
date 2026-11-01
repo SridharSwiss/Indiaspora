@@ -75,7 +75,7 @@ export default function Cities() {
               {/* Signature photo */}
               <div style={{ position: "relative", height: "clamp(150px,22vw,230px)", background: "var(--surface-2)" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img key={city.slug} src={city.image} alt={`${city.name}, Switzerland`} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <img key={city.slug} src={`/images/cities/winter/${city.slug}.webp`} alt={`${city.name} in winter, Switzerland`} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                 <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.45) 100%)" }} />
               </div>
               {/* Hero header */}

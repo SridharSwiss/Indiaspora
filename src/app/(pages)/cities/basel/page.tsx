@@ -138,7 +138,7 @@ export default function BaselPage() {
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "24px 20px 0" }}>
         <img
           src="/images/cities/basel.webp"
-          alt="Basel Mittlere Brücke over the Rhine"
+          alt="Basel, Switzerland in summer"
           style={{
             width: "100%",
             height: 280,

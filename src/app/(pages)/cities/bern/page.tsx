@@ -85,7 +85,7 @@ export default function BernPage() {
         <div>
           <img
             src="/images/cities/bern.webp"
-            alt="Bern Federal Palace (Bundeshaus)"
+            alt="Bern, Switzerland in summer"
             style={{ width: "100%", height: 280, objectFit: "cover", borderRadius: 16 }}
           />
         </div>

@@ -65,7 +65,7 @@ export default function GenevaPage() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "24px 16px 0" }}>
         <img
           src="/images/cities/geneva.webp"
-          alt="Geneva Jet d'Eau fountain"
+          alt="Geneva, Switzerland in summer"
           style={{ width: "100%", height: 280, objectFit: "cover", borderRadius: 16 }}
         />
       </div>

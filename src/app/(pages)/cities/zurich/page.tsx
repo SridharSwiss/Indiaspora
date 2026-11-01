@@ -43,7 +43,7 @@ export default function ZurichPage() {
         <div style={{ margin: "32px 0 40px" }}>
           <img
             src="/images/cities/zurich.webp"
-            alt="Zurich Grossmünster and Limmat River"
+            alt="Zurich, Switzerland in summer"
             style={{ width: "100%", height: 300, objectFit: "cover", borderRadius: 20 }}
           />
         </div>

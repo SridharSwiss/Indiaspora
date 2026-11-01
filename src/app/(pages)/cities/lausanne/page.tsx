@@ -266,7 +266,7 @@ export default function LausannePage() {
         <div style={{ marginTop: 32 }}>
           <img
             src="/images/cities/lausanne.webp"
-            alt="Lausanne panorama from Sauvabelin"
+            alt="Lausanne, Switzerland in summer"
             style={{
               width: "100%",
               height: 260,
