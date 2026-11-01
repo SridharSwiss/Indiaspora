@@ -37,7 +37,7 @@ const yoga: Place[] = [
 const pandits: Place[] = [
   { name: "Pandit Naresh Kumar Shastri", url: "https://sivankovil.ch/contact", city: "Zurich", desc: "Priest at Arulmihu Sivan Temple, Glattbrugg. Available for home ceremonies including Gruhapravesha (housewarming), Satyanarayan Puja, Namkaran, Sathabhishekam, and other Sanskrit rituals. Contact via the Sivankovil office." },
   { name: "ISKCON Zurich — Puja Services", url: "https://www.krishna.ch", city: "Zurich", desc: "ISKCON Zurich offers puja services and home visit ceremonies on request. Suitable for Griha Pravesh, Satyanarayan Katha, and other Vaishnav rituals. Contact the temple at Bergstrasse 54, Zurich." },
-  { name: "Hindu Community Zurich (HCZ)", url: "https://hcz.ch", city: "Zurich", desc: "The Hindu Community Zurich (hcz.ch) maintains a list of priests available for home ceremonies across the Zurich region. Contact for referrals to qualified pandits for Gruhapravesha, weddings, Satyanarayan Puja, and other rituals." },
+  { name: "Hindu Community Zurich (HCZ)", url: null, city: "Zurich", desc: "The Hindu Community Zurich maintains a list of priests available for home ceremonies across the Zurich region. Contact for referrals to qualified pandits for Gruhapravesha, weddings, Satyanarayan Puja, and other rituals." },
 ];
 
 // Gurdwaras — verified via web search (Oct 2026)

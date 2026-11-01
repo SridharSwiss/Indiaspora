@@ -1,26 +1,26 @@
 // Logos captured from each organisation's own official website; shown only to identify the organisation (see Terms 5A).
 export const ORG_LOGOS: Record<string, string> = {
  "bharatiya association berne": "/logos/bharatiya-association-berne.webp",
- "bharatiya association berne bab": "/logos/bharatiya-association-berne.webp",
  "bab": "/logos/bharatiya-association-berne.webp",
+ "bharatiya association berne bab": "/logos/bharatiya-association-berne.webp",
  "teluguswiss": "/logos/telugu-association-of-switzerland.webp",
  "telugu association of switzerland teluguswiss tas": "/logos/telugu-association-of-switzerland.webp",
  "telugu association of switzerland": "/logos/telugu-association-of-switzerland.webp",
  "tas": "/logos/telugu-association-of-switzerland.webp",
+ "indo swiss sports club issc": "/logos/indo-swiss-sports-club.webp",
  "indo swiss sports club": "/logos/indo-swiss-sports-club.webp",
  "issc": "/logos/indo-swiss-sports-club.webp",
- "indo swiss sports club issc": "/logos/indo-swiss-sports-club.webp",
  "swisspuja": "/logos/swisspuja.webp",
  "indian association geneva iag": "/logos/indian-association-geneva.webp",
+ "indian association geneva": "/logos/indian-association-geneva.webp",
  "iag geneva": "/logos/indian-association-geneva.webp",
  "iag": "/logos/indian-association-geneva.webp",
- "indian association geneva": "/logos/indian-association-geneva.webp",
  "indian cultural association of switzerland icas": "/logos/indian-cultural-association-of-switzerland.webp",
- "indian cultural association of switzerland": "/logos/indian-cultural-association-of-switzerland.webp",
  "icas": "/logos/indian-cultural-association-of-switzerland.webp",
- "swiss telugu nri forum stnri": "/logos/swiss-telugu-nri-forum.webp",
- "stnri": "/logos/swiss-telugu-nri-forum.webp",
+ "indian cultural association of switzerland": "/logos/indian-cultural-association-of-switzerland.webp",
  "swiss telugu nri forum": "/logos/swiss-telugu-nri-forum.webp",
+ "stnri": "/logos/swiss-telugu-nri-forum.webp",
+ "swiss telugu nri forum stnri": "/logos/swiss-telugu-nri-forum.webp",
  "isha foundation": "/logos/isha-foundation-switzerland.svg",
  "isha foundation switzerland": "/logos/isha-foundation-switzerland.svg",
  "saravanaa bhavan": "/logos/saravanaa-bhavan.webp",
@@ -68,7 +68,32 @@ export const ORG_LOGOS: Record<string, string> = {
  "sicc": "/logos/sicc.webp",
  "sipn": "/logos/sipn.webp",
  "swissnex india": "/logos/swissnex-india.webp",
- "epfl innovation park": "/logos/epfl-innovation-park.webp"
+ "epfl innovation park": "/logos/epfl-innovation-park.webp",
+ "iagz": "/logos/iagz.webp",
+ "indian association greater zurich": "/logos/iagz.webp",
+ "swiss indian chamber of commerce": "/logos/sicc.webp",
+ "keliswiss": "/logos/keliswiss.webp",
+ "keli": "/logos/keliswiss.webp",
+ "chinmaya mission switzerland": "/logos/chinmaya-mission-switzerland.webp",
+ "chinmaya mission": "/logos/chinmaya-mission-switzerland.webp",
+ "insaz": "/logos/insaz.webp",
+ "swiss india professional network": "/logos/sipn.webp",
+ "swiss tamil economics development organization": "/logos/stedo.webp",
+ "stedo": "/logos/stedo.webp",
+ "wmc swiss": "/logos/wmc-swiss.webp",
+ "world malayalee council swiss": "/logos/wmc-swiss.webp",
+ "yuva epfl": "/logos/yuva-epfl.webp",
+ "yuva": "/logos/yuva-epfl.webp",
+ "indian association lausanne": "/logos/indian-association-lausanne.webp",
+ "ial": "/logos/indian-association-lausanne.webp",
+ "ramakrishna mission geneva": "/logos/ramakrishna-mission-geneva.webp",
+ "vedanta centre geneva": "/logos/ramakrishna-mission-geneva.webp",
+ "sivan kovil": "/logos/sivan-temple.webp",
+ "sivan temple": "/logos/sivan-temple.webp",
+ "bharatheeya kalalayam": "/logos/bharatheeya-kalalayam.webp",
+ "prangan": "/logos/prangan-swiss.webp",
+ "prangan swiss": "/logos/prangan-swiss.webp",
+ "venturelab": "/logos/venturelab.webp"
 };
 export const ORG_LOGO_SOURCES = [
  {
@@ -394,6 +419,96 @@ export const ORG_LOGO_SOURCES = [
   "website": "https://www.epfl-innovationpark.ch",
   "logoPage": "https://www.epfl-innovationpark.ch",
   "file": "/logos/epfl-innovation-park.webp"
+ },
+ {
+  "name": "IAGZ",
+  "website": "https://iagz.ch",
+  "logoPage": "https://iagz.ch",
+  "file": "/logos/iagz.webp"
+ },
+ {
+  "name": "SICC",
+  "website": "https://sicc.ch",
+  "logoPage": "https://sicc.ch",
+  "file": "/logos/sicc.webp"
+ },
+ {
+  "name": "Keliswiss",
+  "website": "https://keliswiss.org",
+  "logoPage": "https://keliswiss.org",
+  "file": "/logos/keliswiss.webp"
+ },
+ {
+  "name": "Chinmaya Mission Switzerland",
+  "website": "https://chinmayamission.com",
+  "logoPage": "https://chinmayamission.com",
+  "file": "/logos/chinmaya-mission-switzerland.webp"
+ },
+ {
+  "name": "INSAZ",
+  "website": "https://blogs.ethz.ch/insaz/",
+  "logoPage": "https://blogs.ethz.ch/insaz/",
+  "file": "/logos/insaz.webp"
+ },
+ {
+  "name": "SIPN",
+  "website": "https://sipn.ch/",
+  "logoPage": "https://sipn.ch/",
+  "file": "/logos/sipn.webp"
+ },
+ {
+  "name": "STEDO",
+  "website": "https://stedo.ch",
+  "logoPage": "https://stedo.ch",
+  "file": "/logos/stedo.webp"
+ },
+ {
+  "name": "WMC Swiss",
+  "website": "https://wmcswiss.com/",
+  "logoPage": "https://wmcswiss.com/",
+  "file": "/logos/wmc-swiss.webp"
+ },
+ {
+  "name": "YUVA EPFL",
+  "website": "https://www.epfl.ch/campus/associations/yuva/",
+  "logoPage": "https://www.epfl.ch/campus/associations/yuva/",
+  "file": "/logos/yuva-epfl.webp"
+ },
+ {
+  "name": "Indian Association Lausanne",
+  "website": "https://www.ialausanne.com/",
+  "logoPage": "https://www.ialausanne.com/",
+  "file": "/logos/indian-association-lausanne.webp"
+ },
+ {
+  "name": "Ramakrishna Mission Geneva",
+  "website": "https://geneva.rkmm.org/",
+  "logoPage": "https://geneva.rkmm.org/",
+  "file": "/logos/ramakrishna-mission-geneva.webp"
+ },
+ {
+  "name": "Sivan Temple",
+  "website": "https://sivankovil.ch",
+  "logoPage": "https://sivankovil.ch",
+  "file": "/logos/sivan-temple.webp"
+ },
+ {
+  "name": "Bharatheeya Kalalayam",
+  "website": "https://bharatheeyakalalayam.org",
+  "logoPage": "https://bharatheeyakalalayam.org",
+  "file": "/logos/bharatheeya-kalalayam.webp"
+ },
+ {
+  "name": "PrangaN@Swiss",
+  "website": "https://pranganswiss.org",
+  "logoPage": "https://pranganswiss.org",
+  "file": "/logos/prangan-swiss.webp"
+ },
+ {
+  "name": "Venturelab",
+  "website": "https://www.venturelab.swiss",
+  "logoPage": "https://www.venturelab.swiss",
+  "file": "/logos/venturelab.webp"
  }
 ] as const;
 export const normOrg = (s: string) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, ' ').trim();
