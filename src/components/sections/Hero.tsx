@@ -1,4 +1,5 @@
 "use client";
+import EmojiIcon from "@/components/ui/EmojiIcon";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -367,7 +368,7 @@ export default function Hero() {
                   border: "1px solid rgba(201,169,110,0.20)",
                   backdropFilter: "blur(8px)",
                 }}>
-                  <span style={{ fontSize: 14 }}>{s.emoji}</span>
+                  <EmojiIcon e={s.emoji} size={14} />
                   <div>
                     <div style={{
                       fontSize: 11, fontWeight: 800, color: "rgba(240,235,224,0.90)",
