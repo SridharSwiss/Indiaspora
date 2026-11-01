@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const CARDS = [
   {
-    img: "/hero-community.jpg",
+    img: "/hero-community.webp",
     label: "Community",
     title: "Your People, Your Roots",
     sub: "Associations, spiritual centres, student groups and women's networks across Switzerland.",
@@ -14,7 +14,7 @@ const CARDS = [
     accent: "#C9A96E",
   },
   {
-    img: "/hero-food.jpg",
+    img: "/hero-food.webp",
     label: "Food & Dining",
     title: "Taste of Home",
     sub: "60+ Indian restaurants, grocery stores, caterers and home-chef kitchens.",
@@ -22,7 +22,7 @@ const CARDS = [
     accent: "#E07040",
   },
   {
-    img: "/hero-business.jpg",
+    img: "/hero-business.webp",
     label: "Business",
     title: "Build & Connect",
     sub: "Networking chambers, Indian-founded startups and professional services in Switzerland.",
@@ -30,7 +30,7 @@ const CARDS = [
     accent: "#5ABFAB",
   },
   {
-    img: "/hero-culture.jpg",
+    img: "/hero-culture.webp",
     label: "Culture & Arts",
     title: "Bridging Two Worlds",
     sub: "Bharatanatyam, Bollywood dance, Carnatic music, festivals and cinema.",
@@ -38,7 +38,7 @@ const CARDS = [
     accent: "#D4608A",
   },
   {
-    img: "/hero-zurich.jpg",
+    img: "/hero-zurich.webp",
     label: "Zürich",
     title: "Switzerland's Largest City",
     sub: "IAGZ community, Indian restaurants near Bahnhofstrasse, Diwali events.",
@@ -46,7 +46,7 @@ const CARDS = [
     accent: "#F0A030",
   },
   {
-    img: "/hero-geneva.jpg",
+    img: "/hero-geneva.webp",
     label: "Geneva",
     title: "The International Hub",
     sub: "UN, WHO diplomats and a thriving Indian expat community by Lac Léman.",
@@ -54,7 +54,7 @@ const CARDS = [
     accent: "#4090D0",
   },
   {
-    img: "/hero-travel.jpg",
+    img: "/hero-travel.webp",
     label: "Travel",
     title: "Switzerland to India",
     sub: "Swiss Travel Pass, Pilatus for parents, flight deals and India journeys.",
@@ -62,7 +62,7 @@ const CARDS = [
     accent: "#8B6FD4",
   },
   {
-    img: "/hero-events.jpg",
+    img: "/hero-events.webp",
     label: "Events",
     title: "Never Miss a Beat",
     sub: "Garba nights, Diwali galas, business summits and cultural festivals.",

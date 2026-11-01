@@ -107,7 +107,7 @@ export default function ArtsPage() {
         subtitle="From Bharatanatyam to Bhangra — Switzerland's Indian arts community offers classical training, Bollywood fitness, and live music across all major cities."
         badge="Arts & Culture"
         gradient="from-rose-500 to-pink-600"
-        heroImage="/hero-culture.jpg"
+        heroImage="/hero-culture.webp"
         heroImageAlt="Indiaspora Switzerland cultural dialogue event with Bharatanatyam dancer and alphorn"
         heroImagePosition="center 25%"
         breadcrumbs={[

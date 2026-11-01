@@ -125,7 +125,7 @@ export default function BaselPage() {
         subtitle="Switzerland's pharmaceutical capital — home to Novartis, Roche, Art Basel, and a growing Indian professional community at the tri-national CH/DE/FR border."
         badge="City Guide"
         gradient="from-red-600 to-orange-500"
-        heroImage="/hero-community.jpg"
+        heroImage="/hero-community.webp"
         heroImageAlt="Indian community Basel Switzerland"
         heroImagePosition="center 45%"
         breadcrumbs={[
@@ -137,7 +137,7 @@ export default function BaselPage() {
       {/* Hero Image */}
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "24px 20px 0" }}>
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Basel_-_Mittlere_Bruecke1.jpg/1280px-Basel_-_Mittlere_Bruecke1.jpg"
+          src="/images/cities/basel.webp"
           alt="Basel Mittlere Brücke over the Rhine"
           style={{
             width: "100%",

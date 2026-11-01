@@ -52,7 +52,7 @@ export default function GenevaPage() {
         subtitle="Switzerland's international city — home to the UN, WHO, and a thriving Indian professional community along the shores of Lac Léman."
         badge="City Guide"
         gradient="from-blue-600 to-cyan-500"
-        heroImage="/hero-geneva.jpg"
+        heroImage="/hero-geneva.webp"
         heroImageAlt="Indiaspora Geneva networking event with Jet d'Eau in the background"
         heroImagePosition="center 30%"
         breadcrumbs={[
@@ -64,7 +64,7 @@ export default function GenevaPage() {
       {/* Hero Image */}
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "24px 16px 0" }}>
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Jet_d%27eau_Geneve.jpg/1280px-Jet_d%27eau_Geneve.jpg"
+          src="/images/cities/geneva.webp"
           alt="Geneva Jet d'Eau fountain"
           style={{ width: "100%", height: 280, objectFit: "cover", borderRadius: 16 }}
         />

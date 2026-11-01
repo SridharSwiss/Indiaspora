@@ -113,7 +113,7 @@ export default function WomenPage() {
         title="Women's Network in Switzerland"
         subtitle="Professional networks, expat communities, mentorship, entrepreneurship, tech, and official support — verified organisations across Switzerland."
         badge="👩‍💼 Women's Network"
-        heroImage="/hero-zurich.jpg"
+        heroImage="/hero-zurich.webp"
         heroImageAlt="Indian women community in Zurich Switzerland"
         heroImagePosition="center 35%"
         breadcrumbs={[{ label: "Community", href: "/community" }, { label: "Women's Network" }]}

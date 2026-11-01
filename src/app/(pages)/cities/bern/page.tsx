@@ -70,7 +70,7 @@ export default function BernPage() {
         subtitle="Switzerland's federal capital — home to the Embassy of India, the Aare river loop, and a tight-knit Indian community in the heart of the Bernese Mittelland."
         badge="City Guide"
         gradient="from-green-600 to-emerald-600"
-        heroImage="/hero-zurich.jpg"
+        heroImage="/hero-zurich.webp"
         heroImageAlt="Indian community Bern Switzerland evening event"
         heroImagePosition="center 40%"
         breadcrumbs={[
@@ -84,7 +84,7 @@ export default function BernPage() {
         {/* Hero Image */}
         <div>
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Bern_Bundeshaus_2009.jpg/1280px-Bern_Bundeshaus_2009.jpg"
+            src="/images/cities/bern.webp"
             alt="Bern Federal Palace (Bundeshaus)"
             style={{ width: "100%", height: 280, objectFit: "cover", borderRadius: 16 }}
           />

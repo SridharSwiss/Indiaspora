@@ -52,7 +52,7 @@ export default function CitiesPage() {
         subtitle="Explore the Indian community in each Swiss city — from Zurich's financial district to Geneva's international arena and Basel's pharma corridor."
         badge="26 Cantons"
         gradient="from-blue-500 to-indigo-600"
-        heroImage="/hero-community.jpg"
+        heroImage="/hero-community.webp"
         heroImageAlt="Indian community across Swiss cities"
         heroImagePosition="center 40%"
         breadcrumbs={[{ label: "City Guides" }]}
@@ -64,7 +64,7 @@ export default function CitiesPage() {
             <Link key={city.slug} href={`/cities/${city.slug}`} className="group glass rounded-2xl overflow-hidden card-hover">
               <div className="overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`/images/cities/${city.slug}.jpg`} alt={`${city.name}, Switzerland`} loading="lazy" className="w-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ height: 170 }} />
+              <img src={`/images/cities/${city.slug}.webp`} alt={`${city.name}, Switzerland`} loading="lazy" className="w-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ height: 170 }} />
               </div>
               <div className={`h-2 bg-gradient-to-r ${city.color}`} />
               <div className="p-6">

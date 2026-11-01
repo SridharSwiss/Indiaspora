@@ -243,7 +243,7 @@ export default function LausannePage() {
         subtitle="Olympic capital on Lake Geneva — home to EPFL, YUVA, and a growing Indian student and professional community on the shores of Lac Léman."
         badge="City Guide"
         gradient="from-purple-600 to-indigo-600"
-        heroImage="/hero-geneva.jpg"
+        heroImage="/hero-geneva.webp"
         heroImageAlt="Indian community Lausanne Switzerland event"
         heroImagePosition="center 35%"
         breadcrumbs={[
@@ -265,7 +265,7 @@ export default function LausannePage() {
         {/* ── Hero image ── */}
         <div style={{ marginTop: 32 }}>
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Lausanne_-_panorama_depuis_Sauvabelin_-_panoramio.jpg/1280px-Lausanne_-_panorama_depuis_Sauvabelin_-_panoramio.jpg"
+            src="/images/cities/lausanne.webp"
             alt="Lausanne panorama from Sauvabelin"
             style={{
               width: "100%",

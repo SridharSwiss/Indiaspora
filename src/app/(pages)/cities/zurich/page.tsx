@@ -28,7 +28,7 @@ export default function ZurichPage() {
         subtitle="Switzerland's largest city and financial hub — where Bahnhofstrasse meets the ETH hilltop, Lake Zurich shimmers at the city's heart, and a thriving Indian community calls Kreis 4, Oerlikon and Seefeld home."
         badge="City Guide"
         gradient="from-amber-500 to-orange-500"
-        heroImage="/hero-zurich.jpg"
+        heroImage="/hero-zurich.webp"
         heroImageAlt="Indiaspora Zurich event by the Limmat with Grossmünster backdrop"
         heroImagePosition="center 35%"
         breadcrumbs={[
@@ -42,7 +42,7 @@ export default function ZurichPage() {
         {/* Hero Image */}
         <div style={{ margin: "32px 0 40px" }}>
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Zurich_Grossmunster_and_Limmat_River.jpg/1280px-Zurich_Grossmunster_and_Limmat_River.jpg"
+            src="/images/cities/zurich.webp"
             alt="Zurich Grossmünster and Limmat River"
             style={{ width: "100%", height: 300, objectFit: "cover", borderRadius: 20 }}
           />

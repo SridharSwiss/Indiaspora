@@ -16,7 +16,7 @@ const CAT_META: Record<string, {
   orb: string;
 }> = {
   "Community": {
-    img: "/hero-community.jpg",
+    img: "/hero-community.webp",
     emoji: "🤝",
     accent: "#CEB07A", accentRgb: "201,169,110",
     topBar: "linear-gradient(90deg, #CEB07A 0%, #E8C88A 50%, #D4906A 100%)",
@@ -32,7 +32,7 @@ const CAT_META: Record<string, {
     orb: "radial-gradient(ellipse 80% 70% at 110% -10%, rgba(80,160,110,0.22) 0%, transparent 65%)",
   },
   "Food & Dining": {
-    img: "/hero-food.jpg",
+    img: "/hero-food.webp",
     emoji: "🍛",
     accent: "#D4906A", accentRgb: "212,144,106",
     topBar: "linear-gradient(90deg, #D4906A 0%, #ECA878 50%, #C87040 100%)",
@@ -40,7 +40,7 @@ const CAT_META: Record<string, {
     orb: "radial-gradient(ellipse 80% 70% at 110% -10%, rgba(212,144,106,0.22) 0%, transparent 65%)",
   },
   "Spiritual & Wellness": {
-    img: "/hero-culture.jpg",
+    img: "/hero-culture.webp",
     emoji: "🪔",
     accent: "#C090D0", accentRgb: "192,144,208",
     topBar: "linear-gradient(90deg, #C090D0 0%, #D8A8E8 50%, #A070B8 100%)",
@@ -48,7 +48,7 @@ const CAT_META: Record<string, {
     orb: "radial-gradient(ellipse 80% 70% at 110% -10%, rgba(192,144,208,0.22) 0%, transparent 65%)",
   },
   "Business & Career": {
-    img: "/hero-business.jpg",
+    img: "/hero-business.webp",
     emoji: "💼",
     accent: "#80B0D8", accentRgb: "128,176,216",
     topBar: "linear-gradient(90deg, #80B0D8 0%, #A0C8E8 50%, #5A8AB8 100%)",
@@ -56,7 +56,7 @@ const CAT_META: Record<string, {
     orb: "radial-gradient(ellipse 80% 70% at 110% -10%, rgba(128,176,216,0.22) 0%, transparent 65%)",
   },
   "Culture & Arts": {
-    img: "/hero-events.jpg",
+    img: "/hero-events.webp",
     emoji: "🎭",
     accent: "#F0A060", accentRgb: "240,160,96",
     topBar: "linear-gradient(90deg, #F0A060 0%, #F8B870 50%, #D07030 100%)",

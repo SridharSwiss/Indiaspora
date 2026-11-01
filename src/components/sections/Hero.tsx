@@ -8,7 +8,7 @@ import { STATS } from "@/lib/data";
 import JoinModal from "@/components/JoinModal";
 import StatNumber from "@/components/ui/StatNumber";
 
-const BG_IMAGES = ["/hero-community.jpg", "/hero-events.jpg", "/hero-zurich.jpg"];
+const BG_IMAGES = ["/hero-community.webp", "/hero-events.webp", "/hero-zurich.webp"];
 
 const FEATURED_WORDS = ["Community", "Culture", "Cuisine", "Connections", "Commerce"];
 
@@ -460,7 +460,7 @@ export default function Hero() {
             }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/hero-community.jpg"
+                src="/hero-community.webp"
                 alt="Indian community on a Swiss street with Alps backdrop"
                 style={{
                   width: "100%",

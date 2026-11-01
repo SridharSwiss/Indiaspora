@@ -123,7 +123,7 @@ export default function SubmitEventPage() {
         subtitle="Organising an Indian community event in Switzerland? List it here to reach 24,500+ Indians across the country."
         badge="Free Listing"
         gradient="from-violet-500 to-purple-600"
-        heroImage="/hero-events.jpg"
+        heroImage="/hero-events.webp"
         heroImageAlt="Submit your Indian community event in Switzerland"
         heroImagePosition="center 30%"
         breadcrumbs={[{ label: "Events", href: "/events" }, { label: "Submit" }]}

@@ -170,7 +170,7 @@ export const CITIES = [
   {
     name: "Zurich",
     slug: "zurich",
-    image: "/images/cities/zurich.jpg",
+    image: "/images/cities/zurich.webp",
     description: "Financial capital and home to the largest Indian community in Switzerland",
     population: "~10,000 Indians",
     highlights: ["IAGZ Community & Diwali Gala", "ETH & UZH Indian Students (InSAZ)", "Indian Restaurants in Kreis 4 & 6", "Gujarati, Punjabi & Telugu Associations"],
@@ -179,7 +179,7 @@ export const CITIES = [
   {
     name: "Geneva",
     slug: "geneva",
-    image: "/images/cities/geneva.jpg",
+    image: "/images/cities/geneva.webp",
     description: "International city with a diverse, cosmopolitan Indian expat community",
     population: "~5,000 Indians",
     highlights: ["UN & Diplomatic Indian Community", "Indian Association Geneva (IAG)", "Indian Consulate General (9 Rue du Valais)", "International School Options"],
@@ -188,7 +188,7 @@ export const CITIES = [
   {
     name: "Basel",
     slug: "basel",
-    image: "/images/cities/basel.jpg",
+    image: "/images/cities/basel.webp",
     description: "Pharma hub with a growing Indian professional community",
     population: "~3,500 Indians",
     highlights: ["Pharma & Biotech Professionals (Novartis, Roche)", "ICAS – Indian Cultural Association Switzerland", "Sri Rajeswari Ambal Temple", "InBa India Basel Festival – Theater Basel"],
@@ -197,7 +197,7 @@ export const CITIES = [
   {
     name: "Bern",
     slug: "bern",
-    image: "/images/cities/bern.jpg",
+    image: "/images/cities/bern.webp",
     description: "Swiss capital with a vibrant Indian diplomatic and academic community",
     population: "~2,000 Indians",
     highlights: ["Embassy of India (Kirchenfeldstrasse 28)", "Indian Association Berne (IAB)", "Bharatiya Association Berne", "University of Bern Indian Students"],
@@ -206,7 +206,7 @@ export const CITIES = [
   {
     name: "Lausanne",
     slug: "lausanne",
-    image: "/images/cities/lausanne.jpg",
+    image: "/images/cities/lausanne.webp",
     description: "Olympic city with EPFL and a thriving Indian student community",
     population: "~1,500 Indians",
     highlights: ["EPFL Indian Student Association", "PrangaN@Swiss – Durga Puja Lausanne", "IOC Indian Professionals", "Indian Restaurants in City Centre"],
@@ -225,7 +225,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Swiss Indian Chamber of Commerce (SICC)",
     color: "bg-blue-500",
     url: "https://sicc.ch/event/zff-india-night/",
-    image: "/images/events/sicc-film.jpg",
+    image: "/images/events/sicc-film.webp",
   },
   {
     title: "SwissPuja Durga Puja 2026",
@@ -236,7 +236,7 @@ export const UPCOMING_EVENTS = [
     organiser: "SwissPuja",
     color: "bg-rose-500",
     url: "https://www.swisspuja.org/durga-puja.php",
-    image: "/images/events/durga.jpg",
+    image: "/images/events/durga.webp",
   },
   {
     title: "IAGZ Navratri Garba Night 2026",
@@ -247,7 +247,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Indian Association Zurich (IAGZ)",
     color: "bg-purple-500",
     url: "https://iagz.ch",
-    image: "/images/events/garba.jpg",
+    image: "/images/events/garba.webp",
   },
   {
     title: "IAGZ Diwali Gala 2026",
@@ -258,7 +258,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Indian Association Zurich (IAGZ)",
     color: "bg-orange-500",
     url: "https://iagz.ch",
-    image: "/images/events/diwali.jpg",
+    image: "/images/events/diwali.webp",
   },
   {
     title: "Cognizant & SICC: Diwali Evening of Exchange",
@@ -269,7 +269,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Swiss Indian Chamber of Commerce (SICC) & Cognizant",
     color: "bg-amber-600",
     url: "https://sicc.ch/event/cognizant-a-diwali-evening-of-exchange-shaping-the-narrative-for-wef-davos-2027/",
-    image: "/images/events/exchange.jpg",
+    image: "/images/events/exchange.webp",
   },
   // ── Past (shown in Past Events section) ──────────────────────────────────
   {
@@ -281,7 +281,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Keli Swiss (KELI)",
     color: "bg-teal-500",
     url: "https://www.keliswiss.org/",
-    image: "/images/events/kalamela.jpg",
+    image: "/images/events/kalamela.webp",
   },
   {
     title: "SMA Basel Onasangamam 2026",
@@ -292,7 +292,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Swiss Malayalee Association Basel (SMA Basel)",
     color: "bg-green-600",
     url: "https://www.smabasel.ch/onasangamam/",
-    image: "/images/events/onam.jpg",
+    image: "/images/events/onam.webp",
   },
   {
     title: "Indian Independence Day Reception",
@@ -303,7 +303,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Embassy of India, Berne",
     color: "bg-orange-600",
     url: "https://www.indembassybern.gov.in",
-    image: "/images/events/independence.jpg",
+    image: "/images/events/independence.webp",
   },
   {
     title: "ISKCON Rath Yatra 2026",
@@ -314,7 +314,7 @@ export const UPCOMING_EVENTS = [
     organiser: "ISKCON Zurich",
     color: "bg-yellow-600",
     url: "https://iskcon.ch",
-    image: "/images/events/rath.jpg",
+    image: "/images/events/rath.webp",
   },
   {
     title: "InBa — India Basel Festival 2026",
@@ -325,7 +325,7 @@ export const UPCOMING_EVENTS = [
     organiser: "InBa India Basel",
     color: "bg-red-500",
     url: "https://inba.ch",
-    image: "/images/events/inba.jpg",
+    image: "/images/events/inba.webp",
   },
 ];
 

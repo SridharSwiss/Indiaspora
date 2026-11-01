@@ -17,7 +17,7 @@ export default function TravelBanner() {
       {/* Background photo with slow Ken-Burns zoom */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/hero-travel.jpg"
+        src="/hero-travel.webp"
         alt="Indiaspora Express — Indians enjoying a panoramic Swiss Alps train journey"
         style={{
           position: "absolute", inset: 0, width: "100%", height: "100%",

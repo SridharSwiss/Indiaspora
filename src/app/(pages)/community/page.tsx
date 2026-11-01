@@ -42,7 +42,7 @@ export default function CommunityPage() {
         title="Indian Community in Switzerland"
         subtitle="Connect with 25,000+ Indians across 26 cantons. Find your tribe — by region, language, profession, or interest."
         badge="🤝 150+ Active Groups"
-        heroImage="/hero-events.jpg"
+        heroImage="/hero-events.webp"
         heroImageAlt="Indian community Switzerland"
         heroImagePosition="center 30%"
         breadcrumbs={[{ label: "Community" }]}

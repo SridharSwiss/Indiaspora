@@ -246,7 +246,7 @@ export default function SupermarketDecoderPage() {
         subtitle="Decode labels, find Indian substitutes, and shop confidently at Migros, Coop, Denner, Aldi and Lidl."
         badge="Food Guide"
         gradient="from-amber-500 to-orange-500"
-        heroImage="/hero-food.jpg"
+        heroImage="/hero-food.webp"
         heroImageAlt="Swiss supermarket guide for Indians"
         heroImagePosition="center 40%"
         breadcrumbs={[

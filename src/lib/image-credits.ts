@@ -2,91 +2,91 @@
 export const IMAGE_CREDITS = [
   {
     "event": "SICC India Night",
-    "file": "/images/events/sicc-film.jpg",
+    "file": "/images/events/sicc-film.webp",
     "photographer": "15299",
     "source": "https://pixabay.com/photos/film-photography-negatives-102681/"
   },
   {
     "event": "SwissPuja Durga Puja",
-    "file": "/images/events/durga.jpg",
+    "file": "/images/events/durga.webp",
     "photographer": "sujay85",
     "source": "https://pixabay.com/photos/festival-goddess-worship-religion-1660475/"
   },
   {
     "event": "IAGZ Navratri Garba Night",
-    "file": "/images/events/garba.jpg",
+    "file": "/images/events/garba.webp",
     "photographer": "dshah",
     "source": "https://pixabay.com/photos/indian-dance-india-traditional-599611/"
   },
   {
     "event": "IAGZ Diwali Gala",
-    "file": "/images/events/diwali.jpg",
+    "file": "/images/events/diwali.webp",
     "photographer": "bhuppigraphy",
     "source": "https://pixabay.com/photos/diwali-diya-lamp-india-clay-2890605/"
   },
   {
     "event": "Cognizant & SICC Diwali Evening",
-    "file": "/images/events/exchange.jpg",
+    "file": "/images/events/exchange.webp",
     "photographer": "ZaidAysh_Graphix",
     "source": "https://pixabay.com/photos/meeting-conference-business-office-10222297/"
   },
   {
     "event": "Kalamela Arts Festival",
-    "file": "/images/events/kalamela.jpg",
+    "file": "/images/events/kalamela.webp",
     "photographer": "4756955",
     "source": "https://pixabay.com/photos/indian-dancer-culture-traditional-2135509/"
   },
   {
     "event": "SMA Basel Onasangamam",
-    "file": "/images/events/onam.jpg",
+    "file": "/images/events/onam.webp",
     "photographer": "jomonkoikkara",
     "source": "https://pixabay.com/photos/flower-carpet-pookalam-onapookalam-1661431/"
   },
   {
     "event": "Independence Day Reception",
-    "file": "/images/events/independence.jpg",
+    "file": "/images/events/independence.webp",
     "photographer": "QuinceCreative",
     "source": "https://pixabay.com/photos/indian-flag-national-india-country-3602884/"
   },
   {
     "event": "ISKCON Rath Yatra",
-    "file": "/images/events/rath.jpg",
+    "file": "/images/events/rath.webp",
     "photographer": "u_9secrfwmuu",
     "source": "https://pixabay.com/photos/west-bengal-rath-yatra-8086318/"
   },
   {
     "event": "InBa India Basel Festival",
-    "file": "/images/events/inba.jpg",
+    "file": "/images/events/inba.webp",
     "photographer": "Primedot0",
     "source": "https://pixabay.com/photos/holi-festival-happy-holi-10136266/"
   },
   {
     "event": "Zurich (city photo)",
-    "file": "/images/cities/zurich.jpg",
+    "file": "/images/cities/zurich.webp",
     "photographer": "anncapictures",
     "source": "https://pixabay.com/photos/zurich-grossm%C3%BCnster-church-tower-1443575/"
   },
   {
     "event": "Geneva (city photo)",
-    "file": "/images/cities/geneva.jpg",
+    "file": "/images/cities/geneva.webp",
     "photographer": "ChiemSeherin",
     "source": "https://pixabay.com/photos/geneva-lake-geneva-jet-deau-8259296/"
   },
   {
     "event": "Basel (city photo)",
-    "file": "/images/cities/basel.jpg",
+    "file": "/images/cities/basel.webp",
     "photographer": "fietzfotos",
     "source": "https://pixabay.com/photos/bridge-river-rhine-buildings-7060684/"
   },
   {
     "event": "Bern (city photo)",
-    "file": "/images/cities/bern.jpg",
+    "file": "/images/cities/bern.webp",
     "photographer": "TeeFarm",
     "source": "https://pixabay.com/photos/bern-switzerland-rose-garden-2155080/"
   },
   {
     "event": "Lausanne (city photo)",
-    "file": "/images/cities/lausanne.jpg",
+    "file": "/images/cities/lausanne.webp",
     "photographer": "SophieML",
     "source": "https://pixabay.com/photos/lausanne-leman-switzerland-city-4617734/"
   }

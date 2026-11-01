@@ -61,7 +61,7 @@ export default function First30DaysPage() {
         subtitle="Your complete step-by-step settling-in checklist — from Zurich Airport to your first month living like a local."
         badge="🛬 New Arrival Guide"
         gradient="from-orange-500 to-red-500"
-        heroImage="/hero-community.jpg"
+        heroImage="/hero-community.webp"
         heroImageAlt="First 30 days guide for Indians arriving in Switzerland"
         heroImagePosition="center 40%"
         breadcrumbs={[

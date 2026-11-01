@@ -81,7 +81,7 @@ export default function CateringPage() {
         subtitle="Miss home-cooked food? Dozens of home chefs across Switzerland offer authentic Indian tiffin delivery and event catering."
         badge="Tiffin & Catering"
         gradient="from-pink-500 to-rose-500"
-        heroImage="/hero-food.jpg"
+        heroImage="/hero-food.webp"
         heroImageAlt="Indian catering and food in Switzerland"
         heroImagePosition="center 55%"
         breadcrumbs={[

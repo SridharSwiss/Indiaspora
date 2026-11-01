@@ -37,7 +37,7 @@ export default function FoodPage() {
         subtitle="From authentic South Indian dosas to Punjabi dhabas — find the best Indian food, grocery stores, home chefs, and tiffin services across Switzerland."
         badge="200+ Listings"
         gradient="from-amber-500 to-orange-500"
-        heroImage="/hero-food.jpg"
+        heroImage="/hero-food.webp"
         heroImageAlt="Indian food scene in Switzerland"
         heroImagePosition="center 45%"
         breadcrumbs={[{ label: "Food & Dining" }]}

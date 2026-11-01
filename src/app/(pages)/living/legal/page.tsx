@@ -44,7 +44,7 @@ export default function LegalPage() {
         subtitle="Understanding Swiss residence permits and managing Indian documents from abroad."
         badge="Legal Guide"
         gradient="from-slate-500 to-gray-600"
-        heroImage="/hero-business.jpg"
+        heroImage="/hero-business.webp"
         heroImageAlt="Legal services for Indians in Switzerland"
         heroImagePosition="center 35%"
         breadcrumbs={[
