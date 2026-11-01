@@ -208,6 +208,7 @@ export default function Footer() {
           <div className="flex items-center gap-4 flex-wrap justify-center">
             {[
               { label: "Privacy", href: "/privacy" },
+              { label: "Image credits", href: "/credits" },
               { label: "Terms", href: "/terms" },
               { label: "Cookies", href: "/privacy#cookies" },
               { label: "Unsubscribe", href: "/unsubscribe" },

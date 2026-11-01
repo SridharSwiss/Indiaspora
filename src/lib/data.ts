@@ -220,7 +220,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Swiss Indian Chamber of Commerce (SICC)",
     color: "bg-blue-500",
     url: "https://sicc.ch/event/zff-india-night/",
-    image: "https://images.unsplash.com/photo-1478720568477-152d9b5a0db8?w=600&auto=format&fit=crop",
+    image: "/images/events/sicc-film.jpg",
   },
   {
     title: "SwissPuja Durga Puja 2026",
@@ -231,7 +231,7 @@ export const UPCOMING_EVENTS = [
     organiser: "SwissPuja",
     color: "bg-rose-500",
     url: "https://www.swisspuja.org/durga-puja.php",
-    image: "https://images.unsplash.com/photo-1604697964192-35e5e6d8e63e?w=600&auto=format&fit=crop",
+    image: "/images/events/durga.jpg",
   },
   {
     title: "IAGZ Navratri Garba Night 2026",
@@ -242,7 +242,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Indian Association Zurich (IAGZ)",
     color: "bg-purple-500",
     url: "https://iagz.ch",
-    image: "https://images.unsplash.com/photo-1563237023-b1e970526dcb?w=600&auto=format&fit=crop",
+    image: "/images/events/garba.jpg",
   },
   {
     title: "IAGZ Diwali Gala 2026",
@@ -253,7 +253,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Indian Association Zurich (IAGZ)",
     color: "bg-orange-500",
     url: "https://iagz.ch",
-    image: "https://images.unsplash.com/photo-1515825838458-f2a94b20105a?w=600&auto=format&fit=crop",
+    image: "/images/events/diwali.jpg",
   },
   {
     title: "Cognizant & SICC: Diwali Evening of Exchange",
@@ -264,7 +264,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Swiss Indian Chamber of Commerce (SICC) & Cognizant",
     color: "bg-amber-600",
     url: "https://sicc.ch/event/cognizant-a-diwali-evening-of-exchange-shaping-the-narrative-for-wef-davos-2027/",
-    image: "https://images.unsplash.com/photo-1515825838458-f2a94b20105a?w=600&auto=format&fit=crop",
+    image: "/images/events/exchange.jpg",
   },
   // ── Past (shown in Past Events section) ──────────────────────────────────
   {
@@ -276,7 +276,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Keli Swiss (KELI)",
     color: "bg-teal-500",
     url: "https://www.keliswiss.org/",
-    image: "https://images.unsplash.com/photo-1545128485-c400e7702796?w=600&auto=format&fit=crop",
+    image: "/images/events/kalamela.jpg",
   },
   {
     title: "SMA Basel Onasangamam 2026",
@@ -287,7 +287,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Swiss Malayalee Association Basel (SMA Basel)",
     color: "bg-green-600",
     url: "https://www.smabasel.ch/onasangamam/",
-    image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&auto=format&fit=crop",
+    image: "/images/events/onam.jpg",
   },
   {
     title: "Indian Independence Day Reception",
@@ -298,7 +298,7 @@ export const UPCOMING_EVENTS = [
     organiser: "Embassy of India, Berne",
     color: "bg-orange-600",
     url: "https://www.indembassybern.gov.in",
-    image: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=600&auto=format&fit=crop",
+    image: "/images/events/independence.jpg",
   },
   {
     title: "ISKCON Rath Yatra 2026",
@@ -309,7 +309,7 @@ export const UPCOMING_EVENTS = [
     organiser: "ISKCON Zurich",
     color: "bg-yellow-600",
     url: "https://iskcon.ch",
-    image: "https://images.unsplash.com/photo-1567591370078-3bd55f91e4c8?w=600&auto=format&fit=crop",
+    image: "/images/events/rath.jpg",
   },
   {
     title: "InBa — India Basel Festival 2026",
@@ -320,7 +320,7 @@ export const UPCOMING_EVENTS = [
     organiser: "InBa India Basel",
     color: "bg-red-500",
     url: "https://inba.ch",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop",
+    image: "/images/events/inba.jpg",
   },
 ];
 
