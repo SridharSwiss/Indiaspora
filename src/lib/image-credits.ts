@@ -59,5 +59,35 @@ export const IMAGE_CREDITS = [
     "file": "/images/events/inba.jpg",
     "photographer": "Primedot0",
     "source": "https://pixabay.com/photos/holi-festival-happy-holi-10136266/"
+  },
+  {
+    "event": "Zurich (city photo)",
+    "file": "/images/cities/zurich.jpg",
+    "photographer": "anncapictures",
+    "source": "https://pixabay.com/photos/zurich-grossm%C3%BCnster-church-tower-1443575/"
+  },
+  {
+    "event": "Geneva (city photo)",
+    "file": "/images/cities/geneva.jpg",
+    "photographer": "ChiemSeherin",
+    "source": "https://pixabay.com/photos/geneva-lake-geneva-jet-deau-8259296/"
+  },
+  {
+    "event": "Basel (city photo)",
+    "file": "/images/cities/basel.jpg",
+    "photographer": "fietzfotos",
+    "source": "https://pixabay.com/photos/bridge-river-rhine-buildings-7060684/"
+  },
+  {
+    "event": "Bern (city photo)",
+    "file": "/images/cities/bern.jpg",
+    "photographer": "TeeFarm",
+    "source": "https://pixabay.com/photos/bern-switzerland-rose-garden-2155080/"
+  },
+  {
+    "event": "Lausanne (city photo)",
+    "file": "/images/cities/lausanne.jpg",
+    "photographer": "SophieML",
+    "source": "https://pixabay.com/photos/lausanne-leman-switzerland-city-4617734/"
   }
 ] as const;

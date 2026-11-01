@@ -62,6 +62,10 @@ export default function CitiesPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {cities.map((city) => (
             <Link key={city.slug} href={`/cities/${city.slug}`} className="group glass rounded-2xl overflow-hidden card-hover">
+              <div className="overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/images/cities/${city.slug}.jpg`} alt={`${city.name}, Switzerland`} loading="lazy" className="w-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ height: 170 }} />
+              </div>
               <div className={`h-2 bg-gradient-to-r ${city.color}`} />
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">

@@ -72,6 +72,12 @@ export default function Cities() {
               boxShadow: `0 8px 40px ${pal.bg}`,
               transition: "border-color 0.35s, box-shadow 0.35s",
             }}>
+              {/* Signature photo */}
+              <div style={{ position: "relative", height: "clamp(150px,22vw,230px)", background: "var(--surface-2)" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img key={city.slug} src={city.image} alt={`${city.name}, Switzerland`} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.45) 100%)" }} />
+              </div>
               {/* Hero header */}
               <div style={{
                 padding: "clamp(20px,4vw,36px) clamp(16px,3.5vw,32px)",
@@ -203,15 +209,12 @@ export default function Cities() {
                       boxShadow: isActive ? `0 4px 20px ${p.bg}` : "none",
                     }}
                   >
-                    <div style={{
-                      width: 40, height: 40, borderRadius: 12, flexShrink: 0,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      background: isActive ? p.accent : "var(--surface-3)",
-                      color: isActive ? "#fff" : "var(--text-3)",
-                      transition: "all 0.25s",
-                    }}>
-                      <MapPin style={{ width: 16, height: 16 }} />
-                    </div>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={c.image} alt="" width={44} height={44} loading="lazy" style={{
+                      width: 44, height: 44, borderRadius: 12, flexShrink: 0, objectFit: "cover",
+                      boxShadow: isActive ? `0 0 0 2px ${p.accent}` : "0 0 0 1px var(--border)",
+                      transition: "box-shadow 0.25s",
+                    }} />
                     <div style={{ flex: 1 }}>
                       <div style={{
                         fontSize: 14, fontWeight: 700,
