@@ -1,5 +1,6 @@
 "use client";
 
+import { TIERS } from "@/lib/tiers";
 import { useState, useEffect, useCallback } from "react";
 import { X, ChevronRight, CheckCircle2, Loader2, User, Mail, MapPin, Briefcase, ChevronDown } from "lucide-react";
 
@@ -8,33 +9,6 @@ const INTERESTS = [
   "Festivals & Culture", "Food & Dining", "Business Networking",
   "Community Events", "Spiritual Groups", "Language & Education",
   "Sports & Recreation", "Women's Network", "Students",
-];
-const TIERS = [
-  {
-    id: "Community",
-    label: "Community",
-    price: "Free",
-    desc: "Access to directory, events and community news",
-    features: ["Full directory access", "Event notifications", "Community newsletter"],
-    color: "#059669",
-  },
-  {
-    id: "Member",
-    label: "Member",
-    price: "CHF 50/yr",
-    desc: "Everything in Community plus priority features",
-    features: ["All Community benefits", "Business listing", "Early event access", "Member badge"],
-    color: "#F97316",
-    popular: true,
-  },
-  {
-    id: "Supporter",
-    label: "Supporter",
-    price: "CHF 150/yr",
-    desc: "Support the community and get premium access",
-    features: ["All Member benefits", "Featured profile", "Sponsor badge", "Annual report"],
-    color: "#4F46E5",
-  },
 ];
 
 const EMPTY_FORM = {

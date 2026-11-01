@@ -57,6 +57,12 @@ export default function TermsPage() {
         <p>All original content on this site is &copy; 2026 Indiaspora Community Hub. Community-contributed content (event listings) remains the contributor&apos;s property; by submitting it, you grant us a non-exclusive licence to publish it. You may share links but may not reproduce content without written permission.</p>
       </Section>
 
+      <Section title="5B. Membership Fees &amp; Changes">
+        <p>
+          Membership tiers, prices, billing periods and benefits are set by Indiaspora and may be changed at any time. Indiaspora expressly reserves the right to add, change, suspend or withdraw any tier, fee or benefit. Changes to a paid fee apply from the next renewal period (or immediately for new sign-ups) and will be published on the site; continuing to use a paid tier after a change takes effect means you accept the new fee. A fee already paid for a current period is not changed retroactively. Fees are stated in Swiss francs (CHF) and are processed by a third-party payment provider whose own terms apply.
+        </p>
+      </Section>
+
       <Section title="5A. Images, Logos &amp; Takedown Requests">
         <p>
           Photographs on indiaspora.ch come from royalty-free libraries (mainly Pixabay, under the Pixabay Content License) or are original to Indiaspora. Credits are listed on our <a href="/credits" style={{ color: GOLD, textDecoration: "underline" }}>Image credits</a> page. Pixabay does not guarantee that model or property releases exist for every photo, and Indiaspora gives no warranty about third-party rights in any image.
