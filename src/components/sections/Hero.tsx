@@ -199,7 +199,8 @@ export default function Hero() {
           <h1
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(3.2rem, 8vw, 6.2rem)",
+              fontSize: "clamp(2.3rem, 6.6vw, 6.2rem)",
+              overflowWrap: "normal", wordBreak: "keep-all", hyphens: "none",
               fontWeight: 700,
               lineHeight: 0.97,
               letterSpacing: "-0.02em",
@@ -212,7 +213,8 @@ export default function Hero() {
           <h1
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(3.2rem, 8vw, 6.2rem)",
+              fontSize: "clamp(2.3rem, 6.6vw, 6.2rem)",
+              overflowWrap: "normal", wordBreak: "keep-all", hyphens: "none",
               fontWeight: 700,
               lineHeight: 0.97,
               letterSpacing: "-0.02em",
