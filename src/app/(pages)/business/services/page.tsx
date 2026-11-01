@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -88,6 +89,7 @@ export default function ServicesPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {cat.items.map((item) => (
                 <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
+                  <OrgLogo name={item.name} />
                   <h3 className="font-semibold text-sm mb-2 group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{item.name}</h3>
                   <p className="text-sm " style={{ color: "var(--text-2)" }}>{item.note}</p>
                 </a>

@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -93,6 +94,7 @@ export default function FashionPage() {
             {boutiques.map((b) => (
               <a key={b.name} href={b.url!} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
                 <div className="flex items-start justify-between mb-2">
+                  <OrgLogo name={b.name} />
                   <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{b.name}</h3>
                   <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full ml-2 shrink-0">{b.city}</span>
                 </div>
@@ -110,6 +112,7 @@ export default function FashionPage() {
           <div className="grid md:grid-cols-2 gap-4">
             {online.map((o) => (
               <a key={o.name} href={o.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
+                <OrgLogo name={o.name} />
                 <h3 className="font-semibold text-sm mb-2 group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{o.name}</h3>
                 <p className="text-sm" style={{ color: "var(--text-2)" }}>{o.desc}</p>
               </a>
@@ -136,6 +139,7 @@ export default function FashionPage() {
           <div className="space-y-3">
             {jewellery.map((j) => (
               <div key={j.name} className="glass rounded-2xl p-5">
+                <OrgLogo name={j.name} />
                 <h3 className="font-semibold text-sm mb-1" style={{ color: "var(--text)" }}>{j.name}</h3>
                 <p className="text-sm" style={{ color: "var(--text-2)" }}>{j.note}</p>
               </div>

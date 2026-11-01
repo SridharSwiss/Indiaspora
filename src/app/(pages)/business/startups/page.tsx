@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -66,6 +67,7 @@ export default function StartupsPage() {
             {ecosystem.map((e) => (
               <a key={e.name} href={e.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-start justify-between mb-2">
+                  <OrgLogo name={e.name} />
                   <h3 className="font-semibold text-sm group-hover:text-teal-400 transition-colors flex-1 mr-2" style={{ color: "var(--text)" }}>{e.name}</h3>
                   <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full shrink-0">{e.category}</span>
                 </div>
@@ -82,6 +84,7 @@ export default function StartupsPage() {
             {events.map((e) => (
               <a key={e.name} href={e.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-center justify-between mb-2">
+                  <OrgLogo name={e.name} />
                   <h3 className="font-semibold text-sm group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{e.name}</h3>
                   <span className="text-xs text-teal-400 ml-2 shrink-0">{e.timing}</span>
                 </div>

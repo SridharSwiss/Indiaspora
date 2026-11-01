@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import PageHeader from "@/components/ui/PageHeader";
 
 const networks = [
@@ -76,6 +77,7 @@ export default function BusinessPage() {
             {networks.map((n) => (
               <a key={n.name} href={n.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
+                  <OrgLogo name={n.name} />
                   <h3 className="font-semibold text-sm leading-tight flex-1 mr-2 group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{n.name}</h3>
                   <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full shrink-0">{n.tag}</span>
                 </div>
@@ -92,6 +94,7 @@ export default function BusinessPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {jobPortals.map((j) => (
               <a key={j.name} href={j.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover group block">
+                <OrgLogo name={j.name} />
                 <h3 className="font-semibold mb-2 group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{j.name}</h3>
                 <p className="text-sm" style={{ color: "var(--text-2)" }}>{j.desc}</p>
               </a>
@@ -107,6 +110,7 @@ export default function BusinessPage() {
             {sectors.map((s) => (
               <div key={s.name} className="glass rounded-2xl p-5">
                 <div className="flex justify-between items-start mb-3">
+                  <OrgLogo name={s.name} />
                   <h3 className="font-semibold" style={{ color: "var(--text)" }}>{s.name}</h3>
                   <span className="text-xs" style={{ color: "var(--text-2)" }}>{s.hub}</span>
                 </div>

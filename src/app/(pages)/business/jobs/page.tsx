@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -90,6 +91,7 @@ export default function JobsPage() {
             {portals.map((p) => (
               <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-center justify-between mb-2">
+                  <OrgLogo name={p.name} />
                   <h3 className="font-semibold group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{p.name}</h3>
                   {p.badge && <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full">{p.badge}</span>}
                 </div>
@@ -107,6 +109,7 @@ export default function JobsPage() {
               <div key={s.name} className="glass rounded-2xl p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                   <div>
+                    <OrgLogo name={s.name} />
                     <h3 className="font-semibold text-lg" style={{ color: "var(--text)" }}>{s.name}</h3>
                     <p className="text-sm text-teal-400">{s.hub} &middot; {s.salaryRange}</p>
                   </div>

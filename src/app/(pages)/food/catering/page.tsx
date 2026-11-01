@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -97,6 +98,7 @@ export default function CateringPage() {
             {caterers.map((c) => (
               <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
                 <div className="flex items-start justify-between mb-1">
+                  <OrgLogo name={c.name} />
                   <h3 className="text-base font-semibold group-hover:text-pink-400 transition-colors" style={{ color: "var(--text)" }}>{c.name}</h3>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-400 flex-shrink-0 ml-2">{c.city}</span>
                 </div>
@@ -112,6 +114,7 @@ export default function CateringPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {tiffinTypes.map((t) => (
               <div key={t.name} className="glass card-hover rounded-2xl p-5">
+                <OrgLogo name={t.name} />
                 <h3 className="text-base font-semibold text-pink-400 mb-2">{t.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{t.desc}</p>
               </div>

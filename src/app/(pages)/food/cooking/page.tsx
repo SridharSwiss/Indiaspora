@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -101,6 +102,7 @@ export default function CookingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {classProviders.map((p) => (
               <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <OrgLogo name={p.name} />
                 <h3 className="text-base font-semibold mb-0.5 group-hover:text-amber-400 transition-colors" style={{ color: "var(--text)" }}>{p.name}</h3>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs/40" style={{ color: "var(--text)" }}>{p.location}</span>
@@ -118,6 +120,7 @@ export default function CookingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             {cuisines.map((c) => (
               <div key={c.name} className="glass rounded-2xl p-5">
+                <OrgLogo name={c.name} />
                 <h3 className="text-base font-semibold text-amber-400 mb-1">{c.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{c.dishes}</p>
               </div>
@@ -141,6 +144,7 @@ export default function CookingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {youtubeChannels.map((ch) => (
               <a key={ch.name} href={ch.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <OrgLogo name={ch.name} />
                 <h3 className="text-base font-semibold mb-1 group-hover:text-amber-400 transition-colors" style={{ color: "var(--text)" }}>{ch.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{ch.focus}</p>
               </a>

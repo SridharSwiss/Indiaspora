@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -149,6 +150,7 @@ export default function GroceryPage() {
               return (
                 <Wrapper key={s.name + s.city} {...props} className="glass card-hover rounded-2xl p-5 block group" style={{ textDecoration: "none" }}>
                   <div className="flex items-start justify-between mb-2">
+                    <OrgLogo name={s.name} />
                     <h3 className="text-base font-semibold group-hover:text-green-400 transition-colors" style={{ color: "var(--text)" }}>{s.name}</h3>
                     <div className="flex items-center gap-2 shrink-0">
                       <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400">{s.city}</span>
@@ -172,6 +174,7 @@ export default function GroceryPage() {
               return (
                 <Wrapper key={o.name} {...props} className="glass card-hover rounded-2xl p-5 block group" style={{ textDecoration: "none" }}>
                   <div className="flex items-center justify-between mb-1">
+                    <OrgLogo name={o.name} />
                     <h3 className="text-base font-semibold text-green-400 group-hover:text-green-300 transition-colors">{o.name}</h3>
                     {o.url && <span className="text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">Shop →</span>}
                   </div>

@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import PageHeader from "@/components/ui/PageHeader";
 import Link from "next/link";
 import { UtensilsCrossed, ShoppingCart, ChefHat, Flame } from "lucide-react";
@@ -67,6 +68,7 @@ export default function FoodPage() {
                 <img src={`/images/topics/${r.name === "Indigo Restaurant" ? "fine-dining" : r.cuisine.toLowerCase().replace(/\s+/g, "-")}.webp`} alt={`${r.cuisine} cuisine`} loading="lazy" className="w-full object-cover rounded-xl mb-4" style={{ height: 130 }} />
                 <div className="flex items-start justify-between mb-3">
                   <div>
+                    <OrgLogo name={r.name} />
                     <h3 className="font-semibold group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
                     <span className="text-xs text-orange-400">{r.cuisine}</span>
                   </div>
@@ -87,6 +89,7 @@ export default function FoodPage() {
             {groceries.map((g) => (
               <a key={g.name} href={g.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
+                  <OrgLogo name={g.name} />
                   <h3 className="font-semibold group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{g.name}</h3>
                   <span className="text-xs px-2 py-1 rounded-full" style={{ background: "var(--surface)", color: "var(--text-2)" }}>{g.cities}</span>
                 </div>

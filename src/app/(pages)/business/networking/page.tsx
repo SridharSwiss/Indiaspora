@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -86,6 +87,7 @@ export default function NetworkingPage() {
             {chambers.map((c) => (
               <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-6 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
+                  <OrgLogo name={c.name} />
                   <h3 className="font-semibold group-hover:text-teal-400 transition-colors flex-1 mr-3" style={{ color: "var(--text)" }}>{c.name}</h3>
                   <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full shrink-0">{c.tag}</span>
                 </div>
@@ -109,6 +111,7 @@ export default function NetworkingPage() {
               return (
                 <Wrapper key={e.name} {...props} className="glass rounded-2xl p-5 card-hover block group" style={{ textDecoration: "none" }}>
                   <div className="flex items-center justify-between mb-2">
+                    <OrgLogo name={e.name} />
                     <h3 className="font-semibold text-sm group-hover:text-teal-400 transition-colors" style={{ color: "var(--text)" }}>{e.name}</h3>
                     <span className="text-xs text-teal-400 ml-2 shrink-0">{e.timing}</span>
                   </div>
@@ -127,6 +130,7 @@ export default function NetworkingPage() {
             {linkedin.map((l) => (
               <a key={l.name} href={l.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover flex items-start justify-between gap-4 block group">
                 <div>
+                  <OrgLogo name={l.name} />
                   <h3 className="font-semibold group-hover:text-teal-400 transition-colors mb-1" style={{ color: "var(--text)" }}>{l.name}</h3>
                   <p className="text-sm " style={{ color: "var(--text-2)" }}>{l.desc}</p>
                 </div>

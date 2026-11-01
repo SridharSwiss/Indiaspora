@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionTabs from "@/components/ui/SectionTabs";
@@ -658,6 +659,7 @@ export default function RestaurantsPage() {
                 return (
                   <Wrapper key={r.name} {...props} className="glass card-hover rounded-2xl p-5 block group" style={{ textDecoration: "none" }}>
                     <div className="flex items-start justify-between gap-2 mb-0.5">
+                      <OrgLogo name={r.name} />
                       <h3 className="text-base font-semibold group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
                       {r.url && (
                         <span className="text-xs text-orange-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
