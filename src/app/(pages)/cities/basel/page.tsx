@@ -1,3 +1,5 @@
+import CityGallery from "@/components/city/CityGallery";
+import CityTop10 from "@/components/city/CityTop10";
 import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -148,6 +150,9 @@ export default function BaselPage() {
           }}
         />
       </div>
+
+        <CityGallery slug="basel" name="Basel" />
+        <CityTop10 slug="basel" name="Basel" />
 
       <div
         style={{

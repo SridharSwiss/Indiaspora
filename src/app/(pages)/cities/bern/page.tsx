@@ -1,3 +1,5 @@
+import CityGallery from "@/components/city/CityGallery";
+import CityTop10 from "@/components/city/CityTop10";
 import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -89,6 +91,9 @@ export default function BernPage() {
             style={{ width: "100%", height: 280, objectFit: "cover", borderRadius: 16 }}
           />
         </div>
+
+        <CityGallery slug="bern" name="Bern" />
+        <CityTop10 slug="bern" name="Bern" />
 
         {/* SECTION 1 — Quick Actions */}
         <section>

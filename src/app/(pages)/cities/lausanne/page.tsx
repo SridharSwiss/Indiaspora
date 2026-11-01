@@ -1,3 +1,5 @@
+import CityGallery from "@/components/city/CityGallery";
+import CityTop10 from "@/components/city/CityTop10";
 import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -283,9 +285,12 @@ export default function LausannePage() {
               textAlign: "right",
             }}
           >
-            Lausanne from Sauvabelin hill — Olympic capital on Lac Léman
+            Lausanne — Olympic capital on Lac Léman
           </p>
         </div>
+
+        <CityGallery slug="lausanne" name="Lausanne" />
+        <CityTop10 slug="lausanne" name="Lausanne" />
 
         {/* ── SECTION 1: Quick Actions ── */}
         <section>

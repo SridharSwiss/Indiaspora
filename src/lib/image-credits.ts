@@ -119,5 +119,185 @@ export const IMAGE_CREDITS = [
     "file": "/images/cities/winter/lausanne.webp",
     "photographer": "csr_ch",
     "source": "https://pixabay.com/photos/lake-mountain-landscape-clouds-4081004/"
+  },
+  {
+    "event": "Zurich gallery: Grossm\u00fcnster reflected in the Limmat",
+    "file": "/images/cities/gallery/zurich-1.webp",
+    "photographer": "anncapictures",
+    "source": "https://pixabay.com/photos/zurich-grossm%C3%BCnster-church-tower-1443575/"
+  },
+  {
+    "event": "Zurich gallery: Grossm\u00fcnster and Rathausbr\u00fccke",
+    "file": "/images/cities/gallery/zurich-2.webp",
+    "photographer": "anncapictures",
+    "source": "https://pixabay.com/photos/zurich-grossm%C3%BCnster-church-tower-1443576/"
+  },
+  {
+    "event": "Zurich gallery: Limmat river in summer",
+    "file": "/images/cities/gallery/zurich-3.webp",
+    "photographer": "photosforyou",
+    "source": "https://pixabay.com/photos/city-europe-zurich-switzerland-2422392/"
+  },
+  {
+    "event": "Zurich gallery: Zurich old town skyline",
+    "file": "/images/cities/gallery/zurich-4.webp",
+    "photographer": "photosforyou",
+    "source": "https://pixabay.com/photos/zurich-historic-center-switzerland-2417327/"
+  },
+  {
+    "event": "Zurich gallery: Grossm\u00fcnster towers",
+    "file": "/images/cities/gallery/zurich-5.webp",
+    "photographer": "Natural-Habitat",
+    "source": "https://pixabay.com/photos/zurich-switzerland-swiss-landscape-4003087/"
+  },
+  {
+    "event": "Zurich gallery: Fraum\u00fcnster spire and M\u00fcnsterbr\u00fccke",
+    "file": "/images/cities/gallery/zurich-6.webp",
+    "photographer": "Sonyuser",
+    "source": "https://pixabay.com/photos/bridge-city-river-zurich-4636745/"
+  },
+  {
+    "event": "Geneva gallery: Jet d'Eau with a lake steamer",
+    "file": "/images/cities/gallery/geneva-1.webp",
+    "photographer": "ChiemSeherin",
+    "source": "https://pixabay.com/photos/geneva-lake-geneva-jet-deau-8259296/"
+  },
+  {
+    "event": "Geneva gallery: Jet d'Eau on Lake Geneva",
+    "file": "/images/cities/gallery/geneva-2.webp",
+    "photographer": "ChiemSeherin",
+    "source": "https://pixabay.com/photos/geneva-lake-geneva-fountain-sunset-8259301/"
+  },
+  {
+    "event": "Geneva gallery: Jet d'Eau and Geneva waterfront",
+    "file": "/images/cities/gallery/geneva-3.webp",
+    "photographer": "ChiemSeherin",
+    "source": "https://pixabay.com/photos/geneva-lake-geneva-jet-deau-6977937/"
+  },
+  {
+    "event": "Geneva gallery: Jet d'Eau with Swiss flag",
+    "file": "/images/cities/gallery/geneva-4.webp",
+    "photographer": "495756",
+    "source": "https://pixabay.com/photos/geneva-fountain-sightseeing-947317/"
+  },
+  {
+    "event": "Geneva gallery: Lake Geneva with the Jet d'Eau",
+    "file": "/images/cities/gallery/geneva-5.webp",
+    "photographer": "Luisfpizarro",
+    "source": "https://pixabay.com/photos/geneva-switzerland-europe-swiss-670479/"
+  },
+  {
+    "event": "Geneva gallery: Jet d'Eau under a blue sky",
+    "file": "/images/cities/gallery/geneva-6.webp",
+    "photographer": "twalmedia",
+    "source": "https://pixabay.com/photos/geneva-water-jet-lake-leman-2595342/"
+  },
+  {
+    "event": "Basel gallery: Rhine ferry in Basel",
+    "file": "/images/cities/gallery/basel-1.webp",
+    "photographer": "JamesQube",
+    "source": "https://pixabay.com/photos/basel-switzerland-rhine-rhine-river-10137565/"
+  },
+  {
+    "event": "Basel gallery: Basel M\u00fcnster over the Rhine",
+    "file": "/images/cities/gallery/basel-2.webp",
+    "photographer": "fietzfotos",
+    "source": "https://pixabay.com/photos/basel-rhine-church-river-steeple-5979482/"
+  },
+  {
+    "event": "Basel gallery: Basel Rathaus",
+    "file": "/images/cities/gallery/basel-3.webp",
+    "photographer": "Hans",
+    "source": "https://pixabay.com/photos/basel-town-hall-town-hall-basel-699892/"
+  },
+  {
+    "event": "Basel gallery: Basel Rathaus facade",
+    "file": "/images/cities/gallery/basel-4.webp",
+    "photographer": "Hans",
+    "source": "https://pixabay.com/photos/basel-town-hall-facade-town-hall-699896/"
+  },
+  {
+    "event": "Basel gallery: Basel at dusk over the Rhine",
+    "file": "/images/cities/gallery/basel-5.webp",
+    "photographer": "dankernmedia",
+    "source": "https://pixabay.com/photos/bridge-sunset-rhine-basel-city-7791206/"
+  },
+  {
+    "event": "Basel gallery: Messe Basel exhibition hall",
+    "file": "/images/cities/gallery/basel-6.webp",
+    "photographer": "Boenz",
+    "source": "https://pixabay.com/photos/fair-basel-architecture-787000/"
+  },
+  {
+    "event": "Bern gallery: Zytglogge clock tower at dusk",
+    "file": "/images/cities/gallery/bern-1.webp",
+    "photographer": "csr_ch",
+    "source": "https://pixabay.com/photos/city-night-tower-street-3871813/"
+  },
+  {
+    "event": "Bern gallery: Zytglogge on Marktgasse",
+    "file": "/images/cities/gallery/bern-2.webp",
+    "photographer": "pkh470",
+    "source": "https://pixabay.com/photos/swiss-bern-old-town-1560619/"
+  },
+  {
+    "event": "Bern gallery: Bern old-town bridge over the Aare",
+    "file": "/images/cities/gallery/bern-3.webp",
+    "photographer": "sergeigussev",
+    "source": "https://pixabay.com/photos/river-water-landscape-bridge-sky-9666581/"
+  },
+  {
+    "event": "Bern gallery: Bern old town from above",
+    "file": "/images/cities/gallery/bern-4.webp",
+    "photographer": "GPhotography",
+    "source": "https://pixabay.com/photos/buildings-city-architecture-bern-6262595/"
+  },
+  {
+    "event": "Bern gallery: Bundeshaus, Swiss parliament",
+    "file": "/images/cities/gallery/bern-5.webp",
+    "photographer": "ykaiavu",
+    "source": "https://pixabay.com/photos/bundeshaus-the-parliament-building-7840795/"
+  },
+  {
+    "event": "Bern gallery: Bundeshaus in summer",
+    "file": "/images/cities/gallery/bern-6.webp",
+    "photographer": "ykaiavu",
+    "source": "https://pixabay.com/photos/federal-palace-parliament-building-7830294/"
+  },
+  {
+    "event": "Lausanne gallery: Lausanne Cathedral",
+    "file": "/images/cities/gallery/lausanne-1.webp",
+    "photographer": "cricrimo",
+    "source": "https://pixabay.com/photos/lausanne-cathedral-church-540963/"
+  },
+  {
+    "event": "Lausanne gallery: Lausanne old town roofs",
+    "file": "/images/cities/gallery/lausanne-2.webp",
+    "photographer": "SophieML",
+    "source": "https://pixabay.com/photos/lausanne-leman-switzerland-city-4617734/"
+  },
+  {
+    "event": "Lausanne gallery: Paddle steamer at Ouchy",
+    "file": "/images/cities/gallery/lausanne-3.webp",
+    "photographer": "SLPix",
+    "source": "https://pixabay.com/photos/ouchy-lausanne-geneva-lake-2416327/"
+  },
+  {
+    "event": "Lausanne gallery: Sunset over Ouchy marina",
+    "file": "/images/cities/gallery/lausanne-4.webp",
+    "photographer": "SLPix",
+    "source": "https://pixabay.com/photos/ouchy-sunset-lausanne-switzerland-2528637/"
+  },
+  {
+    "event": "Lausanne gallery: Historic steamboat on Lake Geneva",
+    "file": "/images/cities/gallery/lausanne-5.webp",
+    "photographer": "SLPix",
+    "source": "https://pixabay.com/photos/geneva-lake-lausanne-ouchy-3141088/"
+  },
+  {
+    "event": "Lausanne gallery: Ouchy lakefront",
+    "file": "/images/cities/gallery/lausanne-6.webp",
+    "photographer": "SLPix",
+    "source": "https://pixabay.com/photos/geneva-lake-lausanne-ouchy-3141087/"
   }
 ] as const;

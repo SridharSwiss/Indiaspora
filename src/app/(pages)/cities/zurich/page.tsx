@@ -1,3 +1,5 @@
+import CityGallery from "@/components/city/CityGallery";
+import CityTop10 from "@/components/city/CityTop10";
 import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -47,6 +49,9 @@ export default function ZurichPage() {
             style={{ width: "100%", height: 300, objectFit: "cover", borderRadius: 20 }}
           />
         </div>
+
+        <CityGallery slug="zurich" name="Zurich" />
+        <CityTop10 slug="zurich" name="Zurich" />
 
         {/* SECTION 1 — Quick Actions */}
         <section style={{ marginBottom: 56 }}>

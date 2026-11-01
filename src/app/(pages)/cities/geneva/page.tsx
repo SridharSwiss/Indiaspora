@@ -1,3 +1,5 @@
+import CityGallery from "@/components/city/CityGallery";
+import CityTop10 from "@/components/city/CityTop10";
 import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -69,6 +71,9 @@ export default function GenevaPage() {
           style={{ width: "100%", height: 280, objectFit: "cover", borderRadius: 16 }}
         />
       </div>
+
+        <CityGallery slug="geneva" name="Geneva" />
+        <CityTop10 slug="geneva" name="Geneva" />
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "32px 16px 64px", display: "flex", flexDirection: "column", gap: 48 }}>
 
