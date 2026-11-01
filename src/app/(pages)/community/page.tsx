@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
-import { Users, Building2, Heart, GraduationCap, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Indian Community in Switzerland — Associations, Temples & Networks",
@@ -14,10 +13,10 @@ export const metadata: Metadata = {
 };
 
 const sections = [
-  { icon: Building2, label: "Associations & Clubs", href: "/community/associations", desc: "150+ regional, cultural & professional associations", color: "from-orange-500 to-red-500" },
-  { icon: Heart, label: "Temples & Spiritual", href: "/community/spiritual", desc: "Temples, yoga centres, satsang & meditation groups", color: "from-purple-500 to-violet-600" },
-  { icon: Users, label: "Women's Network", href: "/community/women", desc: "Support networks, WhatsApp groups & events for Indian women", color: "from-rose-500 to-pink-600" },
-  { icon: GraduationCap, label: "Students", href: "/community/students", desc: "ETH, EPFL, UZH, UNIGE student associations & resources", color: "from-blue-500 to-indigo-600" },
+  { label: "Associations & Clubs", href: "/community/associations", img: "/hero-events.webp", desc: "150+ regional, cultural & professional associations", color: "from-orange-500 to-red-500" },
+  { label: "Temples & Spiritual", href: "/community/spiritual", img: "/images/heroes/community-spiritual.webp", desc: "Temples, yoga centres, satsang & meditation groups", color: "from-purple-500 to-violet-600" },
+  { label: "Women's Network", href: "/community/women", img: "/images/heroes/community-women.webp", desc: "Support networks, WhatsApp groups & events for Indian women", color: "from-rose-500 to-pink-600" },
+  { label: "Students", href: "/community/students", img: "/images/heroes/community-students.webp", desc: "ETH, EPFL, UZH, UNIGE student associations & resources", color: "from-blue-500 to-indigo-600" },
 ];
 
 const orgs = [
@@ -53,9 +52,8 @@ export default function CommunityPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {sections.map((s) => (
             <Link key={s.label} href={s.href} className="glass rounded-2xl p-6 card-hover group block">
-              <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${s.color} mb-4`}>
-                <s.icon className="w-5 h-5" style={{ color: "var(--text)" }} />
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={s.img} alt="" loading="lazy" className="w-full object-cover rounded-xl mb-4" style={{ height: 130 }} />
               <h2 className="font-bold text-lg mb-2 group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{s.label}</h2>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>{s.desc}</p>
             </Link>
