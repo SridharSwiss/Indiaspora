@@ -398,13 +398,13 @@ export default function SwissTourismExplorer() {
           })}
         </div>
         <style>{`
-          .hub-tiles { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+          .hub-tiles { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
           .hub-tile { position: relative; height: 96px; border-radius: 14px; overflow: hidden; border: 2px solid transparent; padding: 0; cursor: pointer; background: var(--surface-2); }
           .hub-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; filter: saturate(.9); }
           .hub-tile:hover img { transform: scale(1.07); }
           .hub-tile span { position: absolute; inset: auto 0 0 0; padding: 18px 8px 7px; font-size: 13px; font-weight: 700; color: #fff; text-align: left; background: linear-gradient(transparent, rgba(0,0,0,.65)); }
           .hub-tile.is-active { border-color: #f97316; box-shadow: 0 0 0 3px rgba(249,115,22,.25); }
-          @media (max-width: 760px) { .hub-tiles { grid-template-columns: repeat(3, 1fr); } .hub-tile { height: 80px; } }
+          @media (max-width: 760px) { .hub-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } .hub-tile { height: 80px; } }
         `}</style>
       </div>
 
@@ -459,7 +459,9 @@ export default function SwissTourismExplorer() {
           </div>
         )}
         {filteredPlans.map((plan) => (
-          <div key={plan.id} className="glass rounded-2xl p-6 card-hover">
+          <div key={plan.id} className="glass rounded-2xl p-6 card-hover" style={{ minWidth: 0, maxWidth: "100%" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`/images/trips/${plan.id}.webp`} alt={plan.title} loading="lazy" className="-mx-6 -mt-6 mb-5 block object-cover rounded-t-2xl" style={{ width: "calc(100% + 48px)", maxWidth: "none", height: 190 }} />
             {/* Card Header */}
             <div className="flex flex-wrap items-start justify-between gap-3 border-b pb-4 mb-4" style={{ borderColor: "var(--border)" }}>
               <div>
@@ -478,7 +480,7 @@ export default function SwissTourismExplorer() {
                 </div>
                 <h3 className="text-xl font-bold" style={{ color: "var(--text)" }}>{plan.title}</h3>
               </div>
-              <div className="glass rounded-xl border border-amber-500/20 bg-amber-500/5 px-3 py-2 text-xs shrink-0">
+              <div className="glass rounded-xl border border-amber-500/20 bg-amber-500/5 px-3 py-2 text-xs max-w-full">
                 <div className="font-bold text-amber-400">🎟️ Best Pass:</div>
                 <div style={{ color: "var(--text-2)" }}>{plan.recommendedPass}</div>
               </div>

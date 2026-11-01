@@ -593,5 +593,77 @@ export const IMAGE_CREDITS = [
     "file": "/images/heroes/food-cooking.webp",
     "photographer": "AndrzejRembowski",
     "source": "https://pixabay.com/photos/cooking-lesson-workshops-children-4299302/"
+  },
+  {
+    "event": "Travel: be-oeschinensee-blausee",
+    "file": "/images/trips/be-oeschinensee-blausee.webp",
+    "photographer": "TeeFarm",
+    "source": "https://pixabay.com/photos/outlook-mountain-lake-bank-dog-1844110/"
+  },
+  {
+    "event": "Travel: be-schilthorn-007",
+    "file": "/images/trips/be-schilthorn-007.webp",
+    "photographer": "Julius_Silver",
+    "source": "https://pixabay.com/photos/schilthorn-mountain-station-summit-3033448/"
+  },
+  {
+    "event": "Travel: bs-jungfraujoch",
+    "file": "/images/trips/bs-jungfraujoch.webp",
+    "photographer": "Jorgeie009",
+    "source": "https://pixabay.com/photos/landscape-snow-mountain-9024197/"
+  },
+  {
+    "event": "Travel: bs-titlis-zuersee",
+    "file": "/images/trips/bs-titlis-zuersee.webp",
+    "photographer": "12019",
+    "source": "https://pixabay.com/photos/stanserhorn-switzerland-mountain-2225439/"
+  },
+  {
+    "event": "Travel: ge-glacier3000-montreux",
+    "file": "/images/trips/ge-glacier3000-montreux.webp",
+    "photographer": "solilluna",
+    "source": "https://pixabay.com/photos/switzerland-montreux-castle-lake-10301201/"
+  },
+  {
+    "event": "Travel: vd-gruyeres-cailler",
+    "file": "/images/trips/vd-gruyeres-cailler.webp",
+    "photographer": "ChiemSeherin",
+    "source": "https://pixabay.com/photos/castle-gruy%C3%A8res-castle-to-travel-6781821/"
+  },
+  {
+    "event": "Travel: vd-rochers-naye",
+    "file": "/images/trips/vd-rochers-naye.webp",
+    "photographer": "raiKom",
+    "source": "https://pixabay.com/photos/switzerland-landscape-vaud-montreux-9661468/"
+  },
+  {
+    "event": "Travel: zg-gotthard-ticino",
+    "file": "/images/trips/zg-gotthard-ticino.webp",
+    "photographer": "20465785",
+    "source": "https://pixabay.com/photos/castle-fortress-stairs-bridge-6113300/"
+  },
+  {
+    "event": "Travel: zg-stoos-rigi",
+    "file": "/images/trips/zg-stoos-rigi.webp",
+    "photographer": "DenisLinine",
+    "source": "https://pixabay.com/photos/switzerland-alps-swiss-alps-nature-3023305/"
+  },
+  {
+    "event": "Travel: zh-rheinfall-lindt",
+    "file": "/images/trips/zh-rheinfall-lindt.webp",
+    "photographer": "adege",
+    "source": "https://pixabay.com/photos/rhine-falls-rhine-waterfall-4864070/"
+  },
+  {
+    "event": "Travel: zh-rigi-golden",
+    "file": "/images/trips/zh-rigi-golden.webp",
+    "photographer": "Sarah_Loetscher",
+    "source": "https://pixabay.com/photos/alps-rigi-rigi-kaltbad-2872095/"
+  },
+  {
+    "event": "Travel: zh-titlis-lucerne",
+    "file": "/images/trips/zh-titlis-lucerne.webp",
+    "photographer": "suju-foto",
+    "source": "https://pixabay.com/photos/tr%C3%BCebsee-titlis-switzerland-5337646/"
   }
 ] as const;

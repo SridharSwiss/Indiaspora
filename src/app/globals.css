@@ -631,3 +631,5 @@ main > div > div:not([data-hero-wrapper]) {
   }
   .aurora-orb { will-change: auto; animation: none !important; }
 }
+
+html { overflow-x: clip; }
