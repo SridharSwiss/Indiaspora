@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Send, CheckCircle, Shield } from "lucide-react";
 import Link from "next/link";
 
@@ -17,6 +17,7 @@ const TOPICS = [
   "Business & Startups",
   "Insurance",
   "Legal Advice",
+  "Takedown request (image or logo)",
   "Other",
 ];
 
@@ -31,6 +32,14 @@ export default function SeekAdviceForm({ defaultTopic, accent = GOLD, accentRgb 
   const [form, setForm] = useState({
     name: "", email: "", phone: "", location: "", topic: defaultTopic ?? TOPICS[0], query: "",
   });
+  // /advice?topic=takedown pre-selects the takedown topic (used by the Terms and Image credits pages)
+  useEffect(() => {
+    try {
+      if (new URLSearchParams(window.location.search).get("topic") === "takedown") {
+        setForm((f) => ({ ...f, topic: "Takedown request (image or logo)" }));
+      }
+    } catch { /* ignore */ }
+  }, []);
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
 
