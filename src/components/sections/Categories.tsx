@@ -7,6 +7,7 @@ import AnimateIn from "@/components/ui/AnimateIn";
 
 const CAT_META: Record<string, {
   emoji: string;
+  img?: string;
   accent: string;
   accentRgb: string;
   topBar: string;
@@ -15,6 +16,7 @@ const CAT_META: Record<string, {
   orb: string;
 }> = {
   "Community": {
+    img: "/hero-community.jpg",
     emoji: "🤝",
     accent: "#CEB07A", accentRgb: "201,169,110",
     topBar: "linear-gradient(90deg, #CEB07A 0%, #E8C88A 50%, #D4906A 100%)",
@@ -22,6 +24,7 @@ const CAT_META: Record<string, {
     orb: "radial-gradient(ellipse 80% 70% at 110% -10%, rgba(201,169,110,0.22) 0%, transparent 65%)",
   },
   "Living in Switzerland": {
+    img: "/hub-community.webp",
     emoji: "🏠",
     accent: "#70BC92", accentRgb: "80,160,110",
     topBar: "linear-gradient(90deg, #70BC92 0%, #90D0A8 50%, #4E9870 100%)",
@@ -29,6 +32,7 @@ const CAT_META: Record<string, {
     orb: "radial-gradient(ellipse 80% 70% at 110% -10%, rgba(80,160,110,0.22) 0%, transparent 65%)",
   },
   "Food & Dining": {
+    img: "/hero-food.jpg",
     emoji: "🍛",
     accent: "#D4906A", accentRgb: "212,144,106",
     topBar: "linear-gradient(90deg, #D4906A 0%, #ECA878 50%, #C87040 100%)",
@@ -36,6 +40,7 @@ const CAT_META: Record<string, {
     orb: "radial-gradient(ellipse 80% 70% at 110% -10%, rgba(212,144,106,0.22) 0%, transparent 65%)",
   },
   "Spiritual & Wellness": {
+    img: "/hero-culture.jpg",
     emoji: "🪔",
     accent: "#C090D0", accentRgb: "192,144,208",
     topBar: "linear-gradient(90deg, #C090D0 0%, #D8A8E8 50%, #A070B8 100%)",
@@ -43,6 +48,7 @@ const CAT_META: Record<string, {
     orb: "radial-gradient(ellipse 80% 70% at 110% -10%, rgba(192,144,208,0.22) 0%, transparent 65%)",
   },
   "Business & Career": {
+    img: "/hero-business.jpg",
     emoji: "💼",
     accent: "#80B0D8", accentRgb: "128,176,216",
     topBar: "linear-gradient(90deg, #80B0D8 0%, #A0C8E8 50%, #5A8AB8 100%)",
@@ -50,6 +56,7 @@ const CAT_META: Record<string, {
     orb: "radial-gradient(ellipse 80% 70% at 110% -10%, rgba(128,176,216,0.22) 0%, transparent 65%)",
   },
   "Culture & Arts": {
+    img: "/hero-events.jpg",
     emoji: "🎭",
     accent: "#F0A060", accentRgb: "240,160,96",
     topBar: "linear-gradient(90deg, #F0A060 0%, #F8B870 50%, #D07030 100%)",
@@ -125,7 +132,12 @@ export default function Categories() {
 
                   {/* Top row: emoji + stat */}
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 22, position: "relative", zIndex: 1 }}>
-                    <span className="cat-emoji" aria-hidden>{m.emoji}</span>
+                    {m.img ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img className="cat-photo" src={m.img} alt="" loading="lazy" width={64} height={64} />
+                    ) : (
+                      <span className="cat-emoji" aria-hidden>{m.emoji}</span>
+                    )}
                     <div className="cat-stat-wrap">
                       <span className="cat-stat-num" style={{ color: m.accent }}>{m.stat}</span>
                       <span className="cat-stat-label">{m.statLabel}</span>
@@ -318,6 +330,13 @@ export default function Categories() {
           box-shadow: inset 0 0 0 1.5px rgba(var(--accent-rgb,201,169,110), 0.40);
         }
 
+        .cat-photo {
+          width: 64px; height: 64px; border-radius: 16px; object-fit: cover; display: block;
+          position: relative; z-index: 1;
+          box-shadow: 0 0 0 2px rgba(var(--accent-rgb,201,169,110),0.55), 0 6px 18px rgba(0,0,0,0.25);
+          transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+        }
+        .cat-card:hover .cat-photo { transform: scale(1.08) rotate(-2deg); }
         /* ── Emoji ── */
         .cat-emoji {
           font-size: 2.6rem; line-height: 1; display: block;
