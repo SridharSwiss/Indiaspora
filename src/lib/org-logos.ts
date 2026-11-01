@@ -1,5 +1,28 @@
 // Logos captured from each organisation's own official website; shown only to identify the organisation (see Terms 5A).
 export const ORG_LOGOS: Record<string, string> = {
+ "bharatiya association berne": "/logos/bharatiya-association-berne.webp",
+ "bharatiya association berne bab": "/logos/bharatiya-association-berne.webp",
+ "bab": "/logos/bharatiya-association-berne.webp",
+ "teluguswiss": "/logos/telugu-association-of-switzerland.webp",
+ "telugu association of switzerland teluguswiss tas": "/logos/telugu-association-of-switzerland.webp",
+ "telugu association of switzerland": "/logos/telugu-association-of-switzerland.webp",
+ "tas": "/logos/telugu-association-of-switzerland.webp",
+ "indo swiss sports club": "/logos/indo-swiss-sports-club.webp",
+ "issc": "/logos/indo-swiss-sports-club.webp",
+ "indo swiss sports club issc": "/logos/indo-swiss-sports-club.webp",
+ "swisspuja": "/logos/swisspuja.webp",
+ "indian association geneva iag": "/logos/indian-association-geneva.webp",
+ "iag geneva": "/logos/indian-association-geneva.webp",
+ "iag": "/logos/indian-association-geneva.webp",
+ "indian association geneva": "/logos/indian-association-geneva.webp",
+ "indian cultural association of switzerland icas": "/logos/indian-cultural-association-of-switzerland.webp",
+ "indian cultural association of switzerland": "/logos/indian-cultural-association-of-switzerland.webp",
+ "icas": "/logos/indian-cultural-association-of-switzerland.webp",
+ "swiss telugu nri forum stnri": "/logos/swiss-telugu-nri-forum.webp",
+ "stnri": "/logos/swiss-telugu-nri-forum.webp",
+ "swiss telugu nri forum": "/logos/swiss-telugu-nri-forum.webp",
+ "isha foundation": "/logos/isha-foundation-switzerland.svg",
+ "isha foundation switzerland": "/logos/isha-foundation-switzerland.svg",
  "saravanaa bhavan": "/logos/saravanaa-bhavan.webp",
  "tadka": "/logos/tadka.webp",
  "new bombay": "/logos/new-bombay.webp",
@@ -48,6 +71,54 @@ export const ORG_LOGOS: Record<string, string> = {
  "epfl innovation park": "/logos/epfl-innovation-park.webp"
 };
 export const ORG_LOGO_SOURCES = [
+ {
+  "name": "Bharatiya Association Berne",
+  "website": "https://www.india-bab.ch",
+  "logoPage": "https://www.india-bab.ch",
+  "file": "/logos/bharatiya-association-berne.webp"
+ },
+ {
+  "name": "Telugu Association of Switzerland",
+  "website": "https://teluguswiss.org",
+  "logoPage": "https://teluguswiss.org",
+  "file": "/logos/telugu-association-of-switzerland.webp"
+ },
+ {
+  "name": "Indo Swiss Sports Club",
+  "website": "https://www.indoswisssports.ch",
+  "logoPage": "https://www.indoswisssports.ch",
+  "file": "/logos/indo-swiss-sports-club.webp"
+ },
+ {
+  "name": "SwissPuja",
+  "website": "http://www.swisspuja.org/",
+  "logoPage": "http://www.swisspuja.org/",
+  "file": "/logos/swisspuja.webp"
+ },
+ {
+  "name": "Indian Association Geneva",
+  "website": "https://indianassociationgeneva.com",
+  "logoPage": "https://indianassociationgeneva.com",
+  "file": "/logos/indian-association-geneva.webp"
+ },
+ {
+  "name": "Indian Cultural Association of Switzerland",
+  "website": "https://icas-online.com",
+  "logoPage": "https://icas-online.com",
+  "file": "/logos/indian-cultural-association-of-switzerland.webp"
+ },
+ {
+  "name": "Swiss Telugu NRI Forum",
+  "website": "https://swisstelugunri.com/",
+  "logoPage": "https://swisstelugunri.com/",
+  "file": "/logos/swiss-telugu-nri-forum.webp"
+ },
+ {
+  "name": "Isha Foundation Switzerland",
+  "website": "https://isha.sadhguru.org",
+  "logoPage": "https://isha.sadhguru.org",
+  "file": "/logos/isha-foundation-switzerland.svg"
+ },
  {
   "name": "Saravanaa Bhavan",
   "website": "https://saravanaabhavan.swiss",

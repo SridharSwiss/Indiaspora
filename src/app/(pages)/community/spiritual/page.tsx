@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -57,6 +58,7 @@ function PlaceCard({ p }: { p: Place }) {
   const inner = (
     <>
       <div className="flex items-start justify-between gap-2 mb-2">
+        <OrgLogo name={p.name} size={36} />
         <h3 className="font-semibold text-sm leading-tight" style={{ color: "var(--text)" }}>{p.name}</h3>
         <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-400 border border-purple-500/20">{p.city}</span>
       </div>
