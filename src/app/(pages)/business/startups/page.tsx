@@ -106,8 +106,8 @@ export default function StartupsPage() {
                     <p className="text-xs text-teal-400">{h.nickname}</p>
                   </div>
                 </div>
-                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}><span className="text-white/40">Strengths: </span>{h.strengths}</p>
-                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}><span className="text-white/40">Spaces: </span>{h.space}</p>
+                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}><span className="text-[color:var(--text-3)]">Strengths: </span>{h.strengths}</p>
+                <p className="text-sm/60 mb-2" style={{ color: "var(--text)" }}><span className="text-[color:var(--text-3)]">Spaces: </span>{h.space}</p>
                 <p className="text-sm/70" style={{ color: "var(--text)" }}>{h.note}</p>
               </div>
             ))}

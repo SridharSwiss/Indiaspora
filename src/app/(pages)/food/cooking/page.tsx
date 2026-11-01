@@ -106,7 +106,7 @@ export default function CookingPage() {
                 <h3 className="text-base font-semibold mb-0.5 group-hover:text-amber-400 transition-colors" style={{ color: "var(--text)" }}>{p.name}</h3>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs/40" style={{ color: "var(--text)" }}>{p.location}</span>
-                  <span className="text-white/20">·</span>
+                  <span className="text-[color:var(--text-3)]">·</span>
                   <span className="text-xs text-amber-400">{p.format}</span>
                 </div>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{p.note}</p>

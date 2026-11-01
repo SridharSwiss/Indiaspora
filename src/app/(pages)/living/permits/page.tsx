@@ -142,7 +142,7 @@ export default function PermitsPage() {
               {CANTON_CONTACTS.map((c) => (
                 <a key={c.canton} href={c.url} target="_blank" rel="noopener noreferrer"
                   className="glass rounded-xl p-4 hover:border-orange-500/40 transition-colors block" style={{ color: "var(--text)" }}>
-                  <div className="text-2xl font-black text-orange-500/30 mb-1">{c.canton}</div>
+                  <div className="text-2xl font-black text-orange-500/70 mb-1">{c.canton}</div>
                   <div className="text-xs font-semibold mb-0.5">{c.office}</div>
                   <div className="text-xs text-orange-400">Visit website ↗</div>
                 </a>

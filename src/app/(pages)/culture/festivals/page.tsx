@@ -225,7 +225,7 @@ export default function FestivalsPage() {
                   <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{f.name}</h3>
                   <p className="text-xs text-rose-400 mt-0.5">{f.date} &middot; {f.location}</p>
                 </div>
-                <span className={`text-xs px-2 py-1 rounded-full shrink-0 ${typeColors[f.type] ?? " text-white/60"}`}>{f.type}</span>
+                <span className={`text-xs px-2 py-1 rounded-full shrink-0 ${typeColors[f.type] ?? " text-[color:var(--text-2)]"}`}>{f.type}</span>
               </div>
               <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>{f.desc}</p>
               <p className="text-xs" style={{ color: "var(--text-3)" }}>Organised by {f.organiser}</p>

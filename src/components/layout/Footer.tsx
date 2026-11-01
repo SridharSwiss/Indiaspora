@@ -74,20 +74,20 @@ export default function Footer() {
                 India<span style={{ color: "#B08D57" }}>spora</span>
               </span>
             </div>
-            <p className="text-xs leading-relaxed mb-4" style={{ color: "rgba(200,185,165,0.65)" }}>
+            <p className="text-xs leading-relaxed mb-4" style={{ color: "rgba(200,185,165,0.9)" }}>
               Connecting 24,500+ Indians across Switzerland — community, culture, business, and daily life.
             </p>
             <div className="space-y-1.5 mb-4">
-              <div className="flex items-center gap-2 text-xs" style={{ color: "rgba(200,185,165,0.65)" }}>
+              <div className="flex items-center gap-2 text-xs" style={{ color: "rgba(200,185,165,0.9)" }}>
                 <MapPin className="w-3.5 h-3.5 shrink-0" style={{ color: "#B08D57" }} />
                 <span>Zurich, Switzerland</span>
               </div>
-              <div className="flex items-center gap-2 text-xs" style={{ color: "rgba(200,185,165,0.65)" }}>
+              <div className="flex items-center gap-2 text-xs" style={{ color: "rgba(200,185,165,0.9)" }}>
                 <Mail className="w-3.5 h-3.5 shrink-0" style={{ color: "#B08D57" }} />
                 <a href="mailto:hello@indiaspora.ch"
-                  style={{ color: "rgba(200,185,165,0.65)", transition: "color 0.15s" }}
+                  style={{ color: "rgba(200,185,165,0.9)", transition: "color 0.15s" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#B08D57")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.65)")}>
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.9)")}>
                   hello@indiaspora.ch
                 </a>
               </div>
@@ -202,7 +202,7 @@ export default function Footer() {
         {/* ── Bottom bar ────────────────────────────────────────────────── */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-5"
           style={{ borderTop: "1px solid rgba(176,141,87,0.1)" }}>
-          <p className="text-xs" style={{ color: "rgba(200,185,165,0.35)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
+          <p className="text-xs" style={{ color: "rgba(200,185,165,0.72)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
             © 2026 Indiaspora Community Hub. All rights reserved.
           </p>
           <div className="flex items-center gap-4 flex-wrap justify-center">
@@ -215,13 +215,13 @@ export default function Footer() {
               { label: "Seek Advice", href: "/advice" },
             ].map((l) => (
               <Link key={l.label} href={l.href} className="text-xs transition-colors"
-                style={{ color: "rgba(200,185,165,0.3)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
+                style={{ color: "rgba(200,185,165,0.7)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.6)")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.3)")}>
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(200,185,165,0.7)")}>
                 {l.label}
               </Link>
             ))}
-            <span className="text-xs" style={{ color: "rgba(200,185,165,0.35)" }}>🇮🇳🇨🇭</span>
+            <span className="text-xs" style={{ color: "rgba(200,185,165,0.72)" }}>🇮🇳🇨🇭</span>
           </div>
         </div>
 

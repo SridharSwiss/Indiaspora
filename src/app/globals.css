@@ -45,15 +45,15 @@ html.theme-transitioning *::after {
   --glass-border: rgba(44,30,14,0.10);
 
   /* Champagne gold — primary */
-  --sf:      #A07840;
-  --sf-hi:   #C09050;
-  --sf-lo:   #7A5A2C;
+  --sf:      #86602A;
+  --sf-hi:   #9A7230;
+  --sf-lo:   #6B4C20;
   --sf-glow: rgba(160,120,64,0.20);
   --sf-bg:   rgba(160,120,64,0.07);
 
   /* Antique brass — accent */
-  --in:      #B89A62;
-  --in-hi:   #CEB07A;
+  --in:      #80632B;
+  --in-hi:   #94722F;
   --in-glow: rgba(184,154,98,0.20);
   --in-bg:   rgba(184,154,98,0.08);
 
@@ -180,13 +180,13 @@ html.theme-transitioning *::after {
   --text-3:     #6E5F48;
   --glass-bg:   rgba(250,248,244,0.90);
   --glass-border: rgba(44,30,14,0.10);
-  --sf:         #A07840;
-  --sf-hi:      #C09050;
-  --sf-lo:      #7A5A2C;
+  --sf:         #86602A;
+  --sf-hi:      #9A7230;
+  --sf-lo:      #6B4C20;
   --sf-glow:    rgba(160,120,64,0.20);
   --sf-bg:      rgba(160,120,64,0.07);
-  --in:         #B89A62;
-  --in-hi:      #CEB07A;
+  --in:         #80632B;
+  --in-hi:      #94722F;
   --in-glow:    rgba(184,154,98,0.20);
   --in-bg:      rgba(184,154,98,0.08);
   --bg:         #FAF8F4;
@@ -636,20 +636,20 @@ html { overflow-x: clip; }
 
 /* ── Accent text colours: deep shade in light mode, bright pastel in dark mode ── */
 :root, :root[data-theme="light"] {
-  --acc-teal: #0f766e;
-  --acc-orange: #c2410c;
-  --acc-amber: #b45309;
-  --acc-blue: #1d4ed8;
-  --acc-indigo: #4338ca;
-  --acc-green: #15803d;
-  --acc-emerald: #047857;
-  --acc-pink: #be185d;
-  --acc-rose: #be123c;
-  --acc-purple: #7e22ce;
-  --acc-violet: #6d28d9;
-  --acc-red: #b91c1c;
-  --acc-sky: #0369a1;
-  --acc-yellow: #a16207;
+  --acc-teal: #115e59;
+  --acc-orange: #9a3412;
+  --acc-amber: #92400e;
+  --acc-blue: #1e40af;
+  --acc-indigo: #3730a3;
+  --acc-green: #166534;
+  --acc-emerald: #065f46;
+  --acc-pink: #9d174d;
+  --acc-rose: #9f1239;
+  --acc-purple: #6b21a8;
+  --acc-violet: #5b21b6;
+  --acc-red: #991b1b;
+  --acc-sky: #075985;
+  --acc-yellow: #854d0e;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -853,3 +853,7 @@ html { overflow-x: clip; }
 .text-yellow-500,
 .hover\:text-yellow-500:hover,
 .group:hover .group-hover\:text-yellow-500 { color: var(--acc-yellow) !important; }
+
+/* White text on saturated chips: use the deeper shade so contrast stays >= 4.5 */
+.bg-orange-500 { background-color: #c2410c !important; }
+.bg-emerald-500 { background-color: #047857 !important; }

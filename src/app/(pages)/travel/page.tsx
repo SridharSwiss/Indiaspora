@@ -149,7 +149,7 @@ export default function TravelPage() {
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 mb-12">
               {GOLDEN_RULES.map((rule) => (
                 <div key={rule.number} className="glass rounded-xl p-5">
-                  <div className="text-3xl font-black text-orange-500/30 mb-2">{rule.number}</div>
+                  <div className="text-3xl font-black text-orange-500/70 mb-2">{rule.number}</div>
                   <h3 className="font-semibold mb-2 text-sm" style={{ color: "var(--text)" }}>
                     {rule.title}
                   </h3>
