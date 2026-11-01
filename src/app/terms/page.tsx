@@ -90,7 +90,7 @@ export default function TermsPage() {
       </Section>
 
       <Section title="11. Contact">
-        <p>Questions about these terms: <a href="mailto:hello@indiaspora.ch" style={{ color: GOLD }}>hello@indiaspora.ch</a></p>
+        <p>Questions about these terms: ask us through <a href="/advice#ask" style={{ color: GOLD, textDecoration: "underline" }}>Seek Advice</a>.</p>
       </Section>
     </main>
   );
