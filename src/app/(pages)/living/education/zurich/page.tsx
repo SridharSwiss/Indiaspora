@@ -607,7 +607,7 @@ export default function ZurichEducationPage() {
         subtitle="A strategic guide to the Zurich cantonal education system — from kindergarten to PhD. Master the pathways, understand permeability, and make informed decisions for your family."
         badge="Education Guide"
         gradient="from-blue-500 to-indigo-500"
-        heroImage="/hero-zurich.webp"
+        heroImage="/images/heroes/living-education-zurich.webp"
         heroImageAlt="Indian education Zurich Switzerland"
         heroImagePosition="center 40%"
         breadcrumbs={[

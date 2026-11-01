@@ -205,7 +205,7 @@ export default function FestivalsPage() {
         subtitle="India's vibrant festival calendar comes alive in Switzerland — from Diwali Mela in Zurich to Pongal in Geneva."
         badge="100+ Events / Year"
         gradient="from-rose-500 to-pink-600"
-        heroImage="/hero-culture.webp"
+        heroImage="/images/heroes/culture-festivals.webp"
         heroImageAlt="Indian festival cultural event Switzerland"
         heroImagePosition="center 20%"
         breadcrumbs={[

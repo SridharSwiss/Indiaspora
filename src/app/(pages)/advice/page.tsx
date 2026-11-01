@@ -29,7 +29,7 @@ export default function AdvicePage() {
         subtitle="Ask the community — get guidance from Indians who've navigated life in Switzerland before you."
         badge="Community Help"
         gradient="from-amber-500 to-yellow-400"
-        heroImage="/hero-community.webp"
+        heroImage="/images/heroes/advice.webp"
         heroImageAlt="Community advice for Indians in Switzerland"
         heroImagePosition="center 50%"
         breadcrumbs={[{ label: "Seek Advice" }]}

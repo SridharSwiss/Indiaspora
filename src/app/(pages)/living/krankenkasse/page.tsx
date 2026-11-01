@@ -51,7 +51,7 @@ export default function KrankenkassePage() {
           subtitle="Choose your deductible, model, and provider with confidence. From mandatory enrolment deadlines to Tiers payant vs. Tiers garant — the complete Indian expat guide."
           badge="🏥 Health Insurance"
           gradient="from-blue-500 to-teal-600"
-        heroImage="/hero-community.webp"
+        heroImage="/images/heroes/living-krankenkasse.webp"
         heroImageAlt="Swiss health insurance guide for Indians"
         heroImagePosition="center 45%"
           breadcrumbs={[{ label: "Living in Switzerland", href: "/living" }, { label: "Health Insurance" }]}

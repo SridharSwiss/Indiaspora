@@ -84,7 +84,7 @@ export default function PermitsPage() {
           subtitle="From Permit L to the 10-year path to Permit C — timelines, employer-change rules, canton migration, and the integration requirements that unlock permanent residency."
           badge="📄 Permits & Residency"
           gradient="from-blue-600 to-indigo-600"
-        heroImage="/hero-community.webp"
+        heroImage="/images/cities/gallery/bern-4.webp"
         heroImageAlt="Swiss residence permit guide for Indians"
         heroImagePosition="center 40%"
           breadcrumbs={[{ label: "Living in Switzerland", href: "/living" }, { label: "Permits" }]}

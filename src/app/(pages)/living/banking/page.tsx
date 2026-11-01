@@ -47,7 +47,7 @@ export default function BankingPage() {
         subtitle="Managing money in Switzerland and sending remittances to India — your complete guide to Swiss banking for Indians."
         badge="Finance Guide"
         gradient="from-yellow-500 to-amber-500"
-        heroImage="/hero-business.webp"
+        heroImage="/images/heroes/living-banking.webp"
         heroImageAlt="Banking and finance for Indians in Switzerland"
         heroImagePosition="center 40%"
         breadcrumbs={[

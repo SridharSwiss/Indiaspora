@@ -407,5 +407,191 @@ export const IMAGE_CREDITS = [
     "file": "/images/topics/fine-dining.webp",
     "photographer": "Pexels",
     "source": "https://pixabay.com/photos/bowl-dish-meal-fine-dining-gourmet-1850039/"
+  },
+  {
+    "event": "Page header: living-welcome",
+    "file": "/images/heroes/living-welcome.webp",
+    "photographer": "JESHOOTS-com",
+    "source": "https://pixabay.com/photos/airport-woman-flight-boarding-2373727/"
+  },
+  {
+    "event": "Page header: living-first-30-days",
+    "file": "/images/heroes/living-first-30-days.webp",
+    "photographer": "congerdesign",
+    "source": "https://pixabay.com/photos/move-key-new-apartment-catchment-2481718/"
+  },
+  {
+    "event": "Page header: living-housing",
+    "file": "/images/heroes/living-housing.webp",
+    "photographer": "Pexels",
+    "source": "https://pixabay.com/photos/apartments-architecture-balconies-1845884/"
+  },
+  {
+    "event": "Page header: living-healthcare",
+    "file": "/images/heroes/living-healthcare.webp",
+    "photographer": "u_fzv8dg70p8",
+    "source": "https://pixabay.com/photos/doctor-medication-consultation-10514568/"
+  },
+  {
+    "event": "Page header: living-krankenkasse",
+    "file": "/images/heroes/living-krankenkasse.webp",
+    "photographer": "fernandozhiminaicela",
+    "source": "https://pixabay.com/photos/treatment-hospital-clinic-medicine-4099432/"
+  },
+  {
+    "event": "Page header: living-banking",
+    "file": "/images/heroes/living-banking.webp",
+    "photographer": "hslergr1",
+    "source": "https://pixabay.com/photos/national-bank-swiss-national-bank-371288/"
+  },
+  {
+    "event": "Page header: living-education",
+    "file": "/images/heroes/living-education.webp",
+    "photographer": "klimkin",
+    "source": "https://pixabay.com/photos/merry-christmas-kids-girls-writing-1093758/"
+  },
+  {
+    "event": "Page header: living-education-zurich",
+    "file": "/images/heroes/living-education-zurich.webp",
+    "photographer": "nikolayhg",
+    "source": "https://pixabay.com/photos/university-lecture-campus-education-105709/"
+  },
+  {
+    "event": "Page header: living-transport",
+    "file": "/images/heroes/living-transport.webp",
+    "photographer": "chris_muschard",
+    "source": "https://pixabay.com/photos/subway-metro-train-city-night-6955069/"
+  },
+  {
+    "event": "Page header: living-recycling",
+    "file": "/images/heroes/living-recycling.webp",
+    "photographer": "manfredrichter",
+    "source": "https://pixabay.com/photos/garbage-cans-waste-disposal-7290247/"
+  },
+  {
+    "event": "Page header: living-language",
+    "file": "/images/heroes/living-language.webp",
+    "photographer": "BiljaST",
+    "source": "https://pixabay.com/photos/english-english-language-language-2724442/"
+  },
+  {
+    "event": "Page header: living-legal",
+    "file": "/images/heroes/living-legal.webp",
+    "photographer": "jessica45",
+    "source": "https://pixabay.com/photos/lady-justice-legal-law-justice-2388500/"
+  },
+  {
+    "event": "Page header: living-taxes",
+    "file": "/images/heroes/living-taxes.webp",
+    "photographer": "stevepb",
+    "source": "https://pixabay.com/photos/calculator-calculation-insurance-1044173/"
+  },
+  {
+    "event": "Page header: living-pension",
+    "file": "/images/heroes/living-pension.webp",
+    "photographer": "geralt",
+    "source": "https://pixabay.com/photos/elderly-couple-garden-conversation-10186248/"
+  },
+  {
+    "event": "Page header: living-driving-license",
+    "file": "/images/heroes/living-driving-license.webp",
+    "photographer": "Pexels",
+    "source": "https://pixabay.com/photos/vw-beetle-car-classic-car-forest-1835506/"
+  },
+  {
+    "event": "Page header: living-parents-visiting",
+    "file": "/images/heroes/living-parents-visiting.webp",
+    "photographer": "PICNIC-Foto",
+    "source": "https://pixabay.com/photos/elderly-couple-walking-trail-2914879/"
+  },
+  {
+    "event": "Page header: community-students",
+    "file": "/images/heroes/community-students.webp",
+    "photographer": "naassomz1",
+    "source": "https://pixabay.com/photos/people-students-university-campus-6027028/"
+  },
+  {
+    "event": "Page header: community-women",
+    "file": "/images/heroes/community-women.webp",
+    "photographer": "BasaltAB",
+    "source": "https://pixabay.com/photos/basalt-christmas-community-women-7612347/"
+  },
+  {
+    "event": "Page header: community-spiritual",
+    "file": "/images/heroes/community-spiritual.webp",
+    "photographer": "Pexels",
+    "source": "https://pixabay.com/photos/idol-hinduism-god-india-1834688/"
+  },
+  {
+    "event": "Page header: culture-arts",
+    "file": "/images/heroes/culture-arts.webp",
+    "photographer": "spacentity",
+    "source": "https://pixabay.com/photos/culture-india-dance-classical-4605878/"
+  },
+  {
+    "event": "Page header: culture-cinema",
+    "file": "/images/heroes/culture-cinema.webp",
+    "photographer": "wernerredlich",
+    "source": "https://pixabay.com/photos/theater-noordwijk-cinema-8569119/"
+  },
+  {
+    "event": "Page header: culture-fashion",
+    "file": "/images/heroes/culture-fashion.webp",
+    "photographer": "u_sdq2d35ezv",
+    "source": "https://pixabay.com/photos/indian-woman-reading-outdoors-woman-8026402/"
+  },
+  {
+    "event": "Page header: culture-festivals",
+    "file": "/images/heroes/culture-festivals.webp",
+    "photographer": "Pexels",
+    "source": "https://pixabay.com/photos/new-years-eve-sparkler-sparks-1283521/"
+  },
+  {
+    "event": "Page header: business-networking",
+    "file": "/images/heroes/business-networking.webp",
+    "photographer": "SNCR_GROUP",
+    "source": "https://pixabay.com/photos/conference-people-mass-business-3518465/"
+  },
+  {
+    "event": "Page header: business-startups",
+    "file": "/images/heroes/business-startups.webp",
+    "photographer": "StartupStockPhotos",
+    "source": "https://pixabay.com/photos/startup-start-up-people-593341/"
+  },
+  {
+    "event": "Page header: business-services",
+    "file": "/images/heroes/business-services.webp",
+    "photographer": "stevepb",
+    "source": "https://pixabay.com/photos/tax-paperwork-accounting-business-739107/"
+  },
+  {
+    "event": "Page header: business-jobs",
+    "file": "/images/heroes/business-jobs.webp",
+    "photographer": "geralt",
+    "source": "https://pixabay.com/photos/business-meeting-handshake-managers-10448876/"
+  },
+  {
+    "event": "Page header: advice",
+    "file": "/images/heroes/advice.webp",
+    "photographer": "Maximilianovich",
+    "source": "https://pixabay.com/photos/doctor-patient-consultation-5710150/"
+  },
+  {
+    "event": "Page header: food-grocery",
+    "file": "/images/heroes/food-grocery.webp",
+    "photographer": "katetrysh",
+    "source": "https://pixabay.com/photos/spice-market-dubai-souq-9060102/"
+  },
+  {
+    "event": "Page header: food-catering",
+    "file": "/images/heroes/food-catering.webp",
+    "photographer": "lubovlisitsa",
+    "source": "https://pixabay.com/photos/dessert-chocolate-food-sweets-nuts-5582984/"
+  },
+  {
+    "event": "Page header: food-cooking",
+    "file": "/images/heroes/food-cooking.webp",
+    "photographer": "AndrzejRembowski",
+    "source": "https://pixabay.com/photos/cooking-lesson-workshops-children-4299302/"
   }
 ] as const;

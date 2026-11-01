@@ -130,7 +130,7 @@ export default function TaxesPage() {
           subtitle="Quellensteuer, DTAA India–Switzerland, NRE/NRO declaration, FEMA/FATCA, and Pillar 3a optimisation — the complete dual-country tax guide for Indian professionals."
           badge="🧾 Taxes"
           gradient="from-emerald-600 to-teal-600"
-        heroImage="/hero-business.webp"
+        heroImage="/images/heroes/living-taxes.webp"
         heroImageAlt="Swiss tax guide for Indian expats"
         heroImagePosition="center 35%"
           breadcrumbs={[

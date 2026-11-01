@@ -66,7 +66,7 @@ export default function EducationPage() {
         subtitle="From nursery to university — navigating Swiss education as an Indian family."
         badge="Education Guide"
         gradient="from-purple-500 to-violet-500"
-        heroImage="/hero-community.webp"
+        heroImage="/images/heroes/living-education.webp"
         heroImageAlt="Education for Indian families in Switzerland"
         heroImagePosition="center 50%"
         breadcrumbs={[

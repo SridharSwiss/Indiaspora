@@ -49,7 +49,7 @@ export default function StartupsPage() {
         subtitle="Switzerland ranks among Europe's top startup ecosystems. Here's how Indian entrepreneurs navigate funding, visas, and building companies in Switzerland."
         badge="Startup Ecosystem"
         gradient="from-teal-500 to-cyan-600"
-        heroImage="/hero-business.webp"
+        heroImage="/images/heroes/business-startups.webp"
         heroImageAlt="Indian-founded startups Switzerland business event"
         heroImagePosition="center 35%"
         breadcrumbs={[
