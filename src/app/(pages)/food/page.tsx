@@ -48,7 +48,8 @@ export default function FoodPage() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {subCategories.map((cat) => (
             <Link key={cat.label} href={cat.href} className="glass rounded-2xl p-5 card-hover group">
-              <div className="mb-3">{cat.icon}</div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/images/topics/${cat.href.split("/").pop()}.webp`} alt="" loading="lazy" className="w-full object-cover rounded-xl mb-3" style={{ height: 110 }} />
               <h3 className="font-semibold mb-1 group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{cat.label}</h3>
               <p className="text-xs" style={{ color: "var(--text-2)" }}>{cat.desc}</p>
             </Link>
@@ -62,6 +63,8 @@ export default function FoodPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {restaurants.map((r) => (
               <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/images/topics/${r.name === "Indigo Restaurant" ? "fine-dining" : r.cuisine.toLowerCase().replace(/\s+/g, "-")}.webp`} alt={`${r.cuisine} cuisine`} loading="lazy" className="w-full object-cover rounded-xl mb-4" style={{ height: 130 }} />
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <h3 className="font-semibold group-hover:text-orange-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>

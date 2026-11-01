@@ -41,9 +41,8 @@ export default function LivingPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {guides.map((g) => (
             <Link key={g.label} href={g.href} className="glass rounded-2xl p-6 card-hover group block">
-              <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${g.color} mb-4`}>
-                <g.icon className="w-5 h-5" style={{ color: "var(--text)" }} />
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/images/topics/${g.href.split("/").pop()}.webp`} alt="" loading="lazy" className="w-full object-cover rounded-xl mb-4" style={{ height: 130 }} />
               <h2 className="font-bold text-base mb-2 group-hover:text-orange-400 transition-colors leading-snug" style={{ color: "var(--text)" }}>{g.label}</h2>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>{g.desc}</p>
             </Link>
@@ -63,9 +62,8 @@ export default function LivingPage() {
               ["🌐 Official Info Portal", "ch.ch is the official Swiss government portal for residents — available in English"],
             ].map(([title, desc]) => (
               <div key={title as string} className="flex gap-3">
-                <div className="text-lg">{(title as string).split(' ')[0]}</div>
                 <div>
-                  <div className="font-medium text-sm" style={{ color: "var(--text)" }}>{(title as string).substring(2)}</div>
+                  <div className="font-medium text-sm" style={{ color: "var(--text)" }}>{(title as string).split(' ').slice(1).join(' ')}</div>
                   <div className="text-xs mt-0.5" style={{ color: "var(--text-2)" }}>{desc as string}</div>
                 </div>
               </div>

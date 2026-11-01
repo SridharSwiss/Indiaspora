@@ -299,5 +299,113 @@ export const IMAGE_CREDITS = [
     "file": "/images/cities/gallery/lausanne-6.webp",
     "photographer": "SLPix",
     "source": "https://pixabay.com/photos/geneva-lake-lausanne-ouchy-3141087/"
+  },
+  {
+    "event": "Zug (city photo)",
+    "file": "/images/cities/zug.webp",
+    "photographer": "artistico",
+    "source": "https://pixabay.com/photos/train-lake-fountain-geneva-4627151/"
+  },
+  {
+    "event": "Topic photo: welcome",
+    "file": "/images/topics/welcome.webp",
+    "photographer": "victoraf",
+    "source": "https://pixabay.com/photos/train-station-platform-railway-3384786/"
+  },
+  {
+    "event": "Topic photo: housing",
+    "file": "/images/topics/housing.webp",
+    "photographer": "Pexels",
+    "source": "https://pixabay.com/photos/chairs-floor-furniture-indoors-2181947/"
+  },
+  {
+    "event": "Topic photo: healthcare",
+    "file": "/images/topics/healthcare.webp",
+    "photographer": "ovariancancer1",
+    "source": "https://pixabay.com/photos/doctor-patient-gynecologist-women-9628974/"
+  },
+  {
+    "event": "Topic photo: education",
+    "file": "/images/topics/education.webp",
+    "photographer": "geralt",
+    "source": "https://pixabay.com/photos/classroom-students-teacher-math-10160192/"
+  },
+  {
+    "event": "Topic photo: banking",
+    "file": "/images/topics/banking.webp",
+    "photographer": "nattanan23",
+    "source": "https://pixabay.com/photos/money-coin-investment-business-2724241/"
+  },
+  {
+    "event": "Topic photo: transport",
+    "file": "/images/topics/transport.webp",
+    "photographer": "rschaubhut",
+    "source": "https://pixabay.com/photos/railroad-sbb-switzerland-train-4291205/"
+  },
+  {
+    "event": "Topic photo: legal",
+    "file": "/images/topics/legal.webp",
+    "photographer": "succo",
+    "source": "https://pixabay.com/photos/hammer-libra-dish-justice-law-802298/"
+  },
+  {
+    "event": "Topic photo: language",
+    "file": "/images/topics/language.webp",
+    "photographer": "lil_foot_",
+    "source": "https://pixabay.com/photos/open-book-library-education-read-1428428/"
+  },
+  {
+    "event": "Topic photo: restaurants",
+    "file": "/images/topics/restaurants.webp",
+    "photographer": "AnirMitra",
+    "source": "https://pixabay.com/photos/india-food-indian-meal-2731812/"
+  },
+  {
+    "event": "Topic photo: grocery",
+    "file": "/images/topics/grocery.webp",
+    "photographer": "PublicDomainPictures",
+    "source": "https://pixabay.com/photos/almonds-nuts-market-farmers-market-21502/"
+  },
+  {
+    "event": "Topic photo: catering",
+    "file": "/images/topics/catering.webp",
+    "photographer": "guvo59",
+    "source": "https://pixabay.com/photos/meal-hand-gastronomy-dinner-3614411/"
+  },
+  {
+    "event": "Topic photo: cooking",
+    "file": "/images/topics/cooking.webp",
+    "photographer": "atulcodex",
+    "source": "https://pixabay.com/photos/masala-spices-food-herbs-4096891/"
+  },
+  {
+    "event": "Topic photo: south-indian",
+    "file": "/images/topics/south-indian.webp",
+    "photographer": "nurabooo",
+    "source": "https://pixabay.com/photos/indian-vegetarian-food-hong-kong-1768906/"
+  },
+  {
+    "event": "Topic photo: north-indian",
+    "file": "/images/topics/north-indian.webp",
+    "photographer": "AnirMitra",
+    "source": "https://pixabay.com/photos/india-food-indian-meal-2731817/"
+  },
+  {
+    "event": "Topic photo: pan-indian",
+    "file": "/images/topics/pan-indian.webp",
+    "photographer": "Kirtip",
+    "source": "https://pixabay.com/photos/curry-chicken-indian-food-dish-6507120/"
+  },
+  {
+    "event": "Topic photo: street-food",
+    "file": "/images/topics/street-food.webp",
+    "photographer": "gillnisha",
+    "source": "https://pixabay.com/photos/panipuri-gupchup-indian-food-golgpa-74974/"
+  },
+  {
+    "event": "Topic photo: fine-dining",
+    "file": "/images/topics/fine-dining.webp",
+    "photographer": "Pexels",
+    "source": "https://pixabay.com/photos/bowl-dish-meal-fine-dining-gourmet-1850039/"
   }
 ] as const;

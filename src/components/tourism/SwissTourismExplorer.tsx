@@ -383,17 +383,29 @@ export default function SwissTourismExplorer() {
         <label className="mb-2 block text-xs font-bold uppercase tracking-wider" style={{ color: "var(--text-3)" }}>
           1. Choose Your Departure Hub City
         </label>
-        <div className="flex flex-wrap gap-2">
-          {(["Zürich", "Basel", "Geneva", "Lausanne", "Bern", "Zug"] as CityHub[]).map((city) => (
-            <button key={city} onClick={() => setSelectedHub(city)}
-              className={`rounded-xl px-4 py-2.5 text-sm font-bold transition-all ${
-                selectedHub === city ? "bg-orange-500 text-white shadow-sm" : "glass border text-sm"
-              }`}
-              style={selectedHub === city ? {} : { color: "var(--text-2)" }}>
-              📍 {city}
-            </button>
-          ))}
+        <div className="hub-tiles">
+          {(["Zürich", "Basel", "Geneva", "Lausanne", "Bern", "Zug"] as CityHub[]).map((city) => {
+            const slug = city === "Zürich" ? "zurich" : city.toLowerCase();
+            const active = selectedHub === city;
+            return (
+              <button key={city} onClick={() => setSelectedHub(city)} aria-pressed={active}
+                className={`hub-tile${active ? " is-active" : ""}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/images/cities/${slug}.webp`} alt="" loading="lazy" />
+                <span>{city}</span>
+              </button>
+            );
+          })}
         </div>
+        <style>{`
+          .hub-tiles { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+          .hub-tile { position: relative; height: 96px; border-radius: 14px; overflow: hidden; border: 2px solid transparent; padding: 0; cursor: pointer; background: var(--surface-2); }
+          .hub-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; filter: saturate(.9); }
+          .hub-tile:hover img { transform: scale(1.07); }
+          .hub-tile span { position: absolute; inset: auto 0 0 0; padding: 18px 8px 7px; font-size: 13px; font-weight: 700; color: #fff; text-align: left; background: linear-gradient(transparent, rgba(0,0,0,.65)); }
+          .hub-tile.is-active { border-color: #f97316; box-shadow: 0 0 0 3px rgba(249,115,22,.25); }
+          @media (max-width: 760px) { .hub-tiles { grid-template-columns: repeat(3, 1fr); } .hub-tile { height: 80px; } }
+        `}</style>
       </div>
 
       {/* Steps 2 & 3: Filters */}
