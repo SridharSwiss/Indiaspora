@@ -663,7 +663,7 @@ export const IMAGE_CREDITS = [
   {
     "event": "Travel: zh-titlis-lucerne",
     "file": "/images/trips/zh-titlis-lucerne.webp",
-    "photographer": "suju-foto",
-    "source": "https://pixabay.com/photos/tr%C3%BCebsee-titlis-switzerland-5337646/"
+    "photographer": "DenisLinine",
+    "source": "https://pixabay.com/photos/alps-alpine-view-mt-titlis-3037996/"
   }
 ] as const;
