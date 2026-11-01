@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -73,6 +74,7 @@ export default function HealthcarePage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {insurers.map((ins) => (
               <a key={ins.name} href={ins.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-4 block group">
+                <OrgLogo name={ins.name} />
                 <h3 className="text-base font-semibold mb-1 group-hover:text-red-400 transition-colors" style={{ color: "var(--text)" }}>{ins.name}</h3>
                 <p className="text-xs/50" style={{ color: "var(--text)" }}>{ins.note}</p>
               </a>
@@ -85,6 +87,7 @@ export default function HealthcarePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {models.map((m) => (
               <div key={m.name} className="glass card-hover rounded-2xl p-5">
+                <OrgLogo name={m.name} />
                 <h3 className="text-base font-semibold text-red-400 mb-2">{m.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{m.desc}</p>
               </div>

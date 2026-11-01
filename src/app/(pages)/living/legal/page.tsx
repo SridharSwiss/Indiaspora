@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -63,6 +64,7 @@ export default function LegalPage() {
                 <div className="flex items-center gap-3 mb-3">
                   <span className="w-10 h-10 rounded-full bg-slate-500/30 flex items-center justify-center text-lg font-bold group-hover:bg-slate-500/50 transition-colors" style={{ color: "var(--text)" }}>{p.code}</span>
                   <div>
+                    <OrgLogo name={p.name} />
                     <h3 className="text-base font-semibold group-hover:text-slate-300 transition-colors" style={{ color: "var(--text)" }}>{p.name}</h3>
                     <p className="text-xs" style={{ color: "var(--text-2)" }}>{p.duration}</p>
                   </div>

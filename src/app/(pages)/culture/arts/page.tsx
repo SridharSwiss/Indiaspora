@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -124,6 +125,7 @@ export default function ArtsPage() {
             {danceSchools.map((d) => (
               <a key={d.name} href={d.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex justify-between items-start mb-2">
+                  <OrgLogo name={d.name} />
                   <h3 className="font-semibold text-sm flex-1 mr-2 group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{d.name}</h3>
                   <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full shrink-0">{d.city}</span>
                 </div>
@@ -142,6 +144,7 @@ export default function ArtsPage() {
               m.url ? (
                 <a key={m.name} href={m.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
                   <div className="flex justify-between items-start mb-2">
+                    <OrgLogo name={m.name} />
                     <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{m.name}</h3>
                     <span className="text-xs" style={{ color: "var(--text-2)" }}>{m.city}</span>
                   </div>
@@ -151,6 +154,7 @@ export default function ArtsPage() {
               ) : (
                 <div key={m.name} className="glass rounded-2xl p-5">
                   <div className="flex justify-between items-start mb-2">
+                    <OrgLogo name={m.name} />
                     <h3 className="font-semibold" style={{ color: "var(--text)" }}>{m.name}</h3>
                     <span className="text-xs" style={{ color: "var(--text-2)" }}>{m.city}</span>
                   </div>
@@ -168,6 +172,7 @@ export default function ArtsPage() {
           <div className="grid md:grid-cols-3 gap-4">
             {yogaStudios.map((y) => (
               <a key={y.name} href={y.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
+                <OrgLogo name={y.name} />
                 <h3 className="font-semibold text-sm mb-1 group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{y.name}</h3>
                 <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{y.city}</p>
                 <p className="text-sm" style={{ color: "var(--text-2)" }}>{y.desc}</p>

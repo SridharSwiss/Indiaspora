@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -82,6 +83,7 @@ export default function EducationPage() {
             {schoolTypes.map((s) => (
               <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-6 block group">
                 <div className="text-3xl mb-3">{s.icon}</div>
+                <OrgLogo name={s.name} />
                 <h3 className="text-base font-semibold mb-2 group-hover:text-indigo-400 transition-colors" style={{ color: "var(--text)" }}>{s.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{s.desc}</p>
               </a>
@@ -96,6 +98,7 @@ export default function EducationPage() {
             {cantonal.map((u) => (
               <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 flex items-start justify-between gap-4 group">
                 <div>
+                  <OrgLogo name={u.name} />
                   <h3 className="text-base font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text)" }}>{u.name}</h3>
                   <p className="text-sm mt-1" style={{ color: "var(--text-2)" }}>{u.note}</p>
                 </div>
@@ -112,6 +115,7 @@ export default function EducationPage() {
             {fachhochschulen.map((u) => (
               <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 flex items-start justify-between gap-4 group">
                 <div>
+                  <OrgLogo name={u.name} />
                   <h3 className="text-base font-semibold group-hover:text-indigo-400 transition-colors" style={{ color: "var(--text)" }}>{u.name}</h3>
                   <p className="text-sm mt-1" style={{ color: "var(--text-2)" }}>{u.note}</p>
                 </div>
@@ -128,6 +132,7 @@ export default function EducationPage() {
             {arts.map((u) => (
               <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 flex items-start justify-between gap-4 group">
                 <div>
+                  <OrgLogo name={u.name} />
                   <h3 className="text-base font-semibold group-hover:text-pink-400 transition-colors" style={{ color: "var(--text)" }}>{u.name}</h3>
                   <p className="text-sm mt-1" style={{ color: "var(--text-2)" }}>{u.note}</p>
                 </div>

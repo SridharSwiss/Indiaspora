@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
@@ -135,6 +136,7 @@ export default function KrankenkassePage() {
               {PROVIDERS.map((p) => (
                 <div key={p.name} className="glass rounded-xl p-4">
                   <div className="flex items-center justify-between mb-2">
+                    <OrgLogo name={p.name} />
                     <h3 className="font-bold text-sm" style={{ color: "var(--text)" }}>{p.name}</h3>
                     <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-xs text-orange-400 hover:underline">Website ↗</a>
                   </div>

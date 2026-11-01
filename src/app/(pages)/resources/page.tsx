@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import PageHeader from "@/components/ui/PageHeader";
 
 const resources = [
@@ -95,6 +96,7 @@ export default function ResourcesPage() {
                     rel="noopener noreferrer"
                     className="glass rounded-2xl p-5 card-hover group block"
                   >
+                    <OrgLogo name={item.name} />
                     <h3 className="font-semibold text-sm mb-2 group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{item.name}</h3>
                     <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{item.desc}</p>
                     <p className="text-xs text-blue-400 mt-3 opacity-0 group-hover:opacity-100 transition-opacity">Open →</p>

@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
@@ -68,6 +69,7 @@ export default function CommunityPage() {
             <a key={org.name} href={org.url} target="_blank" rel="noopener noreferrer"
               className="glass rounded-xl p-5 card-hover block group">
               <div className="flex items-start justify-between gap-2 mb-2">
+                <OrgLogo name={org.name} />
                 <h3 className="font-semibold text-sm group-hover:text-orange-400 transition-colors leading-tight" style={{ color: "var(--text)" }}>{org.name}</h3>
                 <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-orange-500/15 text-orange-400 border border-orange-500/20">{org.city}</span>
               </div>

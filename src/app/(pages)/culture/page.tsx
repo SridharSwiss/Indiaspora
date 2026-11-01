@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import PageHeader from "@/components/ui/PageHeader";
 
 const festivals = [
@@ -56,6 +57,7 @@ export default function CulturePage() {
                 className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
                   <div>
+                    <OrgLogo name={f.name} />
                     <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{f.name}</h3>
                     <p className="text-xs text-rose-400">{f.date} · {f.location}</p>
                   </div>
@@ -76,6 +78,7 @@ export default function CulturePage() {
               <a key={d.name} href={d.url} target="_blank" rel="noopener noreferrer"
                 className="glass rounded-2xl p-5 card-hover group block">
                 <div className="flex justify-between items-start mb-2">
+                  <OrgLogo name={d.name} />
                   <h3 className="font-semibold text-sm group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{d.name}</h3>
                   <span className="text-xs bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full ml-2 shrink-0">{d.city}</span>
                 </div>
@@ -96,6 +99,7 @@ export default function CulturePage() {
               <a key={m.name} href={m.url} target="_blank" rel="noopener noreferrer"
                 className="glass rounded-2xl p-5 card-hover block group">
                 <div className="flex justify-between items-start mb-2">
+                  <OrgLogo name={m.name} />
                   <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{m.name}</h3>
                   <span className="text-xs" style={{ color: "var(--text-2)" }}>{m.city}</span>
                 </div>

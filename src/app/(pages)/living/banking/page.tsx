@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -64,6 +65,7 @@ export default function BankingPage() {
             {banks.map((b) => (
               <a key={b.name} href={b.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
                 <div className="flex items-start justify-between mb-2">
+                  <OrgLogo name={b.name} />
                   <h3 className="text-base font-semibold group-hover:text-yellow-400 transition-colors" style={{ color: "var(--text)" }}>{b.name}</h3>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400">{b.bestFor}</span>
                 </div>

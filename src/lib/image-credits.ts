@@ -665,5 +665,11 @@ export const IMAGE_CREDITS = [
     "file": "/images/trips/zh-titlis-lucerne.webp",
     "photographer": "DenisLinine",
     "source": "https://pixabay.com/photos/alps-alpine-view-mt-titlis-3037996/"
+  },
+  {
+    "event": "Emergency numbers tile",
+    "file": "/images/quick/emergency.webp",
+    "photographer": "AlexDE",
+    "source": "https://pixabay.com/photos/rescue-service-ambulance-4936321/"
   }
 ] as const;

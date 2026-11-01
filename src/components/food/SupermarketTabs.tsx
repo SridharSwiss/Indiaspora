@@ -1,5 +1,6 @@
 "use client";
 
+import OrgLogo from "@/components/ui/OrgLogo";
 import React, { useState } from "react";
 import Link from "next/link";
 
@@ -95,6 +96,7 @@ export default function SupermarketTabs({ chains, substitutes, dairy, flours, sp
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{c.emoji}</span>
                   <div>
+                    <OrgLogo name={c.name} />
                     <h3 className="font-bold text-base" style={{ color: "var(--text)" }}>{c.name}</h3>
                     <p className="text-xs" style={{ color: "var(--text-3)" }}>{c.tagline}</p>
                   </div>

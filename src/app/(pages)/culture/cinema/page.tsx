@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -86,6 +87,7 @@ export default function CinemaPage() {
               <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-6 card-hover block group">
                 <div className="flex items-start justify-between mb-3">
                   <div>
+                    <OrgLogo name={s.name} />
                     <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{s.name}</h3>
                     <p className="text-xs text-rose-400 mt-0.5">{s.timing} &middot; {s.location}</p>
                   </div>
@@ -107,6 +109,7 @@ export default function CinemaPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {streaming.map((s) => (
               <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
+                <OrgLogo name={s.name} />
                 <h3 className="font-semibold text-sm mb-2 group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{s.name}</h3>
                 <p className="text-sm" style={{ color: "var(--text-2)" }}>{s.note}</p>
               </a>
@@ -120,6 +123,7 @@ export default function CinemaPage() {
           <div className="grid md:grid-cols-3 gap-4">
             {radio.map((r) => (
               <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-5 card-hover block group">
+                <OrgLogo name={r.name} />
                 <h3 className="font-semibold text-sm mb-2 group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{r.name}</h3>
                 <p className="text-sm" style={{ color: "var(--text-2)" }}>{r.desc}</p>
               </a>

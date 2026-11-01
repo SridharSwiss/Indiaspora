@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -50,6 +51,7 @@ export default function TransportPage() {
             {passes.map((p) => (
               <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className={`glass card-hover rounded-2xl p-5 block group ${p.recommended ? 'border border-sky-500/40' : ''}`}>
                 <div className="flex items-start justify-between mb-2">
+                  <OrgLogo name={p.name} />
                   <h3 className="text-base font-semibold group-hover:text-sky-400 transition-colors" style={{ color: "var(--text)" }}>{p.name}</h3>
                   {p.recommended && <span className="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300">Recommended</span>}
                 </div>

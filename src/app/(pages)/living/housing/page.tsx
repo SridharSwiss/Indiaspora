@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -79,6 +80,7 @@ export default function HousingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {portals.map((p) => (
               <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block group">
+                <OrgLogo name={p.name} />
                 <h3 className="text-base font-semibold text-blue-400 mb-1 group-hover:text-blue-300 transition-colors">{p.name}</h3>
                 <p className="text-sm/60" style={{ color: "var(--text)" }}>{p.desc}</p>
               </a>

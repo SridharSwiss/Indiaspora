@@ -21,14 +21,14 @@ const TAB_ACCENT = [
 ];
 
 const QUICK_LINKS = [
-  { label: "Residence Permits", icon: "📋", href: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/eu_efta.html" },
-  { label: "Health Insurance",  icon: "🏥", href: "https://www.bag.admin.ch/bag/en/home/versicherungen/krankenversicherung.html" },
-  { label: "Swiss Banking",     icon: "🏦", href: "https://www.comparis.ch/bank/kontokorrent/info/konto-eroeffnen" },
-  { label: "Schools & Kita",    icon: "🏫", href: "https://www.edk.ch/en/education-system/cantonal-school-structures" },
-  { label: "Language Courses",  icon: "🗣️", href: "https://www.ch.ch/en/education/language-courses-in-switzerland/" },
-  { label: "Tax Returns",       icon: "📊", href: "https://www.estv.admin.ch/estv/en/home/direct-federal-tax/individuals.html" },
-  { label: "Driving Licence",   icon: "🚗", href: "https://www.astra.admin.ch/astra/en/home/themen/fuehrerausweise-und-fahrzeugausweis/fuehrerausweis.html" },
-  { label: "Emergency Numbers", icon: "🆘", href: "https://www.ch.ch/en/safety-and-justice/police/emergency-numbers/" },
+  { label: "Residence Permits", img: "/images/quick/permits.webp", href: "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/eu_efta.html" },
+  { label: "Health Insurance",  img: "/images/quick/health.webp", href: "https://www.bag.admin.ch/bag/en/home/versicherungen/krankenversicherung.html" },
+  { label: "Swiss Banking",     img: "/images/quick/banking.webp", href: "https://www.comparis.ch/bank/kontokorrent/info/konto-eroeffnen" },
+  { label: "Schools & Kita",    img: "/images/quick/schools.webp", href: "https://www.edk.ch/en/education-system/cantonal-school-structures" },
+  { label: "Language Courses",  img: "/images/quick/language.webp", href: "https://www.ch.ch/en/education/language-courses-in-switzerland/" },
+  { label: "Tax Returns",       img: "/images/quick/tax.webp", href: "https://www.estv.admin.ch/estv/en/home/direct-federal-tax/individuals.html" },
+  { label: "Driving Licence",   img: "/images/quick/driving.webp", href: "https://www.astra.admin.ch/astra/en/home/themen/fuehrerausweise-und-fahrzeugausweis/fuehrerausweis.html" },
+  { label: "Emergency Numbers", img: "/images/quick/emergency.webp", href: "https://www.ch.ch/en/safety-and-justice/police/emergency-numbers/" },
 ];
 
 export default function LivingGuide() {
@@ -98,7 +98,8 @@ export default function LivingGuide() {
                   transition: "border-color 0.22s, transform 0.22s cubic-bezier(0.16,1,0.3,1), box-shadow 0.22s",
                 }}
               >
-                <EmojiIcon e={link.icon} size={22} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={link.img} alt="" loading="lazy" width={56} height={56} style={{ width: 56, height: 56, borderRadius: 14, objectFit: "cover" }} />
                 <span style={{
                   fontSize: 10, textAlign: "center", lineHeight: 1.3, fontWeight: 600,
                   color: "var(--text-3)",

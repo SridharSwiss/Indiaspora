@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -220,6 +221,7 @@ export default function FestivalsPage() {
             <a key={f.name} href={f.organiserUrl!} target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-6 card-hover block group">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1 mr-3">
+                  <OrgLogo name={f.name} />
                   <h3 className="font-semibold group-hover:text-rose-400 transition-colors" style={{ color: "var(--text)" }}>{f.name}</h3>
                   <p className="text-xs text-rose-400 mt-0.5">{f.date} &middot; {f.location}</p>
                 </div>

@@ -1,3 +1,4 @@
+import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -83,6 +84,7 @@ export default function StudentsPage() {
             {cantonal.map((u) => (
               <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
                 <div className="flex items-start justify-between gap-2 mb-2">
+                  <OrgLogo name={u.name} />
                   <h3 className="font-semibold text-sm leading-tight group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{u.name}</h3>
                   <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">{u.city}</span>
                 </div>
@@ -100,6 +102,7 @@ export default function StudentsPage() {
             {fachhochschulen.map((u) => (
               <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
                 <div className="flex items-start justify-between gap-2 mb-2">
+                  <OrgLogo name={u.name} />
                   <h3 className="font-semibold text-sm leading-tight group-hover:text-indigo-400 transition-colors" style={{ color: "var(--text)" }}>{u.name}</h3>
                   <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-400 border border-indigo-500/20">{u.city}</span>
                 </div>
@@ -117,6 +120,7 @@ export default function StudentsPage() {
             {artsUniversities.map((u) => (
               <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
                 <div className="flex items-start justify-between gap-2 mb-2">
+                  <OrgLogo name={u.name} />
                   <h3 className="font-semibold text-sm leading-tight group-hover:text-pink-400 transition-colors" style={{ color: "var(--text)" }}>{u.name}</h3>
                   <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-pink-500/15 text-pink-400 border border-pink-500/20">{u.city}</span>
                 </div>
@@ -135,6 +139,7 @@ export default function StudentsPage() {
               a.url ? (
                 <a key={a.name} href={a.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
                   <div className="flex items-start justify-between gap-2 mb-2">
+                    <OrgLogo name={a.name} />
                     <h3 className="font-semibold text-sm leading-tight group-hover:text-blue-400 transition-colors" style={{ color: "var(--text)" }}>{a.name}</h3>
                     <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">{a.city}</span>
                   </div>
@@ -143,6 +148,7 @@ export default function StudentsPage() {
               ) : (
                 <div key={a.name} className="glass rounded-xl p-5">
                   <div className="flex items-start justify-between gap-2 mb-2">
+                    <OrgLogo name={a.name} />
                     <h3 className="font-semibold text-sm leading-tight" style={{ color: "var(--text)" }}>{a.name}</h3>
                     <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">{a.city}</span>
                   </div>
@@ -159,6 +165,7 @@ export default function StudentsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {scholarships.map((s) => (
               <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-5 card-hover block group">
+                <OrgLogo name={s.name} />
                 <h3 className="font-semibold text-sm leading-tight group-hover:text-blue-400 transition-colors mb-2" style={{ color: "var(--text)" }}>{s.name}</h3>
                 <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{s.desc}</p>
               </a>
