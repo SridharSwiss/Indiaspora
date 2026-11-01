@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
@@ -319,8 +320,8 @@ export default function LausannePage() {
                   padding: "20px 16px",
                 }}
               >
-                <span style={{ fontSize: 28, display: "block", marginBottom: 10 }}>
-                  {qa.emoji}
+                <span style={{ display: "block", marginBottom: 10 }}>
+                  <EmojiIcon e={qa.emoji} size={28} />
                 </span>
                 <span
                   style={{
@@ -882,7 +883,7 @@ export default function LausannePage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
 
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🍛 Restaurants</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🍛" size={18} /></span>Restaurants</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
                   { name: "Bollywood Lausanne", note: "Flon district — generous curries, popular with EPFL crowd", href: "https://maps.google.com/?q=Bollywood+Restaurant+Lausanne" },
@@ -900,7 +901,7 @@ export default function LausannePage() {
             </div>
 
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🛒 Indian &amp; Asian Groceries</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🛒" size={18} /></span>Indian &amp; Asian Groceries</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
                   { name: "Asia Market Lausanne", note: "Rue de Genève — Indian spices, basmati, lentils", href: "https://maps.google.com/?q=Asia+Market+Lausanne+Switzerland" },

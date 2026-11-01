@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -114,7 +115,7 @@ export default function KrankenkassePage() {
                 </ul>
               </div>
               <div className="glass rounded-xl p-5 border border-orange-500/20">
-                <h3 className="font-bold text-orange-400 mb-2">⚡ Tiers Garant (standard in ZH, BS)</h3>
+                <h3 className="font-bold text-orange-400 mb-2"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="⚡" size={18} /></span>Tiers Garant (standard in ZH, BS)</h3>
                 <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>Doctor bills you directly. You pay the full amount, then claim reimbursement from your insurer.</p>
                 <ul className="text-xs space-y-1" style={{ color: "var(--text-2)" }}>
                   <li>• Requires CHF 500–2,000 cash buffer for large bills</li>

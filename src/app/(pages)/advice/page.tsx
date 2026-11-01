@@ -1,5 +1,6 @@
 "use client";
 
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import PageHeader from "@/components/ui/PageHeader";
 import SeekAdviceForm from "@/components/ui/SeekAdviceForm";
 import { MessageCircle, Shield, Users, Clock } from "lucide-react";
@@ -65,7 +66,7 @@ export default function AdvicePage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 12 }}>
             {TOPIC_CARDS.map(({ icon, label, desc }) => (
               <div key={label} className="card" style={{ padding: "16px 18px", border: "1px solid var(--border)", cursor: "default" }}>
-                <div style={{ fontSize: 24, marginBottom: 8 }}>{icon}</div>
+                <div style={{ marginBottom: 8 }}><EmojiIcon e={icon} size={26} /></div>
                 <div style={{ fontSize: 12, fontWeight: 700, color: "var(--text)", marginBottom: 4, fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>{label}</div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", lineHeight: 1.5, fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>{desc}</div>
               </div>

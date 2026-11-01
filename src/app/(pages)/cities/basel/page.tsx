@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
@@ -184,7 +185,7 @@ export default function BaselPage() {
                   transition: "border-color 0.15s",
                 }}
               >
-                <span style={{ fontSize: 28, lineHeight: 1 }}>{action.emoji}</span>
+                <EmojiIcon e={action.emoji} size={28} />
                 <span
                   style={{
                     fontWeight: 700,
@@ -668,7 +669,7 @@ export default function BaselPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
 
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🍛 Restaurants</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🍛" size={18} /></span>Restaurants</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
                   { name: "Little India Basel", note: "Established North Indian near the Marktplatz", href: "https://maps.google.com/?q=Little+India+Restaurant+Basel" },
@@ -686,7 +687,7 @@ export default function BaselPage() {
             </div>
 
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🛒 Indian &amp; Asian Groceries</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🛒" size={18} /></span>Indian &amp; Asian Groceries</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
                   { name: "Asia Market Basel", note: "Lange Gasse — Indian spices, lentils, rice", href: "https://maps.google.com/?q=Asia+Market+Basel+Switzerland" },

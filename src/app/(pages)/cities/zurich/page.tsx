@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
@@ -73,7 +74,7 @@ export default function ZurichPage() {
                   cursor: "pointer",
                 }}
               >
-                <span style={{ fontSize: 36, marginBottom: 10 }}>{a.emoji}</span>
+                <span style={{ marginBottom: 10, display: "inline-flex" }}><EmojiIcon e={a.emoji} size={34} /></span>
                 <span style={{ fontWeight: 700, fontSize: 15, color: "var(--text)", textAlign: "center", marginBottom: 4 }}>{a.label}</span>
                 <span style={{ fontSize: 12, color: "var(--text-3)", textAlign: "center" }}>{a.sub}</span>
               </Link>
@@ -96,7 +97,7 @@ export default function ZurichPage() {
 
             {/* Registration */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #f97316", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🏛️ Residence Registration</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🏛️" size={18} /></span>Residence Registration</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Office:</strong> Kreisbüro — 12 district offices across Zurich</li>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Deadline:</strong> Within 14 days of moving in</li>
@@ -107,7 +108,7 @@ export default function ZurichPage() {
 
             {/* Utilities */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #f97316", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>⚡ Utilities</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="⚡" size={18} /></span>Utilities</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.ewz.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>EWZ (ewz.ch)</a> — Electricity, district heating, solar</li>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.energie360.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>Energie 360° (energie360.ch)</a> — Gas, renewable energy</li>
@@ -118,7 +119,7 @@ export default function ZurichPage() {
 
             {/* Public Transport */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #f97316", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🚊 Public Transport</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🚊" size={18} /></span>Public Transport</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.zvv.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>ZVV (zvv.ch)</a> — Covers all trams, buses, S-Bahn in Zurich canton. Zone 110 = city centre</li>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>ZVV App:</strong> Tickets, journey planner, real-time departures</li>
@@ -129,7 +130,7 @@ export default function ZurichPage() {
 
             {/* Education */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #f97316", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🎓 Education & Universities</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🎓" size={18} /></span>Education & Universities</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://ethz.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>ETH Zurich (ethz.ch)</a> — World-top engineering & science; large Indian student community</li>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.uzh.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>University of Zurich UZH (uzh.ch)</a> — Medicine, humanities, law, ~27,000 students</li>
@@ -140,7 +141,7 @@ export default function ZurichPage() {
 
             {/* Making Friends */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #f97316", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🤝 Making Friends & Expat Groups</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🤝" size={18} /></span>Making Friends & Expat Groups</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://iagz.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>IAGZ (iagz.ch)</a> — Indian Association of Greater Zurich; Diwali, Holi, family events</li>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>InSAZ</strong> — Indian Students Association Zurich (ETH/UZH)</li>
@@ -177,7 +178,7 @@ export default function ZurichPage() {
 
             {/* City Resources */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #10b981", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🌐 City Resources</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🌐" size={18} /></span>City Resources</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.stadt-zuerich.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>stadt-zuerich.ch</a> — City portal, all services</li>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.zh.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>zh.ch</a> — Canton Zurich portal</li>
@@ -187,7 +188,7 @@ export default function ZurichPage() {
 
             {/* Civic Engagement */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderLeft: "4px solid #10b981", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🗳️ Civic Engagement</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🗳️" size={18} /></span>Civic Engagement</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Neighbourhood associations (Quartiervereins)</strong> — Join via local notice boards</li>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}>Volunteer: <a href="https://www.caritas-zuerich.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>Caritas Zürich</a>, <a href="https://www.benevol-zh.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#10b981", textDecoration: "none" }}>Benevol</a></li>
@@ -208,7 +209,7 @@ export default function ZurichPage() {
 
             {/* Parks & Nature */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🌳 Parks &amp; Nature</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🌳" size={18} /></span>Parks &amp; Nature</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Zürichhorn</strong> — Lakeside park, barbecue areas, Chinese Garden nearby</li>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><strong style={{ color: "var(--text)" }}>Irchelpark</strong> — Large park with meadows, near UZH, family-friendly</li>
@@ -220,7 +221,7 @@ export default function ZurichPage() {
 
             {/* Health & Safety */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🏥 Health &amp; Safety</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🏥" size={18} /></span>Health &amp; Safety</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.usz.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--in)", textDecoration: "none" }}>Universitätsspital Zürich USZ</a> — Main university hospital, 24/7 ER, Rämistrasse 100</li>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.triemli.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--in)", textDecoration: "none" }}>Stadtspital Triemli</a> — City hospital, 24/7 ER, Birmensdorferstrasse 497</li>
@@ -231,7 +232,7 @@ export default function ZurichPage() {
 
             {/* Cultural & Sports */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>🎨 Cultural &amp; Sports</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🎨" size={18} /></span>Cultural &amp; Sports</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.kunsthaus.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--in)", textDecoration: "none" }}>Kunsthaus Zürich (kunsthaus.ch)</a> — Major art museum</li>
                 <li style={{ fontSize: 13, color: "var(--text-2)" }}><a href="https://www.nationalmuseum.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--in)", textDecoration: "none" }}>Landesmuseum (nationalmuseum.ch)</a> — Swiss national history museum</li>
@@ -254,7 +255,7 @@ export default function ZurichPage() {
 
             {/* Restaurants */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🍛 Restaurants</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🍛" size={18} /></span>Restaurants</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
                   { name: "India Garden", note: "Limmatquai — long-standing North Indian classic", href: "https://maps.google.com/?q=India+Garden+Restaurant+Zurich" },
@@ -274,7 +275,7 @@ export default function ZurichPage() {
 
             {/* Grocery */}
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🛒 Indian & Asian Groceries</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🛒" size={18} /></span>Indian & Asian Groceries</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
                   { name: "Asia House Zurich", note: "Weststrasse 178 — largest Indian/Asian grocery", href: "https://maps.google.com/?q=Asia+House+Weststrasse+178+Zurich" },
@@ -303,7 +304,7 @@ export default function ZurichPage() {
 
             {/* Swiss Emergency Numbers */}
             <div>
-              <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#f87171", marginBottom: 14 }}>🚨 Swiss Emergency Numbers</h3>
+              <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#f87171", marginBottom: 14 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🚨" size={18} /></span>Swiss Emergency Numbers</h3>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 16px" }}>
                 {[
                   ["117", "Police"],
@@ -324,7 +325,7 @@ export default function ZurichPage() {
 
             {/* Zurich Contacts */}
             <div>
-              <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#60a5fa", marginBottom: 14 }}>🏙️ Zurich Contacts</h3>
+              <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#60a5fa", marginBottom: 14 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🏙️" size={18} /></span>Zurich Contacts</h3>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 10 }}>
                 <li style={{ fontSize: 13, color: "#9ca3af" }}><a href="https://www.stadtpolizei.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#60a5fa", textDecoration: "none" }}>Stadtpolizei Zürich</a></li>
                 <li style={{ fontSize: 13, color: "#9ca3af" }}><strong style={{ color: "#d1d5db" }}>City Hall:</strong> Stadthaus, Stadthausquai 17, 8001 Zürich — <a href="https://www.stadt-zuerich.ch" target="_blank" rel="noopener noreferrer" style={{ color: "#60a5fa", textDecoration: "none" }}>stadt-zuerich.ch</a></li>

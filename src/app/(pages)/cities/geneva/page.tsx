@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
@@ -111,7 +112,7 @@ export default function GenevaPage() {
                   transition: "opacity 0.15s",
                 }}
               >
-                <span style={{ fontSize: 28 }}>{item.emoji}</span>
+                <EmojiIcon e={item.emoji} size={28} />
                 <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 700, color: "var(--text)" }}>{item.label}</span>
                 <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 11, color: "var(--text-2)" }}>{item.sub}</span>
               </a>
@@ -319,7 +320,7 @@ export default function GenevaPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
 
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🍛 Restaurants</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🍛" size={18} /></span>Restaurants</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
                   { name: "Indian Summer", note: "Rue de Rive area — popular lunch and dinner", href: "https://maps.google.com/?q=Indian+Summer+Restaurant+Geneva" },
@@ -338,7 +339,7 @@ export default function GenevaPage() {
             </div>
 
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🛒 Indian &amp; Asian Groceries</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🛒" size={18} /></span>Indian &amp; Asian Groceries</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
                   { name: "Asia Shop Geneva", note: "Pâquis — Indian spices, rice, dal, frozen goods", href: "https://maps.google.com/?q=Asia+Shop+Geneva+Switzerland" },

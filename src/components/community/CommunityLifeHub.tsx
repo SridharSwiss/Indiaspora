@@ -1,5 +1,6 @@
 "use client";
 
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import React, { useState, useMemo } from "react";
 
 type Canton =
@@ -412,7 +413,7 @@ export default function CommunityLifeHub() {
         {filteredErrands.map((item) => (
           <div key={item.id} className="glass rounded-xl p-5 card-hover">
             <div className="flex items-start gap-3 mb-3">
-              <span className="text-2xl flex-shrink-0">{item.emoji}</span>
+              <EmojiIcon e={item.emoji} size={26} />
               <div className="flex-1 min-w-0">
                 <h3 className="font-bold text-sm leading-tight mb-1.5" style={{ color: "var(--text)" }}>
                   {item.title}

@@ -1,5 +1,6 @@
 "use client";
 
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import { useState } from "react";
 import { Plane, Heart, Home, GraduationCap, ArrowRight, ExternalLink } from "lucide-react";
 import { LIVING_GUIDE } from "@/lib/data";
@@ -97,7 +98,7 @@ export default function LivingGuide() {
                   transition: "border-color 0.22s, transform 0.22s cubic-bezier(0.16,1,0.3,1), box-shadow 0.22s",
                 }}
               >
-                <span style={{ fontSize: 22 }}>{link.icon}</span>
+                <EmojiIcon e={link.icon} size={22} />
                 <span style={{
                   fontSize: 10, textAlign: "center", lineHeight: 1.3, fontWeight: 600,
                   color: "var(--text-3)",
@@ -175,7 +176,7 @@ export default function LivingGuide() {
               border: "1px solid var(--border)",
               display: "flex", alignItems: "flex-start", gap: 14,
             }}>
-              <span style={{ fontSize: 22, flexShrink: 0, marginTop: 2 }}>💡</span>
+              <EmojiIcon e="💡" size={22} />
               <div>
                 <div style={{
                   fontSize: 12, fontWeight: 700, marginBottom: 6,

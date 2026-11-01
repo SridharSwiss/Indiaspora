@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
@@ -107,7 +108,7 @@ export default function BernPage() {
                   rel="noopener noreferrer"
                   style={{ ...cardStyle, display: "flex", alignItems: "center", gap: 16, textDecoration: "none" }}
                 >
-                  <span style={{ fontSize: 28, lineHeight: 1, flexShrink: 0 }}>{action.emoji}</span>
+                  <EmojiIcon e={action.emoji} size={28} />
                   <div>
                     <div style={{ color: "var(--text)", fontWeight: 700, fontSize: 15 }}>{action.label}</div>
                     <div style={{ color: "var(--text-2)", fontSize: 12, marginTop: 2 }}>{action.sub}</div>
@@ -119,7 +120,7 @@ export default function BernPage() {
                   href={action.href}
                   style={{ ...cardStyle, display: "flex", alignItems: "center", gap: 16, textDecoration: "none" }}
                 >
-                  <span style={{ fontSize: 28, lineHeight: 1, flexShrink: 0 }}>{action.emoji}</span>
+                  <EmojiIcon e={action.emoji} size={28} />
                   <div>
                     <div style={{ color: "var(--text)", fontWeight: 700, fontSize: 15 }}>{action.label}</div>
                     <div style={{ color: "var(--text-2)", fontSize: 12, marginTop: 2 }}>{action.sub}</div>
@@ -421,7 +422,7 @@ export default function BernPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
 
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🍛 Restaurants</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🍛" size={18} /></span>Restaurants</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
                   { name: "Namaste Bern", note: "Central Bern — classic North Indian menu", href: "https://maps.google.com/?q=Namaste+Restaurant+Bern" },
@@ -439,7 +440,7 @@ export default function BernPage() {
             </div>
 
             <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}>🛒 Indian &amp; Asian Groceries</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 8 }}><EmojiIcon e="🛒" size={18} /></span>Indian &amp; Asian Groceries</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
                   { name: "Asia Shop Bern", note: "Indian spices, lentils, basmati rice", href: "https://maps.google.com/?q=Asia+Shop+Bern+Switzerland" },
