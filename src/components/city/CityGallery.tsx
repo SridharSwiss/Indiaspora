@@ -18,12 +18,12 @@ export default function CityGallery({ slug, name }: { slug: string; name: string
         Photos: Pixabay contributors — <a href="/credits" style={{ textDecoration: "underline" }}>credits</a>
       </p>
       <style>{`
-        .city-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 100%; min-width: 0; }
-        .city-gallery img { width: 100%; max-width: 100%; min-width: 0; height: 170px; object-fit: cover; border-radius: 14px; display: block; }
-        .city-gallery img.cg-big { grid-column: span 2; grid-row: span 2; height: 100%; min-height: 350px; }
+        .city-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; grid-auto-rows: 170px; width: 100%; max-width: 100%; min-width: 0; }
+        .city-gallery img { width: 100%; max-width: 100%; min-width: 0; height: 100%; object-fit: cover; border-radius: 14px; display: block; }
+        .city-gallery img.cg-big { grid-column: span 2; grid-row: span 2; }
         @media (max-width: 640px) {
           .city-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-          .city-gallery img.cg-big { grid-column: span 2; grid-row: auto; height: 220px; min-height: 0; }
+          .city-gallery { grid-auto-rows: 120px; } .city-gallery img.cg-big { grid-column: span 2; grid-row: span 2; }
         }
       `}</style>
     </section>
