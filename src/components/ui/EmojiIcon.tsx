@@ -3,7 +3,7 @@ import {
   Wallet, PawPrint, IdCard, GraduationCap, Languages, Banknote, ClipboardList, Building2,
   BarChart3, TrainFront, Trash2, Laptop, MapPin, Handshake, ShieldCheck, Scale, Briefcase,
   Home, Globe, Utensils, Zap, Vote, TreePine, Palette, Siren, Lightbulb, Link2, CreditCard,
-  TrainTrack, type LucideIcon,
+  TrainTrack, Rocket, TriangleAlert, CircleCheck, PartyPopper, Crown, CalendarDays, Ticket, type LucideIcon,
 } from "lucide-react";
 
 // Emoji → line icon. Unknown emoji fall back to the emoji itself.
@@ -14,7 +14,7 @@ const MAP: Record<string, LucideIcon> = {
   "📊": BarChart3, "🚊": TrainFront, "💻": Laptop, "📍": MapPin, "🤝": Handshake, "🛡️": ShieldCheck,
   "⚖️": Scale, "💼": Briefcase, "🏠": Home, "🌐": Globe, "🍛": Utensils, "⚡": Zap, "🗳️": Vote,
   "🌳": TreePine, "🎨": Palette, "🚨": Siren, "💡": Lightbulb, "🔗": Link2, "💳": CreditCard,
-  "🚄": TrainTrack, "🏙️": Building2, "🗺": MapPin,
+  "🚄": TrainTrack, "🚀": Rocket, "⚠️": TriangleAlert, "⚠": TriangleAlert, "✅": CircleCheck, "🎉": PartyPopper, "👗": Shirt, "🍱": Utensils, "👑": Crown, "📅": CalendarDays, "🚂": TrainFront, "🚆": TrainFront, "🎫": Ticket, "🎟️": Ticket, "👵": Users, "🏙️": Building2, "🗺": MapPin,
 };
 
 export default function EmojiIcon({ e, size = 24, color, strokeWidth = 1.75 }: { e: string; size?: number; color?: string; strokeWidth?: number }) {

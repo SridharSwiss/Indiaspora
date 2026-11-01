@@ -1,5 +1,6 @@
 "use client";
 
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import { useState } from "react";
 import PageHeader from "@/components/ui/PageHeader";
 import SeekAdviceForm from "@/components/ui/SeekAdviceForm";
@@ -454,8 +455,7 @@ function Pillar3() {
             background: `${GOLD}0.12)`, border: `1px solid ${GOLD}0.22)`,
             fontSize: 10, fontWeight: 700, color: ACCENT, letterSpacing: "0.08em", textTransform: "uppercase",
             fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-          }}>
-            👑 Pillar 3a — The Smart Saver
+          }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="👑" size={17} /></span>Pillar 3a — The Smart Saver
           </div>
           <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1rem", color: "var(--text)", marginBottom: 14, marginTop: 0 }}>
             Tied / Restricted — Huge Tax Advantages
@@ -506,8 +506,7 @@ function Pillar3() {
             background: "rgba(112,188,146,0.10)", border: "1px solid rgba(112,188,146,0.24)",
             fontSize: 10, fontWeight: 700, color: "#70BC92", letterSpacing: "0.08em", textTransform: "uppercase",
             fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-          }}>
-            🚀 Pillar 3b — The Flexible Investor
+          }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🚀" size={17} /></span>Pillar 3b — The Flexible Investor
           </div>
           <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1rem", color: "var(--text)", marginBottom: 14, marginTop: 0 }}>
             Unrestricted — General Wealth Accumulation

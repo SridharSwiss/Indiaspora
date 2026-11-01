@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -140,8 +141,8 @@ export default function ParentsVisitingPage() {
                 ].map((loc) => (
                   <div key={loc.city} className="rounded-lg p-3 border" style={{ borderColor: "var(--border)", background: "var(--surface)" }}>
                     <div className="font-semibold text-purple-400 mb-1">{loc.city}</div>
-                    <div className="text-xs mb-1" style={{ color: "var(--text-2)" }}>📍 {loc.spots}</div>
-                    <div className="text-xs" style={{ color: "var(--text-3)" }}>🗣️ Languages: {loc.lang}</div>
+                    <div className="text-xs mb-1" style={{ color: "var(--text-2)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="📍" size={17} /></span>{loc.spots}</div>
+                    <div className="text-xs" style={{ color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🗣️" size={17} /></span>Languages: {loc.lang}</div>
                   </div>
                 ))}
               </div>

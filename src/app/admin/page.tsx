@@ -1,5 +1,6 @@
 "use client";
 
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import { useState, useEffect, useCallback, useMemo } from "react";
 import CampaignComposer from "@/components/admin/CampaignComposer";
 import Link from "next/link";
@@ -520,7 +521,7 @@ export default function AdminPage() {
                     )}
                   </div>
                   {recentPending.length === 0 ? (
-                    <div style={{ padding: "32px 20px", textAlign: "center", color: "var(--text-3)", fontSize: 13 }}>🎉 No pending applications</div>
+                    <div style={{ padding: "32px 20px", textAlign: "center", color: "var(--text-3)", fontSize: 13 }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🎉" size={17} /></span>No pending applications</div>
                   ) : recentPending.map((m, i) => (
                     <div key={m.id} style={{ padding: "12px 20px", borderBottom: i < recentPending.length - 1 ? "1px solid var(--border)" : "none", display: "flex", alignItems: "center", gap: 12 }}>
                       <div style={{ width: 34, height: 34, borderRadius: "50%", background: "linear-gradient(135deg,#F97316,#DC2626)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 13, flexShrink: 0 }}>

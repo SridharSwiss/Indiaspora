@@ -106,7 +106,7 @@ export default function KrankenkassePage() {
             <h2 className="text-xl font-bold mb-4" style={{ color: "var(--text)" }}>Tiers Payant vs. Tiers Garant</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="glass rounded-xl p-5 border border-teal-500/20">
-                <h3 className="font-bold text-teal-400 mb-2">✅ Tiers Payant (recommended for Indians)</h3>
+                <h3 className="font-bold text-teal-400 mb-2"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="✅" size={17} /></span>Tiers Payant (recommended for Indians)</h3>
                 <p className="text-sm mb-3" style={{ color: "var(--text-2)" }}>Insurer pays the doctor directly. You pay nothing upfront for covered services.</p>
                 <ul className="text-xs space-y-1" style={{ color: "var(--text-2)" }}>
                   <li>• Standard in Geneva and Vaud</li>

@@ -1,5 +1,6 @@
 "use client";
 
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import React, { useState, useMemo } from "react";
 
 type CityHub = "Zürich" | "Basel" | "Geneva" | "Lausanne" | "Bern" | "Zug";
@@ -481,7 +482,7 @@ export default function SwissTourismExplorer() {
                 <h3 className="text-xl font-bold" style={{ color: "var(--text)" }}>{plan.title}</h3>
               </div>
               <div className="glass rounded-xl border border-amber-500/20 bg-amber-500/5 px-3 py-2 text-xs max-w-full">
-                <div className="font-bold text-amber-400">🎟️ Best Pass:</div>
+                <div className="font-bold text-amber-400"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🎟️" size={17} /></span>Best Pass:</div>
                 <div style={{ color: "var(--text-2)" }}>{plan.recommendedPass}</div>
               </div>
             </div>
@@ -503,11 +504,11 @@ export default function SwissTourismExplorer() {
               </div>
               <div className="space-y-3 md:col-span-5">
                 <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-3.5 text-xs">
-                  <div className="font-bold text-emerald-400 mb-1">👵 Mobility & Parents Note:</div>
+                  <div className="font-bold text-emerald-400 mb-1"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="👵" size={17} /></span>Mobility & Parents Note:</div>
                   <p style={{ color: "var(--text-2)" }}>{plan.seniorMobilityNote}</p>
                 </div>
                 <div className="rounded-xl border border-orange-500/20 bg-orange-500/5 p-3.5 text-xs">
-                  <div className="font-bold text-orange-400 mb-1">🍛 Indian Veg / Chai:</div>
+                  <div className="font-bold text-orange-400 mb-1"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🍛" size={17} /></span>Indian Veg / Chai:</div>
                   <p style={{ color: "var(--text-2)" }}>{plan.indianFoodNote}</p>
                 </div>
               </div>
@@ -515,8 +516,7 @@ export default function SwissTourismExplorer() {
 
             {/* Footer: transport + links */}
             <div className="flex flex-wrap items-center justify-between gap-3 border-t pt-4" style={{ borderColor: "var(--border)" }}>
-              <span className="text-xs" style={{ color: "var(--text-3)" }}>
-                🚆 <strong>{plan.transportMode}</strong>
+              <span className="text-xs" style={{ color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🚆" size={17} /></span><strong>{plan.transportMode}</strong>
               </span>
               <div className="flex flex-wrap gap-2">
                 {plan.officialLinks.map((link) => (

@@ -1,5 +1,6 @@
 "use client";
 
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -53,8 +54,7 @@ export default function TravelBanner() {
             fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
             color: "#CEB07A",
             fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-          }}>
-            🚂 Travel & Journeys
+          }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🚂" size={17} /></span>Travel & Journeys
           </div>
 
           <h2 style={{

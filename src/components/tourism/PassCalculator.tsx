@@ -1,5 +1,6 @@
 "use client";
 
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import React, { useState, useMemo } from "react";
 
 type Canton = "ZH" | "BS" | "GE" | "VD" | "BE" | "ZG";
@@ -98,8 +99,7 @@ export default function PassCalculator() {
 
   return (
     <div className="glass rounded-2xl p-6 border border-blue-500/20">
-      <h3 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>
-        🎫 Swiss Pass Cost Calculator
+      <h3 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🎫" size={17} /></span>Swiss Pass Cost Calculator
       </h3>
       <p className="text-xs mb-6" style={{ color: "var(--text-2)" }}>
         See exactly which pass saves the most for your visiting parents or family. Approximate costs — always verify at sbb.ch before purchase.
@@ -165,7 +165,7 @@ export default function PassCalculator() {
         {options.map((opt, idx) => (
           <div key={opt.label} className={`rounded-xl border p-4 ${opt.color} ${idx === 0 ? "ring-2 ring-offset-0 ring-orange-500" : ""}`}>
             {idx === 0 && (
-              <div className="text-xs font-bold text-green-400 mb-2">✅ BEST VALUE</div>
+              <div className="text-xs font-bold text-green-400 mb-2"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="✅" size={17} /></span>BEST VALUE</div>
             )}
             <div className={`text-xs font-bold uppercase tracking-wider mb-1 ${opt.accent}`}>{opt.label}</div>
             <div className="text-3xl font-black mb-3" style={{ color: "var(--text)" }}>

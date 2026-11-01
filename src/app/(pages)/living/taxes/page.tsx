@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -143,8 +144,7 @@ export default function TaxesPage() {
 
           {/* Critical warning */}
           <div className="rounded-xl border-2 border-red-500/40 bg-red-500/5 p-5">
-            <div className="font-bold text-red-400 mb-2 text-sm">
-              ⚠️ Swiss Tax Law: Foreign Asset Declaration is Criminal, Not Civil
+            <div className="font-bold text-red-400 mb-2 text-sm"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="⚠️" size={17} /></span>Swiss Tax Law: Foreign Asset Declaration is Criminal, Not Civil
             </div>
             <p className="text-sm" style={{ color: "var(--text)" }}>
               Failure to declare Indian bank accounts, mutual funds, or property on your Swiss tax
@@ -172,8 +172,7 @@ export default function TaxesPage() {
                       </li>
                     ))}
                   </ol>
-                  <div className="rounded-lg border border-orange-500/20 bg-orange-500/5 p-2.5 text-xs text-orange-400">
-                    💡 {track.warning}
+                  <div className="rounded-lg border border-orange-500/20 bg-orange-500/5 p-2.5 text-xs text-orange-400"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="💡" size={17} /></span>{track.warning}
                   </div>
                 </div>
               ))}

@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -46,7 +47,7 @@ export default function DrivingLicensePage() {
         />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="glass rounded-2xl p-5 mb-10 border border-red-500/30">
-            <p className="text-sm font-semibold text-red-400 mb-1">⚠️ Critical Deadline — 12 Months, One Attempt</p>
+            <p className="text-sm font-semibold text-red-400 mb-1"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="⚠️" size={17} /></span>Critical Deadline — 12 Months, One Attempt</p>
             <p className="text-sm" style={{ color: "var(--text-2)" }}>
               You have exactly <strong>12 months from your official Swiss arrival date</strong> (your Anmeldedatum) to convert your Indian driving license. You get <strong>only one attempt</strong> at the Kontrollfahrt. After 12 months without conversion, you must start the full Swiss licensing process from scratch (theory + practical), which takes 6–12 months and costs CHF 2,000+.
             </p>

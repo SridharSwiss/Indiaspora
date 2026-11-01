@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import OrgLogo from "@/components/ui/OrgLogo";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -113,7 +114,7 @@ export default function CulturePage() {
         {/* Fashion */}
         <section className="mb-16">
           <div className="glass rounded-2xl p-8">
-            <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>👗 Indian Fashion & Boutiques</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="👗" size={17} /></span>Indian Fashion & Boutiques</h2>
             <p className="mb-6" style={{ color: "var(--text-2)" }}>Find Indian ethnic wear, sarees, lehengas, and jewellery in Switzerland</p>
             <div className="grid md:grid-cols-2 gap-6">
               <div>

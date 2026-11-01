@@ -1,5 +1,6 @@
 "use client";
 
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import { useState, useEffect, useCallback } from "react";
 
 export type EventItem = {
@@ -63,14 +64,14 @@ function EventCard({
             <div className="flex items-center gap-2">
               <span className="rounded-full shrink-0" style={{ width: 3, minHeight: "2rem", background: color }} />
               <div style={{ display: "flex", alignItems: "center", gap: 6, padding: urgent || soon || near ? "2px 8px" : "0", borderRadius: 999, background: bg }}>
-                <p className="text-sm font-semibold" style={{ color }}>📅 {event.date}</p>
+                <p className="text-sm font-semibold" style={{ color }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="📅" size={17} /></span>{event.date}</p>
                 {label && <span style={{ fontSize: 10, fontWeight: 800, color, letterSpacing: "0.05em" }}>{label}</span>}
               </div>
             </div>
           );
         })()}
         {event.location && (
-          <p className="text-xs" style={{ color: "var(--text-2)" }}>📍 {event.location}</p>
+          <p className="text-xs" style={{ color: "var(--text-2)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="📍" size={17} /></span>{event.location}</p>
         )}
         {event.description && (
           <p className="text-xs leading-relaxed line-clamp-3" style={{ color: "var(--text-2)" }}>{event.description}</p>

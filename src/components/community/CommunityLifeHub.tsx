@@ -435,7 +435,7 @@ export default function CommunityLifeHub() {
             <p className="text-xs mb-3 leading-relaxed" style={{ color: "var(--text-2)" }}>{item.summary}</p>
             {item.microTip && (
               <div className="rounded-lg border border-orange-500/20 bg-orange-500/5 p-2.5 text-xs mb-3">
-                <span className="font-bold text-orange-400">💡 Community tip: </span>
+                <span className="font-bold text-orange-400"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="💡" size={17} /></span>Community tip: </span>
                 <span style={{ color: "var(--text-2)" }}>{item.microTip}</span>
               </div>
             )}
@@ -460,7 +460,7 @@ export default function CommunityLifeHub() {
         style={{ textDecoration: "none" }}
       >
         <div>
-          <h3 className="font-bold" style={{ color: "var(--text)" }}>🛒 Swiss Supermarket Decoder</h3>
+          <h3 className="font-bold" style={{ color: "var(--text)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🛒" size={17} /></span>Swiss Supermarket Decoder</h3>
           <p className="text-xs mt-0.5" style={{ color: "var(--text-2)" }}>
             Full guide — dairy, flour, spices, vegetables, label decoder, loyalty cards & shopping hacks
           </p>

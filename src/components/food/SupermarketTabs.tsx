@@ -1,5 +1,6 @@
 "use client";
 
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import OrgLogo from "@/components/ui/OrgLogo";
 import React, { useState } from "react";
 import Link from "next/link";
@@ -106,7 +107,7 @@ export default function SupermarketTabs({ chains, substitutes, dairy, flours, sp
                   <p className="text-xs" style={{ color: "var(--text-2)" }}>{c.good.join(" · ")}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold mb-1 text-amber-400">⚠ Note:</p>
+                  <p className="text-xs font-semibold mb-1 text-amber-400"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="⚠" size={17} /></span>Note:</p>
                   <p className="text-xs" style={{ color: "var(--text-2)" }}>{c.avoid}</p>
                 </div>
                 <ul className="space-y-1">
@@ -243,7 +244,7 @@ export default function SupermarketTabs({ chains, substitutes, dairy, flours, sp
               <div key={l.label} className="glass rounded-xl p-4 space-y-1">
                 <p className="text-sm font-bold" style={{ color: "var(--text)" }}>{l.label}</p>
                 <p className="text-xs" style={{ color: "var(--text-2)" }}>{l.meaning}</p>
-                <p className="text-xs italic" style={{ color: "var(--sf-hi)" }}>💡 {l.tip}</p>
+                <p className="text-xs italic" style={{ color: "var(--sf-hi)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="💡" size={17} /></span>{l.tip}</p>
               </div>
             ))}
           </div>

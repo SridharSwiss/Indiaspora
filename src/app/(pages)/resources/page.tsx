@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import OrgLogo from "@/components/ui/OrgLogo";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -110,7 +111,7 @@ export default function ResourcesPage() {
         {/* Tip */}
         <div className="mt-12 glass rounded-2xl p-6 border border-blue-500/20">
           <p className="text-sm" style={{ color: "var(--text-2)" }}>
-            <span className="text-blue-400 font-semibold">💡 Bookmark tip:</span> Save <a href="https://www.ch.ch/en/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">ch.ch</a> and <a href="https://www.sem.admin.ch/en" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">sem.admin.ch</a> — they answer 90% of government questions for Indians in Switzerland.
+            <span className="text-blue-400 font-semibold"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="💡" size={17} /></span>Bookmark tip:</span> Save <a href="https://www.ch.ch/en/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">ch.ch</a> and <a href="https://www.sem.admin.ch/en" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">sem.admin.ch</a> — they answer 90% of government questions for Indians in Switzerland.
           </p>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import OrgLogo from "@/components/ui/OrgLogo";
 import PageHeader from "@/components/ui/PageHeader";
 import Link from "next/link";
@@ -102,7 +103,7 @@ export default function FoodPage() {
         {/* Tiffin */}
         <section className="mb-16">
           <div className="glass rounded-2xl p-8">
-            <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>🍱 Tiffin & Home Chef Services</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🍱" size={17} /></span>Tiffin & Home Chef Services</h2>
             <p className="mb-6" style={{ color: "var(--text-2)" }}>Enjoy home-cooked Indian meals delivered to your door — perfect for working professionals and students</p>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
@@ -124,7 +125,7 @@ export default function FoodPage() {
                 </ul>
               </div>
             </div>
-            <p className="text-xs mt-6" style={{ color: "var(--text-3)" }}>💡 Find tiffin services via Facebook groups: "Indians in Zurich", "Desi Moms Switzerland", "Indian Community Geneva"</p>
+            <p className="text-xs mt-6" style={{ color: "var(--text-3)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="💡" size={17} /></span>Find tiffin services via Facebook groups: "Indians in Zurich", "Desi Moms Switzerland", "Indian Community Geneva"</p>
           </div>
         </section>
 

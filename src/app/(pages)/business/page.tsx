@@ -1,3 +1,4 @@
+import EmojiIcon from "@/components/ui/EmojiIcon";
 import OrgLogo from "@/components/ui/OrgLogo";
 import PageHeader from "@/components/ui/PageHeader";
 
@@ -137,14 +138,14 @@ export default function BusinessPage() {
             ))}
           </div>
           <div className="mt-4 p-4 rounded-xl bg-teal-500/10 border border-teal-500/20">
-            <p className="text-sm text-teal-300">💡 <strong>India-EFTA TEPA (Oct 2025):</strong> The new trade agreement creates favourable conditions for Indian professionals. Your employer sponsors the permit. Check current quota status at <a href="https://www.sem.admin.ch" target="_blank" rel="noopener noreferrer" className="underline">sem.admin.ch</a></p>
+            <p className="text-sm text-teal-300"><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="💡" size={17} /></span><strong>India-EFTA TEPA (Oct 2025):</strong> The new trade agreement creates favourable conditions for Indian professionals. Your employer sponsors the permit. Check current quota status at <a href="https://www.sem.admin.ch" target="_blank" rel="noopener noreferrer" className="underline">sem.admin.ch</a></p>
           </div>
         </section>
 
         {/* Startups */}
         <section className="mb-16">
           <div className="glass rounded-2xl p-8">
-            <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}>🚀 Indian-Founded Startups & Ecosystem</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text)" }}><span style={{ display: "inline-flex", verticalAlign: "-3px", marginRight: 7 }}><EmojiIcon e="🚀" size={17} /></span>Indian-Founded Startups & Ecosystem</h2>
             <p className="mb-6" style={{ color: "var(--text-2)" }}>Switzerland ranks #8 globally in startup ecosystems with CHF 1.47bn raised in H1 2025 — Indians are building here</p>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
