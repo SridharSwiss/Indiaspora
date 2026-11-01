@@ -57,6 +57,18 @@ export default function TermsPage() {
         <p>All original content on this site is &copy; 2026 Indiaspora Community Hub. Community-contributed content (event listings) remains the contributor&apos;s property; by submitting it, you grant us a non-exclusive licence to publish it. You may share links but may not reproduce content without written permission.</p>
       </Section>
 
+      <Section title="5A. Images, Logos &amp; Takedown Requests">
+        <p>
+          Photographs on indiaspora.ch come from royalty-free libraries (mainly Pixabay, under the Pixabay Content License) or are original to Indiaspora. Credits are listed on our <a href="/credits" style={{ color: GOLD, textDecoration: "underline" }}>Image credits</a> page. Pixabay does not guarantee that model or property releases exist for every photo, and Indiaspora gives no warranty about third-party rights in any image.
+        </p>
+        <p style={{ marginTop: 10 }}>
+          Photos are illustrative only. They do not show, and are not meant to suggest, an endorsement by or a connection with any person, brand, organisation or event they may depict. Organisation, business and event names and logos belong to their respective owners and are shown only to identify them; their use does not imply affiliation or endorsement.
+        </p>
+        <p style={{ marginTop: 10 }}>
+          If you are pictured in, or own rights in, an image or logo on this site and want it removed or corrected, email <a href="mailto:hello@indiaspora.ch" style={{ color: GOLD, textDecoration: "underline" }}>hello@indiaspora.ch</a> with the page address and a short description. We will remove or replace it promptly. Indiaspora is a community platform and does not accept liability for payment, fees or damages arising from the use of images or logos supplied by third parties; our remedy is removal.
+        </p>
+      </Section>
+
       <Section title="6. Advertising">
         <p>Sponsored or promoted content will be clearly labelled. Indiaspora is not responsible for advertisers&apos; products, services, or claims. Advertising enquiries: <a href="/advertise" style={{ color: GOLD }}>Advertise With Us</a>.</p>
       </Section>
