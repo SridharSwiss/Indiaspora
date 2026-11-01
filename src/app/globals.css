@@ -37,8 +37,8 @@ html.theme-transitioning *::after {
 
   /* Text — warm charcoal */
   --text:   #18130C;
-  --text-2: #5C4E3A;
-  --text-3: #9C8A72;
+  --text-2: #43382A;
+  --text-3: #6E5F48;
 
   /* Glass */
   --glass-bg:     rgba(250,248,244,0.90);
@@ -107,8 +107,8 @@ html.theme-transitioning *::after {
     --border-2:   rgba(184,154,98,0.20);
     --border-hi:  rgba(184,154,98,0.36);
     --text:       #F0EBE0;
-    --text-2:     #9A8E7C;
-    --text-3:     #52483C;
+    --text-2:     #D6CEBF;
+    --text-3:     #A99D89;
     --glass-bg:   rgba(22,19,16,0.92);
     --glass-border: rgba(184,154,98,0.14);
     --sf:         #CEB07A;
@@ -142,8 +142,8 @@ html.theme-transitioning *::after {
   --border-2:   rgba(184,154,98,0.20);
   --border-hi:  rgba(184,154,98,0.36);
   --text:       #F0EBE0;
-  --text-2:     #9A8E7C;
-  --text-3:     #52483C;
+  --text-2:     #D6CEBF;
+  --text-3:     #A99D89;
   --glass-bg:   rgba(22,19,16,0.92);
   --glass-border: rgba(184,154,98,0.14);
   --sf:         #CEB07A;
@@ -176,8 +176,8 @@ html.theme-transitioning *::after {
   --border-2:   rgba(44,30,14,0.16);
   --border-hi:  rgba(44,30,14,0.30);
   --text:       #18130C;
-  --text-2:     #5C4E3A;
-  --text-3:     #9C8A72;
+  --text-2:     #43382A;
+  --text-3:     #6E5F48;
   --glass-bg:   rgba(250,248,244,0.90);
   --glass-border: rgba(44,30,14,0.10);
   --sf:         #A07840;

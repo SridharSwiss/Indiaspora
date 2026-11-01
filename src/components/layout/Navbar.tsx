@@ -282,7 +282,7 @@ export default function Navbar() {
                       fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                       color: active
                         ? (lightNav ? "rgba(245,237,224,0.95)" : "var(--text)")
-                        : (lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)"),
+                        : (lightNav ? "rgba(245,237,224,0.9)" : "var(--text)"),
                       transition: "color 0.3s",
                       whiteSpace: "nowrap", textDecoration: "none",
                     }}
@@ -290,7 +290,7 @@ export default function Navbar() {
                       (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.95)" : "var(--text)";
                     }}
                     onMouseLeave={(e) => {
-                      if (!active) (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)";
+                      if (!active) (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.9)" : "var(--text)";
                     }}
                   >
                     {item.label}
@@ -362,7 +362,7 @@ export default function Navbar() {
               style={{
                 display: "flex", alignItems: "center", justifyContent: "center",
                 width: 32, height: 32,
-                color: lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)",
+                color: lightNav ? "rgba(245,237,224,0.9)" : "var(--text)",
                 background: "transparent",
                 border: "none", cursor: "pointer",
                 transition: "color 0.3s",
@@ -379,7 +379,7 @@ export default function Navbar() {
               style={{
                 display: "flex", alignItems: "center", justifyContent: "center",
                 width: 32, height: 32,
-                color: lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)",
+                color: lightNav ? "rgba(245,237,224,0.9)" : "var(--text)",
                 background: "transparent",
                 border: "none", cursor: "pointer",
                 transition: "color 0.3s",
@@ -397,13 +397,13 @@ export default function Navbar() {
               style={{
                 display: "flex", alignItems: "center", justifyContent: "center",
                 width: 32, height: 32,
-                color: lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)",
+                color: lightNav ? "rgba(245,237,224,0.9)" : "var(--text)",
                 background: "transparent", border: "none",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,1)" : "var(--text)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.55)" : "var(--text-3)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.9)" : "var(--text)"; }}
             >
               <HelpCircle style={{ width: 17, height: 17 }} />
             </Link>
@@ -499,15 +499,15 @@ export default function Navbar() {
                     padding: "0 14px", height: 32,
                     fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
                     fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                    color: lightNav ? "rgba(245,237,224,0.7)" : "var(--text-2)",
+                    color: lightNav ? "rgba(245,237,224,0.92)" : "var(--text-2)",
                     background: "transparent",
                     border: lightNav ? "1px solid rgba(245,237,224,0.3)" : "1px solid var(--border-hi)",
                     textDecoration: "none",
                     transition: "color 0.3s, border-color 0.3s",
                     display: "inline-flex", alignItems: "center",
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,1)" : "var(--text)"; (e.currentTarget as HTMLElement).style.borderColor = lightNav ? "rgba(245,237,224,0.7)" : "var(--text)"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.7)" : "var(--text-2)"; (e.currentTarget as HTMLElement).style.borderColor = lightNav ? "rgba(245,237,224,0.3)" : "var(--border-hi)"; }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,1)" : "var(--text)"; (e.currentTarget as HTMLElement).style.borderColor = lightNav ? "rgba(245,237,224,0.92)" : "var(--text)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = lightNav ? "rgba(245,237,224,0.92)" : "var(--text-2)"; (e.currentTarget as HTMLElement).style.borderColor = lightNav ? "rgba(245,237,224,0.3)" : "var(--border-hi)"; }}
                 >
                   Sign in
                 </Link>
@@ -538,7 +538,7 @@ export default function Navbar() {
               style={{
                 display: "flex", alignItems: "center", gap: 4,
                 padding: "0 8px", height: 34, borderRadius: 10,
-                color: lightNav ? "rgba(245,237,224,0.8)" : "var(--text-2)",
+                color: lightNav ? "rgba(245,237,224,0.95)" : "var(--text-2)",
                 background: lightNav ? "rgba(255,255,255,0.08)" : "var(--surface-2)",
                 border: lightNav ? "1px solid rgba(245,237,224,0.2)" : "1px solid var(--border)",
                 cursor: "pointer",
