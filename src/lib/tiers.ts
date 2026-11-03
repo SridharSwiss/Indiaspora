@@ -13,7 +13,7 @@ export const TIERS: readonly Tier[] = [
   {
     id: "Member",
     label: "Member",
-    price: "CHF 50/yr",
+    price: "CHF 50/mth",
     amountChf: 50,
     desc: "Everything in Community plus priority features",
     features: ["All Community benefits", "Business listing", "Early event access", "Member badge"],
@@ -23,7 +23,7 @@ export const TIERS: readonly Tier[] = [
   {
     id: "Supporter",
     label: "Supporter",
-    price: "CHF 150/yr",
+    price: "CHF 150/mth",
     amountChf: 150,
     desc: "Support the community and get premium access",
     features: ["All Member benefits", "Featured profile", "Sponsor badge", "Annual report"],
