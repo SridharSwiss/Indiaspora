@@ -37,7 +37,7 @@ export default function MembershipTiers() {
     <section id="membership" style={{ minWidth: 0 }}>
       <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--text)" }}>Join the community — choose a membership</h2>
       <p className="mb-6 text-sm" style={{ color: "var(--text-2)" }}>
-        Free to start. Paid tiers renew yearly and support the platform. Prices in CHF.
+        Free to start. Paid tiers renew automatically each period (see the price) and support the platform. Prices in CHF.
       </p>
       <div className="mb-4 max-w-sm">
         <label htmlFor="mt-email" className="text-xs font-bold uppercase tracking-wider block mb-1" style={{ color: "var(--text-3)" }}>Your email (for payment receipt)</label>

@@ -7,10 +7,11 @@ export const esc = (s: string) =>
 const paras = (t: string) => t.split(/\n{2,}/).map(p => `<p style="font-size:15px;color:#3F3832;line-height:1.7;margin:0 0 16px">${esc(p).replace(/\n/g, "<br>")}</p>`).join("");
 
 // {{UNSUB}} is replaced per recipient at send time.
-function shell(opts: { colors: [string, string]; emoji: string; title: string; sub: string; body: string; cta?: { label: string; href: string }; share?: string }) {
+function shell(opts: { colors: [string, string]; emoji: string; title: string; sub: string; body: string; cta?: { label: string; href: string }; share?: string; image?: { src: string; alt: string }; preheader?: string }) {
   const [c1, c2] = opts.colors;
   return `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#EFE9DF;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+${opts.preheader ? `<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;font-size:1px;line-height:1px">${esc(opts.preheader)}${"&#847;&zwnj;&nbsp;".repeat(40)}</div>` : ""}
 <div style="max-width:600px;margin:32px auto;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06)">
   <div style="background:linear-gradient(135deg,${c1},${c2});padding:36px;text-align:center">
     <div style="font-size:42px;line-height:1;margin-bottom:10px">${opts.emoji}</div>
@@ -18,6 +19,7 @@ function shell(opts: { colors: [string, string]; emoji: string; title: string; s
     <h1 style="margin:0;color:#fff;font-size:28px;line-height:1.15;font-weight:800;letter-spacing:-.02em">${esc(opts.title)}</h1>
     <p style="margin:8px 0 0;color:rgba(255,255,255,.88);font-size:13px">${esc(opts.sub)}</p>
   </div>
+  ${opts.image ? `<img src="${opts.image.src}" alt="${esc(opts.image.alt)}" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0">` : ""}
   <div style="padding:32px 34px">${opts.body}
     ${opts.cta ? `<a href="${opts.cta.href}" style="display:block;text-align:center;background:linear-gradient(135deg,${c1},${c2});color:#fff;text-decoration:none;padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;margin-top:24px">${esc(opts.cta.label)}</a>` : ""}${opts.share ?? ""}
     <p style="font-size:14px;color:#3F3832;line-height:1.6;margin:28px 0 0">Warm regards,<br><strong style="color:#1A1410">Swiss Indiaspora Team</strong></p>
@@ -71,7 +73,22 @@ export function loginNudgeHtml(p: { message: string }) {
 }
 
 export function festivalHtml(f: Festival, p: { message: string }) {
-  return shell({ colors: f.colors, emoji: f.emoji, title: f.greeting, sub: f.fixed ? `${f.name} · ${f.fixed}` : f.name, body: paras(p.message), cta: { label: "Find celebrations near you", href: `${SITE}/events` }, share: shareRow(`${f.greeting} from Swiss Indiaspora`) });
+  const h = (label: string) => `<div style="font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:${f.colors[0]};margin:26px 0 8px">${esc(label)}</div>`;
+  const langs = f.greetings?.length ? `<p style="font-size:17px;font-style:italic;color:${f.colors[0]};margin:2px 0 18px;line-height:1.5">${[f.greeting, ...f.greetings].map(esc).join(" &nbsp;·&nbsp; ")}</p>` : "";
+  const list = `<ul style="margin:0 0 6px;padding:0 0 0 20px;color:#3F3832;font-size:15px;line-height:1.7">${f.traditions.map(x => `<li style="margin:0 0 6px">${esc(x)}</li>`).join("")}</ul>`;
+  const body = [
+    paras(p.message),
+    langs,
+    h("What it means"),
+    `<p style="font-size:15px;color:#3F3832;line-height:1.7;margin:0">${esc(f.meaning)}</p>`,
+    h("How families celebrate"),
+    list,
+    h("Celebrating in Switzerland"),
+    `<div style="background:#FBF3E8;border-radius:12px;padding:14px 16px;font-size:15px;color:#3F3832;line-height:1.7">${esc(f.swiss)}</div>`,
+    `<p style="font-size:15px;color:#3F3832;line-height:1.7;margin:22px 0 0">Every family celebrates a little differently, and that variety is what makes our community special. However you celebrate, we are glad you are part of it.</p>`,
+    `<p style="font-size:15px;color:#3F3832;line-height:1.7;margin:16px 0 0">With warm wishes from all of us at Indiaspora.</p>`,
+  ].join("");
+  return shell({ colors: f.colors, emoji: f.emoji, title: f.greeting, sub: f.fixed ? `${f.name} · ${f.fixed}` : f.name, preheader: f.preheader, image: f.image ? { src: f.image, alt: `${f.greeting} from Indiaspora` } : undefined, body, cta: { label: "Find celebrations near you", href: `${SITE}/events` }, share: shareRow(`${f.greeting}! Warm ${f.name} wishes from the Swiss Indian community.`) });
 }
 
 export function customHtml(p: { title: string; message: string }) {

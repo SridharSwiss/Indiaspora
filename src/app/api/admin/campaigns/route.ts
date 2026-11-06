@@ -177,8 +177,14 @@ async function generate(body: { type: string; festivalId?: string; notes?: strin
   if (body.type === "festival") {
     const f = FESTIVALS.find(x => x.id === body.festivalId);
     if (!f) return NextResponse.json({ error: "Choose a festival" }, { status: 400 });
-    const message = `Namaste {{NAME}},\n\n${f.blurb}${notes.trim() ? `\n\n${notes.trim()}` : ""}\n\nWith warm wishes from all of us at Indiaspora.`;
-    return NextResponse.json({ subject: `${f.emoji} ${f.greeting} from Indiaspora`, html: festivalHtml(f, { message }), social: socialKit(`${f.greeting}! Warm ${f.name} wishes from the Swiss Indiaspora Team`, [f.blurb]), aiUsed, model: null });
+    const message = `Namaste {{NAME}},\n\n${f.blurb}${notes.trim() ? `\n\n${notes.trim()}` : ""}`;
+    const firstSentence = f.meaning.split(/(?<=\.)\s/)[0];
+    return NextResponse.json({
+      subject: f.subjects[0], subjects: f.subjects, preheader: f.preheader,
+      html: festivalHtml(f, { message }),
+      social: socialKit(`${f.greeting}! Warm ${f.name} wishes from the Swiss Indiaspora Team`, [f.blurb, firstSentence]),
+      aiUsed, model: null,
+    });
   }
 
   if (body.type === "welcome") {

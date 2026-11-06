@@ -43,6 +43,7 @@ export default function CampaignComposer() {
   const [variant, setVariant] = useState<Variant>("individuals");
   const [notes, setNotes] = useState("");
   const [subject, setSubject] = useState("");
+  const [subjectOptions, setSubjectOptions] = useState<string[]>([]);
   const [html, setHtml] = useState("");
   const [model, setModel] = useState<string | null>(null);
   const [social, setSocial] = useState<{ whatsapp: string; linkedin: string; instagram: string } | null>(null);
@@ -66,7 +67,7 @@ export default function CampaignComposer() {
     const j = await r.json();
     setBusy("");
     if (!r.ok) return setMsg({ ok: false, text: j.error ?? "Could not generate" });
-    setSubject(j.subject); setHtml(j.html); setTested(false); setModel(j.model ?? null); setSocial(j.social ?? null);
+    setSubject(j.subject); setSubjectOptions(Array.isArray(j.subjects) ? j.subjects : []); setHtml(j.html); setTested(false); setModel(j.model ?? null); setSocial(j.social ?? null);
   };
 
   const send = async (testOnly: boolean) => {
@@ -152,6 +153,14 @@ export default function CampaignComposer() {
         <div style={{ marginTop: 18 }}>
           <label style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Subject
             <input value={subject} onChange={e => { setSubject(e.target.value); setTested(false); }} style={{ ...input, marginTop: 6 }} />
+            {subjectOptions.length > 1 && (
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }} aria-label="Alternative subject lines">
+                <span style={{ fontSize: 11, opacity: 0.7, alignSelf: "center" }}>Try:</span>
+                {subjectOptions.map(s => (
+                  <button key={s} type="button" onClick={() => { setSubject(s); setTested(false); }} style={{ fontSize: 12, padding: "4px 10px", borderRadius: 999, border: "1px solid var(--border)", background: s === subject ? "var(--surface-3)" : "transparent", color: "inherit", cursor: "pointer" }}>{s}</button>
+                ))}
+              </div>
+            )}
           </label>
           <div style={{ marginTop: 12, borderRadius: 12, overflow: "hidden", border: "1px solid var(--border-2)" }}>
             <iframe title="Email preview" srcDoc={html.replace(/\{\{UNSUB\}\}/g, "#").replace(/\{\{NAME\}\}/g, "Priya")} style={{ width: "100%", height: 560, border: "none", background: "#F7F6F2" }} sandbox="" />

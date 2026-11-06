@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { TIERS } from "@/lib/tiers";
 
-// Creates a Stripe Checkout session for a yearly membership (Stripe REST API, no SDK).
+// Creates a Stripe Checkout session for a recurring membership (monthly or yearly, per the tier's price label) (Stripe REST API, no SDK).
 // Requires STRIPE_SECRET_KEY. Without it the route answers 503 and the UI falls back to "join now, invoice later".
 export async function POST(req: NextRequest) {
   const key = process.env.STRIPE_SECRET_KEY;
@@ -14,6 +14,8 @@ export async function POST(req: NextRequest) {
   if (!tier) return NextResponse.json({ error: "invalid_tier" }, { status: 400 });
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return NextResponse.json({ error: "invalid_email" }, { status: 400 });
 
+  // Billing period follows the price label shown to visitors ("/mth" = monthly, otherwise yearly).
+  const interval = /\/\s*(mth|mo|month)/i.test(tier.price) ? "month" : "year";
   const origin = process.env.NEXT_PUBLIC_SITE_URL || req.nextUrl.origin;
   const p = new URLSearchParams({
     mode: "subscription",
@@ -23,7 +25,7 @@ export async function POST(req: NextRequest) {
     "line_items[0][quantity]": "1",
     "line_items[0][price_data][currency]": "chf",
     "line_items[0][price_data][unit_amount]": String(tier.amountChf * 100),
-    "line_items[0][price_data][recurring][interval]": "year",
+    "line_items[0][price_data][recurring][interval]": interval,
     "line_items[0][price_data][product_data][name]": `Indiaspora ${tier.label} membership`,
     "metadata[tier]": tier.id,
     "metadata[email]": email,
