@@ -7,6 +7,8 @@ import BottomNav from "@/components/layout/BottomNav";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import CookieBanner from "@/components/CookieBanner";
 import BannerManager from "@/components/ui/BannerManager";
+import DiwaliGreeting from "@/components/ui/DiwaliGreeting";
+import DiwaliSplash from "@/components/ui/DiwaliSplash";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -91,7 +93,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -100,6 +102,7 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       </head>
       <body className="min-h-full flex flex-col" style={{ background: "var(--bg)", color: "var(--text)" }}>
+        <DiwaliSplash />
         <CookieBanner />
         <AnalyticsTracker />
         <Navbar />
@@ -109,6 +112,7 @@ export default function RootLayout({
         <Footer />
         <BottomNav />
         <BannerManager />
+        <DiwaliGreeting />
       </body>
     </html>
   );
