@@ -45,6 +45,7 @@ export default function PrivacyPage() {
         <p style={{ marginBottom: 10 }}>We collect personal data only when you voluntarily provide it:</p>
         <ul style={{ paddingLeft: 20, margin: 0 }}>
           <li style={{ marginBottom: 5 }}><strong>Seek Advice form:</strong> name, email, phone (optional), city/canton, topic, and your query.</li>
+          <li style={{ marginBottom: 5 }}><strong>Contact form:</strong> name, email, phone (optional), city, who you are writing as, topic, subject, your message, preferred contact method and time, the page you sent it from and your browser type (to prevent abuse). We store it and email it to the Indiaspora team so we can reply; we keep contact messages for up to 24 months unless a longer period is needed to resolve your request.</li>
           <li style={{ marginBottom: 5 }}><strong>Advertise With Us form:</strong> name, email, phone, company name, website, campaign details.</li>
           <li style={{ marginBottom: 5 }}><strong>Event submission:</strong> event details and your contact information.</li>
           <li style={{ marginBottom: 5 }}><strong>Newsletter sign-up:</strong> email address only.</li>

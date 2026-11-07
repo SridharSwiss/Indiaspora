@@ -213,6 +213,7 @@ export default function Footer() {
               { label: "Cookies", href: "/privacy#cookies" },
               { label: "Unsubscribe", href: "/unsubscribe" },
               { label: "Seek Advice", href: "/advice" },
+              { label: "Contact", href: "/contact" },
             ].map((l) => (
               <Link key={l.label} href={l.href} className="text-xs transition-colors"
                 style={{ color: "rgba(200,185,165,0.7)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
