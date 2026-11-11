@@ -70,7 +70,7 @@ const organizationSchema = {
   "description": "The definitive platform for 24,500+ Indians living in Switzerland. Indian community hub covering restaurants, events, temples, associations, business networking, and living guides.",
   "foundingLocation": { "@type": "Place", "name": "Switzerland" },
   "areaServed": { "@type": "Country", "name": "Switzerland" },
-  "sameAs": [],
+  "sameAs": ["https://www.linkedin.com/company/swiss-indiaspora/", "https://www.instagram.com/indiaspora.ch"],
 };
 
 const websiteSchema = {

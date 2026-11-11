@@ -47,7 +47,7 @@ export default function ContactPage() {
                 <li className="flex gap-3"><Mail size={18} style={{ flexShrink: 0, color: "var(--sf)" }} /><span>Email<br /><a href="mailto:Indiaspora.ch@proton.me" style={{ color: "var(--text)", fontWeight: 600, wordBreak: "break-all", textDecoration: "underline" }}>Indiaspora.ch@proton.me</a></span></li>
                 <li className="flex gap-3"><MapPin size={18} style={{ flexShrink: 0, color: "var(--sf)" }} /><span>Based in<br /><strong style={{ color: "var(--text)" }}>Zurich, Switzerland</strong>, serving all 26 cantons</span></li>
                 <li className="flex gap-3"><Clock size={18} style={{ flexShrink: 0, color: "var(--sf)" }} /><span>Response time<br /><strong style={{ color: "var(--text)" }}>Within 2 working days</strong></span></li>
-                <li className="flex gap-3"><Users size={18} style={{ flexShrink: 0, color: "var(--sf)" }} /><span>Follow us<br /><a href="https://www.linkedin.com/company/swiss-indiaspora/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", fontWeight: 600, textDecoration: "underline" }}>Swiss Indiaspora on LinkedIn</a></span></li>
+                <li className="flex gap-3"><Users size={18} style={{ flexShrink: 0, color: "var(--sf)" }} /><span>Follow us<br /><a href="https://www.linkedin.com/company/swiss-indiaspora/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", fontWeight: 600, textDecoration: "underline" }}>Swiss Indiaspora on LinkedIn</a><br /><a href="https://www.instagram.com/indiaspora.ch" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", fontWeight: 600, textDecoration: "underline" }}>@indiaspora.ch on Instagram</a></span></li>
               </ul>
             </div>
 
