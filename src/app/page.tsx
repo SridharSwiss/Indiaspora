@@ -10,6 +10,9 @@ const TravelBanner = dynamic(() => import("@/components/sections/TravelBanner"))
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
 const Resources = dynamic(() => import("@/components/sections/Resources"));
 
+// Refresh the "Upcoming Events" cards at least every 30 minutes
+export const revalidate = 1800;
+
 export default function Home() {
   return (
     <>

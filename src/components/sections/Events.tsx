@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Calendar, MapPin, ArrowRight, ExternalLink } from "lucide-react";
-import { UPCOMING_EVENTS } from "@/lib/data";
+import { getHomeEvents } from "@/lib/homeEvents";
 import AnimateIn from "@/components/ui/AnimateIn";
 
-export default function Events() {
-  const shown = UPCOMING_EVENTS.slice(0, 3);
+export default async function Events() {
+  const shown = await getHomeEvents(3);
 
   return (
     <section id="events" style={{ background: "var(--surface-2)", padding: "clamp(48px,8vw,96px) 0" }}>
@@ -41,6 +41,7 @@ export default function Events() {
         {/* Event cards */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}
           className="events-grid">
+          {shown.length === 0 && <p style={{ gridColumn: "1 / -1", fontSize: 14, color: "var(--text-2)" }}>No upcoming events are listed right now. Check the full calendar or submit one.</p>}
           {shown.map((event, i) => {
             const Inner = (
               <>
@@ -49,7 +50,7 @@ export default function Events() {
                   <div style={{ height: 160, overflow: "hidden", position: "relative" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={event.image}
+                      src={event.image ?? ""}
                       alt={event.title}
                       style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)" }}
                       className="event-img"
