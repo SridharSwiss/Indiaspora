@@ -112,6 +112,7 @@ export async function GET() {
     testRecipients: testRecipients(admin!.email!).map(r => r.email),
     countsAll: Object.fromEntries(Object.entries(audAll).map(([k, v]) => [k, v.length])),
     history: history ?? [],
+    contacts: audAll.everyone.map(r => ({ email: r.email, name: r.name })).sort((a, b) => a.email.localeCompare(b.email)),
     festivals: FESTIVALS.map(f => ({ id: f.id, name: f.name, emoji: f.emoji, fixed: f.fixed ?? null })),
   });
 }
@@ -190,7 +191,7 @@ async function generate(body: { type: string; festivalId?: string; notes?: strin
   if (body.type === "welcome") {
     const v: WelcomeVariant = body.variant && ["associations", "businesses", "individuals"].includes(body.variant) ? body.variant : "individuals";
     const topic = { associations: "Welcome, associations: submit your events to Indiaspora", businesses: "Welcome, businesses: reach the Indian community in Switzerland", individuals: "Welcome to Indiaspora, the community hub for Indians in Switzerland" }[v];
-    return NextResponse.json({ subject: welcomeSubject(v), html: welcomeHtml(v), social: socialKit(topic, ["Events calendar and event submissions", "Seek advice from the community", "Food, business and living guides"]), aiUsed: false, model: null });
+    return NextResponse.json({ subject: welcomeSubject(v), html: welcomeHtml(v, notes), social: socialKit(topic, ["Events calendar and event submissions", "Seek advice from the community", "Food, business and living guides"]), aiUsed: false, model: null });
   }
 
   if (body.type === "custom") {
@@ -200,12 +201,22 @@ async function generate(body: { type: string; festivalId?: string; notes?: strin
   return NextResponse.json({ error: "Unknown type" }, { status: 400 });
 }
 
-async function send(body: { type: string; subject: string; html: string; audience: Audience; testOnly?: boolean; includeUnopted?: boolean; aiModel?: string | null }, adminEmail: string) {
-  const { type, subject, html, audience } = body;
+async function send(body: { type: string; subject: string; html: string; audience: Audience; testOnly?: boolean; includeUnopted?: boolean; aiModel?: string | null; contactEmail?: string }, adminEmail: string) {
+  const { type, subject, html } = body;
+  const audience = body.audience;
   if (!subject?.trim() || !html?.includes("{{UNSUB}}")) return NextResponse.json({ error: "Subject and a template with an unsubscribe link are required" }, { status: 400 });
   if (!process.env.RESEND_API_KEY) return NextResponse.json({ error: "RESEND_API_KEY is not set" }, { status: 500 });
 
-  const list: Recipient[] = body.testOnly ? testRecipients(adminEmail) : (await loadAudiences(!!body.includeUnopted))[audience] ?? [];
+  // "One contact" mode: an admin-chosen address from the known contact list (test goes to the admin inboxes first, addressed with that contact's name).
+  let contact: Recipient | null = null;
+  if (body.contactEmail) {
+    const wanted = body.contactEmail.trim().toLowerCase();
+    contact = (await loadAudiences(true)).everyone.find(r => r.email === wanted) ?? null;
+    if (!contact) return NextResponse.json({ error: "That contact is not in the Indiaspora list" }, { status: 400 });
+  }
+  const list: Recipient[] = body.testOnly
+    ? testRecipients(adminEmail).map(r => contact ? { ...r, name: contact!.name } : r)
+    : contact ? [contact] : (await loadAudiences(!!body.includeUnopted))[audience] ?? [];
   if (!list.length) return NextResponse.json({ error: "No recipients in this audience" }, { status: 400 });
 
   const resend = new Resend(process.env.RESEND_API_KEY);
@@ -228,7 +239,7 @@ async function send(body: { type: string; subject: string; html: string; audienc
 
   if (!body.testOnly) {
     await createAdminClient().from("email_campaigns").insert({
-      type, subject, html, audience, status: "sent", recipients: sent, failed, ai_model: body.aiModel ?? null, sent_at: new Date().toISOString(),
+      type, subject, html, audience: contact ? `contact:${contact.email}` : audience, status: "sent", recipients: sent, failed, ai_model: body.aiModel ?? null, sent_at: new Date().toISOString(),
     });
   }
   return NextResponse.json({ ok: failed === 0, sent, failed, test: !!body.testOnly });

@@ -154,7 +154,7 @@ const WELCOME: Record<WelcomeVariant, {
   },
 };
 
-export function welcomeHtml(variant: WelcomeVariant) {
+export function welcomeHtml(variant: WelcomeVariant, note?: string) {
   const w = WELCOME[variant];
   const feats = w.features.map(([i, t, d]) =>
     `<td width="50%" valign="top" style="padding:6px"><div style="padding:14px;border:1px solid #EAE4DA;border-radius:12px;height:100%"><div style="font-size:22px">${i}</div><div style="font-weight:700;font-size:14px;color:#1A1410;margin-top:6px">${esc(t)}</div><div style="font-size:12.5px;color:#5C524A;margin-top:4px;line-height:1.5">${esc(d)}</div></div></td>`);
@@ -167,7 +167,7 @@ export function welcomeHtml(variant: WelcomeVariant) {
   const forward = `<div style="margin-top:24px;padding:18px 20px;border-radius:14px;background:#1A1410;text-align:center">
     <div style="font-size:16px;font-weight:800;color:#fff">Please forward this welcome</div>
     <div style="font-size:13px;color:#E8DFD3;margin-top:6px;line-height:1.55">Send it to your friends and family in Switzerland. The more of us who are here, the more useful this community becomes for everyone.</div></div>`;
-  const body = paras(w.intro) + h2("What you'll find") + grid + h2("How to get started") + steps + forward;
+  const body = paras(w.intro) + (note?.trim() ? paras(note.trim()) : "") + h2("What you'll find") + grid + h2("How to get started") + steps + forward;
   return shell({ colors: w.colors, emoji: w.emoji, title: w.title, sub: w.sub, body, cta: w.cta, share: shareRow("Welcome to Indiaspora, the community hub for Indians in Switzerland") });
 }
 export const welcomeSubject = (v: WelcomeVariant) => WELCOME[v].subject;

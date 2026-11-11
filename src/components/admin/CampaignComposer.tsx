@@ -11,6 +11,7 @@ type Meta = {
   countsAll: Record<Audience, number>;
   testRecipients: string[];
   history: { id: string; type: string; subject: string; audience: string; status: string; recipients: number; failed: number; ai_model: string | null; created_at: string }[];
+  contacts: { email: string; name: string }[];
   festivals: { id: string; name: string; emoji: string; fixed: string | null }[];
 };
 
@@ -41,6 +42,9 @@ export default function CampaignComposer() {
   const [festivalId, setFestivalId] = useState("diwali");
   const [includeUnopted, setIncludeUnopted] = useState(false);
   const [variant, setVariant] = useState<Variant>("individuals");
+  const [oneContact, setOneContact] = useState(false);
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactQuery, setContactQuery] = useState("");
   const [notes, setNotes] = useState("");
   const [subject, setSubject] = useState("");
   const [subjectOptions, setSubjectOptions] = useState<string[]>([]);
@@ -58,7 +62,9 @@ export default function CampaignComposer() {
   }, []);
   useEffect(() => { load(); }, [load]);
 
-  const count = (includeUnopted ? meta?.countsAll : meta?.counts)?.[audience] ?? 0;
+  const chosen = oneContact ? meta?.contacts?.find(c => c.email === contactEmail) ?? null : null;
+  const matches = (meta?.contacts ?? []).filter(c => !contactQuery.trim() || c.email.includes(contactQuery.trim().toLowerCase()) || c.name.toLowerCase().includes(contactQuery.trim().toLowerCase())).slice(0, 50);
+  const count = oneContact ? (chosen ? 1 : 0) : (includeUnopted ? meta?.countsAll : meta?.counts)?.[audience] ?? 0;
   const pick = (t: Type) => { setType(t); setAudience(t === "welcome" ? variant : TYPES.find(x => x.id === t)!.audience); setHtml(""); setMsg(null); };
 
   const generate = async () => {
@@ -74,10 +80,10 @@ export default function CampaignComposer() {
     const n = count;
     if (!testOnly && !confirm(`Send "${subject}" to ${n} recipient${n === 1 ? "" : "s"} (${AUD_LABEL[audience]})? This cannot be undone.`)) return;
     setBusy(testOnly ? "test" : "send"); setMsg(null);
-    const r = await fetch("/api/admin/campaigns", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "send", type, subject, html, audience, testOnly, includeUnopted, aiModel: model }) });
+    const r = await fetch("/api/admin/campaigns", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "send", type, subject, html, audience, testOnly, includeUnopted, aiModel: model, contactEmail: oneContact ? contactEmail : undefined }) });
     const j = await r.json();
     setBusy("");
-    setMsg(r.ok ? { ok: j.ok, text: testOnly ? `Test email sent to ${(meta?.testRecipients ?? []).join(", ")}. Check your inbox, then send to the audience.` : `Sent to ${j.sent} recipient(s)${j.failed ? `, ${j.failed} failed` : ""}.` } : { ok: false, text: j.error ?? "Send failed" });
+    setMsg(r.ok ? { ok: j.ok, text: testOnly ? `Test email sent to ${(meta?.testRecipients ?? []).join(", ")}. Check your inbox, then send to ${oneContact ? contactEmail : "the audience"}.` : `Sent to ${j.sent} recipient(s)${j.failed ? `, ${j.failed} failed` : ""}.` } : { ok: false, text: j.error ?? "Send failed" });
     if (testOnly && r.ok && j.ok) setTested(true);
     if (!testOnly) { load(); setTested(false); }
   };
@@ -113,6 +119,21 @@ export default function CampaignComposer() {
             ))}
           </select>
         </label>
+        <div style={{ gridColumn: "1 / -1", display: "grid", gap: 8 }}>
+          <label style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13, fontWeight: 700, color: "var(--text)" }}>
+            <input type="checkbox" checked={oneContact} onChange={e => { setOneContact(e.target.checked); setTested(false); }} />
+            Send to one specific contact instead of a group
+          </label>
+          {oneContact && (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 10 }}>
+              <input id="contact-search" aria-label="Search contacts" placeholder="Search by name or email" value={contactQuery} onChange={e => setContactQuery(e.target.value)} style={input} />
+              <select id="contact-pick" aria-label="Choose contact" value={contactEmail} onChange={e => { setContactEmail(e.target.value); setTested(false); }} style={input}>
+                <option value="">{matches.length ? `Choose a contact (${matches.length}${matches.length === 50 ? "+" : ""} shown)` : "No contact matches"}</option>
+                {matches.map(c => <option key={c.email} value={c.email}>{c.name !== "there" ? `${c.name} · ` : ""}{c.email}</option>)}
+              </select>
+            </div>
+          )}
+        </div>
         <label style={{ display: "flex", gap: 8, alignItems: "flex-start", fontSize: 12, color: "var(--text-2)", alignSelf: "end", lineHeight: 1.45 }}>
           <input type="checkbox" checked={includeUnopted} onChange={e => setIncludeUnopted(e.target.checked)} style={{ marginTop: 2 }} />
           <span>Include contacts who haven&apos;t ticked the email box (imported lists). Only do this if you have their permission to write to them.
@@ -137,7 +158,7 @@ export default function CampaignComposer() {
       </div>
 
       <label style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-        {type === "custom" ? "Your message" : type === "digest" ? "What's new on Indiaspora (optional)" : "Add a personal line (optional)"}
+        {type === "custom" ? "Your message" : type === "digest" ? "What's new on Indiaspora (optional)" : "Add a personal line (optional), shown in the email"}
         <textarea rows={3} value={notes} onChange={e => setNotes(e.target.value)} placeholder={type === "digest" ? "e.g. New Living Guide pages for taxes; community directory now open for submissions" : "Anything you want mentioned"} style={{ ...input, marginTop: 6, resize: "vertical" }} />
       </label>
 
@@ -166,11 +187,11 @@ export default function CampaignComposer() {
             <iframe title="Email preview" srcDoc={html.replace(/\{\{UNSUB\}\}/g, "#").replace(/\{\{NAME\}\}/g, "Priya")} style={{ width: "100%", height: 560, border: "none", background: "#F7F6F2" }} sandbox="" />
           </div>
           <div style={{ display: "flex", gap: 10, marginTop: 14, flexWrap: "wrap" }}>
-            <button onClick={() => send(true)} disabled={!!busy} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 16px", borderRadius: 10, border: "1px solid var(--border-2)", background: "var(--surface)", color: "var(--text-2)", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
+            <button onClick={() => send(true)} disabled={!!busy || (oneContact && !chosen)} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 16px", borderRadius: 10, border: "1px solid var(--border-2)", background: "var(--surface)", color: "var(--text-2)", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
               {busy === "test" ? <Loader2 size={14} className="animate-spin" /> : <FlaskConical size={14} />} Send test to {(meta?.testRecipients ?? []).length > 1 ? `${meta!.testRecipients.length} test inboxes` : "me"}
             </button>
-            <button onClick={() => send(false)} disabled={!!busy || !subject.trim() || !tested} title={tested ? "" : "Send a test first"} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 18px", borderRadius: 10, border: "none", opacity: tested ? 1 : 0.5, background: "#059669", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
-              {busy === "send" ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />} Send to {count} recipient{count === 1 ? "" : "s"}
+            <button onClick={() => send(false)} disabled={!!busy || !subject.trim() || !tested || (oneContact && !chosen)} title={tested ? "" : "Send a test first"} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 18px", borderRadius: 10, border: "none", opacity: tested ? 1 : 0.5, background: "#059669", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
+              {busy === "send" ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />} Send to {oneContact ? (contactEmail || "chosen contact") : `${count} recipient${count === 1 ? "" : "s"}`}
             </button>
           </div>
           <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 8 }}>
