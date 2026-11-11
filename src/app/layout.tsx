@@ -66,7 +66,7 @@ const organizationSchema = {
   "name": "IndiaSwiss — Indiaspora",
   "alternateName": ["Indiaspora", "IndiaSwiss", "Swiss Indian Community Hub"],
   "url": "https://indiaspora.ch",
-  "logo": "https://indiaspora.ch/logo.svg",
+  "logo": "https://indiaspora.ch/logo.png",
   "description": "The definitive platform for 24,500+ Indians living in Switzerland. Indian community hub covering restaurants, events, temples, associations, business networking, and living guides.",
   "foundingLocation": { "@type": "Place", "name": "Switzerland" },
   "areaServed": { "@type": "Country", "name": "Switzerland" },

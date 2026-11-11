@@ -69,7 +69,7 @@ export default function Footer() {
           {/* Brand column — 2 cols on lg */}
           <div className="col-span-2 lg:col-span-2">
             <div className="mb-4 flex items-center gap-2.5">
-              <img src="/logo.svg" alt="Indiaspora" style={{ height: 34, width: "auto", filter: "brightness(0) invert(1)" }} />
+              <img src="/logo.png" alt="Indiaspora" style={{ height: 34, width: "auto" }} />
               <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 700, color: "rgba(245,237,224,0.95)" }}>
                 India<span style={{ color: "#B08D57" }}>spora</span>
               </span>

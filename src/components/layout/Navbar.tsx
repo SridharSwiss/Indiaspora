@@ -232,14 +232,12 @@ export default function Navbar() {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <img
-              src="/logo.svg"
+              src="/logo.png"
               alt="Indiaspora"
               width={36}
               height={36}
               style={{
                 height: 36, width: "auto",
-                filter: lightNav ? "brightness(0) invert(1)" : "none",
-                transition: "filter 0.3s",
               }}
             />
             <span style={{
