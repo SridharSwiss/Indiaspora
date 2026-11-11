@@ -35,7 +35,7 @@ const GROUPS: { label: string; items: Audience[] }[] = [
 const card = { background: "var(--surface)", borderRadius: 16, border: "1px solid var(--border)", padding: 20 } as const;
 const input = { width: "100%", padding: "10px 12px", borderRadius: 10, border: "1px solid var(--border-2)", background: "var(--surface-2)", color: "var(--text)", fontSize: 13, outline: "none", boxSizing: "border-box", fontFamily: "inherit" } as const;
 
-export default function CampaignComposer() {
+export default function CampaignComposer({ preselect }: { preselect?: { email: string; n: number } }) {
   const [meta, setMeta] = useState<Meta | null>(null);
   const [type, setType] = useState<Type>("digest");
   const [audience, setAudience] = useState<Audience>("everyone");
@@ -61,6 +61,11 @@ export default function CampaignComposer() {
     if (r.ok) setMeta(await r.json());
   }, []);
   useEffect(() => { load(); }, [load]);
+  useEffect(() => {
+    if (!preselect?.email) return;
+    setOneContact(true); setContactEmail(preselect.email.toLowerCase()); setContactQuery(preselect.email); setTested(false);
+    document.getElementById("campaign-composer")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [preselect]);
 
   const chosen = oneContact ? meta?.contacts?.find(c => c.email === contactEmail) ?? null : null;
   const matches = (meta?.contacts ?? []).filter(c => !contactQuery.trim() || c.email.includes(contactQuery.trim().toLowerCase()) || c.name.toLowerCase().includes(contactQuery.trim().toLowerCase())).slice(0, 50);
@@ -89,7 +94,7 @@ export default function CampaignComposer() {
   };
 
   return (
-    <div style={{ ...card, marginBottom: 24 }}>
+    <div id="campaign-composer" style={{ ...card, marginBottom: 24 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16, flexWrap: "wrap" }}>
         <div style={{ padding: 8, borderRadius: 10, background: "rgba(249,115,22,0.12)" }}><Mail size={16} style={{ color: "var(--sf)", display: "block" }} /></div>
         <div style={{ flex: 1, minWidth: 200 }}>

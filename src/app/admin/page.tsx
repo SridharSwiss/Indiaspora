@@ -81,6 +81,7 @@ export default function AdminPage() {
   const router = useRouter();
   const [tab, setTab] = useState<"overview" | "members" | "analytics" | "newsletter" | "events" | "advice" | "advertise">("overview");
   const [members, setMembers] = useState<Member[]>([]);
+  const [emailTo, setEmailTo] = useState<{ email: string; n: number } | undefined>();
   const [memberCount, setMemberCount] = useState(0);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [subscriberSearch, setSubscriberSearch] = useState("");
@@ -620,7 +621,7 @@ export default function AdminPage() {
           {/* ── MEMBERS ── */}
           {!loading && tab === "members" && (
             <div>
-              <CampaignComposer />
+              <CampaignComposer preselect={emailTo} />
               {/* Reject modal */}
               {rejectNote && (
                 <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 200, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
@@ -743,6 +744,10 @@ export default function AdminPage() {
                                     <XCircle size={11} /> Reject
                                   </button>
                                 )}
+                                <button onClick={() => setEmailTo({ email: m.email, n: Date.now() })} title="Email this member" className="admin-action-btn"
+                                  style={{ display: "flex", alignItems: "center", gap: 4, padding: "5px 10px", borderRadius: 7, border: "1px solid var(--border-2)", background: "transparent", color: "var(--text-2)", cursor: "pointer", fontSize: 11, fontWeight: 700 }}>
+                                  <Mail size={11} /> Email
+                                </button>
                                 <button onClick={() => deleteMember(m.id)} title="Delete" className="admin-action-btn"
                                   style={{ padding: "5px 8px", borderRadius: 7, border: "1px solid var(--border-2)", background: "transparent", color: "var(--text-3)", cursor: "pointer", fontSize: 11, lineHeight: 1 }}>✕</button>
                               </div>
