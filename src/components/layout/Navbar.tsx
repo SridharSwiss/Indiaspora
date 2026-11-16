@@ -69,6 +69,10 @@ export default function Navbar() {
 
   // Pages whose header is a full-bleed photo (PageHeader with heroImage) mark themselves with data-dark-hero:
   // the transparent nav must use light text on them, in light mode too.
+  // `mounted` keeps the server HTML and first client render identical: on ISR-regenerated pages the server
+  // can see a different pathname, and React never patches mismatched attributes, which left dark text on the dark hero.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const [darkHero, setDarkHero] = useState(false);
   useEffect(() => {
     setDarkHero(false);
@@ -174,7 +178,7 @@ export default function Navbar() {
   // Admin pages have their own chrome — hide the public nav
   if (pathname.startsWith("/admin")) return null;
   // On the home page with transparent nav, text must be LIGHT (dark hero behind)
-  const lightNav = (pathname === "/" || darkHero) && !scrolled;
+  const lightNav = mounted && (pathname === "/" || darkHero) && !scrolled;
 
   return (
     <>
