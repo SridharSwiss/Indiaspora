@@ -60,7 +60,7 @@ export default function PageHeader({
           the space. The inner sticky div peeks out at top:0 while the
           wrapper scrolls, giving a "pinned background" effect.
         */}
-        <div style={{ position: "relative", height: "clamp(280px, 60svh, 100svh)" }}>
+        <div data-dark-hero style={{ position: "relative", height: "clamp(280px, 60svh, 100svh)" }}>
 
         {/* Sticky image — stays at top:0 while content scrolls over it */}
         <div

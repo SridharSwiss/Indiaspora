@@ -67,6 +67,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Pages whose header is a full-bleed photo (PageHeader with heroImage) mark themselves with data-dark-hero:
+  // the transparent nav must use light text on them, in light mode too.
+  const [darkHero, setDarkHero] = useState(false);
+  useEffect(() => {
+    setDarkHero(false);
+    const id = requestAnimationFrame(() => setDarkHero(!!document.querySelector("[data-dark-hero]")));
+    const t = setTimeout(() => setDarkHero(!!document.querySelector("[data-dark-hero]")), 400);
+    return () => { cancelAnimationFrame(id); clearTimeout(t); };
+  }, [pathname]);
+
   // Theme init
   useEffect(() => {
     const stored = getStoredTheme();
@@ -164,7 +174,7 @@ export default function Navbar() {
   // Admin pages have their own chrome — hide the public nav
   if (pathname.startsWith("/admin")) return null;
   // On the home page with transparent nav, text must be LIGHT (dark hero behind)
-  const lightNav = pathname === "/" && !scrolled;
+  const lightNav = (pathname === "/" || darkHero) && !scrolled;
 
   return (
     <>
