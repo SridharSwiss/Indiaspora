@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
+import { sendToTopics, topicSlug } from "@/lib/fcm";
+import { cityOf } from "@/lib/homeEvents";
+
+async function isAdmin() {
+  const { data: { user } } = await (await createClient()).auth.getUser();
+  return !!user?.email && user.email === process.env.ADMIN_EMAIL;
+}
+const unauthorized = () => NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
 const CATEGORY_COLORS: Record<string, string> = {
   Cultural:   "bg-yellow-500",
@@ -150,6 +159,7 @@ function buildDescription(text: string, title: string): string {
 
 // ── GET — list all events for admin ──────────────────────────────────────────
 export async function GET(req: NextRequest) {
+  if (!(await isAdmin())) return unauthorized();
   const supabase = createAdminClient();
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status") ?? "all";
@@ -168,6 +178,7 @@ export async function GET(req: NextRequest) {
 
 // ── POST — create event with smart text parsing ───────────────────────────────
 export async function POST(req: NextRequest) {
+  if (!(await isAdmin())) return unauthorized();
   try {
     const body = await req.json();
     const { rawText, imageUrl, submittedBy, eventDate } = body;
@@ -217,8 +228,9 @@ export async function POST(req: NextRequest) {
 
 // ── PATCH — approve or reject ─────────────────────────────────────────────────
 export async function PATCH(req: NextRequest) {
+  if (!(await isAdmin())) return unauthorized();
   try {
-    const { id, action } = await req.json();
+    const { id, action, notifyApp } = await req.json();
     if (!id || !["approve", "reject"].includes(action)) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
@@ -234,7 +246,23 @@ export async function PATCH(req: NextRequest) {
       .eq("id", id);
 
     if (error) throw error;
-    return NextResponse.json({ ok: true });
+
+    // Optional push to Android app users following this city, this category, or all events
+    let push: { ok: boolean; error?: string } | null = null;
+    if (action === "approve" && notifyApp) {
+      const { data: ev } = await supabase.from("events").select("id,title,date,location,category").eq("id", id).single();
+      if (ev) {
+        try {
+          push = await sendToTopics(["events_all", `city_${topicSlug(cityOf(ev.location ?? ""))}`, `cat_${topicSlug(ev.category ?? "")}`], {
+            title: `New event: ${ev.title}`,
+            body: [ev.date, ev.location].filter(Boolean).join(" · "),
+            link: `https://indiaspora.ch/events?event=${ev.id}`,
+            data: { eventId: String(ev.id) },
+          });
+        } catch (e) { push = { ok: false, error: e instanceof Error ? e.message : "Push failed" }; }
+      }
+    }
+    return NextResponse.json({ ok: true, push });
   } catch (err) {
     console.error("Admin event update error:", err);
     return NextResponse.json({ error: "Failed to update event" }, { status: 500 });

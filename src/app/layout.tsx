@@ -98,21 +98,23 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        {/* In-app mode for the Android app's web views: ?app=1 (kept for the session) or an "IndiasporaApp" user agent hides site chrome */}
+        <script dangerouslySetInnerHTML={{ __html: `try{var q=new URLSearchParams(location.search);if(q.get('app')==='1')sessionStorage.setItem('appMode','1');if(q.get('app')==='0')sessionStorage.removeItem('appMode');if(sessionStorage.getItem('appMode')==='1'||/IndiasporaApp/.test(navigator.userAgent))document.documentElement.classList.add('app-mode')}catch(e){}` }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       </head>
       <body className="min-h-full flex flex-col" style={{ background: "var(--bg)", color: "var(--text)" }}>
-        <DiwaliSplash />
-        <CookieBanner />
+        <div className="app-chrome"><DiwaliSplash /></div>
+        <div className="app-chrome"><CookieBanner /></div>
         <AnalyticsTracker />
-        <Navbar />
+        <div className="app-chrome"><Navbar /></div>
         <main className="flex-1">
           {children}
         </main>
-        <Footer />
-        <BottomNav />
-        <BannerManager />
-        <DiwaliGreeting />
+        <div className="app-chrome"><Footer /></div>
+        <div className="app-chrome"><BottomNav /></div>
+        <div className="app-chrome"><BannerManager /></div>
+        <div className="app-chrome"><DiwaliGreeting /></div>
       </body>
     </html>
   );

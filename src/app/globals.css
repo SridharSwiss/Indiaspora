@@ -857,3 +857,7 @@ html { overflow-x: clip; }
 /* White text on saturated chips: use the deeper shade so contrast stays >= 4.5 */
 .bg-orange-500 { background-color: #c2410c !important; }
 .bg-emerald-500 { background-color: #047857 !important; }
+
+/* Android app web views (?app=1): hide navbar, footer, bottom nav, popups, banners and cookie banner */
+.app-mode .app-chrome { display: none !important; }
+.app-mode main { padding-top: 0 !important; }

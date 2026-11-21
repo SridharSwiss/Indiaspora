@@ -39,7 +39,8 @@ export async function updateSession(request: NextRequest) {
   const PUBLIC_ROOTS = ["/community", "/living", "/food", "/business", "/culture", "/events", "/cities", "/resources"];
   const isSubPage = PUBLIC_ROOTS.some(root => pathname.startsWith(root + "/"));
   if (isSubPage && !user) {
-    return NextResponse.redirect(new URL(`/login?redirect=${encodeURIComponent(pathname)}`, request.url));
+    const app = request.nextUrl.searchParams.get("app") === "1" ? "&app=1" : "";
+    return NextResponse.redirect(new URL(`/login?redirect=${encodeURIComponent(pathname)}${app}`, request.url));
   }
 
   return supabaseResponse;

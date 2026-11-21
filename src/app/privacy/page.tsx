@@ -104,7 +104,20 @@ export default function PrivacyPage() {
         </ul>
       </Section>
 
-      <Section title="10. Contact & Complaints">
+      <Section title="10. Indiaspora Android App" id="app">
+        <p>The Indiaspora app for Android uses the same account and data as this website. In addition, the app processes:</p>
+        <ul style={{ paddingLeft: 20, margin: "8px 0" }}>
+          <li style={{ marginBottom: 5 }}><strong>Push notification token</strong> (Google Firebase Cloud Messaging): a device identifier used only to send the notifications you choose (for example new events in your city). We do not link it to your name. You can turn notifications off in the app or in Android settings.</li>
+          <li style={{ marginBottom: 5 }}><strong>Notification preferences</strong> (cities and event categories): stored on your device and used to subscribe to matching notification topics.</li>
+          <li style={{ marginBottom: 5 }}><strong>App analytics</strong> (Google Analytics for Firebase): which screens are used and actions such as viewing or sharing an event, with an app-instance ID and approximate country. Collected only after you agree in the app; you can withdraw at any time in the Me tab.</li>
+          <li style={{ marginBottom: 5 }}><strong>Crash reports</strong> (Firebase Crashlytics): device model, Android version, app version and the technical details of a crash, so we can fix bugs. No content you entered is included.</li>
+          <li style={{ marginBottom: 5 }}><strong>Saved events</strong>: stored only on your device.</li>
+        </ul>
+        <p>Firebase is provided by Google; data may be processed in the EU and the US under the EU-US / Swiss-US Data Privacy Framework and standard contractual clauses. Analytics data is kept for 14 months, crash reports for 90 days. We do not sell your data or use it for advertising.</p>
+        <p style={{ marginTop: 8 }}><strong>Delete your account:</strong> in the app (Me tab &rarr; Delete my account) or on the web at <a href="/account/delete" style={{ color: GOLD }}>indiaspora.ch/account/delete</a>. This removes your login, member profile and newsletter subscription immediately.</p>
+      </Section>
+
+      <Section title="11. Contact & Complaints">
         <p>Privacy questions or to exercise your rights: <a href="mailto:hello@indiaspora.ch" style={{ color: GOLD }}>hello@indiaspora.ch</a></p>
         <p style={{ marginTop: 8 }}>If you believe your rights have not been respected, you may lodge a complaint with the Swiss Federal Data Protection and Information Commissioner (FDPIC) at <strong>edoeb.admin.ch</strong>.</p>
       </Section>

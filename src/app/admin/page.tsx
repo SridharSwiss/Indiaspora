@@ -106,6 +106,8 @@ export default function AdminPage() {
   // Events tab state
   const [events, setEvents] = useState<AdminEvent[]>([]);
   const [eventsFilter, setEventsFilter] = useState<"all" | "pending" | "approved" | "rejected">("all");
+  const [notifyApp, setNotifyApp] = useState(true);
+  const [pushMsg, setPushMsg] = useState<string | null>(null);
   const [eventRawText, setEventRawText] = useState("");
   const [eventImageUrl, setEventImageUrl] = useState("");
   const [eventImageFile, setEventImageFile] = useState<File | null>(null);
@@ -284,12 +286,14 @@ export default function AdminPage() {
   };
 
   const updateEventStatus = async (id: string, action: "approve" | "reject") => {
-    setEventActionLoading(id + action);
-    await fetch("/api/admin/events", {
+    setEventActionLoading(id + action); setPushMsg(null);
+    const r = await fetch("/api/admin/events", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, action }),
+      body: JSON.stringify({ id, action, notifyApp: action === "approve" && notifyApp }),
     });
+    const j = await r.json().catch(() => ({}));
+    if (j.push) setPushMsg(j.push.ok ? "Approved and app users notified." : `Approved, but the app notification failed: ${j.push.error}`);
     setEventActionLoading(null);
     fetchEvents();
   };
@@ -1158,12 +1162,17 @@ export default function AdminPage() {
                 </div>
               </div>
 
+              {pushMsg && <div style={{ marginBottom: 12, padding: "10px 14px", borderRadius: 10, fontSize: 13, background: pushMsg.startsWith("Approved and") ? "rgba(5,150,105,0.1)" : "rgba(220,38,38,0.1)", color: pushMsg.startsWith("Approved and") ? "#059669" : "#DC2626" }}>{pushMsg}</div>}
               {/* Filter + list */}
               <div style={{ background: "var(--surface)", borderRadius: 16, border: "1px solid var(--border)", overflow: "hidden" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderBottom: "1px solid var(--border)" }}>
                   <span style={{ fontWeight: 700, fontSize: 14, color: "var(--text)" }}>
                     Events ({filteredEvents.length})
                   </span>
+                  <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "var(--text-2)", marginLeft: "auto", marginRight: 12 }}>
+                    <input id="notify-app" type="checkbox" checked={notifyApp} onChange={e => setNotifyApp(e.target.checked)} />
+                    Notify app users when I approve
+                  </label>
                   <div style={{ display: "flex", gap: 6 }}>
                     {(["all", "pending", "approved", "rejected"] as const).map(f => (
                       <button key={f} onClick={() => setEventsFilter(f)} style={{
