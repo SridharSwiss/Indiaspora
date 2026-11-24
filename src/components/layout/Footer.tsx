@@ -51,7 +51,22 @@ const NAV_COLS = [
 
 export default function Footer() {
   const [views, setViews] = useState<number | null>(null);
+  const [shown, setShown] = useState(0);
   useEffect(() => { fetch("/api/stats").then(r => r.ok ? r.json() : null).then(j => j && setViews(j.views)).catch(() => {}); }, []);
+  // Count-up animation (instant for reduced-motion users)
+  useEffect(() => {
+    if (views === null) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setShown(views); return; }
+    const start = performance.now(), dur = 1800;
+    let raf = 0;
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - start) / dur);
+      setShown(Math.round(views * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [views]);
   const pathname = usePathname();
   if (pathname.startsWith("/admin")) return null;
 
@@ -229,16 +244,42 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* ── Live visitor counter ───────────────────────────────────────── */}
+        {views !== null && (
+          <div className="flex justify-center mb-6">
+            <div className="visit-counter">
+              <span className="visit-dot" aria-hidden />
+              <span className="visit-label">Live</span>
+              <span className="visit-num" aria-live="polite">{shown.toLocaleString("en-US")}</span>
+              <span className="visit-label">page views in 2026</span>
+            </div>
+            <style>{`
+              .visit-counter{display:inline-flex;align-items:center;gap:12px;padding:12px 22px;border-radius:999px;
+                background:linear-gradient(135deg,rgba(201,169,110,.14),rgba(184,34,34,.12));
+                border:1px solid rgba(201,169,110,.45);box-shadow:0 0 28px rgba(201,169,110,.18),inset 0 0 18px rgba(201,169,110,.08);
+                font-family:'Plus Jakarta Sans',system-ui,sans-serif;position:relative;overflow:hidden}
+              .visit-counter::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,240,210,.18) 50%,transparent 70%);
+                transform:translateX(-100%);animation:visitShine 4s ease-in-out infinite}
+              .visit-num{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(1.5rem,4vw,2rem);line-height:1;
+                font-variant-numeric:tabular-nums;background:linear-gradient(90deg,#F5D99A,#C9A96E,#E8B04A,#F5D99A);background-size:200% auto;
+                -webkit-background-clip:text;background-clip:text;color:transparent;animation:visitGold 5s linear infinite}
+              .visit-label{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,220,200,.85)}
+              .visit-dot{width:9px;height:9px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:visitPulse 1.8s infinite}
+              @keyframes visitPulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+              @keyframes visitGold{to{background-position:200% center}}
+              @keyframes visitShine{0%,60%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+              @media (max-width:480px){.visit-counter{flex-wrap:wrap;justify-content:center;gap:8px;border-radius:20px}}
+              @media (prefers-reduced-motion:reduce){.visit-counter::after,.visit-num,.visit-dot{animation:none}}
+            `}</style>
+          </div>
+        )}
+
         {/* ── Bottom bar ────────────────────────────────────────────────── */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-5"
           style={{ borderTop: "1px solid rgba(176,141,87,0.1)" }}>
           <p className="text-xs" style={{ color: "rgba(200,185,165,0.72)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
             © 2026 Indiaspora Community Hub. All rights reserved.
-            {views !== null && (
-              <span style={{ marginLeft: 10, fontVariantNumeric: "tabular-nums" }} title="Live count since 31 Oct 2026, plus an estimate of about 900 a month for January to October">
-                · {views.toLocaleString("en-CH")} page views in 2026
-              </span>
-            )}
+
           </p>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             {[
