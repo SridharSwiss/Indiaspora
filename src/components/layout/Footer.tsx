@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const NAV_COLS = [
   {
@@ -52,16 +52,25 @@ const NAV_COLS = [
 export default function Footer() {
   const [views, setViews] = useState<number | null>(null);
   const [shown, setShown] = useState(0);
-  useEffect(() => { fetch("/api/stats").then(r => r.ok ? r.json() : null).then(j => j && setViews(j.views)).catch(() => {}); }, []);
+  const shownRef = useRef(0);
+  // Live: fetch on load, then every 60 s while the tab is visible
+  useEffect(() => {
+    const load = () => { if (document.visibilityState === "visible") fetch("/api/stats", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(j => j && setViews(j.views)).catch(() => {}); };
+    load();
+    const id = setInterval(load, 60_000);
+    document.addEventListener("visibilitychange", load);
+    return () => { clearInterval(id); document.removeEventListener("visibilitychange", load); };
+  }, []);
   // Count-up animation (instant for reduced-motion users)
   useEffect(() => {
     if (views === null) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setShown(views); return; }
-    const start = performance.now(), dur = 1800;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { shownRef.current = views; setShown(views); return; }
+    const from = shownRef.current, start = performance.now(), dur = from ? 900 : 1800;
     let raf = 0;
     const tick = (t: number) => {
       const p = Math.min(1, (t - start) / dur);
-      setShown(Math.round(views * (1 - Math.pow(1 - p, 3))));
+      const v = Math.round(from + (views - from) * (1 - Math.pow(1 - p, 3)));
+      shownRef.current = v; setShown(v);
       if (p < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);

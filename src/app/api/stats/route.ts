@@ -3,6 +3,8 @@ import { createAdminClient } from "@/lib/supabase/admin";
 
 // Live footer counter. Tracking started 31 Oct 2026; Jan–Oct 2026 is an estimate
 // (~900 page views a month × 10 months), every view after that is a real count from Supabase.
+export const dynamic = "force-dynamic";
+
 const ESTIMATED_BEFORE_TRACKING = 9000;
 
 export async function GET() {
@@ -12,6 +14,6 @@ export async function GET() {
   const tracked = count ?? 0;
   return NextResponse.json(
     { views: ESTIMATED_BEFORE_TRACKING + tracked, tracked, estimated: ESTIMATED_BEFORE_TRACKING },
-    { headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" } },
+    { headers: { "Cache-Control": "public, s-maxage=30, stale-while-revalidate=60" } },
   );
 }
