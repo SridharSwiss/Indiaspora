@@ -35,12 +35,22 @@ export async function updateSession(request: NextRequest) {
     }
   }
 
-  // Gate sub-pages — top-level section pages are public; deeper paths require login
-  const PUBLIC_ROOTS = ["/community", "/living", "/food", "/business", "/culture", "/events", "/cities", "/resources"];
-  const isSubPage = PUBLIC_ROOTS.some(root => pathname.startsWith(root + "/"));
-  if (isSubPage && !user) {
-    const app = request.nextUrl.searchParams.get("app") === "1" ? "&app=1" : "";
-    return NextResponse.redirect(new URL(`/login?redirect=${encodeURIComponent(pathname)}${app}`, request.url));
+  // Members-only sub-pages: signed-out visitors (and search engines) get an open SEO summary
+  // rendered by app/(pages)/gated-preview (a rewrite, so the full page is never sent); members get the full page. SEO target pages stay fully open.
+  const GATED_ROOTS = ["/community", "/living", "/food", "/business", "/culture", "/events", "/cities", "/resources"];
+  const FULLY_PUBLIC = [
+    "/food/grocery", "/food/zurich", "/food/geneva", "/food/basel", "/food/bern", "/food/lausanne",
+    "/living/indian-passport-renewal-switzerland", "/cities/zurich",
+  ];
+  const path = pathname.replace(/\/$/, "");
+  const isSubPage = GATED_ROOTS.some(root => path.startsWith(root + "/"));
+  if (isSubPage && !user && !FULLY_PUBLIC.includes(path)) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/gated-preview";
+    url.search = `?path=${encodeURIComponent(path)}`;
+    const res = NextResponse.rewrite(url);
+    supabaseResponse.cookies.getAll().forEach(c => res.cookies.set(c));
+    return res;
   }
 
   return supabaseResponse;

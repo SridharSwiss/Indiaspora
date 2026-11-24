@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Complete guide for Indian parents visiting Switzerland on a Schengen visa: Verpflichtungserklärung, travel insurance, VFS application, and connecting visiting parents with Indian seniors near Zurich, Basel, and Geneva.",
   keywords: ["Indian parents visiting Switzerland", "Schengen visa parents India Switzerland", "Verpflichtungserklärung Switzerland", "parents visitor insurance Switzerland", "6 month visitor visa Switzerland India", "VFS Global India Switzerland visa", "Indian seniors Zurich companionship", "parents Schengen health insurance"],
   openGraph: {
-    title: "Indian Parents Visiting Switzerland — Schengen Visa Guide | IndiaSwiss",
+    title: "Indian Parents Visiting Switzerland — Schengen Visa Guide",
     description: "Schengen visa checklist for Indian parents visiting Switzerland, plus connecting visiting seniors with Indian community companions near their postcode.",
   },
 };
@@ -126,7 +126,7 @@ export default function ParentsVisitingPage() {
           {/* Parents Companion Section */}
           <section className="mb-12">
             <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>The "Parents in Town" Community — Morning Walks & Chai</h2>
-            <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>When parents visit for months, weekday isolation is a real challenge. The IndiaSwiss community is building a network to connect visiting seniors by language and neighbourhood.</p>
+            <p className="text-sm mb-6" style={{ color: "var(--text-2)" }}>When parents visit for months, weekday isolation is a real challenge. The Indiaspora community is building a network to connect visiting seniors by language and neighbourhood.</p>
 
             <div className="glass rounded-2xl p-6 border border-purple-500/20 mb-6">
               <h3 className="font-semibold mb-3" style={{ color: "var(--text)" }}>Popular gathering points by city</h3>

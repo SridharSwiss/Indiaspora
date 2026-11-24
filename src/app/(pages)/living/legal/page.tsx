@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "passport renewal appointment Bern",
   ] as string[],
   openGraph: {
-    title: "Swiss B to C Permit & Indian Documents Guide | IndiaSwiss",
+    title: "Swiss B to C Permit & Indian Documents Guide",
     description: "Step-by-step guide: Swiss B permit to C permit for Indians, non-EU IT tech quota work permits, Indian embassy Bern passport renewal appointments, and OCI card renewal from Switzerland.",
   },
 };

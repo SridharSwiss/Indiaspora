@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Indian Cinema & Entertainment in Switzerland",
   description: "Watch Bollywood and Indian regional films in Switzerland — screenings, film festivals, streaming platforms, and community events.",
   openGraph: {
-    title: "Indian Cinema & Entertainment in Switzerland | IndiaSwiss",
+    title: "Indian Cinema & Entertainment in Switzerland",
     description: "Watch Bollywood and Indian regional films in Switzerland — screenings, film festivals, streaming platforms, and community events.",
   },
 };

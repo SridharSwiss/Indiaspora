@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Your interactive daily life navigator for Indians in Switzerland. From Gemeinde registration (Day 1) to Pillar 3a, Indian driving license Kontrollfahrt, Zürisack guide, parents visiting visa, and Swiss supermarket decoder.",
   keywords: ["Indians in Switzerland daily life", "register Gemeinde Switzerland Indian", "Kontrollfahrt Indian driving license", "Zürisack guide Indians", "Indian grocery Switzerland decoder", "parents visiting Switzerland Schengen visa", "Indian expat Switzerland guide", "Swiss B permit C permit guide", "Pillar 3a Indians Switzerland", "OCI renewal VFS Zurich"],
   openGraph: {
-    title: "Swiss-Indian Daily Life Hub | IndiaSwiss",
+    title: "Swiss-Indian Daily Life Hub",
     description: "Interactive guide for Indians in Switzerland: permits, groceries, driving license, parents visiting, taxes, and daily life errands by canton.",
   },
 };

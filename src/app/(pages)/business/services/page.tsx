@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Professional Services for Indians in Switzerland",
   description: "Find Indian-background lawyers, accountants, relocation consultants, and financial advisors in Switzerland.",
   openGraph: {
-    title: "Professional Services for Indians in Switzerland | IndiaSwiss",
+    title: "Professional Services for Indians in Switzerland",
     description: "Find Indian-background lawyers, accountants, relocation consultants, and financial advisors in Switzerland.",
   },
 };

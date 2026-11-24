@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Swiss rental dossier Indian",
   ] as string[],
   openGraph: {
-    title: "How to Find an Apartment in Zurich as an Indian Expat | IndiaSwiss",
+    title: "How to Find an Apartment in Zurich as an Indian Expat",
     description: "Complete guide for Indian expats: how to find an apartment in Zurich, rental documents needed (Betreibungsauszug, payslips, permit), top portals, and tips to beat the competition.",
   },
 };

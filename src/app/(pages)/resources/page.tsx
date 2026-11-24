@@ -18,6 +18,7 @@ const resources = [
     category: "Indian Government & Embassy",
     color: "from-orange-500 to-amber-500",
     items: [
+      { name: "Indian passport renewal in Switzerland (Indiaspora guide)", url: "/living/indian-passport-renewal-switzerland", desc: "Steps, documents, CHF fees and processing times for renewing an Indian passport in Bern or Geneva" },
       { name: "Embassy of India, Berne", url: "https://www.indembassybern.gov.in", desc: "Passport, OCI, visa, attestation, diaspora services. Kirchenfeldstrasse 28, 3005 Berne. Tel: +41 31 350 1130" },
       { name: "Consulate General of India, Geneva", url: "https://www.cgigeneva.gov.in", desc: "Consular services for French-speaking Switzerland. 21 Route Appia, 1292 Chambesy, Geneva. Tel: +41 22 717 0600" },
       { name: "OCI Card Services", url: "https://ociservices.gov.in", desc: "Apply and track Overseas Citizen of India card online" },
@@ -93,7 +94,7 @@ export default function ResourcesPage() {
                   <a
                     key={item.name}
                     href={item.url}
-                    target="_blank"
+                    target={item.url.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
                     className="glass rounded-2xl p-5 card-hover group block"
                   >

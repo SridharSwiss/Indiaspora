@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Upcoming Indian cultural events in Switzerland 2026 — Diwali Zurich, Navratri Garba, Durga Puja, SICC networking evenings, and festivals across Zurich, Geneva, Basel and Bern.",
   keywords: ["Indian events Switzerland 2026", "Diwali events Zurich 2026", "Navratri Switzerland", "Indian cultural events Zurich", "Durga Puja Switzerland", "Indian festival events Switzerland", "SICC events", "IAGZ events Zurich"],
   openGraph: {
-    title: "Indian Community Events Switzerland 2026 | IndiaSwiss",
+    title: "Indian Community Events Switzerland 2026",
     description: "Diwali, Navratri Garba, Durga Puja, and Indian cultural events across Zurich, Geneva, Basel and Bern.",
   },
 };

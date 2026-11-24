@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Find Indian community associations, temples, student groups, and women's networks across Switzerland. 150+ organisations covering all 26 cantons — IAGZ, SICC, TASC, TeluguSwiss, BAPS, ISKCON and more.",
   keywords: ["Indian community Switzerland", "Indians in Switzerland", "Indian associations Switzerland", "Indian organisations Zurich", "IAGZ", "SICC Switzerland", "Indian expat community Switzerland"],
   openGraph: {
-    title: "Indian Community in Switzerland | IndiaSwiss",
+    title: "Indian Community in Switzerland",
     description: "150+ Indian associations, temples, student groups, and women's networks across Switzerland.",
   },
 };
@@ -21,7 +21,7 @@ const sections = [
 ];
 
 const orgs = [
-  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", city: "Zurich", desc: "Premier community organisation for Indians in Zurich. Events, networking, Hindi school, Diwali Gala." },
+  { name: "IAGZ – Indian Association of Greater Zurich", url: "https://iagz.ch", city: "Zurich", desc: "Premier Indian community organisation in the Greater Zurich area. Events, networking, Hindi school, Diwali Gala." },
   { name: "SICC – Swiss-Indian Chamber of Commerce", url: "https://sicc.ch", city: "Zurich", desc: "Bilateral trade and business networking between India and Switzerland. 400+ members, 50+ events/year." },
   { name: "Indian Association Berne (IAB)", url: "https://www.india-bern.ch", city: "Bern", desc: "Founded 1972. One of Switzerland's oldest Indian associations. Cultural events and support for Indians in the Swiss capital." },
   { name: "Indian Association Geneva (IAG)", url: "https://indianassociationgeneva.com", city: "Geneva", desc: "Founded 1947. 500+ members. Community platform for Indians in the Lake Geneva region and UN/diplomatic circles." },

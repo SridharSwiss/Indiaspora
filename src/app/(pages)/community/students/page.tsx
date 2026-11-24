@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indian Students in Switzerland — ETH, EPFL, Visa Guide | IndiaSwiss",
+  title: "Indian Students in Switzerland — ETH, EPFL, Visa Guide",
   description: "Guide for Indian students in Switzerland — InSAZ ETH Zurich, EPFL Indian students, Swiss student visa blocked account, scholarships, and cost of living tips.",
   keywords: ["Indian students Switzerland", "InSAZ ETH Zurich", "EPFL Indian students", "Swiss student visa blocked account", "Indian student association Switzerland", "cost of living Lausanne EPFL Indian student"],
   openGraph: {
-    title: "Indian Students in Switzerland — ETH, EPFL, Visa Guide | IndiaSwiss",
+    title: "Indian Students in Switzerland — ETH, EPFL, Visa Guide",
     description: "Guide for Indian students in Switzerland — InSAZ ETH Zurich, EPFL Indian students, Swiss student visa blocked account, scholarships, and cost of living tips.",
   },
 };

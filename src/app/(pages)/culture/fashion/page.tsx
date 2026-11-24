@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Indian Fashion & Boutiques in Switzerland",
   description: "Find Indian sarees, lehengas, designer wear, and jewellery in Switzerland — physical boutiques and online options.",
   openGraph: {
-    title: "Indian Fashion & Boutiques in Switzerland | IndiaSwiss",
+    title: "Indian Fashion & Boutiques in Switzerland",
     description: "Find Indian sarees, lehengas, designer wear, and jewellery in Switzerland — physical boutiques and online options.",
   },
 };

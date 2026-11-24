@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Swiss banking guide Indian expat",
   ] as string[],
   openGraph: {
-    title: "Bank Account & Pillar 3a in Switzerland for Indian Expats | IndiaSwiss",
+    title: "Bank Account & Pillar 3a in Switzerland for Indian Expats",
     description: "How to open a bank account in Switzerland with an Indian passport, best Pillar 3a pension options for Indian expats, and the best way to send money from Switzerland to India.",
   },
 };

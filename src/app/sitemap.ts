@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/community/hub`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
     // Living
     { url: `${base}/living`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/living/indian-passport-renewal-switzerland`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/living/welcome`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/living/housing`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/living/healthcare`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
@@ -26,7 +27,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Food
     { url: `${base}/food`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/food/restaurants`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${base}/food/grocery`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/food/grocery`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    ...["zurich", "geneva", "basel", "bern", "lausanne"].map(c => ({ url: `${base}/food/${c}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 })),
+    { url: `${base}/de/indischer-laden`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/fr/epicerie-indienne`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/get-verified`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
     { url: `${base}/food/catering`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/food/cooking`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     // Business

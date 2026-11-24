@@ -6,11 +6,12 @@ import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indians in Zurich — Community Guide | IndiaSwiss",
+  title: "Indians in Zurich: Community Guide for Indians Living in Zürich",
   description: "Guide for Indians in Zurich — IAGZ community, Indian restaurants Zurich, Indian grocery near Zurich HB, Diwali Zurich 2026, registration, and transport.",
+  alternates: { canonical: "https://indiaspora.ch/cities/zurich" },
   keywords: ["Indians in Zurich", "Indian community Zurich", "Diwali Zurich", "Indian restaurants Zurich", "IAGZ Zurich", "Indian grocery near Zurich HB"],
   openGraph: {
-    title: "Indians in Zurich — Community Guide | IndiaSwiss",
+    title: "Indians in Zurich: Community Guide for Indians Living in Zürich",
     description: "Guide for Indians in Zurich — IAGZ community, Indian restaurants Zurich, Indian grocery near Zurich HB, Diwali Zurich 2026, registration, and transport.",
   },
 };
@@ -287,7 +288,7 @@ export default function ZurichPage() {
                   { name: "Bollywood Supermarket", note: "Langstrasse area — spices, dal, frozen goods", href: "https://maps.google.com/?q=Bollywood+Supermarket+Zurich" },
                   { name: "Desi Kirana", note: "Indian spices, lentils, pickles, snacks", href: "https://maps.google.com/?q=Desi+Kirana+Zurich" },
                   { name: "Asia Food Oerlikon", note: "Oerlikon — Indian and SE Asian products", href: "https://maps.google.com/?q=Asia+Food+Oerlikon+Zurich" },
-                  { name: "More on Maps →", note: "Browse all Indian grocery stores", href: "https://www.google.com/maps/search/Indian+grocery+store+Zurich+Switzerland" },
+                  { name: "All Indian grocery stores in Zurich →", note: "Addresses, Maps links and what each shop sells", href: "/food/zurich" },
                 ].map(r => (
                   <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none" }}>
                     <span style={{ fontSize: 13, fontWeight: 600, color: "var(--in)" }}>{r.name}</span>

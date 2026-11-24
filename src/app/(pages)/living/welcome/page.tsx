@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Welcome to Switzerland — First Steps for Indians",
   description: "Step-by-step arrival guide — Gemeinde registration, health insurance, bank account, and SIM card in your first weeks.",
   openGraph: {
-    title: "Welcome to Switzerland — First Steps for Indians | IndiaSwiss",
+    title: "Welcome to Switzerland — First Steps for Indians",
     description: "Step-by-step arrival guide — Gemeinde registration, health insurance, bank account, and SIM card in your first weeks.",
   },
 };

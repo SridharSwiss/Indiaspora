@@ -19,11 +19,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://indiaspora.ch"),
   title: {
-    default: "IndiaSwiss – The Swiss Indian Community Hub",
-    template: "%s | IndiaSwiss",
+    default: "Indiaspora: Indian Community in Switzerland · Communauté indienne en Suisse",
+    template: "%s | Indiaspora",
   },
   description:
-    "The definitive platform for 24,500+ Indians living in Switzerland. Discover restaurants, associations, events, business networks, temples, and everything you need to thrive in Switzerland.",
+    "Indiaspora is the hub for Indians in Switzerland (Indiens en Suisse, Inder in der Schweiz): Indian events, restaurants and grocery stores, associations and temples, and practical guides for life in Switzerland.",
   keywords: [
     "Indians in Switzerland",
     "Swiss Indian community",
@@ -33,21 +33,23 @@ export const metadata: Metadata = {
     "Diwali Switzerland",
     "Indian community Zurich",
     "NRI Switzerland",
-    "SwissDesi",
+    "Indian Switzerland",
+    "Indien Suisse",
+    "communauté indienne Suisse",
     "Swiss Indian portal",
     "Indian community hub Switzerland",
   ],
   openGraph: {
-    title: "IndiaSwiss – The Swiss Indian Community Hub",
+    title: "Indiaspora – The Swiss Indian Community Hub",
     description: "Your definitive guide to Indian community life in Switzerland",
     type: "website",
     locale: "en_CH",
-    siteName: "IndiaSwiss",
+    siteName: "Indiaspora",
     url: "https://indiaspora.ch",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IndiaSwiss – The Swiss Indian Community Hub",
+    title: "Indiaspora – The Swiss Indian Community Hub",
     description: "Your definitive guide to Indian community life in Switzerland",
   },
   robots: {
@@ -63,8 +65,8 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "IndiaSwiss — Indiaspora",
-  "alternateName": ["Indiaspora", "IndiaSwiss", "Swiss Indian Community Hub"],
+  "name": "Indiaspora",
+  "alternateName": ["IndiaSwiss", "Swiss Indian Community Hub"],
   "url": "https://indiaspora.ch",
   "logo": "https://indiaspora.ch/logo.png",
   "description": "The definitive platform for 24,500+ Indians living in Switzerland. Indian community hub covering restaurants, events, temples, associations, business networking, and living guides.",
@@ -76,7 +78,7 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "IndiaSwiss — Indiaspora",
+  "name": "Indiaspora",
   "url": "https://indiaspora.ch",
   "description": "The Swiss Indian community hub for 24,500+ Indians in Switzerland — restaurants, events, temples, associations, living guides.",
   "inLanguage": "en",

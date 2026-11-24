@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "How to convert your Indian driving license in Switzerland. The Kontrollfahrt (practical driving test) must be passed within 12 months of arrival. One attempt only — step-by-step guide for Zurich, Basel, Geneva, and Bern.",
   keywords: ["convert Indian driving license Switzerland", "Kontrollfahrt Switzerland Indians", "Indian driving license Switzerland 12 months", "Swiss driving test Strassenverkehrsamt", "driving instructor Zurich English Hindi", "Indian license exchange Switzerland", "Kontrollfahrt guide", "Führerausweis India Switzerland"],
   openGraph: {
-    title: "Convert Indian Driving License in Switzerland | IndiaSwiss",
+    title: "Convert Indian Driving License in Switzerland",
     description: "Complete guide to converting your Indian driving license via the Kontrollfahrt — one attempt, 12-month deadline.",
   },
 };

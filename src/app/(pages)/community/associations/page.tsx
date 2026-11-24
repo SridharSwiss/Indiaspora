@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Indian Associations & Clubs in Switzerland",
   description: "Complete directory of Indian associations in Switzerland — city associations, regional language groups, professional networks, student bodies, cultural organisations and civil society.",
   openGraph: {
-    title: "Indian Associations & Clubs in Switzerland | IndiaSwiss",
+    title: "Indian Associations & Clubs in Switzerland",
     description: "Complete directory of Indian associations in Switzerland — city associations, regional language groups, professional networks, student bodies, cultural organisations and civil society.",
   },
 };

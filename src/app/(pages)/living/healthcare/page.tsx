@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "health insurance franchise Switzerland expat",
   ] as string[],
   openGraph: {
-    title: "Best Health Insurance Switzerland for Indian Expat Families | IndiaSwiss",
+    title: "Best Health Insurance Switzerland for Indian Expat Families",
     description: "Compare the best Krankenkasse (health insurance) options in Switzerland for Indian expat families in Zurich — franchise levels, insurer ratings, family plans, and how to switch.",
   },
 };

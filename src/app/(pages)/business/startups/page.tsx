@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Indian Startups & Entrepreneurship in Switzerland",
   description: "Swiss startup ecosystem for Indian entrepreneurs — incubators, investors, visa options, and India-Switzerland bridge programmes.",
   openGraph: {
-    title: "Indian Startups & Entrepreneurship in Switzerland | IndiaSwiss",
+    title: "Indian Startups & Entrepreneurship in Switzerland",
     description: "Swiss startup ecosystem for Indian entrepreneurs — incubators, investors, visa options, and India-Switzerland bridge programmes.",
   },
 };

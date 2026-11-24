@@ -29,6 +29,12 @@ export default function Resources() {
             <p className=" mt-3 max-w-xl mx-auto" style={{ color: "var(--text-2)" }}>
               Curated links to official, community, and lifestyle resources every Indian in Switzerland needs
             </p>
+            <p className="mt-4 text-sm flex flex-wrap justify-center gap-x-5 gap-y-2" style={{ color: "var(--text-2)" }}>
+              <span>Popular guides:</span>
+              <Link href="/living/indian-passport-renewal-switzerland" style={{ color: "var(--in)", fontWeight: 700 }}>Indian passport renewal in Switzerland</Link>
+              <Link href="/food/grocery" style={{ color: "var(--in)", fontWeight: 700 }}>Indian grocery stores near you</Link>
+              <Link href="/cities/zurich" style={{ color: "var(--in)", fontWeight: 700 }}>Indians in Zurich</Link>
+            </p>
           </AnimateIn>
         </div>
 

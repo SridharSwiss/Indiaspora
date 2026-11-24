@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Women's Network in Switzerland",
   description: "Professional networks, expat communities, government equality offices, NGO support, entrepreneurship, mentorship, and women in tech — verified organisations across Switzerland.",
   openGraph: {
-    title: "Women's Network in Switzerland | IndiaSwiss",
+    title: "Women's Network in Switzerland",
     description: "Professional networks, expat communities, government equality offices, NGO support, entrepreneurship, mentorship, and women in tech — verified organisations across Switzerland.",
   },
 };

@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "IT & Pharma Jobs Switzerland for Indian Professionals | IndiaSwiss",
+  title: "IT & Pharma Jobs Switzerland for Indian Professionals",
   description: "Jobs in Switzerland for Indians — IT jobs Zurich English speakers, pharma jobs Basel, salary benchmarks, work permit guide, and top job portals.",
   keywords: ["IT jobs Zurich Indians", "IT jobs Zurich English speakers", "pharma jobs Basel", "Indian professionals Switzerland", "jobs Switzerland Indian nationals", "work permit Switzerland India"],
   openGraph: {
-    title: "IT & Pharma Jobs Switzerland for Indian Professionals | IndiaSwiss",
+    title: "IT & Pharma Jobs Switzerland for Indian Professionals",
     description: "Jobs in Switzerland for Indians — IT jobs Zurich English speakers, pharma jobs Basel, salary benchmarks, work permit guide, and top job portals.",
   },
 };

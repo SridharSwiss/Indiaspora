@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Transport in Switzerland",
   description: "Swiss public transport guide — SBB trains, Half-Fare Travelcard, GA pass, and local city networks for Indian residents.",
   openGraph: {
-    title: "Transport in Switzerland | IndiaSwiss",
+    title: "Transport in Switzerland",
     description: "Swiss public transport guide — SBB trains, Half-Fare Travelcard, GA pass, and local city networks for Indian residents.",
   },
 };

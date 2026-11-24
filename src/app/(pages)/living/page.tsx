@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "The complete guide to living in Switzerland for Indian expats — B permit to C permit, work permits, apartment hunting in Zurich, health insurance, banking with Indian passport, Pillar 3a, OCI renewal, and more.",
   keywords: ["moving to Switzerland from India", "Indian expat guide Switzerland", "B permit to C permit India", "work permit Switzerland IT", "Swiss permit guide Indians", "apartment Zurich Indian expat", "health insurance Switzerland expat", "bank account Switzerland Indian passport"],
   openGraph: {
-    title: "Living in Switzerland — Indian Expat Guide | IndiaSwiss",
+    title: "Living in Switzerland — Indian Expat Guide",
     description: "Permits, housing, healthcare, banking, schools, and daily life guides for Indians moving to Switzerland.",
   },
 };

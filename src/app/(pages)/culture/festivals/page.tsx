@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Indian festivals 2026: Diwali celebration Zurich, Navratri Garba night, Durga Puja SwissPuja Basel/Zurich, Holi Lausanne Lake Geneva, Pongal — dates, venues, and event tickets for the Swiss Indian community.",
   keywords: ["Diwali Zurich 2026", "Navratri Garba Switzerland", "Durga Puja Switzerland 2026", "Indian festival calendar Switzerland 2026", "Holi party Lausanne", "Diwali celebration Zurich tickets", "Navratri Dandiya Geneva", "SwissPuja Durga Puja schedule"],
   openGraph: {
-    title: "Diwali Zurich, Navratri & Indian Festivals 2026 | IndiaSwiss",
+    title: "Diwali Zurich, Navratri & Indian Festivals 2026",
     description: "Diwali Zurich 2026, Navratri Garba night, SwissPuja Durga Puja, Holi Lausanne — dates, venues, and event info for the Swiss Indian community.",
   },
 };

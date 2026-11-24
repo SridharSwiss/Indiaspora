@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Step-by-step checklist for Indians arriving in Switzerland: Gemeinde registration, SIM card, bank account, health insurance, Zürisack, and settling-in essentials for Zurich, Basel, Geneva, and Lausanne.",
   keywords: ["first 30 days Switzerland Indian", "Gemeinde registration Switzerland", "Swiss SIM card new arrival", "health insurance Switzerland new expat", "Zürisack guide", "Swiss bank account Indian passport", "register Switzerland new arrival", "Day 1 Switzerland checklist Indian"],
   openGraph: {
-    title: "First 30 Days in Switzerland — Indian Expat Checklist | IndiaSwiss",
+    title: "First 30 Days in Switzerland — Indian Expat Checklist",
     description: "Complete step-by-step checklist for your first month in Switzerland as an Indian expat.",
   },
 };

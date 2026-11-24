@@ -415,7 +415,7 @@ export const RESOURCES = [
   { title: "Indian Consulate General, Geneva", url: "https://www.cgigeneva.gov.in", category: "Official", description: "Consular services for Indians in French-speaking Switzerland — 21 Route Appia, 1292 Chambesy, Geneva. Tel: +41 22 717 0600" },
   { title: "Comparis.ch", url: "https://www.comparis.ch", category: "Living", description: "Compare health insurance, mortgages, cars, and internet plans" },
   { title: "SBB Swiss Railways", url: "https://www.sbb.ch", category: "Transport", description: "Public transport timetables, GA Travelcard (from CHF 2,780/yr) and Half-Fare Card (CHF 190/yr)" },
-  { title: "IAGZ – Indian Association Zurich", url: "https://iagz.ch", category: "Community", description: "Events, networking, and community support for Indians in Zurich" },
+  { title: "IAGZ – Indian Association Zurich", url: "https://iagz.ch", category: "Community", description: "Events, networking and community support in the Greater Zurich area" },
   { title: "SICC – Swiss Indian Chamber", url: "https://sicc.ch", category: "Business", description: "Business networking, events, and trade facilitation between India and Switzerland" },
   { title: "TeluguSwiss Association", url: "https://teluguswiss.org", category: "Community", description: "Telugu-speaking Indian community across Switzerland — cultural events and networking" },
   { title: "India Supermarkt (Online)", url: "https://indiasupermarkt.ch", category: "Shopping", description: "Buy Indian groceries, spices, and products online in Switzerland" },

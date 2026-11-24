@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Hindu temples, pandit services for Gruhapravesha, Satyanarayan Puja and rituals, yoga ashrams, and satsang groups across Switzerland — Zurich, Basel, Bern, Geneva.",
   keywords: ["Hindu temples Switzerland", "pandit Switzerland", "Hindu priest Switzerland", "Gruhapravesha Switzerland", "puja ceremony Zurich", "Satyanarayan puja Switzerland", "Hindu priest Zurich", "Gurdwara Switzerland", "Gurdwara Langenthal", "ISKCON Zurich Sunday feast"],
   openGraph: {
-    title: "Hindu Temples & Pandits in Switzerland | IndiaSwiss",
+    title: "Hindu Temples & Pandits in Switzerland",
     description: "Hindu temples, pandit services for Gruhapravesha, Satyanarayan Puja and rituals, yoga ashrams, and satsang groups across Switzerland.",
   },
 };

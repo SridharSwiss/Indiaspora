@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "waste guide Indians Switzerland",
   ],
   openGraph: {
-    title: "Waste & Recycling in Zurich — Guide for Indians | IndiaSwiss",
+    title: "Waste & Recycling in Zurich — Guide for Indians",
     description: "How garbage collection works in Zurich: Züri-Sack, waste separation, recycling stations, and tips for Indian residents.",
   },
 };
@@ -100,7 +100,7 @@ export default function RecyclingPage() {
         subtitle="How garbage collection works — Züri-Sack, waste separation, Grüngut, recycling stations, and what happens if you get it wrong. A plain-language guide for Indian residents."
         badge="♻️ Living Guide"
         heroImage="/images/heroes/living-recycling.webp"
-        heroImageAlt="Recycling guide for Indians in Zurich Switzerland"
+        heroImageAlt="Recycling and waste separation guide for Switzerland"
         heroImagePosition="center 45%"
         breadcrumbs={[{ label: "Living", href: "/living" }, { label: "Waste & Recycling" }]}
       />

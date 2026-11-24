@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Indian Business Networking Switzerland — SICC, TiE, TEPA | IndiaSwiss",
+  title: "Indian Business Networking Switzerland — SICC, TiE, TEPA",
   description: "Connect with Indian professionals via SICC, TiE Zurich, and networking groups in Geneva. India–Switzerland TEPA trade agreement resources and bilateral business events.",
   keywords: ["India Switzerland TEPA trade agreement", "SICC Swiss Indian Chamber of Commerce", "TiE Zurich", "Indian professional networking Geneva", "Indian business networking Switzerland"],
   openGraph: {
-    title: "Indian Business Networking Switzerland — SICC, TiE, TEPA | IndiaSwiss",
+    title: "Indian Business Networking Switzerland — SICC, TiE, TEPA",
     description: "Connect with Indian professionals via SICC, TiE Zurich, and networking groups in Geneva. India–Switzerland TEPA trade agreement resources and bilateral business events.",
   },
 };

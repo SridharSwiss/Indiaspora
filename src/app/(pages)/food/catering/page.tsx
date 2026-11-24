@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Indian catering for birthday parties, weddings, Diwali celebrations, corporate events, and tiffin delivery in Zurich, Geneva, Basel, Bern, and Zug. Home chefs and full-service caterers available across Switzerland.",
   keywords: ["Indian catering Zurich", "Indian catering birthday party Zurich", "Indian wedding catering Switzerland", "Indian food for party Zurich", "tiffin delivery Zurich", "Indian home chef Zurich", "Indian caterer Basel", "Indian food delivery Switzerland"],
   openGraph: {
-    title: "Indian Catering for Parties & Events in Switzerland | IndiaSwiss",
+    title: "Indian Catering for Parties & Events in Switzerland",
     description: "Indian catering for birthday parties, weddings, Diwali events, and daily tiffin in Zurich, Geneva, Basel and Bern.",
   },
 };
@@ -61,7 +61,7 @@ const findTiffin = [
   "Ask in your local Indian association — IAGZ (iagz.ch), Indian Association of Geneva, or TeluguSwiss often know home chefs",
   "Ask colleagues and neighbours — most tiffin providers work through word of mouth in the community",
   "Post in Indian WhatsApp or Telegram community groups for your city — responses are usually quick",
-  "Submit a request on the IndiaSwiss events page — we can connect you with providers in your city",
+  "Submit a request on the Indiaspora events page — we can connect you with providers in your city",
   "Contact the Embassy of India Berne community desk — they sometimes maintain community directories",
 ];
 

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Language Learning in Switzerland for Indians",
   description: "Learn German, French, or Italian. Language schools, apps, integration courses, and tips for Indian residents.",
   openGraph: {
-    title: "Language Learning in Switzerland for Indians | IndiaSwiss",
+    title: "Language Learning in Switzerland for Indians",
     description: "Learn German, French, or Italian. Language schools, apps, integration courses, and tips for Indian residents.",
   },
 };

@@ -1,129 +1,30 @@
-import OrgLogo from "@/components/ui/OrgLogo";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import Link from "next/link";
+import { CITIES, ONLINE, type CityKey } from "@/lib/grocery";
+import { CityStores, UpdatedNote, GroceryJsonLd } from "@/components/food/GroceryDirectory";
 
 export const metadata: Metadata = {
-  title: "Best Indian Grocery Stores in Switzerland — Haldiram's, MDH, Everest",
-  description: "Best Indian grocery stores in Zurich, Geneva, Basel and Bern. Buy Haldiram's snacks, MDH and Everest masalas, Patanjali products, fresh curry leaves, dals, and Indian vegetables. Physical stores and online delivery across Switzerland.",
-  keywords: ["Indian grocery Switzerland", "buy Haldiram's Switzerland", "MDH masala Switzerland", "Everest spices Zurich", "Indian supermarket Zurich", "Indian spices Geneva", "Indian grocery store Basel", "buy Indian food Switzerland"],
+  title: "Indian Grocery Stores in Switzerland: Find an Indian Grocery Near You",
+  description: "Indian grocery stores near you in Zurich, Geneva, Basel, Bern, Lausanne and Winterthur: addresses, phone numbers, Google Maps links and what each shop sells, plus online Indian grocery delivery across Switzerland.",
+  keywords: ["indian grocery near me", "indian grocery", "indian grocery switzerland", "indischer laden", "épicerie indienne", "indian grocery zurich", "indian grocery geneva", "indian grocery basel", "indian grocery bern", "indian grocery lausanne"],
+  alternates: {
+    canonical: "https://indiaspora.ch/food/grocery",
+    languages: { en: "https://indiaspora.ch/food/grocery", "de-CH": "https://indiaspora.ch/de/indischer-laden", "fr-CH": "https://indiaspora.ch/fr/epicerie-indienne", "x-default": "https://indiaspora.ch/food/grocery" },
+  },
   openGraph: {
-    title: "Best Indian Grocery Stores in Switzerland | IndiaSwiss",
-    description: "Buy Haldiram's, MDH masalas, Everest spices, dal, atta and Indian vegetables at stores in Zurich, Geneva, Basel and Bern — or order online.",
+    title: "Indian Grocery Stores in Switzerland | Indiaspora",
+    description: "Indian grocery shops by city with addresses, Maps links and online delivery options.",
   },
 };
 
-const stores = [
-  // ── Zurich ───────────────────────────────────────────────────────────────────
-  {
-    city: "Zurich",
-    name: "Aggarwal",
-    area: "Wiedikon (Kreis 3)",
-    note: "One of Switzerland's longest-running Indian grocery chains (est. 1986). Fresh vegetables, spices, lentils, frozen foods, pickles, and Indian household items. Kernstrasse 27, 8004 Zürich. Also has a Take Away counter with samosas and chaats.",
-    url: "https://aggarwal.ch",
-  },
-  {
-    city: "Zurich",
-    name: "Indiasupermarkt.ch",
-    area: "Kreis 5 / Josefstrasse",
-    note: "Large-format Indian supermarket with one of the widest selections in Zurich — all major brands, fresh curry leaves, Indian vegetables, frozen meals, and cosmetics. Also ships nationwide online. Josefstrasse 91, 8005 Zürich.",
-    url: "https://indiasupermarkt.ch",
-  },
-  {
-    city: "Zurich",
-    name: "Namastey India",
-    area: "Adliswil (Zurich South)",
-    note: "Well-stocked Indian grocery shop in Adliswil with fresh Indian vegetables, spices, lentils, frozen items, and ready-to-eat meals. Also offers a takeaway service. Kronenstrasse 3, 8134 Adliswil. Mon–Sat 11:00–22:00.",
-    url: "https://namasteyindia.ch",
-  },
-  {
-    city: "Zurich",
-    name: "Salpers Asian Grocery",
-    area: "Oberglatt / Zurich North",
-    note: "Large Asian and Indian grocery warehouse in Oberglatt — bulk quantities of rice, dals, spices, snacks, and specialty items. Also operates an online store with nationwide delivery. 8154 Oberglatt.",
-    url: "https://salpers.ch",
-  },
-  // ── Winterthur ───────────────────────────────────────────────────────────────
-  {
-    city: "Winterthur",
-    name: "Tandoor Indian Supermarket",
-    area: "Neuwiesenstrasse / Hauptbahnhof",
-    note: "Indian supermarket and takeaway directly behind Winterthur main station. Large selection of Indian groceries, spices, lentils, rice, and frozen foods — plus an in-store takeaway buffet with fresh Indian dishes. Neuwiesenstrasse 6, 8400 Winterthur. Phone: 052 550 29 01. No verified website — search 'Tandoor Indian Supermarket Winterthur' on Google Maps.",
-    url: null,
-  },
-  // ── Basel ─────────────────────────────────────────────────────────────────────
-  {
-    city: "Basel",
-    name: "Aggarwal",
-    area: "Basel",
-    note: "Basel branch of the Aggarwal chain — Indian spices, fresh produce, lentils, rice, and specialty groceries. Full range of fresh Indian vegetables and Take Away counter. Check aggarwal.ch/stores for current address.",
-    url: "https://aggarwal.ch",
-  },
-  // ── Bern ─────────────────────────────────────────────────────────────────────
-  {
-    city: "Bern",
-    name: "Aggarwal",
-    area: "Schanzenstrasse",
-    note: "Bern branch of the Aggarwal chain. Schanzenstrasse 4/B, Bern. Phone: +41 31 311 86 55. Fresh Indian vegetables, spices, lentils, pickles, and Indian household products.",
-    url: "https://aggarwal.ch",
-  },
-  // ── Geneva ───────────────────────────────────────────────────────────────────
-  {
-    city: "Geneva",
-    name: "Seelan Market",
-    area: "Geneva",
-    note: "Geneva favourite for Indian, Sri Lankan, and South Asian groceries. Good range of spices, rice varieties, fresh produce, and ready-to-cook items. Highly recommended by the Indian community.",
-    url: "https://seelanmarket.ch",
-  },
-  {
-    city: "Geneva",
-    name: "Madhura",
-    area: "Rue de Liotard",
-    note: "Indian and South Asian grocery shop in central Geneva. Indian spices, dals, rice, frozen meals, and specialty items. 56 Rue de Liotard, 1202 Geneva. Phone: +41 22 344 21 20. No standalone website — search 'Madhura Geneva' on Google Maps.",
-    url: null,
-  },
-  // ── Lausanne ─────────────────────────────────────────────────────────────────
-  {
-    city: "Lausanne",
-    name: "Asia Shop / Épicerie Indienne",
-    area: "Avenue de France",
-    note: "South Asian grocery shop in Lausanne serving the Romandy Indian community. Spices, dals, frozen meals, and specialty items. Avenue de France 2, 1004 Lausanne. Phone: +41 21 624 61 01. Search 'épicerie indienne Lausanne' on Google Maps for current hours.",
-    url: null,
-  },
-];
-
-const online = [
-  {
-    name: "indiasupermarkt.ch",
-    desc: "Swiss-based Indian online supermarket — ships nationwide with fast delivery. One of the most comprehensive selections of Indian brands in Switzerland. Physical store in Zurich (Josefstrasse 91).",
-    url: "https://indiasupermarkt.ch",
-  },
-  {
-    name: "salpers.ch",
-    desc: "Online Asian and Indian grocery store based in Oberglatt (ZH). Bulk quantities of rice, dals, spices, snacks, and specialty items delivered across Switzerland. Pickup also available.",
-    url: "https://salpers.ch",
-  },
-  {
-    name: "dalchinii.ch",
-    desc: "Switzerland-based online Indian grocery with curated selection of spices, lentils, flours, and pickles. Good for hard-to-find Indian brands.",
-    url: "https://dalchinii.ch",
-  },
-  {
-    name: "piccantino.ch",
-    desc: "Organic Indian spices, herbs, curries, and peppers from India — available online and shipped within Switzerland. Good source for premium-quality spice blends.",
-    url: "https://www.piccantino.ch/en-CH/around-the-world/india-1",
-  },
-  {
-    name: "Amazon.de (Germany)",
-    desc: "Wide range of Indian brands (MDH, Everest, Aashirvaad, Patak's) available; ships to Switzerland. Check import duties and delivery costs — usually feasible for branded packaged goods.",
-    url: "https://www.amazon.de",
-  },
-];
+const CITY_ORDER: CityKey[] = ["zurich", "geneva", "basel", "bern", "lausanne"];
 
 export default function GroceryPage() {
   return (
     <div>
       <PageHeader
-        title="Indian Grocery Stores"
+        title="Indian Grocery Stores in Switzerland"
         subtitle="Find the ingredients you need — from fresh curry leaves to atta flour — at Indian grocery stores across Switzerland."
         badge="Groceries"
         gradient="from-green-500 to-emerald-500"
@@ -136,53 +37,41 @@ export default function GroceryPage() {
         ]}
       />
 
-      <p className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-0 text-sm" style={{ color: "var(--text-2)" }}>
-        Looking for an Indian grocery store near Zurich HB, Indian grocery Basel, or online Indian grocery delivery across Switzerland? Whether you need Haldiram&apos;s snacks, MDH masala, Everest spices, Patanjali products, fresh paneer, dal, atta, or curry leaves, Swiss cities have well-stocked Indian supermarkets — several offering free shipping or nationwide delivery. Find stores in Zurich, Basel, Geneva, Bern, Winterthur and Lausanne below.
-      </p>
+      <GroceryJsonLd cities={CITY_ORDER} url="https://indiaspora.ch/food/grocery" />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-sm space-y-3" style={{ color: "var(--text-2)" }}>
+        <p>
+          Looking for an Indian grocery near you? Below are Indian grocery stores in Zurich, Geneva, Basel, Bern, Lausanne and Winterthur,
+          with addresses, Google Maps links and what each shop sells, from fresh curry leaves and paneer to atta, dals and MDH or Everest masalas.
+          Prefer delivery? Several Swiss shops ship Indian groceries nationwide.
+        </p>
+        <p className="flex flex-wrap gap-2 items-center">
+          <span>Jump to your city:</span>
+          {CITY_ORDER.map(c => <Link key={c} href={`/food/${c}`} className="px-3 py-1 rounded-full text-xs font-semibold" style={{ border: "1px solid var(--border-2)", color: "var(--text)" }}>{CITIES[c].en}</Link>)}
+        </p>
+        <p className="text-xs">
+          Auf Deutsch: <Link href="/de/indischer-laden" style={{ color: "var(--in)" }}>Indischer Laden in der Schweiz</Link> · En français : <Link href="/fr/epicerie-indienne" style={{ color: "var(--in)" }}>Épicerie indienne en Suisse</Link>
+        </p>
+        <UpdatedNote />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        {CITY_ORDER.map(c => <CityStores key={c} city={c} />)}
+
         <section>
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Physical Stores</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {stores.map((s) => {
-              const Wrapper = s.url ? "a" : "div";
-              const props = s.url ? { href: s.url, target: "_blank", rel: "noopener noreferrer" } : {};
-              return (
-                <Wrapper key={s.name + s.city} {...props} className="glass card-hover rounded-2xl p-5 block group" style={{ textDecoration: "none" }}>
-                  <div className="flex items-start justify-between mb-2">
-                    <OrgLogo name={s.name} />
-                    <h3 className="text-base font-semibold group-hover:text-green-400 transition-colors" style={{ color: "var(--text)" }}>{s.name}</h3>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400">{s.city}</span>
-                      {s.url && <span className="text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">Visit →</span>}
-                    </div>
-                  </div>
-                  <p className="text-xs mb-2" style={{ color: "var(--text-3)" }}>{s.area}</p>
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{s.note}</p>
-                </Wrapper>
-              );
-            })}
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Order Indian groceries online in Switzerland</h2>
+          <div className="space-y-3">
+            {ONLINE.map(o => (
+              <a key={o.name} href={o.url} target="_blank" rel="noopener noreferrer" className="glass card-hover rounded-2xl p-5 block" style={{ textDecoration: "none" }}>
+                <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>{o.name}</h3>
+                <p className="text-sm" style={{ color: "var(--text-2)" }}>{o.desc}</p>
+              </a>
+            ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text)" }}>Online Delivery</h2>
-          <div className="space-y-3">
-            {online.map((o) => {
-              const Wrapper = o.url ? "a" : "div";
-              const props = o.url ? { href: o.url, target: "_blank", rel: "noopener noreferrer" } : {};
-              return (
-                <Wrapper key={o.name} {...props} className="glass card-hover rounded-2xl p-5 block group" style={{ textDecoration: "none" }}>
-                  <div className="flex items-center justify-between mb-1">
-                    <OrgLogo name={o.name} />
-                    <h3 className="text-base font-semibold text-green-400 group-hover:text-green-300 transition-colors">{o.name}</h3>
-                    {o.url && <span className="text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">Shop →</span>}
-                  </div>
-                  <p className="text-sm" style={{ color: "var(--text-2)" }}>{o.desc}</p>
-                </Wrapper>
-              );
-            })}
-          </div>
+          <h2 className="text-2xl font-bold mb-3" style={{ color: "var(--text)" }}>Run an Indian grocery store?</h2>
+          <p className="text-sm" style={{ color: "var(--text-2)" }}>Get your shop listed or corrected and receive a &ldquo;Listed on Indiaspora&rdquo; badge for your website. <Link href="/get-verified" style={{ color: "var(--in)", fontWeight: 700 }}>Get your listing verified →</Link></p>
         </section>
 
         <section>

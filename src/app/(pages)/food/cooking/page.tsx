@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Indian Cooking Classes in Switzerland",
   description: "Learn regional Indian cooking — classes, workshops, community events, and YouTube resources.",
   openGraph: {
-    title: "Indian Cooking Classes in Switzerland | IndiaSwiss",
+    title: "Indian Cooking Classes in Switzerland",
     description: "Learn regional Indian cooking — classes, workshops, community events, and YouTube resources.",
   },
 };

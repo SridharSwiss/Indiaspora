@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Education & Schools in Switzerland for Indians",
   description: "Swiss public schools, international schools, Indian heritage language classes, and university options for Indian families.",
   openGraph: {
-    title: "Education & Schools in Switzerland for Indians | IndiaSwiss",
+    title: "Education & Schools in Switzerland for Indians",
     description: "Swiss public schools, international schools, Indian heritage language classes, and university options for Indian families.",
   },
 };
