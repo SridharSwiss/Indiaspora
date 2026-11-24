@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const NAV_COLS = [
   {
@@ -49,6 +50,8 @@ const NAV_COLS = [
 ];
 
 export default function Footer() {
+  const [views, setViews] = useState<number | null>(null);
+  useEffect(() => { fetch("/api/stats").then(r => r.ok ? r.json() : null).then(j => j && setViews(j.views)).catch(() => {}); }, []);
   const pathname = usePathname();
   if (pathname.startsWith("/admin")) return null;
 
@@ -231,10 +234,11 @@ export default function Footer() {
           style={{ borderTop: "1px solid rgba(176,141,87,0.1)" }}>
           <p className="text-xs" style={{ color: "rgba(200,185,165,0.72)", fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
             © 2026 Indiaspora Community Hub. All rights reserved.
-            {/* Estimate: ~900 page views a month (tracked since 31 Oct 2026), projected over 12 months */}
-            <span style={{ marginLeft: 10, fontVariantNumeric: "tabular-nums" }} title="Estimate based on about 900 tracked page views a month">
-              · ~900 page views a month · ~10,800 in 2026 (est.)
-            </span>
+            {views !== null && (
+              <span style={{ marginLeft: 10, fontVariantNumeric: "tabular-nums" }} title="Live count since 31 Oct 2026, plus an estimate of about 900 a month for January to October">
+                · {views.toLocaleString("en-CH")} page views in 2026
+              </span>
+            )}
           </p>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             {[
