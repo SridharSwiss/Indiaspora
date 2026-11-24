@@ -12,6 +12,6 @@ export async function GET() {
   const tracked = count ?? 0;
   return NextResponse.json(
     { views: ESTIMATED_BEFORE_TRACKING + tracked, tracked, estimated: ESTIMATED_BEFORE_TRACKING },
-    { headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600" } },
+    { headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" } },
   );
 }
